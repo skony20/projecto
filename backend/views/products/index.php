@@ -20,6 +20,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a(Yii::t('app', 'Dodaj Projekt'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+    <?php
+   
+    ?>
 <?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -51,9 +54,11 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'label'=>'Nazwa',
                 'value' => function ($model)
-                {
-                    $sFullName = $model->productsDescriptons[0]->name . ' '. $model->productsDescriptons[0]->name_model. ' ' . $model->productsDescriptons[0]->name_subname;
-                    return $sFullName;
+                {    
+                    $sName = (is_object($model->productsDescriptons) ? $model->productsDescriptons->name: ' ');
+                    $sNameModel = (is_object($model->productsDescriptons) ? $model->productsDescriptons->name_model: ' ');
+                    $sNameSubname = (is_object($model->productsDescriptons) ? $model->productsDescriptons->name_subname: ' ');
+                    return $sName . ' '. $sNameModel .' ' .$sNameSubname;
                 },
             ],
 //            [
