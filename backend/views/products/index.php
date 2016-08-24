@@ -1,5 +1,5 @@
 <?php
-/*MariuszS*/ /*A teraz*/ /*Kolejny test*/ /*Po raz kolejny*/
+/*MariuszS/
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
