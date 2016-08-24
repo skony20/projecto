@@ -1,10 +1,4 @@
 <?php
-/*MariuszS*/
-/*MariuszS 3*/
-/*MariuszS 22*/
-
-/*MariuszS 4*/
-/*MariuszS 55*/
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
