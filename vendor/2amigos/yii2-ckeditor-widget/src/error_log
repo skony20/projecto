@@ -1,0 +1,5 @@
+[25-Jan-2016 20:27:30 Europe/Berlin] PHP Parse error:  syntax error, unexpected T_USE, expecting T_FUNCTION in /home/mariuszs/public_html/olgaz2/vendor/2amigos/yii2-ckeditor-widget/src/CKEditorInline.php on line 23
+[26-Jan-2016 08:10:46 Europe/Berlin] PHP Parse error:  syntax error, unexpected '[' in /home/mariuszs/public_html/olgaz2/vendor/2amigos/yii2-ckeditor-widget/src/CKEditorAsset.php on line 21
+[26-Jan-2016 14:44:20 Europe/Berlin] PHP Parse error:  syntax error, unexpected T_STRING in /home/mariuszs/public_html/olgaz2/vendor/2amigos/yii2-ckeditor-widget/src/CKEditorTrait.php on line 19
+[26-Jan-2016 15:52:46 Europe/Berlin] PHP Parse error:  syntax error, unexpected T_USE, expecting T_FUNCTION in /home/mariuszs/public_html/olgaz2/vendor/2amigos/yii2-ckeditor-widget/src/CKEditor.php on line 23
+[26-Jan-2016 21:11:51 Europe/Berlin] PHP Parse error:  syntax error, unexpected '[' in /home/mariuszs/public_html/olgaz2/vendor/2amigos/yii2-ckeditor-widget/src/CKEditorWidgetAsset.php on line 21

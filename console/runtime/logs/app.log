@@ -1,0 +1,111 @@
+2016-08-17 11:22:59 [-][-][-][error][yii\db\Exception] exception 'PDOException' with message 'SQLSTATE[HY000] [2002] Nie mo¿na nawi¹zaæ po³¹czenia, poniewa¿ komputer docelowy aktywnie go odmawia.
+' in C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\db\Connection.php:603
+Stack trace:
+#0 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\db\Connection.php(603): PDO->__construct('mysql:host=loca...', 'mariuszs', 'skony515418', NULL)
+#1 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\db\Connection.php(545): yii\db\Connection->createPdoInstance()
+#2 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\db\Connection.php(864): yii\db\Connection->open()
+#3 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\db\Connection.php(851): yii\db\Connection->getMasterPdo()
+#4 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\db\Command.php(219): yii\db\Connection->getSlavePdo()
+#5 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\db\Command.php(894): yii\db\Command->prepare(true)
+#6 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\db\Command.php(362): yii\db\Command->queryInternal('fetchAll', NULL)
+#7 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\db\mysql\Schema.php(198): yii\db\Command->queryAll()
+#8 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\db\mysql\Schema.php(97): yii\db\mysql\Schema->findColumns(Object(yii\db\TableSchema))
+#9 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\db\Schema.php(149): yii\db\mysql\Schema->loadTableSchema('migration')
+#10 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\console\controllers\MigrateController.php(178): yii\db\Schema->getTableSchema('{{%migration}}', true)
+#11 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(627): yii\console\controllers\MigrateController->getMigrationHistory(NULL)
+#12 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(102): yii\console\controllers\BaseMigrateController->getNewMigrations()
+#13 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#14 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\base\InlineAction.php(55): call_user_func_array(Array, Array)
+#15 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\base\Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#16 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\console\Controller.php(119): yii\base\Controller->runAction('', Array)
+#17 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\base\Module.php(454): yii\console\Controller->runAction('', Array)
+#18 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate', Array)
+#19 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate', Array)
+#20 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\base\Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#21 C:\xampp\htdocs\yii2Projecto\yii(27): yii\base\Application->run()
+#22 {main}
+
+Next exception 'yii\db\Exception' with message 'SQLSTATE[HY000] [2002] Nie mo¿na nawi¹zaæ po³¹czenia, poniewa¿ komputer docelowy aktywnie go odmawia.
+' in C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\db\Connection.php:550
+Stack trace:
+#0 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\db\Connection.php(864): yii\db\Connection->open()
+#1 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\db\Connection.php(851): yii\db\Connection->getMasterPdo()
+#2 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\db\Command.php(219): yii\db\Connection->getSlavePdo()
+#3 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\db\Command.php(894): yii\db\Command->prepare(true)
+#4 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\db\Command.php(362): yii\db\Command->queryInternal('fetchAll', NULL)
+#5 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\db\mysql\Schema.php(198): yii\db\Command->queryAll()
+#6 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\db\mysql\Schema.php(97): yii\db\mysql\Schema->findColumns(Object(yii\db\TableSchema))
+#7 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\db\Schema.php(149): yii\db\mysql\Schema->loadTableSchema('migration')
+#8 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\console\controllers\MigrateController.php(178): yii\db\Schema->getTableSchema('{{%migration}}', true)
+#9 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(627): yii\console\controllers\MigrateController->getMigrationHistory(NULL)
+#10 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(102): yii\console\controllers\BaseMigrateController->getNewMigrations()
+#11 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#12 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\base\InlineAction.php(55): call_user_func_array(Array, Array)
+#13 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\base\Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#14 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\console\Controller.php(119): yii\base\Controller->runAction('', Array)
+#15 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\base\Module.php(454): yii\console\Controller->runAction('', Array)
+#16 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate', Array)
+#17 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate', Array)
+#18 C:\xampp\htdocs\yii2Projecto\vendor\yiisoft\yii2\base\Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#19 C:\xampp\htdocs\yii2Projecto\yii(27): yii\base\Application->run()
+#20 {main}
+Additional Information:
+
+2016-08-17 11:22:57 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'AMDAPPSDKROOT' => 'C:\\Program Files (x86)\\AMD APP\\'
+    'APPDATA' => 'C:\\Users\\Mariusz\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'MARIUSZS'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'EMAIL' => 'C:\\Users\\Mariusz\\AppData\\Roaming\\The Bat!'
+    'ESET_OPTIONS' => '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               '
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\Mariusz'
+    'JD2_HOME' => 'C:\\Users\\Mariusz\\AppData\\Local\\JDownloader v2.0'
+    'LOCALAPPDATA' => 'C:\\Users\\Mariusz\\AppData\\Local'
+    'LOGONSERVER' => '\\\\MARIUSZS'
+    'NUMBER_OF_PROCESSORS' => '8'
+    'OPENSSL_CONF' => 'C:\\OpenSSL\\bin\\openssl.cnf'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\WT-NMP\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\xampp\\php;C:\\Program Files (x86)\\Microsoft SQL Server\\80\\Tools\\Binn\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Users\\Mariusz\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 30 Stepping 5, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '1e05'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'MariuszS'
+    'USERNAME' => 'Mariusz'
+    'USERPROFILE' => 'C:\\Users\\Mariusz'
+    'windir' => 'C:\\Windows'
+    'windows_tracing_flags' => '3'
+    'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log'
+    'PHP_SELF' => 'c:\\xampp\\htdocs\\yii2Projecto\\yii'
+    'SCRIPT_NAME' => 'c:\\xampp\\htdocs\\yii2Projecto\\yii'
+    'SCRIPT_FILENAME' => 'c:\\xampp\\htdocs\\yii2Projecto\\yii'
+    'PATH_TRANSLATED' => 'c:\\xampp\\htdocs\\yii2Projecto\\yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1471425777.5077
+    'REQUEST_TIME' => 1471425777
+    'argv' => [
+        0 => 'c:\\xampp\\htdocs\\yii2Projecto\\yii'
+        1 => 'migrate'
+    ]
+    'argc' => 2
+]
