@@ -60192,3 +60192,193 @@ $_SERVER = [
     'REQUEST_TIME_FLOAT' => 1472048467.303
     'REQUEST_TIME' => 1472048467
 ]
+2016-08-24 22:18:02 [::1][1][s6mg91rmfltf8tlp7tot55emb4][error][yii\base\ErrorException:2] exception 'yii\base\ErrorException' with message 'Creating default object from empty value' in C:\xampp\htdocs\projecto\backend\views\products\_form.php:25
+Stack trace:
+#0 C:\xampp\htdocs\projecto\backend\views\products\_form.php(25): yii\base\ErrorHandler->handleError(2, 'Creating defaul...', 'C:\\xampp\\htdocs...', 25, Array)
+#1 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\View.php(325): require('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\View.php(247): yii\base\View->renderPhpFile('C:\\xampp\\htdocs...', Array)
+#3 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\View.php(149): yii\base\View->renderFile('C:\\xampp\\htdocs...', Array, NULL)
+#4 C:\xampp\htdocs\projecto\backend\views\products\update.php(24): yii\base\View->render('_form', Array)
+#5 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\View.php(325): require('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\View.php(247): yii\base\View->renderPhpFile('C:\\xampp\\htdocs...', Array)
+#7 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\View.php(149): yii\base\View->renderFile('C:\\xampp\\htdocs...', Array, Object(backend\controllers\ProductsController))
+#8 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Controller.php(378): yii\base\View->render('update', Array, Object(backend\controllers\ProductsController))
+#9 C:\xampp\htdocs\projecto\backend\controllers\ProductsController.php(123): yii\base\Controller->render('update', Array)
+#10 [internal function]: backend\controllers\ProductsController->actionUpdate('1')
+#11 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\InlineAction.php(55): call_user_func_array(Array, Array)
+#12 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#13 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Module.php(454): yii\base\Controller->runAction('update', Array)
+#14 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\web\Application.php(87): yii\base\Module->runAction('products/update', Array)
+#15 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#16 C:\xampp\htdocs\projecto\backend\web\index.php(18): yii\base\Application->run()
+#17 {main}
+2016-08-24 22:18:01 [::1][1][s6mg91rmfltf8tlp7tot55emb4][info][application] $_GET = [
+    'id' => '1'
+]
+
+$_COOKIE = [
+    '_csrf-backend' => 'c24077674d13bb884a8887534ddceefdc4f44e58f85ca21e4a977e049d7a75eea:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"qgSTlGRcKsD48bdt8mRVF6eBNG5gD77t\";}'
+    'advanced-backend' => 's6mg91rmfltf8tlp7tot55emb4'
+    '_identity-backend' => 'ae6f23fd8d74b198cb8ef86a1b21a76150998bd3c9ab7552f9699e7fa5235f43a:2:{i:0;s:17:\"_identity-backend\";i:1;s:14:\"[1,\"\",2592000]\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/projecto/backend/web/'
+    '__id' => 1
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_REFERER' => 'http://localhost/projecto/backend/web/products'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'pl-PL,pl;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => '_csrf-backend=c24077674d13bb884a8887534ddceefdc4f44e58f85ca21e4a977e049d7a75eea%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22qgSTlGRcKsD48bdt8mRVF6eBNG5gD77t%22%3B%7D; advanced-backend=s6mg91rmfltf8tlp7tot55emb4; _identity-backend=ae6f23fd8d74b198cb8ef86a1b21a76150998bd3c9ab7552f9699e7fa5235f43a%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A14%3A%22%5B1%2C%22%22%2C2592000%5D%22%3B%7D'
+    'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Git\\cmd;'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.17 (Win32) OpenSSL/1.0.2d PHP/5.6.23 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.17 (Win32) OpenSSL/1.0.2d PHP/5.6.23'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/projecto/backend/web/index.php'
+    'REMOTE_PORT' => '50766'
+    'REDIRECT_URL' => 'http://localhost/projecto/backend/web/products/update/1'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/projecto/backend/web/products/update/1'
+    'SCRIPT_NAME' => '/projecto/backend/web/index.php'
+    'PHP_SELF' => '/projecto/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1472069881.542
+    'REQUEST_TIME' => 1472069881
+]
+2016-08-24 22:22:18 [::1][1][s6mg91rmfltf8tlp7tot55emb4][error][yii\base\UnknownPropertyException] exception 'yii\base\UnknownPropertyException' with message 'Setting unknown property: yii\i18n\Formatter::datetineFormat' in C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Component.php:197
+Stack trace:
+#0 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\BaseYii.php(521): yii\base\Component->__set('datetineFormat', 'dd.mm.yyyy hh:m...')
+#1 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Object.php(105): yii\BaseYii::configure(Object(yii\i18n\Formatter), Array)
+#2 [internal function]: yii\base\Object->__construct(Array)
+#3 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\di\Container.php(379): ReflectionClass->newInstanceArgs(Array)
+#4 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\di\Container.php(154): yii\di\Container->build('yii\\i18n\\Format...', Array, Array)
+#5 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\BaseYii.php(344): yii\di\Container->get('yii\\i18n\\Format...', Array, Array)
+#6 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\di\ServiceLocator.php(133): yii\BaseYii::createObject(Array)
+#7 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Application.php(527): yii\di\ServiceLocator->get('formatter')
+#8 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\widgets\DetailView.php(117): yii\base\Application->getFormatter()
+#9 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Object.php(107): yii\widgets\DetailView->init()
+#10 [internal function]: yii\base\Object->__construct(Array)
+#11 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\di\Container.php(379): ReflectionClass->newInstanceArgs(Array)
+#12 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\di\Container.php(154): yii\di\Container->build('yii\\widgets\\Det...', Array, Array)
+#13 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\BaseYii.php(344): yii\di\Container->get('yii\\widgets\\Det...', Array, Array)
+#14 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Widget.php(101): yii\BaseYii::createObject(Array)
+#15 C:\xampp\htdocs\projecto\backend\views\products\view.php(50): yii\base\Widget::widget(Array)
+#16 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\View.php(325): require('C:\\xampp\\htdocs...')
+#17 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\View.php(247): yii\base\View->renderPhpFile('C:\\xampp\\htdocs...', Array)
+#18 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\View.php(149): yii\base\View->renderFile('C:\\xampp\\htdocs...', Array, Object(backend\controllers\ProductsController))
+#19 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Controller.php(378): yii\base\View->render('view', Array, Object(backend\controllers\ProductsController))
+#20 C:\xampp\htdocs\projecto\backend\controllers\ProductsController.php(70): yii\base\Controller->render('view', Array)
+#21 [internal function]: backend\controllers\ProductsController->actionView('2')
+#22 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\InlineAction.php(55): call_user_func_array(Array, Array)
+#23 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#24 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Module.php(454): yii\base\Controller->runAction('view', Array)
+#25 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\web\Application.php(87): yii\base\Module->runAction('products/view', Array)
+#26 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#27 C:\xampp\htdocs\projecto\backend\web\index.php(18): yii\base\Application->run()
+#28 {main}
+2016-08-24 22:22:18 [::1][1][s6mg91rmfltf8tlp7tot55emb4][info][application] $_GET = [
+    'id' => '2'
+]
+
+$_COOKIE = [
+    '_csrf-backend' => 'c24077674d13bb884a8887534ddceefdc4f44e58f85ca21e4a977e049d7a75eea:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"qgSTlGRcKsD48bdt8mRVF6eBNG5gD77t\";}'
+    'advanced-backend' => 's6mg91rmfltf8tlp7tot55emb4'
+    '_identity-backend' => 'ae6f23fd8d74b198cb8ef86a1b21a76150998bd3c9ab7552f9699e7fa5235f43a:2:{i:0;s:17:\"_identity-backend\";i:1;s:14:\"[1,\"\",2592000]\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/projecto/backend/web/'
+    '__id' => 1
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_REFERER' => 'http://localhost/projecto/backend/web/products/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'pl-PL,pl;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => '_csrf-backend=c24077674d13bb884a8887534ddceefdc4f44e58f85ca21e4a977e049d7a75eea%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22qgSTlGRcKsD48bdt8mRVF6eBNG5gD77t%22%3B%7D; advanced-backend=s6mg91rmfltf8tlp7tot55emb4; _identity-backend=ae6f23fd8d74b198cb8ef86a1b21a76150998bd3c9ab7552f9699e7fa5235f43a%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A14%3A%22%5B1%2C%22%22%2C2592000%5D%22%3B%7D'
+    'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Git\\cmd;'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.17 (Win32) OpenSSL/1.0.2d PHP/5.6.23 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.17 (Win32) OpenSSL/1.0.2d PHP/5.6.23'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/projecto/backend/web/index.php'
+    'REMOTE_PORT' => '50846'
+    'REDIRECT_URL' => 'http://localhost/projecto/backend/web/products/2'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/projecto/backend/web/products/2'
+    'SCRIPT_NAME' => '/projecto/backend/web/index.php'
+    'PHP_SELF' => '/projecto/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1472070138.702
+    'REQUEST_TIME' => 1472070138
+]

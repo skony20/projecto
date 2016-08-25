@@ -54,7 +54,7 @@ class ProductsController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            
+
         ]);
     }
 
@@ -80,13 +80,13 @@ class ProductsController extends Controller
         $model = new Products();
         $oProductsDescription = new ProductsDescripton();
 
-        if ($model->load(Yii::$app->request->post()) && $oProductsDescription->load(Yii::$app->request->post()) &&  Model::validateMultiple([$model, $oProductsDescription])) 
+        if ($model->load(Yii::$app->request->post()) && $oProductsDescription->load(Yii::$app->request->post()) &&  Model::validateMultiple([$model, $oProductsDescription]))
         {
-
+            $model->creation_date = time();
             $model->save(false); // skip validation as model is already validated
             $oProductsDescription->products_id = $model->id;
             $oProductsDescription->languages_id = 1;
-            $oProductsDescription->save(false); 
+            $oProductsDescription->save(false);
 
             return $this->redirect(['index']);
     } else {
@@ -107,13 +107,13 @@ class ProductsController extends Controller
         $model = $this->findModel($id);
         $oProductsDescription = ProductsDescripton::findOne($model->id, 1);
         //echo '<pre> '.print_r($oProductsDescription, TRUE) .'</pre>'; die();
-        if ($model->load(Yii::$app->request->post()) && $oProductsDescription->load(Yii::$app->request->post()))  
+        if ($model->load(Yii::$app->request->post()) && $oProductsDescription->load(Yii::$app->request->post()))
         {
-            $model->
+            $model->modification_date = time();
             $model->save(false); // skip validation as model is already validated
             $oProductsDescription->products_id = $model->id;
             $oProductsDescription->languages_id = 1;
-            $oProductsDescription->save(false); 
+            $oProductsDescription->save(false);
 
             return $this->redirect(['index']);
         } else {
