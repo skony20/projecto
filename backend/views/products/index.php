@@ -27,9 +27,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
+            
             'id',
             [
-                'label'=>'Aktywny',
+                'label'=>'',
+                'format' => 'raw',
+                'value'=> function($model)
+                {
+                    return '<img src="../../../images/'.$model->id.'/thumbs/'.$model->id.'.jpg"/>';
+                },
+            ],
+            [
+                'attribute' => 'is_active',
                 'value' =>  function($data)
                     {
                         return ($data->is_active = 1 ? 'Tak': 'Nie' );
@@ -41,24 +50,25 @@ $this->params['breadcrumbs'][] = $this->title;
             //'sort_order',
             //'producers_id',
             [
-                'label'=>'Dostawca',
+                'attribute' => 'producers_id',
                 'value' =>  'producers.name',
                 'filter' => Html::activeDropDownList($searchModel, 'producers_id', ArrayHelper::map(app\models\Producers::find()->asArray()->all(), 'id', 'name'),['class'=>'form-control','prompt' => 'Wybierz']),
             ],
             //'pkwiu',
             [
-                'label'=>'Stawka VAT',
+                'attribute' => 'vats_id',
                 'value' =>  'vats.name',
                 'filter' => Html::activeDropDownList($searchModel, 'vats_id', ArrayHelper::map(\app\models\Vats::find()->orderBy('id DESC')->asArray()->all(), 'id', 'name'),['class'=>'form-control','prompt' => 'Wybierz']),
             ],
             [
                 'label'=>'Nazwa',
+                'format' => 'raw',
                 'value' => function ($model)
                 {    
                     $sName = (is_object($model->productsDescriptons) ? $model->productsDescriptons->name: ' ');
                     $sNameModel = (is_object($model->productsDescriptons) ? $model->productsDescriptons->name_model: ' ');
                     $sNameSubname = (is_object($model->productsDescriptons) ? $model->productsDescriptons->name_subname: ' ');
-                    return $sName . ' '. $sNameModel .' ' .$sNameSubname;
+                    return $sName . ' <b>'. $sNameModel .'</b> ' .$sNameSubname;
                 },
             ],
 //            [
@@ -69,7 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //                },
 //            ],
             [   
-                'label'=> 'Cena',
+                'attribute' => 'price_brutto_source',
                 'value'=> function ($model)
                 {
                     $formatter = new \yii\i18n\Formatter;

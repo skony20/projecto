@@ -8,10 +8,10 @@ use app\models\ProductsDescripton;
 
 $this->title = Yii::t('app', 'Zmień {modelClass}: ', [
     'modelClass' => 'Projekt',
-]) . $model->id;
+]) . $model->productsDescriptons->name . ' '. $model->productsDescriptons->name_model . ' ' . $model->productsDescriptons->name_subname ;
 
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Projekt'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $model->symbol, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Zmień');
 ?>
 <div class="products-update">

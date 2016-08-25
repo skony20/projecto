@@ -11,6 +11,10 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use app\models\ProductsDescripton;
 use yii\base\Model;
+use yii\web\UploadedFile;
+use app\models\UploadForm;
+use yii\db;
+
 
 /**
  * ProductsController implements the CRUD actions for Products model.
@@ -79,17 +83,26 @@ class ProductsController extends Controller
     {
         $model = new Products();
         $oProductsDescription = new ProductsDescripton();
-
+        
+        
+        
         if ($model->load(Yii::$app->request->post()) && $oProductsDescription->load(Yii::$app->request->post()) &&  Model::validateMultiple([$model, $oProductsDescription]))
         {
+            $oImage = UploadedFile::getInstance($model, 'image');
             $model->creation_date = time();
-            $model->save(false); // skip validation as model is already validated
+            if ($model->save(false) )
+            {
+                if (is_object($oImage))
+                    {   
+                        $this->UploadImage($model->id, $oImage);
+                    }
+            }; 
             $oProductsDescription->products_id = $model->id;
             $oProductsDescription->languages_id = 1;
             $oProductsDescription->save(false);
 
             return $this->redirect(['index']);
-    } else {
+        } else {
             return $this->render('create', [
                 'model' => $model,
             ]);
@@ -109,6 +122,12 @@ class ProductsController extends Controller
         //echo '<pre> '.print_r($oProductsDescription, TRUE) .'</pre>'; die();
         if ($model->load(Yii::$app->request->post()) && $oProductsDescription->load(Yii::$app->request->post()))
         {
+            $oImage = UploadedFile::getInstance($model, 'image');
+            if (is_object($oImage))
+            {
+                $this->UploadImage($id, $oImage);
+            }
+            
             $model->modification_date = time();
             $model->save(false); // skip validation as model is already validated
             $oProductsDescription->products_id = $model->id;
@@ -132,8 +151,10 @@ class ProductsController extends Controller
      */
     public function actionDelete($id)
     {
+        
+        $oPD = new ProductsDescripton();
+        $oPD->findOne($id)->delete();
         $this->findModel($id)->delete();
-
         return $this->redirect(['index']);
     }
 
@@ -151,5 +172,16 @@ class ProductsController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+    protected function UploadImage($p_iId, $p_oImage) 
+    { 
+        $oUpload = new UploadForm();
+        $iId =  $p_iId;
+        $oImage = $p_oImage;
+        $oUpload->id = $iId;
+        $oUpload->imageFiles = $oImage;
+        $oUpload->saveImages();
+        //echo '<pre>U' . print_r([$iId,$oImage], TRUE); die();
+        
     }
 }

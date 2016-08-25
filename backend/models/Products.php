@@ -65,9 +65,9 @@ class Products extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'is_active' => Yii::t('app', 'Is Active'),
-            'sort_order' => Yii::t('app', 'Sort Order'),
+            'id' => Yii::t('app', 'id'),
+            'is_active' => Yii::t('app', 'Aktywny'),
+            'sort_order' => Yii::t('app', 'Sortowanie'),
             'producers_id' => Yii::t('app', 'Dostawca'),
             'pkwiu' => Yii::t('app', 'PKWIU'),
             'vats_id' => Yii::t('app', 'Vat'),
@@ -76,13 +76,13 @@ class Products extends \yii\db\ActiveRecord
             'stock' => Yii::t('app', 'Ilość'),
             'rating_value' => Yii::t('app', 'Rating Value'),
             'rating_votes' => Yii::t('app', 'Rating Votes'),
-            'creation_date' => Yii::t('app', 'Creation Date'),
-            'modification_date' => Yii::t('app', 'Modification Date'),
+            'creation_date' => Yii::t('app', 'Utworzono'),
+            'modification_date' => Yii::t('app', 'Ostatnia zmiana'),
             'symbol' => Yii::t('app', 'Symbol'),
             'ean' => Yii::t('app', 'Ean'),
-            'image' => Yii::t('app', 'Image'),
-            'is_archive' => Yii::t('app', 'Is Archive'),
-            'sell_items' => Yii::t('app', 'Sell Items'),
+            'image' => Yii::t('app', 'Obrazek główny'),
+            'is_archive' => Yii::t('app', 'Archiwalny'),
+            'sell_items' => Yii::t('app', 'Sprzedanych'),
         ];
     }
 

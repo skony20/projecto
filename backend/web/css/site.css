@@ -99,7 +99,6 @@ a.desc:after {
 .nav > li > form {
     padding: 8px;
 }
-
 @media(max-width:768px) {
 	.nav li > form {
 	    padding: 3px;

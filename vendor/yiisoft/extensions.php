@@ -57,13 +57,22 @@ return array (
       '@yii/faker' => $vendorDir . '/yiisoft/yii2-faker',
     ),
   ),
-   '2amigos/yii2-ckeditor-widget' => 
+  '2amigos/yii2-ckeditor-widget' => 
   array (
     'name' => '2amigos/yii2-ckeditor-widget',
-    'version' => '',
+    'version' => '1.0.4.0',
     'alias' => 
     array (
       '@dosamigos/ckeditor' => $vendorDir . '/2amigos/yii2-ckeditor-widget/src',
+    ),
+  ),
+  'yiisoft/yii2-imagine' => 
+  array (
+    'name' => 'yiisoft/yii2-imagine',
+    'version' => '2.0.3.0',
+    'alias' => 
+    array (
+      '@yii/imagine' => $vendorDir . '/yiisoft/yii2-imagine',
     ),
   ),
 );
