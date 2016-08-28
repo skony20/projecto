@@ -21,20 +21,20 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a(Yii::t('app', 'Dodaj Projekt'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?php
-   
+
     ?>
 <?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            
+
             'id',
             [
                 'label'=>'',
                 'format' => 'raw',
                 'value'=> function($model)
                 {
-                    return '<img src="../../../images/'.$model->id.'/thumbs/'.$model->id.'.jpg"/>';
+                    return '<img src="../../images/'.$model->id.'/thumbs/'.$model->id.'.jpg"/>';
                 },
             ],
             [
@@ -64,7 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label'=>'Nazwa',
                 'format' => 'raw',
                 'value' => function ($model)
-                {    
+                {
                     $sName = (is_object($model->productsDescriptons) ? $model->productsDescriptons->name: ' ');
                     $sNameModel = (is_object($model->productsDescriptons) ? $model->productsDescriptons->name_model: ' ');
                     $sNameSubname = (is_object($model->productsDescriptons) ? $model->productsDescriptons->name_subname: ' ');
@@ -78,13 +78,13 @@ $this->params['breadcrumbs'][] = $this->title;
 //                    return $model->languages[0]->name;
 //                },
 //            ],
-            [   
+            [
                 'attribute' => 'price_brutto_source',
                 'value'=> function ($model)
                 {
                     $formatter = new \yii\i18n\Formatter;
                     return $formatter->asCurrency($model->price_brutto_source, 'zł');
-                }   
+                }
             ],
             //'price_brutto',
             // 'stock',
