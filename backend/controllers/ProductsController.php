@@ -83,9 +83,9 @@ class ProductsController extends Controller
     {
         $model = new Products();
         $oProductsDescription = new ProductsDescripton();
-        
-        
-        
+
+
+
         if ($model->load(Yii::$app->request->post()) && $oProductsDescription->load(Yii::$app->request->post()) &&  Model::validateMultiple([$model, $oProductsDescription]))
         {
             $oImage = UploadedFile::getInstance($model, 'image');
@@ -93,10 +93,10 @@ class ProductsController extends Controller
             if ($model->save(false) )
             {
                 if (is_object($oImage))
-                    {   
+                    {
                         $this->UploadImage($model->id, $oImage);
                     }
-            }; 
+            };
             $oProductsDescription->products_id = $model->id;
             $oProductsDescription->languages_id = 1;
             $oProductsDescription->save(false);
@@ -127,7 +127,7 @@ class ProductsController extends Controller
             {
                 $this->UploadImage($id, $oImage);
             }
-            
+
             $model->modification_date = time();
             $model->save(false); // skip validation as model is already validated
             $oProductsDescription->products_id = $model->id;
@@ -151,7 +151,7 @@ class ProductsController extends Controller
      */
     public function actionDelete($id)
     {
-        
+
         $oPD = new ProductsDescripton();
         $oPD->findOne($id)->delete();
         $this->findModel($id)->delete();
@@ -173,8 +173,8 @@ class ProductsController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-    protected function UploadImage($p_iId, $p_oImage) 
-    { 
+    protected function UploadImage($p_iId, $p_oImage)
+    {
         $oUpload = new UploadForm();
         $iId =  $p_iId;
         $oImage = $p_oImage;
@@ -182,6 +182,6 @@ class ProductsController extends Controller
         $oUpload->imageFiles = $oImage;
         $oUpload->saveImages();
         //echo '<pre>U' . print_r([$iId,$oImage], TRUE); die();
-        
+
     }
 }
