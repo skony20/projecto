@@ -13,11 +13,12 @@ $model->products_id = $_GET['id'];
 ?>
 <div class="products-filters-create">
 
-    <h1><?= Html::encode($model->products['symbol']) ?></h1>
+    <h1>Dodaj filtry do: <?= Html::encode($model->products['symbol']) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,
         'aData' => $aData,
+        'aProductsFilters'=> $aProductsFilters,
     ]) ?>
 
 </div>

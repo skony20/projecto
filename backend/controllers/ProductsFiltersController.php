@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use app\models\Filters;
 use app\models\FiltersGroup;
+use app\models\Products;
 
 /**
  * ProductsFiltersController implements the CRUD actions for ProductsFilters model.
@@ -20,6 +21,8 @@ class ProductsFiltersController extends Controller
     /**
      * @inheritdoc
      */
+    
+    
     public function behaviors()
     {
         return [
@@ -76,27 +79,45 @@ class ProductsFiltersController extends Controller
      */
     public function actionCreate()
     {
+        $aProductsFilters =[0];
         $model = new ProductsFilters();
         $oFiltersGroup = new FiltersGroup();
         $oFilters = new Filters();
-        $aFiltersGroup = $oFiltersGroup::find()->where(['is_active'=> 1])->all();
+        $aFiltersGroup = $oFiltersGroup::find()->where(['is_active'=> 1])->orderBy('sort_order')->all();
         foreach ($aFiltersGroup as $_aFiltersGroup)
         {
             $aFilters = $oFilters::find()->where(['filters_group_id' => $_aFiltersGroup->id, 'is_active'=> 1])->all();
             $aData[$_aFiltersGroup->id] = ['question'=>$_aFiltersGroup, 'answer' => $aFilters];
         }
-        if (Yii::$app->request->post()) {
-            echo '<pre>' . print_r ($_POST, TRUE) .'</pre>';
-            $sMax = count($_POST);
-            for ($a=0; $a <= $sMax-2; $a++)
+        $oProductsFilters = $model->find()->where(['products_id' => $_GET['id']])->all();
+        foreach ($oProductsFilters as $_oProductsFilters)
+        {
+            $aProductsFilters[].=$_oProductsFilters->filters_id;
+        }
+        //echo '<pre>55' . print_r($aProductsFilters, TRUE). '</pre>'; die();
+        if (Yii::$app->request->post()) 
             {
-                echo $_POST[$a] . '<--<br>';
-            }
-
-        } else {
+                $model->products_id = $_GET['id'];
+                $model->deleteAll(['products_id' => $_GET['id']]);
+                
+                
+                $sMax = count($_POST);
+                for ($a=0; $a <= $sMax-2; $a++)
+                {       
+                    $model->filters_id = $_POST[$a];
+                    $model->id = NULL; //primary key(auto increment id) id
+                    $model->isNewRecord = true;
+                    $model->save(false);
+                }
+                
+            return $this->redirect(['./products']);
+            } 
+        else 
+        {
             return $this->render('create', [
                 'model' => $model,
                 'aData' => $aData,
+                'aProductsFilters'=> $aProductsFilters,
                 ]);
         }
     }

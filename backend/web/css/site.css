@@ -99,6 +99,20 @@ a.desc:after {
 .nav > li > form {
     padding: 8px;
 }
+.radiolist_prdflt
+{
+    padding:15px 0;
+    border-bottom: 1px solid #444444;
+}
+.question_label
+{
+    font-size:14px;
+    margin-bottom: 5px;
+}
+span.radio_value 
+{
+    padding-left: 10px;
+}
 @media(max-width:768px) {
 	.nav li > form {
 	    padding: 3px;

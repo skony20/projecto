@@ -131,5 +131,13 @@ class Products extends \yii\db\ActiveRecord
         parent::validate($attributeNames, $clearErrors);
         return TRUE;
     }
+       /**
+    * @inheritdoc
+    * @return ProductsQuery the active query used by this AR class.
+    */
+   public static function find()
+   {
+       return new ProductsQuery(get_called_class());
+   }
     
 }

@@ -43,8 +43,16 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => 'Projekty', 'url' => ['/products']],
         ['label' => 'Pytania', 'url' => ['/filters-group']],
         ['label' => 'Odpowiedzi', 'url' => ['/filters']],
+        [
+            'label' => 'Mniej istotne',
+            'items' => [
+                ['label' => 'Dostawcy', 'url' => ['/producers']],
+                ['label' => 'Stawki Vat', 'url' => ['/vats']],
+            ],
+        ],
         
     ];
     if (Yii::$app->user->isGuest) {

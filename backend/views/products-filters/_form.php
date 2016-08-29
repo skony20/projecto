@@ -18,13 +18,30 @@ use yii\helpers\BaseHtml;
 
     <?= Html::beginForm(['products-filters/create?id='.$_GET['id'].''], 'post'); ?>
     <?php
+    
     $a=0;
-     foreach ($aData as $_aData)
+    foreach ($aData as $_aData)
         {
+            
+            echo '<div class="radiolist_prdflt">';
+            echo '<label class="question_label">' .$_aData['question']->name.'</label>';
+            echo Html::radioList($a, $aProductsFilters ,ArrayHelper::map($_aData['answer'], 'id', 'name') ,
+                    [
+                        'item' => function($index, $label, $name, $checked, $value) 
+                        {   
+                             $return = '<label class="modal-radio">';
+                                    $return .= '<input type="radio" name="' . $name . '" value="' . $value . '" required' .$checked. ' >';
+                                    $return .= '<span class= "radio_value"> '.$label.'</span>';
+                                    $return .= '</label><br>';
 
-            echo Html::radioList($a, '', ArrayHelper::map($_aData['answer'], 'id', 'name'),['required'=>true, 'label'=>false]);
+                                    return Html::radio($name, $checked, [
+                                    'value' => $value,
+                                    'label' => Html::encode($label),
+                                        ]) .'<br>';
+                        }
+                            ]);
+            echo '</div>';
             $a++;
-
         }
     ?>
 

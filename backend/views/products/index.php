@@ -4,13 +4,13 @@ use yii\grid\GridView;
 use yii\widgets\Pjax;
 use app\models\Products;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ProductsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'Projekty');
 $this->params['breadcrumbs'][] = $this->title;
-
 ?>
 <div class="products-index">
 
@@ -34,7 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value'=> function($model)
                 {
-                    return '<img src="../../images/'.$model->id.'/thumbs/'.$model->id.'.jpg"/>';
+                    $sPatch = Yii::$app->request->getBaseUrl(true);
+                    return '<img src="'.$sPatch.'/../../images/'.$model->id.'/thumbs/'.$model->id.'.jpg"/>';
                 },
             ],
             [
@@ -55,11 +56,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter' => Html::activeDropDownList($searchModel, 'producers_id', ArrayHelper::map(app\models\Producers::find()->asArray()->all(), 'id', 'name'),['class'=>'form-control','prompt' => 'Wybierz']),
             ],
             //'pkwiu',
-            [
-                'attribute' => 'vats_id',
-                'value' =>  'vats.name',
-                'filter' => Html::activeDropDownList($searchModel, 'vats_id', ArrayHelper::map(\app\models\Vats::find()->orderBy('id DESC')->asArray()->all(), 'id', 'name'),['class'=>'form-control','prompt' => 'Wybierz']),
-            ],
+//            [
+//                'attribute' => 'vats_id',
+//                'value' =>  'vats.name',
+//                'filter' => Html::activeDropDownList($searchModel, 'vats_id', ArrayHelper::map(\app\models\Vats::find()->orderBy('id DESC')->asArray()->all(), 'id', 'name'),['class'=>'form-control','prompt' => 'Wybierz']),
+//            ],
             [
                 'label'=>'Nazwa',
                 'format' => 'raw',
@@ -99,6 +100,15 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'sell_items',
 
             ['class' => 'yii\grid\ActionColumn'],
+            [
+                'label' => 'Dodaj filtry',
+                'format' => 'raw',
+                'value' => function ($model)
+                {
+                    return Html::a('Dodaj filtry', ['products-filters/create', 'id' => $model->id], ['target'=>'_blank', 'data-pjax'=>"0"]);
+                }
+            ],
+                
         ],
     ]); ?>
 <?php Pjax::end(); ?></div>
