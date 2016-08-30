@@ -12,11 +12,11 @@ use yii\helpers\BaseHtml;
 
 ?>
 
-
+<?= Html::beginForm(['products-filters/create?id='.$_GET['id'].''], 'post', ['id'=>'products_filtrs']); ?>
 <div class="products-filters-form">
 
 
-    <?= Html::beginForm(['products-filters/create?id='.$_GET['id'].''], 'post'); ?>
+    
     <?php
 
     $a=0;
@@ -43,9 +43,10 @@ use yii\helpers\BaseHtml;
     ?>
 
     <div class="form-group">
-        <?= Html::submitButton('POST', ['class' => 'btn btn-primary']) ?>
+            <?= Html::submitButton('POST', ['class' => 'btn btn-primary']) ?>
     </div>
 
-    <?php Html::endForm(); ?>
-
 </div>
+    
+
+    <?php Html::endForm(); ?>

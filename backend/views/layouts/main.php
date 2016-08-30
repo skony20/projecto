@@ -44,11 +44,20 @@ AppAsset::register($this);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
         ['label' => 'Projekty', 'url' => ['/products']],
-        ['label' => 'Pytania', 'url' => ['/filters-group']],
-        ['label' => 'Odpowiedzi', 'url' => ['/filters']],
+        
+        
+         [
+            'label' => 'Do projektów',
+            'items' => [
+                ['label' => 'Pytania', 'url' => ['/filters-group']],
+                ['label' => 'Odpowiedzi', 'url' => ['/filters']],
+                ['label' => 'Dane techniczne', 'url' => ['/attributes']],
+            ],
+        ],
         [
             'label' => 'Mniej istotne',
             'items' => [
+
                 ['label' => 'Dostawcy', 'url' => ['/producers']],
                 ['label' => 'Stawki Vat', 'url' => ['/vats']],
             ],
@@ -90,7 +99,18 @@ AppAsset::register($this);
         <p class="pull-right"><?= Yii::$app->params['adminEmail'] ?></p>
     </div>
 </footer>
-
+<?php
+yii\bootstrap\Modal::begin([
+    'headerOptions' => ['id' => 'modalHeader'],
+    'id' => 'modal',
+    'size' => 'modal-lg',
+    //keeps from closing modal with esc key or by clicking out of the modal.
+    // user must click cancel or X to close
+    'clientOptions' => ['backdrop' => 1, 'keyboard' => true]
+]);
+echo "<div id='modalContent'></div>";
+yii\bootstrap\Modal::end();
+?>
 <?php $this->endBody() ?>
 </body>
 </html>

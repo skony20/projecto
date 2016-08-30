@@ -48,7 +48,7 @@ class Products extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['is_active', 'vats_id', 'price_brutto_source', 'price_brutto', 'stock', 'is_archive', 'sell_items'], 'required'],
+            [['is_active', 'vats_id', 'price_brutto_source', 'price_brutto', 'stock', 'is_archive', 'sell_items', 'sort_order'], 'required'],
             [['is_active', 'sort_order', 'producers_id', 'vats_id', 'stock', 'rating_value', 'rating_votes', 'creation_date', 'modification_date', 'is_archive', 'sell_items'], 'integer'],
             [['price_brutto_source', 'price_brutto'], 'number'],
             [['pkwiu'], 'string', 'max' => 15],

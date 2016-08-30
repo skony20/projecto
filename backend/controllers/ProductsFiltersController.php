@@ -96,22 +96,30 @@ class ProductsFiltersController extends Controller
         }
         //echo '<pre>55' . print_r($aProductsFilters, TRUE). '</pre>'; die();
         if (Yii::$app->request->post()) 
-            {
-                $model->products_id = $_GET['id'];
-                $model->deleteAll(['products_id' => $_GET['id']]);
-                
-                
-                $sMax = count($_POST);
-                for ($a=0; $a <= $sMax-2; $a++)
-                {       
-                    $model->filters_id = $_POST[$a];
-                    $model->id = NULL; //primary key(auto increment id) id
-                    $model->isNewRecord = true;
-                    $model->save(false);
-                }
-                
+        {
+            $model->products_id = $_GET['id'];
+            $model->deleteAll(['products_id' => $_GET['id']]);
+
+
+            $sMax = count($_POST);
+            for ($a=0; $a <= $sMax-2; $a++)
+            {       
+                $model->filters_id = $_POST[$a];
+                $model->id = NULL; //primary key(auto increment id) id
+                $model->isNewRecord = true;
+                $model->save(false);
+            }
+
             return $this->redirect(['./products']);
-            } 
+        } 
+        elseif (Yii::$app->request->isAjax) 
+        {
+            return $this->renderAjax('create', [
+                'model' => $model,
+                'aData' => $aData,
+                'aProductsFilters'=> $aProductsFilters,
+            ]);
+        }
         else 
         {
             return $this->render('create', [

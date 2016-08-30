@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Products */
@@ -23,6 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
+        <?= Html::button('Dodaj odpowiedzi', ['value' => Url::to(['products-filters/create', 'id' => $model->id]), 'title' => 'Dodaj odpowiedzi do: '. $this->title, 'class' => 'showModalButton btn btn-success']) ?>
     </p>
     <img src='../../../images/<?php echo $model->id; ?>/info/<?php echo $model->id; ?>.jpg'/>
     <?= DetailView::widget([

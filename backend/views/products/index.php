@@ -66,9 +66,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function ($model)
                 {
-                    $sName = (is_object($model->productsDescriptons) ? $model->productsDescriptons->name: ' ');
-                    $sNameModel = (is_object($model->productsDescriptons) ? $model->productsDescriptons->name_model: ' ');
-                    $sNameSubname = (is_object($model->productsDescriptons) ? $model->productsDescriptons->name_subname: ' ');
+                    $sName = (is_object($model->productsDescriptons) ? $model->productsDescriptons->name: '');
+                    $sNameModel = (is_object($model->productsDescriptons) ? $model->productsDescriptons->name_model: '');
+                    $sNameSubname = (is_object($model->productsDescriptons) ? $model->productsDescriptons->name_subname: '');
                     return $sName . ' <b>'. $sNameModel .'</b> ' .$sNameSubname;
                 },
             ],
@@ -101,11 +101,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
             ['class' => 'yii\grid\ActionColumn'],
             [
-                'label' => 'Dodaj filtry',
+                'label' => 'Odpowiedzi',
                 'format' => 'raw',
                 'value' => function ($model)
                 {
-                    return Html::a('Dodaj filtry', ['products-filters/create', 'id' => $model->id], ['target'=>'_blank', 'data-pjax'=>"0"]);
+                    $sName = (is_object($model->productsDescriptons) ? $model->productsDescriptons->name: '');
+                    $sNameModel = (is_object($model->productsDescriptons) ? $model->productsDescriptons->name_model: '');
+                    $sNameSubname = (is_object($model->productsDescriptons) ? $model->productsDescriptons->name_subname: '');
+                    $sFullName = 'Dodaj odpowiedzi do: '.$sName . ' '. $sNameModel .' ' .$sNameSubname;
+                    return Html::button('Dodaj odpowiedzi', ['value' => Url::to(['products-filters/create', 'id' => $model->id]), 'title' => $sFullName, 'class' => 'showModalButton btn btn-success']);
                 }
             ],
                 
