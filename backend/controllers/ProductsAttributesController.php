@@ -81,37 +81,49 @@ class ProductsAttributesController extends Controller
         $aAttributes = $oAttributes::find()->indexBy('id')->orderBy('sort_order')->all();
         $model->products_id = $_GET['id'];
         $oProductsAttributes = $model->find()->where(['products_id' => $model->products_id])->all();
-        
+
         foreach ($oProductsAttributes as $_oProductsAttributes)
         {
             $aProductsAttributes[$_oProductsAttributes->attributes_id] =  $_oProductsAttributes->value;
         }
-        
-        if (Yii::$app->request->post()) 
+
+        if (Yii::$app->request->post())
         {
             //echo '<pre>' . print_r($_POST, TRUE) . '</pre>'; die();
-            
+
             $aDataAttributes = $_POST;
-            
+
             foreach ($aDataAttributes as $aDataAttrKey =>$aDataAttrValue)
             {
                 if ($aDataAttrKey >0)
                 {
-                    
+
                     $model->attributes_id = $aDataAttrKey;
                     $model->value = $aDataAttrValue;
                     //$model->id = (isset($aProductsAttributes[$aDataAttrValue]) ? $aProductsAttributes : NULL);
                     $oCheckAttr = $model->find()->where(['products_id' => $model->products_id, 'attributes_id'=>$aDataAttrKey])->all();
-                    $model->id = (isset ($oCheckAttr) ? 'TAK' : NULL);
-                    echo '<pre>99 ' . print_r($model->id, TRUE) . '</pre>'; 
-//                    $model->isNewRecord = true;
-//                    $model->save(false);
+
+
+                    if (count($oCheckAttr)>0)
+                    {
+
+                        $model->id = $oCheckAttr[0]->id;
+                        $model = $this->findModel($model->id);
+                        $model->value = $aDataAttrValue;
+                        $model->save(false);
+                    }
+                    else
+                    {
+                        $model->id = NULL;
+                        $model->isNewRecord = true;
+                        $model->save(false);
+                    }
+
                 }
             }
-            die();
             return $this->redirect(['./products']);
-        } 
-        elseif (Yii::$app->request->isAjax) 
+        }
+        elseif (Yii::$app->request->isAjax)
         {
             return $this->renderAjax('create', [
                 'model' => $model,
@@ -119,7 +131,7 @@ class ProductsAttributesController extends Controller
                 'aProductsAttributes' => $aProductsAttributes,
             ]);
         }
-        else 
+        else
         {
             return $this->render('create', [
                 'model' => $model,
