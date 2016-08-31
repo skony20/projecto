@@ -24,7 +24,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
-        <?= Html::button('Dodaj odpowiedzi', ['value' => Url::to(['products-filters/create', 'id' => $model->id]), 'title' => 'Dodaj odpowiedzi do: '. $this->title, 'class' => 'showModalButton btn btn-success']) ?>
+        <?= Html::button('Dodaj odpowiedzi', ['value' => Url::to(['products-filters/create', 'id' => $model->id]), 'title' => 'Dodaj odpowiedzi do: '. $this->title, 'class' => 'showModalButton btn btn-success float-right']) ?>
+        <?= Html::button('Dane techniczne', ['value' => Url::to(['products-attributes/create', 'id' => $model->id]), 'title' => 'Dodaj dane techniczne do: '. $this->title, 'class' => 'showModalButton btn btn-success float-right']) ?>
     </p>
     <img src='../../../images/<?php echo $model->id; ?>/info/<?php echo $model->id; ?>.jpg'/>
     <?= DetailView::widget([

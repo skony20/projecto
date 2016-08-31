@@ -63,8 +63,8 @@ class ProductsAttributes extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAttributes()
-    {
-        return $this->hasOne(Attributes::className(), ['id' => 'attributes_id']);
-    }
+//    public function getAttributes()
+//    {
+//        return $this->hasOne(Attributes::className(), ['id' => 'attributes_id']);
+//    }
 }

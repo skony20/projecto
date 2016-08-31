@@ -109,7 +109,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     $sNameModel = (is_object($model->productsDescriptons) ? $model->productsDescriptons->name_model: '');
                     $sNameSubname = (is_object($model->productsDescriptons) ? $model->productsDescriptons->name_subname: '');
                     $sFullName = 'Dodaj odpowiedzi do: '.$sName . ' '. $sNameModel .' ' .$sNameSubname;
-                    return Html::button('Dodaj odpowiedzi', ['value' => Url::to(['products-filters/create', 'id' => $model->id]), 'title' => $sFullName, 'class' => 'showModalButton btn btn-success']);
+                    $sFullNameAttr = 'Dodaj dane techniczne do: '.$sName . ' '. $sNameModel .' ' .$sNameSubname;
+                    $sFiltersButton = Html::button('Dodaj odpowiedzi', ['value' => Url::to(['products-filters/create', 'id' => $model->id]), 'title' => $sFullName, 'class' => 'showModalButton btn btn-success']);
+                    $sAttrButton = Html::button('Dane techniczne', ['value' => Url::to(['products-attributes/create', 'id' => $model->id]), 'title' => $sFullNameAttr, 'class' => 'showModalButton btn btn-success']);
+                    return $sFiltersButton . ' <br> ' . $sAttrButton;
                 }
             ],
                 

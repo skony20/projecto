@@ -16,9 +16,11 @@ use yii\widgets\ActiveForm;
     //echo '<pre>' . print_r($aProductsAttributes, TRUE) . '</pre>'; die();
     foreach ($aAttributes as $_aAttributes)
     {
+        echo '<div class="input_prdattr">';
         $sAttrValue = (isset($aProductsAttributes[$_aAttributes->id]) ? $aProductsAttributes[$_aAttributes->id] : '');
-        echo '<label>' .$_aAttributes->name .'</label>';
+        echo '<label class="question_label">' .$_aAttributes->name .'</label>';
         echo Html::input('text', $_aAttributes->id, $sAttrValue, ['class'=>'form-control']) . '<br>';
+        echo '</div>';
     }
     ?>
 
