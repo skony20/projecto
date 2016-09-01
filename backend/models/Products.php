@@ -126,11 +126,24 @@ class Products extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Languages::className(), ['id' => 'languages_id'])->viaTable('products_descripton', ['products_id' => 'id']);
     }
-    
+
+    public function getProductsFilters()
+    {
+        return $this->hasMany(ProductsFilters::className(), ['products_id' => 'id']);
+    }
+
+    public function getProductsAttributes()
+    {
+        return $this->hasMany(ProductsAttributes::className(), ['products_id' => 'id']);
+    }
+
+
+
     public function validate($attributeNames = null, $clearErrors = true) {
         parent::validate($attributeNames, $clearErrors);
         return TRUE;
     }
+
        /**
     * @inheritdoc
     * @return ProductsQuery the active query used by this AR class.
@@ -139,5 +152,5 @@ class Products extends \yii\db\ActiveRecord
    {
        return new ProductsQuery(get_called_class());
    }
-    
+
 }

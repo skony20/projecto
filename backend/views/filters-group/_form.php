@@ -11,8 +11,8 @@ use yii\widgets\ActiveForm;
 <div class="filters-group-form">
 
     <?php $form = ActiveForm::begin(); ?>
-    <?php   
-        $model->is_active = 1;
+    <?php
+        $model->is_active = ($model->isNewRecord ? 1 : $model->is_active);
         $model->language_id = 1;
     ?>
     <?= $form->field($model, 'is_active')->checkbox() ?>

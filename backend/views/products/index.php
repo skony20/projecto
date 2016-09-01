@@ -35,14 +35,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=> function($model)
                 {
                     $sPatch = Yii::$app->request->getBaseUrl(true);
-                    return '<img src="'.$sPatch.'/../../images/'.$model->id.'/thumbs/'.$model->id.'.jpg"/>';
+                    return '<img src="'.$sPatch.'/../../images/'.$model->id.'/big/'.$model->productsDescriptons->nicename_link.'_0.jpg" style="height:50px;"/>';
                 },
             ],
             [
                 'attribute' => 'is_active',
                 'value' =>  function($data)
                     {
-                        return ($data->is_active = 1 ? 'Tak': 'Nie' );
+                        return ($data->is_active == 1 ? 'Tak': 'Nie' );
                     },
                 'contentOptions' => ['class' => '50p'],
                 'headerOptions' => ['class' => '50p'],
@@ -115,7 +115,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $sFiltersButton . ' <br> ' . $sAttrButton;
                 }
             ],
-                
+
         ],
     ]); ?>
 <?php Pjax::end(); ?></div>

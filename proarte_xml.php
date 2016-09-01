@@ -16,12 +16,18 @@ $oProArte = simplexml_load_file('proarte.xml');
 $id=1;
 foreach ($oProArte->Projekt as $aProArte)
 {
-    
+
     if ($aProArte->Rodzaj == 1)
     {
+        $sSymbol = mysql_fetch_array(mysql_query('SELECT id FROM products WHERE symbol = "'.$aProArte->Symbol.'"'));
+
+
+        if (!isset($sSymbol['id']))
+        {
+
         $a=0;
-        echo '<pre>'.print_r($aProArte, TRUE) .'</pre>'; 
-        
+        //echo '<pre>'.print_r($aProArte, TRUE) .'</pre>';
+
         $sQuery ='INSERT INTO products ('
                 . 'is_active, '
                 . 'producers_id, '
@@ -43,7 +49,7 @@ foreach ($oProArte->Projekt as $aProArte)
                 . '"'.$aProArte->Symbol.'", '
                 . '"'.$aProArte->Symbol.'");';
         $oUpdate = mysql_query($sQuery);
-        $iProductId =  mysql_insert_id(); 
+        $iProductId =  mysql_insert_id();
         $sNiceNamePL = $aProArte->Nazwa. ' ' .$aProArte->Symbol;
         $sNiceNamePL = strtr($sNiceNamePL, 'ĘÓĄŚŁŻŹĆŃęóąśłżźćń', 'EOASLZZCNeoaslzzcn');
         $sNiceName =  str_replace([' ', '#', '(', ')'], ['_', '_','',''] , $sNiceNamePL);
@@ -64,11 +70,11 @@ foreach ($oProArte->Projekt as $aProArte)
                 . "'<xmp>".$aProArte->Opis_projektu[0] ."<br>Technologia<br><br>".$aProArte->Technologia_opis. "</xmp>', "
                 . "'".$aProArte->Nazwa.' '.$aProArte->Symbol."')";
         $oUpdateDesc = mysql_query($sQueryDesc) or die(mysql_error());
-        
-        mkdir('images/'.$iProductId, 0700);
-        mkdir('images/'.$iProductId.'/big', 0700);
-        mkdir('images/'.$iProductId.'/info', 0700);
-        mkdir('images/'.$iProductId.'/thumbs', 0700);
+
+        mkdir('images/'.$iProductId, 0777);
+        mkdir('images/'.$iProductId.'/big', 0777);
+        mkdir('images/'.$iProductId.'/info', 0777);
+        mkdir('images/'.$iProductId.'/thumbs', 0777);
         foreach ($aProArte->Wizualizacje->Wiz as $aWizualizacje)
         {
 
@@ -93,7 +99,7 @@ foreach ($oProArte->Projekt as $aProArte)
             mysql_query('INSERT INTO products_images (products_id, name, description) VALUE('.$iProductId.', "'.$sImgBigName.'", "'.$ImagesTitle.'")') or die(mysql_error());
             $a++;
         }
-        
+
         /*Elewacje*/
         foreach ($aProArte->Elewacje->Elewacja as $aElewacje)
         {
@@ -105,8 +111,8 @@ foreach ($oProArte->Projekt as $aProArte)
             file_put_contents($sImgBig, file_get_contents($sElewacjeLink));
             $a++;
         }
-        
-        
+
+
         mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 4, '.$aProArte->Pow_uzytkowa.')') or die(mysql_error());
         mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 8, '.$aProArte->Kat_dachu1.')') or die(mysql_error());
         mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 1, '.$aProArte->Wysokosc_budynku.')') or die(mysql_error());
@@ -114,10 +120,11 @@ foreach ($oProArte->Projekt as $aProArte)
         mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 6, '.$aProArte->Dzialka_min_szerokosc.')') or die(mysql_error());
         mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 9, '.$aProArte->Liczba_pokoi.')') or die(mysql_error());
         mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 4, '.$aProArte->Pow_uzytkowa.')') or die(mysql_error());
-        
-        die();
-        $id++;
+
+        //die();
+       $id++;
+}
     }
-    
+
 }
 ?>

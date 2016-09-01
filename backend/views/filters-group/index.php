@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label'=>'Aktywny',
                 'value' =>  function($data)
                     {
-                        return ($data->is_active = 1 ? 'Tak': 'Nie' );
+                        return ($data->is_active == 1 ? 'Tak': 'Nie' );
                     },
                 'contentOptions' => ['class' => '50p'],
                 'headerOptions' => ['class' => '50p'],
