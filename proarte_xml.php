@@ -51,8 +51,7 @@ foreach ($oProArte->Projekt as $aProArte)
         $oUpdate = mysql_query($sQuery);
         $iProductId =  mysql_insert_id();
         $sNiceNamePL = $aProArte->Nazwa. ' ' .$aProArte->Symbol;
-        $sNiceNamePL = strtr($sNiceNamePL, 'ĘÓĄŚŁŻŹĆŃęóąśłżźćń', 'EOASLZZCNeoaslzzcn');
-        $sNiceName =  str_replace([' ', '#', '(', ')'], ['_', '_','',''] , $sNiceNamePL);
+        $sNiceName =  str_replace([['Ę'], ['Ó'], ['Ą'], ['Ś'], ['Ł'], ['Ż'], ['Ź'], ['Ć'], ['Ń'], ['ę'], ['ó'], ['ą'], ['ś'], ['ł'], ['ż'], ['ź'], ['ć'], ['ń'], ' ', '#', '(', ')', ',', '.', '/'], [['E'], ['O'], ['A'], ['S'], ['L'], ['Z'], ['Z'], ['C'], ['N'], ['e'], ['o'], ['a'], ['s'], ['l'], ['z'], ['z'], ['c'], ['n'], '_', '_','','','','',''] , $sNiceNamePL);
         $sQueryDesc = "INSERT INTO products_descripton ("
                 . "products_id, "
                 . "languages_id, "

@@ -64,6 +64,28 @@ $(document).ready(
                     var sKeywords = $('#productsdescripton-keywords').val();
                     $('#productsdescripton-meta_keywords').val(sKeywords);
                 }                            
-        );    
+        );
+     $(".delete_image").click(
+             function() {
+                if (confirm("Jesteś pewien?")) {
+                iIdProduct = $(this).attr('rel');
+                sName = $(this).attr('rel2');
+                iIdImages = $(this).attr('rel3');
+                $.ajax({
+                    url: '../products-images/deleteimages',
+                    type: 'get',
+                    data: {
+                        iModelId:iIdProduct, 
+                        sName:sName, 
+                        iImageId:iIdImages
+                    },
+                    success: function(data) {
+                        alert('UDALO SIE');
+                    }
+             });
+         }
+         });
+
+
     });
         

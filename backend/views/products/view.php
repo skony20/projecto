@@ -27,7 +27,20 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::button('Dodaj odpowiedzi', ['value' => Url::to(['products-filters/create', 'id' => $model->id]), 'title' => 'Dodaj odpowiedzi do: '. $this->title, 'class' => 'showModalButton btn btn-success float-right']) ?>
         <?= Html::button('Dane techniczne', ['value' => Url::to(['products-attributes/create', 'id' => $model->id]), 'title' => 'Dodaj dane techniczne do: '. $this->title, 'class' => 'showModalButton btn btn-success float-right']) ?>
     </p>
-    <img src='../../../images/<?php echo $model->id; ?>/info/<?php echo $model->id; ?>.jpg'/>
+    <?php
+    $sPatch = Yii::$app->request->getBaseUrl(true);
+    
+    echo '<div class="project_images">';
+    foreach ($model->productsImages as $oProductsImages)
+    {   
+        echo '<div class="project_image">';
+        echo '<img src="'. $sPatch.'/../../images/'.$model->id.'/big/'.$oProductsImages->name.'" style="height:50px;"/><br>';
+        echo Html::button('Usuń', ['class'=>'delete_image', 'id'=>'delete_image', 'rel'=>$model->id, 'rel2'=> $oProductsImages->name, 'rel3'=>$oProductsImages->id]);
+        echo '</div>';
+    }
+    echo '</div>';
+    ?>
+    <br><br>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [

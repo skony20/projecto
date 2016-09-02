@@ -20,10 +20,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a(Yii::t('app', 'Dodaj Projekt'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <?php
 
-    ?>
+    
 <?php Pjax::begin(); ?>    <?= GridView::widget([
+        'layout'=>'{pager}{summary}{items}{pager}',
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [

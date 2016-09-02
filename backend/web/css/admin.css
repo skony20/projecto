@@ -1,0 +1,61 @@
+/* 
+    Created on : 2016-09-02, 14:22:00
+    Author     : Mariusz Skonieczny, mariuszskonieczny@hotmail.com
+*/
+
+.radiolist_prdflt
+{
+    margin:15px 0;
+    padding: 5px 10px;
+    border: 1px solid #dedede;
+    -webkit-column-break-inside: avoid; /* Chrome, Safari */
+    page-break-inside: avoid;           /* Theoretically FF 20+ */
+    break-inside: avoid-column;         /* IE 11 */
+}
+.question_label
+{
+    font-size:14px;
+    margin-bottom: 5px;
+}
+span.radio_value 
+{
+    padding-left: 10px;
+}
+.modal-header h4
+{
+    display:inline-block;
+}
+.products-filters-form
+{
+    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2; /* Firefox */
+    column-count: 2;
+}
+.form-group
+{
+    margin-top:20px;
+    -webkit-column-span: all; /* Chrome, Safari, Opera */
+    column-span: all;
+}
+.products-attributes-form label
+{
+    display:inline-block;
+    width:20%;
+}
+.products-attributes-form .form-control
+{
+    display:inline-block;
+    width:79%;
+}
+.input_prdattr
+{
+    margin:10px 0;
+}
+.project_image {
+    display: inline-block;
+    margin: 2px;
+    padding:2px;
+    border:1px solid #dedede;
+    text-align:center;
+    
+}
