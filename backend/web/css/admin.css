@@ -51,11 +51,37 @@ span.radio_value
 {
     margin:10px 0;
 }
-.project_image {
+.project_image 
+{
     display: inline-block;
     margin: 2px;
     padding:2px;
     border:1px solid #dedede;
     text-align:center;
-    
+}
+button.delete_image
+{
+    margin:2px 0 ;
+    color: #ffffff;
+    background-color: #f04124;
+    border-color: #ea2f10;
+    display: inline-block;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    white-space: nowrap;
+    font-size: 15px;
+    line-height: 1.4;
+    border-radius: 0;
+    -webkit-user-select: none;
+}
+button.delete_image:hover {
+    color: #ffffff;
+    background-color: #d32a0e;
+    border-color: #b1240c;
 }

@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
     {   
         echo '<div class="project_image">';
         echo '<img src="'. $sPatch.'/../../images/'.$model->id.'/big/'.$oProductsImages->name.'" style="height:50px;"/><br>';
-        echo Html::button('Usuń', ['class'=>'delete_image', 'id'=>'delete_image', 'rel'=>$model->id, 'rel2'=> $oProductsImages->name, 'rel3'=>$oProductsImages->id]);
+        echo Html::button('Usuń', ['class'=>'delete_image', 'rel'=>$model->id, 'rel2'=> $oProductsImages->name, 'rel3'=>$oProductsImages->id]);
         echo '</div>';
     }
     echo '</div>';
