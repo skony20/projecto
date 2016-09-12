@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use app\models\UploadForm;
 
 /**
  * ProductsImagesController implements the CRUD actions for ProductsImages model.
@@ -32,7 +33,7 @@ class ProductsImagesController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['delete', 'deleteimages', 'index'],
+                        'actions' => ['delete', 'deleteimages', 'index', 'resizeall'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -59,9 +60,7 @@ class ProductsImagesController extends Controller
     }
     public function actionDeleteimages($iModelId, $sName, $iImageId)
     {
-        Yii::setAlias('@images', 'C:/xampp/htdocs/projecto/images');
         $this->actionDelete($iImageId);
-        $sPatch = Yii::getAlias('@images');
         $filename = $sPatch.'/'.$iModelId.'/big/'.$sName;
         unlink($filename);
         return TRUE;
@@ -76,6 +75,11 @@ class ProductsImagesController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+    public function actionResizeall()
+    {
+        $model = new UploadForm();
+        $model->resizeAll();
     }
 
 }

@@ -34,15 +34,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value'=> function($model)
                 {
-                    $sPatch = Yii::$app->request->getBaseUrl(true);
-                    return '<img src="'.$sPatch.'/../../images/'.$model->id.'/big/'.$model->productsDescriptons->nicename_link.'_0.jpg" style="height:50px;"/>';
+                    $sPatch = Yii::getAlias('@image');
+                    //return $sPatch;
+                    return '<img src="'.$sPatch.'/'.$model->id.'/big/'.$model->productsDescriptons->nicename_link.'_0.jpg" style="height:50px;"/>';
                 },
             ],
             [
                 'attribute' => 'is_active',
+                'format' => 'raw',
                 'value' =>  function($data)
                     {
-                        return ($data->is_active == 1 ? 'Tak': 'Nie' );
+                        return ($data->is_active == 1 ? '<div class="active_prd" rel="'.$data->id.'">ON</div>': '<div class="unactive_prd" rel="'.$data->id.'">OFF</div>' );
                     },
                 'contentOptions' => ['class' => '50p'],
                 'headerOptions' => ['class' => '50p'],

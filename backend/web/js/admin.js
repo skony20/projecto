@@ -86,6 +86,27 @@ $(document).ready(
          }
          });
 
+         $(".active_prd").click(
+             function() {
+                iIdProduct = $(this).attr('rel');
+                $.ajax({
+                    url: '../products/unactive/'+iIdProduct,
+                    success: function(data) {
+                        window.location.href = window.location.href;
+                    }
 
+             });
+         });
+         $(".unactive_prd").click(
+             function() {
+                iIdProduct = $(this).attr('rel');
+                $.ajax({
+                    url: '../products/active/'+iIdProduct,
+                success: function(data) {
+                    window.location.href = window.location.href;
+                }
+
+             });
+         });
     });
         

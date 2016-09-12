@@ -5,6 +5,8 @@ use yii\base\Model;
 use yii\imagine\Image;
 use Imagine\Image\Box;
 use app\models\Post;
+use Yii;
+use Imagine;
 
 class UploadForm extends Model
 {
@@ -71,6 +73,43 @@ class UploadForm extends Model
         Image::frame($sPath.'/'.$sFileName . '.' . $ext, 0)->thumbnail(new Box($this->iBigSize, $this->iBigSize))->save($sPath.'/' .$this->sBig.'/' .$sFileName . '.' . $ext, ['quality' => 100]);
         unlink($sPath.'/'.$sFileName . '.' . $ext);
         
+    }
+    public function resizeImageXml($sPath, $sFileName, $aDir)
+    {
+        Image::frame($sPath.'/'.$aDir .'/big/'.$sFileName, 0)->thumbnail(new Box($this->iThumbSize, $this->iThumbSize))->save($sPath.'/'.$aDir.'/'.$this->sThumb.'/' .$sFileName, ['quality' => 100]);
+        Image::frame($sPath.'/'.$aDir .'/big/'.$sFileName, 0)->thumbnail(new Box($this->iInfoSize, $this->iInfoSize))->save($sPath.'/'.$aDir.'/'.$this->sInfo.'/' .$sFileName, ['quality' => 100]);
+        
+    }
+    public function resizeAll()
+    {
+        $sPath = Yii::getAlias('@images', TREU);
+        $sPath2 = Yii::getAlias('@image', TREU);
+        
+        //echo $sPath .'<br>'; die();
+        $aDirs = $this->readDir($sPath);
+        foreach ($aDirs['files'] as $aDir)
+        {
+            
+            $aFiles = $this->readDir($sPath.'/'.$aDir.'/big');
+            foreach ($aFiles['files'] as $sFiles)
+            {
+                $sFile = $sPath;
+                $this->resizeImageXml($sFile, $sFiles, $aDir);
+                die();
+            }
+            
+        }
+        
+    }
+    public function readDir($sPath)
+    {
+        $oFiles = scandir($sPath);
+        $aFiles = array_diff($oFiles, array('.','..'));
+        if (!is_dir($sPath)) 
+        {
+            $aFiles = '';
+        }
+        return array('files'=>$aFiles);
     }
 
 }

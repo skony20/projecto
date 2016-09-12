@@ -28,13 +28,13 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::button('Dane techniczne', ['value' => Url::to(['products-attributes/create', 'id' => $model->id]), 'title' => 'Dodaj dane techniczne do: '. $this->title, 'class' => 'showModalButton btn btn-success float-right']) ?>
     </p>
     <?php
-    $sPatch = Yii::$app->request->getBaseUrl(true);
+    $sPatch = Yii::getAlias('@image');
     
     echo '<div class="project_images">';
     foreach ($model->productsImages as $oProductsImages)
     {   
         echo '<div class="project_image">';
-        echo '<img src="'. $sPatch.'/../../images/'.$model->id.'/big/'.$oProductsImages->name.'" style="height:50px;"/><br>';
+        echo '<img src="'. $sPatch.'/'.$model->id.'/big/'.$oProductsImages->name.'" style="height:50px;"/><br>';
         echo Html::button('Usuń', ['class'=>'delete_image', 'rel'=>$model->id, 'rel2'=> $oProductsImages->name, 'rel3'=>$oProductsImages->id]);
         echo '</div>';
     }

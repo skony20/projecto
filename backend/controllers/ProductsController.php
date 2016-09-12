@@ -37,7 +37,7 @@ class ProductsController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'active', 'unactive'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -155,6 +155,22 @@ class ProductsController extends Controller
         return $this->redirect((Yii::$app->request->referrer));
     }
 
+    
+    
+    public function actionActive($id)
+    {
+
+        $model = $this->findModel($id);
+        $model->is_active = 1;
+        $model->save(false);
+    }
+    public function actionUnactive($id)
+    {
+
+        $model = $this->findModel($id);
+        $model->is_active = 0;
+        $model->save(false);
+    }
     /**
      * Finds the Products model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
