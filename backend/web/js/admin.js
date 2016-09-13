@@ -109,4 +109,6 @@ $(document).ready(
              });
          });
     });
-        
+$(document).ready(function() {
+		$(".fancybox").fancybox();
+	});

@@ -77,25 +77,29 @@ class UploadForm extends Model
     public function resizeImageXml($sPath, $sFileName, $aDir)
     {
         Image::frame($sPath.'/'.$aDir .'/big/'.$sFileName, 0)->thumbnail(new Box($this->iThumbSize, $this->iThumbSize))->save($sPath.'/'.$aDir.'/'.$this->sThumb.'/' .$sFileName, ['quality' => 100]);
+        
         Image::frame($sPath.'/'.$aDir .'/big/'.$sFileName, 0)->thumbnail(new Box($this->iInfoSize, $this->iInfoSize))->save($sPath.'/'.$aDir.'/'.$this->sInfo.'/' .$sFileName, ['quality' => 100]);
         
     }
     public function resizeAll()
     {
-        $sPath = Yii::getAlias('@images', TREU);
-        $sPath2 = Yii::getAlias('@image', TREU);
+        $sPath = Yii::getAlias('@images', TRUE);
+        $sPath2 = Yii::getAlias('@image', TRUE);
         
-        //echo $sPath .'<br>'; die();
         $aDirs = $this->readDir($sPath);
+        
         foreach ($aDirs['files'] as $aDir)
         {
-            
             $aFiles = $this->readDir($sPath.'/'.$aDir.'/big');
             foreach ($aFiles['files'] as $sFiles)
             {
                 $sFile = $sPath;
-                $this->resizeImageXml($sFile, $sFiles, $aDir);
-                die();
+                $aCheckDir = $this->readDir($sPath.'/'.$aDir.'/info');
+                if (count($aFiles['files']) != count($aCheckDir['files']))
+                {
+                    $this->resizeImageXml($sFile, $sFiles, $aDir);
+                }
+                
             }
             
         }

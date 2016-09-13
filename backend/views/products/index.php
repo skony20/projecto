@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 {
                     $sPatch = Yii::getAlias('@image');
                     //return $sPatch;
-                    return '<img src="'.$sPatch.'/'.$model->id.'/big/'.$model->productsDescriptons->nicename_link.'_0.jpg" style="height:50px;"/>';
+                    return '<img src="'.$sPatch.'/'.$model->id.'/thumbs/'.$model->productsDescriptons->nicename_link.'_0.jpg" style="height:50px;"/>';
                 },
             ],
             [
