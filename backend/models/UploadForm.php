@@ -22,12 +22,12 @@ class UploadForm extends Model
     public $sBig = 'big'; //min 10224
     public $iBigSize = 1024;
 
-    
+
     public function upload()
     {
             return false;
     }
-    
+
 
     public function saveImages()
     {
@@ -39,7 +39,7 @@ class UploadForm extends Model
         $sNiceName = $this->id;
         $sPath = $this->sPath.$this->id;
         //$files = $this->readDir($sPath);
-       
+
         $files = get_object_vars($this->imageFiles);
         $sFileName = $sNiceName;
         $ext = substr($files['name'], strrpos($files['name'], '.') + 1);
@@ -47,8 +47,8 @@ class UploadForm extends Model
         $this->resizeImage($sPath, $sFileName, $ext);
 
 
-        
-        
+
+
         return TRUE;
 
     }
@@ -57,12 +57,12 @@ class UploadForm extends Model
     {
         //check and make dir with subdir
         $sPath = $this->sPath.$id;
-        if (!is_dir($sPath)) 
+        if (!is_dir($sPath))
         {
-            //@mkdir($sPath, 0777, TRUE); 
-            @mkdir($sPath.'/'.$this->sThumb, 0777, TRUE); 
-            @mkdir($sPath.'/'.$this->sInfo, 0777, TRUE); 
-            @mkdir($sPath.'/'.$this->sBig, 0777, TRUE); 
+            //@mkdir($sPath, 0777, TRUE);
+            @mkdir($sPath.'/'.$this->sThumb, 0777, TRUE);
+            @mkdir($sPath.'/'.$this->sInfo, 0777, TRUE);
+            @mkdir($sPath.'/'.$this->sBig, 0777, TRUE);
         }
         return TRUE;
     }
@@ -72,22 +72,21 @@ class UploadForm extends Model
         Image::frame($sPath.'/'.$sFileName . '.' . $ext, 0)->thumbnail(new Box($this->iInfoSize, $this->iInfoSize))->save($sPath.'/' .$this->sInfo.'/' .$sFileName . '.' . $ext, ['quality' => 100]);
         Image::frame($sPath.'/'.$sFileName . '.' . $ext, 0)->thumbnail(new Box($this->iBigSize, $this->iBigSize))->save($sPath.'/' .$this->sBig.'/' .$sFileName . '.' . $ext, ['quality' => 100]);
         unlink($sPath.'/'.$sFileName . '.' . $ext);
-        
+
     }
     public function resizeImageXml($sPath, $sFileName, $aDir)
     {
         Image::frame($sPath.'/'.$aDir .'/big/'.$sFileName, 0)->thumbnail(new Box($this->iThumbSize, $this->iThumbSize))->save($sPath.'/'.$aDir.'/'.$this->sThumb.'/' .$sFileName, ['quality' => 100]);
-        
+
         Image::frame($sPath.'/'.$aDir .'/big/'.$sFileName, 0)->thumbnail(new Box($this->iInfoSize, $this->iInfoSize))->save($sPath.'/'.$aDir.'/'.$this->sInfo.'/' .$sFileName, ['quality' => 100]);
-        
+
     }
     public function resizeAll()
     {
         $sPath = Yii::getAlias('@images', TRUE);
-        $sPath2 = Yii::getAlias('@image', TRUE);
-        
+
         $aDirs = $this->readDir($sPath);
-        
+
         foreach ($aDirs['files'] as $aDir)
         {
             $aFiles = $this->readDir($sPath.'/'.$aDir.'/big');
@@ -99,17 +98,17 @@ class UploadForm extends Model
                 {
                     $this->resizeImageXml($sFile, $sFiles, $aDir);
                 }
-                
+
             }
-            
+
         }
-        
+
     }
     public function readDir($sPath)
     {
         $oFiles = scandir($sPath);
         $aFiles = array_diff($oFiles, array('.','..'));
-        if (!is_dir($sPath)) 
+        if (!is_dir($sPath))
         {
             $aFiles = '';
         }
