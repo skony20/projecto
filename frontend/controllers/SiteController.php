@@ -72,7 +72,12 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $searchModel = new \app\models\ProductsSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        //echo '<pre>333:  '. print_r($dataProvider->models, TRUE); die();
+        $dataProvider->pagination->pageSize=1000;
+        $model = new \app\models\Products();
+        return $this->render('index', ['model' => $model,'dataProvider' => $dataProvider,'searchModel'=>$searchModel]);        
     }
 
     /**

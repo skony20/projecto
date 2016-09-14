@@ -4,10 +4,18 @@ $config = [
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'c4zQmn3e9QeTB-2OOC3FRJ5dOJM89vkG',
+            'cookieValidationKey' => 'P3OJR67gZPTT627WSyS9uH2xPiWefcUx',
+        ],
+        'db' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=localhost;dbname=mariuszs_projecto',
+            'username' => 'mariuszs_prj',
+            'password' => 'pr0j3ct0',
+            'charset' => 'utf8',
         ],
     ],
 ];
+
 
 if (!YII_ENV_TEST) {
     // configuration adjustments for 'dev' environment
