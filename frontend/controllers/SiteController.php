@@ -12,6 +12,8 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use app\models\FiltersGroup;
+use app\models\Filters;
 
 /**
  * Site controller
@@ -73,11 +75,19 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $searchModel = new \app\models\ProductsSearch();
+        $oFiltersGroup = new FiltersGroup();
+        $oFilters = new Filters();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        //echo '<pre>333:  '. print_r($dataProvider->models, TRUE); die();
+        $aFiltersGroup = $oFiltersGroup::find()->where(['is_active'=> 1])->orderBy('sort_order')->all();
+        foreach ($aFiltersGroup as $_aFiltersGroup)
+        {
+            $aFilters = $oFilters::find()->where(['filters_group_id' => $_aFiltersGroup->id, 'is_active'=> 1])->all();
+            $aData[$_aFiltersGroup->id] = ['question'=>$_aFiltersGroup, 'answer' => $aFilters];
+        }
+       
         $dataProvider->pagination->pageSize=1000;
         $model = new \app\models\Products();
-        return $this->render('index', ['model' => $model,'dataProvider' => $dataProvider,'searchModel'=>$searchModel]);        
+        return $this->render('index', ['model' => $model,'dataProvider' => $dataProvider,'searchModel'=>$searchModel, 'aFilters'=>$aData]);        
     }
 
     /**

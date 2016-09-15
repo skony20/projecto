@@ -15,9 +15,24 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="products-index">
 
 <?php 
-foreach ($dataProvider->models as $model) {
+//echo '<pre>rr' .print_r($aFilters, True). '</pre>'; die();
+$a = 0;
+foreach ($aFilters as $aData) {
     
-    echo $model->symbol.' - '.$model->id .'<br>';
+    echo $aData['question']->name.'<br>';
+
+    echo Html::radioList($a, '' ,ArrayHelper::map($aData['answer'], 'id', 'name'), ['class'=>'answers']);
+    $a++;
 }
+?>
+    <div class="array_content">
+        
+    </div>
+    
+<?php
+//foreach ($dataProvider->models as $model) {
+//    
+//    echo $model->symbol.' - '.$model->id .'<br>';
+//}
 ?>
     
