@@ -102,7 +102,19 @@ class ProductsFiltersController extends Controller
 
 
             $sMax = count($_POST);
-            for ($a=0; $a <= $sMax-2; $a++)
+            //echo '<pre>'. print_r($_POST, true); die();
+            if (isset($_POST[0]))
+            {
+                foreach ($_POST[0] as $iCheckboxFilter)
+                {
+                    $model->filters_id = $iCheckboxFilter;
+                    $model->id = NULL; //primary key(auto increment id) id
+                    $model->isNewRecord = true;
+                    $model->save(false);
+                }
+                
+            }
+            for ($a=1; $a <= $sMax-2; $a++)
             {       
                 $model->filters_id = $_POST[$a];
                 $model->id = NULL; //primary key(auto increment id) id

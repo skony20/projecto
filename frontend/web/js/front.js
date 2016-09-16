@@ -4,10 +4,19 @@ $(document).ready(
     {   
         var arr = [];
      $('input[type=radio]').change(
-			function() {
-                            arr.push(this.value);
-                            $('div.array_content').html(arr+'<br>');
-			}
+//			function() {
+//                            arr[this.name] = this.value;
+//                            $('div.array_content').html(arr+'<br>');
+//                                $.ajax({
+//                                url: '/products/index',
+//                                type: 'POST',
+//                                data: {
+//                                    array:arr
+//                                }
+//
+//
+//                            });
+//			}
 		);
 });
     

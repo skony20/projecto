@@ -15,24 +15,23 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="products-index">
 
 <?php 
-//echo '<pre>rr' .print_r($aFilters, True). '</pre>'; die();
-$a = 0;
+Pjax::begin();
+echo print_r($aFiltersy, TRUE);
+echo Html::beginForm(['/site/index/'], 'POST', ['data-pjax' => '', 'class' => 'form-inline']);
 foreach ($aFilters as $aData) {
     
     echo $aData['question']->name.'<br>';
-
-    echo Html::radioList($a, '' ,ArrayHelper::map($aData['answer'], 'id', 'name'), ['class'=>'answers']);
-    $a++;
+    echo Html::radioList($aData['question']->id, '' ,ArrayHelper::map($aData['answer'], 'id', 'name'), ['class'=>'answers']);
 }
 ?>
-    <div class="array_content">
-        
-    </div>
-    
+<?= Html::submitButton('Hash String', ['class' => 'btn btn-lg btn-primary', 'name' => 'hash-button']) ?>
+<?= Html::endForm() ?>    
 <?php
-//foreach ($dataProvider->models as $model) {
-//    
-//    echo $model->symbol.' - '.$model->id .'<br>';
-//}
+//echo '<pre>'. print_r($dataProvider, TRUE);
+foreach ($dataProvider as $model) 
+{
+    echo $model->symbol.' - '.$model->id .'  ';
+}
+Pjax::end();
 ?>
     

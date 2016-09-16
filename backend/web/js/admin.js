@@ -90,7 +90,7 @@ $(document).ready(
              function() {
                 iIdProduct = $(this).attr('rel');
                 $.ajax({
-                    url: '../products/unactive/'+iIdProduct,
+                    url: 'products/unactive/'+iIdProduct,
                     success: function(data) {
                         window.location.href = window.location.href;
                     }
@@ -101,7 +101,7 @@ $(document).ready(
              function() {
                 iIdProduct = $(this).attr('rel');
                 $.ajax({
-                    url: '../products/active/'+iIdProduct,
+                    url: 'products/active/'+iIdProduct,
                 success: function(data) {
                     window.location.href = window.location.href;
                 }

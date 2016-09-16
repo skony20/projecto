@@ -25,7 +25,23 @@ use yii\helpers\BaseHtml;
 
             echo '<div class="radiolist_prdflt">';
             echo '<label class="question_label">' .$_aData['question']->name.'</label>';
-            echo Html::radioList($a, $aProductsFilters ,ArrayHelper::map($_aData['answer'], 'id', 'name') ,
+            switch ($_aData['question']->id)
+            {
+                case 7:
+                    echo Html::checkboxList($a, $aProductsFilters ,ArrayHelper::map($_aData['answer'], 'id', 'name') ,
+                    [
+                        'item' => function($index, $label, $name, $checked, $value)
+                        {
+
+                                    return Html::checkbox($name, $checked, [
+                                    'value' => $value,
+                                    'label' => Html::encode($label),
+                                        ]) .'<br>';
+                        }
+                            ]);
+                break;
+                default:
+                    echo Html::radioList($a, $aProductsFilters ,ArrayHelper::map($_aData['answer'], 'id', 'name') ,
                     [
                         'item' => function($index, $label, $name, $checked, $value)
                         {
@@ -37,6 +53,9 @@ use yii\helpers\BaseHtml;
                                         ]) .'<br>';
                         }
                             ]);
+                break;
+            }
+            
             echo '</div>';
             $a++;
         }

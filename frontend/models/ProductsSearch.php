@@ -19,8 +19,8 @@ class ProductsSearch extends Products
     public function rules()
     {
         return [
-            [['id', 'is_active', 'sort_order', 'producers_id', 'vats_id', 'stock', 'rating_value', 'rating_votes', 'creation_date', 'modification_date', 'is_archive', 'sell_items'], 'integer'],
-            [['pkwiu', 'symbol', 'ean', 'image', 'filters_id'], 'safe'],
+            [['id', 'is_active', 'sort_order', 'producers_id', 'vats_id', 'stock', 'rating_value', 'rating_votes', 'creation_date', 'modification_date', 'is_archive', 'sell_items', 'filters_id'], 'integer'],
+            [['pkwiu', 'symbol', 'ean', 'image'], 'safe'],
             [['price_brutto_source', 'price_brutto'], 'number'],
         ];
     }

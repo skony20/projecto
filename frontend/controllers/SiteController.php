@@ -14,6 +14,7 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use app\models\FiltersGroup;
 use app\models\Filters;
+use app\models\Products;
 
 /**
  * Site controller
@@ -74,10 +75,13 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new \app\models\ProductsSearch();
+        $model = new Products();
+        
         $oFiltersGroup = new FiltersGroup();
         $oFilters = new Filters();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $aFiltersy = $_POST;
+        //echo '<pre>666' . print_r($_POST, TRUE); die();
+        $dataProvider = $model->find()->all();
         $aFiltersGroup = $oFiltersGroup::find()->where(['is_active'=> 1])->orderBy('sort_order')->all();
         foreach ($aFiltersGroup as $_aFiltersGroup)
         {
@@ -85,9 +89,7 @@ class SiteController extends Controller
             $aData[$_aFiltersGroup->id] = ['question'=>$_aFiltersGroup, 'answer' => $aFilters];
         }
        
-        $dataProvider->pagination->pageSize=1000;
-        $model = new \app\models\Products();
-        return $this->render('index', ['model' => $model,'dataProvider' => $dataProvider,'searchModel'=>$searchModel, 'aFilters'=>$aData]);        
+        return $this->render('index', ['model' => $model,'dataProvider' => $dataProvider, 'aFilters'=>$aData, 'aFiltersy' => $aFiltersy]);        
     }
 
     /**
@@ -225,4 +227,5 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
 }
