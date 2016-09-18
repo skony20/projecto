@@ -50,7 +50,7 @@ class ProductsSearch extends Products
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-        
+
         $this->load($params);
 
         if (!$this->validate()) {
@@ -74,12 +74,12 @@ class ProductsSearch extends Products
             'modification_date' => $this->modification_date,
             'is_archive' => $this->is_archive,
             'sell_items' => $this->sell_items,
-            
+            'products_filters.filters_id' => $this->filters_id
+
         ]);
-        $query->andFilterWhere(['in', 'products_filters.filters_id', $this->filters_id]);
-        
-        
-        
+
+
+
         $query->andFilterWhere(['like', 'pkwiu', $this->pkwiu])
             ->andFilterWhere(['like', 'symbol', $this->symbol])
             ->andFilterWhere(['like', 'ean', $this->ean])

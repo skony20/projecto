@@ -14,7 +14,9 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use app\models\FiltersGroup;
 use app\models\Filters;
-use app\models\Products;
+use app\models\ProductsSearch;
+use yii\data\ActiveDataProvider;
+use app\models\ProductsFilters;
 
 /**
  * Site controller
@@ -75,21 +77,50 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $model = new Products();
-        
+        $model = new ProductsSearch();
+
         $oFiltersGroup = new FiltersGroup();
         $oFilters = new Filters();
-        $aFiltersy = $_POST;
-        //echo '<pre>666' . print_r($_POST, TRUE); die();
-        $dataProvider = $model->find()->all();
+        $aFiltersData = [];
+
+        $query = $model::find();
+        $query->joinWith(['productsFilters']);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => false,
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_ASC,
+                    ]
+                ]
+            ]);
+
+        if (Yii::$app->request->post())
+        {
+            foreach (Yii::$app->request->post() as $Filters)
+        {
+            if (is_numeric($Filters))
+            {
+                $aFiltersData[] .= $Filters;
+            }
+        }
+
+            $query->andFilterWhere(['IN', 'products_filters.filters_id',$aFiltersData]);
+            $query->groupBy('id');
+            $query->having('COUNT(*)='.count($aFiltersData) );
+
+
+
+        }
+
         $aFiltersGroup = $oFiltersGroup::find()->where(['is_active'=> 1])->orderBy('sort_order')->all();
         foreach ($aFiltersGroup as $_aFiltersGroup)
         {
             $aFilters = $oFilters::find()->where(['filters_group_id' => $_aFiltersGroup->id, 'is_active'=> 1])->all();
             $aData[$_aFiltersGroup->id] = ['question'=>$_aFiltersGroup, 'answer' => $aFilters];
         }
-       
-        return $this->render('index', ['model' => $model,'dataProvider' => $dataProvider, 'aFilters'=>$aData, 'aFiltersy' => $aFiltersy]);        
+
+        return $this->render('index', ['model' => $model,'dataProvider' => $dataProvider, 'aFilters'=>$aData, 'aFiltersData' => $aFiltersData]);
     }
 
     /**
