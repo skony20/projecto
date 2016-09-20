@@ -1,8 +1,6 @@
 <?php
 use yii\helpers\Html;
-use yii\grid\GridView;
 use yii\widgets\Pjax;
-use app\models\Products;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 /* @var $this yii\web\View */
@@ -17,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php
 //echo '<pre>'. print_r($dataProvider, TRUE); die();
 Pjax::begin();
-echo Html::beginForm(['/'], 'POST', ['data-pjax' => '', 'class' => 'form-inline', 'id'=>'set_filters']);
+echo Html::beginForm(['/'], 'POST', ['data-pjax' => '', 'class' => 'form-inline', 'id'=>'set_filters', 'name'=>'set_filers']);
 foreach ($aFilters as $aData) {
 
     echo $aData['question']->name.'<br>';
@@ -27,9 +25,9 @@ foreach ($aFilters as $aData) {
     echo '</div>';
 }
 ?>
-
+<?= Html::SubmitButton('Pokaż projekty', ['class' => 'project_ready', 'name' => 'project_ready']) ?>
 <?= Html::endForm() ?>
-<?= Html::Button('Pokaż projekty', ['class' => 'project_ready', 'name' => 'project_ready']) ?>
+
     <div class="all_project">Projekty spełniające kryteria: <?= $sProjectCount ?></div>
 <?php
     Pjax::end();

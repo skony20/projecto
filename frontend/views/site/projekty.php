@@ -18,6 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 Menu lewe Menu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu leweMenu lewe
 </div>
 <div class="another products-items">
-    Tutaj będzie dużo projektów 
+    Tutaj będzie dużo projektów
+    <?= '<pre>567 ' .print_r($cos, TRUE) ?>
 </div>
 

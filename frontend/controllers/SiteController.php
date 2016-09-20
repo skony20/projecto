@@ -94,7 +94,7 @@ class SiteController extends Controller
                     ]
                 ]
             ]);
-
+        //echo '<pre>' .print_r(Yii::$app->request->post(), TRUE); die();
         if (Yii::$app->request->post() && count(Yii::$app->request->post())>=2)
         {
             //echo '<pre>' .print_r(Yii::$app->request->post(), TRUE); die();
@@ -123,8 +123,18 @@ class SiteController extends Controller
     public function actionProjekty()
     {
 //        echo 'TADAM'; die();
-//        echo '<pre>' .print_r(Yii::$app->request->post(), TRUE); 
-        return $this->render('projekty');
+
+        $cos = [];
+        echo '<pre>contr' .print_r($_POST, TRUE); die();
+        foreach (Yii::$app->request->post() as $Filters)
+            {
+                if (is_numeric($Filters))
+                {
+                    $cos[] .= $Filters;
+                }
+            }
+        //echo '<pre>contr' .print_r($cos, TRUE); die();
+        return $this->render('projekty',['cos'=>[Yii::$app->request->post()]]);
     }
     /**
      * Logs in a user.
