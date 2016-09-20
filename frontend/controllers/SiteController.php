@@ -95,24 +95,22 @@ class SiteController extends Controller
                 ]
             ]);
 
-        if (Yii::$app->request->post())
+        if (Yii::$app->request->post() && count(Yii::$app->request->post())>=2)
         {
+            //echo '<pre>' .print_r(Yii::$app->request->post(), TRUE); die();
             foreach (Yii::$app->request->post() as $Filters)
-        {
-            if (is_numeric($Filters))
             {
-                $aFiltersData[] .= $Filters;
+                if (is_numeric($Filters))
+                {
+                    $aFiltersData[] .= $Filters;
+                }
             }
-        }
 
             $query->andFilterWhere(['IN', 'products_filters.filters_id',$aFiltersData]);
             $query->groupBy('id');
             $query->having('COUNT(*)='.count($aFiltersData) );
-
-
-
         }
-
+        $sProjectCount = $dataProvider->count;
         $aFiltersGroup = $oFiltersGroup::find()->where(['is_active'=> 1])->orderBy('sort_order')->all();
         foreach ($aFiltersGroup as $_aFiltersGroup)
         {
@@ -120,9 +118,14 @@ class SiteController extends Controller
             $aData[$_aFiltersGroup->id] = ['question'=>$_aFiltersGroup, 'answer' => $aFilters];
         }
 
-        return $this->render('index', ['model' => $model,'dataProvider' => $dataProvider, 'aFilters'=>$aData, 'aFiltersData' => $aFiltersData]);
+        return $this->render('index', ['model' => $model,'sProjectCount' => $sProjectCount, 'aFilters'=>$aData, 'aFiltersData' => $aFiltersData]);
     }
-
+    public function actionProjekty()
+    {
+//        echo 'TADAM'; die();
+        echo '<pre>' .print_r(Yii::$app->request->post(), TRUE); 
+        return $this->render('projekty');
+    }
     /**
      * Logs in a user.
      *

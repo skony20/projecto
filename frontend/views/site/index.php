@@ -17,21 +17,22 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php
 //echo '<pre>'. print_r($dataProvider, TRUE); die();
 Pjax::begin();
-echo Html::beginForm(['/'], 'POST', ['data-pjax' => '', 'class' => 'form-inline']);
+echo Html::beginForm(['/'], 'POST', ['data-pjax' => '', 'class' => 'form-inline', 'id'=>'set_filters']);
 foreach ($aFilters as $aData) {
 
     echo $aData['question']->name.'<br>';
-    echo Html::radioList($aData['question']->id, $aFiltersData ,ArrayHelper::map($aData['answer'], 'id', 'name'), ['class'=>'answers']);
+    echo '<div class=filter_ansver_row>';
+    echo Html::radioList($aData['question']->id, $aFiltersData ,ArrayHelper::map($aData['answer'], 'id', 'name'), ['class'=>'answer']);
+    echo Html::tag('Resetuj','Resetuj',['class'=>'reset_filter', 'rel'=>$aData['question']->id]);
+    echo '</div>';
 }
 ?>
-<?= Html::submitButton('Pokaż projekty', ['class' => 'btn btn-lg btn-primary', 'name' => 'hash-button']) ?>
+
 <?= Html::endForm() ?>
+<?= Html::Button('Pokaż projekty', ['class' => 'project_ready', 'name' => 'project_ready']) ?>
+    <div class="all_project">Projekty spełniające kryteria: <?= $sProjectCount ?></div>
 <?php
-//echo '<pre>'. print_r($dataProvider->models, TRUE); die();
-foreach ($dataProvider->models as $model)
-{
-    echo $model->symbol.' - '.$model->id .'  ';
-}
-Pjax::end();
+    Pjax::end();
+
 ?>
 

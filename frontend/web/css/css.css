@@ -1,0 +1,37 @@
+/* 
+    Created on : 2016-09-19, 10:40:55
+    Author     : Mariusz Skonieczny, mariuszskonieczny@htomail.com
+*/
+
+.filter_ansver_row
+{
+    display: inline-block;
+    width:100%;
+}
+.answer
+{
+    display: inline;
+}
+.reset_filter
+{
+    display: inline;
+    float:right;
+    cursor: pointer;
+}
+
+.left 
+{
+    width:25%;
+    max-width:250px;
+    display:inline-block;
+    padding-right:50px;
+}
+.another
+{
+    vertical-align:top;
+    display:inline;
+}
+.container
+{
+    width:90%;
+}
