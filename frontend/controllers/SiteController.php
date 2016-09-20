@@ -123,7 +123,7 @@ class SiteController extends Controller
     public function actionProjekty()
     {
 //        echo 'TADAM'; die();
-        echo '<pre>' .print_r(Yii::$app->request->post(), TRUE); 
+//        echo '<pre>' .print_r(Yii::$app->request->post(), TRUE); 
         return $this->render('projekty');
     }
     /**

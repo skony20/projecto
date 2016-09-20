@@ -30,10 +30,9 @@ $(document).on('ready pjax:success',
                     url: 'site/projekty',
                     type: 'POST',
                     data: formData,
-                    success: function(data) 
-                    {
-                        
-                    }
+                    success: function(data) {
+                                
+                            }
 					
                 });
 				
