@@ -115,7 +115,6 @@ class Products extends \yii\db\ActiveRecord
      */
     public function getProductsDescriptons()
     {
-        //echo '<pre>33'. print_r($this->hasOne(ProductsDescripton::className(), ['products_id' => 'id']), true). '</pre>'; die();
         return $this->hasOne(ProductsDescripton::className(), ['products_id' => 'id'])->onCondition(['languages_id' => 1]);
     }
 

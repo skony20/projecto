@@ -29,9 +29,13 @@
 .another
 {
     vertical-align:top;
-    display:inline;
+    display:inline-block;
 }
 .container
 {
     width:90%;
+}
+.all_project {
+    display: inherit;
+    vertical-align: inherit;
 }

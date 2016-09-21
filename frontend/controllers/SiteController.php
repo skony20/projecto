@@ -17,6 +17,7 @@ use app\models\Filters;
 use app\models\ProductsSearch;
 use yii\data\ActiveDataProvider;
 use app\models\ProductsFilters;
+use yii\web\Session;
 
 /**
  * Site controller
@@ -117,24 +118,60 @@ class SiteController extends Controller
             $aFilters = $oFilters::find()->where(['filters_group_id' => $_aFiltersGroup->id, 'is_active'=> 1])->all();
             $aData[$_aFiltersGroup->id] = ['question'=>$_aFiltersGroup, 'answer' => $aFilters];
         }
-
-        return $this->render('index', ['model' => $model,'sProjectCount' => $sProjectCount, 'aFilters'=>$aData, 'aFiltersData' => $aFiltersData]);
+        
+        $aSession = new Session();
+        $aSession['FiltersSession'] = [];
+        $aSession['FiltersSession'] = $aFiltersData;
+        return $this->render('index', ['model' => $model,'sProjectCount' => $sProjectCount, 'aFilters'=>$aData, 'aFiltersData' => $aFiltersData, 'dataProvider'=>$dataProvider]);
     }
     public function actionProjekty()
     {
-//        echo 'TADAM'; die();
-
-        $cos = [];
-        echo '<pre>contr' .print_r($_POST, TRUE); die();
-        foreach (Yii::$app->request->post() as $Filters)
+        $model = new ProductsSearch();
+        $aSession = new Session();
+        $FiltersSession = $aSession->get('FiltersSession');
+        $oFiltersGroup = new FiltersGroup();
+        $oFilters = new Filters();
+        $aFiltersGroup = $oFiltersGroup::find()->where(['is_active'=> 1])->orderBy('sort_order')->all();
+        
+        foreach ($aFiltersGroup as $_aFiltersGroup)
+        {
+            $aFilters = $oFilters::find()->where(['filters_group_id' => $_aFiltersGroup->id, 'is_active'=> 1])->all();
+            $aData[$_aFiltersGroup->id] = ['question'=>$_aFiltersGroup, 'answer' => $aFilters];
+        }
+        $query = $model::find();
+        $query->joinWith(['productsFilters']);
+        $query->joinWith(['productsDescriptons']);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => 25,
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_ASC,
+                    ]
+                ]
+            ]);
+        
+        if (Yii::$app->request->post() && count(Yii::$app->request->post())>=2)
+        {
+            foreach (Yii::$app->request->post() as $Filters)
             {
                 if (is_numeric($Filters))
                 {
-                    $cos[] .= $Filters;
+                    $FiltersSession[] .= $Filters;
                 }
             }
-        //echo '<pre>contr' .print_r($cos, TRUE); die();
-        return $this->render('projekty',['cos'=>[Yii::$app->request->post()]]);
+        }
+        if ($FiltersSession)
+        {
+            $query->andFilterWhere(['IN', 'products_filters.filters_id',$FiltersSession]);
+            $query->groupBy('id');
+            $query->having('COUNT(*)='.count($FiltersSession) );
+        }
+        
+        //echo '<pre>'. print_r($dataProvider, TRUE); die();
+        return $this->render('projekty',['aChooseFilters'=>$FiltersSession, 'aFilters'=>$aData, 'dataProvider'=>$dataProvider]);
     }
     /**
      * Logs in a user.

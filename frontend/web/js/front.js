@@ -5,7 +5,6 @@ $(document).on('ready pjax:success',
         $('input[type=radio]').change(
             function()
             {
-
                 $("#set_filters").submit();
             }
         );
@@ -22,11 +21,18 @@ $(document).on('ready pjax:success',
 
 
     $('.project_ready').click(
-            function(e)
+            function()
             {
-                //$('#set_filters').attr('action', 'site/projekty');
-                 //$("#set_filters").submit();
+                window.location.href = "site/projekty";
             });
 
+
+    $('.reset_all_filters').click(
+            function()
+                {
+                     $('input').prop('checked', false);
+                     $("#set_filters").submit();
+                }
+    );
 
     });

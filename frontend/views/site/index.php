@@ -28,7 +28,8 @@ foreach ($aFilters as $aData) {
 <?= Html::SubmitButton('Pokaż projekty', ['class' => 'project_ready', 'name' => 'project_ready']) ?>
 <?= Html::endForm() ?>
 
-    <div class="all_project">Projekty spełniające kryteria: <?= $sProjectCount ?></div>
+    <div class="all_project">Projekty spełniające kryteria: <?= $sProjectCount ?><br><br></div>
+
 <?php
     Pjax::end();
 
