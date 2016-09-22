@@ -15,16 +15,17 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="full_site">
-    <div class="left filter_menu">
-        
+    <div class="top_menu filter_menu">
+
     <?php
-    echo Html::beginForm(['site/projekty'], 'POST', ['id'=>'prj_set_filters', 'name'=>'prj_set_filers']);
+    echo Html::beginForm(['site/projekty'], 'POST', ['id'=>'prj_set_filters', 'name'=>'prj_set_filers', 'class'=>'prj_set_filers']);
     foreach ($aFilters as $aData) {
+        echo '<div class="prj_filter_row">';
         echo '<div class="prj_filter_question_row">';
         echo $aData['question']->name.'<br>';
         echo '</div>';
         echo '<div class="prj_filter_ansver_row">';
-        
+
         echo Html::radioList($aData['question']->id, $aChooseFilters ,ArrayHelper::map($aData['answer'], 'id', 'name') ,
                     [
                         'item' => function($index, $label, $name, $checked, $value)
@@ -38,8 +39,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                         ]).'<br>';
                         }
                             ]);
-        
+
         echo '<span class="remove-filter" rel="'.$aData['question']->id.'">Usuń filtr</span>';
+        echo '</div>';
         echo '</div>';
     }
     ?>
@@ -48,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     </div>
     <div class="another products-items">
-        
+
 
             <?= $this->render('products', ['dataProvider' => $dataProvider]) ?>
 

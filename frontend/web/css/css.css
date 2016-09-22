@@ -1,4 +1,4 @@
-/* 
+/*
     Created on : 2016-09-19, 10:40:55
     Author     : Mariusz Skonieczny, mariuszskonieczny@htomail.com
 */
@@ -19,12 +19,11 @@
     cursor: pointer;
 }
 
-.left 
+.top_menu
 {
-    width:25%;
-    max-width:250px;
-    display:inline-block;
-    padding-right:50px;
+    width:100%;
+    display:block;
+    padding-top:10px;
 }
 .another
 {
@@ -45,9 +44,20 @@
     border: 1px solid #d0d0d0;
     padding:2px;
     margin: 5px 0;
-    
+    display:inline-block;
 }
 
+.prj_filter_row
+{
+    display:inline-block;
+    vertical-align: top;
+    padding: 0 10px;
+}
+.remove-filter
+{
+    color:red;
+    vertical-align: bottom;
+}
 
 
 

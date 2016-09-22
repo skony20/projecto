@@ -33,19 +33,19 @@ $(document).on('ready pjax:success',
                     $('input').prop('checked', false);
                     $.ajax({
                         url: 'reset'
-				
+
 			});
                     $.ajax({
                         url: 'projekty',
-			success: function(data) 
+			success: function(data)
                         {
                             $(".products-items").html(data);
-                        }	
+                        }
 			});
                 }
     );
-    
-    $('input[type=radio][class=prj_radio]').change(function() 
+
+    $('input[type=radio][class=prj_radio]').change(function()
     {
         //$(".products-items").html(''); // czyscimy warstwe
 	oFormData = $('form').serialize();
@@ -53,7 +53,7 @@ $(document).on('ready pjax:success',
             url: 'projekty',
             type: 'POST',
             data: oFormData,
-            success: function(data) 
+            success: function(data)
             {
                 $(".products-items").html(data);
             }
@@ -66,13 +66,15 @@ $(document).on('ready pjax:success',
 
                 var iFilterGroupId = $(this).attr('rel');
                 $('input[name="'+iFilterGroupId+'"]').prop('checked', false);
-                $("#set_filters").submit();
+                oFormData = $('form').serialize();
                 $.ajax({
                         url: 'projekty',
-			success: function(data) 
+                        type: 'POST',
+                        data: oFormData,
+			success: function(data)
                         {
                             $(".products-items").html(data);
-                        }	
+                        }
 			});
 
             }
