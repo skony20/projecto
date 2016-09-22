@@ -16,21 +16,36 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="full_site">
     <div class="left filter_menu">
+        
     <?php
-    Pjax::begin();
-    echo Html::beginForm(['site/projekty'], 'POST', ['js-pjax' => '', 'id'=>'set_filters', 'name'=>'set_filers']);
+    echo Html::beginForm(['site/projekty'], 'POST', ['id'=>'prj_set_filters', 'name'=>'prj_set_filers']);
     foreach ($aFilters as $aData) {
-
+        echo '<div class="prj_filter_question_row">';
         echo $aData['question']->name.'<br>';
-        echo '<div class=filter_ansver_row>';
-        echo Html::radioList($aData['question']->id, $aChooseFilters ,ArrayHelper::map($aData['answer'], 'id', 'name'), ['class'=>'answer']);
+        echo '</div>';
+        echo '<div class="prj_filter_ansver_row">';
+        
+        echo Html::radioList($aData['question']->id, $aChooseFilters ,ArrayHelper::map($aData['answer'], 'id', 'name') ,
+                    [
+                        'item' => function($index, $label, $name, $checked, $value)
+                        {
+
+                                    return Html::radio($name, $checked, [
+                                    'value' => $value,
+                                    'label' => Html::encode($label),
+                                    'required' =>false,
+                                    'class' =>'prj_radio'
+                                        ]).'<br>';
+                        }
+                            ]);
+        
+        echo '<span class="remove-filter" rel="'.$aData['question']->id.'">Usuń filtr</span>';
         echo '</div>';
     }
     ?>
     <?= Html::endForm() ?>
     <?= Html::tag('div', 'resetuj filtry', ['class' => 'reset_all_filters']) ?>
 
-    </div>
     </div>
     <div class="another products-items">
         
@@ -39,6 +54,3 @@ $this->params['breadcrumbs'][] = $this->title;
 
     </div>
 </div>
-    <?php
-        Pjax::end();
-    ?>

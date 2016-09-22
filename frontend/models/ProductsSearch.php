@@ -46,7 +46,6 @@ class ProductsSearch extends Products
         $query = Products::find();
 
         // add conditions that should always apply here
-        $query->joinWith(['productsFilters']);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -74,7 +73,6 @@ class ProductsSearch extends Products
             'modification_date' => $this->modification_date,
             'is_archive' => $this->is_archive,
             'sell_items' => $this->sell_items,
-            'products_filters.filters_id' => $this->filters_id
 
         ]);
 

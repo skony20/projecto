@@ -39,3 +39,15 @@
     display: inherit;
     vertical-align: inherit;
 }
+.prj_filter_question_row
+{
+    background-color:#e4e4e4;
+    border: 1px solid #d0d0d0;
+    padding:2px;
+    margin: 5px 0;
+    
+}
+
+
+
+

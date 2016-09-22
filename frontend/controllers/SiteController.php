@@ -129,6 +129,8 @@ class SiteController extends Controller
         $model = new ProductsSearch();
         $aSession = new Session();
         $FiltersSession = $aSession->get('FiltersSession');
+        //echo 'Filter'.print_r($FiltersSession , TRUE).'<br>'; die();
+        
         $oFiltersGroup = new FiltersGroup();
         $oFilters = new Filters();
         $aFiltersGroup = $oFiltersGroup::find()->where(['is_active'=> 1])->orderBy('sort_order')->all();
@@ -139,13 +141,11 @@ class SiteController extends Controller
             $aData[$_aFiltersGroup->id] = ['question'=>$_aFiltersGroup, 'answer' => $aFilters];
         }
         $query = $model::find();
-        $query->joinWith(['productsFilters']);
+
         $query->joinWith(['productsDescriptons']);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => [
-                'pageSize' => 25,
-            ],
+            'pagination' =>['pageSize' => 25],
             'sort' => [
                 'defaultOrder' => [
                     'id' => SORT_ASC,
@@ -155,6 +155,7 @@ class SiteController extends Controller
         
         if (Yii::$app->request->post() && count(Yii::$app->request->post())>=2)
         {
+            $FiltersSession = '';
             foreach (Yii::$app->request->post() as $Filters)
             {
                 if (is_numeric($Filters))
@@ -163,21 +164,38 @@ class SiteController extends Controller
                 }
             }
         }
+        $aSession['FiltersSession'] = $FiltersSession;
         if ($FiltersSession)
         {
-            $query->andFilterWhere(['IN', 'products_filters.filters_id',$FiltersSession]);
+            $query->joinWith(['productsFilters']);
+            $query->andFilterWhere(['IN', 'products_filters.filters_id',$aSession['FiltersSession']]);
             $query->groupBy('id');
             $query->having('COUNT(*)='.count($FiltersSession) );
         }
         
-        //echo '<pre>'. print_r($dataProvider, TRUE); die();
-        return $this->render('projekty',['aChooseFilters'=>$FiltersSession, 'aFilters'=>$aData, 'dataProvider'=>$dataProvider]);
+        if (Yii::$app->request->isAjax) 
+        {
+            return $this->renderAjax('products', ['dataProvider'=>$dataProvider]);
+        }
+        else 
+        {
+             return $this->render('projekty',['aChooseFilters'=>$FiltersSession, 'aFilters'=>$aData, 'dataProvider'=>$dataProvider]);
+        }
+
+        
+
     }
     /**
      * Logs in a user.
      *
      * @return mixed
      */
+    public function actionReset()
+    {
+        $aSession = new Session();
+        $aSession->removeAll();
+        
+    }
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
