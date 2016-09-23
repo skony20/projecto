@@ -30,7 +30,7 @@ $(document).on('ready pjax:success',
     $('.reset_all_filters').click(
             function()
                 {
-                    $('input').prop('checked', false);
+                    $('.prj_select').prop('selectedIndex',0);
                     $.ajax({
                         url: 'reset'
 
@@ -45,7 +45,7 @@ $(document).on('ready pjax:success',
                 }
     );
 
-    $('input[type=radio][class=prj_radio]').change(function()
+    $('.prj_select').change(function()
     {
         //$(".products-items").html(''); // czyscimy warstwe
 	oFormData = $('form').serialize();
@@ -65,7 +65,7 @@ $(document).on('ready pjax:success',
             {
 
                 var iFilterGroupId = $(this).attr('rel');
-                $('input[name="'+iFilterGroupId+'"]').prop('checked', false);
+                $('select[name="'+iFilterGroupId+'"]').prop('selectedIndex',0);
                 oFormData = $('form').serialize();
                 $.ajax({
                         url: 'projekty',

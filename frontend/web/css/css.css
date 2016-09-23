@@ -45,6 +45,7 @@
     padding:2px;
     margin: 5px 0;
     display:inline-block;
+    width:100%;
 }
 
 .prj_filter_row
@@ -52,12 +53,22 @@
     display:inline-block;
     vertical-align: top;
     padding: 0 10px;
+    width: 20%;
 }
 .remove-filter
 {
     color:red;
     vertical-align: bottom;
 }
-
-
-
+.prj_filter_ansver_row > select
+{
+    width: 100%;
+}
+.navbar
+{
+    height:100px;
+}
+.wrap > .container 
+{
+    padding: 120px 15px 20px;
+}
