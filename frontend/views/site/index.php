@@ -13,8 +13,10 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="products-index">
 
 <?php
+
 Pjax::begin();
 echo Html::beginForm(['/'], 'POST', ['data-pjax' => '', 'class' => 'form-inline', 'id'=>'set_filters', 'name'=>'set_filers']);
+
 foreach ($aFilters as $aData) {
 
     echo '<div class="filter_question_row">';
@@ -22,7 +24,16 @@ foreach ($aFilters as $aData) {
     echo '</div>';
     echo '<div class="filter_ansver_row">';
     echo Html::radioList($aData['question']->id, $aFiltersData ,ArrayHelper::map($aData['answer'], 'id', 'name'), ['class'=>'answer']);
+    if ($aData['question']->id == 3 )
+    {
+
+        echo '<br>Szerokość:' .Html::input('text', 'from_x', $aDimensions['min_x']);
+        echo Html::input('text', 'to_x', $aDimensions['max_x']);
+        echo '<br>Głębokość' .Html::input('text', 'from_y', $aDimensions['min_y']);
+        echo Html::input('text', 'to_y', $aDimensions['max_y']);
+    }
     echo Html::tag('Resetuj','Resetuj',['class'=>'reset_filter', 'rel'=>$aData['question']->id]);
+
     echo '</div>';
 }
 ?>

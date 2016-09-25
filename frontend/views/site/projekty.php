@@ -26,20 +26,6 @@ $this->params['breadcrumbs'][] = $this->title;
         echo '</div>';
         echo '<div class="prj_filter_ansver_row">';
         echo Html::dropDownList($aData['question']->id, $aChooseFilters, ArrayHelper::map($aData['answer'], 'id', 'name'), ['prompt' => ' -- Wybierz --', 'class'=>'prj_select']);
-//        echo Html::radioList($aData['question']->id, $aChooseFilters ,ArrayHelper::map($aData['answer'], 'id', 'name') ,
-//                    [
-//                        'item' => function($index, $label, $name, $checked, $value)
-//                        {
-//
-//                                    return Html::radio($name, $checked, [
-//                                    'value' => $value,
-//                                    'label' => Html::encode($label),
-//                                    'required' =>false,
-//                                    'class' =>'prj_radio'
-//                                        ]).'<br>';
-//                        }
-//                            ]);
-
         echo '<span class="remove-filter" rel="'.$aData['question']->id.'">Usuń filtr</span>';
         echo '</div>';
         echo '</div>';

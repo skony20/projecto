@@ -78,14 +78,18 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+
+
+
         $model = new ProductsSearch();
 
         $oFiltersGroup = new FiltersGroup();
         $oFilters = new Filters();
         $aFiltersData = [];
-
+        $aDimensions = [];
         $query = $model::find();
         $query->joinWith(['productsFilters']);
+        $query->joinWith(['productsAttributes']);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => false,
@@ -95,34 +99,96 @@ class SiteController extends Controller
                     ]
                 ]
             ]);
-        //echo '<pre>' .print_r(Yii::$app->request->post(), TRUE); die();
-        if (Yii::$app->request->post() && count(Yii::$app->request->post())>=2)
+
+        $query2 = $model::find();
+        $query2->joinWith(['productsAttributes']);
+        $query2->andFilterWhere(['attributes_id'=>7]);
+        $dataProvider2 = new ActiveDataProvider([
+            'query' => $query2,
+            'pagination' => false,
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_ASC,
+                    ]
+                ]
+            ]);
+        $query3 = $model::find();
+        $query3->joinWith(['productsAttributes']);
+        $query3->andFilterWhere(['attributes_id'=>6]);
+        $dataProvider3 = new ActiveDataProvider([
+            'query' => $query3,
+            'pagination' => false,
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_ASC,
+                    ]
+                ]
+            ]);
+        $iMaxX = $query2->max('value');
+        $iMinX = $query2->min('value');
+        $iMaxY = $query3->max('value');
+        $iMinY = $query3->min('value');
+        $aDimensions['max_x'] = $query2->max('value');
+        $aDimensions['min_x'] = $query2->min('value');
+        $aDimensions['max_y'] = $query3->max('value');
+        $aDimensions['min_y'] = $query3->min('value');
+
+        $aPostData = Yii::$app->request->post();
+
+
+        if ($aPostData && count($aPostData)>=2)
         {
             //echo '<pre>' .print_r(Yii::$app->request->post(), TRUE); die();
-            foreach (Yii::$app->request->post() as $Filters)
+            $iMaxX = $aPostData['to_x'];
+            $iMinX = $aPostData['from_x'];
+            $iMaxY = $aPostData['to_y'];
+            $iMinY = $aPostData['from_y'];
+            $aPostData['from_x']='x';
+            $aPostData['to_x']='x';
+            $aPostData['from_y']='x';
+            $aPostData['to_y']='x';
+            foreach ($aPostData  as $Filters)
             {
+
+
+
                 if (is_numeric($Filters))
                 {
                     $aFiltersData[] .= $Filters;
                 }
             }
-
+            $aDimensions['max_x'] = ($iMaxX != $query2->max('value') ? $iMaxX : $query2->max('value'));
+            $aDimensions['min_x'] = ($iMinX != $query2->min('value') ? $iMinX : $query2->min('value'));
+            $aDimensions['max_y'] = $query3->max('value');
+            $aDimensions['min_y'] = $query3->min('value');
             $query->andFilterWhere(['IN', 'products_filters.filters_id',$aFiltersData]);
             $query->groupBy('id');
             $query->having('COUNT(*)='.count($aFiltersData) );
+
+            if ($iMaxX != $query2->max('value'))
+            {
+
+
+            }
+
+
         }
         $sProjectCount = $dataProvider->count;
+
+
+        //echo '<pre>' . print_r($aDimensions, true); die();
         $aFiltersGroup = $oFiltersGroup::find()->where(['is_active'=> 1])->orderBy('sort_order')->all();
         foreach ($aFiltersGroup as $_aFiltersGroup)
         {
             $aFilters = $oFilters::find()->where(['filters_group_id' => $_aFiltersGroup->id, 'is_active'=> 1])->all();
             $aData[$_aFiltersGroup->id] = ['question'=>$_aFiltersGroup, 'answer' => $aFilters];
         }
-        
+
         $aSession = new Session();
         $aSession['FiltersSession'] = [];
         $aSession['FiltersSession'] = $aFiltersData;
-        return $this->render('index', ['model' => $model,'sProjectCount' => $sProjectCount, 'aFilters'=>$aData, 'aFiltersData' => $aFiltersData, 'dataProvider'=>$dataProvider]);
+
+        return $this->render('index', ['model' => $model,'sProjectCount' => $sProjectCount, 'aFilters'=>$aData, 'aFiltersData' => $aFiltersData, 'dataProvider'=>$dataProvider, 'aDimensions'=> $aDimensions]);
     }
     public function actionProjekty()
     {
@@ -130,11 +196,11 @@ class SiteController extends Controller
         $aSession = new Session();
         $FiltersSession = $aSession->get('FiltersSession');
         //echo 'Filter'.print_r($FiltersSession , TRUE).'<br>'; die();
-        
+
         $oFiltersGroup = new FiltersGroup();
         $oFilters = new Filters();
         $aFiltersGroup = $oFiltersGroup::find()->where(['is_active'=> 1])->orderBy('sort_order')->all();
-        
+
         foreach ($aFiltersGroup as $_aFiltersGroup)
         {
             $aFilters = $oFilters::find()->where(['filters_group_id' => $_aFiltersGroup->id, 'is_active'=> 1])->all();
@@ -152,7 +218,7 @@ class SiteController extends Controller
                     ]
                 ]
             ]);
-        
+
         if (Yii::$app->request->post() && count(Yii::$app->request->post())>=2)
         {
             $FiltersSession = '';
@@ -172,17 +238,17 @@ class SiteController extends Controller
             $query->groupBy('id');
             $query->having('COUNT(*)='.count($FiltersSession) );
         }
-        
-        if (Yii::$app->request->isAjax) 
+
+        if (Yii::$app->request->isAjax)
         {
             return $this->renderAjax('products', ['dataProvider'=>$dataProvider]);
         }
-        else 
+        else
         {
              return $this->render('projekty',['aChooseFilters'=>$FiltersSession, 'aFilters'=>$aData, 'dataProvider'=>$dataProvider]);
         }
 
-        
+
 
     }
     /**
@@ -194,7 +260,7 @@ class SiteController extends Controller
     {
         $aSession = new Session();
         $aSession->removeAll();
-        
+
     }
     public function actionLogin()
     {
