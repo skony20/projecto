@@ -24,15 +24,50 @@ foreach ($aFilters as $aData) {
     echo '</div>';
     echo '<div class="filter_ansver_row">';
     echo Html::radioList($aData['question']->id, $aFiltersData ,ArrayHelper::map($aData['answer'], 'id', 'name'), ['class'=>'answer']);
+    echo Html::tag('Resetuj','Resetuj',['class'=>'reset_filter', 'rel'=>$aData['question']->id]);
     if ($aData['question']->id == 3 )
     {
 
-        echo '<br>Szerokość:' .Html::input('text', 'from_x', $aDimensions['min_x']);
-        echo Html::input('text', 'to_x', $aDimensions['max_x']);
-        echo '<br>Głębokość' .Html::input('text', 'from_y', $aDimensions['min_y']);
-        echo Html::input('text', 'to_y', $aDimensions['max_y']);
+       echo '<br>Szerokość: ';
+        echo \yii2mod\slider\IonSlider::widget([
+            'name' => 'slider_x',
+            'type' => \yii2mod\slider\IonSlider::TYPE_DOUBLE,
+                'pluginOptions' => [
+                'min' => 0,
+                'max' => 100,
+                'from' => $aDimensions['min_x'],
+                'to' => $aDimensions['max_x'],
+                'step' => 0.5,
+                'hide_min_max' => false,
+                'hide_from_to' => false,
+                'onChange' => new \yii\web\JsExpression('
+                function(data) {
+                     $("#set_filters").submit();
+                }'
+                    )
+                ]
+            ]);
+        echo '<br>Głębokość: ' ;
+        echo \yii2mod\slider\IonSlider::widget([
+            'name' => 'slider_y',
+            'type' => \yii2mod\slider\IonSlider::TYPE_DOUBLE,
+                'pluginOptions' => [
+                'min' => 0,
+                'max' => 100,
+                'from' => $aDimensions['min_y'],
+                'to' => $aDimensions['max_y'],
+                'step' => 1,
+                'hide_min_max' => false,
+                'hide_from_to' => false,
+                'onChange' => new \yii\web\JsExpression('
+                function(data) {
+                     $("#set_filters").submit();
+                }'
+                    )
+                ]
+            ]);
     }
-    echo Html::tag('Resetuj','Resetuj',['class'=>'reset_filter', 'rel'=>$aData['question']->id]);
+   
 
     echo '</div>';
 }

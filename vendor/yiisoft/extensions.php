@@ -75,4 +75,13 @@ return array (
       '@yii/imagine' => $vendorDir . '/yiisoft/yii2-imagine',
     ),
   ),
+  'yii2mod/yii2-ion-slider' => 
+  array (
+    'name' => 'yii2mod/yii2-ion-slider',
+    'version' => '1.1.0.0',
+    'alias' => 
+    array (
+      '@yii2mod/slider' => $vendorDir . '/yii2mod/yii2-ion-slider',
+    ),
+  ),
 );

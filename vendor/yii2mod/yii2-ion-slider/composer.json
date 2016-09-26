@@ -1,0 +1,27 @@
+{
+    "name": "yii2mod/yii2-ion-slider",
+    "description": "Ion.RangeSlider Widget for Yii 2",
+    "type": "yii2-extension",
+    "keywords": ["yii2", "yii2 ion slider", "yii2 slider", "yii2 range slider"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Igor Chepurnoy",
+            "email": "igorzfort@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*",
+        "bower-asset/ionrangeslider": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "yii2mod\\slider\\": ""
+        }
+    },
+    "extra": {
+        "asset-installer-paths": {
+            "bower-asset-library": "vendor/bower"
+        }
+    }
+}

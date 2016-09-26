@@ -1092,5 +1092,99 @@
             "imagine",
             "yii2"
         ]
+    },
+    {
+        "name": "bower-asset/ionrangeslider",
+        "version": "2.1.4",
+        "version_normalized": "2.1.4.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/IonDen/ion.rangeSlider.git",
+            "reference": "b013f67882be811599580a76cf65074dff9f8b5a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/IonDen/ion.rangeSlider/zipball/b013f67882be811599580a76cf65074dff9f8b5a",
+            "reference": "b013f67882be811599580a76cf65074dff9f8b5a",
+            "shasum": ""
+        },
+        "require": {
+            "bower-asset/jquery": ">=1.8"
+        },
+        "type": "bower-asset-library",
+        "extra": {
+            "bower-asset-main": [
+                "js/ion.rangeSlider.js",
+                "css/ion.rangeSlider.css",
+                "css/ion.rangeSlider.skinFlat.css",
+                "img/sprite-skin-flat.png"
+            ],
+            "bower-asset-ignore": [
+                "PSD",
+                "ion-rangeSlider.jquery.json"
+            ]
+        },
+        "installation-source": "dist",
+        "license": [
+            "MIT"
+        ],
+        "description": "Powerful range slider with skin support",
+        "keywords": [
+            "diapason",
+            "ion",
+            "jquery-plugin",
+            "range",
+            "slider"
+        ]
+    },
+    {
+        "name": "yii2mod/yii2-ion-slider",
+        "version": "1.1",
+        "version_normalized": "1.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/yii2mod/yii2-ion-slider.git",
+            "reference": "28446d705e8f46d12d910691f4675762071b31ba"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/yii2mod/yii2-ion-slider/zipball/28446d705e8f46d12d910691f4675762071b31ba",
+            "reference": "28446d705e8f46d12d910691f4675762071b31ba",
+            "shasum": ""
+        },
+        "require": {
+            "bower-asset/ionrangeslider": "*",
+            "yiisoft/yii2": "*"
+        },
+        "time": "2016-07-27 10:54:09",
+        "type": "yii2-extension",
+        "extra": {
+            "asset-installer-paths": {
+                "bower-asset-library": "vendor/bower"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "yii2mod\\slider\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Igor Chepurnoy",
+                "email": "igorzfort@gmail.com"
+            }
+        ],
+        "description": "Ion.RangeSlider Widget for Yii 2",
+        "keywords": [
+            "yii2",
+            "yii2 ion slider",
+            "yii2 range slider",
+            "yii2 slider"
+        ]
     }
 ]

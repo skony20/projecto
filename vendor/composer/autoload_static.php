@@ -23,6 +23,7 @@ class ComposerStaticInit05d5e545355306cc0244b7afaa6de28d
             'yii\\codeception\\' => 16,
             'yii\\bootstrap\\' => 14,
             'yii\\' => 4,
+            'yii2mod\\slider\\' => 15,
         ),
         'd' => 
         array (
@@ -74,6 +75,10 @@ class ComposerStaticInit05d5e545355306cc0244b7afaa6de28d
         'yii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
+        ),
+        'yii2mod\\slider\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yii2mod/yii2-ion-slider',
         ),
         'dosamigos\\ckeditor\\' => 
         array (
