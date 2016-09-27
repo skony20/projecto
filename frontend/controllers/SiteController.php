@@ -102,32 +102,24 @@ class SiteController extends Controller
             ]);
         $query2 = $model::find();
         $query2->joinWith(['productsAttributes']);
+        $iMaxX = $iPostMaxX = ceil($query2->FilterWhere(['attributes_id'=>7])->max('value'));
+        $iMinX = $iPostMinX = floor($query2->FilterWhere(['attributes_id'=>7])->min('value'));
+        $iMaxY = $iPostMaxY = ceil($query2->FilterWhere(['attributes_id'=>6])->max('value'));
+        $iMinY = $iPostMinY = floor($query2->FilterWhere(['attributes_id'=>6])->min('value'));
         
-        $iMaxX = $query2->FilterWhere(['attributes_id'=>7])->max('value');
-        $iMinX = $query2->FilterWhere(['attributes_id'=>7])->min('value');
-        $iMaxY = $query2->FilterWhere(['attributes_id'=>6])->max('value');
-        $iMinY = $query2->FilterWhere(['attributes_id'=>6])->min('value');
-        
-        $iPostMaxX = $iMaxX;
-        $iPostMinX = $iMinX;
-        $iPostMaxY = $iMaxY;
-        $iPostMinY = $iMinY;
-        
-        $aDimensions['max_x'] = $iMaxX;
-        $aDimensions['min_x'] = $iMinX;
-        $aDimensions['max_y'] = $iMaxY;
-        $aDimensions['min_y'] = $iMinY;
+        $aDimensions['iAllMaxX'] = $iMaxX;
+        $aDimensions['iAllMinX'] = $iMinX;
+        $aDimensions['iAllMaxY'] = $iMaxY;
+        $aDimensions['iAllMinY'] = $iMinY;
         //echo '<pre>'.print_r($aDimensions, true); die();
         
         $aPostData = Yii::$app->request->post();
-//        $aPostData[7] =2;
-//        $aPostData[3] =15;
+//        $aPostData[7] =4;
+//        $aPostData[3] =1;
+//        $aPostData[5] =15;
 //        $aPostData[6] =17;
-        if ($aPostData && count($aPostData)>=2)
-        {
-            
-            
-            if (isset($aPostData['slider_x']))
+        
+        if (isset($aPostData['slider_x']))
             {
                 $aX = explode(';', $aPostData['slider_x']);
                 $iPostMinX = $aX[0];
@@ -137,12 +129,11 @@ class SiteController extends Controller
             {
                 $aY = explode(';', $aPostData['slider_y']);
                 $iPostMinY = $aY[0];
-                $iPostMaxY = $aY[1];
-                
+                $iPostMaxY = $aY[1];        
             }
             
-
-            
+        if ($aPostData && count($aPostData)>3)
+        {
             foreach ($aPostData  as $Filters)
             {
                 if (is_numeric($Filters))
@@ -150,21 +141,36 @@ class SiteController extends Controller
                     $aFiltersData[] .= $Filters;
                 }
             }
+            
+            $query->andFilterWhere(['IN', 'products_filters.filters_id',$aFiltersData])->groupBy('id')->having('COUNT(*)='.count($aFiltersData) );
 
-            $query->andFilterWhere(['IN', 'products_filters.filters_id',$aFiltersData]);
-            $query->groupBy('id');
-            $query->having('COUNT(*)='.count($aFiltersData) );
         }
-
+        
+        
+        $iMaxX = ($iMaxX!=$iPostMaxX ? $iPostMaxX : $iMaxX);
+        $iMinX = ($iMinX!=$iPostMinX ? $iPostMinX : $iMinX);
+        $iMaxY = ($iMaxY!=$iPostMaxY ? $iPostMaxY : $iMaxY);
+        $iMinY = ($iMinY!=$iPostMinY ? $iPostMinY : $iMinY);
         $query->andWhere('products_attributes.id IN (SELECT products_attributes.id FROM products_attributes WHERE (((value BETWEEN '.$iPostMinX .' AND '.$iPostMaxX .' ) AND (attributes_id =7)) OR ((value BETWEEN '.$iPostMinY .' AND '.$iPostMaxY .' ) AND (attributes_id =6))) GROUP BY products_attributes.products_id HAVING COUNT(DISTINCT products_attributes.value)=2)');
        // echo '<pre>'.print_r($dataProvider, true); die();
         $sProjectCount = $dataProvider->count;
 
-        $aDimensions['max_x'] = ($iMaxX != $iPostMaxX ? $iPostMaxX : $iMaxX);
-        $aDimensions['min_x'] = ($iMinX != $iPostMinX ? $iPostMinX : $iMinX);
-        $aDimensions['max_y'] = ($iMaxY != $iPostMaxY ? $iPostMaxY : $iMaxY);
-        $aDimensions['min_y'] = ($iMinY != $iPostMinY ? $iPostMinY : $iMinY);
         
+        
+        $queryY =$query;
+
+
+        
+        $iOneMaxX = ceil($query->select('products_attributes.*')->onCondition(['attributes_id'=>7])->max('value'));
+        $iOneMinX = floor($query->select('products_attributes.*')->onCondition(['attributes_id'=>7])->min('value'));
+        $iOneMaxY = ceil($queryY->select('products_attributes.*')->onCondition(['attributes_id'=>6])->max('value'));
+        $iOneMinY = floor($queryY->select('products_attributes.*')->onCondition(['attributes_id'=>6])->min('value'));
+        
+        $aDimensions['iOneMaxX'] = ($iOneMaxX!=$iPostMaxX ? $iOneMaxX : $iPostMaxX);
+        $aDimensions['iOneMinX'] = ($iOneMinX!=$iPostMinX ? $iOneMinX : $iPostMinX);
+        $aDimensions['iOneMaxY'] = ($iOneMaxY!=$iPostMaxY ? $iPostMaxY : $iOneMaxY);
+        $aDimensions['iOneMinY'] = ($iOneMinY!=$iPostMinY ? $iPostMinY : $iOneMinY);
+
         
         $aFiltersGroup = $oFiltersGroup::find()->where(['is_active'=> 1])->orderBy('sort_order')->all();
         foreach ($aFiltersGroup as $_aFiltersGroup)
@@ -172,18 +178,21 @@ class SiteController extends Controller
             $aFilters = $oFilters::find()->where(['filters_group_id' => $_aFiltersGroup->id, 'is_active'=> 1])->all();
             $aData[$_aFiltersGroup->id] = ['question'=>$_aFiltersGroup, 'answer' => $aFilters];
         }
-
-        $aSession = new Session();
-        $aSession['FiltersSession'] = [];
-        $aSession['FiltersSession'] = $aFiltersData;
-
+        //echo '<pre>'.print_r($dataProvider, true); die();
+        $oSession = new Session();
+        $oSession['aDimensions'] = [];
+        $oSession['aDimensions'] = $aDimensions;
+        $oSession['FiltersSession'] = [];
+        $oSession['FiltersSession'] = $aFiltersData;
+        
         return $this->render('index', ['model' => $model,'sProjectCount' => $sProjectCount, 'aFilters'=>$aData, 'aFiltersData' => $aFiltersData, 'dataProvider'=>$dataProvider, 'aDimensions'=> $aDimensions]);
     }
     public function actionProjekty()
     {
         $model = new ProductsSearch();
-        $aSession = new Session();
-        $FiltersSession = $aSession->get('FiltersSession');
+        $oSession = new Session();
+        $FiltersSession = $oSession->get('FiltersSession');
+        $aDimensions = $oSession->get('aDimensions');
         //echo 'Filter'.print_r($FiltersSession , TRUE).'<br>'; die();
 
         $oFiltersGroup = new FiltersGroup();
@@ -234,7 +243,7 @@ class SiteController extends Controller
         }
         else
         {
-             return $this->render('projekty',['aChooseFilters'=>$FiltersSession, 'aFilters'=>$aData, 'dataProvider'=>$dataProvider]);
+             return $this->render('projekty',['aChooseFilters'=>$FiltersSession, 'aFilters'=>$aData, 'dataProvider'=>$dataProvider, 'aDimensions'=>$aDimensions]);
         }
 
 

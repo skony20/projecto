@@ -18,6 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="top_menu filter_menu">
 
     <?php
+    
     echo Html::beginForm(['site/projekty'], 'POST', ['id'=>'prj_set_filters', 'name'=>'prj_set_filers', 'class'=>'prj_set_filers']);
     foreach ($aFilters as $aData) {
         echo '<div class="prj_filter_row">';
@@ -27,6 +28,48 @@ $this->params['breadcrumbs'][] = $this->title;
         echo '<div class="prj_filter_ansver_row">';
         echo Html::dropDownList($aData['question']->id, $aChooseFilters, ArrayHelper::map($aData['answer'], 'id', 'name'), ['prompt' => ' -- Wybierz --', 'class'=>'prj_select']);
         echo '<span class="remove-filter" rel="'.$aData['question']->id.'">Usuń filtr</span>';
+        if ($aData['question']->id == 3 )
+        {
+
+           echo '<br>Szerokość: ';
+            echo \yii2mod\slider\IonSlider::widget([
+                'name' => 'slider_x',
+                'type' => \yii2mod\slider\IonSlider::TYPE_DOUBLE,
+                    'pluginOptions' => [
+                    'min' => $aDimensions['iAllMinX'],
+                    'max' => $aDimensions['iAllMaxX'],
+                    'from' => $aDimensions['iOneMinX'],
+                    'to' => $aDimensions['iOneMaxX'],
+                    'step' => 1,
+                    'hide_min_max' => false,
+                    'hide_from_to' => false,
+                    'onChange' => new \yii\web\JsExpression('
+                    function(data) {
+                         $("#set_filters").submit();
+                    }'
+                        )
+                    ]
+                ]);
+            echo '<br>Głębokość: ' ;
+            echo \yii2mod\slider\IonSlider::widget([
+                'name' => 'slider_y',
+                'type' => \yii2mod\slider\IonSlider::TYPE_DOUBLE,
+                    'pluginOptions' => [
+                    'min' => $aDimensions['iAllMinY'],
+                    'max' => $aDimensions['iAllMaxY'],
+                    'from' => $aDimensions['iOneMinY'],
+                    'to' => $aDimensions['iOneMaxY'],
+                    'step' => 1,
+                    'hide_min_max' => false,
+                    'hide_from_to' => false,
+                    'onChange' => new \yii\web\JsExpression('
+                    function(data) {
+                         $("#set_filters").submit();
+                    }'
+                        )
+                    ]
+                ]);
+        }
         echo '</div>';
         echo '</div>';
     }
