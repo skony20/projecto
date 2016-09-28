@@ -13,9 +13,12 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="products-index">
 
 <?php
-
 Pjax::begin();
 echo Html::beginForm(['/'], 'POST', ['data-pjax' => '', 'class' => 'form-inline', 'id'=>'set_filters', 'name'=>'set_filers']);
+$iSetMinX = ($aDimensions['iAllMinX']<$aDimensions['iPostMinX'] ? $aDimensions['iPostMinX']:$aDimensions['iOneMinX']);
+$iSetMaxX = ($aDimensions['iAllMaxX']>$aDimensions['iPostMaxX'] ? $aDimensions['iPostMaxX']:$aDimensions['iOneMaxX']);
+$iSetMinY = ($aDimensions['iAllMinY']<$aDimensions['iPostMinY'] ? $aDimensions['iPostMinY']:$aDimensions['iOneMinY']);
+$iSetMaxY = ($aDimensions['iAllMaxY']>$aDimensions['iPostMaxY'] ? $aDimensions['iPostMaxY']:$aDimensions['iOneMaxY']);
 
 foreach ($aFilters as $aData) {
 
@@ -35,8 +38,8 @@ foreach ($aFilters as $aData) {
                 'pluginOptions' => [
                 'min' => $aDimensions['iAllMinX'],
                 'max' => $aDimensions['iAllMaxX'],
-                'from' => $aDimensions['iOneMinX'],
-                'to' => $aDimensions['iOneMaxX'],
+                'from' => $iSetMinX,
+                'to' => $iSetMaxX,
                 'step' => 1,
                 'hide_min_max' => false,
                 'hide_from_to' => false,
@@ -54,8 +57,8 @@ foreach ($aFilters as $aData) {
                 'pluginOptions' => [
                 'min' => $aDimensions['iAllMinY'],
                 'max' => $aDimensions['iAllMaxY'],
-                'from' => $aDimensions['iOneMinY'],
-                'to' => $aDimensions['iOneMaxY'],
+                'from' => $iSetMinY,
+                'to' => $iSetMaxY,
                 'step' => 1,
                 'hide_min_max' => false,
                 'hide_from_to' => false,
