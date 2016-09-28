@@ -15,10 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php
 Pjax::begin();
 echo Html::beginForm(['/'], 'POST', ['data-pjax' => '', 'class' => 'form-inline', 'id'=>'set_filters', 'name'=>'set_filers']);
-$iSetMinX = ($aDimensions['iAllMinX']<$aDimensions['iPostMinX'] ? $aDimensions['iPostMinX']:$aDimensions['iOneMinX']);
-$iSetMaxX = ($aDimensions['iAllMaxX']>$aDimensions['iPostMaxX'] ? $aDimensions['iPostMaxX']:$aDimensions['iOneMaxX']);
-$iSetMinY = ($aDimensions['iAllMinY']<$aDimensions['iPostMinY'] ? $aDimensions['iPostMinY']:$aDimensions['iOneMinY']);
-$iSetMaxY = ($aDimensions['iAllMaxY']>$aDimensions['iPostMaxY'] ? $aDimensions['iPostMaxY']:$aDimensions['iOneMaxY']);
+$iSetMinX = $aDimensions['iOneMinX'];
+$iSetMaxX = $aDimensions['iOneMaxX'];
+$iSetMinY = $aDimensions['iOneMinY'];
+$iSetMaxY = $aDimensions['iOneMaxY'];
+echo '<pre>' . print_r($aDimensions, TRUE);
 
 foreach ($aFilters as $aData) {
 
@@ -45,6 +46,14 @@ foreach ($aFilters as $aData) {
                 'hide_from_to' => false,
                 'onChange' => new \yii\web\JsExpression('
                 function(data) {
+                var iPost = (data["from"])
+                $("<input>").attr({
+    type: "hidden",
+    id: "foo",
+    name: "bar",
+    value: "dupaaa"
+}).appendTo("form");
+
                      $("#set_filters").submit();
                 }'
                     )
