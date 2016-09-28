@@ -48,7 +48,7 @@ foreach ($aFilters as $aData) {
                 function(data) {
                 var iPost = (data["from"])
                 $("<input>").attr({
-    type: "hiodden",
+    type: "hidden",
     id: "foo",
     name: "bar",
     value: "dupaaa"
