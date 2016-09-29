@@ -78,7 +78,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= Html::tag('div', 'resetuj filtry', ['class' => 'reset_all_filters']) ?>
 
     </div>
-    <div class="another products-items">
+    <div class="another prj-items">
 
 
             <?= $this->render('products', ['dataProvider' => $dataProvider]) ?>

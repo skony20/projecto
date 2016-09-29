@@ -11,9 +11,12 @@ $(document).on('ready pjax:success',
         $('.reset_filter').click(
             function()
             {
-
+                $.ajax({
+                    url: 'site/delete-bar'
+                    });    
                 var iFilterGroupId = $(this).attr('rel');
                 $('input[name="'+iFilterGroupId+'"]').prop('checked', false);
+                
                 $("#set_filters").submit();
 
             }
@@ -33,8 +36,10 @@ $(document).on('ready pjax:success',
                     $('.prj_select').prop('selectedIndex',0);
                     $.ajax({
                         url: 'reset'
-
 			});
+                    $.ajax({
+                        url: 'site/delete-bar'
+			});    
                     $.ajax({
                         url: 'projekty',
 			success: function(data)

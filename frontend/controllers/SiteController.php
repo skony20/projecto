@@ -150,7 +150,29 @@ class SiteController extends Controller
             $iPostMaxY =$iMaxY;
         }
             */
+        
+        //$iPostMinX = (isset($oSession['DataFromBar']) ? $oSession['DataFromBar'] : $iMinX);
+        $iPostMinX = $iMinX;
+        $iPostMaxX = $iMaxX;
+        $iPostMinY = $iMinY;
+        $iPostMaxY = $iMaxY;
+        $DataFromBarX = $oSession->get('DataFromBarX');
+        $DataFromBarY = $oSession->get('DataFromBarY');
+        if (isset($DataFromBarX))
+        {
+            $iPostMinX = $DataFromBarX['iPostMinX'];
+            $iPostMaxX = $DataFromBarX['iPostMaxX'];
+        }
+        else
+        {
             
+        }
+        if (isset($DataFromBarY))
+        {
+            $iPostMinY = $DataFromBarY['iPostMinY'];
+            $iPostMaxY = $DataFromBarY['iPostMaxY'];
+        }
+        //echo '<pre> 444'. print_r($DataFromBar, TRUE); die();
         if ($aPostData && count($aPostData)>3)
         {
             foreach ($aPostData  as $Filters)
@@ -164,43 +186,24 @@ class SiteController extends Controller
             $query->andFilterWhere(['IN', 'products_filters.filters_id',$aFiltersData])->groupBy('id')->having('COUNT(*)='.count($aFiltersData) );
 
         }
-        /* Chwilowa zmiana koncepcji na sesje
-        else
-        {
-            $iPostMinX = $iMinX;
-            $iPostMaxX = $iMaxX;
-            $iPostMinY = $iMinY;
-            $iPostMaxY = $iMaxY;
-        }
-        
-        $iMinX = ($iMinX!=$iPostMinX ? $iPostMinX : $iMinX);
-        $iMaxX = ($iMaxX!=$iPostMaxX ? $iPostMaxX : $iMaxX);
-        $iMinY = ($iMinY!=$iPostMinY ? $iPostMinY : $iMinY);
-        $iMaxY = ($iMaxY!=$iPostMaxY ? $iPostMaxY : $iMaxY);
-        */
-        $query->onCondition('products_attributes.id IN (SELECT products_attributes.id FROM products_attributes WHERE (((value BETWEEN '.$iMinX .' AND '.$iMaxX .' ) AND (attributes_id =7)) OR ((value BETWEEN '.$iMinY .' AND '.$iMaxY .' ) AND (attributes_id =6))) GROUP BY products_attributes.products_id HAVING COUNT(DISTINCT products_attributes.value)=2)');
+
+        $query->onCondition('products_attributes.id IN (SELECT products_attributes.id FROM products_attributes WHERE (((value BETWEEN '.$iPostMinX .' AND '.$iPostMaxX .' ) AND (attributes_id =7)) OR ((value BETWEEN '.$iPostMinY .' AND '.$iPostMaxY .' ) AND (attributes_id =6))) GROUP BY products_attributes.products_id HAVING COUNT(DISTINCT products_attributes.value)=2)');
        // echo '<pre>'.print_r($dataProvider, true); die();
         $sProjectCount = $dataProvider->count;
    
-        $aDimensions['iOneMinX'] = floor($query->select('products_attributes.*')->onCondition(['attributes_id'=>7])->min('value'));
-        $aDimensions['iOneMaxX'] = ceil($query->select('products_attributes.*')->onCondition(['attributes_id'=>7])->max('value'));
-        $aDimensions['iOneMinY'] = floor($query->select('products_attributes.*')->onCondition(['attributes_id'=>6])->min('value'));
-        $aDimensions['iOneMaxY'] = ceil($query->select('products_attributes.*')->onCondition(['attributes_id'=>6])->max('value'));
-        /* Chwilowa zmiana koncepcji na sesje
-        $aDimensions['iPostMinX'] = $iPostMinX;
-        $aDimensions['iPostMaxX'] = $iPostMaxX;
-        $aDimensions['iPostMinY'] = $iPostMinY;
-        $aDimensions['iPostMaxY'] = $iPostMaxY;
-        */
+        $iOneMinX = floor($query->select('products_attributes.*')->onCondition(['attributes_id'=>7])->min('value'));
+        $iOneMaxX = ceil($query->select('products_attributes.*')->onCondition(['attributes_id'=>7])->max('value'));
+        $iOneMinY= floor($query->select('products_attributes.*')->onCondition(['attributes_id'=>6])->min('value'));
+        $iOneMaxY = ceil($query->select('products_attributes.*')->onCondition(['attributes_id'=>6])->max('value'));
+
 
         
-//        echo '<pre>' . print_r($aDimensions, TRUE); die();
-//        
-//        
-//        $aDimensions['iOneMaxX'] = ($iOneMaxX!=$iPostMaxX ? $iOneMaxX : $iPostMaxX);
-//        $aDimensions['iOneMinX'] = ($iOneMinX!=$iPostMinX ? $iOneMinX : $iPostMinX);
-//        $aDimensions['iOneMaxY'] = ($iOneMaxY!=$iPostMaxY ? $iOneMaxY : $iPostMaxY);
-//        $aDimensions['iOneMinY'] = ($iOneMinY!=$iPostMinY ? $iOneMinY : $iPostMinY);
+
+        $aDimensions['iOneMinX'] = ($iPostMinX > $iOneMinX ? $iPostMinX : $iOneMinX);
+        $aDimensions['iOneMaxX'] = ($iPostMaxX < $iOneMaxX ? $iPostMaxX : $iOneMaxX);
+        $aDimensions['iOneMinY'] = ($iPostMinY > $iOneMinY ? $iPostMinY : $iOneMinY);
+        $aDimensions['iOneMaxY'] = ($iPostMaxY < $iOneMaxY ? $iPostMaxY : $iOneMaxY);
+        
 
         
         $aFiltersGroup = $oFiltersGroup::find()->where(['is_active'=> 1])->orderBy('sort_order')->all();
@@ -238,7 +241,7 @@ class SiteController extends Controller
         $query->joinWith(['productsDescriptons']);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' =>['pageSize' => 25],
+            'pagination' =>['pageSize' => 20],
             'sort' => [
                 'defaultOrder' => [
                     'id' => SORT_ASC,
@@ -418,6 +421,18 @@ class SiteController extends Controller
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
+    }
+    public function actionAddToSession($id)
+    {
+        $oSession = new Session();
+        $oSession->setTimeout(1);
+        $oSession['DataFromBar'.$id.''] = Yii::$app->request->post();
+    }
+    public function actionDeleteBar()
+    {
+        $oSession = new Session();
+        $oSession->removeFlash('DataFromBarX');
+        $oSession->removeFlash('DataFromBarY');
     }
 
 }

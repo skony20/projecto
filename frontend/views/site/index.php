@@ -14,12 +14,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?php
 Pjax::begin();
+
 echo Html::beginForm(['/'], 'POST', ['data-pjax' => '', 'class' => 'form-inline', 'id'=>'set_filters', 'name'=>'set_filers']);
 $iSetMinX = $aDimensions['iOneMinX'];
 $iSetMaxX = $aDimensions['iOneMaxX'];
 $iSetMinY = $aDimensions['iOneMinY'];
 $iSetMaxY = $aDimensions['iOneMaxY'];
-echo '<pre>' . print_r($aDimensions, TRUE);
 
 foreach ($aFilters as $aData) {
 
@@ -46,15 +46,15 @@ foreach ($aFilters as $aData) {
                 'hide_from_to' => false,
                 'onChange' => new \yii\web\JsExpression('
                 function(data) {
-                var iPost = (data["from"])
-                $("<input>").attr({
-    type: "hidden",
-    id: "foo",
-    name: "bar",
-    value: "dupaaa"
-}).appendTo("form");
-
-                     $("#set_filters").submit();
+                $.ajax({
+                    url: "site/add-to-session?id=X",
+                    type: "POST",
+                    data: {
+                         iPostMinX : data["from"],
+                         iPostMaxX : data["to"]
+                    }
+                });
+                $("#set_filters").submit();
                 }'
                     )
                 ]
@@ -73,6 +73,14 @@ foreach ($aFilters as $aData) {
                 'hide_from_to' => false,
                 'onChange' => new \yii\web\JsExpression('
                 function(data) {
+                $.ajax({
+                    url: "site/add-to-session?id=Y",
+                    type: "POST",
+                    data: {
+                         iPostMinY : data["from"],
+                         iPostMaxY : data["to"]
+                    }
+                });
                      $("#set_filters").submit();
                 }'
                     )
