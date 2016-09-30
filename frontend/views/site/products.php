@@ -5,10 +5,11 @@ if (!$dataProvider->models)
 }
 ?>
 <div class="prjs_title"><h1>Projekty domów</h1></div>
-<div class="prj_sort">
+<div class="prjs_paso">
+<div class="prjs_sort">
     Formularz sortowania
 </div>
-<div class="prj_pagi">
+<div class="prjs_pagi">
     <?php
     echo \yii\widgets\LinkPager::widget([
     'pagination'=>$dataProvider->pagination,
@@ -16,6 +17,8 @@ if (!$dataProvider->models)
     ?>
     
 </div>
+</div>
+<div class="prjs_all">
 <?php
 foreach ($dataProvider->models as $aProducts)
 {
@@ -24,7 +27,7 @@ foreach ($dataProvider->models as $aProducts)
 <div class="prj_all">
     <div class="prj_title">
         <h2>
-            <?=$aProducts->productsDescriptons->name .'  '. $aProducts->productsDescriptons->name_model ?>
+            <?='<strong>'.$aProducts->productsDescriptons->name .'</strong><br>'. $aProducts->productsDescriptons->name_model ?>
         </h2>
     </div>
     <div class="prj_img">
@@ -40,9 +43,14 @@ foreach ($dataProvider->models as $aProducts)
     
 <?php
 }
-
-
+?>
+    
+</div>
+<div class="prjs_pagi">
+<?php 
 echo \yii\widgets\LinkPager::widget([
     'pagination'=>$dataProvider->pagination,
 ]);
+
 ?>
+</div>

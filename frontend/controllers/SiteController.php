@@ -104,76 +104,40 @@ class SiteController extends Controller
                 ]
             ]);
 
-        $iMinX = floor($query->onCondition(['attributes_id'=>7])->min('value'));
-        $iMaxX = ceil($query->onCondition(['attributes_id'=>7])->max('value'));
-        $iMinY = floor($query->onCondition(['attributes_id'=>6])->min('value'));
-        $iMaxY = ceil($query->onCondition(['attributes_id'=>6])->max('value'));
+        $iMinSize = floor($query->onCondition(['attributes_id'=>4])->min('(CAST(value AS DECIMAL (5,2)))'));
+        $iMaxSize = ceil($query->onCondition(['attributes_id'=>4])->max('(CAST(value AS DECIMAL (5,2)))'));
         
         
-        $aDimensions['iAllMinX'] = $iMinX;
-        $aDimensions['iAllMaxX'] = $iMaxX;
-        $aDimensions['iAllMinY'] = $iMinY;
-        $aDimensions['iAllMaxY'] = $iMaxY;
         
-        //echo '<pre>'.print_r($aDimensions, true); die();
+        $iMinX = floor($query->onCondition(['attributes_id'=>7])->min('(CAST(value AS DECIMAL (5,2)))'));
+        $iMinY = floor($query->onCondition(['attributes_id'=>6])->min('(CAST(value AS DECIMAL (5,2)))'));
+        $iMaxX = ceil($query->onCondition(['attributes_id'=>7])->max('(CAST(value AS DECIMAL (5,2)))'));
+        $iMaxY = ceil($query->onCondition(['attributes_id'=>6])->max('(CAST(value AS DECIMAL (5,2)))'));
         
-        
-                
+        $aDimensions['iAllMinSize'] = $iMinSize;
+        $aDimensions['iAllMaxSize'] = $iMaxSize;
+                        
         $aPostData = Yii::$app->request->post();
- //       echo '<pre>'.print_r($aPostData, true); die();
-//        $aPostData[7] =4;
-//        $aPostData[3] =1;
-//        $aPostData[5] =15;
-//        $aPostData[6] =17;
-        /* Chwilowa zmiana koncepcji na sesje
-        if (isset($aPostData['slider_x']))
-        {
-            $aX = explode(';', $aPostData['slider_x']);
-            $iPostMinX = $aX[0];
-            $iPostMaxX = $aX[1];
-        }
-        else
-        {
-            $iPostMinX =$iMinX;
-            $iPostMaxX =$iMaxX;
-        }
-        if (isset($aPostData['slider_y']))
-        {
-            $aY = explode(';', $aPostData['slider_y']);
-            $iPostMinY = $aY[0];
-            $iPostMaxY = $aY[1];  
 
-        }
-        else
-        {
-            $iPostMinY =$iMinY;
-            $iPostMaxY =$iMaxY;
-        }
-            */
+        $iPostMinSize = $iMinSize;
+        $iPostMaxSize = $iMaxSize;
         
-        //$iPostMinX = (isset($oSession['DataFromBar']) ? $oSession['DataFromBar'] : $iMinX);
-        $iPostMinX = $iMinX;
-        $iPostMaxX = $iMaxX;
-        $iPostMinY = $iMinY;
-        $iPostMaxY = $iMaxY;
-        $DataFromBarX = $oSession->get('DataFromBarX');
-        $DataFromBarY = $oSession->get('DataFromBarY');
-        if (isset($DataFromBarX))
+        $DataFromBarSize = $oSession->get('DataFromBarSize');
+        if (isset($DataFromBarSize))
         {
-            $iPostMinX = $DataFromBarX['iPostMinX'];
-            $iPostMaxX = $DataFromBarX['iPostMaxX'];
+            $iPostMinSize = $DataFromBarSize['iPostMinSize'];
+            $iPostMaxSize = $DataFromBarSize['iPostMaxSize'];
         }
-        else
-        {
-            
-        }
-        if (isset($DataFromBarY))
-        {
-            $iPostMinY = $DataFromBarY['iPostMinY'];
-            $iPostMaxY = $DataFromBarY['iPostMaxY'];
-        }
-        //echo '<pre> 444'. print_r($DataFromBar, TRUE); die();
-        if ($aPostData && count($aPostData)>3)
+        
+        $iMaxX = (isset($aPostData['SizeX']) ? $aPostData['SizeX'] : $iMaxX );
+        $iMaxY = (isset($aPostData['SizeY']) ? $aPostData['SizeY'] : $iMaxY );
+        $aDimensions['iMaxX'] = $iMaxX;
+        $aDimensions['iMaxY'] = $iMaxY;
+        $aPostData['SizeX']='';
+        $aPostData['SizeY']='';
+        //echo $iMinX .'  -  '. $iMinY; die();
+        
+        if ($aPostData && count($aPostData)>4)
         {
             foreach ($aPostData  as $Filters)
             {
@@ -186,23 +150,18 @@ class SiteController extends Controller
             $query->andFilterWhere(['IN', 'products_filters.filters_id',$aFiltersData])->groupBy('id')->having('COUNT(*)='.count($aFiltersData) );
 
         }
-
-        $query->onCondition('products_attributes.id IN (SELECT products_attributes.id FROM products_attributes WHERE (((value BETWEEN '.$iPostMinX .' AND '.$iPostMaxX .' ) AND (attributes_id =7)) OR ((value BETWEEN '.$iPostMinY .' AND '.$iPostMaxY .' ) AND (attributes_id =6))) GROUP BY products_attributes.products_id HAVING COUNT(DISTINCT products_attributes.value)=2)');
+        
+        $query->onCondition('products_attributes.id IN (SELECT products_attributes.id FROM products_attributes WHERE ((value BETWEEN '.$iPostMinSize.' AND '.$iPostMaxSize.' ) AND (attributes_id = 4 ) OR ((value < '.$iMaxX.') AND (attributes_id =7)) OR ((value <'.$iMaxY.' ) AND (attributes_id =6))) GROUP BY products_attributes.products_id 
+HAVING COUNT(DISTINCT products_attributes.value)=3)');
        // echo '<pre>'.print_r($dataProvider, true); die();
         $sProjectCount = $dataProvider->count;
    
-        $iOneMinX = floor($query->select('products_attributes.*')->onCondition(['attributes_id'=>7])->min('value'));
-        $iOneMaxX = ceil($query->select('products_attributes.*')->onCondition(['attributes_id'=>7])->max('value'));
-        $iOneMinY= floor($query->select('products_attributes.*')->onCondition(['attributes_id'=>6])->min('value'));
-        $iOneMaxY = ceil($query->select('products_attributes.*')->onCondition(['attributes_id'=>6])->max('value'));
+        $iOneMinSize = floor($query->select('products_attributes.*')->onCondition(['attributes_id'=>4])->min('(CAST(value AS DECIMAL (5,2)))'));
+        $iOneMaxSize = cail($query->select('products_attributes.*')->onCondition(['attributes_id'=>4])->max('(CAST(value AS DECIMAL (5,2)))'));
 
+        $aDimensions['iOneMinSize'] = ($iPostMinSize > $iOneMinSize ? $iPostMinSize : $iOneMinSize);
+        $aDimensions['iOneMaxSize'] = ($iPostMaxSize < $iOneMaxSize ? $iPostMaxSize : $iOneMaxSize);
 
-        
-
-        $aDimensions['iOneMinX'] = ($iPostMinX > $iOneMinX ? $iPostMinX : $iOneMinX);
-        $aDimensions['iOneMaxX'] = ($iPostMaxX < $iOneMaxX ? $iPostMaxX : $iOneMaxX);
-        $aDimensions['iOneMinY'] = ($iPostMinY > $iOneMinY ? $iPostMinY : $iOneMinY);
-        $aDimensions['iOneMaxY'] = ($iPostMaxY < $iOneMaxY ? $iPostMaxY : $iOneMaxY);
         
 
         
@@ -425,14 +384,13 @@ class SiteController extends Controller
     public function actionAddToSession($id)
     {
         $oSession = new Session();
-        $oSession->setTimeout(1);
+        $oSession->setTimeout(1440);
         $oSession['DataFromBar'.$id.''] = Yii::$app->request->post();
     }
     public function actionDeleteBar()
     {
         $oSession = new Session();
-        $oSession->removeFlash('DataFromBarX');
-        $oSession->removeFlash('DataFromBarY');
+        $oSession->removeFlash('DataFromBarSize');
     }
 
 }

@@ -12,6 +12,8 @@ use yii\web\View;
 
 $this->title = Yii::t('app', 'Lista projektów');
 $this->params['breadcrumbs'][] = $this->title;
+$iSetMinSize = $aDimensions['iOneMinSize'];
+$iSetMaxSize = $aDimensions['iOneMaxSize'];
 ?>
 
 <div class="full_site">
@@ -28,48 +30,43 @@ $this->params['breadcrumbs'][] = $this->title;
         echo '<div class="prj_filter_ansver_row">';
         echo Html::dropDownList($aData['question']->id, $aChooseFilters, ArrayHelper::map($aData['answer'], 'id', 'name'), ['prompt' => ' -- Wybierz --', 'class'=>'prj_select']);
         echo '<span class="remove-filter" rel="'.$aData['question']->id.'">Usuń filtr</span>';
-        if ($aData['question']->id == 3 )
-        {
+        if ($aData['question']->id == 7 )
+    {
 
-           echo '<br>Szerokość: ';
-            echo \yii2mod\slider\IonSlider::widget([
-                'name' => 'slider_x',
-                'type' => \yii2mod\slider\IonSlider::TYPE_DOUBLE,
-                    'pluginOptions' => [
-                    'min' => $aDimensions['iAllMinX'],
-                    'max' => $aDimensions['iAllMaxX'],
-                    'from' => $aDimensions['iOneMinX'],
-                    'to' => $aDimensions['iOneMaxX'],
-                    'step' => 1,
-                    'hide_min_max' => false,
-                    'hide_from_to' => false,
-                    'onChange' => new \yii\web\JsExpression('
-                    function(data) {
-                         $("#set_filters").submit();
-                    }'
-                        )
-                    ]
-                ]);
-            echo '<br>Głębokość: ' ;
-            echo \yii2mod\slider\IonSlider::widget([
-                'name' => 'slider_y',
-                'type' => \yii2mod\slider\IonSlider::TYPE_DOUBLE,
-                    'pluginOptions' => [
-                    'min' => $aDimensions['iAllMinY'],
-                    'max' => $aDimensions['iAllMaxY'],
-                    'from' => $aDimensions['iOneMinY'],
-                    'to' => $aDimensions['iOneMaxY'],
-                    'step' => 1,
-                    'hide_min_max' => false,
-                    'hide_from_to' => false,
-                    'onChange' => new \yii\web\JsExpression('
-                    function(data) {
-                         $("#set_filters").submit();
-                    }'
-                        )
-                    ]
-                ]);
-        }
+       echo '<br>Wielkość domu w m2: ';
+        echo \yii2mod\slider\IonSlider::widget([
+            'name' => 'slider_x',
+            'type' => \yii2mod\slider\IonSlider::TYPE_DOUBLE,
+                'pluginOptions' => [
+                'min' => $aDimensions['iAllMinSize'],
+                'max' => $aDimensions['iAllMaxSize'],
+                'from' => $iSetMinSize,
+                'to' => $iSetMaxSize,
+                'step' => 1,
+                'hide_min_max' => false,
+                'hide_from_to' => false,
+                'onChange' => new \yii\web\JsExpression('
+                function(data) {
+                $.ajax({
+                    url: "site/add-to-session?id=Size",
+                    type: "POST",
+                    data: {
+                         iPostMinSize : data["from"],
+                         iPostMaxSize : data["to"]
+                    }
+                });
+                $("#set_filters").submit();
+                }'
+                    )
+                ]
+            ]);
+    }
+    if ($aData['question']->id == 3 )
+    {
+        echo '<br>Wielkość działki: ';
+        echo Html::input('text', 'SizeX', $aDimensions['iMaxX'], ['title'=>'Szerokość']) .'<br> x ';
+        echo Html::input('text', 'SizeY', $aDimensions['iMaxY'], ['title'=>'Głębokość']) .' metrów ';
+    }
         echo '</div>';
         echo '</div>';
     }

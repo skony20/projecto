@@ -14,12 +14,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?php
 Pjax::begin();
-
 echo Html::beginForm(['/'], 'POST', ['data-pjax' => '', 'class' => 'form-inline', 'id'=>'set_filters', 'name'=>'set_filers']);
-$iSetMinX = $aDimensions['iOneMinX'];
-$iSetMaxX = $aDimensions['iOneMaxX'];
-$iSetMinY = $aDimensions['iOneMinY'];
-$iSetMaxY = $aDimensions['iOneMaxY'];
+$iSetMinSize = $aDimensions['iOneMinSize'];
+$iSetMaxSize = $aDimensions['iOneMaxSize'];
 
 foreach ($aFilters as $aData) {
 
@@ -29,29 +26,29 @@ foreach ($aFilters as $aData) {
     echo '<div class="filter_ansver_row">';
     echo Html::radioList($aData['question']->id, $aFiltersData ,ArrayHelper::map($aData['answer'], 'id', 'name'), ['class'=>'answer']);
     echo Html::tag('Resetuj','Resetuj',['class'=>'reset_filter', 'rel'=>$aData['question']->id]);
-    if ($aData['question']->id == 3 )
+    if ($aData['question']->id == 7 )
     {
 
-       echo '<br>Szerokość: ';
+       echo '<br>Wielkość domu w m2: ';
         echo \yii2mod\slider\IonSlider::widget([
             'name' => 'slider_x',
             'type' => \yii2mod\slider\IonSlider::TYPE_DOUBLE,
                 'pluginOptions' => [
-                'min' => $aDimensions['iAllMinX'],
-                'max' => $aDimensions['iAllMaxX'],
-                'from' => $iSetMinX,
-                'to' => $iSetMaxX,
+                'min' => $aDimensions['iAllMinSize'],
+                'max' => $aDimensions['iAllMaxSize'],
+                'from' => $iSetMinSize,
+                'to' => $iSetMaxSize,
                 'step' => 1,
                 'hide_min_max' => false,
                 'hide_from_to' => false,
                 'onChange' => new \yii\web\JsExpression('
                 function(data) {
                 $.ajax({
-                    url: "site/add-to-session?id=X",
+                    url: "site/add-to-session?id=Size",
                     type: "POST",
                     data: {
-                         iPostMinX : data["from"],
-                         iPostMaxX : data["to"]
+                         iPostMinSize : data["from"],
+                         iPostMaxSize : data["to"]
                     }
                 });
                 $("#set_filters").submit();
@@ -59,33 +56,12 @@ foreach ($aFilters as $aData) {
                     )
                 ]
             ]);
-        echo '<br>Głębokość: ' ;
-        echo \yii2mod\slider\IonSlider::widget([
-            'name' => 'slider_y',
-            'type' => \yii2mod\slider\IonSlider::TYPE_DOUBLE,
-                'pluginOptions' => [
-                'min' => $aDimensions['iAllMinY'],
-                'max' => $aDimensions['iAllMaxY'],
-                'from' => $iSetMinY,
-                'to' => $iSetMaxY,
-                'step' => 1,
-                'hide_min_max' => false,
-                'hide_from_to' => false,
-                'onChange' => new \yii\web\JsExpression('
-                function(data) {
-                $.ajax({
-                    url: "site/add-to-session?id=Y",
-                    type: "POST",
-                    data: {
-                         iPostMinY : data["from"],
-                         iPostMaxY : data["to"]
-                    }
-                });
-                     $("#set_filters").submit();
-                }'
-                    )
-                ]
-            ]);
+    }
+    if ($aData['question']->id == 3 )
+    {
+        echo '<br>Wielkość działki: ';
+        echo Html::input('text', 'SizeX', $aDimensions['iMaxX'], ['title'=>'Szerokość']) .' x ';
+        echo Html::input('text', 'SizeY', $aDimensions['iMaxY'], ['title'=>'Głębokość']) .' metrów ';
     }
    
 

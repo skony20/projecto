@@ -8,6 +8,12 @@ $(document).on('ready pjax:success',
                 $("#set_filters").submit();
             }
         );
+        $('input[type=text]').change(
+            function()
+            {
+                $("#set_filters").submit();
+            }
+        );
         $('.reset_filter').click(
             function()
             {
