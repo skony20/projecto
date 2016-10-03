@@ -82,7 +82,6 @@ $(document).on('ready pjax:success',
         $.ajax({
             url: "remove-session?id=BarChange"
         }); 
-        alert('TATA');
         $(".prj-items").html(''); // czyscimy warstwe
         oFormData = $('form').serialize();
         $.ajax({
@@ -94,15 +93,6 @@ $(document).on('ready pjax:success',
                 $(".prj-items").html(data);
             }
        
-        });
-         $.ajax({
-            url: 'get-choosen-size',
-            type: 'post',
-            data: oFormData,
-            success: function(data)
-            {
-                alert(data);
-            }
         });
     });
 

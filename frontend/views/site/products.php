@@ -1,4 +1,5 @@
 <?php
+
 echo print_r($_POST, TRUE).'<br>';
 echo print_r($_SESSION,  TRUE);
 if (!$dataProvider->models)
@@ -34,7 +35,7 @@ foreach ($dataProvider->models as $aProducts)
         </h2>
     </div>
     <div class="prj_img">
-    Obrazek    
+    <img src='<?=yii::getalias("@image")?>/<?=$aProducts->id?>/info/<?=$aProducts->productsImages[0]->name?>' class='prj_image'/>
     </div>
     <div class="prj_price">
         Cena: <?= $aProducts->price_brutto ?>

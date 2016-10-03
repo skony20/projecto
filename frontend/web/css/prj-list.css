@@ -23,6 +23,12 @@
 {
     font-size: 14px;
 }
+img.prj_image
+{
+    width:90%;
+    margin: 0 auto;
+    display: block;
+}
 .prjs_paso
 {
     display:block;

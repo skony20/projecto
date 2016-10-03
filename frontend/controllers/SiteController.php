@@ -211,6 +211,7 @@ HAVING COUNT(DISTINCT products_attributes.value)=3)');
 
         $query->joinWith(['productsFilters']);
         $query->joinWith(['productsAttributes']);
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' =>['pageSize' => 20],
@@ -470,7 +471,7 @@ HAVING COUNT(DISTINCT products_attributes.value)=3)');
     public function actionGetChoosenSize()
 
     {
-        return $_POST;
+        $zmienna = 'dupa';
         
     }
     
