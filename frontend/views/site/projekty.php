@@ -14,6 +14,7 @@ $this->title = Yii::t('app', 'Lista projektów');
 $this->params['breadcrumbs'][] = $this->title;
 $iSetMinSize = $aDimensions['iOneMinSize'];
 $iSetMaxSize = $aDimensions['iOneMaxSize'];
+
 ?>
 
 <div class="full_site">
@@ -35,7 +36,7 @@ $iSetMaxSize = $aDimensions['iOneMaxSize'];
 
        echo '<br>Wielkość domu w m2: ';
         echo \yii2mod\slider\IonSlider::widget([
-            'name' => 'slider_x',
+            'name' => 'bar_size',
             'type' => \yii2mod\slider\IonSlider::TYPE_DOUBLE,
                 'pluginOptions' => [
                 'min' => $aDimensions['iAllMinSize'],
@@ -45,18 +46,29 @@ $iSetMaxSize = $aDimensions['iOneMaxSize'];
                 'step' => 1,
                 'hide_min_max' => false,
                 'hide_from_to' => false,
+                'onFinish' => new \yii\web\JsExpression('
+                function(data) {
+                $(".prj-items").html(""); // czyscimy warstwe
+                        oFormData = $("form").serialize();
+                        $.ajax({
+                            url: "projekty",
+                            type: "post",
+                            data: oFormData,
+                            success: function(data)
+                            {
+                                $(".prj-items").html(data);
+                            }
+
+                        });
+                }'
+                    ),
                 'onChange' => new \yii\web\JsExpression('
                 function(data) {
-                $.ajax({
-                    url: "site/add-to-session?id=Size",
-                    type: "POST",
-                    data: {
-                         iPostMinSize : data["from"],
-                         iPostMaxSize : data["to"]
-                    }
-                });
-                $("#set_filters").submit();
-                }'
+                    $.ajax({
+                        url: "bar-change"
+                    }); 
+                    
+                    }'
                     )
                 ]
             ]);
@@ -64,8 +76,8 @@ $iSetMaxSize = $aDimensions['iOneMaxSize'];
     if ($aData['question']->id == 3 )
     {
         echo '<br>Wielkość działki: ';
-        echo Html::input('text', 'SizeX', $aDimensions['iMaxX'], ['title'=>'Szerokość']) .'<br> x ';
-        echo Html::input('text', 'SizeY', $aDimensions['iMaxY'], ['title'=>'Głębokość']) .' metrów ';
+        echo Html::input('text', 'SizeX', $aDimensions['iMaxX'], ['title'=>'Szerokość', 'id'=>'prj_sizex'] ) .'<br> x ';
+        echo Html::input('text', 'SizeY', $aDimensions['iMaxY'], ['title'=>'Głębokość', 'id'=>'prj_sizey']) .' metrów ';
     }
         echo '</div>';
         echo '</div>';
@@ -76,8 +88,7 @@ $iSetMaxSize = $aDimensions['iOneMaxSize'];
 
     </div>
     <div class="another prj-items">
-
-
+        <?= $dataProvider->count ?>
             <?= $this->render('products', ['dataProvider' => $dataProvider]) ?>
 
     </div>

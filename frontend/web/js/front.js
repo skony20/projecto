@@ -5,6 +5,9 @@ $(document).on('ready pjax:success',
         $('input[type=radio]').change(
             function()
             {
+                $.ajax({
+                        url: "site/reset"
+                    }); 
                 $("#set_filters").submit();
             }
         );
@@ -12,8 +15,26 @@ $(document).on('ready pjax:success',
             function()
             {
                 $("#set_filters").submit();
+                
             }
         );
+        $('#prj_sizex, #prj_sizey').change(
+            function()
+            { 
+                oFormData = $('form').serialize();
+                $.ajax({
+                    url: 'projekty',
+                    type: 'post',
+                    data: oFormData,
+                    success: function(data)
+                    {
+                        $(".prj-items").html(data);
+                    }
+
+                });
+            }
+        );
+
         $('.reset_filter').click(
             function()
             {
@@ -44,13 +65,13 @@ $(document).on('ready pjax:success',
                         url: 'reset'
 			});
                     $.ajax({
-                        url: 'site/delete-bar'
+                        url: 'delete-bar'
 			});    
                     $.ajax({
                         url: 'projekty',
 			success: function(data)
                         {
-                            $(".products-items").html(data);
+                            $(".prj-items").html(data);
                         }
 			});
                 }
@@ -58,17 +79,22 @@ $(document).on('ready pjax:success',
 
     $('.prj_select').change(function()
     {
-        //$(".products-items").html(''); // czyscimy warstwe
-	oFormData = $('form').serialize();
+        $.ajax({
+            url: "remove-session?id=BarChange"
+        }); 
+        $(".prj-items").html(''); // czyscimy warstwe
+        oFormData = $('form').serialize();
         $.ajax({
             url: 'projekty',
-            type: 'POST',
+            type: 'post',
             data: oFormData,
             success: function(data)
             {
-                $(".products-items").html(data);
+                $(".prj-items").html(data);
             }
+         
         });
+        
     });
 
     $('.remove-filter').click(
@@ -84,7 +110,7 @@ $(document).on('ready pjax:success',
                         data: oFormData,
 			success: function(data)
                         {
-                            $(".products-items").html(data);
+                            $(".prj-items").html(data);
                         }
 			});
 

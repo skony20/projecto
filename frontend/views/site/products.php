@@ -1,6 +1,9 @@
 <?php
+echo print_r($_POST, TRUE).'<br>';
+echo print_r($_SESSION,  TRUE);
 if (!$dataProvider->models)
 {
+    
     echo 'Brak projektów spełniajacych kryteria';
 }
 ?>

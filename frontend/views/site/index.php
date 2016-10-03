@@ -17,7 +17,8 @@ Pjax::begin();
 echo Html::beginForm(['/'], 'POST', ['data-pjax' => '', 'class' => 'form-inline', 'id'=>'set_filters', 'name'=>'set_filers']);
 $iSetMinSize = $aDimensions['iOneMinSize'];
 $iSetMaxSize = $aDimensions['iOneMaxSize'];
-
+//echo '<pre>'.print_r($_POST, true);
+//echo '<pre>'.print_r($_SESSION, true);
 foreach ($aFilters as $aData) {
 
     echo '<div class="filter_question_row">';
@@ -31,7 +32,7 @@ foreach ($aFilters as $aData) {
 
        echo '<br>Wielkość domu w m2: ';
         echo \yii2mod\slider\IonSlider::widget([
-            'name' => 'slider_x',
+            'name' => 'bar_size',
             'type' => \yii2mod\slider\IonSlider::TYPE_DOUBLE,
                 'pluginOptions' => [
                 'min' => $aDimensions['iAllMinSize'],
@@ -41,18 +42,19 @@ foreach ($aFilters as $aData) {
                 'step' => 1,
                 'hide_min_max' => false,
                 'hide_from_to' => false,
+                'onFinish' => new \yii\web\JsExpression('
+                function(data) {
+                    $("#set_filters").submit();
+                    
+                    }'
+                    ),
                 'onChange' => new \yii\web\JsExpression('
                 function(data) {
-                $.ajax({
-                    url: "site/add-to-session?id=Size",
-                    type: "POST",
-                    data: {
-                         iPostMinSize : data["from"],
-                         iPostMaxSize : data["to"]
-                    }
-                });
-                $("#set_filters").submit();
-                }'
+                    $.ajax({
+                        url: "site/bar-change"
+                    }); 
+                    
+                    }'
                     )
                 ]
             ]);

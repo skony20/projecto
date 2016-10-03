@@ -85,7 +85,7 @@ class SiteController extends Controller
         $model = new ProductsSearch();
         $oSession = new Session();
         $oSession['aDimensions'] = [];
-        $oSession['FiltersSession'] = [];
+        $oSession['aFiltersSession'] = [];
         $oFiltersGroup = new FiltersGroup();
         $oFilters = new Filters();
         $aFiltersData = [];
@@ -106,27 +106,27 @@ class SiteController extends Controller
 
         $iMinSize = floor($query->onCondition(['attributes_id'=>4])->min('(CAST(value AS DECIMAL (5,2)))'));
         $iMaxSize = ceil($query->onCondition(['attributes_id'=>4])->max('(CAST(value AS DECIMAL (5,2)))'));
-        
-        
-        
-        $iMinX = floor($query->onCondition(['attributes_id'=>7])->min('(CAST(value AS DECIMAL (5,2)))'));
-        $iMinY = floor($query->onCondition(['attributes_id'=>6])->min('(CAST(value AS DECIMAL (5,2)))'));
+
         $iMaxX = ceil($query->onCondition(['attributes_id'=>7])->max('(CAST(value AS DECIMAL (5,2)))'));
         $iMaxY = ceil($query->onCondition(['attributes_id'=>6])->max('(CAST(value AS DECIMAL (5,2)))'));
         
         $aDimensions['iAllMinSize'] = $iMinSize;
         $aDimensions['iAllMaxSize'] = $iMaxSize;
-                        
+              
         $aPostData = Yii::$app->request->post();
-
-        $iPostMinSize = $iMinSize;
+        
+        $iPostMinSize = $iMinSize ;
         $iPostMaxSize = $iMaxSize;
         
-        $DataFromBarSize = $oSession->get('DataFromBarSize');
-        if (isset($DataFromBarSize))
+        //echo '<pre>'.print_r($aPostData , true); die();
+        $bBarChange = $oSession->get('BarChange');
+        if (isset($aPostData['bar_size']) && $bBarChange)
         {
-            $iPostMinSize = $DataFromBarSize['iPostMinSize'];
-            $iPostMaxSize = $DataFromBarSize['iPostMaxSize'];
+            
+            $aAllSize = explode(';', $aPostData['bar_size']);
+            $iPostMinSize = $aAllSize[0];
+            $iPostMaxSize = $aAllSize[1];
+            
         }
         
         $iMaxX = (isset($aPostData['SizeX']) ? $aPostData['SizeX'] : $iMaxX );
@@ -136,8 +136,8 @@ class SiteController extends Controller
         $aPostData['SizeX']='';
         $aPostData['SizeY']='';
         //echo $iMinX .'  -  '. $iMinY; die();
-        
-        if ($aPostData && count($aPostData)>4)
+        //echo '<pre>'.print_r($aPostData , true); die();
+        if ($aPostData && $aPostData>4)
         {
             foreach ($aPostData  as $Filters)
             {
@@ -146,22 +146,24 @@ class SiteController extends Controller
                     $aFiltersData[] .= $Filters;
                 }
             }
-            
-            $query->andFilterWhere(['IN', 'products_filters.filters_id',$aFiltersData])->groupBy('id')->having('COUNT(*)='.count($aFiltersData) );
-
+            if ($aFiltersData)
+            {
+                $query->andFilterWhere(['IN', 'products_filters.filters_id',$aFiltersData])->groupBy('id')->having('COUNT(*)='.count($aFiltersData) );
+            }
         }
         
         $query->onCondition('products_attributes.id IN (SELECT products_attributes.id FROM products_attributes WHERE ((value BETWEEN '.$iPostMinSize.' AND '.$iPostMaxSize.' ) AND (attributes_id = 4 ) OR ((value < '.$iMaxX.') AND (attributes_id =7)) OR ((value <'.$iMaxY.' ) AND (attributes_id =6))) GROUP BY products_attributes.products_id 
 HAVING COUNT(DISTINCT products_attributes.value)=3)');
        // echo '<pre>'.print_r($dataProvider, true); die();
         $sProjectCount = $dataProvider->count;
-   
+
         $iOneMinSize = floor($query->select('products_attributes.*')->onCondition(['attributes_id'=>4])->min('(CAST(value AS DECIMAL (5,2)))'));
-        $iOneMaxSize = cail($query->select('products_attributes.*')->onCondition(['attributes_id'=>4])->max('(CAST(value AS DECIMAL (5,2)))'));
-
-        $aDimensions['iOneMinSize'] = ($iPostMinSize > $iOneMinSize ? $iPostMinSize : $iOneMinSize);
-        $aDimensions['iOneMaxSize'] = ($iPostMaxSize < $iOneMaxSize ? $iPostMaxSize : $iOneMaxSize);
-
+        $iOneMaxSize = ceil($query->select('products_attributes.*')->onCondition(['attributes_id'=>4])->max('(CAST(value AS DECIMAL (5,2)))'));
+        
+        
+        
+        $aDimensions['iOneMinSize'] = ($bBarChange ? $iPostMinSize : $iOneMinSize);
+        $aDimensions['iOneMaxSize'] = ($bBarChange ? $iPostMaxSize : $iOneMaxSize);
         
 
         
@@ -171,21 +173,30 @@ HAVING COUNT(DISTINCT products_attributes.value)=3)');
             $aFilters = $oFilters::find()->where(['filters_group_id' => $_aFiltersGroup->id, 'is_active'=> 1])->all();
             $aData[$_aFiltersGroup->id] = ['question'=>$_aFiltersGroup, 'answer' => $aFilters];
         }
-        //echo '<pre>'.print_r($dataProvider, true); die();
        
         $oSession['aDimensions'] = $aDimensions;
-        $oSession['FiltersSession'] = $aFiltersData;
+        //echo '<pre>'. print_r($oSession['aDimensions'], TRUE); die();
+        $oSession['aFiltersSession'] = $aFiltersData;
         
         return $this->render('index', ['model' => $model,'sProjectCount' => $sProjectCount, 'aFilters'=>$aData, 'aFiltersData' => $aFiltersData, 'dataProvider'=>$dataProvider, 'aDimensions'=> $aDimensions]);
     }
+    
+    /**/
+    
+    
+    /**/
+    
+    
     public function actionProjekty()
     {
+        
         $model = new ProductsSearch();
         $oSession = new Session();
-        $FiltersSession = $oSession->get('FiltersSession');
+        $aFiltersData = $oSession->get('aFiltersSession');
         $aDimensions = $oSession->get('aDimensions');
-        //echo 'Filter'.print_r($FiltersSession , TRUE).'<br>'; die();
-
+        $aDataFromBarSize = $oSession->get('DataFromBarSize');
+        //echo 'Filter'.print_r($oSession->get('aDimensions') , TRUE).'<br>'; die();
+        
         $oFiltersGroup = new FiltersGroup();
         $oFilters = new Filters();
         $aFiltersGroup = $oFiltersGroup::find()->where(['is_active'=> 1])->orderBy('sort_order')->all();
@@ -195,9 +206,10 @@ HAVING COUNT(DISTINCT products_attributes.value)=3)');
             $aFilters = $oFilters::find()->where(['filters_group_id' => $_aFiltersGroup->id, 'is_active'=> 1])->all();
             $aData[$_aFiltersGroup->id] = ['question'=>$_aFiltersGroup, 'answer' => $aFilters];
         }
-        $query = $model::find();
+        $query = $model::find()->distinct();
 
-        $query->joinWith(['productsDescriptons']);
+        $query->joinWith(['productsFilters']);
+        $query->joinWith(['productsAttributes']);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' =>['pageSize' => 20],
@@ -207,34 +219,73 @@ HAVING COUNT(DISTINCT products_attributes.value)=3)');
                     ]
                 ]
             ]);
-
-        if (Yii::$app->request->post() && count(Yii::$app->request->post())>=2)
+        $iMaxX = $aDimensions['iMaxX'];
+        $iMaxY = $aDimensions['iMaxY'];
+        $iPostMinSize = $aDimensions['iOneMinSize'];
+        $iPostMaxSize = $aDimensions['iOneMaxSize'];
+        if (Yii::$app->request->post())
         {
-            $FiltersSession = '';
-            foreach (Yii::$app->request->post() as $Filters)
+
+            $aPostData = Yii::$app->request->post();
+            //echo 'Post'.print_r($aPostData, TRUE).'<br>';die();
+            /*Zmiana inputów z rozmiarami dzialki*/
+            $iMaxX = $aPostData['SizeX'];
+            $iMaxY = $aPostData['SizeY'];
+            $aDimensions['iMaxX'] =$iMaxX ;
+            $aDimensions['iMaxY'] =$iMaxY ;
+            $aPostData['SizeX'] = [''];
+            $aPostData['SizeY'] = [''];
+            /*Zmiana paska wielkości domu*/
+            
+            
+            
+            $bBarChange = $oSession->get('BarChange');
+            if (isset($aPostData['bar_size']) && $bBarChange)
+            {
+
+                $aAllSize = explode(';', $aPostData['bar_size']);
+                $iPostMinSize = $aAllSize[0];
+                $iPostMaxSize = $aAllSize[1];
+                $aDimensions['iOneMinSize'] = $iPostMinSize;
+                $aDimensions['iOneMaxSize'] = $iPostMaxSize;
+                        
+
+            }
+            //echo print_r($aDimensions, TRUE); die();
+            
+            
+            
+            /*Zmiana selectów z odpowiedziami */
+            $aFiltersData=[];
+            foreach ($aPostData  as $Filters)
             {
                 if (is_numeric($Filters))
                 {
-                    $FiltersSession[] .= $Filters;
+                    $aFiltersData[] .= $Filters;
                 }
             }
+            $oSession['aFiltersSession'] = $aFiltersData;
+            $oSession['aDimensions'] = $aDimensions;
         }
-        $aSession['FiltersSession'] = $FiltersSession;
-        if ($FiltersSession)
+        if ($aFiltersData)
         {
-            $query->joinWith(['productsFilters']);
-            $query->andFilterWhere(['IN', 'products_filters.filters_id',$aSession['FiltersSession']]);
-            $query->groupBy('id');
-            $query->having('COUNT(*)='.count($FiltersSession) );
+            $query->andFilterWhere(['IN', 'products_filters.filters_id',$aFiltersData])->groupBy('id')->having('COUNT(*)='.count($aFiltersData) );
         }
-
+        $query->onCondition('products_attributes.id IN (SELECT products_attributes.id FROM products_attributes WHERE ((value BETWEEN '.$iPostMinSize.' AND '.$iPostMaxSize.' ) AND (attributes_id = 4 ) OR ((value < '.$iMaxX.') AND (attributes_id =7)) OR ((value <'.$iMaxY.' ) AND (attributes_id =6))) GROUP BY products_attributes.products_id 
+HAVING COUNT(DISTINCT products_attributes.value)=3)');
+        //echo 'Filter'.print_r($aFiltersData , TRUE).'<br>'; die();
+        
+        
+       
+        //$oSession['aFiltersSession'] = [];
+        //
         if (Yii::$app->request->isAjax)
         {
             return $this->renderAjax('products', ['dataProvider'=>$dataProvider]);
         }
         else
         {
-             return $this->render('projekty',['aChooseFilters'=>$FiltersSession, 'aFilters'=>$aData, 'dataProvider'=>$dataProvider, 'aDimensions'=>$aDimensions]);
+             return $this->render('projekty',['aChooseFilters'=>$aFiltersData, 'aFilters'=>$aData, 'dataProvider'=>$dataProvider, 'aDimensions'=>$aDimensions]);
         }
 
 
@@ -385,12 +436,18 @@ HAVING COUNT(DISTINCT products_attributes.value)=3)');
     {
         $oSession = new Session();
         $oSession->setTimeout(1440);
-        $oSession['DataFromBar'.$id.''] = Yii::$app->request->post();
+        $oSession[$id] = Yii::$app->request->post();
     }
-    public function actionDeleteBar()
+    public function actionBarChange()
+    {
+         $oSession = new Session();
+         $oSession['BarChange']=1;
+    }
+    public function actionRemoveSession($id)
     {
         $oSession = new Session();
-        $oSession->removeFlash('DataFromBarSize');
+        $oSession->remove($id);
     }
+    
 
 }
