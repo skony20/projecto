@@ -192,6 +192,7 @@ HAVING COUNT(DISTINCT products_attributes.value)=3)');
         
         $model = new ProductsSearch();
         $oSession = new Session();
+        $dataProvider = '';
         $aFiltersData = $oSession->get('aFiltersSession');
         $aDimensions = $oSession->get('aDimensions');
         $aDataFromBarSize = $oSession->get('DataFromBarSize');
@@ -219,10 +220,31 @@ HAVING COUNT(DISTINCT products_attributes.value)=3)');
                     ]
                 ]
             ]);
-        $iMaxX = $aDimensions['iMaxX'];
-        $iMaxY = $aDimensions['iMaxY'];
-        $iPostMinSize = $aDimensions['iOneMinSize'];
-        $iPostMaxSize = $aDimensions['iOneMaxSize'];
+        $bBarChange = $oSession->get('BarChange');
+        if(!isset($aDimensions))
+        {
+            $iMinSize = floor($query->onCondition(['attributes_id'=>4])->min('(CAST(value AS DECIMAL (5,2)))'));
+            $iMaxSize = ceil($query->onCondition(['attributes_id'=>4])->max('(CAST(value AS DECIMAL (5,2)))')); 
+            $iMaxX = ceil($query->onCondition(['attributes_id'=>7])->max('(CAST(value AS DECIMAL (5,2)))'));
+            $iMaxY = ceil($query->onCondition(['attributes_id'=>6])->max('(CAST(value AS DECIMAL (5,2)))'));
+            $aDimensions['iAllMinSize'] = $iMinSize;
+            $aDimensions['iAllMaxSize'] = $iMaxSize;
+            $aDimensions['iMaxX'] =$iMaxX ;
+            $aDimensions['iMaxY'] =$iMaxY ;
+            $aDimensions['iOneMinSize'] = $iMinSize;
+            $aDimensions['iOneMaxSize'] = $iMaxSize;
+            $iPostMinSize = $iMinSize;
+            $iPostMaxSize = $iMaxSize;
+            
+        }
+        else
+        {
+            
+            $iMaxX = $aDimensions['iMaxX'];
+            $iMaxY = $aDimensions['iMaxY'];
+            $iPostMinSize = $aDimensions['iOneMinSize'];
+            $iPostMaxSize = $aDimensions['iOneMaxSize'];
+        }
         if (Yii::$app->request->post())
         {
 
@@ -239,15 +261,14 @@ HAVING COUNT(DISTINCT products_attributes.value)=3)');
             
             
             
-            $bBarChange = $oSession->get('BarChange');
+            
             if (isset($aPostData['bar_size']) && $bBarChange)
             {
 
                 $aAllSize = explode(';', $aPostData['bar_size']);
                 $iPostMinSize = $aAllSize[0];
                 $iPostMaxSize = $aAllSize[1];
-                $aDimensions['iOneMinSize'] = $iPostMinSize;
-                $aDimensions['iOneMaxSize'] = $iPostMaxSize;
+                
                         
 
             }
@@ -269,16 +290,14 @@ HAVING COUNT(DISTINCT products_attributes.value)=3)');
         }
         if ($aFiltersData)
         {
-            $query->andFilterWhere(['IN', 'products_filters.filters_id',$aFiltersData])->groupBy('id')->having('COUNT(*)='.count($aFiltersData) );
+            $query->andFilterWhere(['IN', 'products_filters.filters_id',$aFiltersData])->groupBy('id')->having('COUNT(*)='.count($aFiltersData));
+            
+
         }
-        $query->onCondition('products_attributes.id IN (SELECT products_attributes.id FROM products_attributes WHERE ((value BETWEEN '.$iPostMinSize.' AND '.$iPostMaxSize.' ) AND (attributes_id = 4 ) OR ((value < '.$iMaxX.') AND (attributes_id =7)) OR ((value <'.$iMaxY.' ) AND (attributes_id =6))) GROUP BY products_attributes.products_id 
+        $query->andWhere('products_attributes.id IN (SELECT products_attributes.id FROM products_attributes WHERE ((value BETWEEN '.$iPostMinSize.' AND '.$iPostMaxSize.' ) AND (attributes_id = 4 ) OR ((value < '.$iMaxX.') AND (attributes_id =7)) OR ((value <'.$iMaxY.' ) AND (attributes_id =6))) GROUP BY products_attributes.products_id 
 HAVING COUNT(DISTINCT products_attributes.value)=3)');
-        //echo 'Filter'.print_r($aFiltersData , TRUE).'<br>'; die();
         
-        
-       
-        //$oSession['aFiltersSession'] = [];
-        //
+
         if (Yii::$app->request->isAjax)
         {
             return $this->renderAjax('products', ['dataProvider'=>$dataProvider]);
@@ -447,6 +466,12 @@ HAVING COUNT(DISTINCT products_attributes.value)=3)');
     {
         $oSession = new Session();
         $oSession->remove($id);
+    }
+    public function actionGetChoosenSize()
+
+    {
+        return $_POST;
+        
     }
     
 

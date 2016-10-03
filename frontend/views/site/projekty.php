@@ -14,7 +14,7 @@ $this->title = Yii::t('app', 'Lista projektów');
 $this->params['breadcrumbs'][] = $this->title;
 $iSetMinSize = $aDimensions['iOneMinSize'];
 $iSetMaxSize = $aDimensions['iOneMaxSize'];
-
+echo print_r($aDimensions, true)
 ?>
 
 <div class="full_site">
@@ -32,9 +32,9 @@ $iSetMaxSize = $aDimensions['iOneMaxSize'];
         echo Html::dropDownList($aData['question']->id, $aChooseFilters, ArrayHelper::map($aData['answer'], 'id', 'name'), ['prompt' => ' -- Wybierz --', 'class'=>'prj_select']);
         echo '<span class="remove-filter" rel="'.$aData['question']->id.'">Usuń filtr</span>';
         if ($aData['question']->id == 7 )
-    {
+        {
 
-       echo '<br>Wielkość domu w m2: ';
+        echo '<br>Wielkość domu w m2: ';
         echo \yii2mod\slider\IonSlider::widget([
             'name' => 'bar_size',
             'type' => \yii2mod\slider\IonSlider::TYPE_DOUBLE,
@@ -88,7 +88,7 @@ $iSetMaxSize = $aDimensions['iOneMaxSize'];
 
     </div>
     <div class="another prj-items">
-        <?= $dataProvider->count ?>
+        <?= $dataProvider->getTotalCount() ?>
             <?= $this->render('products', ['dataProvider' => $dataProvider]) ?>
 
     </div>
