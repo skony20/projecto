@@ -21,26 +21,13 @@ $(document).on('ready pjax:success',
         $('#prj_sizex, #prj_sizey').change(
             function()
             { 
-                oFormData = $('form').serialize();
-                $.ajax({
-                    url: 'projekty',
-                    type: 'post',
-                    data: oFormData,
-                    success: function(data)
-                    {
-                        $(".prj-items").html(data);
-                    }
-
-                });
+               $("#prj_set_filters").submit();
             }
         );
 
         $('.reset_filter').click(
             function()
             {
-                $.ajax({
-                    url: 'site/delete-bar'
-                    });    
                 var iFilterGroupId = $(this).attr('rel');
                 $('input[name="'+iFilterGroupId+'"]').prop('checked', false);
                 
@@ -63,17 +50,11 @@ $(document).on('ready pjax:success',
                     $('.prj_select').prop('selectedIndex',0);
                     $.ajax({
                         url: 'reset'
-			});
+			});  
                     $.ajax({
-                        url: 'delete-bar'
-			});    
-                    $.ajax({
-                        url: 'projekty',
-			success: function(data)
-                        {
-                            $(".prj-items").html(data);
-                        }
+                        url: 'flash'
 			});
+                    $("#prj_set_filters").submit();
                 }
     );
 
@@ -82,38 +63,18 @@ $(document).on('ready pjax:success',
         $.ajax({
             url: "remove-session?id=BarChange"
         }); 
-        $(".prj-items").html(''); // czyscimy warstwe
-        oFormData = $('form').serialize();
-        $.ajax({
-            url: 'projekty',
-            type: 'post',
-            data: oFormData,
-            success: function(data)
-            {
-                $(".prj-items").html(data);
-            }
-       
-        });
+        $("#prj_set_filters").submit();
     });
 
     $('.remove-filter').click(
             function()
             {
-
                 var iFilterGroupId = $(this).attr('rel');
                 $('select[name="'+iFilterGroupId+'"]').prop('selectedIndex',0);
-                oFormData = $('form').serialize();
-                $.ajax({
-                        url: 'projekty',
-                        type: 'POST',
-                        data: oFormData,
-			success: function(data)
-                        {
-                            $(".prj-items").html(data);
-                        }
-			});
+                $("#prj_set_filters").submit();
+                
 
             }
-        );
+    );
 
     });

@@ -14,7 +14,7 @@ $this->title = Yii::t('app', 'Lista projektów');
 $this->params['breadcrumbs'][] = $this->title;
 $iSetMinSize = $aDimensions['iOneMinSize'];
 $iSetMaxSize = $aDimensions['iOneMaxSize'];
-echo print_r($aDimensions, true)
+echo print_r($_SESSION); 
 ?>
 
 <div class="full_site">
@@ -48,18 +48,7 @@ echo print_r($aDimensions, true)
                 'hide_from_to' => false,
                 'onFinish' => new \yii\web\JsExpression('
                 function(data) {
-                $(".prj-items").html(""); // czyscimy warstwe
-                        oFormData = $("form").serialize();
-                        $.ajax({
-                            url: "projekty",
-                            type: "post",
-                            data: oFormData,
-                            success: function(data)
-                            {
-                                $(".prj-items").html(data);
-                            }
-
-                        });
+                $("#prj_set_filters").submit();
                 }'
                     ),
                 'onChange' => new \yii\web\JsExpression('
@@ -76,8 +65,8 @@ echo print_r($aDimensions, true)
     if ($aData['question']->id == 3 )
     {
         echo '<br>Wielkość działki: ';
-        echo Html::input('text', 'SizeX', $aDimensions['iMaxX'], ['title'=>'Szerokość', 'id'=>'prj_sizex'] ) .'<br> x ';
-        echo Html::input('text', 'SizeY', $aDimensions['iMaxY'], ['title'=>'Głębokość', 'id'=>'prj_sizey']) .' metrów ';
+        echo Html::input('text', 'SizeX', $aDimensions['iMaxX'], ['title'=>'Szerokość', 'id'=>'prj_sizex'] ) .' x ';
+        echo Html::input('text', 'SizeY', $aDimensions['iMaxY'], ['title'=>'Głębokość', 'id'=>'prj_sizey']) .' m ';
     }
         echo '</div>';
         echo '</div>';
@@ -88,7 +77,7 @@ echo print_r($aDimensions, true)
 
     </div>
     <div class="another prj-items">
-        <?= $dataProvider->getTotalCount() ?>
+        
             <?= $this->render('products', ['dataProvider' => $dataProvider]) ?>
 
     </div>

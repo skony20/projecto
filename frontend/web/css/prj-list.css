@@ -58,3 +58,7 @@ img.prj_image
     margin:0;
     padding:0;
 }
+#prj_sizex, #prj_sizey  
+{
+    width:40px;
+}

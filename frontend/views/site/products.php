@@ -1,7 +1,5 @@
 <?php
 
-echo print_r($_POST, TRUE).'<br>';
-echo print_r($_SESSION,  TRUE);
 if (!$dataProvider->models)
 {
     
@@ -17,9 +15,10 @@ if (!$dataProvider->models)
     <?php
     echo \yii\widgets\LinkPager::widget([
     'pagination'=>$dataProvider->pagination,
+    'maxButtonCount'=>10,
+    'firstPageLabel'=>'pierwsza',
     ]);
     ?>
-    
 </div>
 </div>
 <div class="prjs_all">

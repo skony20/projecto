@@ -192,10 +192,8 @@ HAVING COUNT(DISTINCT products_attributes.value)=3)');
         
         $model = new ProductsSearch();
         $oSession = new Session();
-        $dataProvider = '';
         $aFiltersData = $oSession->get('aFiltersSession');
         $aDimensions = $oSession->get('aDimensions');
-        $aDataFromBarSize = $oSession->get('DataFromBarSize');
         //echo 'Filter'.print_r($oSession->get('aDimensions') , TRUE).'<br>'; die();
         
         $oFiltersGroup = new FiltersGroup();
@@ -207,7 +205,7 @@ HAVING COUNT(DISTINCT products_attributes.value)=3)');
             $aFilters = $oFilters::find()->where(['filters_group_id' => $_aFiltersGroup->id, 'is_active'=> 1])->all();
             $aData[$_aFiltersGroup->id] = ['question'=>$_aFiltersGroup, 'answer' => $aFilters];
         }
-        $query = $model::find()->distinct();
+        $query = $model::find();
 
         $query->joinWith(['productsFilters']);
         $query->joinWith(['productsAttributes']);
@@ -269,8 +267,6 @@ HAVING COUNT(DISTINCT products_attributes.value)=3)');
                 $aAllSize = explode(';', $aPostData['bar_size']);
                 $iPostMinSize = $aAllSize[0];
                 $iPostMaxSize = $aAllSize[1];
-                
-                        
 
             }
             //echo print_r($aDimensions, TRUE); die();
@@ -288,25 +284,29 @@ HAVING COUNT(DISTINCT products_attributes.value)=3)');
             }
             $oSession['aFiltersSession'] = $aFiltersData;
             $oSession['aDimensions'] = $aDimensions;
+            
         }
         if ($aFiltersData)
         {
             $query->andFilterWhere(['IN', 'products_filters.filters_id',$aFiltersData])->groupBy('id')->having('COUNT(*)='.count($aFiltersData));
+           
             
-
         }
         $query->andWhere('products_attributes.id IN (SELECT products_attributes.id FROM products_attributes WHERE ((value BETWEEN '.$iPostMinSize.' AND '.$iPostMaxSize.' ) AND (attributes_id = 4 ) OR ((value < '.$iMaxX.') AND (attributes_id =7)) OR ((value <'.$iMaxY.' ) AND (attributes_id =6))) GROUP BY products_attributes.products_id 
 HAVING COUNT(DISTINCT products_attributes.value)=3)');
         
+        
+        $iOneMinSize = floor($query->select('products.*, products_attributes.attributes_id , products_attributes.value')->onCondition(['attributes_id'=>4])->min('(CAST(value AS DECIMAL (5,2)))'));
+        $iOneMaxSize = ceil($query->select('products.*, products_attributes.attributes_id , products_attributes.value')->onCondition(['attributes_id'=>4])->max('(CAST(value AS DECIMAL (5,2)))'));
 
-        if (Yii::$app->request->isAjax)
-        {
-            return $this->renderAjax('products', ['dataProvider'=>$dataProvider]);
-        }
-        else
-        {
-             return $this->render('projekty',['aChooseFilters'=>$aFiltersData, 'aFilters'=>$aData, 'dataProvider'=>$dataProvider, 'aDimensions'=>$aDimensions]);
-        }
+        $aDimensions['iOneMinSize'] = ($bBarChange ? $iPostMinSize : $iOneMinSize);
+        $aDimensions['iOneMaxSize'] = ($bBarChange ? $iPostMaxSize : $iOneMaxSize);
+        
+        
+        $query->distinct();
+
+        return $this->render('projekty',['aChooseFilters'=>$aFiltersData, 'aFilters'=>$aData, 'dataProvider'=>$dataProvider, 'aDimensions'=>$aDimensions]);
+ 
 
 
 
@@ -319,7 +319,8 @@ HAVING COUNT(DISTINCT products_attributes.value)=3)');
     public function actionReset()
     {
         $aSession = new Session();
-        $aSession->removeAll();
+        $aSession->remove('aFiltersSession');
+        $aSession->remove('aDimensions');
 
     }
     public function actionLogin()
@@ -468,11 +469,10 @@ HAVING COUNT(DISTINCT products_attributes.value)=3)');
         $oSession = new Session();
         $oSession->remove($id);
     }
-    public function actionGetChoosenSize()
-
+    public function actionFlash()
     {
-        $zmienna = 'dupa';
-        
+        $oSession = new Session();
+        $oSession->setFlash('warning', 'bla bla bla bla 1');
     }
     
 

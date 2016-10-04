@@ -9,6 +9,31 @@ or die('2222Nie moge polaczyc sie z baza danych<br />Blad: '.mysql_error());
 
 $oProArte = simplexml_load_file('proarte.xml');
 
+
+function zamiana($string)
+   {
+       $string = strtolower($string);
+	$polskie = array(',', ' - ',' ','ę', 'Ę', 'ó', 'Ó', 'Ą', 'ą', 'Ś', 's', 'ł', 'Ł', 'ż', 'Ż', 'Ź', 'ź', 'ć', 'Ć', 'ń', 'Ń','-',"'","/","?", '"', ":", 'ś', '!','.', '&', '&amp;', '#', ';', '[',']','domena.pl', '(', ')', '`', '%', '”', '„', '…');
+	$miedzyn = array('-','-','-','e', 'e', 'o', 'o', 'a', 'a', 's', 's', 'l', 'l', 'z', 'z', 'z', 'z', 'c', 'c', 'n', 'n','-',"","","","","",'s','','', '', '', '', '', '', '', '', '', '', '', '', '');
+	$string = str_replace($polskie, $miedzyn, $string);
+	
+	// usuń wszytko co jest niedozwolonym znakiem
+	$string = preg_replace('/[^0-9a-z\-]+/', '', $string);
+	
+	// zredukuj liczbę myślników do jednego obok siebie
+	$string = preg_replace('/[\-]+/', '-', $string);
+	
+	// usuwamy możliwe myślniki na początku i końcu
+	$string = trim($string, '-');
+
+	$string = stripslashes($string);
+	
+	// na wszelki wypadek
+	$string = urlencode($string);
+	
+	return $string;
+   }
+
 ?>
 
 <?php
@@ -51,7 +76,7 @@ foreach ($oProArte->Projekt as $aProArte)
         $oUpdate = mysql_query($sQuery);
         $iProductId =  mysql_insert_id();
         $sNiceNamePL = $aProArte->Nazwa. ' ' .$aProArte->Symbol;
-        $sNiceName =  str_replace([['Ę'], ['Ó'], ['Ą'], ['Ś'], ['Ł'], ['Ż'], ['Ź'], ['Ć'], ['Ń'], ['ę'], ['ó'], ['ą'], ['ś'], ['ł'], ['ż'], ['ź'], ['ć'], ['ń'], ' ', '#', '(', ')', ',', '.', '/'], [['E'], ['O'], ['A'], ['S'], ['L'], ['Z'], ['Z'], ['C'], ['N'], ['e'], ['o'], ['a'], ['s'], ['l'], ['z'], ['z'], ['c'], ['n'], '_', '_','','','','',''] , $sNiceNamePL);
+        $sNiceName =  zamiana($sNiceNamePL);
         $sQueryDesc = "INSERT INTO products_descripton ("
                 . "products_id, "
                 . "languages_id, "
