@@ -1,5 +1,5 @@
 <?php
-
+include("xml/resize-class.php");
 //$url="https://www.archipelag.pl/files/ProjectExport/t26d6ch0bqdeu6/project_export.zip";
 //$plik = file_get_contents($url);
 //$strona=fopen("xml/project_export.zip","w+");
@@ -29,14 +29,6 @@ or die('2222Nie moge polaczyc sie z baza danych<br />Blad: '.'2');
 $sArchipelag = str_replace(array("&amp;", "&"), array("&", "&amp;"), file_get_contents('xml/files/temp/~g4bn3al0eq6alu/projekty.xml'));
 $oArchipelag= simplexml_load_string($sArchipelag);
 
-
-//$fArchipelag = file_get_contents('xml/files/temp/~g4bn3al0eq6alu/projekty.xml');
-//// replace '&' followed by a bunch of letters, numbers
-//// and underscores and an equal sign with &amp;
-//$fArchipelag = preg_replace('#&(?=[a-z_0-9]+=)#', '&amp;', $fArchipelag);
-//$oArchipelag = simplexml_load_string($fArchipelag);
-
-//echo '<pre>ddd'. print_r($oArchipelag, TRUE);
 ?>
 
 <?php
@@ -79,7 +71,7 @@ foreach ($oArchipelag->Project as $aArchipelag)
     
     if ($aArchipelag->InfoKind == 1 or $aArchipelag->InfoKind == 1)
     {
-        //$sSymbol = mysql_fetch_array(mysql_query('SELECT id FROM products WHERE symbol = "'.$aProArte->Symbol.'"'));
+        $sExistSymbol = mysql_fetch_array(mysql_query('SELECT id FROM products WHERE ean = "'.$aArchipelag->attributes()->Id.'"'));
         $id++;
         $iVat = (100+($aArchipelag->PriceNetto))/100;
         
@@ -98,7 +90,7 @@ foreach ($oArchipelag->Project as $aArchipelag)
                 $iVatId = 4;
                 break;
         }
-        if (!isset($sSymbol['id']))
+        if (!isset($sExistSymbol['id']))
         {
             $sQuery ='INSERT INTO products ('
                 . 'is_active, '
@@ -112,8 +104,8 @@ foreach ($oArchipelag->Project as $aArchipelag)
                 . 'ean) '
                 . 'VALUES ('
                 . '0, '
+                . '5, '
                 . ''.$iVatId.', '
-                . '3, '
                 . '"'.ceil(($aArchipelag->PriceNetto)*((100+($aArchipelag->PriceVAT))/100)).'", '
                 . '"'.ceil(($aArchipelag->PriceNetto)*((100+($aArchipelag->PriceVAT))/100)).'", '
                 . '99, '
@@ -121,7 +113,7 @@ foreach ($oArchipelag->Project as $aArchipelag)
                 . '"'.$sSymbol.'", '
                 . '"'.$aArchipelag->attributes()->Id.'");';
 
-            $oUpdate = mysql_query($sQuery) or die('2');
+            $oUpdate = mysql_query($sQuery) or die('22'.mysql_error());
             $iProductId =  mysql_insert_id();
             $sQueryDesc = "INSERT INTO products_descripton ("
                 . "products_id, "
@@ -140,27 +132,27 @@ foreach ($oArchipelag->Project as $aArchipelag)
                 . "'".$aArchipelag->BodyDescription. "<br>Technologia:<br>".$aArchipelag->BodyTechnology. "<br>Wykończenie:<br>".$aArchipelag->BodyFinish. "', "
                 . "'".$aArchipelag->Name."')";
 
-        $oUpdateDesc = mysql_query($sQueryDesc) or die('2');
+        $oUpdateDesc = mysql_query($sQueryDesc) or die('33'.mysql_error());
         
         
-        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 1, '.$aArchipelag->Height.')') or die('1');
-        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 2, '.$aArchipelag->Width.')') or die('2');
-        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 3, '.$aArchipelag->Length.')') or die('3');
-        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 4, '.$aArchipelag->AreaUse.')') or die('4');
-        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 5, '.$aArchipelag->AreaGarage.')') or die('5');
-        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 6, '.$aArchipelag->LandLength.')') or die('6');
-        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 7, '.$aArchipelag->LandWidth.')') or die('7');
-        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 8, '.$aArchipelag->RoofAngle.')') or die('8');
-        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 9, '.$aArchipelag->CountRoom.')') or die('9');
-        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 10, '.$aArchipelag->AreaNetto.')') or die('10');
-        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 11, '.$aArchipelag->AreaBuilding.')') or die('11');
-        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 13, '.$aArchipelag->AreaBasement.')') or die('12');
-        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 14, '.$aArchipelag->AreaAttic.')') or die('13');
-        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 15, '.$aArchipelag->Cubature.')') or die('14');
-        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 16, '.$aArchipelag->RoofArea.')') or die('15');
-        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 17, '.$aArchipelag->CountBedroom.')') or die('16');
-        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 18, '.$aArchipelag->CountBathroom.')') or die('18');
-        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 19, '.$aArchipelag->CountToilet.')') or die('19');
+        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 1, '.$aArchipelag->Height.')') or die('1'.mysql_error());
+        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 2, '.$aArchipelag->Width.')') or die('2'.mysql_error());
+        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 3, '.$aArchipelag->Length.')') or die('3'.mysql_error());
+        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 4, '.$aArchipelag->AreaUse.')') or die('4'.mysql_error());
+        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 5, '.$aArchipelag->AreaGarage.')') or die('5'.mysql_error());
+        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 6, '.$aArchipelag->LandLength.')') or die('6'.mysql_error());
+        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 7, '.$aArchipelag->LandWidth.')') or die('7'.mysql_error());
+        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 8, '.($aArchipelag->RoofAngle!='' ? $aArchipelag->RoofAngle : '0').')') or die('8'.mysql_error());
+        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 9, '.$aArchipelag->CountRoom.')') or die('9'.mysql_error());
+        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 10, '.$aArchipelag->AreaNetto.')') or die('10'.mysql_error());
+        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 11, '.$aArchipelag->AreaBuilding.')') or die('11'.mysql_error());
+        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 13, '.$aArchipelag->AreaBasement.')') or die('12'.mysql_error());
+        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 14, '.$aArchipelag->AreaAttic.')') or die('13'.mysql_error());
+        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 15, '.$aArchipelag->Cubature.')') or die('14'.mysql_error());
+        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 16, '.($aArchipelag->RoofArea!='' ? $aArchipelag->RoofArea : '0').')') or die('15'.mysql_error());
+        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 17, '.$aArchipelag->CountBedroom.')') or die('16'.mysql_error());
+        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 18, '.$aArchipelag->CountBathroom.')') or die('18'.mysql_error());
+        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 19, '.($aArchipelag->CountToilet!='' ? $aArchipelag->CountToilet : '0').')') or die('19'.mysql_error());
         
         /*Ilość kondygnacji*/
         $iType = '';
@@ -192,7 +184,7 @@ foreach ($oArchipelag->Project as $aArchipelag)
         }
         mysql_query('INSERT INTO products_filters (products_id, filters_id) VALUE('.$iProductId.', '.$iBasement.')') or die('40'.mysql_error());
         /*Dach*/
-        $iRoof = '';
+        $iRoof = 44;
         switch ($aArchipelag->RoofType)
         {
             case 'dwuspadowy':
@@ -217,7 +209,8 @@ foreach ($oArchipelag->Project as $aArchipelag)
         mysql_query('INSERT INTO products_filters (products_id, filters_id) VALUE('.$iProductId.', '.$iRoof.')') or die('50'.mysql_error());
         
         /*Garaż*/
-        $iGarage = '';
+        $iGarage = 40;
+        
         switch ($aArchipelag->InfoGarage)
         {
             case 0:
@@ -254,47 +247,128 @@ foreach ($oArchipelag->Project as $aArchipelag)
             
             
             
-        }
-
-//        foreach ($aProArte->Wizualizacje->Wiz as $aWizualizacje)
-//        {
-//
-//            $sWizLink = str_replace(['x=500&', 'maxy=367&'], ['',''], $aWizualizacje->Url[0]);
-//            $WizTitle = (isset($aWizualizacje->Tytul) ? $aWizualizacje->Tytul : '');
-//            $sImgBigName = $sNiceName.'_'.$a.'.jpg';
-//            $sImgBig = 'images/'.$iProductId.'/big/'.$sImgBigName;
-////            $sImginfo = 'images/'.$iProductId.'/big/'.$sNiceName.'_'.$a.'.jpg';
-////            $sImgThumbs = 'images/'.$iProductId.'/big/'.$sNiceName.'_'.$a.'.jpg';
-//            file_put_contents($sImgBig, file_get_contents($sWizLink));
-//            mysql_query('INSERT INTO products_images (products_id, name, description) VALUE('.$iProductId.', "'.$sImgBigName.'", "'.$WizTitle.'")') or die('2');
-//            $a++;
-//        }
-        /*Imgages
-        foreach ($aProArte->Images->Img as $aImages)
+        
+        $a=0;
+        /*Views*/
+        foreach ($aArchipelag->Views->View as $aViews)
         {
-            $sImgLink = str_replace(['x=500&', 'maxy=367&'], ['',''], $aImages->Url[0]);
-            $ImagesTitle = (isset($aImages->Tytul) ? $aImages->Tytul : '');
-            $sImgBigName = $sNiceName.'_'.$a.'.jpg';
+
+            $sViewsLink = str_replace(['http:///home/archipelag/www-new'], ['https://www.archipelag.pl'], $aViews->attributes()->Path);
+            $extension = strtolower(strrchr($aViews->attributes()->Path, '.'));
+            $sImgBigName = $sSymbol.'_'.$a.''.$extension;
             $sImgBig = 'images/'.$iProductId.'/big/'.$sImgBigName;
-            file_put_contents($sImgBig, file_get_contents($sImgLink));
-            mysql_query('INSERT INTO products_images (products_id, name, description) VALUE('.$iProductId.', "'.$sImgBigName.'", "'.$ImagesTitle.'")') or die('2');
+            $sImgThumbs = 'images/'.$iProductId.'/thumbs/'.$sImgBigName;
+            $sImgInfo = 'images/'.$iProductId.'/info/'.$sImgBigName;
+            file_put_contents($sImgBig, file_get_contents($sViewsLink));
+
+            mysql_query('INSERT INTO products_images (products_id, name) VALUE('.$iProductId.', "'.$sImgBigName.'")') or die('aWiews'.mysql_error());
+            // *** 1) Initialise / load image
+            $resizeThumbs = new resize($sImgBig);
+            $resizeThumbs -> resizeImage(80, 80, 'auto');
+            $resizeThumbs -> saveImage($sImgThumbs, 100);
+            $resizeInfo = new resize($sImgBig);
+            $resizeInfo -> resizeImage(300, 300, 'auto');
+            $resizeInfo -> saveImage($sImgInfo, 100);
             $a++;
         }
-
-        /*Elewacje
-        foreach ($aProArte->Elewacje->Elewacja as $aElewacje)
+         /*Facades*/
+        if (isset($aArchipelag->Facades))
         {
-            $sElewacjeLink = str_replace(['x=500&', 'maxy=367&'], ['',''], $aElewacje->Url[0]);
-            $ElewacjeTitle = (isset($aElewacje->Tytul) ? $aElewacje->Tytul : '');
-            $sImgBigName = $sNiceName.'_'.$a.'.jpg';
+            foreach ($aArchipelag->Facades->Facade as $aViews)
+            {
+
+                $sViewsLink = str_replace(['http:///home/archipelag/www-new'], ['https://www.archipelag.pl'], $aViews->attributes()->Path);
+                $extension = strtolower(strrchr($aViews->attributes()->Path, '.'));
+                $sImgBigName = $sSymbol.'_'.$a.''.$extension;
+                $sImgBig = 'images/'.$iProductId.'/big/'.$sImgBigName;
+                $sImgThumbs = 'images/'.$iProductId.'/thumbs/'.$sImgBigName;
+                $sImgInfo = 'images/'.$iProductId.'/info/'.$sImgBigName;
+                file_put_contents($sImgBig, file_get_contents($sViewsLink));
+
+                mysql_query('INSERT INTO products_images (products_id, name) VALUE('.$iProductId.', "'.$sImgBigName.'")') or die('Facades'.mysql_error());
+                // *** 1) Initialise / load image
+                $resizeThumbs = new resize($sImgBig);
+                $resizeThumbs -> resizeImage(80, 80, 'auto');
+                $resizeThumbs -> saveImage($sImgThumbs, 100);
+                $resizeInfo = new resize($sImgBig);
+                $resizeInfo -> resizeImage(300, 300, 'auto');
+                $resizeInfo -> saveImage($sImgInfo, 100);
+                $a++;
+            }
+        }
+        /*PlotLand*/
+        if (isset($aArchipelag->PlotLand))
+        {
+            foreach ($aArchipelag->PlotLand as $aViews)
+            {
+
+                $sViewsLink = str_replace(['http:///home/archipelag/www-new'], ['https://www.archipelag.pl'], $aViews->attributes()->Path);
+                $extension = explode('.',$aViews->attributes()->Path);
+                $sImgBigName = $sSymbol.'_'.$a.'.'.$extension[1];
+                $sImgBig = 'images/'.$iProductId.'/big/'.$sImgBigName;
+                $sImgThumbs = 'images/'.$iProductId.'/thumbs/'.$sImgBigName;
+                $sImgInfo = 'images/'.$iProductId.'/info/'.$sImgBigName;
+                file_put_contents($sImgBig, file_get_contents($sViewsLink));
+
+                mysql_query('INSERT INTO products_images (products_id, name, description) VALUE('.$iProductId.', "'.$sImgBigName.'","Usytuowanie na działce")') or die('PlotLand'.mysql_error());
+                // *** 1) Initialise / load image
+                $resizeThumbs = new resize($sImgBig);
+                $resizeThumbs -> resizeImage(80, 80, 'auto');
+                $resizeThumbs -> saveImage($sImgThumbs, 100);
+                $resizeInfo = new resize($sImgBig);
+                $resizeInfo -> resizeImage(300, 300, 'auto');
+                $resizeInfo -> saveImage($sImgInfo, 100);
+                $a++;
+            }
+        }
+        /*PlotLandMirror*/
+        if (isset($aArchipelag->PlotLandMirror))
+        {
+            foreach ($aArchipelag->PlotLandMirror as $aViews)
+            {
+
+                $sViewsLink = str_replace(['http:///home/archipelag/www-new'], ['https://www.archipelag.pl'], $aViews->attributes()->Path);
+                $extension = explode('.',$aViews->attributes()->Path);
+                $sImgBigName = $sSymbol.'_'.$a.'.'.$extension[1];
+                $sImgBig = 'images/'.$iProductId.'/big/'.$sImgBigName;
+                $sImgThumbs = 'images/'.$iProductId.'/thumbs/'.$sImgBigName;
+                $sImgInfo = 'images/'.$iProductId.'/info/'.$sImgBigName;
+                file_put_contents($sImgBig, file_get_contents($sViewsLink));
+
+                mysql_query('INSERT INTO products_images (products_id, name, description) VALUE('.$iProductId.', "'.$sImgBigName.'","Usytuowanie na działce - odbicie")'.mysql_error()) or die('PlotLandMirror');
+                // *** 1) Initialise / load image
+                $resizeThumbs = new resize($sImgBig);
+                $resizeThumbs -> resizeImage(80, 80, 'auto');
+                $resizeThumbs -> saveImage($sImgThumbs, 100);
+                $resizeInfo = new resize($sImgBig);
+                $resizeInfo -> resizeImage(300, 300, 'auto');
+                $resizeInfo -> saveImage($sImgInfo, 100);
+                $a++;
+            }
+        }
+        /*Storeys*/
+        foreach ($aArchipelag->Storeys->Storey as $aViews)
+        {
+
+            $sViewsLink = str_replace(['http:///home/archipelag/www-new'], ['https://www.archipelag.pl'], $aViews->attributes()->PathImg);
+            $extension = explode('.',$aViews->attributes()->PathImg);
+            $sImgBigName = $sSymbol.'_'.$a.'.'.$extension[1];
             $sImgBig = 'images/'.$iProductId.'/big/'.$sImgBigName;
-            mysql_query('INSERT INTO products_images (products_id, name, description) VALUE('.$iProductId.', "'.$sImgBigName.'", "'.$ElewacjeTitle.'")') or die('2');
-            file_put_contents($sImgBig, file_get_contents($sElewacjeLink));
+            $sImgThumbs = 'images/'.$iProductId.'/thumbs/'.$sImgBigName;
+            $sImgInfo = 'images/'.$iProductId.'/info/'.$sImgBigName;
+            file_put_contents($sImgBig, file_get_contents($sViewsLink));
+
+            mysql_query('INSERT INTO products_images (products_id, name, description) VALUE('.$iProductId.', "'.$sImgBigName.'","'.$aViews->attributes()->Id.'")') or die('Storeys'.mysql_error());
+            // *** 1) Initialise / load image
+            $resizeThumbs = new resize($sImgBig);
+            $resizeThumbs -> resizeImage(80, 80, 'auto');
+            $resizeThumbs -> saveImage($sImgThumbs, 100);
+            $resizeInfo = new resize($sImgBig);
+            $resizeInfo -> resizeImage(300, 300, 'auto');
+            $resizeInfo -> saveImage($sImgInfo, 100);
             $a++;
         }
-
-*/
     }
-    die();
+    }
 }
 ?>
