@@ -14,7 +14,6 @@ $this->title = Yii::t('app', 'Lista projektów');
 $this->params['breadcrumbs'][] = $this->title;
 $iSetMinSize = $aDimensions['iOneMinSize'];
 $iSetMaxSize = $aDimensions['iOneMaxSize'];
-echo print_r($_SESSION); 
 ?>
 
 <div class="full_site">
@@ -77,7 +76,7 @@ echo print_r($_SESSION);
 
     </div>
     <div class="another prj-items">
-        
+            <?= $dataProvider->totalCount ?>
             <?= $this->render('products', ['dataProvider' => $dataProvider]) ?>
 
     </div>

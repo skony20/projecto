@@ -18,7 +18,7 @@ echo Html::beginForm(['/'], 'POST', ['data-pjax' => '', 'class' => 'form-inline'
 $iSetMinSize = $aDimensions['iOneMinSize'];
 $iSetMaxSize = $aDimensions['iOneMaxSize'];
 //echo '<pre>'.print_r($_POST, true);
-//echo '<pre>'.print_r($_SESSION, true);
+echo  print_r($_SESSION, true);
 foreach ($aFilters as $aData) {
 
     echo '<div class="filter_question_row">';

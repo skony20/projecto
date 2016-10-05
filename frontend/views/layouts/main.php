@@ -59,12 +59,20 @@ AppAsset::register($this);
     ]);
     NavBar::end();
     ?>
-    <?= Alert::widget() ?>
+    
     <div class="container">
+        <div class="cart">
+        <div class="cart-name">Koszyk</div>
+        <div class="cart-container">
+            1 sztuka<br>
+            2 sztuka<br>
+            3 sztuka<br>
+        </div>
+    </div>
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
-        <?= Alert::widget() ?>
+        
         <?= $content ?>
     </div>
 </div>

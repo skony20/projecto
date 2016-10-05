@@ -76,5 +76,18 @@ $(document).on('ready pjax:success',
 
             }
     );
-
+    
+    /*Koszyk*/
+    $('.cart').mouseover(function()
+    
+        {
+            $('.cart-container').css('display', 'block');
+        }
+    )
+    $('.cart').mouseout(function()
+    
+        {
+            $('.cart-container').css('display', 'none');
+        }
+    )
     });

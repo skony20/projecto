@@ -143,15 +143,15 @@ foreach ($oArchipelag->Project as $aArchipelag)
         mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 6, '.$aArchipelag->LandLength.')') or die('6'.mysql_error());
         mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 7, '.$aArchipelag->LandWidth.')') or die('7'.mysql_error());
         mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 8, '.($aArchipelag->RoofAngle!='' ? $aArchipelag->RoofAngle : '0').')') or die('8'.mysql_error());
-        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 9, '.$aArchipelag->CountRoom.')') or die('9'.mysql_error());
+        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 9, '.($aArchipelag->CountRoom != '' ? $aArchipelag->CountRoom : '0').')') or die('9'.mysql_error());
         mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 10, '.$aArchipelag->AreaNetto.')') or die('10'.mysql_error());
         mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 11, '.$aArchipelag->AreaBuilding.')') or die('11'.mysql_error());
         mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 13, '.$aArchipelag->AreaBasement.')') or die('12'.mysql_error());
         mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 14, '.$aArchipelag->AreaAttic.')') or die('13'.mysql_error());
         mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 15, '.$aArchipelag->Cubature.')') or die('14'.mysql_error());
         mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 16, '.($aArchipelag->RoofArea!='' ? $aArchipelag->RoofArea : '0').')') or die('15'.mysql_error());
-        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 17, '.$aArchipelag->CountBedroom.')') or die('16'.mysql_error());
-        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 18, '.$aArchipelag->CountBathroom.')') or die('18'.mysql_error());
+        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 17, '.($aArchipelag->CountBedroom != '' ? $aArchipelag->CountBedroom : '0').')') or die('16'.mysql_error());
+        mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 18, '.($aArchipelag->CountBathroom != '' ? $aArchipelag->CountBathroom : '0').')') or die('18'.mysql_error());
         mysql_query('INSERT INTO products_attributes (products_id, attributes_id, value) VALUE('.$iProductId.', 19, '.($aArchipelag->CountToilet!='' ? $aArchipelag->CountToilet : '0').')') or die('19'.mysql_error());
         
         /*Ilość kondygnacji*/

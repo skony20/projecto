@@ -16,8 +16,10 @@ use app\models\FiltersGroup;
 use app\models\Filters;
 use app\models\ProductsSearch;
 use yii\data\ActiveDataProvider;
+use app\models\ProductsAttributes;
 use app\models\ProductsFilters;
 use yii\web\Session;
+
 
 /**
  * Site controller
@@ -79,9 +81,6 @@ class SiteController extends Controller
     public function actionIndex()
     {
 
-
-        $aX = [];
-        $aY = [];
         $model = new ProductsSearch();
         $oSession = new Session();
         $oSession['aDimensions'] = [];
@@ -91,24 +90,17 @@ class SiteController extends Controller
         $aFiltersData = [];
         $aDimensions = [];
         
-        $query = $model::find();
-        $query->joinWith(['productsFilters']);
-        $query->joinWith(['productsAttributes']);
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            'pagination' => false,
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_ASC,
-                    ]
-                ]
-            ]);
-
-        $iMinSize = floor($query->onCondition(['attributes_id'=>4])->min('(CAST(value AS DECIMAL (5,2)))'));
-        $iMaxSize = ceil($query->onCondition(['attributes_id'=>4])->max('(CAST(value AS DECIMAL (5,2)))'));
-
-        $iMaxX = ceil($query->onCondition(['attributes_id'=>7])->max('(CAST(value AS DECIMAL (5,2)))'));
-        $iMaxY = ceil($query->onCondition(['attributes_id'=>6])->max('(CAST(value AS DECIMAL (5,2)))'));
+        $oProductsAttributes = new ProductsAttributes();
+        $aAttributes =[];
+        $oProductsFilters = new ProductsFilters();
+        $aPrdFilters = [];
+               
+        $iMinSize = floor($oProductsAttributes->find()->onCondition(['attributes_id'=>4])->min('(CAST(value AS DECIMAL (5,2)))'));
+        $iMaxSize = ceil($oProductsAttributes->find()->onCondition(['attributes_id'=>4])->max('(CAST(value AS DECIMAL (5,2)))'));
+        
+        $iMaxX = ceil($oProductsAttributes->find()->onCondition(['attributes_id'=>7])->max('(CAST(value AS DECIMAL (5,2)))'));
+        $iMaxY = ceil($oProductsAttributes->find()->onCondition(['attributes_id'=>6])->max('(CAST(value AS DECIMAL (5,2)))'));
+        
         
         $aDimensions['iAllMinSize'] = $iMinSize;
         $aDimensions['iAllMaxSize'] = $iMaxSize;
@@ -148,18 +140,41 @@ class SiteController extends Controller
             }
             if ($aFiltersData)
             {
-                $query->andFilterWhere(['IN', 'products_filters.filters_id',$aFiltersData])->groupBy('id')->having('COUNT(*)='.count($aFiltersData) );
+                /*Odpowiedzi na pytania*/
+                $aFiltersQuery = $oProductsFilters->find()->select('products_id')->andFilterWhere(['IN', 'products_filters.filters_id',$aFiltersData])->groupBy('id')->having('COUNT(*)='.count($aFiltersData))->asArray()->all();
+                foreach ($aFiltersQuery as $aProdIdFromFilters)
+                {
+                    $aPrdFilters[] .= $aProdIdFromFilters['products_id'];
+                }
             }
         }
+        /*Dane techniczne*/
         
-        $query->onCondition('products_attributes.id IN (SELECT products_attributes.id FROM products_attributes WHERE ((value BETWEEN '.$iPostMinSize.' AND '.$iPostMaxSize.' ) AND (attributes_id = 4 ) OR ((value < '.$iMaxX.') AND (attributes_id =7)) OR ((value <'.$iMaxY.' ) AND (attributes_id =6))) GROUP BY products_attributes.products_id 
-HAVING COUNT(DISTINCT products_attributes.value)=3)');
-       // echo '<pre>'.print_r($dataProvider, true); die();
-        $sProjectCount = $dataProvider->count;
-
-        $iOneMinSize = floor($query->select('products_attributes.*')->onCondition(['attributes_id'=>4])->min('(CAST(value AS DECIMAL (5,2)))'));
-        $iOneMaxSize = ceil($query->select('products_attributes.*')->onCondition(['attributes_id'=>4])->max('(CAST(value AS DECIMAL (5,2)))'));
+        $aAttributesQuery = $oProductsAttributes->find()->select('products_id')->where('((value BETWEEN '.$iPostMinSize.' AND '.$iPostMaxSize.' ) AND (attributes_id = 4 ) OR ((value < '.$iMaxX.') AND (attributes_id =7)) OR ((value < '.$iMaxY.' ) AND (attributes_id =6))) GROUP BY products_id HAVING COUNT(DISTINCT value)=3');
         
+        foreach ($aAttributesQuery->asArray()->all() as $aProdIdFromAttributes)
+        {
+            $aAttributes[] .= $aProdIdFromAttributes['products_id'];
+        }
+        
+        $aPrdId = array_merge($aPrdFilters, $aAttributes);
+        
+        echo '<pre>'.print_r($aPrdId , true); die();
+        
+        $query = $model::find();
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => false,
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_ASC,
+                    ]
+                ]
+            ]);
+        
+        $sProjectCount = 999;//$dataProvider->count;
+        $iOneMinSize = floor($oProductsAttributes->find()->andFilterWhere(['IN', 'products_id', $aPrdFilters])->andWhere('attributes_id = 4')->min('(CAST(value AS DECIMAL (5,2)))'));
+        $iOneMaxSize = ceil($oProductsAttributes->find()->andFilterWhere(['IN', 'products_id', $aPrdFilters])->andWhere('attributes_id = 4')->max('(CAST(value AS DECIMAL (5,2)))'));
         
         
         $aDimensions['iOneMinSize'] = ($bBarChange ? $iPostMinSize : $iOneMinSize);
@@ -178,7 +193,7 @@ HAVING COUNT(DISTINCT products_attributes.value)=3)');
         //echo '<pre>'. print_r($oSession['aDimensions'], TRUE); die();
         $oSession['aFiltersSession'] = $aFiltersData;
         
-        return $this->render('index', ['model' => $model,'sProjectCount' => $sProjectCount, 'aFilters'=>$aData, 'aFiltersData' => $aFiltersData, 'dataProvider'=>$dataProvider, 'aDimensions'=> $aDimensions]);
+        return $this->render('index', ['model' => $model,'sProjectCount' => $sProjectCount, 'aFilters'=>$aData, 'aFiltersData' => $aFiltersData, 'aDimensions'=> $aDimensions]);
     }
     
     /**/
@@ -321,6 +336,7 @@ HAVING COUNT(DISTINCT products_attributes.value)=3)');
         $aSession = new Session();
         $aSession->remove('aFiltersSession');
         $aSession->remove('aDimensions');
+        $aSession->remove('BarChange');
 
     }
     public function actionLogin()
