@@ -84,7 +84,7 @@ class SiteController extends Controller
         $model = new ProductsSearch();
         $oSession = new Session();
         $oSession['aDimensions'] = [];
-        $oSession['aFiltersSession'] = [];
+        //$oSession['aFiltersSession'] = [];
         $oFiltersGroup = new FiltersGroup();
         $oFilters = new Filters();
         $aFiltersData = [];
@@ -109,6 +109,9 @@ class SiteController extends Controller
         
         $iPostMinSize = $iMinSize ;
         $iPostMaxSize = $iMaxSize;
+//        
+//        $aPostData[0] =4;
+//        $aPostData[1] =1;
         
         //echo '<pre>'.print_r($aPostData , true); die();
         $bBarChange = $oSession->get('BarChange');
@@ -141,7 +144,7 @@ class SiteController extends Controller
             if ($aFiltersData)
             {
                 /*Odpowiedzi na pytania*/
-                $aFiltersQuery = $oProductsFilters->find()->select('products_id')->andFilterWhere(['IN', 'products_filters.filters_id',$aFiltersData])->groupBy('id')->having('COUNT(*)='.count($aFiltersData))->asArray()->all();
+                $aFiltersQuery = $oProductsFilters->find()->select('products_id')->andFilterWhere(['IN', 'products_filters.filters_id',$aFiltersData])->groupBy('products_id')->having('COUNT(*)='.count($aFiltersData))->asArray()->all();
                 foreach ($aFiltersQuery as $aProdIdFromFilters)
                 {
                     $aPrdFilters[] .= $aProdIdFromFilters['products_id'];
@@ -157,22 +160,9 @@ class SiteController extends Controller
             $aAttributes[] .= $aProdIdFromAttributes['products_id'];
         }
         
-        $aPrdId = array_merge($aPrdFilters, $aAttributes);
-        
-        echo '<pre>'.print_r($aPrdId , true); die();
-        
-        $query = $model::find();
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            'pagination' => false,
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_ASC,
-                    ]
-                ]
-            ]);
-        
-        $sProjectCount = 999;//$dataProvider->count;
+        $aPrdIdsAll = array_merge($aPrdFilters, $aAttributes);
+        $aPrdIds = array_diff_assoc($aPrdIdsAll, array_unique($aPrdIdsAll));
+
         $iOneMinSize = floor($oProductsAttributes->find()->andFilterWhere(['IN', 'products_id', $aPrdFilters])->andWhere('attributes_id = 4')->min('(CAST(value AS DECIMAL (5,2)))'));
         $iOneMaxSize = ceil($oProductsAttributes->find()->andFilterWhere(['IN', 'products_id', $aPrdFilters])->andWhere('attributes_id = 4')->max('(CAST(value AS DECIMAL (5,2)))'));
         
@@ -180,7 +170,20 @@ class SiteController extends Controller
         $aDimensions['iOneMinSize'] = ($bBarChange ? $iPostMinSize : $iOneMinSize);
         $aDimensions['iOneMaxSize'] = ($bBarChange ? $iPostMaxSize : $iOneMaxSize);
         
-
+        
+        
+//        $query = $model::find()->FilterWhere(['IN', 'id', $aPrdIds]);
+//        $dataProvider = new ActiveDataProvider([
+//            'query' => $query,
+//            'pagination' => false,
+//            'sort' => [
+//                'defaultOrder' => [
+//                    'id' => SORT_ASC,
+//                    ]
+//                ]
+//            ]);
+        
+        $sProjectCount = $dataProvider->count;
         
         $aFiltersGroup = $oFiltersGroup::find()->where(['is_active'=> 1])->orderBy('sort_order')->all();
         foreach ($aFiltersGroup as $_aFiltersGroup)
@@ -192,7 +195,6 @@ class SiteController extends Controller
         $oSession['aDimensions'] = $aDimensions;
         //echo '<pre>'. print_r($oSession['aDimensions'], TRUE); die();
         $oSession['aFiltersSession'] = $aFiltersData;
-        
         return $this->render('index', ['model' => $model,'sProjectCount' => $sProjectCount, 'aFilters'=>$aData, 'aFiltersData' => $aFiltersData, 'aDimensions'=> $aDimensions]);
     }
     
@@ -484,11 +486,6 @@ HAVING COUNT(DISTINCT products_attributes.value)=3)');
     {
         $oSession = new Session();
         $oSession->remove($id);
-    }
-    public function actionFlash()
-    {
-        $oSession = new Session();
-        $oSession->setFlash('warning', 'bla bla bla bla 1');
     }
     
 

@@ -51,9 +51,6 @@ $(document).on('ready pjax:success',
                     $.ajax({
                         url: 'reset'
 			});  
-                    $.ajax({
-                        url: 'flash'
-			});
                     $("#prj_set_filters").submit();
                 }
     );
