@@ -16,7 +16,6 @@ if (!$dataProvider->models)
     echo \yii\widgets\LinkPager::widget([
     'pagination'=>$dataProvider->pagination,
     'maxButtonCount'=>10,
-    'firstPageLabel'=>'pierwsza',
     ]);
     ?>
 </div>

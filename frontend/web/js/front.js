@@ -87,4 +87,39 @@ $(document).on('ready pjax:success',
             $('.cart-container').css('display', 'none');
         }
     )
+    
+    
+    
+    
+    /*Dodawanie produktu*/
+    $('.prj_add_cart').click(
+            function()
+            {
+                var iPrjId = $(this).attr('rel');
+                $.ajax({
+                    url: "../cart/add-cart?iPrjId="+iPrjId,
+                    success: function(data) {   
+                        $('.cart-items').html(data);
+                        
+                    }
+
+                    }); 
+            }
+    );
+    
+    $('.remove-cart').click(
+            function()
+            {
+                $.ajax({
+                    url: "../cart/reset-cart",
+                    success: function(data) {   
+                        $('.cart-items').html('');
+                        
+                    }
+                    }); 
+            }
+    );
+    
+    
+    
     });

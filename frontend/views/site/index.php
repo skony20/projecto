@@ -9,6 +9,7 @@ use yii\helpers\Url;
 
 $this->title = Yii::t('app', 'Projekty');
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="products-index">
 
@@ -17,8 +18,9 @@ Pjax::begin();
 echo Html::beginForm(['/'], 'POST', ['data-pjax' => '', 'class' => 'form-inline', 'id'=>'set_filters', 'name'=>'set_filers']);
 $iSetMinSize = $aDimensions['iOneMinSize'];
 $iSetMaxSize = $aDimensions['iOneMaxSize'];
+//echo '<br>Dimensions: '. print_r($aFiltersData, true);
 //echo '<pre>'.print_r($_POST, true);
-echo  print_r($_SESSION, true);
+
 foreach ($aFilters as $aData) {
 
     echo '<div class="filter_question_row">';

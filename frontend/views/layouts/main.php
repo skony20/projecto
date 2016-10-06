@@ -64,9 +64,10 @@ AppAsset::register($this);
         <div class="cart">
         <div class="cart-name">Koszyk</div>
         <div class="cart-container">
-            1 sztuka<br>
-            2 sztuka<br>
-            3 sztuka<br>
+            <div class="cart-items">
+                <?php $this->render('/cart/AddCart'); ?>
+            </div>
+            <span class="remove-cart">Wyczyść koszyk</span>
         </div>
     </div>
         <?= Breadcrumbs::widget([
