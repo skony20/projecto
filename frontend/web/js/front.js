@@ -2,6 +2,12 @@
 $(document).on('ready pjax:success',
     function()
     {
+        $.ajax({
+            url: "../cart/add-cart",
+            success: function(data) {   
+                $('.cart-items').html(data);
+            }
+            }); 
         $('input[type=radio]').change(
             function()
             {

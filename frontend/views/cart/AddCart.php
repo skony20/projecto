@@ -1,9 +1,17 @@
 
 <?php
-$CartItemy = (isset($CartItems) ? $CartItems : isset($_SESSION['Cart']) ? $_SESSION['Cart'] :[] );
-foreach ($CartItemy as $CartItem)
+//echo print_r($CartItems, TRUE);
+if (isset ($CartItems))
 {
-    echo $CartItem['iPrjId'] . 'x' .$CartItem['iQty'] .'<br>'; 
+    foreach ($CartItems as $CartItem)
+    {
+        echo $CartItem['iPrjId'] . 'x' .$CartItem['iQty'] .'<br>'; 
+    }
 }
-?>
+ else 
+{
+     echo 'Brak produktów';
 
+}
+
+?>

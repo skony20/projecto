@@ -9,6 +9,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
+use frontend\widget\HelloWidget;
 
 
 AppAsset::register($this);
@@ -59,9 +60,10 @@ AppAsset::register($this);
     ]);
     NavBar::end();
     ?>
-    
+   
     <div class="container">
         <div class="cart">
+             <?= HelloWidget::widget(['message' => 'Dupa dupa dupa']) ?>
         <div class="cart-name">Koszyk</div>
         <div class="cart-container">
             <div class="cart-items">

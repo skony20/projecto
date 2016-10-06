@@ -67,13 +67,11 @@ class CartController extends Controller
         }
         
         $oSession['Cart'] =$aPrjInCart;
-        return $this->renderAjax('AddCart', ['CartItems'=>$aPrjInCart]);
+        return $this->renderAjax('AddCart',['CartItems'=>$aPrjInCart]);
+        
         
     }
-    public function actionInCart()
-    {  
-        return $this->render('InCart');
-    }
+
     public function actionResetCart()
     {
         $oSession = new Session();
