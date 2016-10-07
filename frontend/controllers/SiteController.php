@@ -80,7 +80,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-
+        $this->layout = 'firstsite';
         $model = new ProductsSearch();
         $oSession = new Session();
         $oSession['aDimensions'] = [];
@@ -529,6 +529,8 @@ class SiteController extends Controller
         $oSession = new Session();
         $oSession->remove($id);
     }
-    
 
 }
+    
+
+

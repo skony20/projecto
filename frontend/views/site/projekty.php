@@ -15,12 +15,9 @@ $this->params['breadcrumbs'][] = $this->title;
 $iSetMinSize = $aDimensions['iOneMinSize'];
 $iSetMaxSize = $aDimensions['iOneMaxSize'];
 
-$aCart = (isset($_SESSION['Cart']) ? $_SESSION['Cart'] : '');
-echo print_r($_SESSION, TRUE); 
 ?>
 
 <div class="full_site">
-
     <div class="top_menu filter_menu">
 
     <?php

@@ -7,6 +7,7 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use app\models\Products;
 
 use yii\web\Session;
 
@@ -22,7 +23,7 @@ class CartController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['add-cart', 'in-cart', 'reset-cart'],
+                        'actions' => ['add-cart', 'in-cart', 'reset-cart', 'index'],
                         'allow' => true,
                     ],
                 ],
@@ -76,5 +77,26 @@ class CartController extends Controller
     {
         $oSession = new Session();
         $oSession->remove('Cart');
+    }
+    public function actionIndex()
+    {
+        $this->layout = 'withoutcart';
+        $oSession = new Session();
+        $aInCart  = $oSession->get('Cart');
+        $oProducts = new Products();
+        $aPrjs = [];
+        if (count($aInCart) > 0 )
+        {
+            foreach ($aInCart as $aPrjInCart)
+            {
+                $aPrj = $oProducts->findOne($aPrjInCart['iPrjId']);
+                $aPrjs[$aPrjInCart['iPrjId']]['iQty'] = $aPrjInCart['iQty'];
+                $aPrjs[$aPrjInCart['iPrjId']]['prj'] = $aPrj;
+                $aPrjs[$aPrjInCart['iPrjId']]['desc'] = $aPrj->productsDescriptons;
+                $aPrjs[$aPrjInCart['iPrjId']]['img'] = $aPrj->productsImages;                
+            }
+
+        }
+        return $this->render('index',['aPrjs' => $aPrjs]);
     }
 }

@@ -2,12 +2,6 @@
 $(document).on('ready pjax:success',
     function()
     {
-        $.ajax({
-            url: "../cart/add-cart",
-            success: function(data) {   
-                $('.cart-items').html(data);
-            }
-            }); 
         $('input[type=radio]').change(
             function()
             {
@@ -85,6 +79,7 @@ $(document).on('ready pjax:success',
     
         {
             $('.cart-container').css('display', 'block');
+
         }
     )
     $('.cart').mouseout(function()
@@ -105,8 +100,8 @@ $(document).on('ready pjax:success',
                 $.ajax({
                     url: "../cart/add-cart?iPrjId="+iPrjId,
                     success: function(data) {   
-                        $('.cart-items').html(data);
-                        
+                        //$('.cart-items').html(data);
+                        $("#cart-items").load("/projecto/frontend/web/site/projekty #cart-items");
                     }
 
                     }); 
@@ -123,6 +118,7 @@ $(document).on('ready pjax:success',
                         
                     }
                     }); 
+                
             }
     );
     

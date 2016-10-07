@@ -60,21 +60,7 @@ AppAsset::register($this);
     ]);
     NavBar::end();
     ?>
-   <?php
-
-   ?>
     <div class="container">
-        <div class="cart" id="cart">
-             
-        <div class="cart-name">Koszyk</div>
-        <div class="cart-container">
-            <div class="cart-items" id="cart-items">
-                <?php $aSessionCart = Yii::$app->session->get('Cart'); ?>
-                <?= CartWidget::widget(['aSessionCart' => $aSessionCart]) ?>
-            </div>
-            
-        </div>
-    </div>
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
