@@ -36,6 +36,7 @@ class ProjektController extends Controller
                     ],
                 ],
             ],
+          
         ];
     }
 
@@ -47,7 +48,17 @@ class ProjektController extends Controller
         ]);
     }
 
-   
+    public function actionSlug($slug)
+     { 
+       $model = Products::find()->where(['symbol'=>$slug])->one();
+       if (!is_null($model)) {
+           return $this->render('view', [
+               'model' => $model,
+           ]);      
+       } else {
+         return $this->redirect('/projekty');
+       }
+     }
     protected function findModel($id)
     {
         if (($model = Products::findOne($id)) !== null) {

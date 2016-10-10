@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
 if (!$dataProvider->models)
 {
     
@@ -29,7 +30,7 @@ foreach ($dataProvider->models as $aProducts)
 <div class="prj_all">
     <div class="prj_title">
         <h2>
-            <?= Html::a('<strong>'.$aProducts->productsDescriptons->name .'</strong><br>'. $aProducts->productsDescriptons->name_model, Yii::getAlias("@web").'/products/'.$aProducts->id); ?>
+            <?= Html::a('<strong>'.$aProducts->productsDescriptons->name .'</strong><br>'. $aProducts->productsDescriptons->name_model, Yii::getAlias('@web').'/projekt/'.$aProducts->id, ['title' => Yii::t('yii', $aProducts->productsDescriptons->name),]);?>
        
         </h2>
     </div>

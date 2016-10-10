@@ -42,6 +42,7 @@ class Products extends \yii\db\ActiveRecord
         return 'products';
     }
 
+
     /**
      * @inheritdoc
      */
@@ -155,5 +156,6 @@ class Products extends \yii\db\ActiveRecord
    {
        return new ProductsQuery(get_called_class());
    }
+
 
 }
