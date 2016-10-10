@@ -22,7 +22,7 @@ $iSetMaxSize = $aDimensions['iOneMaxSize'];
 
     <?php
     
-    echo Html::beginForm(['site/projekty'], 'POST', ['id'=>'prj_set_filters', 'name'=>'prj_set_filers', 'class'=>'prj_set_filers']);
+    echo Html::beginForm(['/projekty'], 'POST', ['id'=>'prj_set_filters', 'name'=>'prj_set_filers', 'class'=>'prj_set_filers']);
     foreach ($aFilters as $aData) {
         echo '<div class="prj_filter_row">';
         echo '<div class="prj_filter_question_row">';

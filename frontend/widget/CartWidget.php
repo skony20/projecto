@@ -34,7 +34,7 @@ class CartWidget extends Widget
                 $sInCart .= '</tr>';
             }
             $sInCart .= '</table>';
-            $sInCart .= '<br>' .Html::a('Realizuj zamówienie', Yii::getAlias("@web").'/cart/index/') ;
+            $sInCart .= '<br>' .Html::a('Realizuj zamówienie', Yii::getAlias("@web").'/cart/') ;
         }
         else
         {

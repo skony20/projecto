@@ -1,0 +1,4 @@
+[09-Oct-2016 14:22:43 Europe/Warsaw] PHP Fatal error:  Class 'yii\base\Model' not found in /home/mariuszs/public_html/projecto/common/models/LoginForm.php on line 10
+[09-Oct-2016 14:22:45 Europe/Warsaw] PHP Fatal error:  Class 'yii\db\ActiveRecord' not found in /home/mariuszs/public_html/projecto/common/models/User.php on line 24
+[09-Oct-2016 14:43:05 Europe/Warsaw] PHP Fatal error:  Class 'yii\base\Model' not found in /home/mariuszs/public_html/projecto/common/models/LoginForm.php on line 10
+[09-Oct-2016 14:43:09 Europe/Warsaw] PHP Fatal error:  Class 'yii\db\ActiveRecord' not found in /home/mariuszs/public_html/projecto/common/models/User.php on line 24

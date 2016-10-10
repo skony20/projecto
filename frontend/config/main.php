@@ -1,11 +1,13 @@
 <?php
+
 $params = array_merge(
     require(__DIR__ . '/../../common/config/params.php'),
     require(__DIR__ . '/../../common/config/params-local.php'),
     require(__DIR__ . '/params.php'),
     require(__DIR__ . '/params-local.php')
 );
-
+use \yii\web\Request;
+$baseUrl = str_replace('/frontend/web', '', (new Request)->getBaseUrl()); 
 return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
@@ -14,6 +16,8 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
+			'class' => 'common\components\Request',
+			'web'=> '/frontend/web'
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -37,16 +41,14 @@ return [
             'errorAction' => 'site/error',
         ],
         'urlManager' => [
-            'class' => 'yii\web\UrlManager',
             // Disable index.php
             'showScriptName' => false,
             // Disable r= routes
             'enablePrettyUrl' => true,
             'rules' => array(
                     '<controller:\w+>/<id:\d+>' => '<controller>/view',
-                    '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                    '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-                    'projekt/<symbol>' => 'projekt/slug',
+					'<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+					'<controller:\w+>/<action:\w+>' => '<controller>/<action>',  
             ),
         ],
     ],

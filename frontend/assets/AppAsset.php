@@ -17,7 +17,7 @@ class AppAsset extends AssetBundle
         'css/prj-list.css',
     ];
     public $js = [
-        'js/front.js',
+        'frontend/web/js/front.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

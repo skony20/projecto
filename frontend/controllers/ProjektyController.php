@@ -32,15 +32,6 @@ class ProjektyController extends Controller
     public function behaviors()
     {
         return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'actions' => ['index'],
-                        'allow' => true,
-                    ],
-                ],
-            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
             ],
@@ -227,5 +218,30 @@ public function actionIndex()
 
 
 
+    }
+    
+    public function actionReset()
+    {
+        $aSession = new Session();
+        $aSession->remove('aDimensions');
+        $aSession->remove('BarChange');
+
+    }
+    
+    public function actionAddToSession($id)
+    {
+        $oSession = new Session();
+        $oSession->setTimeout(1440);
+        $oSession[$id] = Yii::$app->request->post();
+    }
+    public function actionBarChange()
+    {
+         $oSession = new Session();
+         $oSession['BarChange']=1;
+    }
+    public function actionRemoveSession($id)
+    {
+        $oSession = new Session();
+        $oSession->remove($id);
     }
 }

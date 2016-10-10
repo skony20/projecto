@@ -6,7 +6,7 @@ $(document).on('ready pjax:success',
             function()
             {
                 $.ajax({
-                        url: "site/reset"
+                        url: "projekty/reset"
                     }); 
                 $("#set_filters").submit();
             }
@@ -98,10 +98,10 @@ $(document).on('ready pjax:success',
             {
                 var iPrjId = $(this).attr('rel');
                 $.ajax({
-                    url: "../cart/add-cart?iPrjId="+iPrjId,
+                    url: "cart/add-cart?iPrjId="+iPrjId,
                     success: function(data) {   
                         //$('.cart-items').html(data);
-                        $("#cart-items").load("/projecto/frontend/web/site/projekty #cart-items");
+                        $("#cart-items").load("/projecto/projekty #cart-items");
                     }
 
                     }); 

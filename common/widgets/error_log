@@ -1,0 +1,2 @@
+[09-Oct-2016 14:22:47 Europe/Warsaw] PHP Fatal error:  Class 'yii\bootstrap\Widget' not found in /home/mariuszs/public_html/projecto/common/widgets/Alert.php on line 31
+[09-Oct-2016 14:43:11 Europe/Warsaw] PHP Fatal error:  Class 'yii\bootstrap\Widget' not found in /home/mariuszs/public_html/projecto/common/widgets/Alert.php on line 31

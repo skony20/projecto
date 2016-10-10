@@ -1,0 +1,8 @@
+[09-Oct-2016 14:22:24 Europe/Warsaw] PHP Fatal error:  Uncaught Error: Class 'Yii' not found in /home/mariuszs/public_html/projecto/common/config/bootstrap.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/mariuszs/public_html/projecto/common/config/bootstrap.php on line 2
+[09-Oct-2016 14:42:21 Europe/Warsaw] PHP Fatal error:  Uncaught Error: Class 'Yii' not found in /home/mariuszs/public_html/projecto/common/config/bootstrap.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/mariuszs/public_html/projecto/common/config/bootstrap.php on line 2
