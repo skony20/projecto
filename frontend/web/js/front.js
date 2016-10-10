@@ -40,7 +40,7 @@ $(document).on('ready pjax:success',
     $('.project_ready').click(
             function()
             {
-                window.location.href = "site/projekty";
+                window.location.href = "projekty";
             });
 
 
