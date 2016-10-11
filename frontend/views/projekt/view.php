@@ -24,11 +24,11 @@ $this->params['breadcrumbs'][] = $this->title;
             <a class="fancybox" rel="group" href="<?=$sPatch.'/'.$model->id.'/big/'.$model->productsImages[0]->name ?>"><img src="<?=$sPatch.'/'.$model->id.'/big/'.$model->productsImages[0]->name ?>"/></a>
         </div>
         <?php
-        for ($a=1; $a=count($model->productsImages)-1; $a++)
+        foreach ($model->productsImages as $aPrjImg)
         {   
         ?>
             <div class="project-image">
-                <a class="fancybox" rel="group" href="<?=$sPatch.'/'.$model->id.'/big/'.$model->productsImages[$a]->name?>"><img src="<?=$sPatch.'/'.$model->id.'/thumbs/'.$model->productsImages[$a]->name?>"/></a>
+                <a class="fancybox" rel="group" href="<?=$sPatch.'/'.$model->id.'/big/'.$aPrjImg->name?>"><img src="<?=$sPatch.'/'.$model->id.'/thumbs/'.$aPrjImg->name?>"/></a>
             </div>
         <?php
         }
