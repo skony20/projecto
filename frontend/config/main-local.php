@@ -13,6 +13,15 @@ $config = [
             'password' => 'pr0j3ct0',
             'charset' => 'utf8',
         ],
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'viewPath' => '@common/mail',
+            'transport' => [
+                'class' => 'Swift_MailTransport',
+            ],
+            'useFileTransport' => false,
+        ],
+ 
     ],
 ];
 
@@ -22,6 +31,7 @@ if (!YII_ENV_TEST) {
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
+        'allowedIPs' => ['*'],
     ];
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [

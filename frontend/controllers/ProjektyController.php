@@ -66,15 +66,13 @@ public function actionIndex()
     {
         
         $model = new ProductsSearch();
-        $oSession = new Session();
-        $aFiltersData = $oSession->get('aFiltersSession');
-        $aDimensions = $oSession->get('aDimensions');
+        $aFiltersData =  Yii::$app->session->get('aFiltersSession');
+        $aDimensions =  Yii::$app->session->get('aDimensions');
         $oProductsAttributes = new ProductsAttributes();
         $oProductsFilters = new ProductsFilters();
         $aPrdFilters = [];
         $aAttributes = [];
         $aPostData = [];
-        //echo 'Filter'.print_r($oSession->get('aDimensions') , TRUE).'<br>'; die();
         
         $oFiltersGroup = new FiltersGroup();
         $oFilters = new Filters();
@@ -99,7 +97,7 @@ public function actionIndex()
                     ]
                 ]
             ]);
-        $bBarChange = $oSession->get('BarChange');
+        $bBarChange =  Yii::$app->session->get('BarChange');
         if(!isset($aDimensions))
         {
             $iMinSize = floor($oProductsAttributes->find()->onCondition(['attributes_id'=>4])->min('(CAST(value AS DECIMAL (5,2)))'));
@@ -163,8 +161,8 @@ public function actionIndex()
                     $aFiltersData[] .= $Filters;
                 }
             }
-            $oSession['aFiltersSession'] = $aFiltersData;
-            $oSession['aDimensions'] = $aDimensions;
+            Yii::$app->session['aFiltersSession'] = $aFiltersData;
+            Yii::$app->session['aDimensions'] = $aDimensions;
             
         }
         /*Odpowiedzi na pytania*/
@@ -230,18 +228,15 @@ public function actionIndex()
     
     public function actionAddToSession($id)
     {
-        $oSession = new Session();
-        $oSession->setTimeout(1440);
-        $oSession[$id] = Yii::$app->request->post();
+        Yii::$app->session->setTimeout(1440);
+        Yii::$app->session[$id] = Yii::$app->request->post();
     }
     public function actionBarChange()
     {
-         $oSession = new Session();
-         $oSession['BarChange']=1;
+        Yii::$app->session['BarChange']=1;
     }
     public function actionRemoveSession($id)
     {
-        $oSession = new Session();
-        $oSession->remove($id);
+        Yii::$app->session->remove($id);
     }
 }

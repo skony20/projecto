@@ -14,7 +14,6 @@ $this->title = Yii::t('app', 'Lista projektów');
 $this->params['breadcrumbs'][] = $this->title;
 $iSetMinSize = $aDimensions['iOneMinSize'];
 $iSetMaxSize = $aDimensions['iOneMaxSize'];
-
 ?>
 
 <div class="full_site">

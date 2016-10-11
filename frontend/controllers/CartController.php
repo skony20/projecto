@@ -16,6 +16,7 @@ class CartController extends Controller
     /**
      * @inheritdoc
      */
+    //public $layout = 'withoutcart';
     public function behaviors()
     {
         return [
@@ -24,12 +25,33 @@ class CartController extends Controller
                 'rules' => [
                     [
                         'actions' => ['add-cart', 'in-cart', 'reset-cart', 'index'],
+                        'only' => ['logout', 'signup'],
                         'allow' => true,
+                    ],
+                    [
+                        'actions' => ['signup'],
+                        'allow' => true,
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'actions' => ['logout'],
+                        'allow' => true,
+                        'roles' => ['@'],
                     ],
                 ],
             ],
-            'verbs' => [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['logout', 'signup'],
+                'rules' => [
+                    
+                ],
+            ],
+           'verbs' => [
                 'class' => VerbFilter::className(),
+                'actions' => [
+                    'logout' => ['post'],
+                ],
             ],
         ];
     }
@@ -51,8 +73,7 @@ class CartController extends Controller
     }
     public function actionAddCart($iPrjId)
     {   
-        $oSession = new Session();
-        $aPrjInCart = ($oSession->get('Cart') ? $oSession->get('Cart'): []);
+        $aPrjInCart = ( Yii::$app->session->get('Cart') ?  Yii::$app->session->get('Cart'): []);
         
         $iQty =1;
         $iCheckCart = in_array($iPrjId, array_column($aPrjInCart, 'iPrjId'));
@@ -67,7 +88,7 @@ class CartController extends Controller
              array_push($aPrjInCart, array('iPrjId'=>$iPrjId, 'iQty'=>$iQty));
         }
         
-        $oSession['Cart'] =$aPrjInCart;
+        Yii::$app->session['Cart'] =$aPrjInCart;
         return $this->renderAjax('AddCart',['CartItems'=>$aPrjInCart]);
         
         
@@ -75,14 +96,13 @@ class CartController extends Controller
 
     public function actionResetCart()
     {
-        $oSession = new Session();
-        $oSession->remove('Cart');
+         Yii::$app->session->remove('Cart');
     }
     public function actionIndex()
     {
-        $this->layout = 'withoutcart';
-        $oSession = new Session();
-        $aInCart  = $oSession->get('Cart');
+        
+        
+        $aInCart  = Yii::$app->session->get('Cart');
         $oProducts = new Products();
         $aPrjs = [];
         if (count($aInCart) > 0 )

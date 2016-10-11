@@ -3,6 +3,7 @@ namespace frontend\models;
 
 use yii\base\Model;
 use common\models\User;
+use Yii;
 
 /**
  * Signup form
@@ -54,5 +55,28 @@ class SignupForm extends Model
         $user->generateAuthKey();
         
         return $user->save() ? $user : null;
+    }
+     public function sendEmail()
+    {
+        /* @var $user User */
+        $user = User::findOne([
+            'email' => $this->email,
+            
+        ]);
+        //echo '<pre>'.print_r($user, TRUE); die();
+        if (!$user) {
+            return false;
+        }
+        
+        return Yii::$app
+            ->mailer
+            ->compose(
+                ['html' => 'singUp-html', 'text' => 'singUp-text'],
+                ['user' => $user]
+            )
+            ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
+            ->setTo($user->email)
+            ->setSubject('Witaj na stronie:  ' . Yii::$app->name)
+            ->send();
     }
 }

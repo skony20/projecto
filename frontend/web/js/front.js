@@ -6,7 +6,7 @@ $(document).on('ready pjax:success',
             function()
             {
                 $.ajax({
-                        url: "projekty/reset"
+                        url: "site/reset"
                     }); 
                 $("#set_filters").submit();
             }

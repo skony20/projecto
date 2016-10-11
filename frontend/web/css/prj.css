@@ -1,0 +1,25 @@
+
+/* 
+    Created on : 2016-10-11, 16:04:37
+    Author     : Mariusz Skonieczny, mariuszskonieczny@htomail.com
+*/
+
+.prj-images
+{
+    display:inline-block;
+    padding: 0 10px;
+    max-width:50%;
+}
+.prj-image
+{
+    display:inline-block;
+    padding: 0 10px;
+}
+
+.prj-first-image
+{
+    max-width: 100%;
+    display:block;
+}
+
+

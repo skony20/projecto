@@ -82,9 +82,8 @@ class SiteController extends Controller
     {
         $this->layout = 'firstsite';
         $model = new ProductsSearch();
-        $oSession = new Session();
-        $oSession['aDimensions'] = [];
-        $oSession['aFiltersSession'] = [];
+        Yii::$app->session['aDimensions'] = [];
+        Yii::$app->session['aFiltersSession'] = [];
         $oFiltersGroup = new FiltersGroup();
         $oFilters = new Filters();
         $aFiltersData = [];
@@ -114,7 +113,7 @@ class SiteController extends Controller
 //        $aPostData[1] =1;
         
         //echo '<pre>'.print_r($aPostData , true); die();
-        $bBarChange = $oSession->get('BarChange');
+        $bBarChange = Yii::$app->session->get('BarChange');
         if (isset($aPostData['bar_size']) && $bBarChange)
         {
             
@@ -201,8 +200,8 @@ class SiteController extends Controller
             $aFilters = $oFilters::find()->where(['filters_group_id' => $_aFiltersGroup->id, 'is_active'=> 1])->all();
             $aData[$_aFiltersGroup->id] = ['question'=>$_aFiltersGroup, 'answer' => $aFilters];
         }
-        $oSession['aFiltersSession'] = $aFiltersData;
-        $oSession['aDimensions'] = $aDimensions;
+        Yii::$app->session['aFiltersSession'] = $aFiltersData;
+        Yii::$app->session['aDimensions'] = $aDimensions;
         //echo '<pre>'. print_r($aFiltersData, TRUE); die();
         
         return $this->render('index', ['sProjectCount' => $sProjectCount, 'aFilters'=>$aData, 'aFiltersData' => $aFiltersData, 'aDimensions'=> $aDimensions]);
@@ -285,6 +284,7 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
+
         return $this->render('about');
     }
 
@@ -298,6 +298,7 @@ class SiteController extends Controller
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
+                $model->sendEmail();
                 if (Yii::$app->getUser()->login($user)) {
                     return $this->goHome();
                 }
@@ -359,19 +360,18 @@ class SiteController extends Controller
     }
     public function actionAddToSession($id)
     {
-        $oSession = new Session();
-        $oSession->setTimeout(1440);
-        $oSession[$id] = Yii::$app->request->post();
+        
+        Yii::$app->session->setTimeout(1440);
+        Yii::$app->session[$id] = Yii::$app->request->post();
     }
     public function actionBarChange()
     {
-         $oSession = new Session();
-         $oSession['BarChange']=1;
+         Yii::$app->session['BarChange']=1;
     }
     public function actionRemoveSession($id)
     {
-        $oSession = new Session();
-        $oSession->remove($id);
+       
+        Yii::$app->session->remove($id);
     }
 
 }
