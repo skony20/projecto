@@ -19,6 +19,7 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
         'frontend/web/js/front.js',
+        'frontend/web/js/zoom-gallery.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

@@ -2,6 +2,7 @@
 $(document).on('ready pjax:success',
     function()
     {
+        
         $('input[type=radio]').change(
             function()
             {
@@ -107,7 +108,21 @@ $(document).on('ready pjax:success',
                     }); 
             }
     );
-    
+    /*Dodawanie produktu projekt*/
+    $('.prj-add-button').click(
+            function()
+            {
+                var iPrjId = $(this).attr('rel');
+                $.ajax({
+                    url: "/projecto/cart/add-cart?iPrjId="+iPrjId,
+                    success: function(data) {   
+                        //$('.cart-items').html(data);
+                        $("#cart-items").load("/projecto/projekt/"+iPrjId +" #cart-items");
+                    }
+
+                    }); 
+            }
+    );
     $('.remove-cart').click(
             function()
             {
@@ -122,6 +137,15 @@ $(document).on('ready pjax:success',
             }
     );
     
-    
+    /*TABS*/
+    $('ul.tabs li').click(function(){
+		var tab_id = $(this).attr('data-tab');
+
+		$('ul.tabs li').removeClass('current');
+		$('.tab-content').removeClass('current');
+
+		$(this).addClass('current');
+		$("#"+tab_id).addClass('current');
+	})
     
     });

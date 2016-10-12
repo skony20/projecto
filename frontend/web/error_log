@@ -1,0 +1,5 @@
+[05-Oct-2016 15:00:44 Europe/Warsaw] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 20480 bytes) in /home/mariuszs/public_html/projecto/vendor/yiisoft/yii2/db/Command.php on line 908
+[05-Oct-2016 15:01:04 Europe/Warsaw] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 20480 bytes) in /home/mariuszs/public_html/projecto/vendor/yiisoft/yii2/db/Command.php on line 908
+[05-Oct-2016 15:01:06 Europe/Warsaw] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 20480 bytes) in /home/mariuszs/public_html/projecto/vendor/yiisoft/yii2/db/Command.php on line 908
+[10-Oct-2016 14:50:43 Europe/Warsaw] PHP Parse error:  syntax error, unexpected ')', expecting ']' in /home/mariuszs/public_html/projecto/frontend/config/main.php on line 45
+[11-Oct-2016 16:25:55 Europe/Warsaw] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 111165440 bytes) in /home/mariuszs/public_html/projecto/frontend/views/projekt/view.php on line 31
