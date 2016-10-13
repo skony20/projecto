@@ -12,12 +12,12 @@ $sPrjName = $model->productsDescriptons->name . ($model->productsDescriptons->na
 $this->title = 'Projekt: '.$sPrjName;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Projekty'), 'url' => ['/projekty']];
 $this->params['breadcrumbs'][] = $this->title;
-$url = Yii::$app->request->url;
+$url = Yii::$app->request->absoluteUrl;
 ?>
 <div class="products-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <div class="prj-share">Podziel się: <?= Html::a('F', $url)?> <?= Html::a('G+', $url)?> <?= Html::a('LI', $url)?> <?= Html::a('F', $url)?></div>
+    <div class="prj-share">Podziel się: <?= Html::a('F', 'https://www.facebook.com/sharer/sharer.php?u='.$url)?><?= Html::a('T', 'https://twitter.com/home?status='.$url)?><?= Html::a('G+','https://plus.google.com/share?url='.$url)?> <?= Html::a('LI', 'https://www.linkedin.com/shareArticle?mini=true&url='.$url.'&title='.$this->title.'&summary=&source=projekttop.pl')?></div>
     
     <div class="prj-img-price">
         <div class="prj-images">
