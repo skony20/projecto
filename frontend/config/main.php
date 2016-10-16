@@ -11,6 +11,7 @@ $baseUrl = str_replace('/frontend/web', '', (new Request)->getBaseUrl());
 return [
     'id' => 'app-frontend',
     'name'=>'Projekttop.pl',
+    'language' => 'pl-PL',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',

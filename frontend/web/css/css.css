@@ -99,3 +99,9 @@ html {
 }
 
 
+/*Rejestracja*/
+.p50p
+{
+    display: inline-block;
+    width:calc(50% - 3px);
+}

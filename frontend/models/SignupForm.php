@@ -13,6 +13,8 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
+    public $delivery_name;
+    public $invoice_name;
 
 
     /**
@@ -34,6 +36,9 @@ class SignupForm extends Model
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
+            ['delivery_name', 'required'],
+            ['delivery_name', 'string', 'min' => 2, 'max' => 255],
+            ['invoice_name', 'string', 'min' => 2, 'max' => 255],
         ];
     }
 
@@ -51,6 +56,8 @@ class SignupForm extends Model
         $user = new User();
         $user->username = $this->username;
         $user->email = $this->email;
+        $user->delivery_name = $this->delivery_name;
+        $user->invoice_name = $this->invoice_name;
         $user->setPassword($this->password);
         $user->generateAuthKey();
         

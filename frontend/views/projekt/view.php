@@ -61,7 +61,6 @@ $url = Yii::$app->request->absoluteUrl;
     
 </div>
     <div class="prj-desc">
-        <div class="container">
 
             <ul class="tabs">
                 <li class="tab-link current" data-tab="opis">Opis</li>
@@ -71,7 +70,7 @@ $url = Yii::$app->request->absoluteUrl;
             </ul>
 
             <div id="opis" class="tab-content current">
-                <?= $model->productsDescriptons->html_description?>
+                <?= $model->productsDescriptons->html_description ?>
             </div>
             <div id="dane" class="tab-content">
                 <table class="prj-tech-data">
@@ -96,5 +95,4 @@ $url = Yii::$app->request->absoluteUrl;
                 Napisz opinie.
             </div>
 
-    </div>
 </div>

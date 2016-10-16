@@ -105,15 +105,22 @@ class CartController extends Controller
         $aInCart  = Yii::$app->session->get('Cart');
         $oProducts = new Products();
         $aPrjs = [];
+        $iTotal = 0;
+        $iTotalSource = 0;
         if (count($aInCart) > 0 )
         {
             foreach ($aInCart as $aPrjInCart)
             {
                 $aPrj = $oProducts->findOne($aPrjInCart['iPrjId']);
+                $iTotal += $aPrjInCart['iQty'] * $aPrj->price_brutto;
+                $iTotalSource += $aPrjInCart['iQty'] * $aPrj->price_brutto_source;
                 $aPrjs[$aPrjInCart['iPrjId']]['iQty'] = $aPrjInCart['iQty'];
                 $aPrjs[$aPrjInCart['iPrjId']]['prj'] = $aPrj;
                 $aPrjs[$aPrjInCart['iPrjId']]['desc'] = $aPrj->productsDescriptons;
-                $aPrjs[$aPrjInCart['iPrjId']]['img'] = $aPrj->productsImages;                
+                $aPrjs[$aPrjInCart['iPrjId']]['img'] = $aPrj->productsImages;
+                $aPrjs[$aPrjInCart['iPrjId']]['iTotal'] = $iTotal;
+                $aPrjs[$aPrjInCart['iPrjId']]['iTotalSource'] = $iTotalSource;
+                
             }
 
         }

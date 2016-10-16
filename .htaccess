@@ -2,12 +2,12 @@ Options +FollowSymlinks
 RewriteEngine On
 
 # deal with admin first
-RewriteCond %{REQUEST_URI} ^/projecto/(admin)
-RewriteRule ^admin/assets/(.*)$ backend/web/assets/$1 [L]
-RewriteRule ^admin/css/(.*)$ backend/web/css/$1 [L]
+RewriteCond %{REQUEST_URI} ^/projecto/(ad3w)
+RewriteRule ^ad3w/assets/(.*)$ backend/web/assets/$1 [L]
+RewriteRule ^ad3w/css/(.*)$ backend/web/css/$1 [L]
 
 RewriteCond %{REQUEST_URI} !^/projecto/backend/web/(assets|css|js)/ 
-RewriteCond %{REQUEST_URI} ^/projecto/(admin) 
+RewriteCond %{REQUEST_URI} ^/projecto/(ad3w) 
 RewriteRule ^.*$ backend/web/index.php [L]
 
 

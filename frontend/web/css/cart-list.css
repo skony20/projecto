@@ -1,0 +1,28 @@
+
+/* 
+    Created on : Oct 14, 2016, 10:54:47 PM
+    Author     : MariuszS
+*/
+
+.cart-list-row
+{
+    display: block;
+}
+.cart-list1, .cart-list2, .cart-list3, .cart-list4, .cart-list5
+{
+     display: inline-block;
+     text-align: center
+}
+.cart-list1, .cart-list2
+{
+    width: 100px;
+    
+}
+.cart-list3, .cart-list5
+{
+    width: 240px;
+}
+.cart-list4
+{
+    width: 120px;
+}
