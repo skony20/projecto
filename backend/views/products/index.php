@@ -85,8 +85,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'price_brutto_source',
                 'value'=> function ($model)
                 {
-                    $formatter = new \yii\i18n\Formatter;
-                    return $formatter->asCurrency($model->price_brutto_source, 'zł');
+                    return $model->price_brutto_source.' zł';
                 }
             ],
             //'price_brutto',

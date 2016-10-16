@@ -50,7 +50,7 @@ h1
     padding: 0 10px;
 }
 
-.prj-first-image
+.prj-first-image, .prj-first-image img 
 {
     max-width: 100%;
     display:block;
