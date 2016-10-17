@@ -20,10 +20,12 @@ use yii\bootstrap\NavBar;
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
+        $menuItems[] = ['label' => 'Moje konto', 'url' => ['/user/account']];
+        $menuItems[] = ['label' => 'Ulubione projekty', 'url' => ['/user/favorites']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+                'Logout (' . Yii::$app->user->identity->delivery_name . ')',
                 ['class' => 'btn btn-link']
             )
             . Html::endForm()

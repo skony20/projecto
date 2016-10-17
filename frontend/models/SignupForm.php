@@ -46,7 +46,7 @@ class SignupForm extends Model
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Użytkownik z tym adresm email już istnieje.'],
+            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Użytkownik z tym adresem email już istnieje.'],
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
@@ -109,7 +109,19 @@ class SignupForm extends Model
         $user->email = $this->email;
         $user->delivery_name = $this->delivery_name;
         $user->delivery_lastname = $this->delivery_lastname;
+        $user->delivery_street_local = $this->delivery_street_local;
+        $user->delivery_zip = $this->delivery_zip;
+        $user->delivery_city = $this->delivery_city;
+        $user->delivery_country = $this->delivery_country;
+        $user->phone = $this->phone;
+        $user->invoice_nip = $this->invoice_nip;
+        $user->invoice_lastname = $this->invoice_lastname;
+        $user->invoice_firm_name = $this->invoice_firm_name;
+        $user->invoice_street_local = $this->invoice_street_local;
+        $user->invoice_zip = $this->invoice_zip;
+        $user->invoice_city = $this->invoice_city;
         $user->invoice_name = $this->invoice_name;
+        $user->invoice_country = $this->invoice_country;
         $user->setPassword($this->password);
         $user->generateAuthKey();
         
