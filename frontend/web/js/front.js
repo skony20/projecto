@@ -146,6 +146,14 @@ $(document).on('ready pjax:success',
 
 		$(this).addClass('current');
 		$("#"+tab_id).addClass('current');
-	})
-    
+	});
+
+    /*Pokaż dane do faktury*/
+    $('.want-invoice').click(function()
+        {
+           $('.invoice').toggle();
+           $('.invoice-caption').toggle();
+           
+        }
+    );
     });

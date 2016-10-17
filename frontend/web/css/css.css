@@ -104,4 +104,39 @@ html {
 {
     display: inline-block;
     width:calc(50% - 3px);
+    vertical-align: top;
+}
+
+.invoice
+{
+    display: none;
+    border-left:2px solid #E9EEF2;
+}
+.want-invoice
+{
+    cursor: pointer;
+}
+.invoice, .delivery
+{
+    padding:10px 30px; ;
+}
+.registry-caption
+{
+    display: inline-block;
+    width:calc(50% - 3px);
+    padding-left: 50px;
+    
+}
+.caption
+{
+    width:100%;
+    background-color: #F4F9FC;
+    height: 50px;
+    font-size: 18px;
+    line-height: 50px;
+    
+}
+.invoice-caption
+{
+    display: none;
 }
