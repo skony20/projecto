@@ -43,14 +43,14 @@ class Filters extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'name' => Yii::t('app', 'Odpowiedź'),
-            //'language_id' => Yii::t('app', 'Język'),
-            'is_active' => Yii::t('app', 'Aktywny'),
-            'description' => Yii::t('app', 'Opis'),
-            'sort_order' => Yii::t('app', 'Kolejność'),
-            'filters_group_id' => Yii::t('app', 'Pytanie'),
-            'nicename_link' => Yii::t('app', 'Nicename - generowane automatycznie'),
+            'id' =>'ID',
+            'name' =>'Odpowiedź',
+            //'language_id' =>'Język',
+            'is_active' =>'Aktywny',
+            'description' =>'Opis',
+            'sort_order' =>'Kolejność',
+            'filters_group_id' =>'Pytanie',
+            'nicename_link' =>'Nicename - generowane automatycznie',
         ];
     }
 

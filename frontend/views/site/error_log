@@ -1,8 +1,0 @@
-[09-Oct-2016 14:24:11 Europe/Warsaw] PHP Fatal error:  Uncaught Error: Class 'Yii' not found in /home/mariuszs/public_html/projecto/frontend/views/site/index.php:10
-Stack trace:
-#0 {main}
-  thrown in /home/mariuszs/public_html/projecto/frontend/views/site/index.php on line 10
-[09-Oct-2016 14:46:06 Europe/Warsaw] PHP Fatal error:  Uncaught Error: Class 'Yii' not found in /home/mariuszs/public_html/projecto/frontend/views/site/index.php:10
-Stack trace:
-#0 {main}
-  thrown in /home/mariuszs/public_html/projecto/frontend/views/site/index.php on line 10

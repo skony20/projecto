@@ -45,11 +45,11 @@ class Vats extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'is_active' => Yii::t('app', 'Is Active'),
-            'is_default' => Yii::t('app', 'Is Default'),
-            'name' => Yii::t('app', 'Name'),
-            'value' => Yii::t('app', 'Value'),
+            'id' => 'ID',
+            'is_active' => 'Is Active',
+            'is_default' => 'Is Default',
+            'name' => 'Name',
+            'value' => 'Value',
         ];
     }
 

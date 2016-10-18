@@ -37,21 +37,15 @@ class Account extends Model
     public function rules()
     {
         return [
-            ['username', 'trim'],
-            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Taki użytkownik już istnieje.'],
-            ['username', 'string', 'min' => 2, 'max' => 255],
-
-            ['email', 'trim'],
-            ['email', 'email'],
-            ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Użytkownik z tym adresem email już istnieje.'],
 
             ['password', 'string', 'min' => 6],
             ['phone', 'integer'],
+            ['invoice_nip', 'integer'],
             ['delivery_name', 'string', 'min' => 2, 'max' => 255],
             ['delivery_lastname', 'string', 'min' => 2, 'max' => 255],
             ['delivery_street_local', 'string', 'min' => 2, 'max' => 255],
-            ['delivery_zip', 'string', 'min' => 2, 'max' => 255],
+            ['delivery_zip', 'string', 'min' => 2, 'max' => 6],
+            ['delivery_zip', 'match', 'pattern' => '/[0-9]{2}[-][0-9]{3}/'],
             ['delivery_city', 'string', 'min' => 2, 'max' => 255],
             ['delivery_country', 'string', 'min' => 2, 'max' => 255],
             ['invoice_nip', 'string', 'min' => 2, 'max' => 255],
@@ -62,28 +56,31 @@ class Account extends Model
             ['invoice_city', 'string', 'min' => 2, 'max' => 255],
             ['invoice_name', 'string', 'min' => 2, 'max' => 255],
             ['invoice_country', 'string', 'min' => 2, 'max' => 255],
+            [['delivery_name', 'delivery_lastname', 'delivery_street_local', 'delivery_zip', 'delivery_city', 'delivery_country', 'phone'], 'required'],
             
         ];
     }
     public function attributeLabels()
     {
         return [
-            'email' => Yii::t('app', 'Adres email'),
-            'phone' => Yii::t('app', 'Telefon'),
-            'delivery_name' => Yii::t('app', 'Imię'),
-            'delivery_lastname' => Yii::t('app', 'Nazwisko'),
-            'delivery_street_local' => Yii::t('app', 'Adres'),
-            'delivery_zip' => Yii::t('app', 'Kod pocztowy'),
-            'delivery_city' => Yii::t('app', 'Miasto'),
-            'delivery_country' => Yii::t('app', 'Państwo'),
-            'invoice_name' => Yii::t('app', 'Imię'),
-            'invoice_lastname' => Yii::t('app', 'Nazwisko'),
-            'invoice_firm_name' => Yii::t('app', 'Nazwa firmy'),
-            'invoice_street_local' => Yii::t('app', 'Adres'),
-            'invoice_zip' => Yii::t('app', 'Kod pocztowy'),
-            'invoice_city' => Yii::t('app', 'Miasto'),
-            'invoice_country' => Yii::t('app', 'Państwo'),
-            'invoice_nip' => Yii::t('app', 'Numer NIP'),
+            'username' =>'Nazwa użytkownika',
+            'password' =>'Hasło',
+            'email' =>'Adres email',
+            'phone' =>'Telefon',
+            'delivery_name' =>'Imię',
+            'delivery_lastname' =>'Nazwisko',
+            'delivery_street_local' =>'Adres',
+            'delivery_zip' =>'Kod pocztowy',
+            'delivery_city' =>'Miasto',
+            'delivery_country' =>'Państwo',
+            'invoice_name' =>'Imię',
+            'invoice_lastname' =>'Nazwisko',
+            'invoice_firm_name' =>'Nazwa firmy',
+            'invoice_street_local' =>'Adres',
+            'invoice_zip' =>'Kod pocztowy',
+            'invoice_city' =>'Miasto',
+            'invoice_country' =>'Państwo',
+            'invoice_nip' =>'Numer NIP',
             
         ];
 
@@ -105,30 +102,28 @@ class Account extends Model
         //echo '<pre>'. print_r($this->password, TRUE);die();
         $model->setPassword($this->password);
         
-        return $model->save();
+        $model->save();
     }
      public function changeData()
     {
-        $user = new User();
-        $user->username = $this->username;
-        $user->email = $this->email;
-        $user->delivery_name = $this->delivery_name;
-        $user->delivery_lastname = $this->delivery_lastname;
-        $user->delivery_street_local = $this->delivery_street_local;
-        $user->delivery_zip = $this->delivery_zip;
-        $user->delivery_city = $this->delivery_city;
-        $user->delivery_country = $this->delivery_country;
-        $user->phone = $this->phone;
-        $user->invoice_nip = $this->invoice_nip;
-        $user->invoice_lastname = $this->invoice_lastname;
-        $user->invoice_firm_name = $this->invoice_firm_name;
-        $user->invoice_street_local = $this->invoice_street_local;
-        $user->invoice_zip = $this->invoice_zip;
-        $user->invoice_city = $this->invoice_city;
-        $user->invoice_name = $this->invoice_name;
-        $user->invoice_country = $this->invoice_country;
-        $user->setPassword($this->password);
-        $user->generateAuthKey();
+        $oUser = new User();
+        $model = $oUser->findIdentity(Yii::$app->user->identity->id);
+        //echo '<pre>'. print_r($this->delivery_name, TRUE); die();
+        $model->delivery_name = $this->delivery_name;
+        $model->delivery_lastname = $this->delivery_lastname;
+        $model->delivery_street_local = $this->delivery_street_local;
+        $model->delivery_zip = $this->delivery_zip;
+        $model->delivery_city = $this->delivery_city;
+        $model->delivery_country = $this->delivery_country;
+        $model->invoice_name = $this->invoice_name;
+        $model->invoice_lastname = $this->invoice_lastname;
+        $model->invoice_firm_name = $this->invoice_firm_name;
+        $model->invoice_street_local = $this->invoice_street_local;
+        $model->invoice_zip = $this->invoice_zip;
+        $model->invoice_city = $this->invoice_city;
+        $model->invoice_country = $this->invoice_country;
+        $model->invoice_nip = $this->invoice_nip;
+        $model->save();
     }
     
 }

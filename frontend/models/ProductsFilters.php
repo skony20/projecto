@@ -44,9 +44,9 @@ class ProductsFilters extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'products_id' => Yii::t('app', 'Products ID'),
-            'filters_id' => Yii::t('app', 'Filters ID'),
+            'id' => 'ID',
+            'products_id' => 'Products ID',
+            'filters_id' => 'Filters ID',
         ];
     }
 

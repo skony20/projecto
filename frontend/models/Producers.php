@@ -48,12 +48,12 @@ class Producers extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'name' => Yii::t('app', 'Name'),
-            'languages_id' => Yii::t('app', 'Languages ID'),
-            'logo' => Yii::t('app', 'Logo'),
-            'nicename' => Yii::t('app', 'Nicename'),
-            'meta_decription' => Yii::t('app', 'Meta Decription'),
+            'id' => 'ID',
+            'name' => 'Name',
+            'languages_id' => 'Languages ID',
+            'logo' => 'Logo',
+            'nicename' => 'Nicename',
+            'meta_decription' => 'Meta Decription',
         ];
     }
 

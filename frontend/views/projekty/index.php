@@ -10,7 +10,7 @@ use yii\web\View;
 /* @var $searchModel app\models\ProductsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Lista projektów');
+$this->title = 'Lista projektów';
 $this->params['breadcrumbs'][] = $this->title;
 $iSetMinSize = $aDimensions['iOneMinSize'];
 $iSetMaxSize = $aDimensions['iOneMaxSize'];
@@ -76,7 +76,6 @@ $iSetMaxSize = $aDimensions['iOneMaxSize'];
 
     </div>
     <div class="another prj-items">
-            <?= $dataProvider->totalCount ?>
             <?= $this->render('products', ['dataProvider' => $dataProvider]) ?>
 
     </div>

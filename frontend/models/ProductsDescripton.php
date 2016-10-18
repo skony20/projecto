@@ -58,18 +58,18 @@ class ProductsDescripton extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'products_id' => Yii::t('app', 'Products ID'),
-            'languages_id' => Yii::t('app', 'Languages ID'),
-            'nicename_link' => Yii::t('app', 'Nicename Link'),
-            'name' => Yii::t('app', 'Nazwa'),
-            'name_model' => Yii::t('app', 'Nazwa pogrubiona'),
-            'name_subname' => Yii::t('app', 'Nazwa dodatkowa'),
-            'html_description' => Yii::t('app', 'Opis'),
-            'html_description_short' => Yii::t('app', 'Krótki opis'),
-            'keywords' => Yii::t('app', 'Słowa kluczowe'),
-            'meta_title' => Yii::t('app', 'Meta Title'),
-            'meta_description' => Yii::t('app', 'Meta Description'),
-            'meta_keywords' => Yii::t('app', 'Meta Keywords'),
+            'products_id' => 'Products ID',
+            'languages_id' => 'Languages ID',
+            'nicename_link' => 'Nicename Link',
+            'name' => 'Nazwa',
+            'name_model' => 'Nazwa pogrubiona',
+            'name_subname' => 'Nazwa dodatkowa',
+            'html_description' => 'Opis',
+            'html_description_short' => 'Krótki opis',
+            'keywords' => 'Słowa kluczowe',
+            'meta_title' => 'Meta Title',
+            'meta_description' => 'Meta Description',
+            'meta_keywords' => 'Meta Keywords',
         ];
     }
 

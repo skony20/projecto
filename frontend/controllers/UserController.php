@@ -53,25 +53,28 @@ class UserController extends Controller
             ],
         ];
     }
-    public function actionAccount($action='')
+    public function actionAccount()
     {   
         $oAccount = new Account();
         $oUser = new User(); 
         $aUser = $oUser->findIdentity(Yii::$app->user->identity->id);
-        switch ($action)
+        if (isset(Yii::$app->request->post('Account')['password']) && Yii::$app->request->post('Account')['password'] != '' && $oUser->validate())
         {
-            case 'changepassword':
-                $oAccount->load(Yii::$app->request->post());
-                $oAccount->changePassword();
-                //echo '<pre>777'. print_r(Yii::$app->request->post(), TRUE);die();
-                return $this->render('account', ['aUser'=>$aUser, 'model'=>$oAccount]);
-            default:
-                
-                return $this->render('account', ['aUser'=>$aUser, 'model'=>$oAccount]);
+            $oAccount->load(Yii::$app->request->post());
+            $oAccount->changePassword();  
+            return $this->render('account');
         }
-        
-        
-        
+        else if (Yii::$app->request->post() && $oUser->validate())
+        {
+            $oAccount->load(Yii::$app->request->post());
+            $oAccount->changeData();
+            return $this->redirect('account');
+        }
+        else
+        {
+            return $this->render('account', ['aUser'=>$aUser, 'model'=>$oAccount]);
+        }
+       
     }
     
     public function actionFavorites()

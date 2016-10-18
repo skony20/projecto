@@ -45,11 +45,11 @@ class Attributes extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'languages_id' => Yii::t('app', 'Languages ID'),
-            'name' => Yii::t('app', 'Nazwa'),
-            'description' => Yii::t('app', 'Opis - można opuścić'),
-            'sort_order' => Yii::t('app', 'Kolejność'),
+            'id' => 'ID',
+            'languages_id' => 'Languages ID',
+            'name' => 'Nazwa',
+            'description' => 'Opis - można opuścić',
+            'sort_order' => 'Kolejność',
         ];
     }
 

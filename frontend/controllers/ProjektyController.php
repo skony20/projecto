@@ -66,6 +66,7 @@ public function actionIndex()
     {
         
         $model = new ProductsSearch();
+        $aFiltersData = [];
         $aFiltersData =  Yii::$app->session->get('aFiltersSession');
         $aDimensions =  Yii::$app->session->get('aDimensions');
         $oProductsAttributes = new ProductsAttributes();

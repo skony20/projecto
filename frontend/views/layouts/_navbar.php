@@ -12,13 +12,14 @@ use yii\bootstrap\NavBar;
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
+        ['label' => 'Home', 'url' => ['/']],
+        ['label' => 'Wszystkie projekty', 'url' => ['/projekty']],
+        ['label' => 'About', 'url' => ['/about']],
+        ['label' => 'Contact', 'url' => ['/contact']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => 'Signup', 'url' => ['/signup']];
+        $menuItems[] = ['label' => 'Login', 'url' => ['/login']];
     } else {
         $menuItems[] = ['label' => 'Moje konto', 'url' => ['/user/account']];
         $menuItems[] = ['label' => 'Ulubione projekty', 'url' => ['/user/favorites']];
