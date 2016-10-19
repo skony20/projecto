@@ -2,9 +2,12 @@
 use yii\web\Session;
 use yii\i18n\Formatter;
 use yii\helpers\Html;
+use yii\helpers\Url;
+
+
 Yii::$app->formatter->locale = 'pl-PL';
 $sPatch = Yii::getAlias('@image');
-$this->title = Yii::t('app', 'Koszyk');
+$this->title = 'Koszyk';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -34,7 +37,14 @@ foreach ($aPrjs as $aPrj)
 <div class="cart-list-row cart-list-bottom">
     <div class="cart-list1"></div>
     <div class="cart-list2"></div>
-    <div class="cart-list3">Oszczedzasz: <?= Yii::$app->formatter->asCurrency($aPrj['iTotalSource'] - $aPrj['iTotal'], ' zł') ?></div>
+    <div class="cart-list3">
+        <?= ($aPrj['prj']->price_brutto != $aPrj['prj']->price_brutto_source ? 'Oszczedzasz: '.Yii::$app->formatter->asCurrency($aPrj['iTotalSource'] - $aPrj['iTotal'], '') :'')?>
+    </div>
     <div class="cart-list4">Suma zamówienia</div>
     <div class="cart-list5"><?= Yii::$app->formatter->asCurrency($aPrj['iTotal'], ' zł')  ?></div>
 </div>
+
+<?= Html::a(Html::button("Idź do kasy", ['class'=>'go-to-step1']), '/projecto/order/step1/'); ?>
+<?php 
+
+?>

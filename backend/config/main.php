@@ -45,6 +45,7 @@ return [
             'errorAction' => 'site/error',
         ],
         'urlManager' => [
+
             'class' => 'yii\web\UrlManager',
             // Disable index.php
             'showScriptName' => false,

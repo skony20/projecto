@@ -19,7 +19,8 @@ return [
         'request' => [
             'csrfParam' => '_csrf-frontend',
 			'class' => 'common\components\Request',
-			'web'=> '/frontend/web'
+			'web'=> '/frontend/web',
+            'baseUrl' => '/projecto',
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -42,6 +43,7 @@ return [
             'errorAction' => 'site/error',
         ],
         'urlManager' => [
+            'baseUrl' => '/projecto',
             // Disable index.php
             'showScriptName' => false,
             // Disable r= routes
@@ -50,7 +52,7 @@ return [
                     '<controller:\w+>/<id:\d+>' => '<controller>/view',
                     '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                     '<controller:\w+>/<action:\w+>' => '<controller>/<action>', 
-                    '<alias:about|contact>' => 'site/<alias>',
+                    '<alias:login|signup|about|contact>' => 'site/<alias>',
             ),
         ],
     ],
