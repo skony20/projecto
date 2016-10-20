@@ -69,7 +69,7 @@ class Orders extends \yii\db\ActiveRecord
     {
         return [
             [['is_deleted', 'customers_id', 'languages_id', 'order_date', 'orders_status_id', 'customer_ip', 'shippings_payments_id', 'shippings_couriers_id', 'shippings_vat_rate', 'realization_date', 'paid_date', 'send_date', 'creation_date', 'modification_date'], 'integer'],
-            [['order_date', 'order_code', 'customer_phone', 'customer_email', 'delivery_name', 'delivery_lastname', 'delivery_firm_name', 'delivery_street_local', 'delivery_zip', 'delivery_city', 'delivery_country', 'delivery_nip', 'invoice_name', 'invoice_lastname', 'invoice_firm_name', 'invoice_street_local', 'invoice_zip', 'invoice_city', 'invoice_country', 'invoice_nip', 'comments', 'shippings_couriers_id', 'shippings_vat', 'shippings_name'], 'required'],
+            [['customer_phone', 'delivery_name', 'delivery_lastname', 'delivery_firm_name', 'delivery_street_local', 'delivery_zip', 'delivery_city', 'delivery_country', 'shippings_payments_id'], 'required'],
             [['order_code', 'shippings_netto', 'shippings_brutto', 'value_netto', 'value_vat', 'value_brutto'], 'number'],
             [['comments', 'shippings_name'], 'string'],
             [['customer_phone'], 'string', 'max' => 25],
@@ -78,6 +78,8 @@ class Orders extends \yii\db\ActiveRecord
             [['delivery_zip', 'invoice_zip'], 'string', 'max' => 10],
             [['delivery_nip', 'invoice_nip'], 'string', 'max' => 14],
             [['shippings_vat'], 'string', 'max' => 15],
+            [['is_invoice'], 'boolean'],
+            ['is_giodo', 'required', 'requiredValue' => 1,  'message'=>'Musisz wyrazić zgode na przetwarzanie swoich danych']
         ];
     }
 
@@ -87,34 +89,25 @@ class Orders extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'is_deleted' => 'Is Deleted',
-            'customers_id' => 'Customers ID',
-            'languages_id' => 'Languages ID',
-            'order_date' => 'Order Date',
-            'order_code' => 'Order Code',
-            'orders_status_id' => 'Orders Status ID',
-            'customer_ip' => 'Customer Ip',
-            'customer_phone' => 'Customer Phone',
-            'customer_email' => 'Customer Email',
-            'delivery_name' => 'Delivery Name',
-            'delivery_lastname' => 'Delivery Lastname',
-            'delivery_firm_name' => 'Delivery Firm Name',
-            'delivery_street_local' => 'Delivery Street Local',
-            'delivery_zip' => 'Delivery Zip',
-            'delivery_city' => 'Delivery City',
-            'delivery_country' => 'Delivery Country',
-            'delivery_nip' => 'Delivery Nip',
-            'invoice_name' => 'Invoice Name',
-            'invoice_lastname' => 'Invoice Lastname',
-            'invoice_firm_name' => 'Invoice Firm Name',
-            'invoice_street_local' => 'Invoice Street Local',
-            'invoice_zip' => 'Invoice Zip',
-            'invoice_city' => 'Invoice City',
-            'invoice_country' => 'Invoice Country',
-            'invoice_nip' => 'Invoice Nip',
-            'comments' => 'Comments',
-            'shippings_payments_id' => 'Shippings Payments ID',
+
+            'customer_phone' => 'Numer telefonu',
+            'customer_email' => 'Adres email',
+            'delivery_name' => 'Imię',
+            'delivery_lastname' => 'Nazwisko',
+            'delivery_street_local' => 'Adres',
+            'delivery_zip' => 'Kod pocztowy',
+            'delivery_city' => 'Miasto',
+            'delivery_country' => 'Państwo',
+            'invoice_name' => 'Imię',
+            'invoice_lastname' => 'Nazwisko',
+            'invoice_firm_name' => 'Nazwa firmy',
+            'invoice_street_local' => 'Adres',
+            'invoice_zip' => 'Kod pocztowy',
+            'invoice_city' => 'Miasto',
+            'invoice_country' => 'Państwo',
+            'invoice_nip' => 'Numer Nip',
+            'comments' => 'Komantarz',
+            'shippings_payments_id' => 'Sposób płatności',
             'shippings_couriers_id' => 'Shippings Couriers ID',
             'shippings_netto' => 'Shippings Netto',
             'shippings_vat' => 'Shippings Vat',
@@ -129,6 +122,7 @@ class Orders extends \yii\db\ActiveRecord
             'send_date' => 'Send Date',
             'creation_date' => 'Creation Date',
             'modification_date' => 'Modification Date',
+            'is_giodo' => 'Wyrażam zgodę na przetwarzanie moich danych osobowych w celu realizacji zamówień. Informujemy, że zgodnie z Ustawą z dnia 29.08.1997 r. każdy Klient ma prawo wglądu do swoich danych, ich poprawiania, zarządzania, zaprzestania przetwarzania oraz żądania ich usunięcia. Podanie danych jest dobrowolne, ale brak zgody uniemożliwia realizację.'
         ];
     }
 

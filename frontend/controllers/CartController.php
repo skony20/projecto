@@ -100,8 +100,7 @@ class CartController extends Controller
     }
     public function actionIndex()
     {
-        
-        
+
         $aInCart  = Yii::$app->session->get('Cart');
         $oProducts = new Products();
         $aPrjs = [];
@@ -122,7 +121,8 @@ class CartController extends Controller
                 $aPrjs[$aPrjInCart['iPrjId']]['iTotalSource'] = $iTotalSource;
                 
             }
-
+        $oSession = new Session();
+        $oSession['aPrjs'] = $aPrjs;
         }
         return $this->render('index',['aPrjs' => $aPrjs]);
     }

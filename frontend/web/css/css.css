@@ -140,3 +140,17 @@ html {
 {
     display: none;
 }
+.order-caption
+{
+    display: inline-block;
+    width:calc(50% - 3px);
+    
+}
+.caption
+{
+    padding-left: 50px;
+}
+.order-comment
+{
+    padding: 50px;
+}

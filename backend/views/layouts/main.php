@@ -60,6 +60,7 @@ AppAsset::register($this);
 
                 ['label' => 'Dostawcy', 'url' => ['/producers']],
                 ['label' => 'Stawki Vat', 'url' => ['/vats']],
+                ['label' => 'Metody płatności', 'url' => ['/payments-method']],
             ],
         ],
         

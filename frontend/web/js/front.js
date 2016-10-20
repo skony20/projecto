@@ -148,6 +148,9 @@ $(document).on('ready pjax:success',
 		$("#"+tab_id).addClass('current');
 	});
 
+
+
+
     /*Pokaż dane do faktury*/
     $('.want-invoice').click(function()
         {
@@ -156,4 +159,25 @@ $(document).on('ready pjax:success',
            
         }
     );
+    $('.want-invoice-order').click(function()
+        {
+           $('.invoice').toggle();
+           $('.invoice-caption').toggle();
+           if($('.want-invoice-order').children().is(':checked')) {
+                $('.want-invoice-order').children().prop( "checked", false );
+            } else {
+                $('.want-invoice-order').children().prop( "checked", true );
+            }
+           
+        }
+    );
+    if($('.want-invoice-order').children().is(':checked')) {
+        $('.invoice').show();
+        $('.invoice-caption').show();
+    } else {
+        $('.invoice').hide();
+           $('.invoice-caption').hide();
+    }
+    
+    
     });

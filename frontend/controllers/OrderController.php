@@ -53,15 +53,25 @@ class OrderController extends Controller
         $oUser = new User(); 
         $oOrder = new Orders();
         $aUser = $oUser->findIdentity(Yii::$app->user->identity->id);
-        return $this->render('/order/step1',['aUser'=>$aUser, 'aOrder'=>$oOrder]);
-        
-        
+        return $this->render('/order/step1',['aUser'=>$aUser, 'aOrder'=>$oOrder]); 
     }
 
     public function actionStep2()
     {   
+        //$aData = [];
+        $oProducts = new Products();
+        $iTotal = 0;
+        $iTotalSource = 0;
+        $aPrjs = [];
+        $oSession = new \yii\web\Session();
+        $aProducts = $oSession->get('aPrjs');
+        $aOrderData = $oSession['OrderData'] = Yii::$app->request->post();
+        //echo '<pre>'. print_r($aProducts, TRUE);
+//        echo '<pre>'. print_r($oSession->get('Cart'), TRUE);
+//        
+//        die();
         
-        return $this->render('/order/step2');
+        return $this->render('/order/step2', ['aProducts' => $aProducts, 'aOrderData' =>$aOrderData]);
         
         
     }
