@@ -62,7 +62,7 @@ class ProjektyController extends Controller
 
 
 
-public function actionIndex()
+public function actionIndex($sort = 'default')
     {
         
         $model = new ProductsSearch();
@@ -89,15 +89,6 @@ public function actionIndex()
         $query->joinWith(['productsFilters']);
         $query->joinWith(['productsAttributes']);
 
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            'pagination' =>['pageSize' => 20],
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_ASC,
-                    ]
-                ]
-            ]);
         $bBarChange =  Yii::$app->session->get('BarChange');
         if(!isset($aDimensions))
         {
@@ -196,23 +187,45 @@ public function actionIndex()
         $aDimensions['iOneMinSize'] = ($bBarChange ? $iPostMinSize : $iOneMinSize);
         $aDimensions['iOneMaxSize'] = ($bBarChange ? $iPostMaxSize : $iOneMaxSize);
         
-        if (count($aPostData)>4 && count($aPrdIds) == 0)
+        if (count(array_filter($aPostData))>4 && count($aPrdIds) == 0)
                 {
-                    $aPrdIds[0] = 1;
+                    $aPrdIds[0] =1;
                 }
-        //echo print_r([$aPostData,$aPrdIds], TRUE); die();
-        $query = $model::find()->FilterWhere(['IN', 'id', $aPrdIds]);
+        
+        switch ($sort)
+        {
+            case 'default':
+                $aSort = ['producers.sort_order'=> SORT_ASC , 'products.price_brutto' => SORT_ASC];
+                break;
+            case 'price_asc':
+                $aSort = ['products.price_brutto' => SORT_ASC, 'producers.sort_order'=> SORT_ASC];
+                break;
+            case 'price_desc':
+                $aSort = ['products.price_brutto' => SORT_DESC, 'producers.sort_order'=> SORT_ASC];
+                break;
+            case 'name_asc':
+                $aSort = ['products_descripton.name' => SORT_ASC];
+                break;
+            case 'name_desc':
+                $aSort = ['products_descripton.name' => SORT_DESC];
+                break;
+        }
+                
+                
+        $query = $model::find()->FilterWhere(['IN', 'products.id', $aPrdIds]);
+        if (count(array_filter($aPostData))<=4 && count($aPrdIds) == 0)
+                {
+                    $query = $model::find();
+                }
+        $query->joinWith('producers');
+        $query->joinWith('productsDescriptons');
+        $query->orderBy($aSort);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' =>['pageSize' => 20],
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_ASC,
-                    ]
-                ]
             ]);
-
-        return $this->render('index',['aChooseFilters'=>$aFiltersData, 'aFilters'=>$aData, 'dataProvider'=>$dataProvider, 'aDimensions'=>$aDimensions]);
+        
+        return $this->render('index',['aChooseFilters'=>$aFiltersData, 'aFilters'=>$aData, 'dataProvider'=>$dataProvider, 'aDimensions'=>$aDimensions, 'sort'=>$sort]);
  
 
 

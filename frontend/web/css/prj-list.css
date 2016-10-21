@@ -62,3 +62,19 @@ img.prj_image
 {
     width:40px;
 }
+#prj_sort{
+    display:inline-block;
+    margin-left: 10px;
+}
+.prj_images_title {
+    border-bottom: 2px solid #d2d2d2;
+    padding: 20px 0;
+    width: 80%;
+    margin: auto;
+    font-size: 24px;
+    border-top: 2px solid #d2d2d2;
+}
+.prj_images_title:nth-child(1)
+{
+    border-top: 0px;
+}

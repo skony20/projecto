@@ -154,3 +154,19 @@ html {
 {
     padding: 50px;
 }
+.ord_last_row
+{
+    text-align: right;
+}
+.row-order-content
+{
+    border-left: 2px solid #F4F9FC;
+    border-right: 2px solid #F4F9FC;
+    min-height:150px;
+    padding: 50px;
+}
+.row-order:nth-last-child(2) .row-order-content
+{
+    border-bottom: 2px solid #F4F9FC;
+    margin-bottom: 50px;
+}

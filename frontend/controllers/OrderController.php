@@ -10,6 +10,8 @@ use yii\filters\AccessControl;
 use app\models\Products;
 use common\models\User;
 use app\models\Orders;
+use yii\web\Session;
+use app\models\PaymentsMethod;
 
 
 class OrderController extends Controller
@@ -59,19 +61,13 @@ class OrderController extends Controller
     public function actionStep2()
     {   
         //$aData = [];
-        $oProducts = new Products();
-        $iTotal = 0;
-        $iTotalSource = 0;
-        $aPrjs = [];
-        $oSession = new \yii\web\Session();
+        $oSession = new Session();
         $aProducts = $oSession->get('aPrjs');
         $aOrderData = $oSession['OrderData'] = Yii::$app->request->post();
-        //echo '<pre>'. print_r($aProducts, TRUE);
-//        echo '<pre>'. print_r($oSession->get('Cart'), TRUE);
-//        
-//        die();
+        $oPayment = new PaymentsMethod();
+        $aPayment = $oPayment->findOne($aOrderData['Orders']['shippings_payments_id']);
         
-        return $this->render('/order/step2', ['aProducts' => $aProducts, 'aOrderData' =>$aOrderData]);
+        return $this->render('/order/step2', ['aProducts' => $aProducts, 'aOrderData' =>$aOrderData, 'aPayment'=>$aPayment]);
         
         
     }

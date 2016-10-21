@@ -7,7 +7,7 @@ use yii\helpers\Url;
 /* @var $searchModel app\models\ProductsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Projekty');
+$this->title = 'Projekty';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

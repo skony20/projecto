@@ -547,7 +547,7 @@ ul.tabs{
         list-style: none;
 }
 ul.tabs li{
-        width:calc(25% - 3px);
+        width:calc(16.6666666666666% - 4px);
         background: #F4F9FC;
         color: #222;
         display: inline-block;
@@ -595,4 +595,8 @@ table.prj-tech-data  tr:nth-child(even)
     text-align: left;
     width:50%;
     
+}
+#elewacje, #rzuty
+{
+    text-align: center;
 }

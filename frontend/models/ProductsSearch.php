@@ -44,7 +44,6 @@ class ProductsSearch extends Products
     public function search($params)
     {
         $query = Products::find();
-
         // add conditions that should always apply here
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

@@ -10,7 +10,7 @@ $sPatch = Yii::getAlias('@image');
 
 $sPrjName = $model->productsDescriptons->name . ($model->productsDescriptons->name_model ? ' '.$model->productsDescriptons->name_model: '') . ($model->productsDescriptons->name_subname ? ' ' .$model->productsDescriptons->name_subname : '');
 $this->title = 'Projekt: '.$sPrjName;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Projekty'), 'url' => ['/projekty']];
+$this->params['breadcrumbs'][] = ['label' => 'Projekty', 'url' => ['/projekty']];
 $this->params['breadcrumbs'][] = $this->title;
 $url = Yii::$app->request->absoluteUrl;
 ?>
@@ -36,10 +36,14 @@ $url = Yii::$app->request->absoluteUrl;
                         $a=0;
                         foreach ($model->productsImages as $aProductsImages)
                         {
+                            if ($aProductsImages->image_type_id ==1)
+                            {
                         ?>
                             <a id="g<?=$a?>" href="<?=$sPatch.'/'.$model->id.'/big/'.$aProductsImages->name ?>" title="Galeria: <?=$sPrjName?><?=($aProductsImages->description ? ' - '.$aProductsImages->description : "")?>"><img src="<?=$sPatch.'/'.$model->id.'/thumbs/'.$aProductsImages->name ?>" alt="Galeria: <?=$sPrjName?><?=($aProductsImages->description ? ' - '.$aProductsImages->description : "")?>"></a>
                         <?php
                         $a++;
+                            }
+                        
                         }
                         ?>
                 </div>
@@ -65,6 +69,8 @@ $url = Yii::$app->request->absoluteUrl;
             <ul class="tabs">
                 <li class="tab-link current" data-tab="opis">Opis</li>
                 <li class="tab-link" data-tab="dane">Dane techniczne</li>
+                <li class="tab-link" data-tab="elewacje">Elewacje</li>
+                <li class="tab-link" data-tab="rzuty">Rzuty</li>
                 <li class="tab-link" data-tab="realizacje">Realizacje</li>
                 <li class="tab-link" data-tab="opinie">Opinie</li>
             </ul>
@@ -86,6 +92,38 @@ $url = Yii::$app->request->absoluteUrl;
                     }
                     ?>
                 </table>
+            </div>
+            <div id="elewacje" class="tab-content">
+                <?php
+                $a=0;
+                foreach ($model->productsImages as $aProductsImages)
+                {
+                    if ($aProductsImages->image_type_id ==2)
+                    {
+                ?>
+                        <?=($aProductsImages->description ? '<div class="prj_images_title">'.$aProductsImages->description.'</div>' : "")?><br><img src="<?=$sPatch.'/'.$model->id.'/big/'.$aProductsImages->name ?>" alt="Elewacja: <?=$sPrjName?><?=($aProductsImages->description ? ' - '.$aProductsImages->description : "")?>"><br>
+                    <?php
+                    $a++;
+                    }
+
+                }
+                ?>
+            </div>
+            <div id="rzuty" class="tab-content">
+                <?php
+                $a=0;
+                foreach ($model->productsImages as $aProductsImages)
+                {
+                    if ($aProductsImages->image_type_id ==3)
+                    {
+                ?>
+                    <?=($aProductsImages->description ? '<div class="prj_images_title">'.$aProductsImages->description.'</div>' : "")?><br><img src="<?=$sPatch.'/'.$model->id.'/big/'.$aProductsImages->name ?>" alt="Elewacja: <?=$sPrjName?><?=($aProductsImages->description ? ' - '.$aProductsImages->description : "")?>"><br>
+                    <?php
+                    $a++;
+                    }
+
+                }
+                ?>
             </div>
             <div id="realizacje" class="tab-content">
                 Brak realizacji tego projektu

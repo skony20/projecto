@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
  
     <div class="row-order">
         <div class="caption">Twoje zakupy:</div>
-        <div>
+        <div class="row-order-content">
             <div class="cart-list-row cart-list-caption">
                 <div class="cart-list1"></div>
                 <div class="cart-list2">Projekt</div>
@@ -59,16 +59,32 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <div class="row-order">
         <div class="caption">Metoda płatności:</div>
-        <div>
+        <div class="row-order-content">
+            <?= $aPayment->name ?>
             
         </div>
     </div>
     <div class="row-order">
         <div class="caption">Adres wysyłki:</div>
-        <div></div>
+        <div class="row-order-content">
+            <?= $aOrderData['Orders']['delivery_name'] . ' ' . $aOrderData['Orders']['delivery_lastname'] ?><br>
+            <?= $aOrderData['Orders']['delivery_street_local'] ?><br>
+            <?= $aOrderData['Orders']['delivery_zip'] . ' ' . $aOrderData['Orders']['delivery_city'] ?><br>
+        </div>
     </div>
     <div class="row-order">
         <div class="caption">Uwagi do zamówienia:</div>
-        <div></div>
+        <div class="row-order-content">
+            <?= ($aOrderData['Orders']['comments'] != '' ? $aOrderData['Orders']['comments']: 'Brak uwag do zamówienia') ?><br>
+        </div>
     </div>
+    
+    <div class="ord_last_row">
+        <form>
+            <input type = "checkbox" required>Akceptuje regulamin sklepu<br>
+            <button type="submit">Kupuję</button>
+        </form>
+        <span>Zamówienie wiąże się z koniecznością zapłaty</span>
+    </div>
+    
 </div>

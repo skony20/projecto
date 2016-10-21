@@ -179,5 +179,10 @@ $(document).on('ready pjax:success',
            $('.invoice-caption').hide();
     }
     
+    /*formualrz sortowania*/
+    $('.prj_sort').change(function()
+    {
+        $("#prj_sort").submit();
+    });
     
     });

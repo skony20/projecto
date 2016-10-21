@@ -76,7 +76,7 @@ $iSetMaxSize = $aDimensions['iOneMaxSize'];
 
     </div>
     <div class="another prj-items">
-            <?= $this->render('products', ['dataProvider' => $dataProvider]) ?>
+            <?= $this->render('products', ['dataProvider' => $dataProvider, 'sort'=>$sort]) ?>
 
     </div>
 </div>
