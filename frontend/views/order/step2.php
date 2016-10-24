@@ -3,6 +3,7 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 
 $this->title = 'Zamówienie krok 2 z 2';
 $this->params['breadcrumbs'][] = ['label' => 'Koszyk', 'url' => ['/cart']];
@@ -10,7 +11,9 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <?php
 //echo '<pre>' . print_r ($aProducts, TRUE)
+
 ?>
+ <?php $formData = ActiveForm::begin(['action'=>'/projecto/order/confirm-order/']); ?> 
 <div class="order-step2">
  
     <div class="row-order">
@@ -50,10 +53,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="cart-list1"></div>
                 <div class="cart-list2"></div>
                 <div class="cart-list3">
-                    <?= ($aProduct['prj']->price_brutto != $aProduct['prj']->price_brutto_source ? 'Oszczedzasz: '.Yii::$app->formatter->asCurrency($aProduct['iTotalSource'] - $aProduct['iTotal'], '') :'')?>
+                    <?= ($aProduct['prj']->price_brutto != $aProduct['prj']->price_brutto_source ? 'Oszczedzasz: '.Yii::$app->formatter->asCurrency($aTotal['iTotalSource'] - $aTotal['iTotal'], '') :'')?>
                 </div>
                 <div class="cart-list4">Do zapłaty</div>
-                <div class="cart-list5"><?= Yii::$app->formatter->asCurrency($aProduct['iTotal'], ' zł')  ?></div>
+                <div class="cart-list5"><?= Yii::$app->formatter->asCurrency($aTotal['iTotal'], ' zł')  ?></div>
             </div>
         </div>
     </div>
@@ -80,11 +83,12 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     
     <div class="ord_last_row">
-        <form>
-            <input type = "checkbox" required>Akceptuje regulamin sklepu<br>
-            <button type="submit">Kupuję</button>
-        </form>
+       
+        
+        <input type="checkbox" required="required" name="regulamin">Akceptuje regulamin sklepu<br>
+        <?= Html::submitButton('Kupuję', ['class' => '', 'name' => 'signup-button']) ?><br>
         <span>Zamówienie wiąże się z koniecznością zapłaty</span>
     </div>
     
 </div>
+<?php ActiveForm::end(); ?>

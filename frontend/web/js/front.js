@@ -136,6 +136,21 @@ $(document).on('ready pjax:success',
                 
             }
     );
+    /*Usuwanie porduktu z koszyka*/
+     $('.delete-from-cart').click(
+            function()
+            {
+                var iPrjId = $(this).attr('rel');
+                $.ajax({
+                    url: "/projecto/cart/remove-from-cart?iPrjId="+iPrjId,
+                    success: function(data) {   
+                        //$('.cart-items').html(data);
+                        window.location.href = window.location.href;
+                    }
+
+                    }); 
+            }
+    );
     
     /*TABS*/
     $('ul.tabs li').click(function(){

@@ -68,9 +68,9 @@ class Orders extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['is_deleted', 'customers_id', 'languages_id', 'order_date', 'orders_status_id', 'customer_ip', 'shippings_payments_id', 'shippings_couriers_id', 'shippings_vat_rate', 'realization_date', 'paid_date', 'send_date', 'creation_date', 'modification_date'], 'integer'],
-            [['customer_phone', 'delivery_name', 'delivery_lastname', 'delivery_firm_name', 'delivery_street_local', 'delivery_zip', 'delivery_city', 'delivery_country', 'shippings_payments_id'], 'required'],
-            [['order_code', 'shippings_netto', 'shippings_brutto', 'value_netto', 'value_vat', 'value_brutto'], 'number'],
+            [['is_deleted', 'customers_id', 'languages_id', 'order_date', 'orders_status_id', 'shippings_payments_id', 'shippings_couriers_id', 'shippings_vat_rate', 'realization_date', 'paid_date', 'send_date', 'creation_date', 'modification_date'], 'integer'],
+            [['customer_phone', 'delivery_name', 'delivery_lastname', 'delivery_street_local', 'delivery_zip', 'delivery_city', 'delivery_country', 'shippings_payments_id'], 'required'],
+            [['value_brutto'], 'number'],
             [['comments', 'shippings_name'], 'string'],
             [['customer_phone'], 'string', 'max' => 25],
             [['customer_email', 'delivery_country', 'invoice_country'], 'string', 'max' => 100],
@@ -78,7 +78,6 @@ class Orders extends \yii\db\ActiveRecord
             [['delivery_zip', 'invoice_zip'], 'string', 'max' => 10],
             [['delivery_nip', 'invoice_nip'], 'string', 'max' => 14],
             [['shippings_vat'], 'string', 'max' => 15],
-            [['is_invoice'], 'boolean'],
             ['is_giodo', 'required', 'requiredValue' => 1,  'message'=>'Musisz wyrazić zgode na przetwarzanie swoich danych']
         ];
     }

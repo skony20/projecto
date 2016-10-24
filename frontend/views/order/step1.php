@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $formData->field($aOrder, 'customer_phone')->textInput(['value'=>$aUser->phone]) ?>
                 <br><br>
                 <div class="want-invoice-order">
-                    <?= Html::checkbox('is_invoice', false) ?>
+                    <input type="checkbox" name="is_invoice"/>
                     Chcę otrzymać fakturę VAT >
                 </div>
             </div>

@@ -24,7 +24,7 @@ class CartController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['add-cart', 'in-cart', 'reset-cart', 'index'],
+                        'actions' => ['add-cart', 'in-cart', 'reset-cart', 'index', 'remove-from-cart'],
                         'only' => ['logout', 'signup'],
                         'allow' => true,
                     ],
@@ -76,16 +76,14 @@ class CartController extends Controller
         $aPrjInCart = ( Yii::$app->session->get('Cart') ?  Yii::$app->session->get('Cart'): []);
         
         $iQty =1;
-        $iCheckCart = in_array($iPrjId, array_column($aPrjInCart, 'iPrjId'));
-        if ($iCheckCart)
+
+        if (isset($aPrjInCart[$iPrjId]))
         {
-            $key = array_search($iPrjId, array_column($aPrjInCart, 'iPrjId'));
-            $iQty= $aPrjInCart[$key]['iQty']+1;
-            $aPrjInCart[$key]['iQty'] = $iQty;
+            $aPrjInCart[$iPrjId]['iQty'] += 1;
         }
          else
         {
-             array_push($aPrjInCart, array('iPrjId'=>$iPrjId, 'iQty'=>$iQty));
+             $aPrjInCart[$iPrjId] = array('iPrjId'=>$iPrjId, 'iQty'=>$iQty);
         }
         
         Yii::$app->session['Cart'] =$aPrjInCart;
@@ -104,6 +102,7 @@ class CartController extends Controller
         $aInCart  = Yii::$app->session->get('Cart');
         $oProducts = new Products();
         $aPrjs = [];
+        $aTotal =[];
         $iTotal = 0;
         $iTotalSource = 0;
         if (count($aInCart) > 0 )
@@ -117,13 +116,25 @@ class CartController extends Controller
                 $aPrjs[$aPrjInCart['iPrjId']]['prj'] = $aPrj;
                 $aPrjs[$aPrjInCart['iPrjId']]['desc'] = $aPrj->productsDescriptons;
                 $aPrjs[$aPrjInCart['iPrjId']]['img'] = $aPrj->productsImages;
-                $aPrjs[$aPrjInCart['iPrjId']]['iTotal'] = $iTotal;
-                $aPrjs[$aPrjInCart['iPrjId']]['iTotalSource'] = $iTotalSource;
-                
+
+
             }
         $oSession = new Session();
         $oSession['aPrjs'] = $aPrjs;
+        $aTotal['iTotal'] = $iTotal;
+        $aTotal['iTotalSource'] = $iTotalSource;
+        $oSession['aTotal'] = $aTotal;
         }
-        return $this->render('index',['aPrjs' => $aPrjs]);
+        return $this->render('index',['aPrjs' => $aPrjs, 'aTotal'=>$aTotal]);
+
+    }
+    public function actionRemoveFromCart($iPrjId)
+    {
+        $aInCart = Yii::$app->session->get('Cart');
+        
+        unset($aInCart[$iPrjId]);
+        Yii::$app->session['Cart'] = $aInCart; 
+        //echo '<pre>'. print_r($aInCart , TRUE); die();
+        
     }
 }

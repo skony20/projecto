@@ -8,10 +8,11 @@
 {
     display: block;
 }
-.cart-list1, .cart-list2, .cart-list3, .cart-list4, .cart-list5
+.cart-list0, .cart-list1, .cart-list2, .cart-list3, .cart-list4, .cart-list5
 {
-     display: inline-block;
-     text-align: right;
+    display: inline-block;
+    text-align: right;
+    min-width: 50px;
 }
 .cart-list1
 {
@@ -30,4 +31,10 @@
 .cart-list4
 {
     width: 120px;
+}
+.cart-list0
+{
+    color:red;
+    font-size:12px;
+    cursor: pointer;
 }
