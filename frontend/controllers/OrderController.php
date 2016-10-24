@@ -138,37 +138,40 @@ class OrderController extends Controller
             $oOrderPosition->value_brutto = $aProduct['prj']->price_brutto * $aProduct['iQty'];
             $oOrderPosition->creation_date - time();
             $oOrderPosition->save(false);
-            $oOrderPosition->getErrors();
             
         }
         
-        $oSession->remove('Cart');
-        $oSession->remove('aPrjs');
-        $oSession->remove('OrderData');
-        $oSession->remove('aTotal');
+//        $oSession->remove('Cart');
+//        $oSession->remove('aPrjs');
+//        $oSession->remove('OrderData');
+//        $oSession->remove('aTotal');
         //echo '<pre>'. print_r($aProducts, TRUE); die();
-        return Yii::$app
+        Yii::$app
             ->mailer
             ->compose(
                 ['html' => 'order-html', 'text' => 'order-text'],
                 ['aDelivery' => $aDelivery, 'aProducts' => $aProducts]
             )
+            ->setReplyTo(Yii::$app->params['supportEmail'])
             ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name])
             ->setTo(Yii::$app->user->identity->email)
             ->setSubject('Twoje zamówienie z:  ' . Yii::$app->name)
             ->send();
-        return Yii::$app
+        Yii::$app
             ->mailer
             ->compose(
                 ['html' => 'order-html', 'text' => 'order-text'],
                 ['aDelivery' => $aDelivery, 'aProducts' => $aProducts]
             )
+            ->setReplyTo(Yii::$app->params['supportEmail'])
             ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name])
             ->setTo(Yii::$app->params['supportEmail'])
             ->setSubject('Nowe zamówienie')
             ->send();
+        
+        return $this->render('/order/confirm-order',['iOrderId'=>$iOrderId]); 
     }
     
-    
+     
     
 }
