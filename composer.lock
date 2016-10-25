@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c57405f55516504486a729f39e18e5af",
-    "content-hash": "1c2d047da11f00bbf465efb76b23194f",
+    "hash": "98467a86bf126f31160e983a5b6bf5d4",
+    "content-hash": "2c63242483402c5e627d895222d3990b",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -453,6 +453,52 @@
             "time": "2013-07-10 17:25:36"
         },
         {
+            "name": "openpayu/openpayu",
+            "version": "2.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PayU/openpayu_php.git",
+                "reference": "86757a73aa0f35ae98defffa6069f100ad751289"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PayU/openpayu_php/zipball/86757a73aa0f35ae98defffa6069f100ad751289",
+                "reference": "86757a73aa0f35ae98defffa6069f100ad751289",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-hash": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.3"
+            },
+            "type": "library",
+            "extra": [
+                {
+                    "engine": "PHP SDK"
+                }
+            ],
+            "autoload": {
+                "classmap": [
+                    "lib/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "OpenPayU",
+                    "homepage": "http://developers.payu.com"
+                }
+            ],
+            "description": "OpenPayU PHP Library",
+            "time": "2016-08-25 09:51:04"
+        },
+        {
             "name": "swiftmailer/swiftmailer",
             "version": "v5.4.3",
             "source": {
@@ -555,16 +601,16 @@
         },
         {
             "name": "yiisoft/yii2",
-            "version": "2.0.9",
+            "version": "2.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "2b75151ea60e1fd820046416eee2e89c3dda1133"
+                "reference": "5bfcb7a6dfa9771e2248eb8c4448613330f343ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/2b75151ea60e1fd820046416eee2e89c3dda1133",
-                "reference": "2b75151ea60e1fd820046416eee2e89c3dda1133",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/5bfcb7a6dfa9771e2248eb8c4448613330f343ff",
+                "reference": "5bfcb7a6dfa9771e2248eb8c4448613330f343ff",
                 "shasum": ""
             },
             "require": {
@@ -645,7 +691,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2016-07-11 13:36:42"
+            "time": "2016-10-20 12:02:50"
         },
         {
             "name": "yiisoft/yii2-bootstrap",

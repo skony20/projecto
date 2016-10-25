@@ -1059,7 +1059,7 @@ class Formatter extends Component
                 }
                 $currency = $this->currencyCode;
             }
-            return $this->asDecimal($value, 2, $options, $textOptions) . ' '. $currency ;
+            return $currency . ' ' . $this->asDecimal($value, 2, $options, $textOptions);
         }
     }
 
@@ -1350,6 +1350,7 @@ class Formatter extends Component
         }
         if ($this->thousandSeparator !== null) {
             $formatter->setSymbol(NumberFormatter::GROUPING_SEPARATOR_SYMBOL, $this->thousandSeparator);
+            $formatter->setSymbol(NumberFormatter::MONETARY_GROUPING_SEPARATOR_SYMBOL, $this->thousandSeparator);
         }
         foreach ($this->numberFormatterSymbols as $name => $symbol) {
             $formatter->setSymbol($name, $symbol);

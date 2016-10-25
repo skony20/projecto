@@ -20,7 +20,8 @@
         "yiisoft/yii2-swiftmailer": "*",
         "2amigos/yii2-ckeditor-widget" : "~1.0",
         "yiisoft/yii2-imagine": "~2.0.0",
-        "yii2mod/yii2-ion-slider": "*"
+        "yii2mod/yii2-ion-slider": "*",
+        "openpayu/openpayu" : "2.2.*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
@@ -28,10 +29,11 @@
         "yiisoft/yii2-gii": "*",
         "yiisoft/yii2-faker": "*",
         "2amigos/yii2-ckeditor-widget" : "~1.0",
-        "yiisoft/yii2-imagine": "~2.0.0"
+        "yiisoft/yii2-imagine": "~2.0.0",
+        "openpayu/openpayu" : "2.2.*"
     },
     "config": {
-        "process-timeout": 1800
+        "process-timeout": 18000
     },
     "extra": {
         "asset-installer-paths": {
