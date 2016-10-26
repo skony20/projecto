@@ -16,6 +16,7 @@ use app\models\OrdersPosition;
 use app\models\OrdersPayments;
 use OpenPayU_Configuration;
 use OpenPayU_Order;
+use OpenPayU_Result;
 
 
 class OrderController extends Controller
@@ -40,7 +41,7 @@ class OrderController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'confirm-order' => ['post'],
+                    'confirm-order' => ['post', 'get'],
                 ],
             ],
         ];
@@ -82,7 +83,7 @@ class OrderController extends Controller
         return $this->render('/order/step2', ['aProducts' => $aProducts, 'aOrderData' =>$aOrderData, 'aPayment'=>$aPayment, 'aTotal'=>$aTotal]);
         
     }
-    public function actionConfirmOrder()
+    public function actionConfirmOrder($order=0)
     {
         $oOrder = new Orders();
         $oSession = new Session();
@@ -90,6 +91,15 @@ class OrderController extends Controller
         $aDelivery = $oSession['OrderData']['Orders'];
         $aTotal = $oSession->get('aTotal');
         //echo '<pre>'. print_r($aProducts, TRUE);  die();
+        if ($order <> 0)
+        {
+            $oOrderPaymants = new OrdersPayments();
+            $oOrderPays = $oOrderPaymants->find()->where(['orders_id'=>$order])->one();
+            OpenPayU_Configuration::setEnvironment('secure');
+            $response = OpenPayU_Order::retrieve($oOrderPays->code);
+            echo '<pre>'.print_r($response, TRUE);
+            echo 'udało się'; die();
+        }
         $iOrderCode = uniqid('', true);
         $oOrder->is_deleted = 0;
         $oOrder->customers_id = Yii::$app->user->identity->id;
@@ -147,10 +157,10 @@ class OrderController extends Controller
                 $oOrderPosition->creation_date - time();
                 $oOrderPosition->save(false);
             }
-        //        $oSession->remove('Cart');
-        //        $oSession->remove('aPrjs');
-        //        $oSession->remove('OrderData');
-        //        $oSession->remove('aTotal');
+//                $oSession->remove('Cart');
+//                $oSession->remove('aPrjs');
+//                $oSession->remove('OrderData');
+//                $oSession->remove('aTotal');
                 Yii::$app
                 ->mailer
                 ->compose(
@@ -175,39 +185,27 @@ class OrderController extends Controller
                     ->send();
                 if ($aDelivery['shippings_payments_id'] == 2)
                 {
-                    
-                    $oOrderPayments = new OrdersPayments();
-                    $oOrderPayments->orders_id = $iOrderId;
-                    $oOrderPayments->source = 'payu';
-                    $oOrderPayments->status ='Rozpoczęta';
-                    $oOrderPayments->value = $aTotal['iTotal'];
-                    $oOrderPayments->description = 'Zamówinie nr: '. $iOrderId;
-                    $oOrderPayments->creation_time = time();
-                    $oOrderPayments->save(false);
-                    //$oOrderPosition->getErrors(); die();
                 
                     /*PayU*/
                     
-                    
-                    
-                    
-                    
                     $aOrder =[];
+                    
                     $aOrder['notifyUrl'] = '';
-                    $aOrder['continueUrl'] = '';
+                    $aOrder['continueUrl'] = 'http://localhost/projecto/order/confirm-order/?order='.$iOrderId;
                     $aOrder['customerIp'] = '127.0.0.1';
                     $aOrder['merchantPosId'] = OpenPayU_Configuration::getMerchantPosId();
-                    $aOrder['description'] = 'Zamowieni nr: '. $iOrderId;
+                    $aOrder['description'] = 'Projekttop.pl';
                     $aOrder['currencyCode'] = 'PLN';
-                    $aOrder['totalAmount'] = $aTotal['iTotal']*100;
-                    $aOrder['extOrderId'] = $iOrderId; //must be unique!
+                    $aOrder['totalAmount'] = 200;//$aTotal['iTotal']*100;
+                    $aOrder['extOrderId'] = $iOrderCode; //must be unique!
                     $a = 0;
                     foreach ($aProducts as $aProduct)
                     {
-                        $a++;
-                        $aOrder['products'][$a]['name'] = 'dddd';
-                        $aOrder['products'][$a]['unitPrice'] = $aProduct['prj']->price_brutto;
+                        //echo '<pre>PAYU: ' .print_r($aProduct['prj']->productsDescriptons->name, TRUE); die();
+                        $aOrder['products'][$a]['name'] = $aProduct['prj']->productsDescriptons->name;
+                        $aOrder['products'][$a]['unitPrice'] = $aProduct['prj']->price_brutto*100;
                         $aOrder['products'][$a]['quantity'] = $aProduct['iQty'];
+                        $a++;
                     }
 
                 //optional section buyer
@@ -215,26 +213,38 @@ class OrderController extends Controller
                     $aOrder['buyer']['phone'] = $aDelivery['customer_phone'];
                     $aOrder['buyer']['firstName'] = $aDelivery['delivery_name'] ;
                     $aOrder['buyer']['lastName'] = $aDelivery['delivery_lastname'] ;
-                    //$rsp = OpenPayU_Order::hostedOrderForm($aOrder);
+                    //echo '<pre>PAYU: ' .print_r($aOrder['products'], TRUE); die();
+                    OpenPayU_Configuration::setEnvironment('secure');
                     $response = OpenPayU_Order::create($aOrder);
-                    echo '<pre>PAYU: ' .print_r($response, TRUE); die();
-                    //header('Location:'.$response->getResponse()->redirectUri); //You must redirect your client to PayU payment summary page.
+                    $aStatus = $response->getResponse()->status;
+                    //echo '<pre>PAYU: ' .print_r($response->getResponse()->orderId, TRUE); die();
+                    if (isset($response->getResponse()->status) && $aStatus->statusCode =='SUCCESS')
+                    {
+                        //echo '<pre>PAYU3: ' .print_r($response->getResponse(), TRUE); die();
+                        $oOrderPayments = new OrdersPayments();
+                        $oOrderPayments->orders_id = $iOrderId;
+                        $oOrderPayments->code = $response->getResponse()->orderId;
+                        $oOrderPayments->source = 'payu';
+                        $oOrderPayments->status ='Rozpoczęta';
+                        $oOrderPayments->value = $aTotal['iTotal'];
+                        $oOrderPayments->description = 'Zamówinie nr: '. $iOrderId;
+                        $oOrderPayments->creation_time = time();
+                        $oOrderPayments->save(false);
+                        //echo '<pre>PAYU3: ' .print_r($response->getResponse(), TRUE); die();
+                        return $this->redirect($response->getResponse()->redirectUri);
+                    }
+                    
                     
                     
                 }
-                
-                
-                
-                
-                
-                
+
                 $oOrderActual = $oOrder->findOne($iOrderId);
         }
         
 
         //echo '<pre>'. print_r($aProducts, TRUE); die();
         
-        return $this->render('/order/confirm-order',['iOrderId'=>$iOrderId, 'oOrderActual' =>$oOrderActual]); 
+        //return $this->render('/order/confirm-order',['iOrderId'=>$iOrderId, 'oOrderActual' =>$oOrderActual]); 
     }
     
      

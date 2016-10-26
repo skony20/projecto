@@ -32,11 +32,12 @@ class OpenPayU_Configuration
      * OAuth protocol - endpoint address
      */
     private static $oauthEndpoint = '';
+    
     /**
      * OAuth protocol - methods for token cache
      */
     private static $oauthTokenCache = null;
-    private static $serviceUrl = 'https://secure.payu.com/';
+    private static $serviceUrl = '';
     private static $hashAlgorithm = 'SHA-256';
     private static $sender = 'Generic';
     const API_VERSION = '2.1';
@@ -93,6 +94,7 @@ class OpenPayU_Configuration
             self::$serviceUrl = $domain . $api . $version;
             self::$oauthEndpoint = $domain . self::OAUTH_CONTEXT;
         }
+        //echo self::$serviceUrl. ' -- '.self::$oauthEndpoint ; die();
     }
     /**
      * @return string
