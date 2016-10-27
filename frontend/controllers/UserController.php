@@ -11,6 +11,8 @@ use common\models\User;
 use frontend\models\Account;
 use app\models\Orders;
 use yii\data\ActiveDataProvider;
+use app\models\Favorites;
+use app\models\Products;
 
 class UserController extends Controller
 {
@@ -88,10 +90,44 @@ class UserController extends Controller
         }
         return $this->render('change-password', ['aUser'=>$aUser, 'model'=>$oAccount]);
     }
-    public function actionFavorites()
+    public function actionFavorites($sort = 'default')
     {   
-        
-        return $this->render('favorites');
+        $aProducts = [];
+        $aProducts[0] = 0;
+        $oFavorites = new Favorites();
+        $oProducts = new Products();
+        switch ($sort)
+        {
+            case 'default':
+                $aSort = ['producers.sort_order'=> SORT_ASC , 'products.price_brutto' => SORT_ASC];
+                break;
+            case 'price_asc':
+                $aSort = ['products.price_brutto' => SORT_ASC, 'producers.sort_order'=> SORT_ASC];
+                break;
+            case 'price_desc':
+                $aSort = ['products.price_brutto' => SORT_DESC, 'producers.sort_order'=> SORT_ASC];
+                break;
+            case 'name_asc':
+                $aSort = ['products_descripton.name' => SORT_ASC];
+                break;
+            case 'name_desc':
+                $aSort = ['products_descripton.name' => SORT_DESC];
+                break;
+        }
+        $aFavorites = $oFavorites::find(['user_id' => Yii::$app->user->identity->id])->select('products_id')->all();
+        foreach ($aFavorites as $aFavorite)
+        {
+            $aProducts[] .= $aFavorite->products_id;
+        }
+        $query = $oProducts::find()->FilterWhere(['IN', 'products.id', $aProducts]);
+        $query->joinWith('producers');
+        $query->joinWith('productsDescriptons');
+        $query->orderBy($aSort);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' =>['pageSize' => 20],
+            ]);
+        return $this->render('favorites', ['dataProvider' => $dataProvider, 'sort'=>$sort]);
         
         
     }
@@ -107,7 +143,6 @@ class UserController extends Controller
         $query->orderBy(['id' => SORT_DESC]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' =>['pageSize' => 20],
             ]);
         
         //echo '<pre>'. print_r($dataProvider , TRUE); die();

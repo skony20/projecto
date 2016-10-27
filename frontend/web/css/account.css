@@ -6,12 +6,11 @@
 }
 .acoount-side-bar
 {
-    width:20%;
-    min-width:250px;
+    width:25%;
 }
 .account-content
 {
-    width: calc(80% - 5px);
+    width: calc(75% - 5px);
 }
 .account-title
 {

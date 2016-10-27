@@ -16,9 +16,13 @@
     border: solid 1px gray;
     padding: 0 10px;
     vertical-align: top;
-    
+    min-height: 240px;
+    margin-bottom:10px;
 }
-
+.favorites-items .prjs_all .prj_all
+{
+    width: calc(25% - 4px);
+}
 .prj_title h2
 {
     font-size: 14px;
@@ -50,13 +54,17 @@ img.prj_image
 
 .prj_title 
 {
-
+    min-height: 55px;
 }
 .prj_title h2
 {
     font-size: 14px;
     margin:0;
     padding:0;
+}
+.prj_img
+{
+    min-height: 125px;
 }
 #prj_sizex, #prj_sizey  
 {

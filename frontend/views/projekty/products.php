@@ -48,6 +48,11 @@ foreach ($dataProvider->models as $aProducts)
     <div class="prj_price">
         Cena: <?= $aProducts->price_brutto ?>
     </div>
+
+    <div class="prj_add_favorites" rel="<?= $aProducts->id ?>">
+        Ulubiony projekt
+    </div>
+
     <div class="prj_add_cart" rel="<?= $aProducts->id ?>">
         Dodaj do koszyka
     </div>

@@ -151,7 +151,16 @@ $(document).on('ready pjax:success',
                     }); 
             }
     );
-    
+        /*Dodawanie ulubionych*/
+    $('.prj_add_favorites').click(
+            function()
+            {
+                var iPrjId = $(this).attr('rel');
+                $.ajax({
+                    url: "/projecto/favorites/add-favorites?iPrjId="+iPrjId
+                    }); 
+            }
+    );
     /*TABS*/
     $('ul.tabs li').click(function(){
 		var tab_id = $(this).attr('data-tab');
