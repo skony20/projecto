@@ -93,13 +93,9 @@ class Account extends Model
      */
     public function changePassword()
     {
-        if (!$this->validate()) {
-            return null;
-        }
         
         $oUser = new User();
         $model = $oUser->findIdentity(Yii::$app->user->identity->id);
-        //echo '<pre>'. print_r($this->password, TRUE);die();
         $model->setPassword($this->password);
         
         $model->save();

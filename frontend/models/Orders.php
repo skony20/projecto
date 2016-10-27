@@ -132,4 +132,12 @@ class Orders extends \yii\db\ActiveRecord
     {
         return $this->hasMany(OrdersPosition::className(), ['orders_id' => 'id']);
     }
+    public function getOrdersStatus()
+    {
+        return $this->hasOne(OrdersStatus::className(), ['id' => 'orders_status_id']);
+    }
+    public function getPayment()
+    {
+        return $this->hasOne(PaymentsMethod::className(), ['id' => 'shippings_payments_id']);
+    }
 }

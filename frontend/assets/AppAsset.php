@@ -17,6 +17,7 @@ class AppAsset extends AssetBundle
         'css/prj-list.css',
         'css/prj.css',
         'css/cart-list.css',
+        'css/account.css',
     ];
     public $js = [
         'frontend/web/js/front.js',

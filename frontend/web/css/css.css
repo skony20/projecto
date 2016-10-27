@@ -68,7 +68,28 @@ html {
 }
 .navbar
 {
-    height:100px;
+    height:30px;
+    margin: 0;
+}
+.navbar-inverse
+{
+    background-color: #363b3f;
+}
+.second-navbar
+{
+    height:80px;
+}
+.second-menu
+{
+    height: 80px;
+}
+.navbar-brand img
+{
+    max-height: 80px;
+}
+.second-menu a img
+{
+    max-height: 80px;
 }
 .wrap > .container 
 {

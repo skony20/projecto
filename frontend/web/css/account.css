@@ -1,0 +1,57 @@
+
+.acoount-side-bar , .account-content
+{
+    display: inline-block;
+    vertical-align: top;
+}
+.acoount-side-bar
+{
+    width:20%;
+    min-width:250px;
+}
+.account-content
+{
+    width: calc(80% - 5px);
+}
+.account-title
+{
+    font-size:30px;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+.order-row
+{
+    min-height:50px;
+    border: 1px solid gray;
+    margin:5px 0;
+    line-height: 50px;
+}
+.order-data, .order-nr, .order-status, .order-total
+{
+    display:inline-block;
+    width:calc(25% - 4px);
+}
+.order-row:nth-child(1)
+{
+    background-color: #F4F9FC;
+    font-size: 18px;
+}
+.order-data
+{
+    padding-left:10px;
+}
+ul.acount-menu{
+    padding-top:50px;
+}
+
+ul.acount-menu li
+{
+    list-style: none;
+    font-size: 18px;
+    margin:10px 0
+}
+.account-logout
+{
+    font-size: 18px;
+    padding:0;
+}

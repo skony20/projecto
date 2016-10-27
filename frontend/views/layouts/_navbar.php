@@ -4,13 +4,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 ?>
 <?php
-    NavBar::begin([
-        'brandLabel' => Html::img(Yii::$app->request->BaseUrl.'/img/logo.png'),
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse',
-        ],
-    ]);
+    NavBar::begin();
     $menuItems = [
         ['label' => 'Home', 'url' => ['/']],
         ['label' => 'Wszystkie projekty', 'url' => ['/projekty']],
@@ -38,3 +32,8 @@ use yii\bootstrap\NavBar;
     ]);
     NavBar::end();
     ?>
+<div class="container">
+    <div class="second-menu">
+       <?= Html::a(Html::img(Yii::$app->request->BaseUrl.'/img/logo.png', ['class'=>'logo']), Yii::$app->homeUrl) ?>
+    </div>
+</div>
