@@ -169,7 +169,6 @@ public function actionIndex($sort = 'default')
                 $aPrdFilters[0] = 1;
             }
         /*Dane techniczne*/
-        
         $aAttributesQuery = $oProductsAttributes->find()->select('products_id')->where('((value BETWEEN '.$iPostMinSize.' AND '.$iPostMaxSize.' ) AND (attributes_id = 4 ) OR ((value < '.$iMaxX.') AND (attributes_id =7)) OR ((value < '.$iMaxY.' ) AND (attributes_id =6))) GROUP BY products_id HAVING COUNT(DISTINCT value)=3');
         
         foreach ($aAttributesQuery->asArray()->all() as $aProdIdFromAttributes)
@@ -186,11 +185,11 @@ public function actionIndex($sort = 'default')
         
         $aDimensions['iOneMinSize'] = ($bBarChange ? $iPostMinSize : $iOneMinSize);
         $aDimensions['iOneMaxSize'] = ($bBarChange ? $iPostMaxSize : $iOneMaxSize);
-        
-        if (count(array_filter($aPostData))>4 && count($aPrdIds) == 0)
-                {
-                    $aPrdIds[0] =1;
-                }
+//        echo '<pre>'. print_r([$bBarChange, $iPostMinSize, $iOneMinSize, $iPostMaxSize, $iOneMaxSize, $aDimensions['iOneMinSize'], $aDimensions['iOneMaxSize']], TRUE); die();
+//        if (count(array_filter($aPostData))>4 && count($aPrdIds) == 0)
+//                {
+//                    $aPrdIds[0] = 1;
+//                }
         
         switch ($sort)
         {

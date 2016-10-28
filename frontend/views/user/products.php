@@ -41,8 +41,8 @@ else
             Cena: <?= $aProducts->price_brutto ?>
         </div>
 
-        <div class="prj_add_favorites" rel="<?= $aProducts->id ?>">
-            Ulubiony projekt
+        <div class="prj_del_favorites" rel="<?= $aProducts->id ?>">
+            Usuń z ulubionych
         </div>
 
         <div class="prj_add_cart" rel="<?= $aProducts->id ?>">

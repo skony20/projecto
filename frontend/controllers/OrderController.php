@@ -261,31 +261,30 @@ class OrderController extends Controller
     }
     public function actionNotify()
     {
-        OpenPayU_Configuration::setEnvironment('secure');
-        echo 
-        $body = file_get_contents ( 'php://input' );
-        $data =  trim ( $body );
-        echo '<pre>dd'. print_r($data , TRUE); die();
-            try {
-                if (!empty($data)) {
-                    $result = OpenPayU_Order::consumeNotification($data);
-                   
-                }
-
-                if ($result->getResponse()->order->orderId) {
-
-                    /* Check if OrderId exists in Merchant Service, update Order data by OrderRetrieveRequest */
-                    $order = OpenPayU_Order::retrieve($result->getResponse()->order->orderId);
-                    if($order->getStatus() == 'SUCCESS'){
-                        //the response should be status 200
-                        //header("HTTP/1.1 200 OK");
-                    }
-                }
-            } catch (OpenPayU_Exception $e) {
-                echo $e->getMessage();
-            }
-
-        
+//        OpenPayU_Configuration::setEnvironment('secure');
+//        $body = file_get_contents ( 'php://input' );
+//        $data =  trim ( $body );
+//        echo '<pre>dd'. print_r($data , TRUE); die();
+//            try {
+//                if (!empty($data)) {
+//                    $result = OpenPayU_Order::consumeNotification($data);
+//                   
+//                }
+//
+//                if ($result->getResponse()->order->orderId) {
+//
+//                    /* Check if OrderId exists in Merchant Service, update Order data by OrderRetrieveRequest */
+//                    $order = OpenPayU_Order::retrieve($result->getResponse()->order->orderId);
+//                    if($order->getStatus() == 'SUCCESS'){
+//                        //the response should be status 200
+//                        //header("HTTP/1.1 200 OK");
+//                    }
+//                }
+//            } catch (OpenPayU_Exception $e) {
+//                echo $e->getMessage();
+//            }
+//
+//        
     }
             
      

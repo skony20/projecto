@@ -1,5 +1,6 @@
 
 $(document).on('ready pjax:success',
+
     function()
     {
         
@@ -7,7 +8,7 @@ $(document).on('ready pjax:success',
             function()
             {
                 $.ajax({
-                        url: "site/reset"
+                        url: "projekty/reset"
                     }); 
                 $("#set_filters").submit();
             }
@@ -50,7 +51,7 @@ $(document).on('ready pjax:success',
                 {
                     $('.prj_select').prop('selectedIndex',0);
                     $.ajax({
-                        url: 'reset'
+                        url: '/projecto/projekty/reset'
 			});  
                     $("#prj_set_filters").submit();
                 }
@@ -103,6 +104,7 @@ $(document).on('ready pjax:success',
                     success: function(data) {   
                         //$('.cart-items').html(data);
                         $("#cart-items").load("/projecto/projekty #cart-items");
+                        $('#system-messages').html(data).stop().fadeIn().animate({opacity: 1.0}, 4000).fadeOut('slow');
                     }
 
                     }); 
@@ -118,6 +120,7 @@ $(document).on('ready pjax:success',
                     success: function(data) {   
                         //$('.cart-items').html(data);
                         $("#cart-items").load("/projecto/projekt/"+iPrjId +" #cart-items");
+                        $('#system-messages').html(data).stop().fadeIn().animate({opacity: 1.0}, 4000).fadeOut('slow');
                     }
 
                     }); 
@@ -143,24 +146,45 @@ $(document).on('ready pjax:success',
                 var iPrjId = $(this).attr('rel');
                 $.ajax({
                     url: "/projecto/cart/remove-from-cart?iPrjId="+iPrjId,
-                    success: function(data) {   
-                        //$('.cart-items').html(data);
+                    success: function(data) { 
                         window.location.href = window.location.href;
+                        $('#system-messages').html(data).stop().fadeIn().animate({opacity: 1.0}, 4000).fadeOut('slow');
+                        
                     }
 
                     }); 
             }
     );
-        /*Dodawanie ulubionych*/
+    /*Dodawanie ulubionych*/
     $('.prj_add_favorites').click(
             function()
             {
                 var iPrjId = $(this).attr('rel');
                 $.ajax({
-                    url: "/projecto/favorites/add-favorites?iPrjId="+iPrjId
+                    url: "/projecto/favorites/add-favorites?iPrjId="+iPrjId,
+                    success: function(data) {   
+                        //$('.cart-items').html(data);
+                         $('#system-messages').html(data).stop().fadeIn().animate({opacity: 1.0}, 4000).fadeOut('slow');
+                    }
                     }); 
             }
     );
+    
+    /*Dodawanie ulubionych*/
+    $('.prj_del_favorites').click(
+            function()
+            {
+                var iPrjId = $(this).attr('rel');
+                $.ajax({
+                    url: "/projecto/favorites/delete-favorites?iPrjId="+iPrjId,
+                    success: function(data) {   
+                        //$('.cart-items').html(data);
+                         $('#system-messages').html(data).stop().fadeIn().animate({opacity: 1.0}, 4000).fadeOut('slow');
+                    }
+                    }); 
+            }
+    );
+    
     /*TABS*/
     $('ul.tabs li').click(function(){
 		var tab_id = $(this).attr('data-tab');

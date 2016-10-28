@@ -9,7 +9,7 @@ use yii\web\View;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ProductsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-
+//echo '<pre>'. print_r($aDimensions, TRUE);
 $this->title = 'Lista projektów';
 $this->params['breadcrumbs'][] = $this->title;
 $iSetMinSize = $aDimensions['iOneMinSize'];
@@ -53,7 +53,7 @@ $iSetMaxSize = $aDimensions['iOneMaxSize'];
                 'onChange' => new \yii\web\JsExpression('
                 function(data) {
                     $.ajax({
-                        url: "bar-change"
+                        url: "projekty/bar-change"
                     }); 
                     
                     }'

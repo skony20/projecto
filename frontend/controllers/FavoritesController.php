@@ -9,6 +9,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use app\models\Favorites;
 use common\models\User;
+use common\widgets\Alert;
 
 class FavoritesController extends Controller
 {
@@ -22,7 +23,7 @@ class FavoritesController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['add-favorites'],
+                        'actions' => ['add-favorites', 'delete-favorites'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -58,6 +59,33 @@ class FavoritesController extends Controller
         if (count($aFavorit)==0)
         {
             $oFavorites->save();
+            Yii::$app->session->setFlash('success', 'Projekt dodany do ulubionych');
         }
+        else
+        {
+            Yii::$app->session->setFlash('error', 'Ten projekt już lubisz');
+        }
+            
+            
+    }
+    
+    
+    public function actionDeleteFavorites($iPrjId)
+    {
+        $oFavorites = new Favorites();
+        $aCurrentFavorites = $oFavorites->findOne(['products_id'=>$iPrjId, 'user_id' => Yii::$app->user->identity->id]);
+        $aFavoriteToDelete = $oFavorites->findOne($aCurrentFavorites->id);
+        if ($aFavoriteToDelete->delete())
+        {
+            Yii::$app->session->setFlash('success', 'Projekt usunięty z ulubionych');
+            $this->refresh();
+        }
+    }
+    public function afterAction($action, $result) 
+    {
+       if (!empty(Yii::$app->session->getAllFlashes())) {
+           echo Alert::widget();
+       }
+       return parent::afterAction('AddFavorites', $result);
     }
 }

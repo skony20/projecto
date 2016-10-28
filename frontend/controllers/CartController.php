@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use app\models\Products;
+use common\widgets\Alert;
 
 use yii\web\Session;
 
@@ -87,6 +88,7 @@ class CartController extends Controller
         }
         
         Yii::$app->session['Cart'] =$aPrjInCart;
+        Yii::$app->session->setFlash('success', 'Projekt dodany do koszyka');
         return $this->renderAjax('AddCart',['CartItems'=>$aPrjInCart]);
         
         
@@ -134,7 +136,14 @@ class CartController extends Controller
         
         unset($aInCart[$iPrjId]);
         Yii::$app->session['Cart'] = $aInCart; 
-        //echo '<pre>'. print_r($aInCart , TRUE); die();
+        Yii::$app->session->setFlash('success', 'Projekt usunięty z koszyka');
         
+    }
+    public function afterAction($action, $result) 
+    {
+       if (!empty(Yii::$app->session->getAllFlashes())) {
+           echo Alert::widget();
+       }
+       return parent::afterAction('AddFavorites', $result);
     }
 }
