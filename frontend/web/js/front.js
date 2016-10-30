@@ -170,7 +170,7 @@ $(document).on('ready pjax:success',
             }
     );
     
-    /*Dodawanie ulubionych*/
+    /*Usuwanie z ulubionych*/
     $('.prj_del_favorites').click(
             function()
             {
@@ -178,8 +178,8 @@ $(document).on('ready pjax:success',
                 $.ajax({
                     url: "/projecto/favorites/delete-favorites?iPrjId="+iPrjId,
                     success: function(data) {   
-                        //$('.cart-items').html(data);
-                         $('#system-messages').html(data).stop().fadeIn().animate({opacity: 1.0}, 4000).fadeOut('slow');
+                        window.location.href = window.location.href;
+                        $('#system-messages').html(data).stop().fadeIn().animate({opacity: 1.0}, 4000).fadeOut('slow');
                     }
                     }); 
             }

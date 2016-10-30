@@ -78,7 +78,6 @@ class FavoritesController extends Controller
         if ($aFavoriteToDelete->delete())
         {
             Yii::$app->session->setFlash('success', 'Projekt usunięty z ulubionych');
-            $this->refresh();
         }
     }
     public function afterAction($action, $result) 
@@ -86,6 +85,6 @@ class FavoritesController extends Controller
        if (!empty(Yii::$app->session->getAllFlashes())) {
            echo Alert::widget();
        }
-       return parent::afterAction('AddFavorites', $result);
+       return parent::afterAction($action, $result);
     }
 }

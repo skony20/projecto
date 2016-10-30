@@ -18,10 +18,11 @@ return [
         ],
         'formatter' => [
             'dateFormat' => 'dd.MM.yyyy',
-            'datetimeFormat' => 'dd-MM-yyyy H:i:s',
+            'datetimeFormat' => 'dd/MM/yyyy HH:mm:ss',
+            'timeFormat' => 'H:i:s',
             'decimalSeparator' => ',',
             'thousandSeparator' => ' ',
-            'currencyCode' => 'EUR',
+            'currencyCode' => 'zł ',
        ],
         'user' => [
             'identityClass' => 'common\models\User',
