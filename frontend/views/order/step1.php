@@ -44,8 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $formData->field($aOrder, 'customer_phone')->textInput(['value'=>$aUser->phone]) ?>
                 <br><br>
                 <div class="want-invoice-order">
-                    <input type="checkbox" name="is_invoice"/>
-                    Chcę otrzymać fakturę VAT >
+                    <?= $formData->field($aOrder, 'is_invoice')->checkbox(['name'=>'is_invoice', 'class'=>'is_invoice'])->label(false) ?>
                 </div>
             </div>
         </div>

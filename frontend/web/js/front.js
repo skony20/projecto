@@ -200,26 +200,15 @@ $(document).on('ready pjax:success',
 
 
     /*Pokaż dane do faktury*/
-    $('.want-invoice').click(function()
+    $('#orders-is_invoice').click(function()
         {
            $('.invoice').toggle();
            $('.invoice-caption').toggle();
            
         }
     );
-    $('.want-invoice-order').click(function()
-        {
-           $('.invoice').toggle();
-           $('.invoice-caption').toggle();
-           if($('.want-invoice-order').children().is(':checked')) {
-                $('.want-invoice-order').children().prop( "checked", false );
-            } else {
-                $('.want-invoice-order').children().prop( "checked", true );
-            }
-           
-        }
-    );
-    if($('.want-invoice-order').children().is(':checked')) {
+
+    if($('#orders-is_invoice').is(':checked')) {
         $('.invoice').show();
         $('.invoice-caption').show();
     } else {

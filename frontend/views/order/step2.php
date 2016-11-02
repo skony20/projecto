@@ -10,7 +10,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Koszyk', 'url' => ['/cart']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <?php
-//echo '<pre>' . print_r ($aProducts, TRUE)
+
 
 ?>
  <?php $formData = ActiveForm::begin(['action'=>'/projecto/order/confirm-order/']); ?> 

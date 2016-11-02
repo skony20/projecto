@@ -19,6 +19,7 @@ use OpenPayU_Order;
 use OpenPayU_Result;
 
 
+
 class OrderController extends Controller
 {
     /**
@@ -90,6 +91,8 @@ class OrderController extends Controller
         $oSession = new Session();
         $aProducts = $oSession->get('aPrjs');
         $aDelivery = $oSession['OrderData']['Orders'];
+        $bIsInvoice = $oSession['OrderData']['is_invoice'];
+        
         $aTotal = $oSession->get('aTotal');
         //echo '<pre>'. print_r($aProducts, TRUE);  die();
         if ($order <> 0)
@@ -112,7 +115,8 @@ class OrderController extends Controller
             
             return $this->render('/order/confirm-order',['iOrderId'=>$order, 'oOrderActual' =>$oOrderActual]); 
         }
-        $iOrderCode = uniqid('',true);
+
+        $iOrderCode = bin2hex (random_bytes(5));
         $oOrder->is_deleted = 0;
         $oOrder->customers_id = Yii::$app->user->identity->id;
         $oOrder->languages_id = 1;
@@ -128,6 +132,7 @@ class OrderController extends Controller
         $oOrder->delivery_zip = ($aDelivery['delivery_zip'] ? $aDelivery['delivery_zip'] : '');
         $oOrder->delivery_city = ($aDelivery['delivery_city'] ? $aDelivery['delivery_city'] : '');
         $oOrder->delivery_country = ($aDelivery['delivery_country'] ? $aDelivery['delivery_country'] : '');
+        $oOrder->is_invoice = ($bIsInvoice ? $bIsInvoice : 0);
         $oOrder->invoice_name = ($aDelivery['invoice_name'] ? $aDelivery['invoice_name'] : '');
         $oOrder->invoice_lastname = ($aDelivery['invoice_lastname'] ? $aDelivery['invoice_lastname'] : '');
         $oOrder->invoice_firm_name = ($aDelivery['invoice_firm_name'] ? $aDelivery['invoice_firm_name'] : '');

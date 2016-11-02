@@ -68,7 +68,7 @@ class Orders extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['is_deleted', 'customers_id', 'languages_id', 'order_date', 'orders_status_id', 'shippings_payments_id', 'shippings_couriers_id', 'shippings_vat_rate', 'realization_date', 'paid_date', 'send_date', 'creation_date', 'modification_date'], 'integer'],
+            [['is_deleted', 'customers_id', 'languages_id', 'order_date', 'orders_status_id', 'shippings_payments_id', 'shippings_couriers_id', 'shippings_vat_rate', 'realization_date', 'paid_date', 'send_date', 'creation_date', 'modification_date', 'is_invoice'], 'integer'],
             [['customer_phone', 'delivery_name', 'delivery_lastname', 'delivery_street_local', 'delivery_zip', 'delivery_city', 'delivery_country', 'shippings_payments_id'], 'required'],
             [['value_brutto'], 'number'],
             [['comments', 'shippings_name'], 'string'],
@@ -97,6 +97,7 @@ class Orders extends \yii\db\ActiveRecord
             'delivery_zip' => 'Kod pocztowy',
             'delivery_city' => 'Miasto',
             'delivery_country' => 'Państwo',
+            'is_invoice' => 'Chcę otrzymać fakturę VAT >',
             'invoice_name' => 'Imię',
             'invoice_lastname' => 'Nazwisko',
             'invoice_firm_name' => 'Nazwa firmy',
