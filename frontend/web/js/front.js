@@ -20,7 +20,10 @@ $(document).on('ready pjax:success',
                     var iQuestion = $(this).attr('rel');
                     var iAnswear = $(this).val();
                     $.ajax({
-                        url: '/projecto/projekty/filter-change?iQuestion='+iQuestion+'&iAnswer='+iAnswear
+                        url: '/projecto/projekty/filter-change?iQuestion='+iQuestion+'&iAnswer='+iAnswear,
+                        success: function(data) {   
+                        window.location.href = window.location.href;
+                            }
 			});  
                         
                 }

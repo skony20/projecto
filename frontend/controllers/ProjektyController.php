@@ -257,5 +257,6 @@ public function actionIndex($sort = 'default')
         $aFilters =Yii::$app->session->get('aFiltersSession');
         $aFilters[$iQuestion] = $iAnswer;
         Yii::$app->session['aFiltersSession'] = $aFilters;
+        return true;
     }
 }
