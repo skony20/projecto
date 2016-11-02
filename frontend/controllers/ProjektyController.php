@@ -252,4 +252,10 @@ public function actionIndex($sort = 'default')
     {
         Yii::$app->session->remove($id);
     }
+    public function actionFilterChange($iQuestion, $iAnswer)
+    {
+        $aFilters =Yii::$app->session->get('aFiltersSession');
+        $aFilters[$iQuestion] = $iAnswer;
+        Yii::$app->session['aFiltersSession'] = $aFilters;
+    }
 }

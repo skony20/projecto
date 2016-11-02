@@ -116,7 +116,7 @@ class OrderController extends Controller
             return $this->render('/order/confirm-order',['iOrderId'=>$order, 'oOrderActual' =>$oOrderActual]); 
         }
 
-        $iOrderCode = bin2hex (random_bytes(5));
+        $iOrderCode = 1; //bin2hex (random_bytes(5));
         $oOrder->is_deleted = 0;
         $oOrder->customers_id = Yii::$app->user->identity->id;
         $oOrder->languages_id = 1;

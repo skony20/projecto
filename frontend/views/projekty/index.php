@@ -10,6 +10,7 @@ use yii\web\View;
 /* @var $searchModel app\models\ProductsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 //echo '<pre>'. print_r($aDimensions, TRUE);
+echo '<pre>'. print_r($_SESSION, TRUE) .'</pre>';
 $this->title = 'Lista projektów';
 $this->params['breadcrumbs'][] = $this->title;
 $iSetMinSize = $aDimensions['iOneMinSize'];
@@ -28,7 +29,7 @@ $iSetMaxSize = $aDimensions['iOneMaxSize'];
         echo $aData['question']->name.'<br>';
         echo '</div>';
         echo '<div class="prj_filter_ansver_row">';
-        echo Html::dropDownList($aData['question']->id, $aChooseFilters, ArrayHelper::map($aData['answer'], 'id', 'name'), ['prompt' => ' -- Wybierz --', 'class'=>'prj_select']);
+        echo Html::dropDownList($aData['question']->id, $aChooseFilters, ArrayHelper::map($aData['answer'], 'id', 'name'), ['prompt' => ' -- Wybierz --', 'class'=>'prj_select', 'rel' => $aData['question']->id]);
         echo '<span class="remove-filter" rel="'.$aData['question']->id.'">Usuń filtr</span>';
         if ($aData['question']->id == 7 )
         {

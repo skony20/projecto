@@ -6,7 +6,7 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ProductsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-
+echo '<pre>'. print_r($_SESSION, TRUE) .'</pre>';
 $this->title = 'Projekty';
 $this->params['breadcrumbs'][] = $this->title;
 
