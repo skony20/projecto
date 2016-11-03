@@ -53,6 +53,7 @@ return [
                     '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                     '<controller:\w+>/<action:\w+>' => '<controller>/<action>', 
                     '<alias:login|signup|about|contact>' => 'site/<alias>',
+                    'projekty/<7:\d+>/<bar_size:\d+><3:\d+><SizeX:\d+><SizeY:\d+>' => 'projekty/index',
             ),
         ],
     ],

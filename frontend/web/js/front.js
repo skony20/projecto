@@ -1,40 +1,28 @@
 
 $(document).on('ready pjax:success',
 
+
+
+
     function()
     {
         
-//        $('input[type=radio]').change(
-//            function()
-//            {
-//                $.ajax({
-//                        url: "projekty/reset"
-//                    }); 
-//                $("#set_filters").submit();
-//            }
-//        );
-        $('.prj_select').change(
-                function()
-                {
-                    
-                    var iQuestion = $(this).attr('rel');
-                    var iAnswear = $(this).val();
-                    $.ajax({
-                        url: '/projecto/projekty/filter-change?iQuestion='+iQuestion+'&iAnswer='+iAnswear,
-                        success: function(data) {   
-                        window.location.href = window.location.href;
-                            }
-			});  
-                        
-                }
-                );
-//        $('input[type=text]').change(
-//            function()
-//            {
-//                $("#set_filters").submit();
-//                
-//            }
-//        );
+        $('input[type=radio]').change(
+            function()
+            {
+                $.ajax({
+                        url: "projekty/reset"
+                    }); 
+                $("#set_filters").submit();
+            }
+        );
+        $('input[type=text]').change(
+            function()
+            {
+                $("#set_filters").submit();
+                
+            }
+        );
         $('#prj_sizex, #prj_sizey').change(
             function()
             { 
@@ -72,13 +60,13 @@ $(document).on('ready pjax:success',
                 }
     );
 
-//    $('.prj_select').change(function()
-//    {
-//        $.ajax({
-//            url: "remove-session?id=BarChange"
-//        }); 
-//        $("#prj_set_filters").submit();
-//    });
+    $('.prj_select').change(function()
+    {
+        $.ajax({
+            url: "projekty/remove-session?id=BarChange"
+        }); 
+        $("#prj_set_filters").submit();
+    });
 
     $('.remove-filter').click(
             function()

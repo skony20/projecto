@@ -7,7 +7,7 @@ if (!$dataProvider->models)
     echo 'Brak projektów spełniajacych kryteria';
 }
 ?>
-<div class="prjs_title"><h1>Projekty domów</h1></div>
+<div class="prjs_title"><h1>Projekty domów</h1><span class="all-prj">Spełnia kryteria: <?= $dataProvider->totalCount ?></span></div>
 <div class="prjs_paso">
 <div class="prjs_sort">Sortuj według: 
     <form id="prj_sort" class="prj_sort" action="">

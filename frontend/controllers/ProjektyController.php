@@ -62,7 +62,7 @@ class ProjektyController extends Controller
 
 
 
-public function actionIndex($sort = 'default')
+public function actionIndex($sort = 'default', $szukaj = '')
     {
         
         $model = new ProductsSearch();
@@ -115,10 +115,11 @@ public function actionIndex($sort = 'default')
             $iPostMinSize = $aDimensions['iOneMinSize'];
             $iPostMaxSize = $aDimensions['iOneMaxSize'];
         }
-        if (Yii::$app->request->post())
+        if (count(Yii::$app->request->get())>1)
         {
 
-            $aPostData = Yii::$app->request->post();
+            $aPostData = Yii::$app->request->get();
+            $aPostData['page'] ='';
             //echo 'Post'.print_r($aPostData, TRUE).'<br>';die();
             /*Zmiana inputów z rozmiarami dzialki*/
             $iMaxX = $aPostData['SizeX'];
@@ -153,6 +154,7 @@ public function actionIndex($sort = 'default')
                     $aFiltersData[] .= $Filters;
                 }
             }
+            
             Yii::$app->session['aFiltersSession'] = $aFiltersData;
             Yii::$app->session['aDimensions'] = $aDimensions;
             
@@ -177,8 +179,43 @@ public function actionIndex($sort = 'default')
         }
         
         $aPrdIdsAll = array_merge($aPrdFilters, $aAttributes);
-        $aPrdIds = array_diff_assoc($aPrdIdsAll, array_unique($aPrdIdsAll));
-        //echo '<pre>'.print_r($aPrdIds , true); die();
+        $aPrdIdsNotSearch = array_diff_assoc($aPrdIdsAll, array_unique($aPrdIdsAll));
+        
+        //echo '<pre>'.print_r($aPrdIdsNotSearch , true); die();
+        /*Wyszukiwanie*/
+        if ($szukaj != '')
+        {
+            $aSearchPrjs = [];
+            $aSearchQuery =  $model::find()->joinWith('productsDescriptons')->andFilterWhere(['or',['like', 'products.symbol', $szukaj],['like', 'products_descripton.name', $szukaj],['like', 'products_descripton.keywords', $szukaj]])->asArray()->all();
+            foreach ($aSearchQuery as $aSearchProducts)
+            {
+                $aSearchPrjs[] .= $aSearchProducts['id'];
+            }
+            if (count($aPrdIdsNotSearch)>0 and count($aSearchPrjs)>0)
+            {
+                $aPrdIdsAllSearch = array_merge($aSearchPrjs, $aPrdIdsNotSearch);
+                $aPrdIds = array_diff_assoc($aPrdIdsAllSearch, array_unique($aPrdIdsAllSearch));
+                //echo '<pre>'. print_r($aPrdIds, TRUE); die();
+            }
+            else if (count($aPrdIdsNotSearch) == 0 and count($aSearchPrjs)== 0)
+            {
+                $aPrdIds[0] = 1;
+            }
+             else if (count($aPrdIdsNotSearch) == 0 and count($aSearchPrjs)> 0)
+            {
+                $aPrdIds = $aSearchPrjs;
+            }
+ 
+            
+        }
+        else
+        {
+            $aPrdIds = $aPrdIdsNotSearch;
+        }
+        
+        
+        
+        
         $iOneMinSize = floor($oProductsAttributes->find()->andFilterWhere(['IN', 'products_id', $aPrdFilters])->andWhere('attributes_id = 4')->min('(CAST(value AS DECIMAL (5,2)))'));
         $iOneMaxSize = ceil($oProductsAttributes->find()->andFilterWhere(['IN', 'products_id', $aPrdFilters])->andWhere('attributes_id = 4')->max('(CAST(value AS DECIMAL (5,2)))'));
         
@@ -186,10 +223,10 @@ public function actionIndex($sort = 'default')
         $aDimensions['iOneMinSize'] = ($bBarChange ? $iPostMinSize : $iOneMinSize);
         $aDimensions['iOneMaxSize'] = ($bBarChange ? $iPostMaxSize : $iOneMaxSize);
 //        echo '<pre>'. print_r([$bBarChange, $iPostMinSize, $iOneMinSize, $iPostMaxSize, $iOneMaxSize, $aDimensions['iOneMinSize'], $aDimensions['iOneMaxSize']], TRUE); die();
-//        if (count(array_filter($aPostData))>4 && count($aPrdIds) == 0)
-//                {
-//                    $aPrdIds[0] = 1;
-//                }
+        if (count(array_filter($aPostData))>4 && count($aPrdIds) == 0)
+                {
+                    $aPrdIds[0] = 1;
+                }
         
         switch ($sort)
         {

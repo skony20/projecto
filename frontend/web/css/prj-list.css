@@ -8,6 +8,11 @@
 {
     width:100%
 }
+span.all-prj 
+{
+    float: right;
+    margin: 20px;
+}
 .prj_all
 {
     display: inline-block;

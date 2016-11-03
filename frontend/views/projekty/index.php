@@ -9,20 +9,24 @@ use yii\web\View;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ProductsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-//echo '<pre>'. print_r($aDimensions, TRUE);
-echo '<pre>'. print_r($_SESSION, TRUE) .'</pre>';
 $this->title = 'Lista projektów';
 $this->params['breadcrumbs'][] = $this->title;
 $iSetMinSize = $aDimensions['iOneMinSize'];
 $iSetMaxSize = $aDimensions['iOneMaxSize'];
+$sSearch = (isset($_GET['szukaj']) ? $_GET['szukaj'] : '');
 ?>
 
 <div class="full_site">
     <div class="top_menu filter_menu">
-
+        <div class="search-from">
+            <?php
+            echo Html::beginForm(['/projekty'], 'GET', ['id'=>'prj_set_filters', 'name'=>'prj_set_filers', 'class'=>'prj_set_filers']);
+            echo Html::input('text', 'szukaj', $sSearch, ['class'=>'search-input', 'placeholder'=>'Jakiego projektu szukasz ?']);
+            echo Html::submitButton('Szukaj',['class'=>'search-submit']);
+            ?>
+        </div>
     <?php
     
-    echo Html::beginForm(['/projekty'], 'POST', ['id'=>'prj_set_filters', 'name'=>'prj_set_filers', 'class'=>'prj_set_filers']);
     foreach ($aFilters as $aData) {
         echo '<div class="prj_filter_row">';
         echo '<div class="prj_filter_question_row">';
