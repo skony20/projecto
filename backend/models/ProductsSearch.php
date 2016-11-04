@@ -15,12 +15,14 @@ class ProductsSearch extends Products
     /**
      * @inheritdoc
      */
+    public $prjName;
     public function rules()
     {
         return [
             [['id', 'is_active', 'sort_order', 'producers_id', 'vats_id', 'stock', 'rating_value', 'rating_votes', 'creation_date', 'modification_date', 'is_archive', 'sell_items'], 'integer'],
-            [['pkwiu', 'symbol', 'ean', 'image'], 'safe'],
+            [['symbol', 'ean', 'image'], 'safe'],
             [['price_brutto_source', 'price_brutto'], 'number'],
+            [['prjName'], 'safe'],
         ];
     }
 
@@ -43,13 +45,28 @@ class ProductsSearch extends Products
     public function search($params)
     {
         $query = Products::find();
-
+        $query->joinWith('productsDescriptons');
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-
+        $dataProvider->setSort([
+        'attributes' => [
+            'id',     
+            'is_active',
+            'producers_id',
+            'price_brutto_source',
+            'symbol',
+            'prjName' => [
+                'asc' => ['products_descripton.name' => SORT_ASC],
+                'desc' => ['products_descripton.name' => SORT_DESC],
+                'label' => 'Nazwa',
+                'default' => SORT_ASC
+            ],
+        ],
+        'defaultOrder' => ['id'=>SORT_DESC],    
+    ]);
         $this->load($params);
 
         if (!$this->validate()) {
@@ -57,29 +74,18 @@ class ProductsSearch extends Products
             // $query->where('0=1');
             return $dataProvider;
         }
+        
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'is_active' => $this->is_active,
-            'sort_order' => $this->sort_order,
-            'producers_id' => $this->producers_id,
-            'vats_id' => $this->vats_id,
-            'price_brutto_source' => $this->price_brutto_source,
-            'price_brutto' => $this->price_brutto,
-            'stock' => $this->stock,
-            'rating_value' => $this->rating_value,
-            'rating_votes' => $this->rating_votes,
-            'creation_date' => $this->creation_date,
-            'modification_date' => $this->modification_date,
-            'is_archive' => $this->is_archive,
-            'sell_items' => $this->sell_items,
+            'products.id' => $this->id,
+            'products.is_active' => $this->is_active,
+            'products.producers_id' => $this->producers_id,
+            'products.price_brutto_source' => $this->price_brutto_source,
         ]);
 
-        $query->andFilterWhere(['like', 'pkwiu', $this->pkwiu])
-            ->andFilterWhere(['like', 'symbol', $this->symbol])
-            ->andFilterWhere(['like', 'ean', $this->ean])
-            ->andFilterWhere(['like', 'image', $this->image]);
+        $query->andFilterWhere(['like', 'products.symbol', $this->symbol]);
+         $query->andWhere('products_descripton.name LIKE "%' . $this->prjName . '%" ' );
 
         return $dataProvider;
     }

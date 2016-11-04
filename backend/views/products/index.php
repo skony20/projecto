@@ -35,7 +35,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=> function($model)
                 {
                     $sPatch = Yii::getAlias('@image');
-                    //return $sPatch;
                     return '<img src="'.$sPatch.'/'.$model->id.'/thumbs/'.$model->productsDescriptons->nicename_link.'_0.jpg" style="height:50px;"/>';
                 },
             ],
@@ -50,37 +49,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['class' => '50p'],
                 'filter' => Html::activeDropDownList($searchModel, 'is_active', ['1'=>'Tak', '0'=>'Nie'],['class'=>'form-control','prompt' => 'Wybierz']),
             ],
-            //'sort_order',
-            //'producers_id',
             [
                 'attribute' => 'producers_id',
                 'value' =>  'producers.name',
                 'filter' => Html::activeDropDownList($searchModel, 'producers_id', ArrayHelper::map(app\models\Producers::find()->asArray()->all(), 'id', 'name'),['class'=>'form-control','prompt' => 'Wybierz']),
             ],
-            //'pkwiu',
-//            [
-//                'attribute' => 'vats_id',
-//                'value' =>  'vats.name',
-//                'filter' => Html::activeDropDownList($searchModel, 'vats_id', ArrayHelper::map(\app\models\Vats::find()->orderBy('id DESC')->asArray()->all(), 'id', 'name'),['class'=>'form-control','prompt' => 'Wybierz']),
-//            ],
-            [
-                'label'=>'Nazwa',
-                'format' => 'raw',
-                'value' => function ($model)
-                {
-                    $sName = (is_object($model->productsDescriptons) ? $model->productsDescriptons->name: '');
-                    $sNameModel = (is_object($model->productsDescriptons) ? $model->productsDescriptons->name_model: '');
-                    $sNameSubname = (is_object($model->productsDescriptons) ? $model->productsDescriptons->name_subname: '');
-                    return $sName . ' <b>'. $sNameModel .'</b> ' .$sNameSubname;
-                },
-            ],
-//            [
-//                'label'=>'Język',
-//                'value' => function ($model)
-//                {
-//                    return $model->languages[0]->name;
-//                },
-//            ],
+
+            'prjName',
+
+
             [
                 'attribute' => 'price_brutto_source',
                 'value'=> function ($model)
@@ -88,17 +65,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $model->price_brutto_source.' zł';
                 }
             ],
-            //'price_brutto',
-            // 'stock',
-            // 'rating_value',
-            // 'rating_votes',
-            // 'creation_date',
-            // 'modification_date',
+
              'symbol',
-            // 'ean',
-            // 'image',
-            // 'is_archive',
-            // 'sell_items',
+
 
             ['class' => 'yii\grid\ActionColumn'],
             [

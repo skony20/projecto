@@ -20,6 +20,7 @@ use app\models\ProductsAttributes;
 use app\models\ProductsFilters;
 use yii\web\Session;
 use common\models\User;
+use app\models\SearchProject;
 
 
 /**
@@ -208,7 +209,6 @@ class SiteController extends Controller
         }
         Yii::$app->session['aFiltersSession'] = $aFiltersData;
         Yii::$app->session['aDimensions'] = $aDimensions;
-        //echo '<pre>'. print_r($aFiltersData, TRUE); die();
         
         return $this->render('index', ['sProjectCount' => $sProjectCount, 'aFilters'=>$aData, 'aFiltersData' => $aFiltersData, 'aDimensions'=> $aDimensions]);
     }
@@ -379,7 +379,15 @@ class SiteController extends Controller
        
         Yii::$app->session->remove($id);
     }
-
+    public function actionSaveFilters()
+    {
+        $aFiltersData = Yii::$app->session->get('aFiltersSession');
+        $oSearchProjects = new SearchProject();
+        $oSearchProjects->filters = serialize($aFiltersData);
+        $oSearchProjects->users_id = (Yii::$app->user->isGuest ? '' : Yii::$app->user->identity->id);
+        $oSearchProjects->creation_date = time();
+        $oSearchProjects->save();
+    }
 }
     
 

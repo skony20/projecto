@@ -173,6 +173,11 @@ class OrderController extends Controller
                 $oOrderPosition->value_brutto = $aProduct['prj']->price_brutto * $aProduct['iQty'];
                 $oOrderPosition->creation_date - time();
                 $oOrderPosition->save(false);
+                
+                $oProducts = new Products();
+                $aProductExist = $oProducts->findOne($aProduct['prj']->id);
+                $aProductExist->sell_items += 1 ;
+                $aProductExist->save(false);
             }
 //                $oSession->remove('Cart');
 //                $oSession->remove('aPrjs');

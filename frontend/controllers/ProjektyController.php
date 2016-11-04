@@ -19,6 +19,7 @@ use yii\data\ActiveDataProvider;
 use app\models\ProductsAttributes;
 use app\models\ProductsFilters;
 use yii\web\Session;
+use app\models\SearchProject;
 
 
 /**
@@ -74,7 +75,7 @@ public function actionIndex($sort = 'default', $szukaj = '')
         $aPrdFilters = [];
         $aAttributes = [];
         $aPostData = [];
-        
+
         $oFiltersGroup = new FiltersGroup();
         $oFilters = new Filters();
         $aFiltersGroup = $oFiltersGroup::find()->where(['is_active'=> 1])->orderBy('sort_order')->all();

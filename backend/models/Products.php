@@ -11,7 +11,6 @@ use Yii;
  * @property integer $is_active
  * @property integer $sort_order
  * @property integer $producers_id
- * @property string $pkwiu
  * @property integer $vats_id
  * @property string $price_brutto_source
  * @property string $price_brutto
@@ -51,7 +50,6 @@ class Products extends \yii\db\ActiveRecord
             [['is_active', 'vats_id', 'price_brutto_source', 'price_brutto', 'stock', 'is_archive', 'sell_items', 'sort_order'], 'required'],
             [['is_active', 'sort_order', 'producers_id', 'vats_id', 'stock', 'rating_value', 'rating_votes', 'creation_date', 'modification_date', 'is_archive', 'sell_items'], 'integer'],
             [['price_brutto_source', 'price_brutto'], 'number'],
-            [['pkwiu'], 'string', 'max' => 15],
             [['symbol'], 'string', 'max' => 50],
             [['ean', 'image'], 'string', 'max' => 125],
             [['producers_id'], 'exist', 'skipOnError' => true, 'targetClass' => Producers::className(), 'targetAttribute' => ['producers_id' => 'id']],
@@ -69,7 +67,6 @@ class Products extends \yii\db\ActiveRecord
             'is_active' => Yii::t('app', 'Aktywny'),
             'sort_order' => Yii::t('app', 'Sortowanie'),
             'producers_id' => Yii::t('app', 'Dostawca'),
-            'pkwiu' => Yii::t('app', 'PKWIU'),
             'vats_id' => Yii::t('app', 'Vat'),
             'price_brutto_source' => Yii::t('app', 'Cena brutto'),
             'price_brutto' => Yii::t('app', 'Cena brutto po rabacie'),
@@ -83,6 +80,7 @@ class Products extends \yii\db\ActiveRecord
             'image' => Yii::t('app', 'Obrazek główny'),
             'is_archive' => Yii::t('app', 'Archiwalny'),
             'sell_items' => Yii::t('app', 'Sprzedanych'),
+            'prjName' => Yii::t('app', 'Nazwa')
         ];
     }
 
@@ -148,6 +146,14 @@ class Products extends \yii\db\ActiveRecord
         return TRUE;
     }
 
+    public function getPrjName() 
+    {
+        $sName = $this->productsDescriptons->name;
+        $sNameModel = ($this->productsDescriptons->name_model ? ' ' .$this->productsDescriptons->name_model :'');
+        $sNameSubname = ($this->productsDescriptons->name_subname ? ' ' .$this->productsDescriptons->name_subname :'');
+        return $sName.$sNameModel.$sNameSubname;
+    }
+    
        /**
     * @inheritdoc
     * @return ProductsQuery the active query used by this AR class.

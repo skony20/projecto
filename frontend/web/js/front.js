@@ -45,6 +45,9 @@ $(document).on('ready pjax:success',
     $('.project_ready').click(
             function()
             {
+                $.ajax({
+                    url: "site/save-filters"
+                });
                 window.location.href = "projekty";
             });
 
@@ -86,13 +89,13 @@ $(document).on('ready pjax:success',
             $('.cart-container').css('display', 'block');
 
         }
-    )
+    );
     $('.cart').mouseout(function()
     
         {
             $('.cart-container').css('display', 'none');
         }
-    )
+    );
     
     
     
