@@ -600,3 +600,15 @@ table.prj-tech-data  tr:nth-child(even)
 {
     text-align: center;
 }
+#elewacje img
+{
+    max-width: 80%;
+}
+#rzuty img
+{
+    max-width: 80%;
+}
+#realizacje img
+{
+    max-width: 80%;
+}
