@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use app\models\Products;
+use app\models\ProductsDescripton;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -42,8 +43,11 @@ class ProjektController extends Controller
     }
 
   
-    public function actionView($id)
+    public function actionView($symbol)
     {
+        $aId = ProductsDescripton::findOne(['nicename_link'=>$symbol]); 
+        $id = $aId->products_id;
+        //echo '<pre>'. print_r($symbol, TRUE); die();
         $aPrdAttributes = $this->findModel($id)->productsAttributes;
         $oAttributes = new Attributes();
         //echo '<pre>22'.print_r($aPrdAttributes, TRUE);
@@ -69,20 +73,10 @@ class ProjektController extends Controller
         ]);
     }
 
-    public function actionSlug($slug)
-     { 
-       $model = Products::find()->where(['symbol'=>$slug])->one();
-       if (!is_null($model)) {
-           return $this->render('view', [
-               'model' => $model,
-           ]);      
-       } else {
-         return $this->redirect('/projekty');
-       }
-     }
     protected function findModel($id)
     {
         if (($model = Products::findOne($id)) !== null) {
+            //echo '<pre>'. print_r($model, true); die();
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
