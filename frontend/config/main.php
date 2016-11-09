@@ -59,6 +59,19 @@ return [
                     '<alias:login|signup|kontakt|wprojekcie|onas|regulamin|wspolpraca>' => 'site/<alias>',
             ),
         ],
+        'authClientCollection' => [
+        'class' => 'yii\authclient\Collection',
+        'clients' => [
+          'facebook' => [
+            'class' => 'yii\authclient\clients\Facebook',
+            'authUrl' => 'https://www.facebook.com/dialog/oauth?display=popup',
+            'clientId' => '1135286729900647',
+            'clientSecret' => 'b0690f4255982412345426c3eec470fd',
+            'attributeNames' => ['name', 'email', 'first_name', 'last_name'],
+          ],
+        ],
+      ],
     ],
     'params' => $params,
+    
 ];

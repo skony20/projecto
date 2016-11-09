@@ -21,7 +21,8 @@
         "2amigos/yii2-ckeditor-widget" : "~1.0",
         "yiisoft/yii2-imagine": "~2.0.0",
         "yii2mod/yii2-ion-slider": "*",
-        "openpayu/openpayu" : "2.2.*"
+        "openpayu/openpayu" : "2.2.*",
+        "yiisoft/yii2-authclient": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
@@ -33,7 +34,7 @@
         "openpayu/openpayu" : "2.2.*"
     },
     "config": {
-        "process-timeout": 18000
+        "process-timeout": 180000
     },
     "extra": {
         "asset-installer-paths": {

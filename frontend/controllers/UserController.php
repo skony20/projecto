@@ -55,6 +55,7 @@ class UserController extends Controller
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
+            
         ];
     }
     public function actionAccount()

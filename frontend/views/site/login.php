@@ -36,4 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php ActiveForm::end(); ?>
         </div>
     </div>
+    <?= yii\authclient\widgets\AuthChoice::widget([
+     'baseAuthUrl' => ['site/auth']
+]) ?>
 </div>
