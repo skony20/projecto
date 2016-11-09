@@ -120,7 +120,7 @@ public function actionIndex($sort = 'default', $szukaj = '')
         {
 
             $aPostData = Yii::$app->request->get();
-            $aPostData['page'] ='';
+            $aPostData['strona'] ='';
             //echo 'Post'.print_r($aPostData, TRUE).'<br>';die();
             /*Zmiana inputów z rozmiarami dzialki*/
             $iMaxX = $aPostData['SizeX'];
@@ -250,6 +250,7 @@ public function actionIndex($sort = 'default', $szukaj = '')
                 
                 
         $query = $model::find()->FilterWhere(['IN', 'products.id', $aPrdIds]);
+        //tylko włączone projekty   ->andFilterWhere(['is_active' => 1])
         if (count(array_filter($aPostData))<=4 && count($aPrdIds) == 0)
                 {
                     $query = $model::find();
@@ -259,7 +260,7 @@ public function actionIndex($sort = 'default', $szukaj = '')
         $query->orderBy($aSort);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' =>['pageSize' => 20],
+            'pagination' =>['pageSize' => 20, 'pageParam' => 'strona'],
             ]);
         
         return $this->render('index',['aChooseFilters'=>$aFiltersData, 'aFilters'=>$aData, 'dataProvider'=>$dataProvider, 'aDimensions'=>$aDimensions, 'sort'=>$sort]);

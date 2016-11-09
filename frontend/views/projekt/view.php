@@ -9,14 +9,14 @@ $sPatch = Yii::getAlias('@image');
 /* @var $model app\models\Products */
 
 $sPrjName = $model->productsDescriptons->name . ($model->productsDescriptons->name_model ? ' '.$model->productsDescriptons->name_model: '') . ($model->productsDescriptons->name_subname ? ' ' .$model->productsDescriptons->name_subname : '');
-$this->title = 'Projekt: '.$sPrjName;
+$this->title = $sPrjName .' - projekty domów projekttop.pl';
 $this->params['breadcrumbs'][] = ['label' => 'Projekty', 'url' => ['/projekty']];
 $this->params['breadcrumbs'][] = $this->title;
 $url = Yii::$app->request->absoluteUrl;
 ?>
 <div class="products-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode('Projekt: '.$sPrjName) ?></h1>
     <div class="prj-share">Podziel się: <?= Html::a('F', 'https://www.facebook.com/sharer/sharer.php?u='.$url)?><?= Html::a('T', 'https://twitter.com/home?status='.$url)?><?= Html::a('G+','https://plus.google.com/share?url='.$url)?> <?= Html::a('LI', 'https://www.linkedin.com/shareArticle?mini=true&url='.$url.'&title='.$this->title.'&summary=&source=projekttop.pl')?></div>
     
     <div class="prj-img-price">
@@ -24,7 +24,7 @@ $url = Yii::$app->request->absoluteUrl;
             
                 <div id="prci" class="zoom-gallery">
                 <div class="big-image">
-                    <img id="fst" src="<?=$sPatch.'/'.$model->id.'/big/'.$model->productsImages[0]->name ?>"/>
+                    <img id="fst" src="<?=$sPatch.'/'.$model->id.'/big/'.$model->productsImages[0]->name ?>" alt="Galeria: <?=$sPrjName?><?=($model->productsImages[0]->description ? ' - '.$model->productsImages[0]->description : "")?>"/>
                 </div>
                 <?php
                 if (isset($model->productsImages) && sizeof($model->productsImages) > 0)
@@ -83,12 +83,17 @@ $url = Yii::$app->request->absoluteUrl;
                     <?php
                     foreach ($aSortPrdAttrs as $aTechData)
                     {
-                    ?>
-                        <tr>
-                            <td class="tech-data-name"><?= $aTechData['name']?></td>
-                            <td class="tech-data-value"><?= $aTechData['value']?></td>
-                        </tr>
+                        if ($aTechData['value']!= '' && $aTechData['value']!=0 && $aTechData['value']!=9999)
+                            
+                        {
+                        ?>
+                    
+                            <tr>
+                                <td class="tech-data-name"><?= $aTechData['name']?></td>
+                                <td class="tech-data-value"><?= $aTechData['value'] . ' ' . $aTechData['measure']?></td>
+                            </tr>
                     <?php
+                        }
                     }
                     ?>
                 </table>

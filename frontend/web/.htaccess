@@ -3,4 +3,7 @@ RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 # Otherwise forward it to index.php
+
 RewriteRule . index.php
+
+

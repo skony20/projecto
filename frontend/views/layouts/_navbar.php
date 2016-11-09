@@ -8,8 +8,8 @@ use yii\bootstrap\NavBar;
     $menuItems = [
         ['label' => 'Home', 'url' => ['/']],
         ['label' => 'Wszystkie projekty', 'url' => ['/projekty']],
-        ['label' => 'About', 'url' => ['/about']],
-        ['label' => 'Contact', 'url' => ['/contact']],
+        ['label' => 'O nas', 'url' => ['/onas']],
+        ['label' => 'Kontakt', 'url' => ['/kontakt']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/signup']];

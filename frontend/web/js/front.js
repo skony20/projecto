@@ -1,9 +1,5 @@
 
 $(document).on('ready pjax:success',
-
-
-
-
     function()
     {
         
@@ -81,6 +77,13 @@ $(document).on('ready pjax:success',
 
             }
     );
+    $('.search-submit').click(
+            function()
+            {
+                var sSearch = $('.search-input').val();
+                window.location.href = "/projecto/projekty/szukaj/"+sSearch;
+            }
+    );
     
     /*Koszyk*/
     $('.cart').mouseover(function()
@@ -106,7 +109,7 @@ $(document).on('ready pjax:success',
             {
                 var iPrjId = $(this).attr('rel');
                 $.ajax({
-                    url: "cart/add-cart?iPrjId="+iPrjId,
+                    url: "/projecto/cart/add-cart?iPrjId="+iPrjId,
                     success: function(data) {   
                         //$('.cart-items').html(data);
                         $("#cart-items").load("/projecto/projekty #cart-items");

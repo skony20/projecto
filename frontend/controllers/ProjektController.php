@@ -9,6 +9,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use app\models\Attributes;
+use Yii;
 
 
 
@@ -45,17 +46,17 @@ class ProjektController extends Controller
   
     public function actionView($symbol)
     {
+        
         $aId = ProductsDescripton::findOne(['nicename_link'=>$symbol]); 
         $id = $aId->products_id;
-        //echo '<pre>'. print_r($symbol, TRUE); die();
         $aPrdAttributes = $this->findModel($id)->productsAttributes;
         $oAttributes = new Attributes();
-        //echo '<pre>22'.print_r($aPrdAttributes, TRUE);
         foreach ($aPrdAttributes as $aPrdAttribute)
         {
             $aPrdAttrs[$aPrdAttribute->attributes_id]['value'] = $aPrdAttribute->value;
             $aPrdAttrs[$aPrdAttribute->attributes_id]['name'] = $oAttributes->findOne($aPrdAttribute->attributes_id)->name;
             $aPrdAttrs[$aPrdAttribute->attributes_id]['sort'] = $oAttributes->findOne($aPrdAttribute->attributes_id)->sort_order;
+            $aPrdAttrs[$aPrdAttribute->attributes_id]['measure'] = $oAttributes->findOne($aPrdAttribute->attributes_id)->measure;
             
         }
         $aUnsortPrdAttrs = $aPrdAttrs;
@@ -65,9 +66,19 @@ class ProjektController extends Controller
             };
         }
         usort($aPrdAttrs, build_sorter('sort'));
-
+        
+        $model = $this->findModel($id);
+        
+        Yii::$app->view->registerMetaTag(
+        [
+            'name' => 'description',
+            'content' => $model->productsDescriptons->meta_description
+        ]
+        );
+        
+        
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
             'aPrdAttrs' => $aUnsortPrdAttrs,
             'aSortPrdAttrs' => $aPrdAttrs,
         ]);

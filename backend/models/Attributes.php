@@ -36,6 +36,7 @@ class Attributes extends \yii\db\ActiveRecord
             [['description'], 'string', 'max' => 255],
             [['languages_id'], 'exist', 'skipOnError' => true, 'targetClass' => Languages::className(), 'targetAttribute' => ['languages_id' => 'id']],
             [['sort_order'], 'integer'],
+            [['measure'], 'string', 'max' => 5],
         ];
     }
 
@@ -50,6 +51,7 @@ class Attributes extends \yii\db\ActiveRecord
             'name' => Yii::t('app', 'Nazwa'),
             'description' => Yii::t('app', 'Opis - można opuścić'),
             'sort_order' => Yii::t('app', 'Kolejność'),
+            'measure' => Yii::t('app', 'Jednostka miary'),
         ];
     }
 

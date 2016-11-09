@@ -22,7 +22,7 @@ $sSearch = (isset($_GET['szukaj']) ? $_GET['szukaj'] : '');
             <?php
             echo Html::beginForm(['/projekty'], 'GET', ['id'=>'prj_set_filters', 'name'=>'prj_set_filers', 'class'=>'prj_set_filers']);
             echo Html::input('text', 'szukaj', $sSearch, ['class'=>'search-input', 'placeholder'=>'Jakiego projektu szukasz ?']);
-            echo Html::submitButton('Szukaj',['class'=>'search-submit']);
+            echo Html::Button('Szukaj',['class'=>'search-submit']);
             ?>
         </div>
     <?php

@@ -49,7 +49,7 @@ class SiteController extends Controller
                         'roles' => ['@'],
                     ],
                     [
-                        'actions' => ['about', 'contact'],
+                        'actions' => ['onas', 'kontakt', 'wprojekcie', 'regulamin', 'wspolpraca'],
                         'allow' => true,
                         'roles' => ['*'],
                     ],
@@ -265,7 +265,7 @@ class SiteController extends Controller
      *
      * @return mixed
      */
-    public function actionContact()
+    public function actionKontakt()
     {
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
@@ -277,7 +277,7 @@ class SiteController extends Controller
 
             return $this->refresh();
         } else {
-            return $this->render('contact', [
+            return $this->render('kontakt', [
                 'model' => $model,
             ]);
         }
@@ -288,10 +288,25 @@ class SiteController extends Controller
      *
      * @return mixed
      */
-    public function actionAbout()
+    public function actionOnas()
     {
 
-        return $this->render('about');
+        return $this->render('onas');
+    }
+    public function actionWprojekcie()
+    {
+
+        return $this->render('wprojekcie');
+    }
+    public function actionRegulamin()
+    {
+
+        return $this->render('regulamin');
+    }
+    public function actionWspolpraca()
+    {
+
+        return $this->render('wspolpraca');
     }
 
     /**
