@@ -28,6 +28,7 @@ class SignupForm extends Model
     public $invoice_city;
     public $invoice_name;
     public $invoice_country;
+    public $source;
     
 
 
@@ -66,6 +67,7 @@ class SignupForm extends Model
             ['invoice_city', 'string', 'min' => 2, 'max' => 255],
             ['invoice_name', 'string', 'min' => 2, 'max' => 255],
             ['invoice_country', 'string', 'min' => 2, 'max' => 255],
+            ['source', 'string', 'max' => 14],
             
         ];
     }
@@ -90,6 +92,7 @@ class SignupForm extends Model
             'invoice_city' => 'Miasto',
             'invoice_country' => 'Państwo',
             'invoice_nip' => 'Numer NIP',
+            'source' => 'Źródło',
             
         ];
 
@@ -129,7 +132,7 @@ class SignupForm extends Model
         
         return $user->save() ? $user : null;
     }
-     public function sendEmail()
+    public function sendEmail()
     {
         /* @var $user User */
         $user = User::findOne([

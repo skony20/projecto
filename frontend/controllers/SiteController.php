@@ -411,9 +411,41 @@ class SiteController extends Controller
     
     public function oAuthSuccess($client) {
     // get user data from client
-    $userAttributes = $client->getUserAttributes();
+//    echo '<pre>'. print_r($client, TRUE); die();
 
-    // do some thing with user data. for example with $userAttributes['email']
+    $userAttributes = $client->getUserAttributes();
+   
+   // echo '<pre>'. print_r($userAttributes, TRUE); die();
+    $oUser = User::findOne(['email'=> $userAttributes['email'], 'source'=>'facebook']);
+            //findBySql(['email'=> $userAttributes['email']])->one();
+    if ($oUser)
+    {
+        //echo '<pre>'. print_r($oUser, TRUE); die();
+        Yii::$app->user->login($oUser, 3600 * 24 * 30);
+    }
+    else
+    {
+        $oUser = new User();
+        $oUser->role = 10;
+        $oUser->status = 10;
+        $oUser->username = $userAttributes['name'];
+        $oUser->email = $userAttributes['email'];
+        $oUser->delivery_name = $userAttributes['first_name'];
+        $oUser->delivery_lastname = $userAttributes['last_name'];
+        
+        $oUser->source ='facebook';
+                
+        if ($oUser->save(false))
+        {
+            $oNewUser = User::findOne(['email'=> $oUser->email, 'source'=>'facebook']);
+            Yii::$app->user->login($oNewUser, 3600 * 24 * 30);
+        }
+        
+    }
+        
+    //echo '<pre>'. print_r($_user, TRUE); die();
+    //return Yii::$app->user->login($userAttributes['first_name'], 3600 * 24 * 30);
+
      }
 }
     
