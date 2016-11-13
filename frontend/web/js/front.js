@@ -81,7 +81,11 @@ $(document).on('ready pjax:success',
             function()
             {
                 var sSearch = $('.search-input').val();
-                window.location.href = "/projecto/projekty/szukaj/"+sSearch;
+
+                if (sSearch.length > 0)
+                {
+                    window.location.href = "/projecto/projekty/szukaj/"+sSearch;
+                }
             }
     );
     
@@ -148,7 +152,7 @@ $(document).on('ready pjax:success',
                 
             }
     );
-    /*Usuwanie porduktu z koszyka*/
+    /*Usuwanie produktu z koszyka*/
      $('.delete-from-cart').click(
             function()
             {

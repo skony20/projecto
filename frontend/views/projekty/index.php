@@ -13,20 +13,21 @@ $this->title = 'Lista projektów';
 $this->params['breadcrumbs'][] = $this->title;
 $iSetMinSize = $aDimensions['iOneMinSize'];
 $iSetMaxSize = $aDimensions['iOneMaxSize'];
-$sSearch = (isset($_GET['szukaj']) ? $_GET['szukaj'] : '');
-?>
+$sSearch = (isset($sSearchC) ? $sSearchC : '');
+        ?>
 
 <div class="full_site">
     <div class="top_menu filter_menu">
         <div class="search-from">
             <?php
-            echo Html::beginForm(['/projekty'], 'GET', ['id'=>'prj_set_filters', 'name'=>'prj_set_filers', 'class'=>'prj_set_filers']);
+            echo Html::beginForm();
             echo Html::input('text', 'szukaj', $sSearch, ['class'=>'search-input', 'placeholder'=>'Jakiego projektu szukasz ?']);
             echo Html::Button('Szukaj',['class'=>'search-submit']);
             ?>
+            <?= Html::endForm() ?>
         </div>
     <?php
-    
+    echo Html::beginForm(['/projekty'], 'GET', ['id'=>'prj_set_filters', 'name'=>'prj_set_filers', 'class'=>'prj_set_filers']);
     foreach ($aFilters as $aData) {
         echo '<div class="prj_filter_row">';
         echo '<div class="prj_filter_question_row">';
@@ -40,7 +41,7 @@ $sSearch = (isset($_GET['szukaj']) ? $_GET['szukaj'] : '');
 
         echo '<br>Wielkość domu w m2: ';
         echo \yii2mod\slider\IonSlider::widget([
-            'name' => 'bar_size',
+            'name' => 'house_size',
             'type' => \yii2mod\slider\IonSlider::TYPE_DOUBLE,
                 'pluginOptions' => [
                 'min' => $aDimensions['iAllMinSize'],

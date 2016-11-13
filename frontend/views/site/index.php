@@ -18,7 +18,7 @@ echo Html::beginForm(['/'], 'POST', ['data-pjax' => '', 'class' => 'form-inline'
 $iSetMinSize = $aDimensions['iOneMinSize'];
 $iSetMaxSize = $aDimensions['iOneMaxSize'];
 //echo '<br>Dimensions: '. print_r($aFiltersData, true);
-//echo '<pre>'.print_r($_POST, true);
+//echo '<pre>'.print_r([$iSetMinSize,$iSetMaxSize ], true).'</pre>';
 
 foreach ($aFilters as $aData) {
 
@@ -33,7 +33,7 @@ foreach ($aFilters as $aData) {
 
        echo '<br>Wielkość domu w m2: ';
         echo \yii2mod\slider\IonSlider::widget([
-            'name' => 'bar_size',
+            'name' => 'house_size',
             'type' => \yii2mod\slider\IonSlider::TYPE_DOUBLE,
                 'pluginOptions' => [
                 'min' => $aDimensions['iAllMinSize'],

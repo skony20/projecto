@@ -125,10 +125,10 @@ class SiteController extends Controller
         
         //echo '<pre>'.print_r($aPostData , true); die();
         $bBarChange = Yii::$app->session->get('BarChange');
-        if (isset($aPostData['bar_size']) && $bBarChange)
+        if (isset($aPostData['house_size']) && $bBarChange)
         {
             
-            $aAllSize = explode(';', $aPostData['bar_size']);
+            $aAllSize = explode(';', $aPostData['house_size']);
             $iPostMinSize = $aAllSize[0];
             $iPostMaxSize = $aAllSize[1];
             
@@ -151,6 +151,7 @@ class SiteController extends Controller
                     $aFiltersData[] .= $Filters;
                 }
             }
+            //echo '<pre>PrdFilters: '. print_r($aFiltersData, true); die();
             if ($aFiltersData)
             {
                 
@@ -165,6 +166,7 @@ class SiteController extends Controller
                 {
                     $aPrdFilters[0] = 1;
                 }
+            
             }
         }
         
@@ -180,12 +182,15 @@ class SiteController extends Controller
         $aPrdIdsAll = array_merge($aPrdFilters, $aAttributes);
         $aPrdIds = array_diff_assoc($aPrdIdsAll, array_unique($aPrdIdsAll));
         //echo '<pre>'.print_r($aPrdIds , true); die();
-        $iOneMinSize = floor($oProductsAttributes->find()->andFilterWhere(['IN', 'products_id', $aPrdFilters])->andWhere('attributes_id = 4')->min('(CAST(value AS DECIMAL (5,2)))'));
-        $iOneMaxSize = ceil($oProductsAttributes->find()->andFilterWhere(['IN', 'products_id', $aPrdFilters])->andWhere('attributes_id = 4')->max('(CAST(value AS DECIMAL (5,2)))'));
+        $iOneMinSize = floor($oProductsAttributes->find()->andFilterWhere(['IN', 'products_id', $aPrdIds])->andWhere('attributes_id = 4')->min('(CAST(value AS DECIMAL (5,2)))'));
+        $iOneMaxSize = ceil($oProductsAttributes->find()->andFilterWhere(['IN', 'products_id', $aPrdIds])->andWhere('attributes_id = 4')->max('(CAST(value AS DECIMAL (5,2)))'));
         
         
         $aDimensions['iOneMinSize'] = ($bBarChange ? $iPostMinSize : $iOneMinSize);
         $aDimensions['iOneMaxSize'] = ($bBarChange ? $iPostMaxSize : $iOneMaxSize);
+        
+       
+        //echo '<br>Dimensions: '. print_r([$iPostMinSize, $iOneMinSize, $iPostMaxSize, $iOneMaxSize], true); die();
         
         if (count($aPostData)>4 && count($aPrdIds) == 0)
                 {

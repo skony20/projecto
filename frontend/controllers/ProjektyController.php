@@ -134,10 +134,10 @@ public function actionIndex($sort = 'default', $szukaj = '')
             
             
             
-            if (isset($aPostData['bar_size']) && $bBarChange)
+            if (isset($aPostData['house_size']) && $bBarChange)
             {
 
-                $aAllSize = explode(';', $aPostData['bar_size']);
+                $aAllSize = explode(';', $aPostData['house_size']);
                 $iPostMinSize = $aAllSize[0];
                 $iPostMaxSize = $aAllSize[1];
 
@@ -178,11 +178,18 @@ public function actionIndex($sort = 'default', $szukaj = '')
         {
             $aAttributes[] .= $aProdIdFromAttributes['products_id'];
         }
+        if (count ($aAttributes)>0 && $aPrdFilters[0] == 1)
+        {
+           // echo '<pre>' .print_r($aAttributes, TRUE); die();
+            $aPrdIds = $aAttributes;
+        }
+        else
+        {
+            $aPrdIdsAll = array_merge($aPrdFilters, $aAttributes);
+            $aPrdIds = array_diff_assoc($aPrdIdsAll, array_unique($aPrdIdsAll));
+        }
+
         
-        $aPrdIdsAll = array_merge($aPrdFilters, $aAttributes);
-        $aPrdIdsNotSearch = array_diff_assoc($aPrdIdsAll, array_unique($aPrdIdsAll));
-        
-        //echo '<pre>'.print_r($aPrdIdsNotSearch , true); die();
         /*Wyszukiwanie*/
         if ($szukaj != '')
         {
@@ -190,29 +197,12 @@ public function actionIndex($sort = 'default', $szukaj = '')
             $aSearchQuery =  $model::find()->joinWith('productsDescriptons')->andFilterWhere(['or',['like', 'products.symbol', $szukaj],['like', 'products_descripton.name', $szukaj],['like', 'products_descripton.keywords', $szukaj]])->asArray()->all();
             foreach ($aSearchQuery as $aSearchProducts)
             {
-                $aSearchPrjs[] .= $aSearchProducts['id'];
+                $aPrdIds[] .= $aSearchProducts['id'];
             }
-            if (count($aPrdIdsNotSearch)>0 and count($aSearchPrjs)>0)
-            {
-                $aPrdIdsAllSearch = array_merge($aSearchPrjs, $aPrdIdsNotSearch);
-                $aPrdIds = array_diff_assoc($aPrdIdsAllSearch, array_unique($aPrdIdsAllSearch));
-                //echo '<pre>'. print_r($aPrdIds, TRUE); die();
-            }
-            else if (count($aPrdIdsNotSearch) == 0 and count($aSearchPrjs)== 0)
-            {
-                $aPrdIds[0] = 1;
-            }
-             else if (count($aPrdIdsNotSearch) == 0 and count($aSearchPrjs)> 0)
-            {
-                $aPrdIds = $aSearchPrjs;
-            }
- 
             
         }
-        else
-        {
-            $aPrdIds = $aPrdIdsNotSearch;
-        }
+
+        
         
         
         
@@ -248,7 +238,7 @@ public function actionIndex($sort = 'default', $szukaj = '')
                 break;
         }
                 
-                
+              
         $query = $model::find()->FilterWhere(['IN', 'products.id', $aPrdIds]);
         //tylko włączone projekty   ->andFilterWhere(['is_active' => 1])
         if (count(array_filter($aPostData))<=4 && count($aPrdIds) == 0)
@@ -262,8 +252,8 @@ public function actionIndex($sort = 'default', $szukaj = '')
             'query' => $query,
             'pagination' =>['pageSize' => 20, 'pageParam' => 'strona'],
             ]);
-        
-        return $this->render('index',['aChooseFilters'=>$aFiltersData, 'aFilters'=>$aData, 'dataProvider'=>$dataProvider, 'aDimensions'=>$aDimensions, 'sort'=>$sort]);
+         // echo '<pre>'.print_r($dataProvider->models , true); die();
+        return $this->render('index',['aChooseFilters'=>$aFiltersData, 'aFilters'=>$aData, 'dataProvider'=>$dataProvider, 'aDimensions'=>$aDimensions, 'sort'=>$sort, 'sSearchC' => $szukaj]);
  
 
 
