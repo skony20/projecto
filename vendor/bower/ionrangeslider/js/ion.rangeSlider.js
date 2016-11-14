@@ -315,7 +315,7 @@
             decorate_both: true,
             values_separator: " — ",
 
-            input_values_separator: ";",
+            input_values_separator: "^",
 
             disable: false,
 
@@ -393,7 +393,7 @@
 
         // input value extends default config
         if (val) {
-            val = val.split(config_from_data.input_values_separator || options.input_values_separator || ";");
+            val = val.split(config_from_data.input_values_separator || options.input_values_separator || "^");
 
             if (val[0] && val[0] == +val[0]) {
                 val[0] = +val[0];

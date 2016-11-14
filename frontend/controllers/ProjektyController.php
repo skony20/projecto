@@ -116,19 +116,21 @@ public function actionIndex($sort = 'default', $szukaj = '')
             $iPostMinSize = $aDimensions['iOneMinSize'];
             $iPostMaxSize = $aDimensions['iOneMaxSize'];
         }
-        if (count(Yii::$app->request->get())>1)
+        if (count(Yii::$app->request->get())>=1)
         {
 
             $aPostData = Yii::$app->request->get();
             $aPostData['strona'] ='';
             //echo 'Post'.print_r($aPostData, TRUE).'<br>';die();
             /*Zmiana inputów z rozmiarami dzialki*/
-            $iMaxX = $aPostData['SizeX'];
-            $iMaxY = $aPostData['SizeY'];
+            $iMaxX = (isset($aPostData['SizeX']) ? $aPostData['SizeX']: $aDimensions['iMaxX']);
+            $iMaxY = (isset($aPostData['SizeY']) ? $aPostData['SizeY']: $aDimensions['iMaxY']);
             $aDimensions['iMaxX'] =$iMaxX ;
             $aDimensions['iMaxY'] =$iMaxY ;
             $aPostData['SizeX'] = [''];
             $aPostData['SizeY'] = [''];
+            Yii::$app->session['aFiltersSession'] = $aPostData;
+           // echo '<pre>'. print_r($aDimensions , TRUE); die();
             /*Zmiana paska wielkości domu*/
             
             
@@ -136,8 +138,8 @@ public function actionIndex($sort = 'default', $szukaj = '')
             
             if (isset($aPostData['house_size']) && $bBarChange)
             {
-
-                $aAllSize = explode(';', $aPostData['house_size']);
+                echo print_r($aPostData['house_size'], TRUE); die();
+                $aAllSize = explode('^', $aPostData['house_size']);
                 $iPostMinSize = $aAllSize[0];
                 $iPostMaxSize = $aAllSize[1];
 
@@ -193,12 +195,15 @@ public function actionIndex($sort = 'default', $szukaj = '')
         /*Wyszukiwanie*/
         if ($szukaj != '')
         {
+            
             $aSearchPrjs = [];
+            $aPrdIds = [];
             $aSearchQuery =  $model::find()->joinWith('productsDescriptons')->andFilterWhere(['or',['like', 'products.symbol', $szukaj],['like', 'products_descripton.name', $szukaj],['like', 'products_descripton.keywords', $szukaj]])->asArray()->all();
             foreach ($aSearchQuery as $aSearchProducts)
             {
                 $aPrdIds[] .= $aSearchProducts['id'];
             }
+            
             
         }
 
