@@ -51,8 +51,9 @@ return [
             'rules' => array(
                     'projekty/strona/<strona:\d+>' =>'projekty/index',
                     'projekty/szukaj/<szukaj:\w+>' =>'projekty/index',
-                    'projekty/osoby/<7:\d+>' =>'projekty/index',
-                    'projekty/house_size/<house_size:\w+>' =>'projekty/index',
+                    'projekty/osoby/<7:\d+>/HouseSize/<HouseSize:.*>/Szerokosc/<SizeX:\d+>/Ksztalt/<3:\d+>' =>'projekty/index',
+                    'projekty/HouseSize/<HouseSize:.*>' =>'projekty/index',
+                    'projekty/SizeX/<SizeX:\d+>' =>'projekty/index',
                     'projekt/<symbol>' => 'projekt/view',
                     '<controller:\w+>/<id:\d+>' => '<controller>/view',
                     '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',

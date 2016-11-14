@@ -41,7 +41,7 @@ $sSearch = (isset($sSearchC) ? $sSearchC : '');
 
         echo '<br>Wielkość domu w m2: ';
         echo \yii2mod\slider\IonSlider::widget([
-            'name' => 'house_size',
+            'name' => 'HouseSize',
             'type' => \yii2mod\slider\IonSlider::TYPE_DOUBLE,
                 'pluginOptions' => [
                 'min' => $aDimensions['iAllMinSize'],

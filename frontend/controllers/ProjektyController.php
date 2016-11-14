@@ -136,10 +136,10 @@ public function actionIndex($sort = 'default', $szukaj = '')
             
             
             
-            if (isset($aPostData['house_size']) && $bBarChange)
+            if (isset($aPostData['HouseSize']) && $bBarChange)
             {
-                echo print_r($aPostData['house_size'], TRUE); die();
-                $aAllSize = explode('^', $aPostData['house_size']);
+                //echo print_r($aPostData['house_size'], TRUE); die();
+                $aAllSize = explode('-', $aPostData['HouseSize']);
                 $iPostMinSize = $aAllSize[0];
                 $iPostMaxSize = $aAllSize[1];
 
