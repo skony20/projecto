@@ -52,18 +52,23 @@ $(document).on('ready pjax:success',
             function()
                 {
                     $('.prj_select').prop('selectedIndex',0);
+                    
                     $.ajax({
-                        url: '/projecto/projekty/reset'
-			});  
-                    $("#prj_set_filters").submit();
+                        url: '/projecto/projekty/reset',
+                        success:
+                            function()
+                                {
+                                    window.location.href = "projekty"
+                                }
+			}); 
+                    
                 }
     );
-
     $('.prj_select').change(function()
     {
-        $.ajax({
-            url: "projekty/remove-session?id=BarChange"
-        }); 
+//        $.ajax({
+//            url: "projekty/remove-session?id=BarChange"
+//        }); 
         $("#prj_set_filters").submit();
     });
 

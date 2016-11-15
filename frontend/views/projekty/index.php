@@ -14,6 +14,9 @@ $this->params['breadcrumbs'][] = $this->title;
 $iSetMinSize = $aDimensions['iOneMinSize'];
 $iSetMaxSize = $aDimensions['iOneMaxSize'];
 $sSearch = (isset($sSearchC) ? $sSearchC : '');
+echo '<pre>'. print_r($aDimensions, TRUE). '</pre>';
+echo '<pre>BAr '. print_r($_SESSION['BarChange'], TRUE). '</pre>';
+
         ?>
 
 <div class="full_site">
@@ -59,7 +62,7 @@ $sSearch = (isset($sSearchC) ? $sSearchC : '');
                 'onChange' => new \yii\web\JsExpression('
                 function(data) {
                     $.ajax({
-                        url: "projekty/bar-change"
+                        url: "projekty/barchange"
                     }); 
                     
                     }'

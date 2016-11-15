@@ -68,6 +68,7 @@ public function actionIndex($sort = 'default', $szukaj = '')
         
         $model = new ProductsSearch();
         $aFiltersData = [];
+        $aDimensions = [];
         $aFiltersData =  Yii::$app->session->get('aFiltersSession');
         $aDimensions =  Yii::$app->session->get('aDimensions');
         $oProductsAttributes = new ProductsAttributes();
@@ -91,10 +92,12 @@ public function actionIndex($sort = 'default', $szukaj = '')
         $query->joinWith(['productsAttributes']);
 
         $bBarChange =  Yii::$app->session->get('BarChange');
+        $iMinSize = floor($oProductsAttributes->find()->onCondition(['attributes_id'=>4])->min('(CAST(value AS DECIMAL (5,2)))'));
+        $iMaxSize = ceil($oProductsAttributes->find()->onCondition(['attributes_id'=>4])->max('(CAST(value AS DECIMAL (5,2)))'));
+        
         if(!isset($aDimensions))
         {
-            $iMinSize = floor($oProductsAttributes->find()->onCondition(['attributes_id'=>4])->min('(CAST(value AS DECIMAL (5,2)))'));
-            $iMaxSize = ceil($oProductsAttributes->find()->onCondition(['attributes_id'=>4])->max('(CAST(value AS DECIMAL (5,2)))'));
+           
         
             $iMaxX = ceil($oProductsAttributes->find()->onCondition(['attributes_id'=>7])->max('(CAST(value AS DECIMAL (5,2)))'));
             $iMaxY = ceil($oProductsAttributes->find()->onCondition(['attributes_id'=>6])->max('(CAST(value AS DECIMAL (5,2)))'));
@@ -116,6 +119,7 @@ public function actionIndex($sort = 'default', $szukaj = '')
             $iPostMinSize = $aDimensions['iOneMinSize'];
             $iPostMaxSize = $aDimensions['iOneMaxSize'];
         }
+        
         if (count(Yii::$app->request->get())>=1)
         {
 
@@ -138,13 +142,13 @@ public function actionIndex($sort = 'default', $szukaj = '')
             
             if (isset($aPostData['HouseSize']) && $bBarChange)
             {
-                //echo print_r($aPostData['house_size'], TRUE); die();
+                //echo print_r($aPostData['HouseSize'], TRUE); die();
                 $aAllSize = explode('-', $aPostData['HouseSize']);
                 $iPostMinSize = $aAllSize[0];
                 $iPostMaxSize = $aAllSize[1];
 
             }
-            //echo print_r($aDimensions, TRUE); die();
+            //echo '<pre>'. print_r([$aPostData['HouseSize'], $bBarChange, $iPostMinSize, $iPostMaxSize], TRUE); die();
             
             
             
@@ -162,6 +166,7 @@ public function actionIndex($sort = 'default', $szukaj = '')
             Yii::$app->session['aDimensions'] = $aDimensions;
             
         }
+        
         /*Odpowiedzi na pytania*/
             $aFiltersQuery = $oProductsFilters->find()->select('products_id')->andFilterWhere(['IN', 'products_filters.filters_id',$aFiltersData])->groupBy('products_id')->having('COUNT(*)='.count($aFiltersData))->asArray()->all();
             //echo print_r ($aFiltersQuery, TRUE); die();
@@ -169,10 +174,7 @@ public function actionIndex($sort = 'default', $szukaj = '')
             {
                 $aPrdFilters[] .= $aProdIdFromFilters['products_id'];
             }
-            if (count($aFiltersQuery) == 0)
-            {
-                $aPrdFilters[0] = 1;
-            }
+        
         /*Dane techniczne*/
         $aAttributesQuery = $oProductsAttributes->find()->select('products_id')->where('((value BETWEEN '.$iPostMinSize.' AND '.$iPostMaxSize.' ) AND (attributes_id = 4 ) OR ((value < '.$iMaxX.') AND (attributes_id =7)) OR ((value < '.$iMaxY.' ) AND (attributes_id =6))) GROUP BY products_id HAVING COUNT(DISTINCT value)=3');
         
@@ -180,23 +182,21 @@ public function actionIndex($sort = 'default', $szukaj = '')
         {
             $aAttributes[] .= $aProdIdFromAttributes['products_id'];
         }
-        if (count ($aAttributes)>0 && $aPrdFilters[0] == 1)
+        $aPrdIdsAll = array_merge($aPrdFilters, $aAttributes);
+        $aPrdIds = array_diff_assoc($aPrdIdsAll, array_unique($aPrdIdsAll));
+        if (empty($aPrdFilters) && count(array_filter($aPostData)) <4 )
         {
-           // echo '<pre>' .print_r($aAttributes, TRUE); die();
-            $aPrdIds = $aAttributes;
+            $aPrdIds = $aPrdIdsAll;
         }
-        else
-        {
-            $aPrdIdsAll = array_merge($aPrdFilters, $aAttributes);
-            $aPrdIds = array_diff_assoc($aPrdIdsAll, array_unique($aPrdIdsAll));
-        }
-
+        //echo '<pre>'. print_r (array_filter($aPostData) , TRUE); die(); 
+        
+        
+        
+        
         
         /*Wyszukiwanie*/
         if ($szukaj != '')
         {
-            
-            $aSearchPrjs = [];
             $aPrdIds = [];
             $aSearchQuery =  $model::find()->joinWith('productsDescriptons')->andFilterWhere(['or',['like', 'products.symbol', $szukaj],['like', 'products_descripton.name', $szukaj],['like', 'products_descripton.keywords', $szukaj]])->asArray()->all();
             foreach ($aSearchQuery as $aSearchProducts)
@@ -206,24 +206,28 @@ public function actionIndex($sort = 'default', $szukaj = '')
             
             
         }
-
+        if ($aPrdFilters[0] == 1)
+        {
+            $iOneMinSize = floor($oProductsAttributes->find()->andWhere('attributes_id = 4')->min('(CAST(value AS DECIMAL (5,2)))'));
+            $iOneMaxSize = ceil($oProductsAttributes->find()->andWhere('attributes_id = 4')->max('(CAST(value AS DECIMAL (5,2)))'));
+        }
+        else
+        {
+            $iOneMinSize = floor($oProductsAttributes->find()->andFilterWhere(['IN', 'products_id', $aPrdFilters])->andWhere('attributes_id = 4')->min('(CAST(value AS DECIMAL (5,2)))'));
+            $iOneMaxSize = ceil($oProductsAttributes->find()->andFilterWhere(['IN', 'products_id', $aPrdFilters])->andWhere('attributes_id = 4')->max('(CAST(value AS DECIMAL (5,2)))'));
+        }
         
-        
-        
-        
-        
-        $iOneMinSize = floor($oProductsAttributes->find()->andFilterWhere(['IN', 'products_id', $aPrdFilters])->andWhere('attributes_id = 4')->min('(CAST(value AS DECIMAL (5,2)))'));
-        $iOneMaxSize = ceil($oProductsAttributes->find()->andFilterWhere(['IN', 'products_id', $aPrdFilters])->andWhere('attributes_id = 4')->max('(CAST(value AS DECIMAL (5,2)))'));
         
         
         $aDimensions['iOneMinSize'] = ($bBarChange ? $iPostMinSize : $iOneMinSize);
         $aDimensions['iOneMaxSize'] = ($bBarChange ? $iPostMaxSize : $iOneMaxSize);
-//        echo '<pre>'. print_r([$bBarChange, $iPostMinSize, $iOneMinSize, $iPostMaxSize, $iOneMaxSize, $aDimensions['iOneMinSize'], $aDimensions['iOneMaxSize']], TRUE); die();
-        if (count(array_filter($aPostData))>4 && count($aPrdIds) == 0)
+        //echo '<pre>'. print_r([$aPostData['HouseSize'], $iPostMinSize, $iPostMaxSize,$iOneMinSize, $iOneMaxSize], TRUE); die();
+
+        if (count(array_filter($aPostData))>=3 && count($aPrdIds) == 0)
                 {
                     $aPrdIds[0] = 1;
                 }
-        
+
         switch ($sort)
         {
             case 'default':
@@ -243,21 +247,24 @@ public function actionIndex($sort = 'default', $szukaj = '')
                 break;
         }
                 
-              
+        //echo '<pre>'. print_r([$aPrdIds, count(array_filter($aPostData)) ], TRUE); die();    
         $query = $model::find()->FilterWhere(['IN', 'products.id', $aPrdIds]);
         //tylko włączone projekty   ->andFilterWhere(['is_active' => 1])
-        if (count(array_filter($aPostData))<=4 && count($aPrdIds) == 0)
+        if (count(array_filter($aPostData))<3)
                 {
                     $query = $model::find();
                 }
         $query->joinWith('producers');
         $query->joinWith('productsDescriptons');
         $query->orderBy($aSort);
+        
+        //echo '<pre>'. print_r(count(array_filter($aPostData)), TRUE); die();    
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' =>['pageSize' => 20, 'pageParam' => 'strona'],
             ]);
-         // echo '<pre>'.print_r($dataProvider->models , true); die();
+        
+        //echo '<pre>'.print_r($aPrdIds, true); die();
         return $this->render('index',['aChooseFilters'=>$aFiltersData, 'aFilters'=>$aData, 'dataProvider'=>$dataProvider, 'aDimensions'=>$aDimensions, 'sort'=>$sort, 'sSearchC' => $szukaj]);
  
 
@@ -267,9 +274,16 @@ public function actionIndex($sort = 'default', $szukaj = '')
     
     public function actionReset()
     {
-        $aSession = new Session();
-        $aSession->remove('aDimensions');
-        $aSession->remove('BarChange');
+        $oSession = new Session();
+        Yii::$app->session['aFiltersSession'] = [];
+        Yii::$app->session['aDimensions'] = [];
+        Yii::$app->session['BarChange'] = [];
+        
+        
+        $oSession->remove('aDimensions');
+        $oSession->remove('BarChange');
+        $oSession->remove('aFiltersSession');
+        
 
     }
     
@@ -278,7 +292,7 @@ public function actionIndex($sort = 'default', $szukaj = '')
         Yii::$app->session->setTimeout(7200);
         Yii::$app->session[$id] = Yii::$app->request->post();
     }
-    public function actionBarChange()
+    public function actionBarchange()
     {
         Yii::$app->session['BarChange']=1;
     }

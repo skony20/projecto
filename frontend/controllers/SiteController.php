@@ -125,13 +125,13 @@ class SiteController extends Controller
         
         //echo '<pre>'.print_r($aPostData , true); die();
         $bBarChange = Yii::$app->session->get('BarChange');
-        if (isset($aPostData['house_size']) && $bBarChange)
+        if (isset($aPostData['HouseSize']) && $bBarChange)
         {
-            
-            $aAllSize = explode(';', $aPostData['house_size']);
+            echo '<pre>'. print_r($aPostData['HouseSize'], TRUE); die();
+            $aAllSize = explode('-', $aPostData['HouseSize']);
             $iPostMinSize = $aAllSize[0];
             $iPostMaxSize = $aAllSize[1];
-            
+            echo '<pre>'. print_r([$iPostMinSize, $iPostMaxSize], TRUE); die();
         }
         
         $iMaxX = (isset($aPostData['SizeX']) ? $aPostData['SizeX'] : $iMaxX );

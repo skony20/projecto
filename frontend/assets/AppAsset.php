@@ -19,12 +19,13 @@ class AppAsset extends AssetBundle
         'css/cart-list.css',
         'css/account.css',
     ];
-    public $js = [
-        'frontend/web/js/front.js',
-        'frontend/web/js/zoom-gallery.js',
-    ];
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
     ];
+    public $js = [
+        'frontend/web/js/front.js',
+        'frontend/web/js/zoom-gallery.js',
+    ];
+    
 }
