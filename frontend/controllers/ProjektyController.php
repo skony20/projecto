@@ -122,13 +122,10 @@ public function actionIndex($sort = 'default', $szukaj = '')
         if (count(Yii::$app->request->get())>=1)
         {
             
-            //$aPostData = Yii::$app->request->get();
-            
-            $aPostData = split('/', Yii::$app->request->get('tag'));
-            //echo '<pre>'. print_r($aPostData, TRUE); die();
-            
+            $aPostData = explode('/', Yii::$app->request->get('tag'));
+            $sHouseSize =  Yii::$app->request->get('HouseSize');
             $aPostData['strona'] ='';
-            //echo 'Post'.print_r($aPostData, TRUE).'<br>';die();
+            //echo 'Post'.print_r($sHouseSize, TRUE).'<br>';die();
             /*Zmiana inputów z rozmiarami dzialki*/
             $iMaxX = (isset($aPostData['SizeX']) ? $aPostData['SizeX']: $aDimensions['iMaxX']);
             $iMaxY = (isset($aPostData['SizeY']) ? $aPostData['SizeY']: $aDimensions['iMaxY']);
@@ -143,15 +140,15 @@ public function actionIndex($sort = 'default', $szukaj = '')
             
             
             
-            if (isset($aPostData['HouseSize']) && $bBarChange)
+            if (isset($sHouseSize) && $bBarChange)
             {
-                //echo print_r($aPostData['HouseSize'], TRUE); die();
-                $aAllSize = explode('-', $aPostData['HouseSize']);
+                //echo print_r($sHouseSize, TRUE); die();
+                $aAllSize = explode('-', $sHouseSize);
                 $iPostMinSize = $aAllSize[0];
                 $iPostMaxSize = $aAllSize[1];
 
             }
-            //echo '<pre>'. print_r([$aPostData['HouseSize'], $bBarChange, $iPostMinSize, $iPostMaxSize], TRUE); die();
+           // echo '<pre>'. print_r([$iPostMinSize, $iPostMaxSize], TRUE); die();
             
             
             

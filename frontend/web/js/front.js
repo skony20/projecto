@@ -1,7 +1,28 @@
 
 $(document).on('ready pjax:success',
+
+
     function()
     {
+        $('#prj_set_filters').submit(function() {
+            var osoby = '';
+            var ksztalt ='';
+            var styl = '';
+            if ($("[name='7']").val() !== '' ) 
+            {
+                osoby = '/'+$("[name='7']").val();
+            }
+            if ($("[name='3']").val() !== '' ) 
+            {
+                ksztalt = '/'+$("[name='3']").val();
+            }
+            if ($("[name='5']").val() !== '' ) 
+            {
+                styl = '/'+$("[name='5']").val();
+            }
+            window.location = $(this).attr("action") + '/HouseSize/' +  $("[name='HouseSize']").val()+'/filters/'+osoby+ksztalt+styl;
+            return false;
+            });
         
         $('input[type=radio]').change(
             function()
