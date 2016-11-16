@@ -38,7 +38,7 @@ foreach ($dataProvider->models as $aProducts)
 <div class="prj_all">
     <div class="prj_title">
         <h2>
-            <?= Html::a('<strong>'.$aProducts->productsDescriptons->name .'</strong><br>'. $aProducts->productsDescriptons->name_model, Yii::getAlias('@web').'/projekt/'.$aProducts->productsDescriptons->nicename_link, ['title' => $aProducts->productsDescriptons->name]);?>
+            <?= Html::a('<strong>'.$aProducts->productsDescriptons->name .'</strong><br>'. $aProducts->productsDescriptons->name_model, Yii::getAlias('@web').'/projekt/'.$aProducts->productsDescriptons->nicename_link.'.html', ['title' => $aProducts->productsDescriptons->name]);?>
        
         </h2>
     </div>

@@ -127,11 +127,9 @@ class SiteController extends Controller
         $bBarChange = Yii::$app->session->get('BarChange');
         if (isset($aPostData['HouseSize']) && $bBarChange)
         {
-            echo '<pre>'. print_r($aPostData['HouseSize'], TRUE); die();
             $aAllSize = explode('-', $aPostData['HouseSize']);
             $iPostMinSize = $aAllSize[0];
             $iPostMaxSize = $aAllSize[1];
-            echo '<pre>'. print_r([$iPostMinSize, $iPostMaxSize], TRUE); die();
         }
         
         $iMaxX = (isset($aPostData['SizeX']) ? $aPostData['SizeX'] : $iMaxX );
@@ -181,6 +179,10 @@ class SiteController extends Controller
         
         $aPrdIdsAll = array_merge($aPrdFilters, $aAttributes);
         $aPrdIds = array_diff_assoc($aPrdIdsAll, array_unique($aPrdIdsAll));
+        if (empty($aPrdFilters) && count(array_filter($aPostData)) <4 )
+        {
+            $aPrdIds = $aPrdIdsAll;
+        }
         //echo '<pre>'.print_r($aPrdIds , true); die();
         $iOneMinSize = floor($oProductsAttributes->find()->andFilterWhere(['IN', 'products_id', $aPrdIds])->andWhere('attributes_id = 4')->min('(CAST(value AS DECIMAL (5,2)))'));
         $iOneMaxSize = ceil($oProductsAttributes->find()->andFilterWhere(['IN', 'products_id', $aPrdIds])->andWhere('attributes_id = 4')->max('(CAST(value AS DECIMAL (5,2)))'));
@@ -218,7 +220,7 @@ class SiteController extends Controller
         }
         Yii::$app->session['aFiltersSession'] = $aFiltersData;
         Yii::$app->session['aDimensions'] = $aDimensions;
-        
+        //echo '<pre>'. print_r(Yii::$app->session['aDimensions'], TRUE). '</pre>'; die();
         return $this->render('index', ['sProjectCount' => $sProjectCount, 'aFilters'=>$aData, 'aFiltersData' => $aFiltersData, 'aDimensions'=> $aDimensions]);
     }
     

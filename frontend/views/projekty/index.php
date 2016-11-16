@@ -14,8 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $iSetMinSize = $aDimensions['iOneMinSize'];
 $iSetMaxSize = $aDimensions['iOneMaxSize'];
 $sSearch = (isset($sSearchC) ? $sSearchC : '');
-echo '<pre>'. print_r($aDimensions, TRUE). '</pre>';
-echo '<pre>BAr '. print_r($_SESSION['BarChange'], TRUE). '</pre>';
+echo '<pre>'. print_r($_GET, TRUE). '</pre>';
 
         ?>
 

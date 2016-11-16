@@ -48,13 +48,15 @@ return [
             'showScriptName' => false,
             // Disable r= routes
             'enablePrettyUrl' => true,
+            //'suffix' =>'.html',
             'rules' => array(
                     'projekty/strona/<strona:\d+>' =>'projekty/index',
                     'projekty/szukaj/<szukaj:\w+>' =>'projekty/index',
                     'projekty/osoby/<7:\d+>/HouseSize/<HouseSize:.*>/Szerokosc/<SizeX:\d+>/Ksztalt/<3:\d+>' =>'projekty/index',
+                    'projekty/HouseSize/<HouseSize:>/filters/<tag:.*>' =>'projekty/index',
                     'projekty/HouseSize/<HouseSize:.*>' =>'projekty/index',
                     'projekty/SizeX/<SizeX:\d+>' =>'projekty/index',
-                    'projekt/<symbol>' => 'projekt/view',
+                    'projekt/<symbol>.html' => 'projekt/view',
                     '<controller:\w+>/<id:\d+>' => '<controller>/view',
                     '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                     '<controller:\w+>/<action:\w+>' => '<controller>/<action>', 

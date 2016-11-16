@@ -8,7 +8,6 @@ use yii\helpers\Url;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 $this->title = 'Projekty';
 $this->params['breadcrumbs'][] = $this->title;
-
 ?>
 <div class="products-index">
 
@@ -17,7 +16,7 @@ Pjax::begin();
 echo Html::beginForm(['/'], 'POST', ['data-pjax' => '', 'class' => 'form-inline', 'id'=>'set_filters', 'name'=>'set_filers']);
 $iSetMinSize = $aDimensions['iOneMinSize'];
 $iSetMaxSize = $aDimensions['iOneMaxSize'];
-//echo '<br>Dimensions: '. print_r($aFiltersData, true);
+//echo '<pre><br>Dimensions: '. print_r($aDimensions, true) .'</pre>';
 //echo '<pre>'.print_r([$iSetMinSize,$iSetMaxSize ], true).'</pre>';
 
 foreach ($aFilters as $aData) {
@@ -45,18 +44,16 @@ foreach ($aFilters as $aData) {
                 'hide_from_to' => false,
                 'onFinish' => new \yii\web\JsExpression('
                 function(data) {
-                    $("#set_filters").submit();
-                    
+                     $.ajax({
+                        url: "site/bar-change",
+                        success:
+                            function()
+                                {
+                                    $("#set_filters").submit();
+                                }
+                    }); 
                     }'
                     ),
-                'onChange' => new \yii\web\JsExpression('
-                function(data) {
-                    $.ajax({
-                        url: "site/bar-change"
-                    }); 
-                    
-                    }'
-                    )
                 ]
             ]);
     }
