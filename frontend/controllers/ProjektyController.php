@@ -125,6 +125,8 @@ public function actionIndex($sort = 'default', $szukaj = '')
             $aPostData = explode('/', Yii::$app->request->get('tag'));
             $sHouseSize =  Yii::$app->request->get('HouseSize');
             $aPostData['strona'] ='';
+            $aPostData['SizeX'] =Yii::$app->request->get('SizeX');
+            $aPostData['SizeY'] =Yii::$app->request->get('SizeY');
             //echo 'Post'.print_r($sHouseSize, TRUE).'<br>';die();
             /*Zmiana inputów z rozmiarami dzialki*/
             $iMaxX = (isset($aPostData['SizeX']) ? $aPostData['SizeX']: $aDimensions['iMaxX']);
@@ -140,8 +142,9 @@ public function actionIndex($sort = 'default', $szukaj = '')
             
             
             
-            if (isset($sHouseSize) && $bBarChange)
+            if ($sHouseSize != '' && $bBarChange)
             {
+                echo 'tak'; 
                 //echo print_r($sHouseSize, TRUE); die();
                 $aAllSize = explode('-', $sHouseSize);
                 $iPostMinSize = $aAllSize[0];
@@ -189,7 +192,11 @@ public function actionIndex($sort = 'default', $szukaj = '')
         {
             $aPrdIds = $aPrdIdsAll;
         }
-        
+        if (empty($aAttributes) && count(array_filter($aPostData)) <4 )
+        {
+            $aPrdIds = $aPrdIdsAll;
+        }
+        //echo count($aPrdFilters) .'<br>'. count($aAttributes) .'<br>'. count($aPrdIdsAll) .'<br>'. count($aPrdIds); die();
         
         
         
@@ -251,7 +258,7 @@ public function actionIndex($sort = 'default', $szukaj = '')
         //echo '<pre>'. print_r([$aPrdIds, count(array_filter($aPostData)) ], TRUE); die();    
         $query = $model::find()->FilterWhere(['IN', 'products.id', $aPrdIds]);
         //tylko włączone projekty   ->andFilterWhere(['is_active' => 1])
-        if (count(array_filter($aPostData))<3 && !$bBarChange && empty($aPrdFilters))
+        if (count(array_filter($aPostData))<3 && !$bBarChange && (empty($aPrdFilters) && empty($aAttributes)))
                 {
                     $query = $model::find();
                 }

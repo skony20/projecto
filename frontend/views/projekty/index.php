@@ -15,6 +15,7 @@ $iSetMinSize = $aDimensions['iOneMinSize'];
 $iSetMaxSize = $aDimensions['iOneMaxSize'];
 $sSearch = (isset($sSearchC) ? $sSearchC : '');
 echo '<pre>'. print_r($_GET, TRUE). '</pre>';
+echo '<pre>'. print_r($_SESSION, TRUE). '</pre>';
 
         ?>
 
@@ -61,7 +62,7 @@ echo '<pre>'. print_r($_GET, TRUE). '</pre>';
                 'onChange' => new \yii\web\JsExpression('
                 function(data) {
                     $.ajax({
-                        url: "projekty/barchange"
+                        url: "/projecto/projekty/barchange"
                     }); 
                     
                     }'
