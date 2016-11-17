@@ -32,7 +32,7 @@ return [
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
+            'targets' => [  
                 [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
@@ -50,22 +50,21 @@ return [
             'enablePrettyUrl' => true,
             //'suffix' =>'.html',
             'rules' => array(
-                    'projekty/strona/<strona:\d+>' =>'projekty/index',
-                    'projekty/szukaj/<szukaj:\w+>' =>'projekty/index',
                     
-                    
-                    'projekty/Szerokosc/<SizeX:\d+>/Glebokosc/<SizeY:\d+>/HouseSize/<HouseSize:.*>/filters/<tag:.*>/strona/<strona:\d+>' =>'projekty/index',
-                    'projekty/Szerokosc/<SizeX:\d+>/Glebokosc/<SizeY:\d+>/HouseSize/<HouseSize:.*>/filters/<tag:.*>' =>'projekty/index',
-                    'projekty/Szerokosc/<SizeX:\d+>/Glebokosc/<SizeY:\d+>/HouseSize/<HouseSize:.*>/strona/<strona:\d+>' =>'projekty/index',
-                    'projekty/Szerokosc/<SizeX:\d+>/Glebokosc/<SizeY:\d+>/HouseSize/<HouseSize:.*>' =>'projekty/index',
-                    
-                    'projekty/SizeX/<SizeX:\d+>' =>'projekty/index',
-                    'projekt/<symbol>.html' => 'projekt/view',
-                    '<controller:\w+>/<id:\d+>' => '<controller>/view',
-                    '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                    '<controller:\w+>/<action:\w+>' => '<controller>/<action>', 
-                    
-                    '<alias:login|signup|kontakt|wprojekcie|onas|regulamin|wspolpraca>' => 'site/<alias>',
+                'projekty/szukaj/<szukaj:.*>' =>'projekty/index',
+                'projekty/Szerokosc/<SizeX:\d+>/Glebokosc/<SizeY:\d+>/HouseSize/<HouseSize:.*>/filters/<tag:.*>/strona/<strona:\d+>' =>'projekty/index',
+                'projekty/Szerokosc/<SizeX:\d+>/Glebokosc/<SizeY:\d+>/HouseSize/<HouseSize:.*>/filters/<tag:.*>' =>'projekty/index',
+                'projekty/Szerokosc/<SizeX:\d+>/Glebokosc/<SizeY:\d+>/HouseSize/<HouseSize:.*>/strona/<strona:\d+>' =>'projekty/index',
+                'projekty/Szerokosc/<SizeX:\d+>/Glebokosc/<SizeY:\d+>/HouseSize/<HouseSize:.*>' =>'projekty/index',
+                'projekty/filters/<tag:.*>/strona/<strona:\d+>' =>'projekty/index',
+                'projekty/filters/<tag:.*>' =>'projekty/index',
+                'projekty/SizeX/<SizeX:\d+>' =>'projekty/index',
+                'projekty/strona/<strona:\d+>' =>'projekty/index',
+                'projekt/<symbol>.html' => 'projekt/view',
+                '<controller:\w+>/<id:\d+>' => '<controller>/view',
+                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>', 
+                '<alias:login|signup|kontakt|wprojekcie|onas|regulamin|wspolpraca>' => 'site/<alias>',
             ),
         ],
         'authClientCollection' => [

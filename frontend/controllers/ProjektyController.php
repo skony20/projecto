@@ -144,8 +144,6 @@ public function actionIndex($sort = 'default', $szukaj = '')
             
             if ($sHouseSize != '' && $bBarChange)
             {
-                echo 'tak'; 
-                //echo print_r($sHouseSize, TRUE); die();
                 $aAllSize = explode('-', $sHouseSize);
                 $iPostMinSize = $aAllSize[0];
                 $iPostMaxSize = $aAllSize[1];
@@ -188,11 +186,11 @@ public function actionIndex($sort = 'default', $szukaj = '')
         }
         $aPrdIdsAll = array_merge($aPrdFilters, $aAttributes);
         $aPrdIds = array_diff_assoc($aPrdIdsAll, array_unique($aPrdIdsAll));
-        if (empty($aPrdFilters) && count(array_filter($aPostData)) <4 )
+        if (empty($aPrdFilters) && count(array_filter($aPostData)) <3 )
         {
             $aPrdIds = $aPrdIdsAll;
         }
-        if (empty($aAttributes) && count(array_filter($aPostData)) <4 )
+        if (empty($aAttributes) && count(array_filter($aPostData)) <3 )
         {
             $aPrdIds = $aPrdIdsAll;
         }
@@ -205,7 +203,7 @@ public function actionIndex($sort = 'default', $szukaj = '')
         /*Wyszukiwanie*/
         if ($szukaj != '')
         {
-            
+            //echo $szukaj; die();
             $aPrdIds = [];
             $aSearchQuery =  $model::find()->joinWith('productsDescriptons')->andFilterWhere(['or',['like', 'products.symbol', $szukaj],['like', 'products_descripton.name', $szukaj],['like', 'products_descripton.keywords', $szukaj]])->asArray()->all();
             foreach ($aSearchQuery as $aSearchProducts)
@@ -258,8 +256,10 @@ public function actionIndex($sort = 'default', $szukaj = '')
         //echo '<pre>'. print_r([$aPrdIds, count(array_filter($aPostData)) ], TRUE); die();    
         $query = $model::find()->FilterWhere(['IN', 'products.id', $aPrdIds]);
         //tylko włączone projekty   ->andFilterWhere(['is_active' => 1])
-        if (count(array_filter($aPostData))<3 && !$bBarChange && (empty($aPrdFilters) && empty($aAttributes)))
+
+        if (count(array_filter($aPostData))<=3 && !$bBarChange && (empty($aPrdFilters) && empty($aAttributes)))
                 {
+            echo '<br> To tu';
                     $query = $model::find();
                 }
         //echo '<pre>'. print_r ($query  , TRUE); die();
