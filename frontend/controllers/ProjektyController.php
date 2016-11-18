@@ -210,7 +210,10 @@ public function actionIndex($sort = 'default', $szukaj = '')
             {
                 $aPrdIds[] .= $aSearchProducts['id'];
             }
-            
+            if (count ($aPrdIds) == 0)
+            {
+                $aPrdIds[0] = 1;
+            }
             
         }
         $iOneMinSize = floor($oProductsAttributes->find()->andFilterWhere(['IN', 'products_id', $aPrdFilters])->andWhere('attributes_id = 4')->min('(CAST(value AS DECIMAL (5,2)))'));
