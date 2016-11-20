@@ -1,0 +1,58 @@
+/* 
+    Created on : Nov 19, 2016, 9:11:22 PM
+    Author     : MariuszS
+*/
+nav
+{
+    text-transform: uppercase;
+}
+.navbar-default
+{
+    background-image: url('../img/top-bar.png');
+    height: 56px;
+    color:#cccccc;
+    
+}
+.navbar-nav > li
+{
+    margin-top:20px;
+    border-right: 1px solid #525a60;
+}
+.navbar-nav > li:nth-last-child(1), .navbar-right > li
+{
+    border-right: 0;
+}
+.navbar-nav > li > a
+{
+    padding:0 20px;
+    color:#cccccc !important;
+    line-height: 13px;
+}
+.cart
+{
+    font-size: 13px;
+    line-height: 13px;
+}
+
+.cart-container
+{
+    display: none;
+    position: absolute;
+    width:450px;
+    background-color: gray;
+    right:20px;
+}
+.in-cart_table
+{
+    width:100%;
+}
+.cart-name >img
+{
+    padding: 2px;
+    background-color: #565f66;
+    border-radius: 3px;
+}
+img.basket
+{
+    margin: -26px 0 0 80px;
+}

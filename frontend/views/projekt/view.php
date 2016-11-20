@@ -59,7 +59,7 @@ $url = Yii::$app->request->absoluteUrl;
             <div class="prj-prc-item prj-right right-plot-dim"><?= ($aPrdAttrs[7]['value'] ? $aPrdAttrs[7]['value'] .' x '.$aPrdAttrs[6]['value'] .' m' : 'b/d') ?></div>
             <div class="prj-prc-item prj-left left-price">Cena: </div>
             <div class="prj-prc-item prj-right right-price"><?= ($model->price_brutto_source != $model->price_brutto ? '<span class="source-price">'.$model->price_brutto_source.'</span><br><span class="price">'. $model->price_brutto. '</span>': '<span class="price">'. $model->price_brutto. ' zł</span>') ?></div>
-            <div class="prj-add-button" rel="<?= $model->id ?>">Dodaj do koszyka</div>
+            <div class="prj-add-button" rel="<?= $model->id ?>" rel2="<?= $model->productsDescriptons->nicename_link.'.html' ?>">Dodaj do koszyka</div>
         </div>
     </div>
     
