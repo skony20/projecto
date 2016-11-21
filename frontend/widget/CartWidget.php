@@ -6,7 +6,7 @@ use yii\helpers\Html;
 use yii\web\Session;
 use app\models\Products;
 use Yii;
-use frontend\controllers\CartController;
+
 
 class CartWidget extends Widget
 {
@@ -24,7 +24,7 @@ class CartWidget extends Widget
     public function run()
     {
         $oProducts = new Products();
-        $iCartCount = CartController::actionCountCart();
+        $iCartCount = $oProducts->CountCart();
 
         $sInCart ='
                         <div class="cart" id="cart">

@@ -155,6 +155,18 @@ class Products extends \yii\db\ActiveRecord
    {
        return new ProductsQuery(get_called_class());
    }
-
+    public function CountCart()
+    {
+        $iCountCart = 0;
+        if (Yii::$app->session->get('Cart')!== null)
+        {
+            foreach (Yii::$app->session->get('Cart') as $aCart)
+            {
+                $iCountCart += $aCart['iQty'];
+            }
+        }
+        
+        return $iCountCart;
+    }
 
 }

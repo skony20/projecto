@@ -145,14 +145,8 @@ class CartController extends Controller
     }
     public function actionCountCart()
     {
-        $iCountCart = 0;
-        if (count(Yii::$app->session->get('Cart'))>0)
-        {
-            foreach (Yii::$app->session->get('Cart') as $aCart)
-            {
-                $iCountCart += $aCart['iQty'];
-            }
-        }
+        $oProducts = new Products();
+        $iCountCart = $oProducts->CountCart();
         return $iCountCart;
     }
 }
