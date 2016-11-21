@@ -89,9 +89,6 @@ class CartController extends Controller
         
         Yii::$app->session['Cart'] =$aPrjInCart;
         Yii::$app->session->setFlash('success', 'Projekt dodany do koszyka');
-        return $this->renderAjax('AddCart',['CartItems'=>$aPrjInCart]);
-        
-        
     }
 
     public function actionResetCart()
@@ -145,5 +142,17 @@ class CartController extends Controller
            echo Alert::widget();
        }
        return parent::afterAction('AddFavorites', $result);
+    }
+    public function actionCountCart()
+    {
+        $iCountCart = 0;
+        if (count(Yii::$app->session->get('Cart'))>0)
+        {
+            foreach (Yii::$app->session->get('Cart') as $aCart)
+            {
+                $iCountCart += $aCart['iQty'];
+            }
+        }
+        return $iCountCart;
     }
 }

@@ -187,11 +187,17 @@ $(document).on('ready pjax:success',
                 $.ajax({
                     url: "/projecto/cart/add-cart?iPrjId="+iPrjId,
                     success: function(data) {   
-                        //$('.cart-items').html(data);
                         $("#cart-items").load("/projecto/projekty #cart-items");
                         $('#system-messages').html(data).stop().fadeIn().animate({opacity: 1.0}, 4000).fadeOut('slow');
                     }
-
+                    
+                    }); 
+                $.ajax({
+                    url: "/projecto/cart/count-cart",
+                    success: function(data) {   
+                        $("#cart-count").text(data);
+                    }
+                    
                     }); 
             }
     );
@@ -200,14 +206,23 @@ $(document).on('ready pjax:success',
             function()
             {
                 var iPrjId = $(this).attr('rel');
+                var nicename = $(this).attr('rel2');
                 $.ajax({
                     url: "/projecto/cart/add-cart?iPrjId="+iPrjId,
                     success: function(data) {   
+
                         //$('.cart-items').html(data);
-                        $("#cart-items").load("/projecto/projekt/"+iPrjId +" #cart-items");
+                        $("#cart-items").load("/projecto/projekt/"+nicename +" #cart-items");
                         $('#system-messages').html(data).stop().fadeIn().animate({opacity: 1.0}, 4000).fadeOut('slow');
                     }
 
+                    }); 
+                    $.ajax({
+                    url: "/projecto/cart/count-cart",
+                    success: function(data) {   
+                        $("#cart-count").text(data);
+                    }
+                    
                     }); 
             }
     );

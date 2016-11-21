@@ -49,7 +49,7 @@ class SiteController extends Controller
                         'roles' => ['@'],
                     ],
                     [
-                        'actions' => ['onas', 'kontakt', 'wprojekcie', 'regulamin', 'wspolpraca'],
+                        'actions' => ['onas', 'kontakt', 'wprojekcie', 'regulamin', 'wspolpraca', 'faq'],
                         'allow' => true,
                         'roles' => ['*'],
                     ],
@@ -319,7 +319,11 @@ class SiteController extends Controller
 
         return $this->render('wspolpraca');
     }
+    public function actionFaq()
+    {
 
+        return $this->render('faq');
+    }
     /**
      * Signs user up.
      *
