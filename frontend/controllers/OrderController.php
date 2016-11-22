@@ -75,7 +75,7 @@ class OrderController extends Controller
     public function actionStep2()
     {   
         //$aData = [];
-        $oSession = new Session();
+        $oSession = Yii::$app->session;
         $aProducts = $oSession->get('aPrjs');
         $aTotal = $oSession->get('aTotal');
         $aOrderData = $oSession['OrderData'] = Yii::$app->request->post();
@@ -88,7 +88,7 @@ class OrderController extends Controller
     public function actionConfirmOrder($order=0)
     {
         $oOrder = new Orders();
-        $oSession = new Session();
+        $oSession = Yii::$app->session;
         $aProducts = $oSession->get('aPrjs');
         $aDelivery = $oSession['OrderData']['Orders'];
         $bIsInvoice = $oSession['OrderData']['is_invoice'];

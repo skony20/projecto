@@ -397,7 +397,6 @@ class SiteController extends Controller
     public function actionAddToSession($id)
     {
         
-        Yii::$app->session->setTimeout(7200);
         Yii::$app->session[$id] = Yii::$app->request->post();
     }
     public function actionBarChange()

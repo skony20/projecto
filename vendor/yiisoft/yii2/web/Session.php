@@ -127,7 +127,7 @@ class Session extends Component implements \IteratorAggregate, \ArrayAccess, \Co
         $this->registerSessionHandler();
 
         $this->setCookieParamsInternal();
-
+        //session_set_cookie_params(432000,"/");
         @session_start();
 
         if ($this->getIsActive()) {
@@ -364,6 +364,8 @@ class Session extends Component implements \IteratorAggregate, \ArrayAccess, \Co
     private function setCookieParamsInternal()
     {
         $data = $this->getCookieParams();
+        $data['lifetime'] = Yii::$app->components['session']['timeout'];
+       
         if (isset($data['lifetime'], $data['path'], $data['domain'], $data['secure'], $data['httponly'])) {
             session_set_cookie_params($data['lifetime'], $data['path'], $data['domain'], $data['secure'], $data['httponly']);
         } else {

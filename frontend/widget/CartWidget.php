@@ -3,7 +3,6 @@ namespace frontend\widget;
 
 use yii\base\Widget;
 use yii\helpers\Html;
-use yii\web\Session;
 use app\models\Products;
 use Yii;
 

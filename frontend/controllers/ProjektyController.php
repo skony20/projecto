@@ -286,7 +286,7 @@ public function actionIndex($sort = 'default', $szukaj = '')
     
     public function actionReset()
     {
-        $oSession = new Session();
+        $oSession = Yii::$app->session;
         Yii::$app->session['aFiltersSession'] = [];
         Yii::$app->session['aDimensions'] = [];
         Yii::$app->session['BarChange'] = [];
@@ -301,7 +301,6 @@ public function actionIndex($sort = 'default', $szukaj = '')
     
     public function actionAddToSession($id)
     {
-        Yii::$app->session->setTimeout(7200);
         Yii::$app->session[$id] = Yii::$app->request->post();
     }
     public function actionBarchange()

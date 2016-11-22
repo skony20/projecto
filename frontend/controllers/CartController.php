@@ -86,7 +86,7 @@ class CartController extends Controller
         {
              $aPrjInCart[$iPrjId] = array('iPrjId'=>$iPrjId, 'iQty'=>$iQty);
         }
-        
+        //Yii::$app->session->timeout = 432000;
         Yii::$app->session['Cart'] =$aPrjInCart;
         Yii::$app->session->setFlash('success', 'Projekt dodany do koszyka');
     }
@@ -99,6 +99,7 @@ class CartController extends Controller
     {
 
         $aInCart  = Yii::$app->session->get('Cart');
+        
         $oProducts = new Products();
         $aPrjs = [];
         $aTotal =[];
@@ -118,7 +119,7 @@ class CartController extends Controller
 
 
             }
-        $oSession = new Session();
+        $oSession = Yii::$app->session;
         $oSession['aPrjs'] = $aPrjs;
         $aTotal['iTotal'] = $iTotal;
         $aTotal['iTotalSource'] = $iTotalSource;
