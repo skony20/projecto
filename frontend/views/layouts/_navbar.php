@@ -45,6 +45,40 @@ use frontend\widget\CartWidget;
     ?>
 <div class="container">
     <div class="second-menu">
-       <?= Html::a(Html::img(Yii::$app->request->BaseUrl.'/img/logo.png', ['class'=>'logo']), Yii::$app->homeUrl) ?>
+        <div class="logo nav_inline">
+            <?= Html::a(Html::img(Yii::$app->request->BaseUrl.'/img/logo.png', ['class'=>'logo']), Yii::$app->homeUrl) ?>
+        </div>
+        <div class="contact nav_inline">
+            <div class="nav_block">
+                <?= Html::img(Yii::$app->request->BaseUrl.'/img/phone.png', ['class'=>'contact_png']) ?> +48 608 44 07 55
+                <?= Html::img(Yii::$app->request->BaseUrl.'/img/hours.png', ['class'=>'contact_png']) ?> PN-PT 08:00 - 20:00 
+            </div>
+            <div class="nav_block">
+                <?php
+//                NavBar::begin();
+//                $menuItems = [
+//                    ['label' => 'Główna', 'url' => ['/']],
+//                    ['label' => 'Projekty', 'url' => ['/projekty']],
+//                    ['label' => 'Nowości', 'url' => ['/projekty']],
+//                    ['label' => 'O nas', 'url' => ['/onas']],
+//                    ['label' => 'Kontakt', 'url' => ['/kontakt']],
+//                ];
+//                echo Nav::widget([
+//                    'options' => ['class' => 'second-navbar'],
+//                    'items' => $menuItems
+//                ]);
+//
+//
+//                NavBar::end();
+                ?>
+                <div class="second_nav">
+                   <?= Html::a('Główna','/') ?>
+                   <?= Html::a('Projekty','/projekty') ?>
+                   <?= Html::a('Nowości','/projekty') ?>
+                   <?= Html::a('O nas','/projekty') ?>
+                   <?= Html::a('Kontakt','/projekty') ?>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
