@@ -2,6 +2,12 @@
     Created on : 2016-09-19, 10:40:55
     Author     : Mariusz Skonieczny, mariuszskonieczny@htomail.com
 */
+
+@font-face {
+font-family: Montserrat;
+src: url("font/montserrat.otf") format("opentype");
+}
+
 .loader {
     position: absolute;
     top:0;
@@ -85,19 +91,8 @@ html {
 {
     background-color: #363b3f;
 }
-.second-navbar
-{
-    height:80px;
-}
-.second-menu
-{
-    height: 80px;
-}
+
 .navbar-brand img
-{
-    max-height: 80px;
-}
-.second-menu a img
 {
     max-height: 80px;
 }

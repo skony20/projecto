@@ -56,3 +56,62 @@ img.basket
 {
     margin: -26px 0 0 80px;
 }
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus
+{
+    background-color: transparent;
+}
+
+.nav_inline
+{
+    margin:0;
+    padding:0;
+    display: inline-block;
+}
+.logo
+{
+    height: calc(100% - 4px);
+    padding: 4px 0 0 20px;
+}
+.nav_block
+{
+    text-align: right;
+    display: block;
+    padding: 20px 50px 0 0;
+}
+.contact
+{
+    color: #888888;
+    font-family: 'Montserrat';
+    font-size: 12px;
+    max-width: calc(70% - 4px);
+    float: right
+}
+
+.second-menu
+{
+    height: 130px;
+    margin:0;
+    padding:0;
+}
+.contact_png
+{
+    margin: 0 5px 0 15px;
+    
+}
+.second_nav
+{
+    color: #888888;
+    font-size: 14px;
+    font-family: 'Montserrat';
+    text-transform:uppercase;
+}
+.second_nav a
+{
+    color: #888888;
+    padding: 0 0 0 40px;
+}
+.second_nav a:hover
+{
+    color: #88c354;
+    text-decoration: none;
+}
