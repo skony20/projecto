@@ -85,7 +85,7 @@ img.basket
     font-size: 12px;
     max-width: calc(70% - 4px);
     float: right
-}
+}   
 
 .second-menu
 {
@@ -105,13 +105,34 @@ img.basket
     font-family: 'Montserrat';
     text-transform:uppercase;
 }
-.second_nav a
+
+.second_nav nav
 {
-    color: #888888;
-    padding: 0 0 0 40px;
+    background-color: transparent;
 }
-.second_nav a:hover
+.second_nav nav .container
 {
-    color: #88c354;
-    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: right;
+}
+
+.second-navbar > li
+{
+    border: 0;
+}
+.second-navbar > li > a
+{
+    padding: 0;
+    margin-left: 20px;
+    color: #888888 !important;
+}
+.second-navbar > li > a:hover
+{
+    color: #88c354 !important;
+}
+.second_nav > nav > .container > .navbar-collapse 
+{
+    padding: 0;
 }
