@@ -16,7 +16,7 @@ RewriteCond %{REQUEST_URI} ^/projecto/(assets|css|js|img|images)
 RewriteRule ^assets/(.*)$ frontend/web/assets/$1 [L]
 RewriteRule ^css/(.*)$ frontend/web/css/$1 [L]
 RewriteRule ^js/(.*)$ frontend/web/js/$1 [L]
-RewriteRule ^img/(.*)$ /img/$1 [L]
+RewriteRule ^img/(.*)$ /projecto/img/$1 [L]
 RewriteRule ^images/(.*)$ images/$1 [L]
 
 RewriteCond %{REQUEST_URI} !^/projecto/(frontend|backend)/web/(assets|css)/ 

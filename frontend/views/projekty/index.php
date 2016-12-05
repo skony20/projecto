@@ -21,14 +21,6 @@ $sSearch = (isset($sSearchC) ? $sSearchC : '');
 
 <div class="full_site">
     <div class="top_menu filter_menu">
-        <div class="search-from">
-            <?php
-            echo Html::beginForm();
-            echo Html::input('text', 'szukaj', $sSearch, ['class'=>'search-input', 'placeholder'=>'Jakiego projektu szukasz ?']);
-            echo Html::Button('Szukaj',['class'=>'search-submit']);
-            ?>
-            <?= Html::endForm() ?>
-        </div>
     <?php
     echo Html::beginForm(['/projekty'], 'GET', ['id'=>'prj_set_filters', 'name'=>'prj_set_filers', 'class'=>'prj_set_filers']);
     foreach ($aFilters as $aData) {

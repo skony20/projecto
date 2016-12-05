@@ -110,6 +110,10 @@ img.basket
 {
     background-color: transparent;
 }
+.second_nav>.navbar-default 
+{
+    background-color: transparent;
+}    
 .second_nav nav .container
 {
     margin: 0;
@@ -135,4 +139,38 @@ img.basket
 .second_nav > nav > .container > .navbar-collapse 
 {
     padding: 0;
+}
+.search-bar-wrap
+{
+    min-height: 65px;
+    background-color: #f5f9fc;
+    font-size: 13px;
+    line-height:65px;
+}
+
+.search-submit, input.search-input
+{
+    display: inline-block;
+    outline: none;
+    vertical-align: middle;
+    background: none;
+    border:0;
+    
+}
+.search-submit img
+{
+    margin-left: -6px;
+    margin-bottom: 4px;
+}
+input.search-input
+{
+    width: 80%;
+    height: 38px;
+    border: 1px solid #dddddd;
+    padding-left:15px;
+}
+.search-bar-wrap > .search-bar-container
+{
+    padding:0;
+
 }

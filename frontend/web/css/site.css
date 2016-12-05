@@ -97,35 +97,6 @@ a.desc:after {
 .nav > li > form {
     padding: 8px;
 }
-
-.search-from
-{
-    width:70%;
-    margin:20px auto;
-    font-size:20px;
-    color:gray;
-}
-.search-submit, input.search-input
-{
-    display: inline-block;
-     outline: none;
-}
-.search-submit
-{
-    width: 20%;
-    background-color: #89c355;
-    border:2px solid #89c355;
-    padding: 2px 0;
-    color:white;
-    
-}
-input.search-input
-{
-    width: 80%;
-    min-width: 250px;
-    border:2px solid #89c355;
-    padding: 2px 0 2px 20px;
-}
 .all-question 
 {
     margin: 0 0 10px 0;
@@ -150,6 +121,7 @@ label
     border-top :0;
     min-height: 50px;
     padding: 15px 20px 20px;
+    background-color: #fff;
 }
 .area-size 
 {
@@ -224,6 +196,15 @@ label
   border-color: #008cba; }
 .radio-primary input[type="radio"]:checked + label::after {
   background-color: #008cba; }
+
+
+
+
+.question-answer-wrap
+{
+    background-color: #1d1f27;
+}
+
 
 @media(max-width:768px) {
 	.nav li > form {
