@@ -13,20 +13,31 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?php
 Pjax::begin();
-echo Html::beginForm(['/'], 'POST', ['data-pjax' => '', 'class' => 'form-inline', 'id'=>'set_filters', 'name'=>'set_filers']);
+echo Html::beginForm(['/'], 'POST', ['data-pjax' => '', 'class' => 'form-horizontal', 'id'=>'set_filters', 'name'=>'set_filers']);
 $iSetMinSize = $aDimensions['iOneMinSize'];
 $iSetMaxSize = $aDimensions['iOneMaxSize'];
 //echo '<pre><br>Dimensions: '. print_r($aDimensions, true) .'</pre>';
-//echo '<pre>'.print_r([$iSetMinSize,$iSetMaxSize ], true).'</pre>';
+//echo '<pre>'.print_r($aFiltersData, true).'</pre>';
 
 foreach ($aFilters as $aData) {
-
+    echo '<div class="all-question col-md-4 col-sm-6 col-xs-12">';
     echo '<div class="filter_question_row">';
     echo $aData['question']->name.'<br>';
+    echo Html::tag('div','Resetuj odpowiedź',['class'=>'reset_filter', 'rel'=>$aData['question']->id]);
     echo '</div>';
     echo '<div class="filter_ansver_row">';
-    echo Html::radioList($aData['question']->id, $aFiltersData ,ArrayHelper::map($aData['answer'], 'id', 'name'), ['class'=>'answer']);
-    echo Html::tag('Resetuj','Resetuj',['class'=>'reset_filter', 'rel'=>$aData['question']->id]);
+    echo Html::radioList($aData['question']->id, $aFiltersData ,ArrayHelper::map($aData['answer'], 'id', 'name'), [
+                                'item' => function($index, $label, $name, $checked, $value) {
+                                    $return = '<div class="radio radio-primary">';
+                                    $return .= '<input type="radio" name="'.$name .'" value="' . $value . '" id="radio'.$value.'"'.($checked ? "checked=1" : "").' >';
+                                    $return .= '<label for="radio'.$value.'">' .$label.'</label>';
+                                    $return .= '</div>';
+
+                                    return $return;
+                                }
+                            ]);
+
+    
     if ($aData['question']->id == 7 )
     {
 
@@ -59,20 +70,24 @@ foreach ($aFilters as $aData) {
     }
     if ($aData['question']->id == 3 )
     {
+        echo '<div class="area-size">';
         echo '<br>Wielkość działki: ';
         echo Html::input('text', 'SizeX', $aDimensions['iMaxX'], ['title'=>'Szerokość']) .' x ';
-        echo Html::input('text', 'SizeY', $aDimensions['iMaxY'], ['title'=>'Głębokość']) .' metrów ';
+        echo Html::input('text', 'SizeY', $aDimensions['iMaxY'], ['title'=>'Głębokość']) .' m ';
+        echo '</div>';
     }
    
 
     echo '</div>';
+    echo '</div>';
 }
 ?>
-<?= Html::SubmitButton('Pokaż projekty', ['class' => 'project_ready', 'name' => 'project_ready']) ?>
-<?= Html::endForm() ?>
+    <div class="col-md-12">
+    <?= Html::SubmitButton('Pokaż projekty', ['class' => 'project_ready', 'name' => 'project_ready']) ?>
+    <?= Html::endForm() ?>
 
     <div class="all_project">Projekty spełniające kryteria: <?= $sProjectCount ?><br><br></div>
-
+</div>
 <?php
     Pjax::end();
 

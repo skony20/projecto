@@ -26,15 +26,17 @@ html {
     display: inline-block;
     width:100%;
 }
-.answer
+/*.answer
 {
     display: inline;
-}
+}*/
 .reset_filter
 {
-    display: inline;
-    float:right;
+    position: relative;
     cursor: pointer;
+    float: right;
+    top: -18px;
+    color:red;
 }
 
 .top_menu
