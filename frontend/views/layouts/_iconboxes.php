@@ -68,52 +68,77 @@ use yii\helpers\Html;
         <div class="col-md-4 hidden-xs">
             <div class="popular-img text-center">
                 <?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-1.png')?>
-                 
+                <div class="text-left img-icons">
+                    <div class="popular-icon"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-icon.png')?></div>
+                    <div class="popular-name">Domy parterowe</div>
+                    <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-link.png')?></div>
+                </div>
             </div>
-            <div class="popular-icon"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-icon.png')?></div>
-            <div class="popular-name">Domy parterowe</div>
-            <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-link.png')?></div>
+            
            
         </div>
         <div class="col-md-4 hidden-xs">
             <div class="popular-img text-center">
                 <?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-2.png')?>
+                <div class="text-left img-icons">
+                    <div class="popular-icon"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-icon.png')?></div>
+                    <div class="popular-name">Domy z poddaszem</div>
+                    <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-link.png')?></div>
+                </div>
             </div>
-            <div class="popular-icon"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-icon.png')?></div>
-            <div class="popular-name">Domy z poddaszem</div>
-            <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-link.png')?></div>
+            
         </div>
         <div class="col-md-4 hidden-xs">
             <div class="popular-img text-center">
                 <?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-3.png')?>
+                <div class="text-left img-icons">
+                    <div class="popular-icon"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-icon.png')?></div>
+                    <div class="popular-name">Domy wielopiętrowe</div>
+                    <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-link.png')?></div>
+                </div>
             </div>
-            <div class="popular-icon"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-icon.png')?></div>
-            <div class="popular-name">Domy wielopiętrowe</div>
-            <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-link.png')?></div>
+            
         </div>
         <div class="col-md-4 hidden-xs">
             <div class="popular-img text-center">
                 <?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-4.png')?>
+                <div class="text-left img-icons">
+                    <div class="popular-icon"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-icon.png')?></div>
+                    <div class="popular-name">Domy z piwnicą</div>
+                    <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-link.png')?></div>
+                </div>
             </div>
-            <div class="popular-icon"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-icon.png')?></div>
-            <div class="popular-name">Domy z piwnicą</div>
-            <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-link.png')?></div>
+            
         </div>
         <div class="col-md-4 hidden-xs">
             <div class="popular-img text-center">
                 <?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-5.png')?>
+                <div class="text-left img-icons">
+                    <div class="popular-icon"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-icon.png')?></div>
+                    <div class="popular-name">Domy z garażem </div>
+                    <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-link.png')?></div>
+                </div>
             </div>
-            <div class="popular-icon"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-icon.png')?></div>
-            <div class="popular-name">Domy z garażem </div>
-            <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-link.png')?></div>
+            
         </div>
         <div class="col-md-4 hidden-xs">
             <div class="popular-img text-center">
                 <?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-5.png')?>
+                <div class="text-left img-icons">
+                    <div class="popular-icon"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-icon.png')?></div>
+                    <div class="popular-name">Domy z garażem wielostanowiskowym</div>
+                    <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-link.png')?></div>
+                </div>
             </div>
-            <div class="popular-icon"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-icon.png')?></div>
-            <div class="popular-name">Domy z garażem wielostanowiskowym</div>
-            <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-link.png')?></div>
+            
         </div>
     </div>
 </div>
+<div class="wrap wrap-projects">
+    <div class="container container-projects">
+        <div class="projects-title r48 text-center">Ponad 3000 projektów</div>
+        <div class="projects-content m13blue text-center"><?= Html::img(Yii::$app->request->BaseUrl.'/img/search-white.png')?> Znajdź dom marzeń</div>
+    </div>
+</div>
+    
+    

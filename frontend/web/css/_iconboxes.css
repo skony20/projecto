@@ -47,7 +47,7 @@ and open the template in the editor.
 }
 .icon-text
 {
-    padding:0px 60px;
+    padding:0px 40px;
 }
 .icon-img
 {
@@ -72,6 +72,33 @@ and open the template in the editor.
     font-size: 13px;
     padding: 0 55px;
 }
+.popular-img
+{
+    max-width: 360px;
+    margin: 10px auto 20px;
+}
+.img-icons
+{
+    margin-top:-40px;
+}
+.popular-icon
+{
+    width: 40px;
+    height: 40px;
+    background-color: #88c354;
+    text-align: center;
+    vertical-align: top;
+    line-height: 38px;
+}
+.popular-link
+{
+    width: 40px;
+    height: 40px;
+    background-color: #2f96d1;
+    text-align: center;
+    vertical-align: top;
+    line-height: 38px;
+}
 .popular-title
 {
     font-size: 24px;
@@ -90,9 +117,39 @@ and open the template in the editor.
 .popular-name 
 {
     height: 40px;
-    line-height: 36px;
+    line-height: 38px;
     background-color: #353a3e;
     color: #fff;
-    margin: -4px;
+    margin: 0 -4px;
     padding: 0 10px;
+}
+.wrap-projects
+{
+    background-color: #161f29
+}
+.wrap-projects > .container-projects
+{
+    padding: 80px 0 ;
+}
+.r48
+{
+    font-family: 'Raleway', sans-serif;
+    font-size:48px;
+    color:#ffffff;
+}
+.m13blue
+{
+    background-color: #2f96d1;
+    font-family: Montserrat;
+    color:#ffffff;
+    text-transform: uppercase;
+    height: 40px;
+    line-height: 40px;
+    width:250px;
+    margin: 20px auto;
+    border-radius: 2px;
+}
+.m13blue img
+{
+    padding: 0 5px 4px 0;
 }
