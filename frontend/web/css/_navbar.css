@@ -110,10 +110,29 @@ img.basket
 {
     background-color: transparent;
 }
-.second_nav>.navbar-default 
+.second_nav .navbar-default 
 {
+    background-image: none;
     background-color: transparent;
 }    
+.second_nav .navbar-default .dropdown-menu
+{
+    background-color: #fff;
+    
+}
+.second_nav .navbar-default .dropdown-menu > li > a
+{
+    color: #888888;
+}
+.second_nav .navbar-default .dropdown-menu > li > a:hover
+{
+   color:  #88c354 !important;
+   background-color: #fff;
+}
+.second_nav .navbar-default .navbar-nav > .open > a
+{
+    background-color: transparent;
+}
 .second_nav nav .container
 {
     margin: 0;

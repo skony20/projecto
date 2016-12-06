@@ -60,7 +60,14 @@ $sSearch = (isset($_GET['szukaj']) ? $_GET['szukaj']: '');
                 NavBar::begin();
                 $menuItems = [
                     ['label' => 'Główna', 'url' => ['/']],
-                    ['label' => 'Projekty', 'url' => ['/projekty']],
+                    ['label' => 'Popularne', 
+                        'items' => [
+                            ['label' => 'Domy do 100 m2', 'url' => '#'],
+                            ['label' => 'Domy powyżej 300 m2', 'url' => '#'],
+                            ['label' => 'Domy dla 4 osób z garażem', 'url' => '#'],
+                            ['label' => 'Domy dla 2 osób z kominkiem', 'url' => '#'],
+                            ['label' => 'Domy pasywne', 'url' => '#'],
+            ],],
                     ['label' => 'Nowości', 'url' => ['/projekty']],
                     ['label' => 'O nas', 'url' => ['/onas']],
                     ['label' => 'Kontakt', 'url' => ['/kontakt']],
@@ -80,7 +87,7 @@ $sSearch = (isset($_GET['szukaj']) ? $_GET['szukaj']: '');
 </div>
 <div class="wrap search-bar-wrap">
     <div class="container search-bar-container">
-        <div class="col-md-2 hidden-xs  hidden-sm text-right">Szukaj planu</div>
+        <div class="col-md-2 hidden-xs  hidden-sm text-right">Szukaj domu</div>
         <div class="col-md-10  col-xs-12 col-sm-12">
             <div class="search-from-index">
             <?php

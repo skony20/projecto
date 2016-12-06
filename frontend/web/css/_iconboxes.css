@@ -1,0 +1,98 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2016-12-06, 11:59:33
+    Author     : Mariusz Skonieczny, mariuszskonieczny@hotmail.com
+*/
+.wrap-icon  > .container-icon
+{
+    padding: 42.5px 15px;
+}
+.wrap-icon 
+{
+    background-color: #f0f3f6;
+    min-height:125px;
+}
+
+.first_icon, .icon-text, .arrow-icon, .icon-img
+{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.first_icon, .arrow-icon 
+{
+    line-height: 125px;
+}
+.col-icon
+{
+    display: table-cell;  
+    vertical-align: middle;
+}
+.icon-text-inner-top
+{
+    color:#888888;
+    font-size: 13px;
+    text-transform: uppercase;
+
+}
+.icon-text-inner-bottom
+{
+    font-size: 15px;
+    text-transform: capitalize;
+
+}
+.icon-text
+{
+    padding:0px 60px;
+}
+.icon-img
+{
+    min-width: 40px;
+}
+.wrap-services  > .container-services
+{
+    padding: 60px 15px;
+}
+.wrap-services, .wrap-popular
+{
+    background-color: #ffffff;
+}
+.text18m
+{
+    font-size: 18px;
+    font-family: Montserrat;
+    margin: 10px 0 10px 0;
+}
+.text13o
+{
+    font-size: 13px;
+    padding: 0 55px;
+}
+.popular-title
+{
+    font-size: 24px;
+    font-family: Montserrat;
+    color:#2d3e52;
+}
+.popular-border
+{
+    border-top: 4px solid #88c354;
+    margin: 10px calc(50% - 20px) 20px;
+}
+.popular-link, .popular-name, .popular-icon
+{
+    display:inline-block;
+}
+.popular-name 
+{
+    height: 40px;
+    line-height: 36px;
+    background-color: #353a3e;
+    color: #fff;
+    margin: -4px;
+    padding: 0 10px;
+}

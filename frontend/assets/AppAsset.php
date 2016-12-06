@@ -19,6 +19,7 @@ class AppAsset extends AssetBundle
         'css/cart-list.css',
         'css/account.css',
         'css/_navbar.css',
+        'css/_iconboxes.css',
     ];
     public $depends = [
         'yii\web\YiiAsset',

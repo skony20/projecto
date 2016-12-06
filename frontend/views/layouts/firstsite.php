@@ -14,6 +14,9 @@
     </div>
 </div>
 <?php
+    echo $this->render('/layouts/_iconboxes');
+?>
+<?php
     echo $this->render('/layouts/_footer');
 ?>
 <?php $this->endBody() ?>
