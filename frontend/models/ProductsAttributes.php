@@ -60,6 +60,7 @@ class ProductsAttributes extends \yii\db\ActiveRecord
         return $this->hasOne(Products::className(), ['id' => 'products_id']);
     }
 
+
     /**
      * @return \yii\db\ActiveQuery
      */

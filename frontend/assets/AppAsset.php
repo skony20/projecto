@@ -20,6 +20,7 @@ class AppAsset extends AssetBundle
         'css/account.css',
         'css/_navbar.css',
         'css/_iconboxes.css',
+        'css/latest-products.css',
     ];
     public $depends = [
         'yii\web\YiiAsset',

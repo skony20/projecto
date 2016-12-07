@@ -1,0 +1,96 @@
+/*
+*/
+/* 
+    Created on : 2016-12-07, 11:56:09
+    Author     : Mariusz Skonieczny, mariuszskonieczny@hotmail.com
+*/
+
+
+.latest-product
+{
+    width:300px;
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 0 0 15px;
+}
+
+.latest-img
+{
+    max-width:300px;
+    max-height:160px;
+    background-color: #2d3e52;
+    line-height: 156px;
+    text-align: center;
+}
+.latest-img img
+{
+    max-width:300px;
+    max-height:160px;
+}
+.o13g-sb
+{
+    padding:15px 15px 5px 5px;
+    font-size:13px;
+    color: #88c354;
+    font-weight: 600;
+}
+.m18b
+{
+    padding: 0 15px 0 5px;
+    font-size: 18px;
+    color: #2d3e52;
+    font-family: Montserrat;
+}
+.latest-left , .latest-right
+{
+    display: inline-block;
+    vertical-align: bottom;
+}
+.latest-right
+{
+    margin: 18px 4px 5px 0;
+    text-align: right;
+    float: right;
+}
+.m15wgreen
+{
+    font-size:15px;
+    background-color: #88c354;
+    color: #fff;
+    padding: 10px 20px;
+}
+.latest-link
+{
+    display: inline-block;
+    width: 41px;
+    height:41px;
+    background-color: #f0f3f6;
+    vertical-align: bottom;
+    text-align: center;
+    line-height: 37px;
+}
+.latest-price
+{
+    display: inline-block;
+    vertical-align: bottom;
+}
+.latest-tech-data
+{
+    padding: 0 15px;
+    border-bottom: 1px solid #f0f3f6;
+}
+.tech-data
+{
+    width: calc(50% - 4px);
+    font-size:13px;
+    color: #777777;
+    margin: 0px;
+    height: 30px;
+    line-height: 26px;
+    
+}
+.tech-data img
+{
+    padding-right:20px;
+    margin-top: 10px;
+}

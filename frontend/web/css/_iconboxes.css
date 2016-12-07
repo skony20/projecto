@@ -153,3 +153,12 @@ and open the template in the editor.
 {
     padding: 0 5px 4px 0;
 }
+.m13blue a
+{
+    color:#ffffff;
+    text-decoration: none;
+}
+.wrap-latest
+{
+    background-color: #f0f3f6;
+}
