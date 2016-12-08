@@ -7,6 +7,7 @@
 <div class="wrap">
     <?= $this->render('/layouts/_navbar'); ?>
 </div>
+    <?= $this->render('/layouts/_searchbar'); ?>
 <div class="wrap question-answer-wrap">
     <div class="container question-answer-container">
         <?= $content ?>

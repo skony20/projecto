@@ -9,9 +9,13 @@
     echo $this->render('/layouts/_navbar');
     echo $this->render('/layouts/_cart');
     ?>
-    <div class="container">
-        <?= $this->render('/layouts/_breadcamps'); ?>
-         <?= $content ?>
+</div>
+<div class="wrap wrap-breadcrumbs">
+    <?= $this->render('/layouts/_breadcramps'); ?>
+    </div>
+<div class="wrap">    
+    <div class="container">     
+        <?= $content ?>
 
     </div>
 </div>

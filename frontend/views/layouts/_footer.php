@@ -1,6 +1,7 @@
 <?php
 use yii\base\Widget;
 use yii\helpers\Html;
+use common\widgets\Alert;
 ?>
 <footer class="footer">
     <div class="container">
@@ -66,3 +67,13 @@ use yii\helpers\Html;
     </div>
 
 </footter>
+
+<?php
+   if(Yii::$app->getSession()->getAllFlashes()) {
+      $this->registerJs("$('#system-messages').fadeIn().animate({opacity: 1.0}, 4000). fadeOut('slow');");
+   }
+?>
+
+<div id="system-messages" style="opacity: 1; display: none">
+   <?= Alert::widget(); ?>
+</div>
