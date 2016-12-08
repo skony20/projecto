@@ -49,7 +49,7 @@ class SiteController extends Controller
                         'roles' => ['@'],
                     ],
                     [
-                        'actions' => ['onas', 'kontakt', 'wprojekcie', 'regulamin', 'wspolpraca', 'faq'],
+                        'actions' => ['onas', 'kontakt', 'wprojekcie', 'regulamin', 'wspolpraca', 'faq', 'cookie'],
                         'allow' => true,
                         'roles' => ['*'],
                     ],
@@ -323,6 +323,11 @@ class SiteController extends Controller
     {
 
         return $this->render('faq');
+    }
+    public function actionCookie()
+    {
+
+        return $this->render('cookie');
     }
     /**
      * Signs user up.

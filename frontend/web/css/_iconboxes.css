@@ -94,11 +94,16 @@ and open the template in the editor.
 {
     width: 40px;
     height: 40px;
-    background-color: #2f96d1;
+    background-color: #f0f3f6;
     text-align: center;
     vertical-align: top;
     line-height: 38px;
 }
+.popular-link:hover
+{
+    background-color: #2f96d1;
+}
+
 .popular-title
 {
     font-size: 24px;
@@ -131,6 +136,10 @@ and open the template in the editor.
 {
     padding: 80px 0 ;
 }
+.projects-content
+{
+    cursor: pointer;
+}
 .r48
 {
     font-family: 'Raleway', sans-serif;
@@ -153,12 +162,65 @@ and open the template in the editor.
 {
     padding: 0 5px 4px 0;
 }
+
 .m13blue a
 {
     color:#ffffff;
     text-decoration: none;
 }
+.center-green-border
+{
+    border-top: 4px solid #88c354;
+    margin: 10px calc(50% - 20px) 20px;
+}
 .wrap-latest
 {
     background-color: #f0f3f6;
+}
+.latest-title
+{
+    font-size: 24px;
+    font-family: Montserrat;
+    color:#2d3e52;
+}
+
+.wrap-people
+{
+    background-color: #ffffff;
+    padding-bottom: 80px;
+}
+.people-title
+{
+    font-size: 24px;
+    font-family: Montserrat;
+    color:#2d3e52;
+}
+.comment-content
+{
+    margin: 0 15px;
+    background-color: #f0f3f6;
+    font-size: 14px;
+    font-style: italic;
+    color:#666666;
+    padding: 40px; 
+}
+.client-photo
+{
+    margin: -20px 30px;
+}
+.client-photo, .client-name
+{
+    display: inline-block;
+    vertical-align: bottom;
+}
+.m15b
+{
+    font-size: 15px;
+    font-family: Montserrat;
+    color: #373b3f;
+}
+.o13ib
+{
+  font-size: 13px;  
+  font-style: italic;
 }

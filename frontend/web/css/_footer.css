@@ -1,0 +1,104 @@
+/*
+*/
+/* 
+    Created on : 2016-12-08, 10:57:03
+    Author     : Mariusz Skonieczny, mariuszskonieczny@hotmail.com
+*/
+
+footer
+{
+    background-color: #353a3e;
+    color:#bcc0c4;
+    padding-bottom: 40px;
+}
+.m15w
+{
+    font-family: Montserrat;
+    font-size: 15px;
+    color:#fff;
+    text-transform: uppercase;
+}
+.footer-tittle
+{
+    padding: 30px 10px;
+}
+.footer-content
+{
+    font-size: 13px;
+    line-height: 26px;
+    padding: 0 24px;
+}
+.footer-phone
+{
+    line-height: 45px;
+}
+.footer-social
+{
+    margin-top: 15px;
+}
+.footer-social img
+{
+    display: inline-block;
+    padding: 0 3px;
+}
+ul.footer-menu
+{
+    padding:0;
+    margin: 0;
+}
+.footer-menu li
+{
+    padding: 0 5px;
+    list-style-image:url('../../projecto/img/list-arrow.png');
+}
+.footer-menu li a
+{
+    color: #bcc0c4;
+    text-decoration: none;
+}
+.footer-menu li a:hover
+{
+    color: #88c354;
+}
+.news-img, .news-content
+{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0px 10px 20px 0px;
+}
+.newsletter-text
+{
+    padding: 0 15px;
+}
+.m12b
+{
+    font-family: Montserrat;
+    font-size: 12px;
+    color:#34a2e1;
+}
+.after-footer
+{
+    background-color: #2e3336;
+    color:#bcc0c4;
+    line-height: 50px;
+        
+}
+.newsletter-input
+{
+    margin: 15px 8px;
+}
+.newsletter-input input
+{
+    height:39px;
+    border-radius: 2px;
+    border: 0;
+    padding: 0 5px;
+    outline: none;
+    width: 75%;
+}
+.newsletter-input img
+{
+    margin-left: -15px;
+    margin-top: -3px;
+    cursor: pointer;
+}

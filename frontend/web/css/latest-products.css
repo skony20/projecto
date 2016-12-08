@@ -68,6 +68,11 @@
     vertical-align: bottom;
     text-align: center;
     line-height: 37px;
+    cursor:pointer;
+}
+.latest-link:hover
+{
+    background-color:#2f96d1 ;
 }
 .latest-price
 {

@@ -43,6 +43,12 @@ class LatestWidget extends Widget
                     case 18: 
                         $sStories = '2 lub więcej';
                         break;
+                    case 15: 
+                        $sStyle = 'Tradycyjny';
+                        break;
+                     case 16: 
+                        $sStyle = 'Nowoczesny';
+                        break;
                     
                 }
             }

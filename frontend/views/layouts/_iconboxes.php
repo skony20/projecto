@@ -65,14 +65,14 @@ use frontend\widget\LatestWidget;
 <div class="wrap wrap-popular">
     <div class="container container-popular">
         <div class="popular-title text-center">Popularne projekty</div>
-        <div class="popular-border text-center"></div>
+        <div class="center-green-border text-center"></div>
         <div class="col-md-4 hidden-xs">
             <div class="popular-img text-center">
                 <?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-1.png')?>
                 <div class="text-left img-icons">
                     <div class="popular-icon"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-icon.png')?></div>
                     <div class="popular-name">Domy parterowe</div>
-                    <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-link.png')?></div>
+                    <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/link-blue.png')?></div>
                 </div>
             </div>
             
@@ -84,7 +84,7 @@ use frontend\widget\LatestWidget;
                 <div class="text-left img-icons">
                     <div class="popular-icon"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-icon.png')?></div>
                     <div class="popular-name">Domy z poddaszem</div>
-                    <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-link.png')?></div>
+                    <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/link-blue.png')?></div>
                 </div>
             </div>
             
@@ -95,7 +95,7 @@ use frontend\widget\LatestWidget;
                 <div class="text-left img-icons">
                     <div class="popular-icon"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-icon.png')?></div>
                     <div class="popular-name">Domy wielopiętrowe</div>
-                    <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-link.png')?></div>
+                    <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/link-blue.png')?></div>
                 </div>
             </div>
             
@@ -106,7 +106,7 @@ use frontend\widget\LatestWidget;
                 <div class="text-left img-icons">
                     <div class="popular-icon"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-icon.png')?></div>
                     <div class="popular-name">Domy z piwnicą</div>
-                    <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-link.png')?></div>
+                    <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/link-blue.png')?></div>
                 </div>
             </div>
             
@@ -117,7 +117,7 @@ use frontend\widget\LatestWidget;
                 <div class="text-left img-icons">
                     <div class="popular-icon"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-icon.png')?></div>
                     <div class="popular-name">Domy z garażem </div>
-                    <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-link.png')?></div>
+                    <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/link-blue.png')?></div>
                 </div>
             </div>
             
@@ -128,7 +128,7 @@ use frontend\widget\LatestWidget;
                 <div class="text-left img-icons">
                     <div class="popular-icon"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-icon.png')?></div>
                     <div class="popular-name">Domy z garażem wielostanowiskowym</div>
-                    <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-link.png')?></div>
+                    <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/link-blue.png')?></div>
                 </div>
             </div>
             
@@ -143,7 +143,29 @@ use frontend\widget\LatestWidget;
 </div>
 <div class="wrap wrap-latest">
     <div class="container container-latest">
+        <div class="latest-title text-center">Najnowsze produkty</div>
+        <div class="center-green-border text-center"></div>
         <?php echo LatestWidget::widget(); ?>
+    </div>
+    
+</div>
+<div class="wrap wrap-people">
+    <div class="container container-people">
+        <div class="people-title text-center">Nasi klienci o nas</div>
+        <div class="center-green-border text-center"></div>
+        <div class="col-md-6 hidden-sm hidden-xs people-comment">
+            <div class="comment-content">We have several sites now built in Elvyre across several servers and have had almost zero issues. The documentation is great and the feature set is phenomenal...The end product is great and easy to use and configure. Highly recommended....
+            </div>
+            <div class="client-photo"><?= Html::img(Yii::$app->request->BaseUrl.'/img/client2.png')?></div>
+            <div class="client-name"><span class="m15b">Olga Zdrzalik</span><br><span class="o13ib">dreamland-jewelry.pl</span></div>
+        </div>
+        <div class="col-md-6 hidden-sm hidden-xs people-comment">
+            <div class="comment-content">Best customer support and response time I have evr seen... not to mention a kick ass theme! Great feeling from this pourchase.<br>
+Thank you Pixel Industry!</div>
+            <div class="client-photo"><?= Html::img(Yii::$app->request->BaseUrl.'/img/client1.png')?></div>
+            <div class="client-name"><span class="m15b">Mateusz Jeronicz</span><br><span class="o13ib">ramkazdata.pl</span></div>
+        </div>
+        
     </div>
     
 </div>
