@@ -135,6 +135,10 @@ class Products extends \yii\db\ActiveRecord
     {
         return $this->hasMany(ProductsAttributes::className(), ['products_id' => 'id']);
     }
+    public function getOneAttribute($iAttributes_id = 4)
+    {
+        return $this->hasOne(ProductsAttributes::className(), ['products_id' => 'id'])->where(['attributes_id' => $iAttributes_id]);
+    }
     
     public function getProductsImages()
     {

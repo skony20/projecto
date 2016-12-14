@@ -9,6 +9,10 @@ use yii\helpers\Url;
 $this->title = 'Projekty';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+
+ 
+
 <div class="products-index">
 
 <?php

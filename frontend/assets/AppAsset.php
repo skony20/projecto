@@ -23,6 +23,7 @@ class AppAsset extends AssetBundle
         'css/latest-products.css',
         'css/_footer.css',
         'css/_breadcrumbs.css',
+        'css/accordion.css',
         
     ];
     public $depends = [
@@ -32,6 +33,8 @@ class AppAsset extends AssetBundle
     public $js = [
         'frontend/web/js/front.js',
         'frontend/web/js/zoom-gallery.js',
+        'frontend/web/js/jquery.cookie.js',
+        
     ];
     
 }

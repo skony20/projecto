@@ -47,7 +47,19 @@ $(document).on('ready pjax:success',
         $('input[type=checkbox]').change(
             function()
             { 
-               $("#prj_set_filters").submit();
+              var frm = $('#set_filters');
+                frm.submit(function (ev) {
+                    $.ajax({
+                        type: frm.attr('method'),
+                        url: frm.attr('action'),
+                        data: frm.serialize(),
+                        success: function (data) {
+                            alert('ok');
+                        }
+                    });
+
+                    ev.preventDefault();
+                });
             }
         );
 
@@ -281,4 +293,5 @@ $(document).on('ready pjax:success',
         $("#prj_sort").submit();
     });
     
-    });
+});
+    
