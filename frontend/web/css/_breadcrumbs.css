@@ -3,3 +3,38 @@
     Created on : 2016-12-08, 22:29:11
     Author     : Mariusz Skonieczny mariuszskonieczny@hotmail.com
 */
+.wrap-breadcrumbs
+{
+    background-image: url('../img/breadcrumbs-bg.jpg');
+    background-color: #3d7db0;
+    height:53px;
+}
+.wrap-breadcrumbs .container-breadcrumbs
+{
+    padding: 0;
+}
+.breadcrumb li:nth-child(1):before
+{
+    content:  url(/projecto/img/breadcrumbs-home.png);
+}
+.breadcrumb li:nth-child(1) a
+{
+    padding-left: 10px; 
+}
+.breadcrumb {
+    color:#ffffff;
+    border: 0;
+    border-radius: 0px;
+    font-size: 13px;
+    font-weight: 300;
+    text-transform: none;
+    line-height: 53px;
+    padding: 0 15px;
+    margin-bottom: 0;
+    list-style: none;
+    background-color: transparent;
+}
+.breadcrumb li, .breadcrumb li.active, .breadcrumb li a
+{
+    color:#ffffff;
+}

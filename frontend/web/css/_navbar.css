@@ -187,6 +187,7 @@ input.search-input
     height: 38px;
     border: 1px solid #dddddd;
     padding-left:15px;
+    border-radius: 3px;
 }
 .search-bar-wrap > .search-bar-container
 {

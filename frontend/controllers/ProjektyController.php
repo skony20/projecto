@@ -273,7 +273,7 @@ public function actionIndex($sort = 'default', $szukaj = '')
         //echo '<pre>'. print_r(count(array_filter($aPostData)), TRUE); die();    
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' =>['pageSize' => 20, 'pageParam' => 'strona'],
+            'pagination' =>['pageSize' => 18, 'pageParam' => 'strona'],
             ]);
         
         //echo '<pre>'.print_r($aPrdIds, true); die();

@@ -59,6 +59,7 @@ class LatestWidget extends Widget
                     <div class="latest-info">
                         <div class="latest-left">
                             <div class="latest-name o13g-sb"><?= $aProduct->productsDescriptons->name ?><br></div>
+                            /*Sprawdzić atrybuty*/
                             <div class="latest-area m18b"><?= $aProduct->productsAttributes[4]->value ?> m2</div>
                         </div>
                         <div class="latest-right">

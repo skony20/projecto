@@ -41,8 +41,8 @@ html {
 
 .top_menu
 {
-    width:100%;
-    display:block;
+    width:25%;
+    display:inline-block;
     padding-top:10px;
 }
 .another
@@ -58,23 +58,7 @@ html {
     display: inherit;
     vertical-align: inherit;
 }
-.prj_filter_question_row
-{
-    background-color:#e4e4e4;
-    border: 1px solid #d0d0d0;
-    padding:2px;
-    margin: 5px 0;
-    display:inline-block;
-    width:100%;
-}
 
-.prj_filter_row
-{
-    display:inline-block;
-    vertical-align: top;
-    padding: 0 10px;
-    width: 20%;
-}
 .remove-filter
 {
     color:red;
@@ -186,4 +170,51 @@ html {
     width: 550px;
     z-index: 10;
     height:100px;
+}
+/*Napisy*/
+.o15bb
+{
+    font-size: 15px;
+    color:#373c40;
+    font-weight: 600;
+}
+.o15w
+{
+    font-size: 15px;
+    color:#fff;
+}
+.m21w
+{
+    font-size: 21px;
+    color:#fff;
+    font-family: Montserrat;
+}
+.o13bw
+{
+    font-size:13px;
+    color:#fff;
+    font-weight: 600;
+}
+.m13b
+{
+    font-family: Montserrat;
+    font-size:13px;
+    color: #2d3e52;
+}
+ .o13g, .o13g .prj_select label
+{
+    font-size:13px;
+    color: #666666;
+}
+.m14b
+{
+    font-family: Montserrat;
+    font-size:13px;
+    color: #2d3e52;
+}
+.o13bb
+{
+    font-size: 13px;
+    font-weight: 600;
+    color: #3c7cae;
 }

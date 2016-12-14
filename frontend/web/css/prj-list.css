@@ -3,20 +3,134 @@
     Created on : 2016-09-29, 16:27:59
     Author     : Mariusz Skonieczny, mariuszskonieczny@hotmail.com
 */
-
+.top_menu
+{
+    width:25%;
+    display:inline-block;
+    padding-top:10px;
+    
+}
+.filter-menu-over
+{
+    background-color: #2f96d1;
+    border-radius :3px;
+    padding:15px 0;
+    margin: 0 15px;
+}
+.top-menu-find
+{
+    background-color: #3c7cae;
+    padding:10px 0;
+    border-radius :3px;
+    margin: 0 15px;
+}
+.top-menu-filters
+{
+    background-color: #f5f9fc;
+    margin: 0 15px;
+    padding: 30px 0;
+}
 .prj-items
 {
-    width:100%
+    width:calc(75% - 4px);
+    display:inline-block;
+        
 }
-span.all-prj 
+.prj_filter_question_row
 {
-    float: right;
-    margin: 20px;
+    text-transform: uppercase;
+    padding: 15px 5px;
+    
+    display:inline-block;
+    width:100%;
 }
-.prj_all
+.prj_filter_ansver_row
+{
+    padding: 5px 5px;
+}
+.prj_filter_row
+{
+    display:block;
+    vertical-align: top;
+    padding: 0 10px;
+}
+.filter-area-size
+{
+    width:40%;
+    border: 1px solid #dddddd;
+    margin:15px 0 5px;
+    padding:0 5px;
+    outline: none;
+    box-shadow: inset 1px 1px 3px rgba(102,102,102,0.2);
+    line-height: 24px;
+    border-radius:3px;
+}
+.reset_all_filters
+{
+    background-color: #2f96d1;
+    border-radius :3px;
+    padding:15px 0;
+    margin: 0 15px;
+    text-align: center;
+    
+}
+
+/*Przesuwane liczby*/
+.irs-from, .irs-to, .irs-single
+{
+    background-color: #2f96d1;
+}
+.irs-bar
+{
+    border-top: 1px solid #3c7cae;
+    border-bottom: 1px solid #2f96d1;
+    background: #2f96d1;
+    background: linear-gradient(to top, #2f96d1 0%,#3c7cae 100%);
+
+}
+.prjs-pagi, .prjs-count, .prjs-sort
 {
     display: inline-block;
-    width: calc(20% - 4px);
+}
+.prjs-firstline
+{
+    margin: 5px 0 40px;
+    padding: 0 20px;
+}
+.prjs-pagi
+{
+    float:right;
+}
+div.prjs-sort
+{
+    float:right;
+    margin: 1px 30px;
+}
+.prjs-count
+{
+    margin: 8px;
+}
+.prj-sort > select
+{
+    border: 1px solid #dddddd;
+    padding: 5px;
+    outline: none;
+    box-shadow: inset 1px 1px 3px rgba(102,102,102,0.2);
+    border-radius:3px;
+}
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus 
+{
+    background-color: #88c354;
+}
+.pagination > li > a, .pagination > li:first-child > a, .pagination > li:last-child > a, .pagination > li > span, .pagination > li:first-child > span, .pagination > li:last-child > span 
+{
+    background-color: #f5f9fc;
+    border:1px solid #dddddd;
+}
+.prj-all
+{
+    display: inline-block;
+    width: calc(33% - 4px);
     min-width:150px;
     border: solid 1px gray;
     padding: 0 10px;
@@ -24,62 +138,55 @@ span.all-prj
     min-height: 240px;
     margin-bottom:10px;
 }
-.favorites-items .prjs_all .prj_all
+.favorites-items .prjs-all .prj-all
 {
     width: calc(25% - 4px);
 }
-.prj_title h2
+.prj-title h2
 {
     font-size: 14px;
 }
-img.prj_image
+img.prj-image
 {
     width:90%;
     margin: 0 auto;
     display: block;
 }
-.prjs_paso
+.prjs-paso
 {
     display:block;
     width:100%;
     height: 50px;
 }
-.prjs_pagi, .prjs_sort
-{
-    display: inline-block;
-}
-.prjs_pagi
-{
-    float:right;
-}
+
 .pagination
 {
     margin:0;
 }
 
-.prj_title 
+.prj-title 
 {
     min-height: 55px;
 }
-.prj_title h2
+.prj-title h2
 {
     font-size: 14px;
     margin:0;
     padding:0;
 }
-.prj_img
+.prj-img
 {
-    min-height: 125px;
+    text-align:center;
+    vertical-align: middle;
+    width: 100%;
+    min-height: 160px;
+    background-color: #2d3e52;
 }
-#prj_sizex, #prj_sizey  
-{
-    width:40px;
-}
-#prj_sort{
+#prj-sort{
     display:inline-block;
     margin-left: 10px;
 }
-.prj_images_title {
+.prj-images-title {
     border-bottom: 2px solid #d2d2d2;
     padding: 20px 0;
     width: 80%;
@@ -87,7 +194,8 @@ img.prj_image
     font-size: 24px;
     border-top: 2px solid #d2d2d2;
 }
-.prj_images_title:nth-child(1)
+.prj-images-title:nth-child(1)
 {
     border-top: 0px;
 }
+

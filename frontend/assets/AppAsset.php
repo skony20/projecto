@@ -22,6 +22,8 @@ class AppAsset extends AssetBundle
         'css/_iconboxes.css',
         'css/latest-products.css',
         'css/_footer.css',
+        'css/_breadcrumbs.css',
+        
     ];
     public $depends = [
         'yii\web\YiiAsset',
