@@ -141,7 +141,15 @@ $(document).on('ready pjax:success',
 
                     }); 
             })
-    
+       $('.filter_ansver_row').click(
+            function()
+            {
+                var iAccordion = $(this).attr('rel');
+                $.ajax({
+                    url: "/projecto/accordion?iId="+iAccordion,
+
+                    }); 
+            })
     
     /*Koszyk*/
     $('.cart').mouseover(function()

@@ -35,11 +35,11 @@ foreach ($aFilters as $aData)
           <h4 class="panel-title filter_question_row" rel="<?=$a?>">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?=$a?>">
             <?= $aData['question']->name ?></a><br>
-              <?=Html::tag('div','Resetuj odpowiedź',['class'=>'reset_filter', 'rel'=>$aData['question']->id])?>
+              <?=Html::tag('div','x',['class'=>'reset_filter', 'rel'=>$aData['question']->id, 'title'=>'Resetuj odpowiedź'])?>
                 
           </h4>
         </div>
-        <div id="collapse<?=$a?>" class="panel-collapse collapse filter_ansver_row <?php echo  ($accordion == $a ? 'in' : '') ?>">
+        <div id="collapse<?=$a?>" class="panel-collapse collapse filter_ansver_row <?php echo  ($accordion == $a ? 'in' : '') ?>" rel="<?=$a?>">
             <div class="panel-body">
                 <?php
                     echo Html::radioList($aData['question']->id, $aFiltersData ,ArrayHelper::map($aData['answer'], 'id', 'name'), [

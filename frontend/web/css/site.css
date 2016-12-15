@@ -94,6 +94,7 @@ a.desc:after {
 {
     margin: 10px auto;
     float: none;
+    padding:0;
 }
 label
 {
@@ -102,15 +103,35 @@ label
 }
 .filter_question_row
 {
-    
+    padding: 0 15px;
+    background-color: #f5f9fc;
+    color: #161f29;
+    font-family: Montserrat;
 }
 .filter_ansver_row
 {
-    
+    padding: 0 15px;
+}
+.reset_filter
+{
+    position: relative;
+    cursor: pointer;
+    float: right;
+    top: -14px;
+    color:#88c354;
+    font-size:12px;
+}
+.panel-group .panel-heading + .panel-collapse > .panel-body, .panel-group .panel-heading + .panel-collapse > .list-group
+{
+    border: 0;
+}
+.radio.radio-primary 
+{
+    display: inline-block;
 }
 .area-size 
 {
-    margin: 65px 0 0 0;
+    margin: 40px 0 0 0;
     vertical-align: bottom;
     display: inline-block;
 }
@@ -123,7 +144,8 @@ label
 .radio label {
     display: block;
     position: relative;
-    padding-left: 5px; }
+    padding-left: 5px;
+    padding-right: 15px;}
 .radio label::before {
       content: "";
       display: inline-block;

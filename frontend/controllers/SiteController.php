@@ -92,11 +92,15 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $cookies = Yii::$app->response->cookies;
-        $cookies->add(new \yii\web\Cookie([
+        $GetCookies = Yii::$app->request->cookies;
+        $SetCookies = Yii::$app->response->cookies;
+        //echo print_r($GetCookies->getValue('accordion'), true); die();
+        $accordion = ($GetCookies->getValue('accordion') !== NULL ? $GetCookies->getValue('accordion') : 1);
+        $SetCookies->add(new \yii\web\Cookie([
             'name' => 'accordion',
-            'value' => '1',
-        ]));
+            'value' => $accordion,
+            'expire' => time() + 86400 * 365,
+            ])); 
         $this->layout = 'firstsite';
         $model = new ProductsSearch();
         Yii::$app->session['aDimensions'] = [];
@@ -474,19 +478,11 @@ class SiteController extends Controller
      {
          
         $cookies = Yii::$app->response->cookies;
-        $accordion = $cookies->getValue('accordion');
-        if ($accordion == $iId)
-        {
-            $cookies->remove('accordion');
-        }
-        else
-        {
-            $cookies->add(new \yii\web\Cookie([
+        $cookies->add(new \yii\web\Cookie([
             'name' => 'accordion',
             'value' => $iId,
+            'expire' => time() + 86400 * 365,
             ])); 
-        }
-        
      }
 }
     
