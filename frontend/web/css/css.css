@@ -21,15 +21,7 @@ src: url("font/montserrat.otf") format("opentype");
 html {
        overflow-y: scroll;
 }
-.filter_ansver_row
-{
-    display: inline-block;
-    width:100%;
-}
-/*.answer
-{
-    display: inline;
-}*/
+
 .reset_filter
 {
     position: relative;

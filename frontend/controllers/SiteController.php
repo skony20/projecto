@@ -21,6 +21,7 @@ use app\models\ProductsFilters;
 use yii\web\Session;
 use common\models\User;
 use app\models\SearchProject;
+use yii\web\Cookie;
 
 
 /**
@@ -49,7 +50,7 @@ class SiteController extends Controller
                         'roles' => ['@'],
                     ],
                     [
-                        'actions' => ['onas', 'kontakt', 'wprojekcie', 'regulamin', 'wspolpraca', 'faq', 'cookie'],
+                        'actions' => ['onas', 'kontakt', 'wprojekcie', 'regulamin', 'wspolpraca', 'faq', 'cookie', 'accordion'],
                         'allow' => true,
                         'roles' => ['*'],
                     ],
@@ -91,6 +92,11 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $cookies = Yii::$app->response->cookies;
+        $cookies->add(new \yii\web\Cookie([
+            'name' => 'accordion',
+            'value' => '1',
+        ]));
         $this->layout = 'firstsite';
         $model = new ProductsSearch();
         Yii::$app->session['aDimensions'] = [];
@@ -461,6 +467,26 @@ class SiteController extends Controller
     //echo '<pre>'. print_r($_user, TRUE); die();
     //return Yii::$app->user->login($userAttributes['first_name'], 3600 * 24 * 30);
 
+     }
+     
+     /*Cookie do kontrolowania accordion*/
+     public function actionAccordion($iId)
+     {
+         
+        $cookies = Yii::$app->response->cookies;
+        $accordion = $cookies->getValue('accordion');
+        if ($accordion == $iId)
+        {
+            $cookies->remove('accordion');
+        }
+        else
+        {
+            $cookies->add(new \yii\web\Cookie([
+            'name' => 'accordion',
+            'value' => $iId,
+            ])); 
+        }
+        
      }
 }
     

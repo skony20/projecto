@@ -131,6 +131,17 @@ $(document).on('ready pjax:success',
                 }
             }
     );
+    /*Obsługa accordion*/
+    $('.filter_question_row').click(
+            function()
+            {
+                var iAccordion = $(this).attr('rel');
+                $.ajax({
+                    url: "/projecto/accordion?iId="+iAccordion,
+
+                    }); 
+            })
+    
     
     /*Koszyk*/
     $('.cart').mouseover(function()

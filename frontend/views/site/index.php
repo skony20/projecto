@@ -9,88 +9,109 @@ use yii\helpers\Url;
 $this->title = 'Projekty';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-
-
- 
-
-<div class="products-index">
-
 <?php
+$a=1;
 Pjax::begin();
 echo Html::beginForm(['/'], 'POST', ['data-pjax' => '', 'class' => 'form-horizontal', 'id'=>'set_filters', 'name'=>'set_filers']);
 $iSetMinSize = $aDimensions['iOneMinSize'];
 $iSetMaxSize = $aDimensions['iOneMaxSize'];
-//echo '<pre><br>Dimensions: '. print_r($aDimensions, true) .'</pre>';
-//echo '<pre>'.print_r($aFiltersData, true).'</pre>';
+$cookies = Yii::$app->request->cookies;
+$accordion = $cookies->getValue('accordion');
+?>
 
-foreach ($aFilters as $aData) {
-    echo '<div class="all-question col-md-4 col-sm-6 col-xs-12">';
-    echo '<div class="filter_question_row">';
-    echo $aData['question']->name.'<br>';
-    echo Html::tag('div','Resetuj odpowiedź',['class'=>'reset_filter', 'rel'=>$aData['question']->id]);
-    echo '</div>';
-    echo '<div class="filter_ansver_row">';
-    echo Html::radioList($aData['question']->id, $aFiltersData ,ArrayHelper::map($aData['answer'], 'id', 'name'), [
-                                'item' => function($index, $label, $name, $checked, $value) {
-                                    $return = '<div class="radio radio-primary">';
-                                    $return .= '<input type="radio" name="'.$name .'" value="' . $value . '" id="radio'.$value.'"'.($checked ? "checked=1" : "").' >';
-                                    $return .= '<label for="radio'.$value.'">' .$label.'</label>';
-                                    $return .= '</div>';
 
-                                    return $return;
-                                }
-                            ]);
+
+<div class="products-index">
+<div class="panel-group" id="accordion">
+<?php
+foreach ($aFilters as $aData) 
+    {
+
+?>
 
     
-    if ($aData['question']->id == 7 )
-    {
+      <div class="panel panel-default all-question col-md-10 col-sm-10 col-xs-10">
+        <div class="panel-heading">
+          <h4 class="panel-title filter_question_row" rel="<?=$a?>">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?=$a?>">
+            <?= $aData['question']->name ?></a><br>
+              <?=Html::tag('div','Resetuj odpowiedź',['class'=>'reset_filter', 'rel'=>$aData['question']->id])?>
+                
+          </h4>
+        </div>
+        <div id="collapse<?=$a?>" class="panel-collapse collapse filter_ansver_row <?php echo  ($accordion == $a ? 'in' : '') ?>">
+            <div class="panel-body">
+                <?php
+                    echo Html::radioList($aData['question']->id, $aFiltersData ,ArrayHelper::map($aData['answer'], 'id', 'name'), [
+                                    'item' => function($index, $label, $name, $checked, $value) {
+                                        $return = '<div class="radio radio-primary">';
+                                        $return .= '<input type="radio" name="'.$name .'" value="' . $value . '" id="radio'.$value.'"'.($checked ? "checked=1" : "").' >';
+                                        $return .= '<label for="radio'.$value.'">' .$label.'</label>';
+                                        $return .= '</div>';
 
-       echo '<br>Wielkość domu w m2: ';
-        echo \yii2mod\slider\IonSlider::widget([
-            'name' => 'HouseSize',
-            'type' => \yii2mod\slider\IonSlider::TYPE_DOUBLE,
-                'pluginOptions' => [
-                'min' => $aDimensions['iAllMinSize'],
-                'max' => $aDimensions['iAllMaxSize'],
-                'from' => $iSetMinSize,
-                'to' => $iSetMaxSize,
-                'step' => 1,
-                'hide_min_max' => false,
-                'hide_from_to' => false,
-                'onFinish' => new \yii\web\JsExpression('
-                function(data) {
-                     $.ajax({
-                        url: "site/bar-change",
-                        success:
-                            function()
-                                {
-                                    $("#set_filters").submit();
-                                }
-                    }); 
-                    }'
-                    ),
-                ]
-            ]);
-    }
-    if ($aData['question']->id == 3 )
-    {
-        echo '<div class="area-size">';
-        echo '<br>Wielkość działki: ';
-        echo Html::input('text', 'SizeX', $aDimensions['iMaxX'], ['title'=>'Szerokość']) .' x ';
-        echo Html::input('text', 'SizeY', $aDimensions['iMaxY'], ['title'=>'Głębokość']) .' m ';
-        echo '</div>';
-    }
-   
+                                        return $return;
+                                    }
+                                ]);
 
-    echo '</div>';
-    echo '</div>';
-}
-?>
+
+                    if ($aData['question']->id == 7 )
+                    {
+
+                       echo '<br>Wielkość domu w m2: ';
+                        echo \yii2mod\slider\IonSlider::widget([
+                            'name' => 'HouseSize',
+                            'type' => \yii2mod\slider\IonSlider::TYPE_DOUBLE,
+                                'pluginOptions' => [
+                                'min' => $aDimensions['iAllMinSize'],
+                                'max' => $aDimensions['iAllMaxSize'],
+                                'from' => $iSetMinSize,
+                                'to' => $iSetMaxSize,
+                                'step' => 1,
+                                'hide_min_max' => false,
+                                'hide_from_to' => false,
+                                'onFinish' => new \yii\web\JsExpression('
+                                function(data) {
+                                     $.ajax({
+                                        url: "site/bar-change",
+                                        success:
+                                            function()
+                                                {
+                                                    $("#set_filters").submit();
+                                                }
+                                    }); 
+                                    }'
+                                    ),
+                                ]
+                            ]);
+                    }
+                    if ($aData['question']->id == 3 )
+                    {
+                        echo '<div class="area-size">';
+                        echo '<br>Wielkość działki: ';
+                        echo Html::input('text', 'SizeX', $aDimensions['iMaxX'], ['title'=>'Szerokość']) .' x ';
+                        echo Html::input('text', 'SizeY', $aDimensions['iMaxY'], ['title'=>'Głębokość']) .' m ';
+                        echo '</div>';
+                    }
+                ?>
+            </div>
+        </div>
+      </div>
+    
+    
+    <?php
+    $a++;
+    }
+    ?>
+    </div>
+    
+
     <div class="col-md-12">
     <?= Html::SubmitButton('Pokaż projekty', ['class' => 'project_ready', 'name' => 'project_ready']) ?>
     <?= Html::endForm() ?>
 
     <div class="all_project">Projekty spełniające kryteria: <?= $sProjectCount ?><br><br></div>
+    </div>
+</div>
 </div>
 <?php
     Pjax::end();
