@@ -36,7 +36,7 @@ foreach ($dataProvider->models as $aProducts)
 {
 ?>
 
-<div class="prj-all">
+<div class="prj-all col-md-12">
     <div class="prj-title">
         <h2>
             <?= Html::a('<strong>'.$aProducts->productsDescriptons->name .'</strong><br>'. $aProducts->productsDescriptons->name_model, Yii::getAlias('@web').'/projekt/'.$aProducts->productsDescriptons->nicename_link.'.html', ['title' => $aProducts->productsDescriptons->name]);?>
@@ -68,6 +68,7 @@ foreach ($dataProvider->models as $aProducts)
 <?php 
 echo \yii\widgets\LinkPager::widget([
     'pagination'=>$dataProvider->pagination,
+    'maxButtonCount'=>4,
 ]);
 
 ?>

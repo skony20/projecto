@@ -307,9 +307,9 @@ $(document).on('ready pjax:success',
     }
     
     /*formualrz sortowania*/
-    $('.prj_sort').change(function()
+    $('.prj-sort').change(function()
     {
-        $("#prj_sort").submit();
+        $("#prj-sort").submit();
     });
     
 });

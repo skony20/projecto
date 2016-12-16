@@ -137,7 +137,7 @@ use frontend\widget\LatestWidget;
 </div>
 <div class="wrap wrap-projects">
     <div class="container container-projects">
-        <div class="projects-title r48 text-center">Ponad 3000 projektów</div>
+        <div class="projects-title r48 text-center">Ponad 2800 projektów</div>
         <div class="projects-content m13blue text-center"><?= Html::img(Yii::$app->request->BaseUrl.'/img/search-white.png')?><?=Html::a('Znajdź dom marzeń', Yii::$app->request->BaseUrl.'/projekty')?></div>
     </div>
 </div>

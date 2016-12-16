@@ -146,11 +146,20 @@ div.prjs-sort
 {
     font-size: 14px;
 }
+.prj-img
+{
+    text-align:center;
+    vertical-align: middle;
+    max-width: 100%;
+    height: 200px;
+    background-color: #fff;
+}
 img.prj-image
 {
-    width:90%;
+    max-width:100%;
     margin: 0 auto;
     display: block;
+    max-height: 200px;
 }
 .prjs-paso
 {
@@ -174,14 +183,8 @@ img.prj-image
     margin:0;
     padding:0;
 }
-.prj-img
-{
-    text-align:center;
-    vertical-align: middle;
-    width: 100%;
-    min-height: 160px;
-    background-color: #2d3e52;
-}
+
+
 #prj-sort{
     display:inline-block;
     margin-left: 10px;

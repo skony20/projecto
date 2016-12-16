@@ -22,6 +22,7 @@ $accordion = $cookies->getValue('accordion');
 
 
 <div class="products-index">
+    <div class="all_project col-md-10">Projekty spełniające kryteria: <span class="projects-counts"><?= $sProjectCount ?></span></div>
 <div class="panel-group" id="accordion">
 <?php
 foreach ($aFilters as $aData) 
@@ -30,7 +31,7 @@ foreach ($aFilters as $aData)
 ?>
 
     
-      <div class="panel panel-default all-question col-md-10 col-sm-10 col-xs-10">
+      <div class="panel panel-default all-question col-md-10">
         <div class="panel-heading">
           <h4 class="panel-title filter_question_row" rel="<?=$a?>">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?=$a?>">
@@ -105,12 +106,11 @@ foreach ($aFilters as $aData)
     </div>
     
 
-    <div class="col-md-12">
+    <div class="col-md-10 submit-projects">
     <?= Html::SubmitButton('Pokaż projekty', ['class' => 'project_ready', 'name' => 'project_ready']) ?>
     <?= Html::endForm() ?>
-
-    <div class="all_project">Projekty spełniające kryteria: <?= $sProjectCount ?><br><br></div>
     </div>
+    
 </div>
 </div>
 <?php

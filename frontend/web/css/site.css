@@ -135,8 +135,37 @@ label
     vertical-align: bottom;
     display: inline-block;
 }
+.submit-projects, .all_project
+{
+    margin: 0 auto;
+    padding: 0;
+    float:none;
+}
 
-
+.submit-projects button
+{
+    float:right;
+    font-family: Montserrat;
+    font-size: 16px;
+    padding: 8px 25px;
+    color: #fff;
+    background-color: #3c7cae;
+    border:0;
+    border-radius: 3px
+}
+.all_project
+{
+    padding: 20px;
+    color: #fff;
+    font-size: 14px;
+}
+.projects-counts
+{
+    padding:0 10px;
+    font-family: Montserrat;
+    font-size: 18px;
+    color:#88c354;
+}
 /*RADIO BUTTONS*/
 
 .radio {

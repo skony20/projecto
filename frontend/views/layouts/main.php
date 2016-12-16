@@ -10,6 +10,7 @@
     echo $this->render('/layouts/_cart');
     ?>
 </div>
+    <?= $this->render('/layouts/_searchbar'); ?>
 <div class="wrap wrap-breadcrumbs">
     <?= $this->render('/layouts/_breadcramps'); ?>
     </div>

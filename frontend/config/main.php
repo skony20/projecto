@@ -48,19 +48,29 @@ return [
         ],
         'urlManager' => [
             'baseUrl' => '/projecto',
+            
             // Disable index.php
             'showScriptName' => false,
             // Disable r= routes
             'enablePrettyUrl' => true,
             //'suffix' =>'.html',
+
             'rules' => array(
                     
                 'projekty/szukaj/<szukaj:.*>' =>'projekty/index',
-                'projekty/Szerokosc/<SizeX:\d+>/Glebokosc/<SizeY:\d+>/HouseSize/<HouseSize:.*>/filters/<tag:.*>/strona/<strona:\d+>' =>'projekty/index',
-                'projekty/Szerokosc/<SizeX:\d+>/Glebokosc/<SizeY:\d+>/HouseSize/<HouseSize:.*>/filters/<tag:.*>' =>'projekty/index',
+                [
+                    'pattern' => 'projekty/Szerokosc/<SizeX:\d+>/Glebokosc/<SizeY:\d+>/HouseSize/<HouseSize:.*>/filters/<tag:.*>',
+                    'route' => 'projekty/index',
+                    'encodeParams' => false
+                ],
+                [
+                    'pattern' => 'projekty/Szerokosc/<SizeX:\d+>/Glebokosc/<SizeY:\d+>/HouseSize/<HouseSize:.*>/filters/<tag:.*>/strona/<strona:\d+>',
+                    'route' => 'projekty/index',
+                    'encodeParams' => true
+                ],
                 'projekty/Szerokosc/<SizeX:\d+>/Glebokosc/<SizeY:\d+>/HouseSize/<HouseSize:.*>/strona/<strona:\d+>' =>'projekty/index',
                 'projekty/Szerokosc/<SizeX:\d+>/Glebokosc/<SizeY:\d+>/HouseSize/<HouseSize:.*>' =>'projekty/index',
-                'projekty/filters/<tag:.*>/strona/<strona:\d+>' =>'projekty/index',
+                'projekty/filters/<tag:.*>/strona/<strona:\d+>' =>'projekty/index', 
                 'projekty/filters/<tag:.*>' =>'projekty/index',
                 'projekty/SizeX/<SizeX:\d+>' =>'projekty/index',
                 'projekty/strona/<strona:\d+>' =>'projekty/index',
@@ -70,6 +80,7 @@ return [
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>', 
                 '<alias:login|signup|kontakt|wprojekcie|onas|regulamin|wspolpraca|faq|cookie|accordion>' => 'site/<alias>',
             ),
+            
         ],
         'authClientCollection' => [
         'class' => 'yii\authclient\Collection',

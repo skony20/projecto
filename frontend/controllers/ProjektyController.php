@@ -144,6 +144,7 @@ public function actionIndex($sort = 'default', $szukaj = '')
             
             if ($sHouseSize != '' && $bBarChange)
             {
+                //echo print_r($sHouseSize, TRUE); die();
                 $aAllSize = explode('-', $sHouseSize);
                 $iPostMinSize = $aAllSize[0];
                 $iPostMaxSize = $aAllSize[1];
@@ -273,7 +274,13 @@ public function actionIndex($sort = 'default', $szukaj = '')
         //echo '<pre>'. print_r(count(array_filter($aPostData)), TRUE); die();    
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' =>['pageSize' => 18, 'pageParam' => 'strona'],
+            'pagination' =>
+                [
+                    'pageSize' => 18,
+                    'defaultPageSize'=>18, 
+                    'pageParam' => 'strona', 
+                    
+                ],
             ]);
         
         //echo '<pre>'.print_r($aPrdIds, true); die();
