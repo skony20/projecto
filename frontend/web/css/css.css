@@ -205,3 +205,27 @@ input{
     font-weight: 600;
     color: #3c7cae;
 }
+.o12gsm
+{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #88c354;
+}
+.o12gsm:hover, .o12gsm:focus
+{
+    font-size: 12px;
+    font-weight: 700;
+    color: #88c354;
+}
+.m15b
+{
+    font-size: 15px;
+    font-family: Montserrat;
+    color: #363b3f;
+}
+.o13ib
+{
+  font-size: 13px;  
+  font-style: italic;
+}

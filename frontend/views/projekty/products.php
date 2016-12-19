@@ -36,26 +36,34 @@ foreach ($dataProvider->models as $aProducts)
 {
 ?>
 
-<div class="prj-all col-md-12">
-    <div class="prj-title">
-        <h2>
-            <?= Html::a('<strong>'.$aProducts->productsDescriptons->name .'</strong><br>'. $aProducts->productsDescriptons->name_model, Yii::getAlias('@web').'/projekt/'.$aProducts->productsDescriptons->nicename_link.'.html', ['title' => $aProducts->productsDescriptons->name]);?>
-       
-        </h2>
-    </div>
+<div class="prj-all col-md-4 col-sm-6 col-xs-12">
     <div class="prj-img">
     <img src='<?=yii::getalias("@image")?>/<?=$aProducts->id?>/info/<?=$aProducts->productsImages[0]->name?>' class='prj-image'/>
     </div>
-    <div class="prj-price">
-        Cena: <?= $aProducts->price_brutto ?>
-    </div>
+    <div class="prj-left">
+        <div class="prj-title">
+            <h2 class="o12gsm">
+                <?= Html::a('Projekt - '.$aProducts->productsDescriptons->name .' '. $aProducts->productsDescriptons->name_model, Yii::getAlias('@web').'/projekt/'.$aProducts->productsDescriptons->nicename_link.'.html', ['title' => 'Projekt domu - '.$aProducts->productsDescriptons->name, 'class'=>'o12gsm']);?>
+            </h2>
+        </div>
+        <div class="prjs-area m18b">
+            <?php  $aAttributes = $aProducts->getOneAttribute(4)->all() ?>
+            <?= $aAttributes[0]->value ?> m2
 
-    <div class="prj-add-favorites" rel="<?= $aProducts->id ?>">
-        Ulubiony projekt
+        </div>
     </div>
+    <div class="prj-right">
+        <div class="prj-price m15b">
+            <?= str_replace('.00', '', $aProducts->price_brutto) ?> zł
+        </div>
+        <?= Html::a('<div class="prj-link"></div>', Yii::$app->request->BaseUrl.'/projekt/'.$aProducts->productsDescriptons->nicename_link.'.html') ?>
+        <div class="prj-add-favorites" rel="<?= $aProducts->id ?>">
+            Ulubiony projekt
+        </div>
 
-    <div class="prj-add-cart" rel="<?= $aProducts->id ?>">
-        Dodaj do koszyka
+        <div class="prj-add-cart" rel="<?= $aProducts->id ?>">
+            Dodaj do koszyka
+        </div>
     </div>
 </div>
     
