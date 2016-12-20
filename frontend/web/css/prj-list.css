@@ -136,6 +136,7 @@ div.prjs-sort
     vertical-align: top;
     min-height: 240px;
     margin-bottom:10px;
+    text-align:center;
 }
 .favorites-items .prjs-all .prj-all
 {
@@ -147,19 +148,35 @@ div.prjs-sort
 }
 .prj-img
 {
-    text-align:center;
+    text-align: center;
     vertical-align: middle;
-    max-width: 100%;
+    width: 100%;
     height: 200px;
     background-color: #fff;
-    margin:10px 0;
+    margin: 10px 0;
+    display: inline-block;
+    position: relative;
 }
 img.prj-image
 {
-    max-width:100%;
-    margin: 0 auto;
-    display: block;
+    max-width: calc(100% - 4px);
+    display: inline-block;
+    max-height: 100%;
     max-height: 200px;
+    vertical-align: middle;
+}
+.helper-img
+{
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+}
+.icon-hide
+{
+    height: 100%;
+    width: 100%;
+    background-color: rgba(51, 59, 68, 0.95);
+    position: absolute;
 }
 .prjs-paso
 {

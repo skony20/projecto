@@ -38,6 +38,15 @@ foreach ($dataProvider->models as $aProducts)
 
 <div class="prj-all col-md-4 col-sm-6 col-xs-12">
     <div class="prj-img">
+        <div class="icon-hide">
+            <div class="prj-add-favorites" rel="<?= $aProducts->id ?>">
+                Ulubiony projekt
+            </div>
+            <div class="prj-add-cart" rel="<?= $aProducts->id ?>">
+                <i class="fa fa-shopping-cart fa-5x" aria-hidden="true"></i>
+            </div>
+        </div>
+        <span class="helper-img"></span>
     <img src='<?=yii::getalias("@image")?>/<?=$aProducts->id?>/info/<?=$aProducts->productsImages[0]->name?>' class='prj-image'/>
     </div>
     <div class="prj-left">
@@ -57,13 +66,6 @@ foreach ($dataProvider->models as $aProducts)
             <?= str_replace('.00', '', $aProducts->price_brutto) ?> zł
         </div>
         <?= Html::a('<div class="prj-link"></div>', Yii::$app->request->BaseUrl.'/projekt/'.$aProducts->productsDescriptons->nicename_link.'.html') ?>
-        <div class="prj-add-favorites" rel="<?= $aProducts->id ?>">
-            Ulubiony projekt
-        </div>
-
-        <div class="prj-add-cart" rel="<?= $aProducts->id ?>">
-            Dodaj do koszyka
-        </div>
     </div>
 </div>
     

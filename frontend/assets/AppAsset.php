@@ -24,6 +24,8 @@ class AppAsset extends AssetBundle
         'css/_footer.css',
         'css/_breadcrumbs.css',
         'css/accordion.css',
+        'css/font-awesome.min.css',
+        
         
     ];
     public $depends = [
