@@ -37,35 +37,44 @@ foreach ($dataProvider->models as $aProducts)
 ?>
 
 <div class="prj-all col-md-4 col-sm-6 col-xs-12">
-    <div class="prj-img">
-        <div class="icon-hide">
-            <div class="prj-add-favorites" rel="<?= $aProducts->id ?>">
-                Ulubiony projekt
-            </div>
-            <div class="prj-add-cart" rel="<?= $aProducts->id ?>">
-                <i class="fa fa-shopping-cart fa-5x" aria-hidden="true"></i>
+    <div class="prj-img "rel="<?= $aProducts->id ?>">
+        <div class="icon-hide prjs-<?= $aProducts->id ?>">
+            <div class="icon-hide-cont">
+                <div class=" inline-block">
+                    <i class="fa fa-heart-o icon-blue prj-add-favorites" aria-hidden="true" title='Dodaj do ulubionych' rel="<?= $aProducts->id ?>"></i>
+                </div>
+                <div class="inline-block">
+                    <i class="fa fa-cart-arrow-down icon-blue prj-add-cart" aria-hidden="true" title='Dodaj do koszyka' rel="<?= $aProducts->id ?>"></i>
+                </div>
+                <div class="inline-block">
+                    <?= Html::a('<i class="fa fa-external-link icon-blue prj-hidden-link" aria-hidden="true"  title="Zobacz więcej"></i>', Yii::$app->request->BaseUrl.'/projekt/'.$aProducts->productsDescriptons->nicename_link.'.html') ?>
+                   
+                    
+                </div>
             </div>
         </div>
         <span class="helper-img"></span>
     <img src='<?=yii::getalias("@image")?>/<?=$aProducts->id?>/info/<?=$aProducts->productsImages[0]->name?>' class='prj-image'/>
     </div>
-    <div class="prj-left">
-        <div class="prj-title">
-            <h2 class="o12gsm">
-                <?= Html::a('Projekt - '.$aProducts->productsDescriptons->name .' '. $aProducts->productsDescriptons->name_model, Yii::getAlias('@web').'/projekt/'.$aProducts->productsDescriptons->nicename_link.'.html', ['title' => 'Projekt domu - '.$aProducts->productsDescriptons->name, 'class'=>'o12gsm']);?>
-            </h2>
-        </div>
-        <div class="prjs-area m18b">
-            <?php  $aAttributes = $aProducts->getOneAttribute(4)->all() ?>
-            <?= $aAttributes[0]->value ?> m2
+    <div class="prj-info">
+        <div class="prj-left">
+            <div class="prj-title">
+                <h2 class="o12gsm">
+                    <?= Html::a('Projekt - '.$aProducts->productsDescriptons->name .' '. $aProducts->productsDescriptons->name_model, Yii::getAlias('@web').'/projekt/'.$aProducts->productsDescriptons->nicename_link.'.html', ['title' => 'Projekt domu - '.$aProducts->productsDescriptons->name, 'class'=>'o12gsm']);?>
+                </h2>
+            </div>
+            <div class="prjs-area m18b">
+                <?php  $aAttributes = $aProducts->getOneAttribute(4)->all() ?>
+                <?= $aAttributes[0]->value ?> m2
 
+            </div>
         </div>
-    </div>
-    <div class="prj-right">
-        <div class="prj-price m15b">
-            <?= str_replace('.00', '', $aProducts->price_brutto) ?> zł
+        <div class="prj-right">
+            <div class="prj-price m15b">
+                <?= str_replace('.00', '', $aProducts->price_brutto) ?> zł
+            </div>
+            <?= Html::a('<div class="prj-link"><i class="fa fa-external-link fa-lg" aria-hidden="true" title="Zobacz więcej"></i></div>', Yii::$app->request->BaseUrl.'/projekt/'.$aProducts->productsDescriptons->nicename_link.'.html') ?>
         </div>
-        <?= Html::a('<div class="prj-link"></div>', Yii::$app->request->BaseUrl.'/projekt/'.$aProducts->productsDescriptons->nicename_link.'.html') ?>
     </div>
 </div>
     

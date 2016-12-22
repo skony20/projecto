@@ -170,13 +170,56 @@ public function actionIndex($sort = 'default', $szukaj = '')
         }
         
         /*Odpowiedzi na pytania*/
-            $aFiltersQuery = $oProductsFilters->find()->select('products_id')->andFilterWhere(['IN', 'products_filters.filters_id',$aFiltersData])->groupBy('products_id')->having('COUNT(*)='.count($aFiltersData))->asArray()->all();
-            //echo print_r ($aFiltersQuery, TRUE); die();
-            foreach ($aFiltersQuery as $aProdIdFromFilters)
+            
+            $aFiltersPrdGroup = [];
+            if (count($aFiltersData) >0)
             {
-                $aPrdFilters[] .= $aProdIdFromFilters['products_id'];
+                foreach ($aFiltersData as $iFilterInPrd)
+                {
+                    $aFiltersGroupInPrd = $oFilters->findOne($iFilterInPrd);
+                    //$aFiltersPrdGroup[$aFiltersGroupInPrd->filters_group_id] = []; 
+                    $aFiltersPrdGroup[$aFiltersGroupInPrd->filters_group_id][] = $aFiltersGroupInPrd->id;
+
+                }
+                foreach ($aFiltersPrdGroup as $aGroupsKey=>$aGroupsValue)
+                {
+
+                    foreach ($aGroupsValue as $GroupKey=>$GroupValue)
+                    {
+                        $aFiltersGQuery = $oProductsFilters->find()->select('products_id')->andFilterWhere(['products_filters.filters_id'=>$GroupValue])->asArray()->all();
+                        $aFiltrsFromGruop[$aGroupsKey][] = $aFiltersGQuery;
+                    }
+
+
+                }
+                foreach ($aFiltrsFromGruop as $GroupKey=>$GroupValue)
+                {
+
+                   $aMergeGroup = call_user_func_array("array_merge", $GroupValue);
+                   $aMergedFilters[$GroupKey] = $aMergeGroup;
+                }
+                $aUnigueId = [];
+                if (count($aMergedFilters)>1)
+                {
+                    $aMergeId = call_user_func_array("array_merge", $aMergedFilters);
+                    $aMergeIdOne = array_map('current', $aMergeId);
+
+                    foreach (array_count_values($aMergeIdOne) as $iCountKey=>$iCountValue)
+                    {
+                        if ($iCountValue >= count($aMergedFilters))
+                        {
+                            $aPrdFilters[] .= $iCountKey;
+                        }
+                    }
+                    //$aUnigueId = array_diff_assoc($aMergeIdOne, array_unique($aMergeIdOne));
+                }
+                else
+                {
+                    $aUnigueIdd = call_user_func_array('array_merge', $aMergedFilters);
+                    $aPrdFilters = array_map('current', $aUnigueIdd);
+
+                }
             }
-        
         /*Dane techniczne*/
          //echo '<pre>'. print_r([$iPostMinSize, $iPostMaxSize], TRUE); die();  
         $aAttributesQuery = $oProductsAttributes->find()->select('products_id')->where('((value BETWEEN '.$iPostMinSize.' AND '.$iPostMaxSize.' ) AND (attributes_id = 4 ) OR ((value < '.$iMaxX.') AND (attributes_id =7)) OR ((value < '.$iMaxY.' ) AND (attributes_id =6))) GROUP BY products_id HAVING COUNT(DISTINCT value)=3');

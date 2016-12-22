@@ -25,6 +25,7 @@ class AppAsset extends AssetBundle
         'css/_breadcrumbs.css',
         'css/accordion.css',
         'css/font-awesome.min.css',
+        'css/static-page.css',
         
         
     ];

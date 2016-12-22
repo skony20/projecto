@@ -15,7 +15,7 @@ nav
 }
 .navbar-nav > li
 {
-    margin-top:20px;
+    margin-top:12px;
     border-right: 1px solid #525a60;
 }
 .navbar-nav > li:nth-last-child(1), .navbar-right > li
@@ -26,8 +26,9 @@ nav
 {
     padding:0 20px;
     color:#cccccc !important;
-    line-height: 13px;
+    line-height: 30px;
 }
+
 .cart
 {
     font-size: 13px;
@@ -42,6 +43,12 @@ nav
     background-color: gray;
     right:20px;
 }
+.cart-name 
+{
+    display: inline-block;
+    margin-right: 5px;
+}
+
 .in-cart_table
 {
     width:100%;
@@ -175,11 +182,15 @@ img.basket
     background: none;
     border:0;
     
+    
 }
-.search-submit img
+.search-submit i
 {
-    margin-left: -8px;
-    margin-bottom: 3px;
+    background-color: #34a2e1;
+    padding: 13px 13px 12px;
+    margin-left: -10px;
+    border-radius: 3px;
+    color: #fff;
 }
 input.search-input
 {

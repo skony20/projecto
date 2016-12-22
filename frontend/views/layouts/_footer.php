@@ -12,9 +12,9 @@ use common\widgets\Alert;
                 <span class="m15w footer-phone"> +48 608 44 07 55</span><br>
                 <?= Html::a(Yii::$app->params['supportEmail'], 'mailto:"'.Yii::$app->params['supportEmail'].'"') ?>
                 <div class="footer-social">
-                    <?= Html::img(Yii::$app->request->BaseUrl.'/img/footer-f.png')?>
-                    <?= Html::img(Yii::$app->request->BaseUrl.'/img/footer-t.png')?>
-                    <?= Html::img(Yii::$app->request->BaseUrl.'/img/footer-g.png')?>
+                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                    <i class="fa fa-google-plus" aria-hidden="true"></i>
                 </div>
             </div>
             

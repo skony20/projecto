@@ -84,6 +84,7 @@
     text-align: center;
     vertical-align: top;
     line-height: 38px;
+    color:#fff;
 }
 .popular-link
 {
@@ -93,6 +94,7 @@
     text-align: center;
     vertical-align: top;
     line-height: 38px;
+    color:#445064;
 }
 .popular-link:hover
 {

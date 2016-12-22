@@ -68,32 +68,32 @@ class LatestWidget extends Widget
                         </div>
                         <div class="latest-right">
                             <div class="latest-price m15wgreen"><?=$aProduct->price_brutto. ' zł' ?></div>
-                            <div class="latest-link"><?= Html::a(Html::img(Yii::$app->request->BaseUrl.'/img/link-blue.png'), Yii::$app->request->BaseUrl.'/projekt/'.$aProduct->productsDescriptons->nicename_link.'.html') ?></div>
+                            <div class="latest-link"><?= Html::a('<i class="fa fa-external-link fa-lg" aria-hidden="true"></i>', Yii::$app->request->BaseUrl.'/projekt/'.$aProduct->productsDescriptons->nicename_link.'.html') ?></div>
                         </div>
                         
                     </div>
                     <div class="latest-tech-data">
-                        <div class="latest-left tech-data"><?= Html::img(Yii::$app->request->BaseUrl.'/img/tech-stories.png')?> Ilość pięter</div>
+                        <div class="latest-left tech-data"><i class="fa fa-home" aria-hidden="true"></i>Ilość pięter</div>
                         <div class="latest-right tech-data"><?= $sStories ?></div>
                     </div>
                     <div class="latest-tech-data">
-                        <div class="latest-left tech-data"><?= Html::img(Yii::$app->request->BaseUrl.'/img/tech-bedroom.png')?> Ilość sypialni</div>
+                        <div class="latest-left tech-data"><i class="fa fa-bed" aria-hidden="true"></i>Ilość sypialni</div>
                         <div class="latest-right tech-data"><?= (isset($aProduct->productsAttributes[17]->value)? $aProduct->productsAttributes[17]->value : 'b/d')?></div>
                     </div>
                     <div class="latest-tech-data">
-                        <div class="latest-left tech-data"><?= Html::img(Yii::$app->request->BaseUrl.'/img/tech-bathroom.png')?> Ilość łazienek</div>
+                        <div class="latest-left tech-data"><i class="fa fa-shower" aria-hidden="true"></i>Ilość łazienek</div>
                         <div class="latest-right tech-data"><?= (isset($aProduct->productsAttributes[18]->value)? $aProduct->productsAttributes[18]->value : 'b/d')?></div>
                     </div>
                     <div class="latest-tech-data">
-                        <div class="latest-left tech-data"><?= Html::img(Yii::$app->request->BaseUrl.'/img/tech-size.png')?> Szerokość</div>
+                        <div class="latest-left tech-data"><i class="fa fa-arrows-alt" aria-hidden="true"></i>Szerokość</div>
                         <div class="latest-right tech-data"><?= (isset($aProduct->productsAttributes[2]->value)? $aProduct->productsAttributes[2]->value .' m' : 'b/d')?></div>
                     </div>
                     <div class="latest-tech-data">
-                        <div class="latest-left tech-data"><?= Html::img(Yii::$app->request->BaseUrl.'/img/tech-size.png')?> Długość</div>
+                        <div class="latest-left tech-data"><i class="fa fa-arrows-alt" aria-hidden="true"></i>Długość</div>
                         <div class="latest-right tech-data"><?= (isset($aProduct->productsAttributes[3]->value)? $aProduct->productsAttributes[3]->value .' m' : 'b/d')?></div>
                     </div>
                     <div class="latest-tech-data">
-                        <div class="latest-left tech-data"><?= Html::img(Yii::$app->request->BaseUrl.'/img/tech-style.png')?> Styl domu</div>
+                        <div class="latest-left tech-data"><i class="fa fa-university" aria-hidden="true"></i>Styl domu</div>
                         <div class="latest-right tech-data"><?= $sStyle ?></div>
                     </div>
                 </div>

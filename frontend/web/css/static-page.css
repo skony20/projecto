@@ -1,0 +1,37 @@
+
+/* 
+    Created on : 2016-12-22, 16:01:41
+    Author     : Mariusz Skonieczny, mariuszskonieczny@hotmail.com
+*/
+/*Kontakt*/
+input#contactform-email, input#contactform-name, input#contactform-subject
+{
+    width:100%;
+}
+
+
+.field-contactform-name, .field-contactform-email
+{
+    width:45%;
+}
+.field-contactform-email
+{
+    float:right;
+}
+.field-contactform-subject, .field-contactform-body, textarea#contactform-body
+{
+    width:100%;
+}
+span.red
+{
+    color:#ce292d;
+}
+#contact-form label
+{
+    padding: 10px 5px 5px;
+}
+#contact-form input, #contact-form textarea
+{
+    border-radius:3px;
+}
+

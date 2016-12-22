@@ -70,9 +70,9 @@ use frontend\widget\LatestWidget;
             <div class="popular-img text-center">
                 <?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-1.png')?>
                 <div class="text-left img-icons">
-                    <div class="popular-icon"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-icon.png')?></div>
+                    <div class="popular-icon"><i class="fa fa-tags fa-lg" aria-hidden="true"></i></div>
                     <div class="popular-name">Domy parterowe</div>
-                    <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/link-blue.png')?></div>
+                    <div class="popular-link"><i class="fa fa-external-link fa-lg" aria-hidden="true"></i></div>
                 </div>
             </div>
             
@@ -82,9 +82,9 @@ use frontend\widget\LatestWidget;
             <div class="popular-img text-center">
                 <?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-2.png')?>
                 <div class="text-left img-icons">
-                    <div class="popular-icon"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-icon.png')?></div>
+                    <div class="popular-icon"><i class="fa fa-tags fa-lg" aria-hidden="true"></i></div>
                     <div class="popular-name">Domy z poddaszem</div>
-                    <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/link-blue.png')?></div>
+                    <div class="popular-link"><i class="fa fa-external-link fa-lg" aria-hidden="true"></i></div>
                 </div>
             </div>
             
@@ -93,9 +93,9 @@ use frontend\widget\LatestWidget;
             <div class="popular-img text-center">
                 <?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-3.png')?>
                 <div class="text-left img-icons">
-                    <div class="popular-icon"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-icon.png')?></div>
+                    <div class="popular-icon"><i class="fa fa-tags fa-lg" aria-hidden="true"></i></div>
                     <div class="popular-name">Domy wielopiętrowe</div>
-                    <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/link-blue.png')?></div>
+                    <div class="popular-link"><i class="fa fa-external-link fa-lg" aria-hidden="true"></i></div>
                 </div>
             </div>
             
@@ -104,9 +104,9 @@ use frontend\widget\LatestWidget;
             <div class="popular-img text-center">
                 <?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-4.png')?>
                 <div class="text-left img-icons">
-                    <div class="popular-icon"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-icon.png')?></div>
+                    <div class="popular-icon"><i class="fa fa-tags fa-lg" aria-hidden="true"></i></div>
                     <div class="popular-name">Domy z piwnicą</div>
-                    <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/link-blue.png')?></div>
+                    <div class="popular-link"><i class="fa fa-external-link fa-lg" aria-hidden="true"></i></div>
                 </div>
             </div>
             
@@ -115,9 +115,9 @@ use frontend\widget\LatestWidget;
             <div class="popular-img text-center">
                 <?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-5.png')?>
                 <div class="text-left img-icons">
-                    <div class="popular-icon"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-icon.png')?></div>
+                    <div class="popular-icon"><i class="fa fa-tags fa-lg" aria-hidden="true"></i></div>
                     <div class="popular-name">Domy z garażem </div>
-                    <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/link-blue.png')?></div>
+                    <div class="popular-link"><i class="fa fa-external-link fa-lg" aria-hidden="true"></i></div>
                 </div>
             </div>
             
@@ -126,9 +126,9 @@ use frontend\widget\LatestWidget;
             <div class="popular-img text-center">
                 <?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-5.png')?>
                 <div class="text-left img-icons">
-                    <div class="popular-icon"><?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-icon.png')?></div>
+                    <div class="popular-icon"><i class="fa fa-tags fa-lg" aria-hidden="true"></i></div>
                     <div class="popular-name">Domy z garażem wielostanowiskowym</div>
-                    <div class="popular-link"><?= Html::img(Yii::$app->request->BaseUrl.'/img/link-blue.png')?></div>
+                    <div class="popular-link"><i class="fa fa-external-link fa-lg" aria-hidden="true"></i></div>
                 </div>
             </div>
             
@@ -138,7 +138,7 @@ use frontend\widget\LatestWidget;
 <div class="wrap wrap-projects">
     <div class="container container-projects">
         <div class="projects-title r48 text-center">Ponad 2800 projektów</div>
-        <div class="projects-content m13blue text-center"><?= Html::img(Yii::$app->request->BaseUrl.'/img/search-white.png')?><?=Html::a('Znajdź dom marzeń', Yii::$app->request->BaseUrl.'/projekty')?></div>
+        <div class="projects-content m13blue text-center"><?=Html::a('<i class="fa fa-search" aria-hidden="true"></i> Znajdź dom marzeń', Yii::$app->request->BaseUrl.'/projekty')?></div>
     </div>
 </div>
 <div class="wrap wrap-latest">

@@ -18,7 +18,7 @@
 {
     max-width:300px;
     max-height:160px;
-    background-color: #2d3e52;
+    background-color: #fff;
     line-height: 156px;
     text-align: center;
 }
@@ -27,20 +27,7 @@
     max-width:300px;
     max-height:160px;
 }
-.o13g-sb
-{
-    padding:15px 15px 5px 5px;
-    font-size:13px;
-    color: #88c354;
-    font-weight: 600;
-}
-.m18b
-{
-    padding: 0 15px 0 5px;
-    font-size: 18px;
-    color: #2d3e52;
-    font-family: Montserrat;
-}
+
 .latest-left , .latest-right
 {
     display: inline-block;
@@ -52,13 +39,7 @@
     text-align: right;
     float: right;
 }
-.m15wgreen
-{
-    font-size:15px;
-    background-color: #88c354;
-    color: #fff;
-    padding: 10px 20px;
-}
+
 .latest-link
 {
     display: inline-block;
@@ -67,8 +48,12 @@
     background-color: #f0f3f6;
     vertical-align: bottom;
     text-align: center;
-    line-height: 37px;
+    line-height: 41px;
     cursor:pointer;
+}
+.latest-link a i
+{
+    color:#445064;
 }
 .latest-link:hover
 {
@@ -94,8 +79,9 @@
     line-height: 26px;
     
 }
-.tech-data img
+.tech-data i
 {
-    padding-right:20px;
+    padding-right:10px;
     margin-top: 10px;
+    color: #000;
 }

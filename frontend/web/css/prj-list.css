@@ -131,12 +131,13 @@ div.prjs-sort
 {
     display: inline-block;
     min-width:150px;
-    border: solid 1px gray;
+    border-bottom: solid 1px #eeeeee;
     padding: 0 10px;
     vertical-align: top;
     min-height: 240px;
     margin-bottom:10px;
     text-align:center;
+    padding-bottom: 30px;
 }
 .favorites-items .prjs-all .prj-all
 {
@@ -177,12 +178,32 @@ img.prj-image
     width: 100%;
     background-color: rgba(51, 59, 68, 0.95);
     position: absolute;
+    visibility: hidden;
+}
+.icon-hide-cont
+{
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    line-height: 200px;
+}
+.visible-true
+{
+    visibility: visible;
 }
 .prjs-paso
 {
     display:block;
     width:100%;
     height: 50px;
+}
+.prj-add-favorites, .prj-add-cart
+{
+    cursor: pointer;
+}
+.prj-add-favorites:hover, .prj-add-cart:hover, a .prj-hidden-link:hover
+{
+    background-color: #2f96d1;
 }
 
 .pagination
@@ -221,44 +242,73 @@ img.prj-image
 {
     border-top: 0px;
 }
-
+.prj-info
+{
+    margin:0 30px;
+}
 .prj-left
 {
-    width:50%;
-    float:left;
+    width: calc(50% - 2px);
+    display: inline-block;
+    text-align: left;
+    padding: 0 0 0 10px;
+    
 }
 .prj-right
 {
-    width:calc(50% - 4px);
-    float:right;
+    width:calc(50% - 2px);
+    display: inline-block;
+    vertical-align: top;
+    text-align: right;
+    padding: 0 10px 0 0;
 }
 .prj-price
 {
     background-color: #e5edf3;
-    padding: 0 10px;
+    padding: 0 20px;
     display: inline-block;
-    height: 40px;
-    line-height: 38px;
+    height: 55px;
+    line-height: 55px;
 }
 .prj-link
 {
-    background-image: url('../img/link-blue.png');
     background-color: #e5edf3;
     padding: 0 10px;
     display: inline-block;
-    height: 40px;
-    width: 40px;
+    height: 55px;
+    width: 55px;
     background-repeat: no-repeat;
     background-position: center center; 
     vertical-align: top;
+    text-align: center;
 }
 .prj-link:hover
 {
-    background-image: url('../img/link-white.png');
+
     background-color: #2f96d1;
 }
-.prj-link a img
+.prj-link i
 {
     vertical-align: middle;
-    text-align: center
+    text-align: center;
+    line-height: 55px;
+    color: #2d3e52;
+}
+
+
+
+/*Tablety*/
+
+@media (max-width: 1024px)
+{
+    .top_menu
+    {
+        width:100%;
+        display:block;
+    }
+    .prj-items
+    {
+        width:100%;
+        display:block;
+    }
 }

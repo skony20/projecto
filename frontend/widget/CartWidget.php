@@ -28,7 +28,7 @@ class CartWidget extends Widget
         $sInCart ='
                         <div class="cart" id="cart">
 
-                            <div class="cart-name">Koszyk (<span id="cart-count">'.$iCartCount.'</span>)</div>'.Html::img(Yii::$app->request->BaseUrl.'/img/basket.png', ['class'=>'basket']).'
+                            <div class="cart-name">Koszyk (<span id="cart-count">'.$iCartCount.'</span>)</div><div class="inline-block"><i class="fa fa-shopping-cart icon-gray" aria-hidden="true"></i></div>
                                 <div class="cart-container">
                                     <div class="cart-items" id="cart-items">';
             $sInCart .= '<table class="in-cart_table">';

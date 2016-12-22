@@ -51,8 +51,8 @@ use frontend\widget\CartWidget;
         </div>
         <div class="contact nav_inline">
             <div class="nav_block">
-                <?= Html::img(Yii::$app->request->BaseUrl.'/img/phone.png', ['class'=>'contact_png']) ?> +48 608 44 07 55
-                <?= Html::img(Yii::$app->request->BaseUrl.'/img/hours.png', ['class'=>'contact_png']) ?> PN-PT 08:00 - 20:00 
+                <div class="margin-hor-10 inline-block"><i class="fa fa-phone icon-green" aria-hidden="true"></i></div> +48 608 44 07 55
+                <div class="margin-hor-10 inline-block"><i class="fa fa-clock-o icon-green" aria-hidden="true"></i></div>PN-PT 08:00 - 20:00 
             </div>
             <div class="nav_block">
                 <div class="second_nav">

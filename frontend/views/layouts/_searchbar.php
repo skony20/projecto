@@ -10,7 +10,7 @@ $sSearch = (isset($_GET['szukaj']) ? $_GET['szukaj']: '');
             <?php
             echo Html::beginForm();
             echo Html::input('text', 'szukaj', $sSearch, ['class'=>'search-input', 'placeholder'=>'Jakiego projektu szukasz ?']);
-            echo Html::Button(Html::img(Yii::$app->request->BaseUrl.'/img/search.png'),['class'=>'search-submit']);
+            echo Html::Button('<i class="fa fa-search fa-lg" aria-hidden="true"></i>',['class'=>'search-submit']);
             ?>
             <?= Html::endForm() ?>
         </div>

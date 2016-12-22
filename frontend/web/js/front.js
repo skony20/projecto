@@ -170,7 +170,7 @@ $(document).on('ready pjax:success',
     
     
     /*Dodawanie produktu*/
-    $('.prj_add_cart').click(
+    $('.prj-add-cart').click(
             function()
             {
                 var iPrjId = $(this).attr('rel');
@@ -246,7 +246,7 @@ $(document).on('ready pjax:success',
             }
     );
     /*Dodawanie ulubionych*/
-    $('.prj_add_favorites').click(
+    $('.prj-add-favorites').click(
             function()
             {
                 var iPrjId = $(this).attr('rel');
@@ -310,6 +310,21 @@ $(document).on('ready pjax:success',
     $('.prj-sort').change(function()
     {
         $("#prj-sort").submit();
+    });
+    
+    
+    /*Pokaz div nad obrazkiem*/
+    $('.prj-img').mouseover(function()
+    {
+        var iPrjId = $(this).attr('rel');
+        var sClassName = '.prjs-'+iPrjId;
+        $(sClassName).addClass('visible-true');
+    });
+    $('.prj-img').mouseout(function()
+    {
+        var iPrjId = $(this).attr('rel');
+        var sClassName = '.prjs-'+iPrjId;
+        $(sClassName).removeClass('visible-true');
     });
     
 });

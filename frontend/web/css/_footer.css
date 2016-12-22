@@ -36,10 +36,16 @@ footer
 {
     margin-top: 15px;
 }
-.footer-social img
+.footer-social i
 {
     display: inline-block;
-    padding: 0 3px;
+    background-color: #565f66;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    color:#fff;
 }
 ul.footer-menu
 {

@@ -8,15 +8,11 @@ font-family: Montserrat;
 src: url("font/montserrat.otf") format("opentype");
 }
 
-.loader {
-    position: absolute;
-    top:0;
-    margin: 0 auto;
-    z-index: 9999;
-    background-color:red;
-    width:100%;
-    height:100%;
-    cursor: wait;
+.form-control:focus {
+    outline: none;
+    border-color: #2d3e52;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 4px #34a2e1;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 4px #34a2e1;
 }
 html {
        overflow-y: scroll;
@@ -26,12 +22,6 @@ input{
     padding: 4px 0 4px 15px;
     border-radius: 3px;
     }
-.top_menu
-{
-    width:25%;
-    display:inline-block;
-    padding-top:10px;
-}
 .another
 {
     vertical-align:top;
@@ -228,4 +218,138 @@ input{
 {
   font-size: 13px;  
   font-style: italic;
+}
+.m15wgreen
+{
+    font-size:15px;
+    background-color: #88c354;
+    color: #fff;
+    padding: 10px 20px;
+}
+.o13g-sb
+{
+    padding:15px 15px 5px 5px;
+    font-size:13px;
+    color: #88c354;
+    font-weight: 600;
+}
+.m18b
+{
+    padding: 0 15px 0 5px;
+    font-size: 18px;
+    color: #2d3e52;
+    font-family: Montserrat;
+}
+.m21b
+{
+    font-size: 21px;
+    color: #2d3e52;
+    font-family: Montserrat;
+}
+
+
+/*Podkreślenia*/
+
+.green-border
+{
+    width:40px;
+    border-top: 4px solid #88c354;
+    margin: 0 0 20px;
+}
+
+/*Ikony*/
+.icon-gray
+{
+    width: 30px;
+    height: 30px;
+    line-height: 30px !important;
+    background-color: #565f66;
+    border-radius: 3px;
+    color:#fff;
+    text-align: center;
+}
+.icon-green
+{
+    width: 30px;
+    height: 30px;
+    line-height: 30px !important;
+    background-color: #88c354;
+    border-radius: 3px;
+    color: #fff;
+    text-align: center;
+}
+.icon-blue
+{
+    width: 40px;
+    height: 40px;
+    line-height: 40px !important;
+    background-color: #445064;
+    color: #fff;
+    text-align: center;
+}
+
+
+
+/*Inne*/
+.inline-block
+{
+    display: inline-block;
+}
+.margin-hor-10
+{
+    margin: 0 10px;
+}
+
+
+
+/*Tootlip title*/
+i:hover
+{
+    position:relative;
+}
+i[title]:hover:after {
+    content: attr(title);
+    width:150px;
+    height:30px;
+    font-size: 13px;
+    line-height: 30px;
+    font-family: Montserrat;
+    color: #363b3f;
+    position: absolute;
+    left: 0;
+    top: calc(100% + 5px);
+    white-space: nowrap;
+    z-index: 20;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -moz-box-shadow: 1px 1px 4px #363b3f;;
+    -webkit-box-shadow: 1px 1px 4px #363b3f;;
+    box-shadow: 1px 1px 4px #363b3f;;
+    background-color:#e5edf3;
+}
+a:hover
+{
+    position:relative;
+}
+a[title]:hover:after {
+    content: attr(title);
+    width:150px;
+    height:30px;
+    font-size: 13px;
+    line-height: 30px;
+    font-family: Montserrat;
+    color: #363b3f;
+    position: absolute;
+    left: 0;
+    top: calc(100% + 5px);
+    white-space: nowrap;
+    z-index: 20;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -moz-box-shadow: 1px 1px 4px #363b3f;;
+    -webkit-box-shadow: 1px 1px 4px #363b3f;;
+    box-shadow: 1px 1px 4px #363b3f;;
+    background-color:#e5edf3;
 }
