@@ -6,8 +6,14 @@
 @font-face {
 font-family: Montserrat;
 src: url("font/montserrat.otf") format("opentype");
+
 }
 
+@font-face {
+font-family: FontAwesome;
+src: url("fonts/FontAwesome.otf") format("opentype");
+
+}
 .form-control:focus {
     outline: none;
     border-color: #2d3e52;
@@ -246,7 +252,13 @@ input{
     color: #2d3e52;
     font-family: Montserrat;
 }
-
+.r48w
+{
+    font-family: 'Raleway', sans-serif;
+    font-size: 48px;
+    line-height: 50px;
+    color:#fff;
+}
 
 /*Podkreślenia*/
 

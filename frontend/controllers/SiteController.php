@@ -288,9 +288,10 @@ class SiteController extends Controller
      */
     public function actionKontakt()
     {
+        $this->layout = 'staticpage';
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
+            if ($model->sendEmail(Yii::$app->params['supportEmail'])) {
                 Yii::$app->session->setFlash('success', 'Dziękujemy za wiadomość, postaramy się odpowiedzieć tak szybko jak to możliwe.');
             } else {
                 Yii::$app->session->setFlash('error', 'Bląd przy wysyłaniu formularza.');
