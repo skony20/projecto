@@ -91,3 +91,31 @@ input#contactform-verifycode
 {
     width:100%;
 }
+
+/*ZWROTY*/
+.site-returns
+{
+    line-height: 28px;
+}
+.site-returns p
+{
+    text-indent: 10px;
+}
+.static-title
+{
+    font-weight: 600;
+    line-height: 40px;        
+}
+.return-button
+{
+    background-color: #88c354;
+    color:#fff;
+    padding:10px 20px;
+    width: 200px;
+    border-radius: 3px;
+}
+.return-button a
+{
+    color:#fff;
+    font-size: 15px;
+}

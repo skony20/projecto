@@ -50,7 +50,7 @@ class SiteController extends Controller
                         'roles' => ['@'],
                     ],
                     [
-                        'actions' => ['onas', 'kontakt', 'wprojekcie', 'regulamin', 'wspolpraca', 'faq', 'cookie', 'accordion'],
+                        'actions' => ['onas', 'kontakt', 'wprojekcie', 'regulamin', 'wspolpraca', 'faq', 'cookie', 'accordion', 'politykaPrywatnosci', 'zwrot'],
                         'allow' => true,
                         'roles' => ['*'],
                     ],
@@ -294,7 +294,7 @@ class SiteController extends Controller
             if ($model->sendEmail(Yii::$app->params['supportEmail'])) {
                 Yii::$app->session->setFlash('success', 'Dziękujemy za wiadomość, postaramy się odpowiedzieć tak szybko jak to możliwe.');
             } else {
-                Yii::$app->session->setFlash('error', 'Bląd przy wysyłaniu formularza.');
+                Yii::$app->session->setFlash('error', 'Nastąpił błąd podczas wysyłania. Spróbuj ponownie za chwilę.');
             }
 
             return $this->refresh();
@@ -339,6 +339,16 @@ class SiteController extends Controller
     {
 
         return $this->render('cookie');
+    }
+    public function actionPolitykaPrywatnosci()
+    {
+
+        return $this->render('politykaPrywatnosci');
+    }
+    public function actionZwrot()
+    {
+
+        return $this->render('zwrot');
     }
     /**
      * Signs user up.

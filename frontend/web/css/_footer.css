@@ -102,9 +102,24 @@ ul.footer-menu
     outline: none;
     width: 75%;
 }
-.newsletter-input img
+.submit-newslatter
 {
-    margin-left: -15px;
-    margin-top: -3px;
+    color:#fff;
+    background-color: #88c354;
+    padding: 13px;
+    margin-left: -16px;
+    z-index: 20;
+    border-radius: 3px;
     cursor: pointer;
+}
+.after-footer-content
+{
+    width: calc(50% - 2px);
+    padding:25px 10px 10px;
+    line-height: 20px;
+}
+.cookie-info
+{
+    padding:10px;
+    float:left;
 }

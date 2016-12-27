@@ -29,7 +29,8 @@ use common\widgets\Alert;
                     <li><?= Html::a('FAQ', Yii::$app->request->BaseUrl.'/faq')?></li>
                     <li><?= Html::a('Co w projekcie', Yii::$app->request->BaseUrl.'/wprojekcie')?></li>
                     <li><?= Html::a('Regulamin', Yii::$app->request->BaseUrl.'/regulamin')?></li>
-                    <li><?= Html::a('Cookie', Yii::$app->request->BaseUrl.'/cookie')?></li>
+                    <li><?= Html::a('Polityka prywatności', Yii::$app->request->BaseUrl.'/polityka-prywatnosci')?></li>
+                    <li><?= Html::a('Zwrot', Yii::$app->request->BaseUrl.'/zwrot')?></li>
                 </ul>
                         
             </div>
@@ -52,7 +53,7 @@ use common\widgets\Alert;
                 <div class="m15w footer-tittle">Newsletter</div>
                 <div class="newsletter-text">Zapisz się na nasz newsletter. Z niego dowiesz się o nowościach, promocjach oraz eventach. Dzięki niemu na bieżąco możesz śledzić wydarzenia oraz informację o rozwoju.</div>
                 <div class="newsletter-input"><?= Html::input('text', 'newslatter', '', ['class'=>'newsletter-input', 'placeholder'=>'Wpisz adres e-mail'])?>
-                    <?= Html::img(Yii::$app->request->BaseUrl.'/img/newsletter-submit.png')?>
+                    <i class="fa fa-envelope submit-newslatter" aria-hidden="true"></i>
                 </div>
             </div>
             
@@ -62,8 +63,8 @@ use common\widgets\Alert;
 </footer>
 <footter class="after-footer">
     <div class="container">
-        <div class="pull-left">ProjektTop.pl 2017 - Wszelkie prawa zastrzeżone</div>
-        <div class="pull-right">Widzisz bład, zgłoś do: <?= Html::a(Yii::$app->params['adminEmail'], 'mailto:"'.Yii::$app->params['adminEmail'].'"') ?> </div>
+        <div class="pull-left after-footer-content"><i class="fa fa-info fa-3x cookie-info" aria-hidden="true"></i>ProjektTop.pl korzysta z technologii opartej na wykorzystaniu plików cookie. Używamy ich w celu dostosowania witryny do potrzeb użytkowników. W każdej chwili możesz wyłączyć obsługę plików cookie w ustawieniach swojej przeglądarki. Więcej informacji na temat wykorzystywanych przez nas rozwiązań znajdziesz w polityce prywatności.</div>
+        <div class="pull-right after-footer-content">ProjektTop.pl 2017 - Wszelkie prawa zastrzeżone<br><br>Widzisz bład, zgłoś do: <?= Html::a(Yii::$app->params['adminEmail'], 'mailto:"'.Yii::$app->params['adminEmail'].'"') ?> </div>
     </div>
 
 </footter>
