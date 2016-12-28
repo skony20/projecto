@@ -259,7 +259,18 @@ input{
     line-height: 50px;
     color:#fff;
 }
-
+.m12abk
+{
+    font-size: 12px;
+    color: #353a3e;
+    font-family: Montserrat;
+}
+.m13w
+{
+    font-family: Montserrat;
+    font-size: 13px;
+    color:#fff
+}
 /*Podkreślenia*/
 
 .green-border
@@ -321,15 +332,14 @@ i:hover
 }
 i[title]:hover:after {
     content: attr(title);
-    width:150px;
-    height:30px;
+    padding: 1px 5px !important;
     font-size: 13px;
     line-height: 30px;
     font-family: Montserrat;
     color: #363b3f;
     position: absolute;
     left: 0;
-    top: calc(100% + 5px);
+    top: calc(100% + 2px);
     white-space: nowrap;
     z-index: 20;
     -moz-border-radius: 3px;
@@ -346,15 +356,14 @@ a:hover
 }
 a[title]:hover:after {
     content: attr(title);
-    width:150px;
-    height:30px;
+    padding: 1px 5px !important;
     font-size: 13px;
     line-height: 30px;
     font-family: Montserrat;
     color: #363b3f;
     position: absolute;
     left: 0;
-    top: calc(100% + 5px);
+    top: calc(100% + 2px);
     white-space: nowrap;
     z-index: 20;
     -moz-border-radius: 3px;
@@ -365,6 +374,7 @@ a[title]:hover:after {
     box-shadow: 1px 1px 4px #363b3f;;
     background-color:#e5edf3;
 }
+
 
 /*Alerty*/
 

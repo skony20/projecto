@@ -8,22 +8,46 @@ h1
 {
     display: inline-block;
 }
-
+.view-gray
+{
+    background-color: #353a3e;
+    font-family: Montserrat;
+    color:#fff;
+    font-weight: 600;
+}
 .prj-img-price
 {
-    width:100%
+    width: 70%;
+    margin: 0 auto;
 }
 .prj-share
 {
-    height:20px;
+    float:right;
+    line-height: 95px;
     text-align:right;
     display: inline-block;
+    font-weight: 100;
+    padding: 0 20px;
+}
+.prj-share i
+{
+    color: #fff;
+    background-color: #565f66;
+    padding:10px;
+    font-weight: 100;
+}
+.prj-share i
+{
+    min-width: 33px;
+    margin: 0 2px;
+    border-radius:3px;
+    text-align:center;
 }
 .prj-images
 {
     display:inline-block;
     padding: 0 10px;
-    width:50%;
+    width:100%;
 }
 .big-image
 {
@@ -57,94 +81,141 @@ h1
     max-height: 100%;
     display:block;
 }
-.prj-prc
-{
-    display:inline-block;
-    width:34%;
-    vertical-align: top;
-}
-.prj-prc-item
-{
-    width:49%;
-    display: inline-block;
-}
 .prj-add-button
 {
     padding: 0 5px;
-    width:100%;
     background-color: #FFA00E;
     height:40px;
     text-align:center;
     line-height: 40px;
-    font-size:18px;
-    border-radius:4px;
+    border-radius:3px;
+    color:#fff;
+    margin:40px 0 0 10px
+}
+.view-ligh-blue > .container {
+    padding: 0px 15px;
+}
+.view-ligh-blue
+{
+    background-color: #f5f9fc;
+}
+.view-darker-blue
+{
+    background-color: #e9eef2;
+}
+.prj-prc
+{
+    height: 100px;
+    width: 100%;
+    display: inline-table;
+}
+.products-view
+{
+    height: 100px;
+    width: 100%;
+    margin:0 auto;
+}
+.prj-prc-item
+{
+    display: table-cell;
+    min-width: 100px;
+    text-align: center;
+    vertical-align: middle;
+}
+.green-icon
+{
+    color:#88c354;
+    position: relative;
+    left: 5px;
+    top: -10px;
+}
+.price-gray
+{
+    background-color:#565f66;
 }
 
-
-
+@media only screen and (max-width: 990px) {
+    .prj-prc-item
+    {
+        display: inline-flex;
+        width: calc(50% - 4px);
+        height: 74px;
+        padding: 5px;
+        border-bottom: 2px solid #88c354;
+        align-items: center;
+        justify-content: center;
+    }
+    .products-view
+    {
+        height: 100%;
+        width: 100%;
+        margin:0 auto;
+    }
+}
 
 /* obrazki i galeria */
 
 .zoom-gallery
 {
-        width:100%;
-	height: 519px;
-	float: left;
-	text-align: center;
-	position: relative;
-	-webkit-user-select: none;
-	-ms-user-select: none;
-	-moz-user-select: none;
+    width:100%;
+    height: 519px;
+    float: left;
+    text-align: center;
+    position: relative;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
 }
 
 .zoom-gallery>img
 {
-	margin-top: 15px;
-	cursor: pointer;
-	height: 400px;
-        margin:auto;
+    margin-top: 15px;
+    cursor: pointer;
+    height: 400px;
+    margin:auto;
 }
 
 .zoom-gallery div
 {
-	text-align: center;
-	bottom: 0px;
-	text-align: center;
-	overflow: hidden;
-	width: 90%;
-	height: 80px;
-	white-space: nowrap;
-	margin: auto;
-	margin-top:20px;
-        vertical-align: bottom;
+    text-align: center;
+    bottom: 0px;
+    text-align: center;
+    overflow: hidden;
+    width: 90%;
+    height: 90px;
+    white-space: nowrap;
+    margin: auto;
+    margin-top:20px;
+    vertical-align: bottom;
+        
 }
 
 .zoom-gallery div span
 {
-	width: 25px; height: 25px;
-	display: block;
-	position: absolute;
-	margin-top:25px;
+    width: 25px; height: 25px;
+    display: block;
+    position: absolute;
+    margin-top:25px;
 }
 
 .zoom-gallery div span.left
 {
-	background: url("/projecto/img/gal_left.png") no-repeat center transparent;
-	left:10px;
+    background: url("/projecto/img/gal_left.png") no-repeat center transparent;
+    left:10px;
 }
 
 .zoom-gallery div span.right
 {
-	background: url("/projecto/img/gal_right.png") no-repeat center transparent;
-	right:10px;
+    background: url("/projecto/img/gal_right.png") no-repeat center transparent;
+    right:10px;
 }
 
 .zoom-gallery div img
 {
-	border: 1px solid #ccc;
-	margin: 0px 2px;
-	display: inline-block;
-        vertical-align: bottom;
+    border: 1px solid #ccc;
+    margin: 0px 2px;
+    display: inline-block;
+    vertical-align: bottom;
 }
 
 /* -------- */

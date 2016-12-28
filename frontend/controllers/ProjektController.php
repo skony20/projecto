@@ -46,7 +46,7 @@ class ProjektController extends Controller
   
     public function actionView($symbol)
     {
-        
+        $this->layout = 'prj_view';
         $aId = ProductsDescripton::findOne(['nicename_link'=>$symbol]); 
         $id = $aId->products_id;
         $aPrdAttributes = $this->findModel($id)->productsAttributes;

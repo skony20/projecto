@@ -47,7 +47,7 @@ foreach ($dataProvider->models as $aProducts)
                     <i class="fa fa-cart-arrow-down icon-blue prj-add-cart" aria-hidden="true" title='Dodaj do koszyka' rel="<?= $aProducts->id ?>"></i>
                 </div>
                 <div class="inline-block">
-                    <?= Html::a('<i class="fa fa-external-link icon-blue prj-hidden-link" aria-hidden="true"  title="Zobacz więcej"></i>', Yii::$app->request->BaseUrl.'/projekt/'.$aProducts->productsDescriptons->nicename_link.'.html') ?>
+                    <?= Html::a('<i class="fa fa-external-link icon-blue prj-hidden-link" aria-hidden="true"  title="Zobacz projekt domu - '.$aProducts->productsDescriptons->name.'"></i>', Yii::$app->request->BaseUrl.'/projekt/'.$aProducts->productsDescriptons->nicename_link.'.html') ?>
                    
                     
                 </div>
@@ -73,7 +73,7 @@ foreach ($dataProvider->models as $aProducts)
             <div class="prj-price m15b">
                 <?= str_replace('.00', '', $aProducts->price_brutto) ?> zł
             </div>
-            <?= Html::a('<div class="prj-link"><i class="fa fa-external-link fa-lg" aria-hidden="true" title="Zobacz więcej"></i></div>', Yii::$app->request->BaseUrl.'/projekt/'.$aProducts->productsDescriptons->nicename_link.'.html') ?>
+            <?= Html::a('<div class="prj-link"><i class="fa fa-external-link fa-lg" aria-hidden="true" title="Zobacz projekt domu - '.$aProducts->productsDescriptons->name.'"></i></div>', Yii::$app->request->BaseUrl.'/projekt/'.$aProducts->productsDescriptons->nicename_link.'.html') ?>
         </div>
     </div>
 </div>
