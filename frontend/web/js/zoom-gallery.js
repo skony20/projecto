@@ -37,55 +37,39 @@ $(document).ready(
 
         });
 
-                $('.zoom-gallery_dsc').magnificPopup({
-                delegate: 'a',
-                type: 'image',
-                closeOnContentClick: false,
-                closeBtnInside: false,
-                mainClass: 'mfp-with-zoom mfp-img-mobile',
-                image: {
-                        verticalFit: true,
-                        titleSrc: function(item) {
-                                return item.el.attr('title');
-                        }
-                },
-                gallery: {
-                        enabled: true,
-                        
-                },
-                zoom: {
-                        enabled: true,
-                        duration: 300, // don't foget to change the duration also in CSS
-                        opener: function(element) {
-                                return element.find('img');
-                        }
-                }
-
-        });
         }
         else
         {
         $('.zoom-gallery').magnificPopup(function(){preventDefault();});
-        $('.zoom-gallery_dsc').magnificPopup(function(){preventDefault();});
         }
         var sActGId = 'g0';
-
+		
         $('#fst').click(
-                function() {
-                        $('#' + sActGId).click();
-                }
+            function() {
+                $('#' + sActGId).click();
+            }
         );
 
-        $('.zoom-gallery div img').hover(
-                function()
-                {
-                        $('#fst').attr('src', $(this).attr('src').replace('/thumbs/', '/big/'));
-                        sActGId = $(this).parent().attr('id');
-                },
-                function()
-                {
+        $('#prci div img').hover(
+            function()
+            {
+                    $('#fst').attr('src', $(this).attr('src').replace('/thumbs/', '/big/'));
+                    sActGId = $(this).parent().attr('id');
+            }
+        );
 
-                }
+        $('.zoom-gallery span.left').click(
+            function() {
+                    var leftPos = $('.zoom-gallery div').scrollLeft();
+                    $(".zoom-gallery div").animate({scrollLeft: leftPos - 80}, 300);
+            }
+        );
+
+        $('.zoom-gallery span.right').click(
+            function() {
+                    var leftPos = $('.zoom-gallery div').scrollLeft();
+                    $(".zoom-gallery div").animate({scrollLeft: leftPos + 80}, 300);
+            }
         );
    
 

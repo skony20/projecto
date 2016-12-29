@@ -23,9 +23,6 @@ $this->params['breadcrumbs'][] = $this->title;
             <h1 class="m21b"><?= Html::encode($this->title) ?></h1>
             <div class="green-border"></div>
 
-            <p>
-                Jeśli masz jakieś pytanie, problemy lub chcesz otrzymać więcej informacji wypełnij poniższy formualarz
-            </p>
 
             <div class="row">
                 <div class="col-lg-7 col-sm-12">

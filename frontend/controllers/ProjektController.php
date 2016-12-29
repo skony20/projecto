@@ -9,6 +9,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use app\models\Attributes;
+use app\models\Filters;
 use Yii;
 
 
@@ -59,7 +60,7 @@ class ProjektController extends Controller
             $aPrdAttrs[$aPrdAttribute->attributes_id]['measure'] = $oAttributes->findOne($aPrdAttribute->attributes_id)->measure;
             
         }
-        $aUnsortPrdAttrs = $aPrdAttrs;
+        $aUnsortPrdAttrs = $aPrdAttrs;                
         function build_sorter($key) {
             return function ($a, $b) use ($key) {
                 return strnatcmp($a[$key], $b[$key]);
@@ -67,8 +68,19 @@ class ProjektController extends Controller
         }
         usort($aPrdAttrs, build_sorter('sort'));
         
-        $model = $this->findModel($id);
+        $oFilters = new Filters();
+        $aPrdsFilters  = $this->findModel($id)->productsFilters;
+        $aPrdFilters = [];
         
+        foreach ($aPrdsFilters as $aFilter)
+        {
+            $aPrdFilters[$aFilter->filters_id]['value'] = $oFilters->findOne($aFilter->filters_id)->description;
+            $aPrdFilter[$aFilter->filters_id]['sort'] = $oFilters->findOne($aFilter->filters_id)->sort_order;
+        }
+        usort($aPrdFilters, build_sorter('sort'));
+
+        
+        $model = $this->findModel($id);
         Yii::$app->view->registerMetaTag(
         [
             'name' => 'description',
@@ -81,6 +93,7 @@ class ProjektController extends Controller
             'model' => $model,
             'aPrdAttrs' => $aUnsortPrdAttrs,
             'aSortPrdAttrs' => $aPrdAttrs,
+            'aPrdFilters' =>$aPrdFilters
         ]);
     }
 

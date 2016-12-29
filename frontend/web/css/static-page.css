@@ -80,7 +80,7 @@ input#contactform-verifycode
     border:0;
     float: right;
     padding: 9px 40px;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
 }
 .contact-submit:hover
@@ -103,7 +103,7 @@ input#contactform-verifycode
 }
 .static-title
 {
-    font-weight: 600;
+    font-weight: 700;
     line-height: 40px;        
 }
 .return-button

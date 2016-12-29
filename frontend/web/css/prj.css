@@ -49,38 +49,8 @@ h1
     padding: 0 10px;
     width:100%;
 }
-.big-image
-{
-    min-height: 400px;
-    max-height: 400px;
-}
-.big-image img
-{
-    max-height: 400px !important;
-    max-width: 100% !important;
-    width: auto;
-    height: auto;
-    position: absolute;
-    top: -80px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto !important;
-}
 
 
-.prj-first-image, .prj-first-image img 
-{
-    max-width: 100%;
-    display:block;
-    height:500px;
-}
-.zoom-gallery img 
-{
-    max-width: 100%;
-    max-height: 100%;
-    display:block;
-}
 .prj-add-button
 {
     padding: 0 5px;
@@ -90,7 +60,7 @@ h1
     line-height: 40px;
     border-radius:3px;
     color:#fff;
-    margin:40px 0 0 10px
+    margin:50px 0 0 10px
 }
 .view-ligh-blue > .container {
     padding: 0px 15px;
@@ -133,6 +103,33 @@ h1
 {
     background-color:#565f66;
 }
+.prj-desc
+{
+    margin-top:10px;
+}
+.prj-desc-detail
+{
+    text-align: justify;
+}
+.prj-desc-title
+{
+    padding: 10px 0;
+}
+ul.prd-filters {
+  list-style: none;
+  padding: 0;
+}
+ul.prd-filters li {
+  color: #777777;
+  padding: 5px 0 5px 1.3em;
+}
+ul.prd-filters li:before {
+  content: "\f0da";
+  font-family: FontAwesome;
+  display: inline-block;
+  margin-left: -1.3em;
+  width: 1.3em; 
+}
 
 @media only screen and (max-width: 990px) {
     .prj-prc-item
@@ -154,7 +151,25 @@ h1
 }
 
 /* obrazki i galeria */
-
+img#fst
+{
+    max-height: 400px !important;
+    max-width: 100% !important;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: -80px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto !important;
+}
+.zoom-gallery img 
+{
+    max-width: 100%;
+    max-height: 100%;
+    display:block;
+}
 .zoom-gallery
 {
     width:100%;
@@ -181,33 +196,39 @@ h1
     bottom: 0px;
     text-align: center;
     overflow: hidden;
-    width: 90%;
+    width: 100%;
     height: 90px;
     white-space: nowrap;
     margin: auto;
     margin-top:20px;
     vertical-align: bottom;
+    position: relative;
+    top: 420px;
         
 }
 
-.zoom-gallery div span
+.zoom-gallery span
 {
     width: 25px; height: 25px;
     display: block;
     position: absolute;
     margin-top:25px;
+    bottom: 30px;
+    z-index: 9;
 }
 
-.zoom-gallery div span.left
+span.left
 {
     background: url("/projecto/img/gal_left.png") no-repeat center transparent;
-    left:10px;
+    left:0px;
+    position: absolute;
 }
 
-.zoom-gallery div span.right
+span.right
 {
     background: url("/projecto/img/gal_right.png") no-repeat center transparent;
-    right:10px;
+    right:0px;
+    position: absolute;
 }
 
 .zoom-gallery div img
@@ -602,16 +623,20 @@ ul.tabs{
         margin: 0px;
         padding: 0px;
         list-style: none;
+        margin-left:40px;
 }
 ul.tabs li{
-        width:calc(16.6666666666666% - 4px);
+        padding: 10px 55px !important;
         background: #F4F9FC;
-        color: #222;
+        color: #353a3e;
+        font-weight: 700;
+        text-transform: uppercase;
         display: inline-block;
         padding: 10px 15px;
         cursor: pointer;
         text-align: center;
         border: 2px solid none;
+
 }
 
 ul.tabs li.current{
@@ -631,7 +656,7 @@ ul.tabs li.current{
 
 .prj-tech-data
 {
-    width:60%;
+    width:100%;
     margin: auto;
 
 }
@@ -644,14 +669,27 @@ table.prj-tech-data  tr:nth-child(even)
 {
     background-color: #F4F9FC;
 }
-.tech-data-name,  .tech-data-value
+.tech-data-name
 {
-    font-size: 16px;
-    line-height:24px; 
+    color:#353a3e;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height:18px; 
     padding: 10px 20px;
     text-align: left;
     width:50%;
     
+}
+.tech-data-value
+{
+    color:#353a3e;
+    font-size: 13px;
+    font-weight: 600;
+    line-height:18px; 
+    padding: 10px 20px;
+    text-align: right;
+    width:50%; 
 }
 #elewacje, #rzuty
 {

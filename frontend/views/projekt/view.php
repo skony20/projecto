@@ -24,15 +24,15 @@ $url = Yii::$app->request->absoluteUrl;
             <div class="prj-images">
 
                     <div id="prci" class="zoom-gallery">
-                    <div class="big-image">
                         <img id="fst" src="<?=$sPatch.'/'.$model->id.'/big/'.$model->productsImages[0]->name ?>" alt="Galeria: <?=$sPrjName?><?=($model->productsImages[0]->description ? ' - '.$model->productsImages[0]->description : "")?>"/>
-                    </div>
                     <?php
                     if (isset($model->productsImages) && sizeof($model->productsImages) > 0)
                     {
                     ?>
-                        <div class="thumbs-imgs">
+                        
                         <span class="left"></span><span class="right"></span>
+                        <div>
+                        
                         <?php
                         $a=0;
                         foreach ($model->productsImages as $aProductsImages)
@@ -61,9 +61,9 @@ $url = Yii::$app->request->absoluteUrl;
         <div class="products-view">
 
                 <div class="prj-prc">
-                    <div class="prj-prc-item "><i class="fa fa-home fa-2x" aria-hidden="true"></i><i class="fa fa-question-circle green-icon" aria-hidden="true"></i><br><span class="m12abk text-uppercase">Powierzchnia użytkowa</span></div>
+                    <div class="prj-prc-item "><i class="fa fa-home fa-2x" aria-hidden="true"></i><br><span class="m12abk text-uppercase">Powierzchnia użytkowa</span></div>
                     <div class="prj-prc-item view-darker-blue"><span class="m21b"><?= ($aPrdAttrs[4]['value'] ? $aPrdAttrs[4]['value'] .' m2' : 'b/d') ?></span></div>
-                    <div class="prj-prc-item"><i class="fa fa-arrows-alt fa-2x" aria-hidden="true"></i><i class="fa fa-question-circle green-icon" aria-hidden="true"></i><br><span class="m12abk text-uppercase">Minimalne<br>wymiary działki</span></div>
+                    <div class="prj-prc-item"><i class="fa fa-arrows-alt fa-2x" aria-hidden="true"></i><br><span class="m12abk text-uppercase">Minimalne<br>wymiary działki</span></div>
                     <div class="prj-prc-item view-darker-blue"><span class="m21b"><?= ($aPrdAttrs[7]['value'] ? round($aPrdAttrs[7]['value']) .' x '.round($aPrdAttrs[6]['value']) .' m' : 'b/d') ?></span></div>
                     <div class="prj-prc-item"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i><br><span class="m12abk text-uppercase">Cena</span></div>
                     <div class="prj-prc-item price-gray m21w"><?= ($model->price_brutto_source != $model->price_brutto ? '<span class="source-price">'.$model->price_brutto_source.'</span><br><span class="price">'. $model->price_brutto. '</span>': '<span class="price">'. $model->price_brutto. ' zł</span>') ?></div>
@@ -79,7 +79,6 @@ $url = Yii::$app->request->absoluteUrl;
 
             <ul class="tabs">
                 <li class="tab-link current" data-tab="opis">Opis</li>
-                <li class="tab-link" data-tab="dane">Dane techniczne</li>
                 <li class="tab-link" data-tab="elewacje">Elewacje</li>
                 <li class="tab-link" data-tab="rzuty">Rzuty</li>
                 <li class="tab-link" data-tab="realizacje">Realizacje</li>
@@ -87,27 +86,56 @@ $url = Yii::$app->request->absoluteUrl;
             </ul>
 
             <div id="opis" class="tab-content current">
-                <?= $model->productsDescriptons->html_description ?>
-            </div>
-            <div id="dane" class="tab-content">
-                <table class="prj-tech-data">
-                    <?php
-                    foreach ($aSortPrdAttrs as $aTechData)
-                    {
-                        if ($aTechData['value']!= '' && $aTechData['value']!=0 && $aTechData['value']!=9999)
+                <div class="prj-desc-detail">
+                    <div class="col-md-4">
+                        <div class="m21b prj-desc-title">O projekcie</div>
+                        <div class="green-border"></div>
+                        <div><?= $model->productsDescriptons->html_description ?></div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="m21b prj-desc-title">Dane techniczne</div>
+                        <div class="green-border"></div>
+                        <div>
+                            <table class="prj-tech-data">
+                            <?php
+                            foreach ($aSortPrdAttrs as $aTechData)
+                            {
+                                if ($aTechData['value']!= '' && $aTechData['value']!=0 && $aTechData['value']!=9999)
 
-                        {
-                        ?>
+                                {
+                                ?>
 
-                            <tr>
-                                <td class="tech-data-name"><?= $aTechData['name']?></td>
-                                <td class="tech-data-value"><?= $aTechData['value'] . ' ' . $aTechData['measure']?></td>
-                            </tr>
-                    <?php
-                        }
-                    }
-                    ?>
-                </table>
+                                    <tr>
+                                        <td class="tech-data-name"><?= $aTechData['name']?></td>
+                                        <td class="tech-data-value"><?= $aTechData['value'] . ' ' . $aTechData['measure']?></td>
+                                    </tr>
+                            <?php
+                                }
+                            }
+                            ?>
+                            </table>
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-4">
+                    <div class="m21b prj-desc-title">Główne cechy</div>
+                        <div class="green-border"></div>
+                        <div>
+                            <ul class="prd-filters">
+                            <?php
+                            foreach ($aPrdFilters as $aPrdFilter)
+                            {
+                            ?>
+                                
+                                <?= ($aPrdFilter['value']?'<li>'.$aPrdFilter['value'].'</li>' :'')?>
+                            <?php
+                            }
+                            ?>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
             <div id="elewacje" class="tab-content">
                 <?php
