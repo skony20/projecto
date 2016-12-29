@@ -75,7 +75,7 @@ class ProjektController extends Controller
         foreach ($aPrdsFilters as $aFilter)
         {
             $aPrdFilters[$aFilter->filters_id]['value'] = $oFilters->findOne($aFilter->filters_id)->description;
-            $aPrdFilter[$aFilter->filters_id]['sort'] = $oFilters->findOne($aFilter->filters_id)->sort_order;
+            $aPrdFilters[$aFilter->filters_id]['sort'] = $oFilters->findOne($aFilter->filters_id)->sort_order;
         }
         usort($aPrdFilters, build_sorter('sort'));
 

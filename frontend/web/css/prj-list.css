@@ -260,23 +260,23 @@ img.prj-image
     display: inline-block;
     vertical-align: top;
     text-align: right;
-    padding: 0 10px 0 0;
+    padding: 5px 0 0 0;
 }
 .prj-price
 {
     background-color: #e5edf3;
-    padding: 0 15px;
+    padding: 0 10px;
     display: inline-block;
-    height: 55px;
-    line-height: 55px;
+    height: 45px;
+    line-height: 45px;
 }
 .prj-link
 {
     background-color: #e5edf3;
     padding: 0 10px;
     display: inline-block;
-    height: 55px;
-    width: 55px;
+    height: 45px;
+    width: 45px;
     background-repeat: no-repeat;
     background-position: center center; 
     vertical-align: top;
@@ -291,7 +291,7 @@ img.prj-image
 {
     vertical-align: middle;
     text-align: center;
-    line-height: 55px;
+    line-height: 45px;
     color: #2d3e52;
 }
 

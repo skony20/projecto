@@ -60,7 +60,7 @@ foreach ($dataProvider->models as $aProducts)
         <div class="prj-left">
             <div class="prj-title">
                 <h2 class="o12gsm">
-                    <?= Html::a('Projekt - '.$aProducts->productsDescriptons->name .' '. $aProducts->productsDescriptons->name_model, Yii::getAlias('@web').'/projekt/'.$aProducts->productsDescriptons->nicename_link.'.html', ['title' => 'Projekt domu - '.$aProducts->productsDescriptons->name, 'class'=>'o12gsm']);?>
+                    <?= Html::a($aProducts->productsDescriptons->name .' '. $aProducts->productsDescriptons->name_model, Yii::getAlias('@web').'/projekt/'.$aProducts->productsDescriptons->nicename_link.'.html', ['title' => 'Projekt domu - '.$aProducts->productsDescriptons->name, 'class'=>'o12gsm']);?>
                 </h2>
             </div>
             <div class="prjs-area m18b">
