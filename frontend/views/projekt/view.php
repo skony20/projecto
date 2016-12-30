@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\helpers\Url;
 use yii\web\Request;
+use frontend\widget\SimilarWidget;
 $sPatch = Yii::getAlias('@image');
 /* @var $this yii\web\View */
 /* @var $model app\models\Products */
@@ -37,7 +38,7 @@ $url = Yii::$app->request->absoluteUrl;
                         $a=0;
                         foreach ($model->productsImages as $aProductsImages)
                         {
-                            if ($aProductsImages->image_type_id ==1)
+                            if ($aProductsImages->image_type_id == 1)
                             {
                         ?>
                                 <a id="g<?=$a?>" href="<?=$sPatch.'/'.$model->id.'/big/'.$aProductsImages->name ?>" title="Galeria: <?=$sPrjName?><?=($aProductsImages->description ? ' - '.$aProductsImages->description : "")?>"><img src="<?=$sPatch.'/'.$model->id.'/thumbs/'.$aProductsImages->name ?>" alt="Galeria: <?=$sPrjName?><?=($aProductsImages->description ? ' - '.$aProductsImages->description : "")?>"></a>
@@ -139,7 +140,7 @@ $url = Yii::$app->request->absoluteUrl;
             </div>
             <div id="elewacje" class="tab-content">
                 <?php
-                $a=0;
+
                 foreach ($model->productsImages as $aProductsImages)
                 {
                     if ($aProductsImages->image_type_id == 2)
@@ -147,7 +148,6 @@ $url = Yii::$app->request->absoluteUrl;
                 ?>
                         <?=($aProductsImages->description ? '<div class="prj_images_title">'.$aProductsImages->description.'</div>' : "")?><br><img src="<?=$sPatch.'/'.$model->id.'/big/'.$aProductsImages->name ?>" alt="Elewacja: <?=$sPrjName?><?=($aProductsImages->description ? ' - '.$aProductsImages->description : "")?>"><br>
                     <?php
-                    $a++;
                     }
 
                 }
@@ -155,7 +155,6 @@ $url = Yii::$app->request->absoluteUrl;
             </div>
             <div id="rzuty" class="tab-content">
                 <?php
-                $a=0;
                 foreach ($model->productsImages as $aProductsImages)
                 {
                     if ($aProductsImages->image_type_id == 3)
@@ -163,7 +162,6 @@ $url = Yii::$app->request->absoluteUrl;
                 ?>
                     <?=($aProductsImages->description ? '<div class="prj_images_title">'.$aProductsImages->description.'</div>' : "")?><br><img src="<?=$sPatch.'/'.$model->id.'/big/'.$aProductsImages->name ?>" alt="Elewacja: <?=$sPrjName?><?=($aProductsImages->description ? ' - '.$aProductsImages->description : "")?>"><br>
                     <?php
-                    $a++;
                     }
 
                 }
@@ -180,4 +178,5 @@ $url = Yii::$app->request->absoluteUrl;
         </div>
     </div>
 </div>
+<?= (count($oSimilar)>0 ? SimilarWidget::Widget(['oSimilar'=> $oSimilar]) :'') ?>
     

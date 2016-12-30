@@ -269,7 +269,13 @@ input{
 {
     font-family: Montserrat;
     font-size: 13px;
-    color:#fff
+    color:#fff;
+}
+.m24b
+{
+    font-family: Montserrat;
+    font-size: 24px;
+    color:#2d3e52;
 }
 /*Podkreślenia*/
 

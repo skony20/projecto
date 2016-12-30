@@ -145,7 +145,9 @@ use frontend\widget\LatestWidget;
     <div class="container container-latest">
         <div class="latest-title text-center">Najnowsze produkty</div>
         <div class="center-green-border text-center"></div>
-        <?php echo LatestWidget::widget(); ?>
+        <?php
+        echo LatestWidget::widget(['limit'=>4]); 
+        ?>
     </div>
     
 </div>

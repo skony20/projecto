@@ -144,6 +144,10 @@ class Products extends \yii\db\ActiveRecord
     {
         return $this->hasMany(ProductsImages::className(), ['products_id' => 'id']);
     }
+    public function getSimilar()
+    {
+        return $this->hasMany(Similar::className(), ['main_product_id' => 'id']);
+    }
 
 
     public function validate($attributeNames = null, $clearErrors = true) {
@@ -155,10 +159,10 @@ class Products extends \yii\db\ActiveRecord
     * @inheritdoc
     * @return ProductsQuery the active query used by this AR class.
     */
-   public static function find()
-   {
-       return new ProductsQuery(get_called_class());
-   }
+    public static function find()
+    {
+        return new ProductsQuery(get_called_class());
+    }
     public function CountCart()
     {
         $iCountCart = 0;

@@ -78,8 +78,8 @@ class ProjektController extends Controller
             $aPrdFilters[$aFilter->filters_id]['sort'] = $oFilters->findOne($aFilter->filters_id)->sort_order;
         }
         usort($aPrdFilters, build_sorter('sort'));
-
         
+        $oSimilar = $this->findModel($id)->similar;
         $model = $this->findModel($id);
         Yii::$app->view->registerMetaTag(
         [
@@ -93,7 +93,8 @@ class ProjektController extends Controller
             'model' => $model,
             'aPrdAttrs' => $aUnsortPrdAttrs,
             'aSortPrdAttrs' => $aPrdAttrs,
-            'aPrdFilters' =>$aPrdFilters
+            'aPrdFilters' =>$aPrdFilters,
+            'oSimilar' => $oSimilar,
         ]);
     }
 

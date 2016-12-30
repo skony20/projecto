@@ -60,7 +60,8 @@ h1
     line-height: 40px;
     border-radius:3px;
     color:#fff;
-    margin:50px 0 0 10px
+    margin:50px 0 0 10px;
+    cursor: pointer;
 }
 .view-ligh-blue > .container {
     padding: 0px 15px;
@@ -149,7 +150,12 @@ ul.prd-filters li:before {
         margin:0 auto;
     }
 }
-
+/* Podobne */
+.wrap-similar
+{
+    background-color: #f5f9fc;
+    padding:50px;
+}
 /* obrazki i galeria */
 img#fst
 {

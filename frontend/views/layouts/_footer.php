@@ -62,9 +62,11 @@ use common\widgets\Alert;
     </div>
 </footer>
 <footter class="after-footer">
-    <div class="container">
-        <div class="pull-left after-footer-content"><i class="fa fa-info fa-3x cookie-info" aria-hidden="true"></i>ProjektTop.pl korzysta z technologii opartej na wykorzystaniu plików cookie. Używamy ich w celu dostosowania witryny do potrzeb użytkowników. W każdej chwili możesz wyłączyć obsługę plików cookie w ustawieniach swojej przeglądarki. Więcej informacji na temat wykorzystywanych przez nas rozwiązań znajdziesz w polityce prywatności.</div>
-        <div class="pull-right after-footer-content">ProjektTop.pl 2017 - Wszelkie prawa zastrzeżone<br><br>Widzisz bład, zgłoś do: <?= Html::a(Yii::$app->params['adminEmail'], 'mailto:"'.Yii::$app->params['adminEmail'].'"') ?> </div>
+    <div class="wrap">
+        <div class="container">
+            <div class="pull-left after-footer-content"><i class="fa fa-info fa-3x cookie-info" aria-hidden="true"></i>ProjektTop.pl korzysta z technologii opartej na wykorzystaniu plików cookie. Używamy ich w celu dostosowania witryny do potrzeb użytkowników. W każdej chwili możesz wyłączyć obsługę plików cookie w ustawieniach swojej przeglądarki. Więcej informacji na temat wykorzystywanych przez nas rozwiązań znajdziesz w polityce prywatności.</div>
+            <div class="pull-right after-footer-content">ProjektTop.pl 2017 - Wszelkie prawa zastrzeżone<br><br>Widzisz bład, zgłoś do: <?= Html::a(Yii::$app->params['adminEmail'], 'mailto:"'.Yii::$app->params['adminEmail'].'"') ?> </div>
+        </div>
     </div>
 
 </footter>
