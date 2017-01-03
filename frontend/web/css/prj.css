@@ -150,6 +150,59 @@ ul.prd-filters li:before {
         margin:0 auto;
     }
 }
+
+.plans 
+{
+    width: 100%;
+    text-align: center;
+}
+.plans a img 
+{
+    max-width: 70%;
+    max-height: 500px;
+}
+.prj-plan-title
+{
+    font-weight: 700;
+    text-transform: uppercase;
+    background-color: #e9eef2;
+    padding: 10px 20px; 
+}
+.prj-plan-div-title
+{
+    padding: 10px 20px;
+    margin: 20px 0;
+}
+.prj-storey-title
+{
+    margin: 60px 0 20px;
+}
+table.storey-table
+{
+    border-collapse:collapse;
+}
+table.storey-table tr:nth-child(odd)
+{
+    background-color: #e9eef2;
+}
+table.storey-table tr:nth-child(even)
+{
+    background-color: #f5f9fc;
+}
+table.storey-table tr td
+{
+    padding: 10px 20px;
+}
+.room-name
+{
+    min-width: 250px;
+    font-weight: 700;
+}
+.room-area
+{
+    font-weight: 600;
+    text-align: left;
+}
 /* Podobne */
 .wrap-similar
 {
@@ -629,7 +682,6 @@ ul.tabs{
         margin: 0px;
         padding: 0px;
         list-style: none;
-        margin-left:40px;
 }
 ul.tabs li{
         padding: 10px 55px !important;

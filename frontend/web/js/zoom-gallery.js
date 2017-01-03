@@ -74,6 +74,41 @@ $(document).ready(
    
 
 
+	$('.plans-gallery').magnificPopup({
+		delegate: 'a',
+		type: 'image',
+		tLoading: 'Ładowanie #%curr%...',
+		mainClass: 'mfp-img-mobile',
+		gallery: {
+			enabled: true,
+			navigateByImgClick: true,
+			preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+		},
+		image: {
+			tError: '<a href="%url%">Zdjęcie #%curr%</a> nie zostało załadowane.',
+			titleSrc: function(item) {
+				return item.el.attr('title');
+			}
+		}
+	});
+
+        $('.elevation-gallery').magnificPopup({
+		delegate: 'a',
+		type: 'image',
+		tLoading: 'Ładowanie #%curr%...',
+		mainClass: 'mfp-img-mobile',
+		gallery: {
+			enabled: true,
+			navigateByImgClick: true,
+			preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+		},
+		image: {
+			tError: '<a href="%url%">Zdjęcie #%curr%</a> nie zostało załadowane.',
+			titleSrc: function(item) {
+				return item.el.attr('title');
+			}
+		}
+	});
 
     }        
         

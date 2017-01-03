@@ -32,6 +32,7 @@ class ProductsImages extends \yii\db\ActiveRecord
             [['products_id'], 'integer'],
             [['name'], 'string', 'max' => 200],
             [['description'], 'string', 'max' => 200],
+            [['image_type_id', 'storey_type'], 'integer'],
         ];
     }
 

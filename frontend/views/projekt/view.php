@@ -80,8 +80,7 @@ $url = Yii::$app->request->absoluteUrl;
 
             <ul class="tabs">
                 <li class="tab-link current" data-tab="opis">Opis</li>
-                <li class="tab-link" data-tab="elewacje">Elewacje</li>
-                <li class="tab-link" data-tab="rzuty">Rzuty</li>
+                <li class="tab-link" data-tab="plany">Plany</li>
                 <li class="tab-link" data-tab="realizacje">Realizacje</li>
                 <li class="tab-link" data-tab="opinie">Opinie</li>
             </ul>
@@ -138,34 +137,77 @@ $url = Yii::$app->request->absoluteUrl;
                 </div>
                 
             </div>
-            <div id="elewacje" class="tab-content">
+            <div id="plany" class="tab-content">
+                <div class='m21b'>Plany</div>
+                <div class='green-border'></div>
                 <?php
-
-                foreach ($model->productsImages as $aProductsImages)
-                {
-                    if ($aProductsImages->image_type_id == 2)
-                    {
-                ?>
-                        <?=($aProductsImages->description ? '<div class="prj_images_title">'.$aProductsImages->description.'</div>' : "")?><br><img src="<?=$sPatch.'/'.$model->id.'/big/'.$aProductsImages->name ?>" alt="Elewacja: <?=$sPrjName?><?=($aProductsImages->description ? ' - '.$aProductsImages->description : "")?>"><br>
-                    <?php
-                    }
-
-                }
-                ?>
-            </div>
-            <div id="rzuty" class="tab-content">
-                <?php
+                
                 foreach ($model->productsImages as $aProductsImages)
                 {
                     if ($aProductsImages->image_type_id == 3)
                     {
+                    ?>
+                    <div class="col-md-12 plans-gallery">
+                        <div class="col-md-6">
+                            <?=($aProductsImages->description ? '<div class="prj-plan-div-title"><span class="prj-plan-title">'.$aProductsImages->description.'</span></div>' : "")?>
+                            <div class="plans"><a href="<?=$sPatch.'/'.$model->id.'/big/'.$aProductsImages->name ?>" rel="plany"><img src="<?=$sPatch.'/'.$model->id.'/big/'.$aProductsImages->name ?>" alt="Plan: <?=$sPrjName?><?=($aProductsImages->description ? ' - '.$aProductsImages->description : "")?>"></a></div>
+                        </div>
+                        <div class="col-md-4">
+                            
+                            <?php 
+                            $aRooms = $model->getStoreyByType($aProductsImages->storey_type)->all();
+                            if (isset($aRooms) && count($aRooms)>0) 
+                            {
+                                
+                            ?>
+                            <?=($aProductsImages->description ? '<div class="prj-storey-title o15b text-uppercase">'.$aProductsImages->description.'</div>' : "")?>
+                            <table class='storey-table'>
+                                <?php 
+                                foreach ($aRooms as $aRoom)
+                                {
+                                ?>
+                                <tr>
+                                    <td class="room-name text-uppercase o13b"><?= ($aRoom->room_name ? $aRoom->room_name : '' )?></td>
+                                    <td class="room-area o13b"><?= ($aRoom->room_area ? $aRoom->room_area .' m2' : '' )?></td>
+                                </tr>
+                                <?php
+                                }
+                                ?>  
+                            </table>
+                            <?php
+                            }
+                            ?>
+                              
+                        </div>
+                    </div>
+                    <?php
+                    
+                    }
+
+                }
                 ?>
-                    <?=($aProductsImages->description ? '<div class="prj_images_title">'.$aProductsImages->description.'</div>' : "")?><br><img src="<?=$sPatch.'/'.$model->id.'/big/'.$aProductsImages->name ?>" alt="Elewacja: <?=$sPrjName?><?=($aProductsImages->description ? ' - '.$aProductsImages->description : "")?>"><br>
+                <div class='m21b'>Elewacje</div>
+                <div class='green-border'></div>
+                <div class="col-md-12 elevation-gallery">
+                <?php
+                
+                foreach ($model->productsImages as $aProductsImages)
+                {
+                    if ($aProductsImages->image_type_id == 2)
+                    {
+                    ?>
+                        
+                            <div class="col-md-3">
+                                <?=($aProductsImages->description ? '<div class="elevation-title">'.$aProductsImages->description.'</div>' : "")?><br>
+                                <a href="<?=$sPatch.'/'.$model->id.'/big/'.$aProductsImages->name ?>" rel="elewacje"><img src="<?=$sPatch.'/'.$model->id.'/info/'.$aProductsImages->name ?>" alt="Plan: <?=$sPrjName?><?=($aProductsImages->description ? ' - '.$aProductsImages->description : "")?>"></a>
+
+                        </div>
                     <?php
                     }
 
                 }
                 ?>
+                </div>
             </div>
             <div id="realizacje" class="tab-content">
                 Brak realizacji tego projektu

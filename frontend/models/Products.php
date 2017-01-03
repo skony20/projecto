@@ -142,13 +142,20 @@ class Products extends \yii\db\ActiveRecord
     
     public function getProductsImages()
     {
-        return $this->hasMany(ProductsImages::className(), ['products_id' => 'id']);
+        return $this->hasMany(ProductsImages::className(), ['products_id' => 'id'])->orderBy(['FIELD(description,"Front domu", "Tył domu", "Bok 1", "Bok 2")' => SORT_ASC]);
     }
     public function getSimilar()
     {
         return $this->hasMany(Similar::className(), ['main_product_id' => 'id']);
     }
-
+    public function getStorey()
+    {
+        return $this->hasMany(Storeys::className(), ['products_id' => 'id']);
+    }
+    public function getStoreyByType($iType)
+    {
+        return $this->hasMany(Storeys::className(), ['products_id' => 'id'])->where(['storey_type'=>$iType]);
+    }
 
     public function validate($attributeNames = null, $clearErrors = true) {
         parent::validate($attributeNames, $clearErrors);

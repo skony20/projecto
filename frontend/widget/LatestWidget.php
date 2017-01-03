@@ -88,19 +88,19 @@ class LatestWidget extends Widget
                     </div>
                     <div class="latest-tech-data">
                         <div class="latest-left tech-data"><i class="fa fa-bed" aria-hidden="true"></i>Ilość sypialni</div>
-                        <div class="latest-right tech-data"><?=(isset($aRooms)? $aRooms[0]->value : 'b/d')?></div>
+                        <div class="latest-right tech-data"><?=(isset($aRooms[0])? $aRooms[0]->value : 'b/d')?></div>
                     </div>
                     <div class="latest-tech-data">
                         <div class="latest-left tech-data"><i class="fa fa-shower" aria-hidden="true"></i>Ilość łazienek</div>
-                        <div class="latest-right tech-data"><?=(isset($aBatchRooms)? $aBatchRooms[0]->value : 'b/d')?></div>
+                        <div class="latest-right tech-data"><?=(isset($aBatchRooms[0])? $aBatchRooms[0]->value : 'b/d')?></div>
                     </div>
                     <div class="latest-tech-data">
                         <div class="latest-left tech-data"><i class="fa fa-arrows-alt" aria-hidden="true"></i>Szerokość</div>
-                        <div class="latest-right tech-data"><?=(isset($aWidth)? $aWidth[0]->value : 'b/d')?></div>
+                        <div class="latest-right tech-data"><?=(isset($aWidth[0])? $aWidth[0]->value : 'b/d')?></div>
                     </div>
                     <div class="latest-tech-data">
                         <div class="latest-left tech-data"><i class="fa fa-arrows-alt" aria-hidden="true"></i>Głębokość</div>
-                        <div class="latest-right tech-data"><?=(isset($aDepth)? $aDepth[0]->value : 'b/d')?></div>
+                        <div class="latest-right tech-data"><?=(isset($aDepth[0])? $aDepth[0]->value : 'b/d')?></div>
                     </div>
                     <div class="latest-tech-data">
                         <div class="latest-left tech-data"><i class="fa fa-university" aria-hidden="true"></i>Styl domu</div>
