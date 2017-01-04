@@ -12,7 +12,7 @@ use common\widgets\Alert;
 
 use yii\web\Session;
 
-class CartController extends Controller
+class CartController extends MetaController
 {
     /**
      * @inheritdoc

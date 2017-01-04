@@ -6,8 +6,7 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ProductsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-$this->title = 'Projekty';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'ProjektTop.pl - wybór projektu jeszcze nigdy nie był tak prosty';
 ?>
 <?php
 $a=1;

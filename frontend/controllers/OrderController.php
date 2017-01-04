@@ -20,7 +20,7 @@ use OpenPayU_Result;
 
 
 
-class OrderController extends Controller
+class OrderController extends MetaController
 {
     /**
      * @inheritdoc

@@ -38,9 +38,11 @@ $url = Yii::$app->request->absoluteUrl;
                         $a=0;
                         foreach ($model->productsImages as $aProductsImages)
                         {
-                            if ($aProductsImages->image_type_id == 1)
+                            if ($aProductsImages->image_type_id == 1 )
                             {
+                                
                         ?>
+                            
                                 <a id="g<?=$a?>" href="<?=$sPatch.'/'.$model->id.'/big/'.$aProductsImages->name ?>" title="Galeria: <?=$sPrjName?><?=($aProductsImages->description ? ' - '.$aProductsImages->description : "")?>"><img src="<?=$sPatch.'/'.$model->id.'/thumbs/'.$aProductsImages->name ?>" alt="Galeria: <?=$sPrjName?><?=($aProductsImages->description ? ' - '.$aProductsImages->description : "")?>"></a>
                         <?php
                         $a++;
@@ -155,7 +157,15 @@ $url = Yii::$app->request->absoluteUrl;
                         <div class="col-md-4">
                             
                             <?php 
-                            $aRooms = $model->getStoreyByType($aProductsImages->storey_type)->all();
+                            
+                            if ($model->producers_id == 5 || $model->producers_id == 3)
+                            {
+                                $aRooms = $model->getStoreyByName($aProductsImages->description)->all();
+                            }
+                            else
+                            {
+                                $aRooms = $model->getStoreyByType($aProductsImages->storey_type)->all();
+                            }
                             if (isset($aRooms) && count($aRooms)>0) 
                             {
                                 
@@ -167,10 +177,11 @@ $url = Yii::$app->request->absoluteUrl;
                                 {
                                 ?>
                                 <tr>
-                                    <td class="room-name text-uppercase o13b"><?= ($aRoom->room_name ? $aRoom->room_name : '' )?></td>
+                                    <td class="room-name text-uppercase o13b"><?= ($aRoom->room_number ? ($aRoom->room_number!='99' ? $aRoom->room_number.'. ' :'' ) : ''). ($aRoom->room_name ? $aRoom->room_name : '' )?></td>
                                     <td class="room-area o13b"><?= ($aRoom->room_area ? $aRoom->room_area .' m2' : '' )?></td>
                                 </tr>
                                 <?php
+                                $a++;
                                 }
                                 ?>  
                             </table>

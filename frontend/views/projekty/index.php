@@ -9,8 +9,9 @@ use yii\web\View;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ProductsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-$this->title = 'Lista projektów';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'ProjektTop.pl - wybór projektu jeszcze nigdy nie był tak prosty';
+$title_bread = 'Lista projektów';
+$this->params['breadcrumbs'][] = $title_bread;
 $iSetMinSize = $aDimensions['iOneMinSize'];
 $iSetMaxSize = $aDimensions['iOneMaxSize'];
 $sSearch = (isset($sSearchC) ? $sSearchC : '');

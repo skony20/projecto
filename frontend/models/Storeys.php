@@ -36,7 +36,7 @@ class Storeys extends \yii\db\ActiveRecord
     {
         return [
             [['products_id'], 'required'],
-            [['products_id', 'storey_type', 'storey_number', 'sum'], 'integer'],
+            [['products_id', 'storey_type', 'storey_number', 'sum', 'room_number'], 'integer'],
             [['room_area', 'room_area_netto'], 'number'],
             [['storey_name'], 'string', 'max' => 80],
             [['room_name'], 'string', 'max' => 90],

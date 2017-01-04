@@ -17,7 +17,7 @@ use Yii;
 /**
  * ProductsController implements the CRUD actions for Products model.
  */
-class ProjektController extends Controller
+class ProjektController extends MetaController
 {
     /**
      * @inheritdoc
@@ -85,7 +85,7 @@ class ProjektController extends Controller
         [
             'name' => 'description',
             'content' => $model->productsDescriptons->meta_description
-        ]
+        ], 'description'
         );
         
         

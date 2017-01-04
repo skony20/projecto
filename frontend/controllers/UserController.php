@@ -14,7 +14,7 @@ use yii\data\ActiveDataProvider;
 use app\models\Favorites;
 use app\models\Products;
 
-class UserController extends Controller
+class UserController extends MetaController
 {
     /**
      * @inheritdoc

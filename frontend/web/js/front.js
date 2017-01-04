@@ -297,7 +297,11 @@ $(document).on('ready pjax:success',
            
         }
     );
-
+    $('.want-invoice').click(function()
+    {
+        $(".invoice-caption").toggle();
+        $(".invoice").toggle();
+    });
     if($('#orders-is_invoice').is(':checked')) {
         $('.invoice').show();
         $('.invoice-caption').show();
@@ -305,6 +309,11 @@ $(document).on('ready pjax:success',
         $('.invoice').hide();
            $('.invoice-caption').hide();
     }
+    
+    
+    
+    
+    
     
     /*formualrz sortowania*/
     $('.prj-sort').change(function()
@@ -326,6 +335,10 @@ $(document).on('ready pjax:success',
         var sClassName = '.prjs-'+iPrjId;
         $(sClassName).removeClass('visible-true');
     });
+    
+    
+
+    
     
 });
     

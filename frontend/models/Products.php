@@ -142,7 +142,7 @@ class Products extends \yii\db\ActiveRecord
     
     public function getProductsImages()
     {
-        return $this->hasMany(ProductsImages::className(), ['products_id' => 'id'])->orderBy(['FIELD(description,"Front domu", "Tył domu", "Bok 1", "Bok 2")' => SORT_ASC]);
+        return $this->hasMany(ProductsImages::className(), ['products_id' => 'id'])->orderBy(['FIELD(description, NULL, "Wnętrze", "Front domu", "Tył domu", "Bok 1", "Bok 2")' => SORT_ASC]);
     }
     public function getSimilar()
     {
@@ -154,7 +154,11 @@ class Products extends \yii\db\ActiveRecord
     }
     public function getStoreyByType($iType)
     {
-        return $this->hasMany(Storeys::className(), ['products_id' => 'id'])->where(['storey_type'=>$iType]);
+        return $this->hasMany(Storeys::className(), ['products_id' => 'id'])->where(['storey_type'=>$iType])->orderBy(['room_number'=>SORT_ASC]);
+    }
+    public function getStoreyByName($sName)
+    {
+        return $this->hasMany(Storeys::className(), ['products_id' => 'id'])->where(['storey_name'=>$sName])->orderBy(['room_number'=>SORT_ASC]);
     }
 
     public function validate($attributeNames = null, $clearErrors = true) {

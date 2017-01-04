@@ -25,7 +25,7 @@ use app\models\SearchProject;
 /**
  * Site controller
  */
-class ProjektyController extends Controller
+class ProjektyController extends MetaController
 {
     /**
      * @inheritdoc
@@ -325,7 +325,7 @@ public function actionIndex($sort = 'default', $szukaj = '')
                     
                 ],
             ]);
-        
+
         //echo '<pre>'.print_r($aPrdIds, true); die();
         return $this->render('index',['aChooseFilters'=>$aFiltersData, 'aFilters'=>$aData, 'dataProvider'=>$dataProvider, 'aDimensions'=>$aDimensions, 'sort'=>$sort, 'sSearchC' => $szukaj]);
  

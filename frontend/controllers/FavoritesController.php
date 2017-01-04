@@ -11,7 +11,7 @@ use app\models\Favorites;
 use common\models\User;
 use common\widgets\Alert;
 
-class FavoritesController extends Controller
+class FavoritesController extends MetaController
 {
     /**
      * @inheritdoc

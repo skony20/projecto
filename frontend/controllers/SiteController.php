@@ -27,7 +27,7 @@ use yii\web\Cookie;
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends MetaController
 {
     /**
      * @inheritdoc
@@ -230,6 +230,9 @@ class SiteController extends Controller
         }
         Yii::$app->session['aFiltersSession'] = $aFiltersData;
         Yii::$app->session['aDimensions'] = $aDimensions;
+        
+        
+        
         //echo '<pre>'. print_r(Yii::$app->session['aDimensions'], TRUE). '</pre>'; die();
         return $this->render('index', ['sProjectCount' => $sProjectCount, 'aFilters'=>$aData, 'aFiltersData' => $aFiltersData, 'aDimensions'=> $aDimensions]);
     }
