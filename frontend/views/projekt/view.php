@@ -197,6 +197,58 @@ $url = Yii::$app->request->absoluteUrl;
 
                 }
                 ?>
+                
+                <div class="col-md-12 position-gallery">
+                    
+                    <div class="col-md-4">
+                        <div class="m21b prj-desc-title">Usytuowanie</div>
+                        <div class="green-border"></div>
+                        <?php
+
+                        foreach ($model->productsImages as $aProductsImages)
+                        {
+                            if ($aProductsImages->image_type_id == 5)
+                            {
+                            ?>
+                                    <a href="<?=$sPatch.'/'.$model->id.'/big/'.$aProductsImages->name ?>"><img src="<?=$sPatch.'/'.$model->id.'/info/'.$aProductsImages->name ?>" alt="<?=$sPrjName?><?=($aProductsImages->description ? $aProductsImages->description : "")?>"></a>
+
+
+                            <?php
+                            }
+                        }
+
+                        ?>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="m21b prj-desc-title">Wymiary działki</div>
+                        <div class="green-border"></div>
+                        <div class="position-size">Usytuowanie na działce pokazuje idealną pozycję domu na dzialcę uzgledniając minimalne odstępy od ogrodzenia.</div>
+                        <div class="position-size-table">
+                            <table class="position-size-table">
+                                <tr>
+                                    <td>Minimalna szerokość działki</td>
+                                    <td><?= ($model->getOneAttribute(6) ? $model->getOneAttribute(6)->all()[0]->value. ' m' : 'b/d') ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Minimalna głebokość działki</td>
+                                    <td><?= ($model->getOneAttribute(7) ? $model->getOneAttribute(7)->all()[0]->value. ' m': 'b/d') ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Szerokość domu</td>
+                                    <td><?= ($model->getOneAttribute(2) ? $model->getOneAttribute(2)->all()[0]->value. ' m': 'b/d') ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Głebokość domu</td>
+                                    <td><?= ($model->getOneAttribute(3) ? $model->getOneAttribute(3)->all()[0]->value. ' m': 'b/d') ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Wysokość domu</td>
+                                    <td><?= ($model->getOneAttribute(1) ? $model->getOneAttribute(1)->all()[0]->value. ' m': 'b/d') ?></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
                 <div class='m21b'>Elewacje</div>
                 <div class='green-border'></div>
                 <div class="col-md-12 elevation-gallery">
@@ -209,7 +261,7 @@ $url = Yii::$app->request->absoluteUrl;
                     ?>
                         
                             <div class="col-md-3">
-                                <?=($aProductsImages->description ? '<div class="elevation-title">'.$aProductsImages->description.'</div>' : "")?><br>
+                                <?=($aProductsImages->description ? '<div class="elevation-title">'.$aProductsImages->description.'</div><br>' : "")?>
                                 <a href="<?=$sPatch.'/'.$model->id.'/big/'.$aProductsImages->name ?>" rel="elewacje"><img src="<?=$sPatch.'/'.$model->id.'/info/'.$aProductsImages->name ?>" alt="Plan: <?=$sPrjName?><?=($aProductsImages->description ? ' - '.$aProductsImages->description : "")?>"></a>
 
                         </div>

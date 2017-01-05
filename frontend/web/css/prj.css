@@ -203,6 +203,38 @@ table.storey-table tr td
     font-weight: 600;
     text-align: left;
 }
+.position-gallery 
+{
+    margin: 40px 0 80px;
+}
+.position-size
+{
+    padding: 5px;
+    text-align: justify;
+    font-size: 13px;
+    
+}
+table.position-size-table
+{
+    margin:20px 0;
+    border-collapse:collapse;
+}
+table.position-size-table tr:nth-child(odd)
+{
+    background-color: #e9eef2;
+}
+table.position-size-table tr:nth-child(even)
+{
+    background-color: #f5f9fc;
+}
+table.position-size-table tr td
+{
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
 /* Podobne */
 .wrap-similar
 {
