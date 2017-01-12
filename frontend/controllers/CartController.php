@@ -77,7 +77,6 @@ class CartController extends MetaController
         $aPrjInCart = ( Yii::$app->session->get('Cart') ?  Yii::$app->session->get('Cart'): []);
         
         $iQty =1;
-
         if (isset($aPrjInCart[$iPrjId]))
         {
             $aPrjInCart[$iPrjId]['iQty'] += 1;
