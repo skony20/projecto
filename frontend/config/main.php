@@ -78,7 +78,7 @@ return [
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>', 
-                '<alias:login|signup|kontakt|wprojekcie|onas|regulamin|wspolpraca|faq|cookie|accordion|polityka-prywatnosci|zwrot>' => 'site/<alias>',
+                '<alias:login|signup|kontakt|wprojekcie|onas|regulamin|wspolpraca|faq|cookie|accordion|polityka-prywatnosci|zwrotc>' => 'site/<alias>',
             ),
             
         ],

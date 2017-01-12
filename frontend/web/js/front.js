@@ -152,19 +152,17 @@ $(document).on('ready pjax:success',
             })
     
     /*Koszyk*/
-    $('.cart').mouseover(function()
-    
-        {
-            $('.cart-container').show();
 
-        }
-    );
-    $('.cart').mouseout(function()
-    
+    $('.cart').hover(function()
         {
-            $('.cart-container').hide();
+            $('.cart-container').slideDown(500);
+
+        }, function()
+        {
+            $('.cart-container').slideUp();
         }
     );
+    
     
     
     
@@ -337,7 +335,7 @@ $(document).on('ready pjax:success',
     });
     
     
-/*Zapisane nia newslatter footer*/
+/*Zapisane na newslatter footer*/
     $('.submit-newslatter').click(function()
     {
         var sEmail = $('#newsletter-input').val();

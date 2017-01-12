@@ -52,7 +52,7 @@ use common\widgets\Alert;
             <div  class="footer-content">
                 <div class="m15w footer-tittle">Newsletter</div>
                 <div class="newsletter-text">Zapisz się na nasz newsletter. Z niego dowiesz się o nowościach, promocjach oraz eventach. Dzięki niemu na bieżąco możesz śledzić wydarzenia oraz informację o rozwoju.</div>
-                <div class="newsletter-input"><?= Html::input('text', 'newslatter', '', ['class'=>'newsletter-input', 'placeholder'=>'Wpisz adres e-mail'])?>
+                <div class="newsletter-input"><?= Html::input('text', 'newslatter', '', ['class'=>'newsletter-input', 'placeholder'=>'Wpisz adres e-mail', 'id'=>'newsletter-input'])?>
                     <i class="fa fa-envelope submit-newslatter" aria-hidden="true"></i>
                 </div>
             </div>
