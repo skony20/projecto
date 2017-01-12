@@ -155,14 +155,14 @@ $(document).on('ready pjax:success',
     $('.cart').mouseover(function()
     
         {
-            $('.cart-container').css('display', 'block');
+            $('.cart-container').show();
 
         }
     );
     $('.cart').mouseout(function()
     
         {
-            $('.cart-container').css('display', 'none');
+            $('.cart-container').hide();
         }
     );
     

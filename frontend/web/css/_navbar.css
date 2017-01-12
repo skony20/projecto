@@ -29,36 +29,7 @@ nav
     line-height: 30px;
 }
 
-.cart
-{
-    font-size: 13px;
-    line-height: 13px;
-}
 
-.cart-container
-{
-    display: none;
-    position: absolute;
-    width:450px;
-    background-color: gray;
-    right:20px;
-}
-.cart-name 
-{
-    display: inline-block;
-    margin-right: 5px;
-}
-
-.in-cart_table
-{
-    width:100%;
-}
-.cart-name >img
-{
-    padding: 2px;
-    background-color: #565f66;
-    border-radius: 3px;
-}
 img.basket
 {
     margin: -26px 0 0 80px;
