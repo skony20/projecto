@@ -337,8 +337,18 @@ $(document).on('ready pjax:success',
     });
     
     
-
-    
+/*Zapisane nia newslatter footer*/
+    $('.submit-newslatter').click(function()
+    {
+        var sEmail = $('#newsletter-input').val();
+        $.ajax({
+            url: "/projecto/newslatter/add?sEmail="+sEmail,
+            success: function(data) {   
+                        $('#system-messages').html(data).stop().fadeIn().animate({opacity: 1.0}, 4000).fadeOut('slow');
+                    }
+        });
+        
+    });
     
 });
     
