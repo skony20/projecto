@@ -38,7 +38,7 @@ class CartWidget extends Widget
                 {
                     $sInCart .= '<tr>';
                     $aPrj = $oProducts->findOne($aPrjCart['iPrjId']);
-                    $sInCart .= '<td class="cart-wid-qty">'.$aPrjCart['iQty'].'</td><td class="cart-wid-qty-x">x</td><td class="cart-wid-img">'.Html::img(yii::getalias("@image").'/'.$aPrjCart['iPrjId'].'/thumbs/'.$aPrj->productsImages[0]->name).'</td><td class="cart-wid-name">'.$aPrj->productsDescriptons->name.'</td><td class="cart-wid-price">'.Yii::$app->formatter->asCurrency($aPrj->price_brutto, ''). ' zł</td>';
+                    $sInCart .= '<td class="cart-wid-qty">'.$aPrjCart['iQty'].'</td><td class="cart-wid-qty-x">x</td><td class="cart-wid-img">'.Html::img(yii::getalias("@image").'/'.$aPrjCart['iPrjId'].'/thumbs/'.$aPrj->productsImages[0]->name).'</td><td class="cart-wid-name">'.$aPrj->productsDescriptons->name.'</td><td class="cart-wid-price">'.Yii::$app->formatter->asCurrency($aPrj->price_brutto, ' zł'). '</td>';
                     $sInCart .= '</tr>';
                     $iPrjsSum += $aPrj->price_brutto;
                 }
@@ -49,10 +49,10 @@ class CartWidget extends Widget
             else
             {
                 $sInCart .= '<tr>';
-                $sInCart .= '<td>Brak produktów w koszyku</td>';
+                $sInCart .= '<td colspan="5">Brak produktów w koszyku</td>';
                 $sInCart .= '</tr>';
             }
-            $sInCart .= '<tr><td colspan="3" class="cart-wid-prjsum">Łaczna wartość:</td><td colspan="2" class="cart-wid-pricesum">'.Yii::$app->formatter->asCurrency($iPrjsSum, '').' zł</td></tr>';
+            $sInCart .= '<tr><td colspan="3" class="cart-wid-prjsum">Łaczna wartość:</td><td colspan="2" class="cart-wid-pricesum">'.Yii::$app->formatter->asCurrency($iPrjsSum, ' zł').'</td></tr>';
             $sInCart .= '</table>';
             $sInCart .= '<br>' .Html::a('Przejdź do koszyka <i class="fa fa-caret-right" aria-hidden="true"></i>', Yii::getAlias("@web").'/cart/');
             $sInCart .= '</div>

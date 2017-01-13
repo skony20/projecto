@@ -49,61 +49,6 @@
         ]
     },
     {
-        "name": "swiftmailer/swiftmailer",
-        "version": "v5.4.3",
-        "version_normalized": "5.4.3.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/swiftmailer/swiftmailer.git",
-            "reference": "4cc92842069c2bbc1f28daaaf1d2576ec4dfe153"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/4cc92842069c2bbc1f28daaaf1d2576ec4dfe153",
-            "reference": "4cc92842069c2bbc1f28daaaf1d2576ec4dfe153",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.3"
-        },
-        "require-dev": {
-            "mockery/mockery": "~0.9.1"
-        },
-        "time": "2016-07-08 11:51:25",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.4-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "files": [
-                "lib/swift_required.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Chris Corbyn"
-            },
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com"
-            }
-        ],
-        "description": "Swiftmailer, free feature-rich PHP mailer",
-        "homepage": "http://swiftmailer.org",
-        "keywords": [
-            "email",
-            "mail",
-            "mailer"
-        ]
-    },
-    {
         "name": "ezyang/htmlpurifier",
         "version": "v4.8.0",
         "version_normalized": "4.8.0.0",
@@ -246,55 +191,6 @@
         "description": "The Twitter Bootstrap extension for the Yii framework",
         "keywords": [
             "bootstrap",
-            "yii2"
-        ]
-    },
-    {
-        "name": "yiisoft/yii2-debug",
-        "version": "2.0.6",
-        "version_normalized": "2.0.6.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/yiisoft/yii2-debug.git",
-            "reference": "55ed2e853ed8050a34415f63a4da84f88a56f895"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/55ed2e853ed8050a34415f63a4da84f88a56f895",
-            "reference": "55ed2e853ed8050a34415f63a4da84f88a56f895",
-            "shasum": ""
-        },
-        "require": {
-            "yiisoft/yii2": ">=2.0.4",
-            "yiisoft/yii2-bootstrap": "*"
-        },
-        "time": "2016-03-17 03:50:19",
-        "type": "yii2-extension",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.0.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "yii\\debug\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Qiang Xue",
-                "email": "qiang.xue@gmail.com"
-            }
-        ],
-        "description": "The debugger extension for the Yii framework",
-        "keywords": [
-            "debug",
-            "debugger",
             "yii2"
         ]
     },
@@ -856,50 +752,6 @@
         ]
     },
     {
-        "name": "bower-asset/ionrangeslider",
-        "version": "2.1.4",
-        "version_normalized": "2.1.4.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/IonDen/ion.rangeSlider.git",
-            "reference": "b013f67882be811599580a76cf65074dff9f8b5a"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/IonDen/ion.rangeSlider/zipball/b013f67882be811599580a76cf65074dff9f8b5a",
-            "reference": "b013f67882be811599580a76cf65074dff9f8b5a",
-            "shasum": ""
-        },
-        "require": {
-            "bower-asset/jquery": ">=1.8"
-        },
-        "type": "bower-asset-library",
-        "extra": {
-            "bower-asset-main": [
-                "js/ion.rangeSlider.js",
-                "css/ion.rangeSlider.css",
-                "css/ion.rangeSlider.skinFlat.css",
-                "img/sprite-skin-flat.png"
-            ],
-            "bower-asset-ignore": [
-                "PSD",
-                "ion-rangeSlider.jquery.json"
-            ]
-        },
-        "installation-source": "dist",
-        "license": [
-            "MIT"
-        ],
-        "description": "Powerful range slider with skin support",
-        "keywords": [
-            "diapason",
-            "ion",
-            "jquery-plugin",
-            "range",
-            "slider"
-        ]
-    },
-    {
         "name": "bower-asset/typeahead.js",
         "version": "v0.11.1",
         "version_normalized": "0.11.1.0",
@@ -1237,6 +1089,56 @@
         "description": "OpenPayU PHP Library"
     },
     {
+        "name": "yiisoft/yii2-authclient",
+        "version": "2.1.1",
+        "version_normalized": "2.1.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/yiisoft/yii2-authclient.git",
+            "reference": "5ed7ebfda270d87197f7640b2a9c046297080cac"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/yiisoft/yii2-authclient/zipball/5ed7ebfda270d87197f7640b2a9c046297080cac",
+            "reference": "5ed7ebfda270d87197f7640b2a9c046297080cac",
+            "shasum": ""
+        },
+        "require": {
+            "yiisoft/yii2-httpclient": "~2.0.1"
+        },
+        "time": "2016-08-29 09:21:09",
+        "type": "yii2-extension",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "yii\\authclient\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Paul Klimov",
+                "email": "klimov.paul@gmail.com"
+            }
+        ],
+        "description": "External authentication via OAuth and OpenID for the Yii framework",
+        "keywords": [
+            "OpenId",
+            "api",
+            "auth",
+            "oauth",
+            "yii2"
+        ]
+    },
+    {
         "name": "yiisoft/yii2-httpclient",
         "version": "2.0.2",
         "version_normalized": "2.0.2.0",
@@ -1286,24 +1188,25 @@
         ]
     },
     {
-        "name": "yiisoft/yii2-authclient",
-        "version": "2.1.1",
-        "version_normalized": "2.1.1.0",
+        "name": "yiisoft/yii2-debug",
+        "version": "2.0.7",
+        "version_normalized": "2.0.7.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/yiisoft/yii2-authclient.git",
-            "reference": "5ed7ebfda270d87197f7640b2a9c046297080cac"
+            "url": "https://github.com/yiisoft/yii2-debug.git",
+            "reference": "a74a2433ad1dfda30a253a92f6db52c131807432"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/yiisoft/yii2-authclient/zipball/5ed7ebfda270d87197f7640b2a9c046297080cac",
-            "reference": "5ed7ebfda270d87197f7640b2a9c046297080cac",
+            "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/a74a2433ad1dfda30a253a92f6db52c131807432",
+            "reference": "a74a2433ad1dfda30a253a92f6db52c131807432",
             "shasum": ""
         },
         "require": {
-            "yiisoft/yii2-httpclient": "~2.0.1"
+            "yiisoft/yii2": "~2.0.4",
+            "yiisoft/yii2-bootstrap": "~2.0.0"
         },
-        "time": "2016-08-29 09:21:09",
+        "time": "2016-11-24 09:42:29",
         "type": "yii2-extension",
         "extra": {
             "branch-alias": {
@@ -1313,7 +1216,7 @@
         "installation-source": "dist",
         "autoload": {
             "psr-4": {
-                "yii\\authclient\\": ""
+                "yii\\debug\\": ""
             }
         },
         "notification-url": "https://packagist.org/downloads/",
@@ -1322,17 +1225,114 @@
         ],
         "authors": [
             {
-                "name": "Paul Klimov",
-                "email": "klimov.paul@gmail.com"
+                "name": "Qiang Xue",
+                "email": "qiang.xue@gmail.com"
             }
         ],
-        "description": "External authentication via OAuth and OpenID for the Yii framework",
+        "description": "The debugger extension for the Yii framework",
         "keywords": [
-            "OpenId",
-            "api",
-            "auth",
-            "oauth",
+            "debug",
+            "debugger",
             "yii2"
+        ]
+    },
+    {
+        "name": "bower-asset/ionrangeslider",
+        "version": "2.1.5",
+        "version_normalized": "2.1.5.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/IonDen/ion.rangeSlider.git",
+            "reference": "c5dc23408acc0d3db998592594c34f4473440c45"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/IonDen/ion.rangeSlider/zipball/c5dc23408acc0d3db998592594c34f4473440c45",
+            "reference": "c5dc23408acc0d3db998592594c34f4473440c45",
+            "shasum": ""
+        },
+        "require": {
+            "bower-asset/jquery": ">=1.8"
+        },
+        "type": "bower-asset-library",
+        "extra": {
+            "bower-asset-main": [
+                "js/ion.rangeSlider.js",
+                "css/ion.rangeSlider.css",
+                "css/ion.rangeSlider.skinFlat.css",
+                "img/sprite-skin-flat.png"
+            ],
+            "bower-asset-ignore": [
+                "PSD",
+                "ion-rangeSlider.jquery.json"
+            ]
+        },
+        "installation-source": "dist",
+        "license": [
+            "MIT"
+        ],
+        "description": "Powerful range slider with skin support",
+        "keywords": [
+            "diapason",
+            "ion",
+            "jquery-plugin",
+            "range",
+            "slider"
+        ]
+    },
+    {
+        "name": "swiftmailer/swiftmailer",
+        "version": "v5.4.4",
+        "version_normalized": "5.4.4.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/swiftmailer/swiftmailer.git",
+            "reference": "545ce9136690cea74f98f86fbb9c92dd9ab1a756"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/545ce9136690cea74f98f86fbb9c92dd9ab1a756",
+            "reference": "545ce9136690cea74f98f86fbb9c92dd9ab1a756",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "mockery/mockery": "~0.9.1"
+        },
+        "time": "2016-11-24 01:01:23",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.4-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "lib/swift_required.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Chris Corbyn"
+            },
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            }
+        ],
+        "description": "Swiftmailer, free feature-rich PHP mailer",
+        "homepage": "http://swiftmailer.org",
+        "keywords": [
+            "email",
+            "mail",
+            "mailer"
         ]
     }
 ]

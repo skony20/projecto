@@ -7,18 +7,39 @@ $(document).on('ready pjax:success',
         $('#prj_set_filters').submit(function() {
             var filter = '';
             var filters = '';
-
+            var sHouseSize = '';
+            var sSzerokosc = '';
+            var sGlebokosc = '';
+            
             $('input:checkbox:checked').each(function() 
             {
-                filter += '/'+($(this).val())
-            })
+                filter += '/'+($(this).val());
+            });
 
             if (filter !== '')
             {
-                filters = '/filters'
+                filters = '/filters'+filter;
             }
             
-            window.location = $(this).attr("action") + '/Szerokosc/' +  $("[name='SizeX']").val()+  '/Glebokosc/' +  $("[name='SizeY']").val()+'/HouseSize/' +  $("[name='HouseSize']").val()+ filters +filter;
+            iMin = document.getElementsByClassName("irs-min")[0];
+            iMax = document.getElementsByClassName("irs-max")[0];
+            iFrom = document.getElementsByClassName("irs-from")[0];
+            iTo = document.getElementsByClassName("irs-to")[0];
+            if ($("[name='bBarChange']").val() === 1 && (iMin.innerHTML !== iFrom.innerHTML || iMax.innerHTML !== iTo.innerHTML))
+            {
+                sHouseSize = '/HouseSize/' +  $("[name='HouseSize']").val();
+            }
+            if ($("[name='SizeX']").val() !== $("[name='SizeXHidden']").val())
+            {
+                sSzerokosc = '/Szerokosc/' +  $("[name='SizeX']").val();
+            }
+            if ($("[name='SizeY']").val() !== $("[name='SizeYHidden']").val())
+            {
+                sGlebokosc = '/Glebokosc/' +  $("[name='SizeY']").val();
+            }
+            
+
+            window.location = $(this).attr("action") + sSzerokosc + sGlebokosc  +  sHouseSize + filters;
             return false;
             });
         
@@ -159,7 +180,7 @@ $(document).on('ready pjax:success',
 
         }, function()
         {
-            $('.cart-container').slideUp();
+            $('.cart-container').slideUp(500);
         }
     );
     

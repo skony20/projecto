@@ -1059,7 +1059,7 @@ class Formatter extends Component
                 }
                 $currency = $this->currencyCode;
             }
-            return $currency . ' ' . $this->asDecimal($value, 2, $options, $textOptions);
+            return $this->asDecimal($value, 2, $options, $textOptions). ' ' .$currency;
         }
     }
 

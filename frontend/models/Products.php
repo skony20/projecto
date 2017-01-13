@@ -142,7 +142,7 @@ class Products extends \yii\db\ActiveRecord
     
     public function getProductsImages()
     {
-        return $this->hasMany(ProductsImages::className(), ['products_id' => 'id'])->orderBy(['FIELD(description, NULL, "Wnętrze", "Front domu", "Tył domu", "Bok 1", "Bok 2")' => SORT_ASC]);
+        return $this->hasMany(ProductsImages::className(), ['products_id' => 'id'])->orderBy(['name' => SORT_ASC],['FIELD(description, NULL, "Wnętrze", "Front domu", "Tył domu", "Bok 1", "Bok 2")' => SORT_ASC]);
     }
     public function getSimilar()
     {

@@ -101,6 +101,8 @@ public function actionIndex($sort = 'default', $szukaj = '')
         
             $iMaxX = ceil($oProductsAttributes->find()->onCondition(['attributes_id'=>7])->max('(CAST(value AS DECIMAL (5,2)))'));
             $iMaxY = ceil($oProductsAttributes->find()->onCondition(['attributes_id'=>6])->max('(CAST(value AS DECIMAL (5,2)))'));
+            $aDimensions['iAllX'] = $iMaxX;
+            $aDimensions['iAllY'] = $iMaxY;
             $aDimensions['iAllMinSize'] = $iMinSize;
             $aDimensions['iAllMaxSize'] = $iMaxSize;
             $aDimensions['iMaxX'] =$iMaxX ;

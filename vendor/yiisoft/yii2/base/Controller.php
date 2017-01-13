@@ -106,6 +106,7 @@ class Controller extends Component implements ViewContextInterface
      */
     public function actions()
     {
+
         return [];
     }
 
@@ -229,7 +230,6 @@ class Controller extends Component implements ViewContextInterface
                 }
             }
         }
-
         return null;
     }
 
@@ -265,6 +265,7 @@ class Controller extends Component implements ViewContextInterface
      */
     public function beforeAction($action)
     {
+
         $event = new ActionEvent($action);
         $this->trigger(self::EVENT_BEFORE_ACTION, $event);
         return $event->isValid;

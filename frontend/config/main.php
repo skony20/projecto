@@ -68,8 +68,66 @@ return [
                     'route' => 'projekty/index',
                     'encodeParams' => true
                 ],
+                [
+                    'pattern' => 'projekty/Szerokosc/<SizeX:\d+>/Glebokosc/<SizeY:\d+>/filters/<tag:.*>/strona/<strona:\d+>',
+                    'route' => 'projekty/index',
+                    'encodeParams' => true
+                ],
+                [
+                    'pattern' => 'projekty/Szerokosc/<SizeX:\d+>/Glebokosc/<SizeY:\d+>/filters/<tag:.*>',
+                    'route' => 'projekty/index',
+                    'encodeParams' => true
+                ],
+                [
+                    'pattern' => 'projekty/Szerokosc/<SizeX:\d+>/filters/<tag:.*>/strona/<strona:\d+>',
+                    'route' => 'projekty/index',
+                    'encodeParams' => true
+                ],
+                [
+                    'pattern' => 'projekty/Szerokosc/<SizeX:\d+>/filters/<tag:.*>',
+                    'route' => 'projekty/index',
+                    'encodeParams' => true
+                ],
+                [
+                    'pattern' => 'projekty/Glebokosc/<SizeY:\d+>/filters/<tag:.*>/strona/<strona:\d+>',
+                    'route' => 'projekty/index',
+                    'encodeParams' => true
+                ],
+                [
+                    'pattern' => 'projekty/Glebokosc/<SizeY:\d+>/filters/<tag:.*>',
+                    'route' => 'projekty/index',
+                    'encodeParams' => true
+                ],
+                [
+                    'pattern' => 'projekty/filters/<tag:.*>/strona/<strona:\d+>',
+                    'route' => 'projekty/index',
+                    'encodeParams' => true
+                ],
+                [
+                    'pattern' => 'projekty/filters/<tag:.*>',
+                    'route' => 'projekty/index',
+                    'encodeParams' => true
+                ],
+                [
+                    'pattern' => 'projekty/HouseSize/<HouseSize:.*>/filters/<tag:.*>/strona/<strona:\d+>',
+                    'route' => 'projekty/index',
+                    'encodeParams' => true
+                ],
+                [
+                    'pattern' => 'projekty/HouseSize/<HouseSize:.*>/filters/<tag:.*>',
+                    'route' => 'projekty/index',
+                    'encodeParams' => true
+                ],
                 'projekty/Szerokosc/<SizeX:\d+>/Glebokosc/<SizeY:\d+>/HouseSize/<HouseSize:.*>/strona/<strona:\d+>' =>'projekty/index',
                 'projekty/Szerokosc/<SizeX:\d+>/Glebokosc/<SizeY:\d+>/HouseSize/<HouseSize:.*>' =>'projekty/index',
+                'projekty/Szerokosc/<SizeX:\d+>/Glebokosc/<SizeY:\d+>/strona/<strona:\d+>' =>'projekty/index',
+                'projekty/Szerokosc/<SizeX:\d+>/Glebokosc/<SizeY:\d+>' =>'projekty/index',
+                'projekty/Glebokosc/<SizeY:\d+>/strona/<strona:\d+>' =>'projekty/index',
+                'projekty/Glebokosc/<SizeY:\d+>' =>'projekty/index',
+                'projekty/Szerokosc/<SizeX:\d+>/strona/<strona:\d+>' =>'projekty/index',
+                'projekty/Szerokosc/<SizeX:\d+>' =>'projekty/index',
+                'projekty/HouseSize/<HouseSize:.*>/strona/<strona:\d+>' =>'projekty/index',
+                'projekty/HouseSize/<HouseSize:.*>' =>'projekty/index',
                 'projekty/filters/<tag:.*>/strona/<strona:\d+>' =>'projekty/index', 
                 'projekty/filters/<tag:.*>' =>'projekty/index',
                 'projekty/SizeX/<SizeX:\d+>' =>'projekty/index',

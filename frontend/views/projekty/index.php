@@ -84,11 +84,14 @@ $sSearch = (isset($sSearchC) ? $sSearchC : '');
         echo '<span class="m13b text-uppercase"><br>Wielkość działki: <br></span>';
         echo Html::input('text', 'SizeX', $aDimensions['iMaxX'], ['title'=>'Szerokość', 'id'=>'prj_sizex', 'class'=>'filter-area-size'] ) .'<span class="m13b"> x </span>';
         echo Html::input('text', 'SizeY', $aDimensions['iMaxY'], ['title'=>'Głębokość', 'id'=>'prj_sizey', 'class'=>'filter-area-size']) .'<span class="m13b"> m </span>';
+        echo Html::hiddenInput('SizeXHidden', $aDimensions['iAllX']);
+        echo Html::hiddenInput('SizeYHidden', $aDimensions['iAllY']);
     }
         echo '</div>';
         echo '</div>';
     }
     ?>
+    <?= Html::hiddenInput('bBarChange', $_SESSION['BarChange']) ?>
     <?= Html::endForm() ?>
     <?= Html::tag('div', 'resetuj filtry', ['class' => 'reset_all_filters m14b text-uppercase text-center']) ?>
     </div>
