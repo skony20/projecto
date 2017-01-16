@@ -308,7 +308,6 @@ public function actionIndex($sort = 'default', $szukaj = '')
 
         if (count(array_filter($aPostData))<=3 && !$bBarChange && (empty($aPrdFilters) && empty($aAttributes)))
                 {
-            echo '<br> To tu';
                     $query = $model::find();
                 }
         //echo '<pre>'. print_r ($query  , TRUE); die();

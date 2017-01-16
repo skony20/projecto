@@ -70,10 +70,10 @@ $sSearch = (isset($sSearchC) ? $sSearchC : '');
                     ),
                 'onChange' => new \yii\web\JsExpression('
                 function(data) {
+                    
                     $.ajax({
                         url: "/projecto/projekty/barchange"
                     }); 
-                    
                     }'
                     )
                 ]

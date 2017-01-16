@@ -10,6 +10,7 @@ $(document).on('ready pjax:success',
             var sHouseSize = '';
             var sSzerokosc = '';
             var sGlebokosc = '';
+            var bBarChange = $("[name='bBarChange']").val();
             
             $('input:checkbox:checked').each(function() 
             {
@@ -25,20 +26,25 @@ $(document).on('ready pjax:success',
             iMax = document.getElementsByClassName("irs-max")[0];
             iFrom = document.getElementsByClassName("irs-from")[0];
             iTo = document.getElementsByClassName("irs-to")[0];
-            if ($("[name='bBarChange']").val() === 1 && (iMin.innerHTML !== iFrom.innerHTML || iMax.innerHTML !== iTo.innerHTML))
-            {
+            
+            if (iMin.innerHTML !== iFrom.innerHTML || iMax.innerHTML !== iTo.innerHTML)
+            {    
                 sHouseSize = '/HouseSize/' +  $("[name='HouseSize']").val();
             }
             if ($("[name='SizeX']").val() !== $("[name='SizeXHidden']").val())
             {
-                sSzerokosc = '/Szerokosc/' +  $("[name='SizeX']").val();
+                sSzerokosc = '/szerokosc/' +  $("[name='SizeX']").val();
             }
             if ($("[name='SizeY']").val() !== $("[name='SizeYHidden']").val())
             {
-                sGlebokosc = '/Glebokosc/' +  $("[name='SizeY']").val();
+                sGlebokosc = '/glebokosc/' +  $("[name='SizeY']").val();
             }
-            
-
+            if (filters === '' && sSzerokosc ==='' && sGlebokosc === '')
+            {
+                $.ajax({
+                        url: '/projecto/projekty/reset'
+                        });
+            }
             window.location = $(this).attr("action") + sSzerokosc + sGlebokosc  +  sHouseSize + filters;
             return false;
             });
