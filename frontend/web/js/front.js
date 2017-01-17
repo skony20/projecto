@@ -4,14 +4,29 @@ $(document).on('ready pjax:success',
 
     function()
     {
-        $('#prj_set_filters').submit(function() {
+        $('#prj_set_filters').submit(function(e) {
+            e.preventDefault();
+            this.submit();
             var filter = '';
             var filters = '';
             var sHouseSize = '';
             var sSzerokosc = '';
             var sGlebokosc = '';
-            var bBarChange = $("[name='bBarChange']").val();
+            var bBarChange = '';
+
             
+            iMin = document.getElementsByClassName("irs-min")[0];
+            iMax = document.getElementsByClassName("irs-max")[0];
+            iFrom = document.getElementsByClassName("irs-from")[0];
+            iTo = document.getElementsByClassName("irs-to")[0];
+            if ($("[name='HouseSize']")[0].defaultValue !== $("[name='HouseSize']").val())
+            {
+                bBarChange = 1
+            }
+            if (bBarChange === '1' && (iMin.innerHTML !== iFrom.innerHTML || iMax.innerHTML !== iTo.innerHTML))
+            {     
+                sHouseSize = '/HouseSize/' +  $("[name='HouseSize']").val();
+            }
             $('input:checkbox:checked').each(function() 
             {
                 filter += '/'+($(this).val());
@@ -21,37 +36,31 @@ $(document).on('ready pjax:success',
             {
                 filters = '/filters'+filter;
             }
-            
-            iMin = document.getElementsByClassName("irs-min")[0];
-            iMax = document.getElementsByClassName("irs-max")[0];
-            iFrom = document.getElementsByClassName("irs-from")[0];
-            iTo = document.getElementsByClassName("irs-to")[0];
-            
-            if (iMin.innerHTML !== iFrom.innerHTML || iMax.innerHTML !== iTo.innerHTML)
-            {    
-                sHouseSize = '/HouseSize/' +  $("[name='HouseSize']").val();
-            }
-            if ($("[name='SizeX']").val() !== $("[name='SizeXHidden']").val())
+
+//            if ($("[name='SizeX']")[0].defaultValue !== $("[name='SizeX']").val())
+//            {
+//                sSzerokosc = '/szerokosc/' +  $("[name='SizeX']").val();
+//            }
+//             if ($("[name='SizeY']")[0].defaultValue !== $("[name='SizeY']").val())
+//            {
+//                sGlebokosc = '/glebokosc/' +  $("[name='SizeY']").val();
+//            }
+            if (filters === '' )
             {
-                sSzerokosc = '/szerokosc/' +  $("[name='SizeX']").val();
-            }
-            if ($("[name='SizeY']").val() !== $("[name='SizeYHidden']").val())
-            {
-                sGlebokosc = '/glebokosc/' +  $("[name='SizeY']").val();
-            }
-            if (filters === '' && sSzerokosc ==='' && sGlebokosc === '')
-            {
+                console.log($("[name='HouseSize']").val());
                 $.ajax({
                         url: '/projecto/projekty/reset'
                         });
             }
             window.location = $(this).attr("action") + sSzerokosc + sGlebokosc  +  sHouseSize + filters;
+            
             return false;
             });
         
         $('input[type=radio]').change(
             function()
             {
+                
                 $.ajax({
                         url: "projekty/reset"
                     }); 
@@ -61,6 +70,7 @@ $(document).on('ready pjax:success',
         $('input[type=text]').change(
             function()
             {
+                
                 $("#set_filters").submit();
                 
             }
@@ -133,6 +143,7 @@ $(document).on('ready pjax:success',
 //        $.ajax({
 //            url: "projekty/remove-session?id=BarChange"
 //        }); 
+
         $("#prj_set_filters").submit();
     });
 

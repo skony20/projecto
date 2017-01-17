@@ -16,7 +16,7 @@ $iSetMinSize = $aDimensions['iOneMinSize'];
 $iSetMaxSize = $aDimensions['iOneMaxSize'];
 $sSearch = (isset($sSearchC) ? $sSearchC : '');
 //echo '<pre>'. print_r($_GET, TRUE). '</pre>';
-//echo '<pre>'. print_r($_SESSION, TRUE). '</pre>';
+//echo '<pre>'. print_r($aDimensions, TRUE). '</pre>';
 
         ?>
 
@@ -78,15 +78,17 @@ $sSearch = (isset($sSearchC) ? $sSearchC : '');
                     )
                 ]
             ]);
-    }
-    if ($aData['question']->id == 3 )
-    {
-        echo '<span class="m13b text-uppercase"><br>Wielkość działki: <br></span>';
-        echo Html::input('text', 'SizeX', $aDimensions['iMaxX'], ['title'=>'Szerokość', 'id'=>'prj_sizex', 'class'=>'filter-area-size'] ) .'<span class="m13b"> x </span>';
-        echo Html::input('text', 'SizeY', $aDimensions['iMaxY'], ['title'=>'Głębokość', 'id'=>'prj_sizey', 'class'=>'filter-area-size']) .'<span class="m13b"> m </span>';
-        echo Html::hiddenInput('SizeXHidden', $aDimensions['iAllX']);
-        echo Html::hiddenInput('SizeYHidden', $aDimensions['iAllY']);
-    }
+        echo Html::hiddenInput('SizeFrom', $iSetMinSize);
+        echo Html::hiddenInput('SizeTo', $iSetMaxSize);
+        }
+//    if ($aData['question']->id == 3 )
+//    {
+//        echo '<span class="m13b text-uppercase"><br>Wielkość działki: <br></span>';
+//        echo Html::input('text', 'SizeX', $aDimensions['iMaxX'], ['title'=>'Szerokość', 'id'=>'prj_sizex', 'class'=>'filter-area-size'] ) .'<span class="m13b"> x </span>';
+//        echo Html::input('text', 'SizeY', $aDimensions['iMaxY'], ['title'=>'Głębokość', 'id'=>'prj_sizey', 'class'=>'filter-area-size']) .'<span class="m13b"> m </span>';
+//        echo Html::hiddenInput('SizeXHidden', $aDimensions['iAllX']);
+//        echo Html::hiddenInput('SizeYHidden', $aDimensions['iAllY']);
+//    }
         echo '</div>';
         echo '</div>';
     }

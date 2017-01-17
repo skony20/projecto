@@ -94,13 +94,10 @@ public function actionIndex($sort = 'default', $szukaj = '')
         $bBarChange =  Yii::$app->session->get('BarChange');
         $iMinSize = floor($oProductsAttributes->find()->onCondition(['attributes_id'=>4])->min('(CAST(value AS DECIMAL (5,2)))'));
         $iMaxSize = ceil($oProductsAttributes->find()->onCondition(['attributes_id'=>4])->max('(CAST(value AS DECIMAL (5,2)))'));
-
+        $iMaxX = ceil($oProductsAttributes->find()->onCondition(['attributes_id'=>7])->max('(CAST(value AS DECIMAL (5,2)))'));
+        $iMaxY = ceil($oProductsAttributes->find()->onCondition(['attributes_id'=>6])->max('(CAST(value AS DECIMAL (5,2)))'));
         if(empty($aDimensions))
         {
-           
-        
-            $iMaxX = ceil($oProductsAttributes->find()->onCondition(['attributes_id'=>7])->max('(CAST(value AS DECIMAL (5,2)))'));
-            $iMaxY = ceil($oProductsAttributes->find()->onCondition(['attributes_id'=>6])->max('(CAST(value AS DECIMAL (5,2)))'));
             $aDimensions['iAllX'] = $iMaxX;
             $aDimensions['iAllY'] = $iMaxY;
             $aDimensions['iAllMinSize'] = $iMinSize;
@@ -115,6 +112,8 @@ public function actionIndex($sort = 'default', $szukaj = '')
         else
         {
             //echo '<pre>aa'. print_r($_SESSION, TRUE). '</pre>'; die();
+            $aDimensions['iAllX'] = $iMaxX;
+            $aDimensions['iAllY'] = $iMaxY;
             $iMaxX = $aDimensions['iMaxX'];
             $iMaxY = $aDimensions['iMaxY'];
             $iPostMinSize = $aDimensions['iOneMinSize'];
@@ -356,7 +355,7 @@ public function actionIndex($sort = 'default', $szukaj = '')
     }
     public function actionBarchange()
     {
-        Yii::$app->session['BarChange']=1;
+        Yii::$app->session['BarChange'] = 1;
     }
     public function actionRemoveSession($id)
     {
