@@ -29,7 +29,7 @@ class SearchProject extends \yii\db\ActiveRecord
     {
         return [
             [['filters'], 'string'],
-            [['users_id', 'creation_date'], 'required'],
+            [['creation_date'], 'required'],
             [['users_id', 'creation_date'], 'integer'],
         ];
     }

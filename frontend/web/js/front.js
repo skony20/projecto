@@ -12,17 +12,14 @@ $(document).on('ready pjax:success',
             var sHouseSize = '';
             var sSzerokosc = '';
             var sGlebokosc = '';
-            var bBarChange = '';
+            var bBarChange = $.cookie("bBarChange");
 
             
             iMin = document.getElementsByClassName("irs-min")[0];
             iMax = document.getElementsByClassName("irs-max")[0];
             iFrom = document.getElementsByClassName("irs-from")[0];
             iTo = document.getElementsByClassName("irs-to")[0];
-            if ($("[name='HouseSize']")[0].defaultValue !== $("[name='HouseSize']").val())
-            {
-                bBarChange = 1
-            }
+
             if (bBarChange === '1' && (iMin.innerHTML !== iFrom.innerHTML || iMax.innerHTML !== iTo.innerHTML))
             {     
                 sHouseSize = '/HouseSize/' +  $("[name='HouseSize']").val();
@@ -45,9 +42,9 @@ $(document).on('ready pjax:success',
 //            {
 //                sGlebokosc = '/glebokosc/' +  $("[name='SizeY']").val();
 //            }
-            if (filters === '' )
-            {
-                console.log($("[name='HouseSize']").val());
+            if (filters === '' && sHouseSize === '')
+            {   
+                
                 $.ajax({
                         url: '/projecto/projekty/reset'
                         });
@@ -143,7 +140,7 @@ $(document).on('ready pjax:success',
 //        $.ajax({
 //            url: "projekty/remove-session?id=BarChange"
 //        }); 
-
+        $.removeCookie("bBarChange");
         $("#prj_set_filters").submit();
     });
 

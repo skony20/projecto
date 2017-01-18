@@ -4,8 +4,9 @@ $sSearch = (isset($_GET['szukaj']) ? $_GET['szukaj']: '');
 ?>
 <div class="wrap search-bar-wrap">
     <div class="container search-bar-container">
-        <div class="col-md-2 hidden-xs  hidden-sm text-right">Szukaj projektu</div>
-        <div class="col-md-10  col-xs-12 col-sm-12">
+        <div class="col-md-2 hidden-xs  hidden-sm text-right ">Szukaj projektu</div>
+        <div class="col-md-10  col-xs-12 col-sm-12 index-minus">
+            
             <div class="search-from-index">
             <?php
             echo Html::beginForm();

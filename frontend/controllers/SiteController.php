@@ -444,6 +444,9 @@ class SiteController extends MetaController
         $oSearchProjects->filters = serialize($aFiltersData);
         $oSearchProjects->users_id = (Yii::$app->user->isGuest ? '' : Yii::$app->user->identity->id);
         $oSearchProjects->creation_date = time();
+        echo "<script>";
+            echo "console.log('".$oSearchProjects->filters."  ".$oSearchProjects->users_id."  ".$oSearchProjects->creation_date."')";
+        echo "</script>";
         $oSearchProjects->save();
     }
     

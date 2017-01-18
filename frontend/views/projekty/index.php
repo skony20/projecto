@@ -70,7 +70,7 @@ $sSearch = (isset($sSearchC) ? $sSearchC : '');
                     ),
                 'onChange' => new \yii\web\JsExpression('
                 function(data) {
-                    
+                    $.cookie("bBarChange", 1);
                     $.ajax({
                         url: "/projecto/projekty/barchange"
                     }); 

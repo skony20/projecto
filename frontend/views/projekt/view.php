@@ -150,11 +150,11 @@ $url = Yii::$app->request->absoluteUrl;
                     {
                     ?>
                     <div class="col-md-12 plans-gallery">
-                        <div class="col-md-6">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
                             <?=($aProductsImages->description ? '<div class="prj-plan-div-title"><span class="prj-plan-title">'.$aProductsImages->description.'</span></div>' : "")?>
                             <div class="plans"><a href="<?=$sPatch.'/'.$model->id.'/big/'.$aProductsImages->name ?>" rel="plany"><img src="<?=$sPatch.'/'.$model->id.'/big/'.$aProductsImages->name ?>" alt="Plan: <?=$sPrjName?><?=($aProductsImages->description ? ' - '.$aProductsImages->description : "")?>"></a></div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 col-sm-12 col-xs-12">
                             
                             <?php 
                             
@@ -200,7 +200,7 @@ $url = Yii::$app->request->absoluteUrl;
                 
                 <div class="col-md-12 position-gallery">
                     
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-sm-12">
                         <div class="m21b prj-desc-title">Usytuowanie</div>
                         <div class="green-border"></div>
                         <?php
@@ -219,10 +219,10 @@ $url = Yii::$app->request->absoluteUrl;
 
                         ?>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4 col-sm-12">
                         <div class="m21b prj-desc-title">Wymiary działki</div>
                         <div class="green-border"></div>
-                        <div class="position-size">Usytuowanie na działce pokazuje idealną pozycję domu na dzialcę uzgledniając minimalne odstępy od ogrodzenia.</div>
+                        <div class="position-size">Usytuowanie na działce pokazuje idealną pozycję domu na działcę uzgledniając minimalne odstępy od ogrodzenia.</div>
                         <div class="position-size-table">
                             <table class="position-size-table">
                                 <tr>

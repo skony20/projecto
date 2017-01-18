@@ -7,6 +7,7 @@ use frontend\widget\CartWidget;
 ?>
 <?php $aSessionCart = Yii::$app->session->get('Cart'); ?>
 <?php
+echo '<div class="first-navbar">';
     NavBar::begin();
     $menuItems = [
         ['label' => 'Faq', 'url' => ['/faq']],
@@ -43,6 +44,7 @@ use frontend\widget\CartWidget;
     
 
     NavBar::end();
+    echo '</div>';
     ?>
 <div class="container">
     <div class="second-menu">
@@ -50,9 +52,14 @@ use frontend\widget\CartWidget;
             <?= Html::a(Html::img(Yii::$app->request->BaseUrl.'/img/logo.png', ['class'=>'logo']), Yii::$app->homeUrl) ?>
         </div>
         <div class="contact nav_inline">
-            <div class="nav_block">
-                <div class="margin-hor-10 inline-block"><i class="fa fa-phone icon-green" aria-hidden="true"></i></div> +48 608 44 07 55
-                <div class="margin-hor-10 inline-block"><i class="fa fa-clock-o icon-green" aria-hidden="true"></i></div>PN-PT 08:00 - 20:00 
+            <div class="nav_block nav_contact">
+                <div>
+                    <div class="margin-hor-10 inline-block"><i class="fa fa-phone icon-green" aria-hidden="true"></i></div> +48 608 44 07 55
+                </div>
+                <div>
+                    <div class="margin-hor-10 inline-block"><i class="fa fa-clock-o icon-green" aria-hidden="true"></i></div>PN-PT 08:00 - 20:00 
+                </div>
+                
             </div>
             <div class="nav_block">
                 <div class="second_nav">
@@ -62,11 +69,12 @@ use frontend\widget\CartWidget;
                     ['label' => 'Główna', 'url' => ['/']],
                     ['label' => 'Popularne', 
                         'items' => [
-                            ['label' => 'Domy do 100 m2', 'url' => '#'],
-                            ['label' => 'Domy powyżej 300 m2', 'url' => '#'],
-                            ['label' => 'Domy dla 4 osób z garażem', 'url' => '#'],
-                            ['label' => 'Domy dla 2 osób z kominkiem', 'url' => '#'],
-                            ['label' => 'Domy pasywne', 'url' => '#'],
+                            ['label' => 'Domy do 100 m2', 'url' => Yii::$app->request->BaseUrl.'/projekty/HouseSize/0-100'],
+                            ['label' => 'Domy powyżej 300 m2', 'url' => Yii::$app->request->BaseUrl.'/projekty/HouseSize/300-999'],
+                            ['label' => 'Domy dla 4 osób z garażem', 'url' => Yii::$app->request->BaseUrl.'/projekty/filters/5/24/25'],
+                            ['label' => 'Domy dla 2 osób z kominkiem', 'url' => Yii::$app->request->BaseUrl.'/projekty/filters/4/28'],
+                            ['label' => 'Na wąską działkę', 'url' => Yii::$app->request->BaseUrl.'/projekty/filters/1'],
+                            ['label' => 'Domy pasywne', 'url' => Yii::$app->request->BaseUrl.'/projekty/filters/33'],
             ],],
                     ['label' => 'Nowości', 'url' => ['/projekty']],
                     ['label' => 'O nas', 'url' => ['/onas']],

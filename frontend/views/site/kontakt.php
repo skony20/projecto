@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= $form->field($model, 'body')->textarea(['rows' => 6])->label('<i class="fa fa-envelope contact-icon contact-textarea" aria-hidden="true"></i><span class="red">*</span> Treść wiadomości') ?>
                         <div class="form-group col-lg-12">
                         <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                            'template' => '<div class="row"><div class="col-lg-4 col-sm-4 text-right">{image}</div><div class="col-lg-4 col-sm-4">{input}</div><div class="col-lg-4 col-sm-4">'.Html::submitButton("Wyślij", ["class" => "contact-submit btn btn-primary", "name" => "contact-button"]).'</div></div>',
+                            'template' => '<div class="row"><div class="col-lg-4 col-sm-4 col-xs-4 text-right">{image}</div><div class="col-lg-4 col-sm-4 col-xs-4">{input}</div><div class="col-lg-4 col-sm-4 col-xs-4">'.Html::submitButton("Wyślij", ["class" => "contact-submit btn btn-primary", "name" => "contact-button"]).'</div></div>',
                         ])->label('<span class="red">*</span> Kod weryfikacyjny') ?>
 
                         

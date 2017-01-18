@@ -62,7 +62,7 @@ span.red
     padding: 13px 13px 12px;
     border-radius: 3px;
     position: relative;
-    top: 44px;
+    top: 43px;
     left: -4px;
 }
 .contact-textarea {
@@ -119,3 +119,21 @@ input#contactform-verifycode
     color:#fff;
     font-size: 15px;
 }
+
+@media only screen and (max-width:770px)
+{
+    .field-contactform-name, .field-contactform-email
+    {
+        width: 100%;
+    }
+    .field-contactform-email
+    {
+        float:none;
+    }
+    .contact-icon
+    {
+        top:48px;
+    }
+}
+
+

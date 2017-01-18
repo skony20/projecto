@@ -47,14 +47,19 @@ img.basket
 }
 .logo
 {
-    height: calc(100% - 4px);
-    padding: 4px 0 0 20px;
+    height: auto;
+    padding: 10px 0 0 0;
+    max-width:300px;
 }
 .nav_block
 {
     text-align: right;
     display: block;
     padding: 20px 50px 0 0;
+}
+.nav_contact div
+{
+    display: inline-block !important;
 }
 .contact
 {
@@ -174,5 +179,40 @@ input.search-input
 .search-bar-wrap > .search-bar-container
 {
     padding:0;
+
+}
+
+/*Poprawa responsive*/
+
+@media (max-width: 770px)
+{
+    .contact
+    {
+        max-width:100%;
+        display:block;
+            
+    }
+    .nav_contact div
+    {
+        display: block;
+    }
+    .navbar-collapse 
+    {
+        background-color: #32373b;
+        z-index: 99;
+        position: absolute;
+        min-width: 350px;
+        text-align:left;
+    } 
+    .second_nav 
+    {
+        position: absolute;
+        top: 0px;
+        left: 82px;
+    }
+    .second_nav .navbar-default .dropdown-menu
+    {
+        background-color: #32373b;
+    }
 
 }

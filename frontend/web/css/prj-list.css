@@ -245,14 +245,14 @@ img.prj-image
 }
 .prj-info
 {
-    margin:0 30px;
+    margin:0 10px;
 }
 .prj-left
 {
     width: calc(50% - 2px);
     display: inline-block;
     text-align: left;
-    padding: 0 0 0 10px;
+    padding: 0 0 0 5px;
     
 }
 .prj-right
@@ -266,7 +266,7 @@ img.prj-image
 .prj-price
 {
     background-color: #e5edf3;
-    padding: 0 10px;
+    padding: 0 5px;
     display: inline-block;
     height: 45px;
     line-height: 45px;
@@ -277,7 +277,6 @@ img.prj-image
     padding: 0 10px;
     display: inline-block;
     height: 45px;
-    width: 45px;
     background-repeat: no-repeat;
     background-position: center center; 
     vertical-align: top;
@@ -311,5 +310,61 @@ img.prj-image
     {
         width:100%;
         display:block;
+    }
+}
+/*Poprawa resposive*/
+@media (max-width: 360px)
+{
+    .prj-price
+    {
+        padding: 0 10px;
+    }
+    .prj-link
+    {
+        padding: 0 5px ;
+    }
+}
+@media (min-device-width: 361px) and (max-device-width: 1023px)
+{
+    .prj-price
+    {
+        padding: 0 30px;
+    }
+    .prj-link
+    {
+        padding: 0 20px ;
+        width:45px;
+    }
+}
+@media (min-device-width: 1280px) and (max-device-width: 1366px)
+{
+    .prj-link
+    {
+        padding: 0 5px ;
+        
+    }
+}
+@media (min-width: 1440px)
+{
+    .prj-link
+    {
+        padding: 0 5px ;
+        width:45px;
+    }
+    .prj-price
+    {
+        padding: 0 5px;
+    }
+}
+@media (min-width: 1601px)
+{
+    .prj-link
+    {
+        padding: 0 10px ;
+        width:45px;
+    }
+    .prj-price
+    {
+        padding: 0 20px;
     }
 }

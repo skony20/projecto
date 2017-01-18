@@ -710,36 +710,41 @@ img.mfp-img {
   /*TABS*/
   
   
-ul.tabs{
-        margin: 0px;
-        padding: 0px;
-        list-style: none;
+ul.tabs
+{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
 }
-ul.tabs li{
-        padding: 10px 55px !important;
-        background: #F4F9FC;
-        color: #353a3e;
-        font-weight: 700;
-        text-transform: uppercase;
-        display: inline-block;
-        padding: 10px 15px;
-        cursor: pointer;
-        text-align: center;
-        border: 2px solid none;
-
-}
-
-ul.tabs li.current{
-        background: #E9EEF2;
+ul.tabs li
+{
+    padding: 10px 55px !important;
+    background: #F4F9FC;
+    color: #353a3e;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 10px 15px;
+    cursor: pointer;
+    text-align: center;
+    border: 2px solid none;
+    min-width: 200px;
 }
 
-.tab-content{
-        display: none;
-        padding: 15px;
+ul.tabs li.current
+{
+    background: #E9EEF2;
 }
 
-.tab-content.current{
-        display: inherit;
+.tab-content
+{
+    display: none;
+    padding: 15px;
+}
+
+.tab-content.current
+{
+    display: inherit;
 }
 
 /*Dane techniczne*/
@@ -796,4 +801,46 @@ table.prj-tech-data  tr:nth-child(even)
 #realizacje img
 {
     max-width: 80%;
+}
+
+
+/*Poprawa responsive*/
+
+@media (max-width: 360px)
+{
+    .room-name
+    {
+        min-width:100px;
+    }
+    .tech-data-value
+    {
+        padding:10px;
+    }
+    table.storey-table 
+    {
+        width:100%;
+    }
+    table.storey-table tr td
+    {
+        padding: 10px;
+    }
+    table.position-size-table tr td 
+    {
+        padding: 10px 5px;
+        font-size: 12px;
+        font-weight: 700;
+    }
+    .wrap-similar
+    {
+        padding: 0px;
+    }
+    .container
+    {
+        width:100%
+    }
+    .container-similar
+    {
+        padding:0px;
+    }
+        
 }
