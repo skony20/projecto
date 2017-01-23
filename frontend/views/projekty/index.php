@@ -78,8 +78,7 @@ $sSearch = (isset($sSearchC) ? $sSearchC : '');
                     )
                 ]
             ]);
-        echo Html::hiddenInput('SizeFrom', $iSetMinSize);
-        echo Html::hiddenInput('SizeTo', $iSetMaxSize);
+
         }
 //    if ($aData['question']->id == 3 )
 //    {
@@ -93,7 +92,6 @@ $sSearch = (isset($sSearchC) ? $sSearchC : '');
         echo '</div>';
     }
     ?>
-    <?= Html::hiddenInput('bBarChange', $_SESSION['BarChange']) ?>
     <?= Html::endForm() ?>
     <?= Html::tag('div', 'resetuj filtry', ['class' => 'reset_all_filters m14b text-uppercase text-center']) ?>
     </div>

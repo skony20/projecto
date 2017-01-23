@@ -88,7 +88,7 @@ a.desc:after {
 
 /* align the logout "link" (button in form) of the navbar */
 .nav > li > form {
-    padding: 8px;
+    padding: 0px;
 }
 .all-question 
 {
@@ -117,7 +117,7 @@ label
     position: relative;
     cursor: pointer;
     float: right;
-    top: -14px;
+    top: 0px;
     color:#88c354;
     font-size:12px;
 }

@@ -23,7 +23,7 @@ echo '<div class="first-navbar">';
         $menuItemsR[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->delivery_name . ')',
+                'Wyloguj (' . Yii::$app->user->identity->delivery_name . ')',
                 ['class' => 'btn btn-link']
             )
             . Html::endForm()
@@ -69,8 +69,8 @@ echo '<div class="first-navbar">';
                     ['label' => 'Główna', 'url' => ['/']],
                     ['label' => 'Popularne', 
                         'items' => [
-                            ['label' => 'Domy do 100 m2', 'url' => Yii::$app->request->BaseUrl.'/projekty/HouseSize/0-100'],
-                            ['label' => 'Domy powyżej 300 m2', 'url' => Yii::$app->request->BaseUrl.'/projekty/HouseSize/300-999'],
+                            ['label' => 'Domy do 100 m2', 'url' => Yii::$app->request->BaseUrl.'/projekty/HouseSize/0-100', 'options'=> ['class'=>'menu-bar']],
+                            ['label' => 'Domy powyżej 300 m2', 'url' => Yii::$app->request->BaseUrl.'/projekty/HouseSize/300-999', 'options'=> ['class'=>'menu-bar']],
                             ['label' => 'Domy dla 4 osób z garażem', 'url' => Yii::$app->request->BaseUrl.'/projekty/filters/5/24/25'],
                             ['label' => 'Domy dla 2 osób z kominkiem', 'url' => Yii::$app->request->BaseUrl.'/projekty/filters/4/28'],
                             ['label' => 'Na wąską działkę', 'url' => Yii::$app->request->BaseUrl.'/projekty/filters/1'],

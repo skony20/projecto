@@ -99,48 +99,20 @@ input{
     padding-left: 50px;
     
 }
-.caption
+.blue-button
 {
-    width:100%;
-    background-color: #F4F9FC;
-    height: 50px;
-    font-size: 18px;
-    line-height: 50px;
-    
-}
-.invoice-caption
-{
-    display: none;
-}
-.order-caption
-{
-    display: inline-block;
-    width:calc(50% - 3px);
-    
-}
-.caption
-{
-    padding-left: 50px;
-}
-.order-comment
-{
-    padding: 50px;
-}
-.ord_last_row
-{
-    text-align: right;
-}
-.row-order-content
-{
-    border-left: 2px solid #F4F9FC;
-    border-right: 2px solid #F4F9FC;
-    min-height:150px;
-    padding: 50px;
-}
-.row-order:nth-last-child(2) .row-order-content
-{
-    border-bottom: 2px solid #F4F9FC;
-    margin-bottom: 50px;
+    padding: 0 40px;
+    background-color: #3d7db0;
+    height:40px;
+    text-align:center;
+    line-height: 40px;
+    border-radius:3px;
+    color:#fff;
+    margin:5px 0 0 10px;
+    cursor: pointer;
+    border:0;
+    font-size:14px;
+    font-weight: 600;
 }
 
 

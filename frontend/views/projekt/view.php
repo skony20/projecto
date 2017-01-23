@@ -70,6 +70,8 @@ $url = Yii::$app->request->absoluteUrl;
                     <div class="prj-prc-item view-darker-blue"><span class="m21b"><?= ($aPrdAttrs[7]['value'] ? round($aPrdAttrs[7]['value']) .' x '.round($aPrdAttrs[6]['value']) .' m' : 'b/d') ?></span></div>
                     <div class="prj-prc-item"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i><br><span class="m12abk text-uppercase">Cena</span></div>
                     <div class="prj-prc-item price-gray m21w"><?= ($model->price_brutto_source != $model->price_brutto ? '<span class="source-price">'.$model->price_brutto_source.'</span><br><span class="price">'. $model->price_brutto. '</span>': '<span class="price">'. $model->price_brutto. ' zł</span>') ?></div>
+                     <div class="m13w prj-add-favorites" rel="<?= $model->id ?>">Dodaj do ulubionych  <i class="fa fa-heart-o" aria-hidden="true"></i></div>
+                    
                     <div class="prj-add-button m13w" rel="<?= $model->id ?>" rel2="<?= $model->productsDescriptons->nicename_link.'.html' ?>">Dodaj do koszyka <i class="fa fa-cart-arrow-down" aria-hidden="true"></i></div>
                 </div>
         </div>

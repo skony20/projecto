@@ -1,0 +1,125 @@
+/* 
+    Projekt    : projekttop.pl
+    Created on : 2017-01-20, 17:53:53
+    Author     : Mariusz Skonieczny mariuszskonieczny@hotmail.com
+*/
+.field-orders-shippings_payments_id
+{
+    padding:20px 0 0 40px;
+}
+#orders-shippings_payments_id label
+{
+    font-size: 14px;
+}
+.order-shipping
+{
+    padding:20px 0 20px 40px;
+    font-size: 14px;
+    line-height: 1.6em;
+}
+.field-orders-is_giodo label
+{
+    padding:20px 0 20px 40px;
+    font-size: 14px;
+    line-height: 1.4em;
+}
+.step1-button
+{
+    padding: 0 40px;
+    background-color: #3d7db0;
+    height:40px;
+    text-align:center;
+    line-height: 40px;
+    border-radius:3px;
+    color:#fff;
+    margin:5px 0 0 10px;
+    cursor: pointer;
+    border:0;
+    float: right;
+    font-size:14px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.row-order-content table.cart-table tr td
+{
+    padding-right: 10px;
+}
+.order-list-row td
+{
+    padding:10px 0 ;
+}
+.cart-list-bottom td
+{
+    font-size:14px;
+    font-weight: 700;
+    padding:20px 0;
+}
+.order-caption
+{
+    display: inline-block;
+    width:calc(50% - 3px);
+    
+}
+.caption
+{
+    padding-left: 50px;
+}
+.order-comment
+{
+    padding: 50px;
+}
+.ord_last_row
+{
+    text-align: right;
+}
+.caption
+{
+    width:100%;
+    background-color: #F4F9FC;
+    height: 50px;
+    font-size: 20px;
+    line-height: 50px;
+    
+}
+.invoice-caption
+{
+    display: none;
+}
+
+.row-order-content
+{
+    border-left: 2px solid #F4F9FC;
+    border-right: 2px solid #F4F9FC;
+    min-height:150px;
+    padding: 40px 50px;
+    font-size: 15px;
+    line-height: 1.6em;
+}
+.row-order:nth-last-child(2) .row-order-content
+{
+    border-bottom: 2px solid #F4F9FC;
+    margin-bottom: 50px;
+}
+.step2-button
+{
+    padding: 0 40px;
+    background-color: #3d7db0;
+    height:40px;
+    text-align:center;
+    line-height: 40px;
+    border-radius:3px;
+    color:#fff;
+    margin:5px 0 0 10px;
+    cursor: pointer;
+    border:0;
+    font-size:14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 20px 0 10px;
+}
+.order-confirm
+{
+    font-size: 15px;
+    line-height: 20px;
+    
+}

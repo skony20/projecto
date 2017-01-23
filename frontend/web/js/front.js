@@ -166,6 +166,15 @@ $(document).on('ready pjax:success',
                 }
             }
     );
+    
+    $('.menu-bar').click(function()
+    {
+        $.cookie("bBarChange", 1);
+        $.ajax({
+            url: '/projecto/projekty/barchange'
+            });
+    });
+    
     /*Obsługa accordion*/
     $('.filter_question_row').click(
             function()

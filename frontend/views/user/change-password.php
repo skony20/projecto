@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $form = ActiveForm::begin(['id' => 'change-password']); ?>
 
         <?= $form->field($model, 'password')->passwordInput() ?>
-        <?= Html::submitButton('Zmień hasło', ['class' => '', 'name' => 'signup-button']) ?>
+        <?= Html::submitButton('Zmień hasło', ['class' => 'blue-button', 'name' => 'signup-button']) ?>
         <?php ActiveForm::end(); ?>
     </div>
     

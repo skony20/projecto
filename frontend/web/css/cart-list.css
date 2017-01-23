@@ -4,39 +4,93 @@
     Author     : MariuszS
 */
 
-.cart-list-row
+
+table.cart-table 
 {
-    display: block;
+    border: 1px solid #d6d6d6;
+    position: relative;
+    width:100%;
+    height: auto;
+    border-collapse: collapse;
+    min-height: 250px;
 }
-.cart-list0, .cart-list1, .cart-list2, .cart-list3, .cart-list4, .cart-list5
+table.cart-table tr
 {
-    display: inline-block;
+    border-bottom: 1px solid #d6d6d6;
+}
+table.cart-table tr td
+{
     text-align: right;
     min-width: 50px;
 }
-.cart-list1
-{
-    width: 100px;
-    
-}
- .cart-list2
-{
-    width: 400px;
-    
-}
-.cart-list3, .cart-list5
-{
-    width: 240px;
-}
-.cart-list4
-{
-    width: 120px;
-}
-.cart-list0
+span.delete-from-cart
 {
     color:red;
     font-size:12px;
     cursor: pointer;
+}
+.cart-list-row td
+{
+    padding:20px 0;
+}
+.cart-list-caption td
+{
+    background-color: #f5f9fc;
+    font-size:14px;
+    font-weight: 700;
+    padding:15px 0;
+}
+.del-cell
+{
+    text-align:center!important
+}
+.go-to-step1
+{
+    float:right;
+    background-color: #2f96d1;
+    font-family: Montserrat;
+    color: #ffffff;
+    text-transform: uppercase;
+    height: 40px;
+    line-height: 40px;
+    width: 250px;
+    margin: 20px auto;
+    border:0;
+    border-radius: 2px;
+    box-shadow: 1px 1px 2px #bcc0c4;
+}
+.cart-goback
+{
+    float:left;
+    background-color: #88c354;
+    font-family: Montserrat;
+    color: #ffffff;
+    text-transform: uppercase;
+    height: 40px;
+    line-height: 40px;
+    width: 250px;
+    margin: 20px auto;
+    border:0;
+    border-radius: 2px;
+    box-shadow: 1px 1px 2px #bcc0c4;
+}
+
+.cart-left, .cart-right
+{
+    display: inline-block;
+    padding:20px 10px;
+    vertical-align: middle;
+    
+}
+.cart-left
+{
+    color:#88c354;
+    min-width: 70px;
+    text-align: center;
+}
+.cart-right 
+{
+    width: calc(100% - 80px);
 }
 
 /* Cart Widget*/
@@ -122,3 +176,4 @@
     text-align: right;
     font-weight: 800;
 }
+

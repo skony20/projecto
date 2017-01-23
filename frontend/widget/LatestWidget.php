@@ -63,7 +63,7 @@ class LatestWidget extends Widget
             $aDepth = $aProduct->getOneAttribute(3)->all();
                     
             ?>
-            <div class="col-md-3 col-sm-6 col-xs-6">
+            <div class="col-md-3 col-sm-6 col-xs-12">
                 <div class="latest-product">
                     <div class="latest-img"><?= Html::img(yii::getalias("@image").'/'.$aProduct->id.'/info/'.$aProduct->productsImages[0]->name) ?></div>
                     <div class="latest-info">

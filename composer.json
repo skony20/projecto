@@ -22,7 +22,7 @@
         "yiisoft/yii2-imagine": "~2.0.0",
         "yii2mod/yii2-ion-slider": "*",
         "openpayu/openpayu" : "2.2.*",
-        "yiisoft/yii2-authclient": "*"
+        "yiisoft/yii2-authclient": "^2.1"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

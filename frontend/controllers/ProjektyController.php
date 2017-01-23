@@ -125,6 +125,7 @@ public function actionIndex($sort = 'default', $szukaj = '')
             
             $aPostData = explode('/', Yii::$app->request->get('tag'));
             $sHouseSize =  Yii::$app->request->get('HouseSize');
+
             $aPostData['strona'] ='';
             $aPostData['SizeX'] =Yii::$app->request->get('SizeX');
             $aPostData['SizeY'] =Yii::$app->request->get('SizeY');
@@ -145,10 +146,12 @@ public function actionIndex($sort = 'default', $szukaj = '')
             
             if ($sHouseSize != '' && $bBarChange)
             {
-                //echo print_r($sHouseSize, TRUE); die();
+                
                 $aAllSize = explode('-', $sHouseSize);
                 $iPostMinSize = $aAllSize[0];
                 $iPostMaxSize = $aAllSize[1];
+                $aDimensions['iOneMinSize'] = $iPostMinSize;
+                $aDimensions['iOneMaxSize'] = $iPostMaxSize;
 
             }
            // echo '<pre>'. print_r([$iPostMinSize, $iPostMaxSize], TRUE); die();
@@ -275,7 +278,6 @@ public function actionIndex($sort = 'default', $szukaj = '')
        
         $aDimensions['iOneMinSize'] = ($bBarChange ? $iPostMinSize : $iOneMinSize);
         $aDimensions['iOneMaxSize'] = ($bBarChange ? $iPostMaxSize : $iOneMaxSize);
-        
 
         if (count(array_filter($aPostData))>=3 && count($aPrdIds) == 0)
                 {
@@ -326,7 +328,6 @@ public function actionIndex($sort = 'default', $szukaj = '')
                 ],
             ]);
 
-        //echo '<pre>'.print_r($aPrdIds, true); die();
         return $this->render('index',['aChooseFilters'=>$aFiltersData, 'aFilters'=>$aData, 'dataProvider'=>$dataProvider, 'aDimensions'=>$aDimensions, 'sort'=>$sort, 'sSearchC' => $szukaj]);
  
 

@@ -44,15 +44,14 @@ class SignupForm extends Model
             ['username', 'string', 'min' => 2, 'max' => 255],
 
             ['email', 'trim'],
-            ['email', 'required'],
+            ['email', 'required', 'message' => 'Pole {attribute} nie moze być puste'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
             ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Użytkownik z tym adresem email już istnieje.'],
 
-            ['password', 'required'],
+            ['password', 'required', 'message' => 'Pole {attribute} nie moze być puste'],
             ['password', 'string', 'min' => 6],
             ['phone', 'integer'],
-            [['delivery_name', 'delivery_lastname', 'delivery_street_local', 'delivery_zip', 'delivery_city', 'delivery_country', 'phone'], 'required'],
             ['delivery_name', 'string', 'min' => 2, 'max' => 255],
             ['delivery_lastname', 'string', 'min' => 2, 'max' => 255],
             ['delivery_street_local', 'string', 'min' => 2, 'max' => 255],

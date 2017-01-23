@@ -35,7 +35,7 @@ foreach ($aFilters as $aData)
           <h4 class="panel-title filter_question_row" rel="<?=$a?>">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?=$a?>">
             <?= $aData['question']->name ?></a><br>
-              <?=Html::tag('div','x',['class'=>'reset_filter', 'rel'=>$aData['question']->id, 'title'=>'Resetuj odpowiedź'])?>
+              
                 
           </h4>
         </div>
@@ -93,6 +93,7 @@ foreach ($aFilters as $aData)
                         echo '</div>';
                     }
                 ?>
+                <?=Html::tag('div','Resetuj',['class'=>'reset_filter', 'rel'=>$aData['question']->id, 'title'=>'Resetuj odpowiedź'])?>
             </div>
         </div>
       </div>

@@ -7,10 +7,9 @@ $params = array_merge(
     require(__DIR__ . '/params-local.php')
 );
 use \yii\web\Request;
-$baseUrl = str_replace('/frontend/web', '', (new Request)->getBaseUrl()); 
 return [
     'id' => 'app-frontend',
-    'name'=>'Projekttop.pl',
+    'name'=>'ProjektTop.pl',
     'language' => 'pl-PL',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
@@ -222,12 +221,19 @@ return [
         'class' => 'yii\authclient\Collection',
         'clients' => [
           'facebook' => [
+            'name' =>'facebook',
             'class' => 'yii\authclient\clients\Facebook',
             'authUrl' => 'https://www.facebook.com/dialog/oauth?display=popup',
             'clientId' => '1304805822925720',
             'clientSecret' => '3e9166cacad851c5fb18d07cb4c3574e',
             'attributeNames' => ['name', 'email', 'first_name', 'last_name'],
           ],
+           'google' => [
+                  'name' =>'google',
+                  'class' => 'yii\authclient\clients\Google',
+                  'clientId' => '231397738978-cn7knqev4928f22lgcgpkii36um593al.apps.googleusercontent.com',
+                  'clientSecret' => 'njsDOucSDH8sS5K9xAZk2Ctu',
+              ], 
         ],
       ],
     ],

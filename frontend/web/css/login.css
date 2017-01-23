@@ -1,0 +1,110 @@
+/* 
+    Projekt    : projekttop.pl
+    Created on : 2017-01-19, 15:51:12
+    Author     : Mariusz Skonieczny mariuszskonieczny@hotmail.com
+*/
+.site-login
+{
+    padding-top:30px;
+}
+.login-title
+{
+    padding-bottom: 20px;
+}
+.login-button
+{
+    margin: 10px 1em 10px 0;
+    background-color: #2f96d1;
+    font-family: Montserrat;
+    color: #ffffff;
+    text-transform: uppercase;
+    height: 40px;
+    line-height: 40px;
+    width: 250px;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 1px 1px 2px #bcc0c4;
+}
+.facebook-button
+{
+    background-color: #3b5998;
+    font-family: Montserrat;
+    color: #ffffff;
+    text-transform: uppercase;
+    height: 40px;
+    line-height: 40px;
+    width: 220px;
+    margin: 20px auto;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 1px 1px 2px #bcc0c4;
+    text-transform:capitalize
+}
+.google-button
+{
+    background-color: #db4437;
+    font-family: Montserrat;
+    color: #ffffff;
+    text-transform: uppercase;
+    height: 40px;
+    line-height: 40px;
+    width: 220px;
+    margin: 20px auto;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 1px 1px 2px #bcc0c4;
+    text-transform:capitalize
+}
+.login-buttons
+{
+    width: 70%;
+    text-align: right;
+}
+.facebook-login
+{
+
+}
+ul.auth-clients 
+{
+    padding:0;
+    margin:0;
+}
+.auth-clients li
+{
+    padding:0;
+    display: inline-block;
+    margin: 0 1em 0 0;
+    float:none;
+}
+.registry-plus
+{
+    font-size:13px;
+    padding:20px 30px;;
+}
+.registry-plus li
+{
+    font-size:15px;
+    padding:5px 0;
+    font-weight: 600;
+    list-style: none;
+}
+.registry-button
+{
+    margin: 10px 0 0 50px;
+    background-color: #2f96d1;
+    font-family: Montserrat;
+    color: #ffffff;
+    text-transform: uppercase;
+    height: 40px;
+    line-height: 40px;
+    width: 250px;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 1px 1px 2px #bcc0c4;
+    text-align:center;
+}
+.registry-button a
+{
+    color:#fff;
+    text-decoration: none;
+}

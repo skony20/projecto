@@ -36,7 +36,7 @@
     display: block;
     margin: 0 0 1em;
     list-style: none;
-    overflow: auto;
+    overflow: hidden;
 }
 
 .auth-clients li {

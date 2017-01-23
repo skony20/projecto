@@ -10,7 +10,7 @@
     echo $this->render('/layouts/_cart');
     ?>
     <div class="container">
-        <?= $this->render('/layouts/_breadcamps'); ?>
+        <?= $this->render('/layouts/_breadcramps'); ?>
         <?= $this->render('/layouts/_sidebar'); ?>
         <div class="account-content">
             <?= $content ?>

@@ -23,14 +23,21 @@ class LoginForm extends Model
     {
         return [
             // username and password are both required
-            [['username', 'password'], 'required'],
+            [['username', 'password'], 'required', 'message' => 'Pole {attribute} nie moze być puste'],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
         ];
     }
-
+     public function attributeLabels()
+    {
+        return [
+            'username' => 'Nazwa użytkownika',
+            'password' => 'Hasło',
+            'rememberMe' => 'Zapamiętaj mnie',
+        ];
+    }
     /**
      * Validates the password.
      * This method serves as the inline validation for password.

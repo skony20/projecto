@@ -21,9 +21,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row-order">
         <div class="caption">Wysyłka:</div>
         <div  class="order-shipping">
-            Wysyłka realizowana jest na koszt projekttop.pl
-            <br> Odbywa się za za posrednictwem kuriera poczty polskiej.
-            <br> Gotowy projekt u klienta docieraz zazwyczaj do 72 godzin od zaksięgowania wpłaty
+            Wysyłka realizowana jest na koszt ProjektTop.pl
+            <br> Odbywa się za za pośrednictwem kuriera Poczty Polskiej.
+            <br> Gotowy projekt dociera do klienta zazwyczaj do 7 dni od zaksięgowania wpłaty.
         </div>
     </div>
     <div class="row-order">
@@ -63,7 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row-order">
             <div class="caption">Uwagi do zamówienia</div>
             <div class="order-comment">
-                <?= $formData->field($aOrder, 'comments')->textarea(['placeholder' =>'Umieśc tu dodatkowe uwagi do zamówienia'])->label(false)?>
+                <?= $formData->field($aOrder, 'comments')->textarea(['placeholder' =>'Umieść tu dodatkowe uwagi do zamówienia'])->label(false)?>
             </div>
             
         </div>
@@ -75,7 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
         <div class="form-group">
-            <?= Html::submitButton('Dalej', ['class' => '', 'name' => 'signup-button']) ?>
+            <?= Html::submitButton('Dalej', ['class' => 'step1-button', 'name' => 'signup-button']) ?>
         </div>
     </div>
 </div>
