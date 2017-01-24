@@ -54,3 +54,25 @@ ul.acount-menu li
     font-size: 18px;
     padding:0;
 }
+.account-container
+{
+    padding-top:40px;
+}
+.signup-row
+{
+    width: 70%;
+}
+.registry-chceckbox
+{
+    padding: 10px 0; 
+    width: 70%;
+}
+.signup-login
+{
+    padding:50px 0;
+        
+}
+.forgot-password
+{
+    padding: 10px 0 0 120px;
+}

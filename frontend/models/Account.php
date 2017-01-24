@@ -111,6 +111,7 @@ class Account extends Model
         $model->delivery_zip = $this->delivery_zip;
         $model->delivery_city = $this->delivery_city;
         $model->delivery_country = $this->delivery_country;
+        $model->phone = $this->phone;
         $model->invoice_name = $this->invoice_name;
         $model->invoice_lastname = $this->invoice_lastname;
         $model->invoice_firm_name = $this->invoice_firm_name;

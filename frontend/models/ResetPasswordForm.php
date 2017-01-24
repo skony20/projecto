@@ -47,7 +47,13 @@ class ResetPasswordForm extends Model
             ['password', 'string', 'min' => 6],
         ];
     }
+    public function attributeLabels()
+    {
+        return [
+            'password' => 'Hasło',
 
+        ];
+    }
     /**
      * Resets password.
      *

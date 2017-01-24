@@ -28,6 +28,8 @@ class SignupForm extends Model
     public $invoice_city;
     public $invoice_name;
     public $invoice_country;
+    public $newslatter;
+    public $agreement;
     public $source;
     
 
@@ -51,22 +53,9 @@ class SignupForm extends Model
 
             ['password', 'required', 'message' => 'Pole {attribute} nie moze być puste'],
             ['password', 'string', 'min' => 6],
-            ['phone', 'integer'],
-            ['delivery_name', 'string', 'min' => 2, 'max' => 255],
-            ['delivery_lastname', 'string', 'min' => 2, 'max' => 255],
-            ['delivery_street_local', 'string', 'min' => 2, 'max' => 255],
-            ['delivery_zip', 'string', 'min' => 2, 'max' => 255],
-            ['delivery_city', 'string', 'min' => 2, 'max' => 255],
-            ['delivery_country', 'string', 'min' => 2, 'max' => 255],
-            ['invoice_nip', 'string', 'min' => 2, 'max' => 255],
-            ['invoice_lastname', 'string', 'min' => 2, 'max' => 255],
-            ['invoice_firm_name', 'string', 'min' => 2, 'max' => 255],
-            ['invoice_street_local', 'string', 'min' => 2, 'max' => 255],
-            ['invoice_zip', 'string', 'min' => 2, 'max' => 255],
-            ['invoice_city', 'string', 'min' => 2, 'max' => 255],
-            ['invoice_name', 'string', 'min' => 2, 'max' => 255],
-            ['invoice_country', 'string', 'min' => 2, 'max' => 255],
             ['source', 'string', 'max' => 14],
+            ['newslatter', 'boolean'],
+            ['agreement', 'required', 'requiredValue' => 1, 'message' => 'Wyrażenie zgody jest konieczne w celu procesowania zamówień'],
             
         ];
     }
@@ -75,23 +64,9 @@ class SignupForm extends Model
         return [
             'username' => 'Nazwa użytkownika',
             'password' => 'Hasło',
-            'email' => 'Adres email',
-            'phone' => 'Telefon',
-            'delivery_name' => 'Imię',
-            'delivery_lastname' => 'Nazwisko',
-            'delivery_street_local' => 'Adres',
-            'delivery_zip' => 'Kod pocztowy',
-            'delivery_city' => 'Miasto',
-            'delivery_country' => 'Państwo',
-            'invoice_name' => 'Imię',
-            'invoice_lastname' => 'Nazwisko',
-            'invoice_firm_name' => 'Nazwa firmy',
-            'invoice_street_local' => 'Adres',
-            'invoice_zip' => 'Kod pocztowy',
-            'invoice_city' => 'Miasto',
-            'invoice_country' => 'Państwo',
-            'invoice_nip' => 'Numer NIP',
             'source' => 'Źródło',
+            'newslatter' => 'Wyrażam zgodę na otrzymywanie informacji marketingowych  i promocyjnych drogą elektroniczną zgodnie z ustawą z dn. 18.07.2002 r. o świadczeniu usług drogą elektroniczną (Dz.U. nr 144, poz. 1204, z późn. zm.)',
+            'agreement'=> 'Potwierdzam że zapoznałem się z regulaminem i akceptuję jego treść oraz wyrażam zgodę na przetwarzanie moich danych osobowych potrzebnych do realizacji zamówień',
             
         ];
 
@@ -110,22 +85,8 @@ class SignupForm extends Model
         
         $user = new User();
         $user->username = $this->username;
+        $user->newslatter = $this->newslatter;
         $user->email = $this->email;
-        $user->delivery_name = $this->delivery_name;
-        $user->delivery_lastname = $this->delivery_lastname;
-        $user->delivery_street_local = $this->delivery_street_local;
-        $user->delivery_zip = $this->delivery_zip;
-        $user->delivery_city = $this->delivery_city;
-        $user->delivery_country = $this->delivery_country;
-        $user->phone = $this->phone;
-        $user->invoice_nip = $this->invoice_nip;
-        $user->invoice_lastname = $this->invoice_lastname;
-        $user->invoice_firm_name = $this->invoice_firm_name;
-        $user->invoice_street_local = $this->invoice_street_local;
-        $user->invoice_zip = $this->invoice_zip;
-        $user->invoice_city = $this->invoice_city;
-        $user->invoice_name = $this->invoice_name;
-        $user->invoice_country = $this->invoice_country;
         $user->setPassword($this->password);
         $user->generateAuthKey();
         
@@ -142,7 +103,6 @@ class SignupForm extends Model
         if (!$user) {
             return false;
         }
-        
         return Yii::$app
             ->mailer
             ->compose(

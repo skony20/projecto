@@ -22,6 +22,7 @@ use yii\web\Session;
 use common\models\User;
 use app\models\SearchProject;
 use yii\web\Cookie;
+use frontend\models\Account;
 
 
 /**
@@ -361,11 +362,13 @@ class SiteController extends MetaController
     public function actionSignup()
     {
         $model = new SignupForm();
+        $model->username = Yii::$app->request->post('SignupForm')['email'];
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
                 $model->sendEmail();
                 if (Yii::$app->getUser()->login($user)) {
-                    return $this->goHome();
+
+                    return $this->redirect('user/adress-data');
                 }
             }
         }
@@ -383,13 +386,14 @@ class SiteController extends MetaController
     public function actionRequestPasswordReset()
     {
         $model = new PasswordResetRequestForm();
+        
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
+                Yii::$app->session->setFlash('success', 'Sprawdź skrzynkę pocztową i postępuj według instrukcji');
 
                 return $this->goHome();
             } else {
-                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for email provided.');
+                Yii::$app->session->setFlash('error', 'Nie możemy wysłać linku dla takiego adresu');
             }
         }
 
@@ -444,9 +448,7 @@ class SiteController extends MetaController
         $oSearchProjects->filters = serialize($aFiltersData);
         $oSearchProjects->users_id = (Yii::$app->user->isGuest ? '' : Yii::$app->user->identity->id);
         $oSearchProjects->creation_date = time();
-        echo "<script>";
-            echo "console.log('".$oSearchProjects->filters."  ".$oSearchProjects->users_id."  ".$oSearchProjects->creation_date."')";
-        echo "</script>";
+
         $oSearchProjects->save();
     }
     

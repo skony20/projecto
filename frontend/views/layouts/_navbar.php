@@ -23,7 +23,7 @@ echo '<div class="first-navbar">';
         $menuItemsR[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Wyloguj (' . Yii::$app->user->identity->delivery_name . ')',
+                'Wyloguj (' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link']
             )
             . Html::endForm()

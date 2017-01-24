@@ -11,54 +11,36 @@ $this->title = 'Rejestracja';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-signup">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Wypłenij formularz by założyć konto:</p>
-
-    <div class="row">
-        <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
-
-            <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-
-            <?= $form->field($model, 'email') ?>
-
-            <?= $form->field($model, 'password')->passwordInput() ?>
-            <div class="caption">
-                <div class="registry-caption">Dane do wysyłki:</div>
-                <div class="registry-caption"><div class=" invoice-caption">Dane do faktury:</div></div>
-            </div>
-            
-            <div class="p50p">
-                <div class="delivery">
-                    <?= $form->field($model, 'delivery_name')->textInput() ?>
-                    <?= $form->field($model, 'delivery_lastname')->textInput() ?>
-                    <?= $form->field($model, 'delivery_street_local')->textInput() ?>
-                    <?= $form->field($model, 'delivery_zip')->textInput() ?>
-                    <?= $form->field($model, 'delivery_city')->textInput() ?>
-                    <?= $form->field($model, 'delivery_country')->textInput(['value'=>'Polska']) ?>
-                    <?= $form->field($model, 'phone')->textInput() ?>
-                    <br><br>
-                    <div class="want-invoice">
-                        Chcę otrzymać fakturę VAT >
-                    </div>
+    
+    <div class="col-md-6">
+        <div class="m21b login-title"><?= Html::encode($this->title) ?></div>
+        <div class="green-border"></div>
+        <p class="m18b">Nie masz jeszcze konta? Zarejestruj się!</p>
+        <div class="row registry-row">
+            <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
+                <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
+                <?= $form->field($model, 'password')->passwordInput() ?>
+                <?= $form->field($model, 'agreement',['options'=>['class' => 'registry-chceckbox']])->checkbox(['checked' => false]); ?>
+                <?= $form->field($model, 'newslatter',['options'=>['class' => 'registry-chceckbox']])->checkbox(['checked' => false]); ?>
+                <div class="form-group text-right signup-row">
+                    <?= Html::submitButton('Rejestracja', ['class' => 'registry-button', 'name' => 'signup-button']) ?>
                 </div>
-            </div>
-            <div class="p50p">
-                <div class="invoice">
-                    <?= $form->field($model, 'invoice_nip')->textInput() ?>
-                    <?= $form->field($model, 'invoice_firm_name')->textInput() ?>
-                    <?= $form->field($model, 'invoice_name')->textInput() ?>
-                    <?= $form->field($model, 'invoice_lastname')->textInput() ?>
-                    <?= $form->field($model, 'invoice_street_local')->textInput() ?>
-                    <?= $form->field($model, 'invoice_zip')->textInput() ?>
-                    <?= $form->field($model, 'invoice_city')->textInput() ?>
-                    <?= $form->field($model, 'invoice_country')->textInput(['value'=>'Polska']) ?>
-                </div>
-                </div>
-            <div class="form-group">
-                <?= Html::submitButton('Rejestracja', ['class' => '', 'name' => 'signup-button']) ?>
-            </div>
-
-        <?php ActiveForm::end(); ?>
+            <?php ActiveForm::end(); ?>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="m21b login-title">Masz już konto ?</div>
+        <div class="green-border"></div>
+        <div class="signup-login">
+            <?= Html::tag('div', Html::a('Zaloguj się ', Yii::$app->request->BaseUrl.'/login'), ['class'=>'registry-button']) ?>
+            <div class="forgot-password"><?= Html::a('Nie pamiętam hasła', ['site/request-password-reset']) ?></div>
+        </div>
+        <div class="facebook-login">
+            <?= yii\authclient\widgets\AuthChoice::widget([
+                'baseAuthUrl' => ['site/auth'],
+                ]) ?>
+             </div>
+        
     </div>
 </div>

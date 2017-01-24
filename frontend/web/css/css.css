@@ -41,7 +41,30 @@ input{
     display: inherit;
     vertical-align: inherit;
 }
+a:hover
+{
+    text-decoration: none;
+}
+h1
+{
+    font-size: 21px;
+    color: #2d3e52;
+    font-family: Montserrat;
 
+}
+.blue-button
+{
+    background-color: #2f96d1;
+    font-family: Montserrat;
+    color: #ffffff;
+    text-transform: uppercase;
+    height: 40px;
+    line-height: 40px;
+    width: 250px;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 1px 1px 2px #bcc0c4;
+}
 .remove-filter
 {
     color:red;

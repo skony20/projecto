@@ -19,7 +19,7 @@
     <?= $this->render('/layouts/_searchbar'); ?>
 <div class="wrap wrap-breadcrumbs">
     <?= $this->render('/layouts/_breadcramps'); ?>
-    </div>
+</div>
 
     <?= $content ?>
 <?php
