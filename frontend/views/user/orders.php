@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ?>
         <div class="order-row">
             <div class="order-data"><?= date('Y-m-d H:i', $aOrder->creation_date) ?></div>
-            <div class="order-nr"><?= $aOrder->id ?></div>
+            <div class="order-nr"><?= HTML::a($aOrder->id, Yii::$app->request->BaseUrl.'/user/order/'.$aOrder->id); ?></div>
             <div class="order-status"><?= $aOrder->ordersStatus->name ?></div>
             <div class="order-total"><?= $aOrder->value_brutto. ' zł' ?></div>
         </div>

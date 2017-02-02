@@ -210,7 +210,7 @@ class SiteController extends MetaController
                     $aPrdIds[0] = 1;
                 }
         //echo print_r([$aPostData,$aPrdIds], TRUE); die();
-        $query = $model::find()->FilterWhere(['IN', 'id', $aPrdIds]);
+        $query = $model::find()->FilterWhere(['IN', 'id', $aPrdIds])->andFilterWhere(['is_active' => 1]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => false,

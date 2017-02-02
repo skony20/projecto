@@ -357,7 +357,7 @@ $(document).on('ready pjax:success',
     
     
     
-    /*formualrz sortowania*/
+    /*formularz sortowania*/
     $('.prj-sort').change(function()
     {
         $("#prj-sort").submit();

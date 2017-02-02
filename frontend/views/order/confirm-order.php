@@ -19,7 +19,7 @@ if ($oOrderActual['shippings_payments_id'] == 1)
 ?>
     <div class="confirm-payment">
         Kwotę w wysokości: <strong><?=Yii::$app->formatter->asCurrency($oOrderActual['value_brutto'], ' zł')?> </strong>przelej na konto:<br><br>
-        xx xxxx xxxx xxxx xxxx xxxx xxxx xxxxx<br><br><br>
+        81 1140 2017 0000 4902 0574 4547<br><br><br>
         Dane do przelewu:<br><br>
         ProjektTop.pl<br>
         Wici 48/49<br>

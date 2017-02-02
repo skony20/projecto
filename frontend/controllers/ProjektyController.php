@@ -304,7 +304,7 @@ public function actionIndex($sort = 'default', $szukaj = '')
         }
         
         //echo '<pre>'. print_r([$aPrdIds, count(array_filter($aPostData)) ], TRUE); die();    
-        $query = $model::find()->FilterWhere(['IN', 'products.id', $aPrdIds]);
+        $query = $model::find()->FilterWhere(['IN', 'products.id', $aPrdIds])->andFilterWhere(['is_active' => 1]);
         //tylko włączone projekty   ->andFilterWhere(['is_active' => 1])
 
         if (count(array_filter($aPostData))<=3 && !$bBarChange && (empty($aPrdFilters) && empty($aAttributes)))

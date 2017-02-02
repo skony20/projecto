@@ -9,7 +9,6 @@ use yii\bootstrap\ActiveForm;
 
 $this->title = 'Dane konta';
 $this->params['breadcrumbs'][] = $this->title;
-//echo '<pre>'.print_r($aUser, TRUE); die();
 ?>
 <div class="site-account">
 

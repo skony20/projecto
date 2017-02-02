@@ -27,7 +27,7 @@ class UserController extends MetaController
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['account', 'favorites', 'adress-data', 'change-password', 'orders'],
+                        'actions' => ['account', 'favorites', 'adress-data', 'change-password', 'orders', 'order'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -148,5 +148,14 @@ class UserController extends MetaController
         
         //echo '<pre>'. print_r($dataProvider , TRUE); die();
         return $this->render('orders', ['aOrders'=>$dataProvider]);
+    }
+    public function actionOrder($id)
+    {
+        $oOrder = new Orders ();
+        $query = $oOrder::find($id);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            ]);
+        return $this->render('order', ['aOrder'=>$dataProvider]);
     }
 }

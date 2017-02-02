@@ -67,7 +67,7 @@ $url = Yii::$app->request->absoluteUrl;
                     <div class="prj-prc-item "><i class="fa fa-home fa-2x" aria-hidden="true"></i><br><span class="m12abk text-uppercase">Powierzchnia użytkowa</span></div>
                     <div class="prj-prc-item view-darker-blue"><span class="m21b"><?= ($aPrdAttrs[4]['value'] ? $aPrdAttrs[4]['value'] .' m2' : 'b/d') ?></span></div>
                     <div class="prj-prc-item"><i class="fa fa-arrows-alt fa-2x" aria-hidden="true"></i><br><span class="m12abk text-uppercase">Minimalne<br>wymiary działki</span></div>
-                    <div class="prj-prc-item view-darker-blue"><span class="m21b"><?= ($aPrdAttrs[7]['value'] ? round($aPrdAttrs[7]['value']) .' x '.round($aPrdAttrs[6]['value']) .' m' : 'b/d') ?></span></div>
+                    <div class="prj-prc-item view-darker-blue"><span class="m21b"><?= ($aPrdAttrs[6]['value'] ? round($aPrdAttrs[6]['value']) .' x '.round($aPrdAttrs[7]['value']) .' m' : 'b/d') ?></span></div>
                     <div class="prj-prc-item"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i><br><span class="m12abk text-uppercase">Cena</span></div>
                     <div class="prj-prc-item price-gray m21w"><?= ($model->price_brutto_source != $model->price_brutto ? '<span class="source-price">'.$model->price_brutto_source.'</span><br><span class="price">'. $model->price_brutto. '</span>': '<span class="price">'. $model->price_brutto. ' zł</span>') ?></div>
                      <div class="m13w prj-add-favorites" rel="<?= $model->id ?>">Dodaj do ulubionych  <i class="fa fa-heart-o" aria-hidden="true"></i></div>
@@ -85,7 +85,7 @@ $url = Yii::$app->request->absoluteUrl;
             <ul class="tabs">
                 <li class="tab-link current" data-tab="opis">Opis</li>
                 <li class="tab-link" data-tab="plany">Plany</li>
-                <li class="tab-link" data-tab="realizacje">Realizacje</li>
+<!--                <li class="tab-link" data-tab="realizacje">Realizacje</li>-->
                 <li class="tab-link" data-tab="opinie">Opinie</li>
             </ul>
 
@@ -229,23 +229,23 @@ $url = Yii::$app->request->absoluteUrl;
                             <table class="position-size-table">
                                 <tr>
                                     <td>Minimalna szerokość działki</td>
-                                    <td><?= ($model->getOneAttribute(6) ? $model->getOneAttribute(6)->all()[0]->value. ' m' : 'b/d') ?></td>
+                                    <td><?= ($model->getOneAttribute(6)->all()[0]->value != '' ? $model->getOneAttribute(6)->all()[0]->value. ' m' : 'b/d') ?></td>
                                 </tr>
                                 <tr>
-                                    <td>Minimalna głebokość działki</td>
-                                    <td><?= ($model->getOneAttribute(7) ? $model->getOneAttribute(7)->all()[0]->value. ' m': 'b/d') ?></td>
+                                    <td>Minimalna głębokość działki</td>
+                                    <td><?= ($model->getOneAttribute(7)->all()[0]->value != '' ? $model->getOneAttribute(7)->all()[0]->value. ' m': 'b/d') ?></td>
                                 </tr>
                                 <tr>
                                     <td>Szerokość domu</td>
-                                    <td><?= ($model->getOneAttribute(2) ? $model->getOneAttribute(2)->all()[0]->value. ' m': 'b/d') ?></td>
+                                    <td><?= ($model->getOneAttribute(2)->all()[0]->value != ''  ? $model->getOneAttribute(2)->all()[0]->value. ' m': 'b/d') ?></td>
                                 </tr>
                                 <tr>
-                                    <td>Głebokość domu</td>
-                                    <td><?= ($model->getOneAttribute(3) ? $model->getOneAttribute(3)->all()[0]->value. ' m': 'b/d') ?></td>
+                                    <td>Głębokość domu</td>
+                                    <td><?= ($model->getOneAttribute(3)->all()[0]->value != '' ? $model->getOneAttribute(3)->all()[0]->value. ' m': 'b/d') ?></td>
                                 </tr>
                                 <tr>
                                     <td>Wysokość domu</td>
-                                    <td><?= ($model->getOneAttribute(1) ? $model->getOneAttribute(1)->all()[0]->value. ' m': 'b/d') ?></td>
+                                    <td><?= ($model->getOneAttribute(1)->all()[0]->value != '' ? $model->getOneAttribute(1)->all()[0]->value. ' m': 'b/d') ?></td>
                                 </tr>
                             </table>
                         </div>
@@ -274,9 +274,9 @@ $url = Yii::$app->request->absoluteUrl;
                 ?>
                 </div>
             </div>
-            <div id="realizacje" class="tab-content">
+<!--            <div id="realizacje" class="tab-content">
                 Brak realizacji tego projektu
-            </div>
+            </div>-->
             <div id="opinie" class="tab-content">
                 Brak opinie o projekcie<br><br>
                 Napisz opinie.

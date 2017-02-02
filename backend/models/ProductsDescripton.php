@@ -39,7 +39,7 @@ class ProductsDescripton extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['products_id', 'languages_id', 'nicename_link', 'name', 'html_description', 'html_description_short'], 'required'],
+            [['products_id', 'languages_id', 'nicename_link', 'name', 'html_description'], 'required'],
             [['products_id', 'languages_id'], 'integer'],
             [['html_description', 'html_description_short', 'meta_title', 'meta_description', 'meta_keywords'], 'string'],
             [['nicename_link'], 'string', 'max' => 75],

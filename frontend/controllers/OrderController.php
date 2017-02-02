@@ -179,10 +179,10 @@ class OrderController extends MetaController
                 $aProductExist->sell_items += 1 ;
                 $aProductExist->save(false);
             }
-//                $oSession->remove('Cart');
-//                $oSession->remove('aPrjs');
-//                $oSession->remove('OrderData');
-//                $oSession->remove('aTotal');
+                $oSession->remove('Cart');
+                $oSession->remove('aPrjs');
+                $oSession->remove('OrderData');
+                $oSession->remove('aTotal');
                 Yii::$app
                 ->mailer
                 ->compose(
