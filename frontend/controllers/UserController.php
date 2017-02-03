@@ -13,6 +13,7 @@ use app\models\Orders;
 use yii\data\ActiveDataProvider;
 use app\models\Favorites;
 use app\models\Products;
+use app\models\OrdersPosition;
 
 class UserController extends MetaController
 {
@@ -151,11 +152,9 @@ class UserController extends MetaController
     }
     public function actionOrder($id)
     {
-        $oOrder = new Orders ();
-        $query = $oOrder::find($id);
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            ]);
-        return $this->render('order', ['aOrder'=>$dataProvider]);
+        
+        $oOrders = new Orders ();
+        $oOrder = $oOrders->findOne($id);
+        return $this->render('order', ['aOrder'=>$oOrder]);
     }
 }

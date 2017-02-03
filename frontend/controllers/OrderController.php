@@ -171,7 +171,7 @@ class OrderController extends MetaController
                 $oOrderPosition->price_brutto = $aProduct['prj']->price_brutto;
                 $oOrderPosition->quantity = $aProduct['iQty'];
                 $oOrderPosition->value_brutto = $aProduct['prj']->price_brutto * $aProduct['iQty'];
-                $oOrderPosition->creation_date - time();
+                $oOrderPosition->creation_date = time();
                 $oOrderPosition->save(false);
                 
                 $oProducts = new Products();
