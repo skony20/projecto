@@ -14,6 +14,10 @@ font-family: FontAwesome;
 src: url("fonts/FontAwesome.otf") format("opentype");
 
 }
+a, a:hover, a:focus
+{
+    color:#3d7db0;
+}
 .form-control:focus {
     outline: none;
     border-color: #2d3e52;

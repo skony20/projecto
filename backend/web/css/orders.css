@@ -1,0 +1,53 @@
+/* 
+    Projekt    : projekttop.pl
+    Created on : 2017-02-05, 12:33:16
+    Author     : Mariusz Skonieczny mariuszskonieczny@hotmail.com
+*/
+.order-data-row
+{
+    margin-bottom: 20px;
+    border-top: 1px dashed #dedede
+}
+.order-title
+{
+    font-size:16px;
+    padding:15px;
+}
+.order-buttons
+{
+    padding:10px;
+}
+.status-change, .adress-change
+{
+    background-color: #3c7cae;
+    color:#fff;
+    border: 1px solid #dedede;
+    padding: 5px;
+    cursor: pointer;
+}
+.order-all-title, .order-user-title, .order-adress-title, .order-positions-title
+{
+    background-color: #dedede;
+}
+table.order-data
+{
+    width:100%;
+    font-size:14px;
+    line-height: 22px;
+}
+table.order-data tr:nth-child(even)
+{
+    background-color: #ececec;
+}
+table.order-data tr td
+{
+    padding: 2px 5px;
+}
+table.order-positions-data tr td
+{
+    text-align: right;
+}
+.comments
+{
+    background-color:#A0C2DE;
+}

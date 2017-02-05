@@ -10,7 +10,8 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-signup">
 
-    <p class="account-title">Zmień hasło</p>
+    <div class="account-title">Zmień hasło</div>
+    <div class="green-border"></div>
     <div class="row">
         <?php $form = ActiveForm::begin(['id' => 'change-password']); ?>
 

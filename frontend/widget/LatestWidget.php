@@ -23,7 +23,7 @@ class LatestWidget extends Widget
     public function run()
     {
         $oProducts = new Products();
-        $aProducts = $oProducts->find()->orderBy(['id' => SORT_DESC])->limit($this->limit)->all();
+        $aProducts = $oProducts->find()->where(['is_active' => 1])->orderBy(['id' => SORT_DESC])->limit($this->limit)->all();
         
         //echo '<pre>'. print_r($aProducts, TRUE); die();
         foreach ($aProducts as $aProduct)

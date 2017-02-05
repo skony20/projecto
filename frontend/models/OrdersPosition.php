@@ -100,7 +100,10 @@ class OrdersPosition extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Products::className(), ['id' => 'products_id']);
     }
-
+    public function getProductsDescriptions()
+    {
+        return $this->hasOne(ProductsDescripton::className(), ['products_id' => 'products_id']);
+    }
     /**
      * @return \yii\db\ActiveQuery
      */

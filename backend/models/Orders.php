@@ -151,6 +151,10 @@ class Orders extends \yii\db\ActiveRecord
     {
         return $this->hasOne(PaymentsMethod::className(), ['id' => 'shippings_payments_id']);
     }
+    public function getUser()
+    {
+        return $this->hasOne(\common\models\User::className(), ['id' => 'customers_id']);
+    }
     public function getFullName() 
     {
         return $this->delivery_name . ' ' . $this->delivery_lastname ;

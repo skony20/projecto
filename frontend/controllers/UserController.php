@@ -28,7 +28,7 @@ class UserController extends MetaController
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['account', 'favorites', 'adress-data', 'change-password', 'orders', 'order'],
+                        'actions' => ['account', 'favorites', 'adress-data', 'change-password', 'orders', 'order', 'orderfault'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -152,9 +152,15 @@ class UserController extends MetaController
     }
     public function actionOrder($id)
     {
-        
+        $oUser = new User();
         $oOrders = new Orders ();
         $oOrder = $oOrders->findOne($id);
+        $iUserId = $oUser->findIdentity(Yii::$app->user->identity->id)->id;
+        $iOrderCustomerId = $oOrder->customers_id;
+        if ($iUserId != $iOrderCustomerId)
+        {
+            return $this->render('orderfault');
+        }
         return $this->render('order', ['aOrder'=>$oOrder]);
     }
 }

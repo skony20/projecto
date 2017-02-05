@@ -9,6 +9,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-signup">
     <div class="account-title">Zmień dane adresowe</div>
+    <div class="green-border"></div>
     <div class="row">
     
         <div class="caption">

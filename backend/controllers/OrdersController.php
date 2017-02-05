@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use app\models\OrdersStatus;
 
 /**
  * OrdersController implements the CRUD actions for Orders model.
@@ -31,7 +32,7 @@ class OrdersController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'statusform'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -124,6 +125,12 @@ class OrdersController extends Controller
      * @return Orders the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
+    public function actionStatusform()
+    {
+        $oOrderStatus = new OrdersStatus();
+        
+        return $this->renderAjax('_statusform', ['oOrderStatus'=>$oOrderStatus]);
+    }
     protected function findModel($id)
     {
         if (($model = Orders::findOne($id)) !== null) {

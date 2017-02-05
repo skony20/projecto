@@ -6,6 +6,7 @@ use yii\helpers\Url;
 
 <div class="acoount-side-bar">
     <div class="account-title">Moje konto</div>
+    <div class="green-border"></div>
     <ul class="acount-menu">
         
         <li><?= Html::a('Zmiana hasła', Yii::$app->request->BaseUrl.'/user/change-password') ?></li>

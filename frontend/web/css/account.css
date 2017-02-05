@@ -16,12 +16,17 @@
 {
     font-size:30px;
     font-weight: 700;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+}
+.account-desc
+{
+    font-size: 14px;
+    line-height: 24px;
 }
 .order-row
 {
     min-height:50px;
-    border: 1px solid gray;
+    border: 1px solid #dddddd;
     margin:5px 0;
     line-height: 50px;
 }
@@ -75,4 +80,39 @@ ul.acount-menu li
 .forgot-password
 {
     padding: 10px 0 0 120px;
+}
+table.user-cart-table
+{
+    width:100%;
+}
+.user-row-order-content
+{
+   
+    padding:20px 0;
+}
+.order-product
+{
+    padding: 20px 10px;
+    
+}
+.order-products
+{
+    margin-top: 20px;
+    border: 1px dashed #dddddd;
+}
+.user-order-delivery
+{
+    font-size: 14px;
+    line-height: 24px;
+    padding: 20px 10px;
+}
+.user-order-adress
+{
+    padding:0;
+}
+.user-order-comments
+{
+    margin-top: 20px;
+    padding: 20px 10px;
+    border: 1px dashed #dddddd;
 }

@@ -9,7 +9,8 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-signup">
 
-    <p class="account-title">Ulubione projekty</p>
+    <div class="account-title">Ulubione projekty</div>
+    <div class="green-border"></div>
     <div class="favorites-items">
             <?= $this->render('products', ['dataProvider' => $dataProvider, 'sort'=>$sort]) ?>
 

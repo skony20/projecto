@@ -153,11 +153,12 @@ class OrderController extends MetaController
         {
             $iOrderId = $oOrder->id;
 
-            $oOrderPosition = new OrdersPosition();
-            
             foreach ($aProducts as $aProduct)
             {
-                //echo '<pre>'. print_r($aProduct, TRUE); die();
+                $oOrderPosition = new OrdersPosition();
+//                echo $a .'- tu</br>';
+//                $a++;
+//                echo '<pre>'. print_r($aProduct['prj']->id, TRUE).'- tu 2 </br>';
                 $oOrderPosition->is_deleted = 0;
                 $oOrderPosition->orders_id = $iOrderId;
                 $oOrderPosition->products_id = $aProduct['prj']->id;
