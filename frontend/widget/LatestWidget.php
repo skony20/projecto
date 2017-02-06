@@ -23,7 +23,7 @@ class LatestWidget extends Widget
     public function run()
     {
         $oProducts = new Products();
-        $aProducts = $oProducts->find()->orderBy(['id' => SORT_DESC])->limit($this->limit)->all();
+        $aProducts = $oProducts->find()->where(['is_active' => 1])->orderBy(['id' => SORT_DESC])->limit($this->limit)->all();
         
         //echo '<pre>'. print_r($aProducts, TRUE); die();
         foreach ($aProducts as $aProduct)
@@ -31,12 +31,10 @@ class LatestWidget extends Widget
            // echo '<pre>'. print_r($aProduct->productsFilters['filters_id'], TRUE); die();
             foreach ($aProduct->productsFilters AS $iFilter)
             {
+                //echo '<pre>'. print_r($iFilter->filters_id, TRUE);
                 switch ($iFilter->filters_id)
                 {
-                    default:
-                        $sStyle = 'b/d';
-                        $sStories = 'b/d';
-                        break;
+                    
                     case 17: 
                         $sStories = '1';
                         break;
@@ -52,7 +50,6 @@ class LatestWidget extends Widget
                      case 16: 
                         $sStyle = 'Nowoczesny';
                         break;
-                    
                 }
             }
         ?>

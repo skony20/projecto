@@ -8,7 +8,8 @@ $this->params['breadcrumbs'][] = ['label' => 'Moje konto', 'url' => ['/user/acco
 $this->params['breadcrumbs'][] = $this->title;
 //echo '<pre>'.print_r($aUser, TRUE); die();
 ?>
-<p class="account-title">Zamówienia</p>
+<div class="account-title">Zamówienia</div>
+<div class="green-border"></div>
 <div class="site-account">
     <div class="order-row">
         <div class="order-data">Data</div>

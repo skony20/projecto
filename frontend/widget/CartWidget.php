@@ -38,9 +38,9 @@ class CartWidget extends Widget
                 {
                     $sInCart .= '<tr>';
                     $aPrj = $oProducts->findOne($aPrjCart['iPrjId']);
-                    $sInCart .= '<td class="cart-wid-qty">'.$aPrjCart['iQty'].'</td><td class="cart-wid-qty-x">x</td><td class="cart-wid-img">'.Html::img(yii::getalias("@image").'/'.$aPrjCart['iPrjId'].'/thumbs/'.$aPrj->productsImages[0]->name).'</td><td class="cart-wid-name">'.$aPrj->productsDescriptons->name.'</td><td class="cart-wid-price">'.Yii::$app->formatter->asCurrency($aPrj->price_brutto, ' zł'). '</td>';
+                    $sInCart .= '<td class="cart-wid-qty">'.$aPrjCart['iQty'].'</td><td class="cart-wid-qty-x">x</td><td class="cart-wid-img">'.Html::img(yii::getalias("@image").'/'.$aPrjCart['iPrjId'].'/thumbs/'.$aPrj->productsImages[0]->name).'</td><td class="cart-wid-name">'.$aPrj->productsDescriptons->name.'</td><td class="cart-wid-price">'.Yii::$app->formatter->asCurrency($aPrj->price_brutto*$aPrjCart['iQty'], ' zł'). '</td>';
                     $sInCart .= '</tr>';
-                    $iPrjsSum += $aPrj->price_brutto;
+                    $iPrjsSum += $aPrj->price_brutto*$aPrjCart['iQty'];
                 }
                 
 

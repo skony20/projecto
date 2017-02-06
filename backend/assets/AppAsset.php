@@ -14,6 +14,7 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/site.css',
         'css/admin.css',
+        'css/orders.css',
         'css/jquery.fancybox.css'
     ];
     public $js = [
