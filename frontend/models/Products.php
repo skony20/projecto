@@ -187,6 +187,12 @@ class Products extends \yii\db\ActiveRecord
         
         return $iCountCart;
     }
-
+    public function Countall()
+    {
+       
+        $iAll = $this->find()->andWhere(['is_active' => 1])->all();
+        $iAvalaibleProject = count($iAll);
+        return ($iAvalaibleProject);
+    }
 
 }

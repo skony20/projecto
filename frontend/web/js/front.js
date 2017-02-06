@@ -220,7 +220,7 @@ $(document).on('ready pjax:success',
                     url: "/projecto/cart/add-cart?iPrjId="+iPrjId,
                     success: function(data) {   
                         $("#cart-items").load("/projecto/projekty #cart-items");
-                        $('#system-messages').html(data).stop().fadeIn().animate({opacity: 1.0}, 4000).fadeOut('slow');
+                        $('#system-messages').html(data).stop().fadeIn().animate({opacity: 1.0}, 1000).fadeOut('slow');
                     }
                     
                     }); 
@@ -245,7 +245,7 @@ $(document).on('ready pjax:success',
 
                         //$('.cart-items').html(data);
                         $("#cart-items").load("/projecto/projekt/"+nicename +" #cart-items");
-                        $('#system-messages').html(data).stop().fadeIn().animate({opacity: 1.0}, 4000).fadeOut('slow');
+                        $('#system-messages').html(data).stop().fadeIn().animate({opacity: 1.0}, 1000).fadeOut('slow');
                     }
 
                     }); 
@@ -280,7 +280,7 @@ $(document).on('ready pjax:success',
                     url: "/projecto/cart/remove-from-cart?iPrjId="+iPrjId,
                     success: function(data) { 
                         window.location.href = window.location.href;
-                        $('#system-messages').html(data).stop().fadeIn().animate({opacity: 1.0}, 4000).fadeOut('slow');
+                        $('#system-messages').html(data).stop().fadeIn().animate({opacity: 1.0}, 1000).fadeOut('slow');
                         
                     }
 
@@ -296,7 +296,7 @@ $(document).on('ready pjax:success',
                     url: "/projecto/favorites/add-favorites?iPrjId="+iPrjId,
                     success: function(data) {   
                         //$('.cart-items').html(data);
-                         $('#system-messages').html(data).stop().fadeIn().animate({opacity: 1.0}, 4000).fadeOut('slow');
+                         $('#system-messages').html(data).stop().fadeIn().animate({opacity: 1.0}, 1000).fadeOut('slow');
                     }
                     }); 
             }
@@ -311,7 +311,7 @@ $(document).on('ready pjax:success',
                     url: "/projecto/favorites/delete-favorites?iPrjId="+iPrjId,
                     success: function(data) {   
                         window.location.href = window.location.href;
-                        $('#system-messages').html(data).stop().fadeIn().animate({opacity: 1.0}, 4000).fadeOut('slow');
+                        $('#system-messages').html(data).stop().fadeIn().animate({opacity: 1.0}, 1000).fadeOut('slow');
                     }
                     }); 
             }
@@ -386,7 +386,7 @@ $(document).on('ready pjax:success',
         $.ajax({
             url: "/projecto/newslatter/add?sEmail="+sEmail,
             success: function(data) {   
-                        $('#system-messages').html(data).stop().fadeIn().animate({opacity: 1.0}, 4000).fadeOut('slow');
+                        $('#system-messages').html(data).stop().fadeIn().animate({opacity: 1.0}, 1000).fadeOut('slow');
                     }
         });
         

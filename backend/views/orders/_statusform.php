@@ -9,9 +9,7 @@ use yii\helpers\Html;
 use app\models\OrdersStatus;
 use yii\helpers\ArrayHelper;
 
-
-
-echo Html::beginForm('#');
-echo Html::dropDownList('Zmień status', '', ArrayHelper::map(OrdersStatus::find()->asArray()->all(), 'id', 'name'),['class'=>'form-control','prompt' => 'Zmień']);
+echo Html::beginForm('statusform/'.$id);
+echo Html::dropDownList('status_change', $iStatus, ArrayHelper::map(OrdersStatus::find()->asArray()->all(), 'id', 'name'),['class'=>'form-control','prompt' => 'Zmień', 'onchange'=> 'this.form.submit()']);
 echo Html::endForm();
 ?>

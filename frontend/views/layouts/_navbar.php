@@ -24,7 +24,7 @@ echo '<div class="first-navbar">';
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
                 'Wyloguj (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link']
+                ['class' => 'btn btn-link index-logout']
             )
             . Html::endForm()
             . '</li>';

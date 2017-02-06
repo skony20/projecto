@@ -138,12 +138,13 @@ use frontend\widget\LatestWidget;
 </div>
 <?php
 $oProducts = new \app\models\Products();
-echo '<pre>'. print_r($oProducts->countall(),TRUE); die();
+$iAvalaibleProject = $oProducts->Countall();
+$iAvalaibleProject = floor($iAvalaibleProject / 100)* 100;
 ?>
 
 <div class="wrap wrap-projects">
     <div class="container container-projects">
-        <div class="projects-title r48 text-center">Ponad <?=$sProjectCount?>projektów</div>
+        <div class="projects-title r48 text-center">Ponad <?= $iAvalaibleProject ?> projektów</div>
         <div class="projects-content m13blue text-center"><?=Html::a('<i class="fa fa-search" aria-hidden="true"></i> Znajdź dom marzeń', Yii::$app->request->BaseUrl.'/projekty')?></div>
     </div>
 </div>

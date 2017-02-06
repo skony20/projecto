@@ -125,11 +125,46 @@ class OrdersController extends Controller
      * @return Orders the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionStatusform()
+    public function actionStatusform($id = '')
     {
-        $oOrderStatus = new OrdersStatus();
         
-        return $this->renderAjax('_statusform', ['oOrderStatus'=>$oOrderStatus]);
+        $model = $this->findModel($id);
+        $iStatus = $model->orders_status_id;
+        //echo '<pre>'. print_r($model, TRUE); die();
+        if (Yii::$app->request->post()) 
+        {
+            $iOrderStatusId = $_POST['status_change'];
+            $model->orders_status_id = $iOrderStatusId;
+            $model->save(false);
+            $oStatus = new OrdersStatus();
+            $aStatus = $oStatus->findOne(['id'=>$iOrderStatusId]);
+            $sStatus = $aStatus->name;
+            Yii::$app->mailer->compose(
+                        ['html' => 'status-change-html', 'text' => 'status-change-text'],
+                        ['sStatus'=> $sStatus]
+                    )
+                    ->setReplyTo(Yii::$app->params['supportEmail'])
+                    ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name])
+                    ->setTo($model->customer_email)
+                    ->setSubject('Zmiana statusu zamówienia:  ' .$id)
+                    ->send();
+            return $this->redirect(['/orders/'.$id]);
+        } 
+        elseif (Yii::$app->request->isAjax) 
+        {
+           return $this->renderAjax('_statusform', ['iStatus'=>$iStatus, 'id' => $id]);
+        }
+        else 
+        {
+          return $this->render('_statusform', ['iStatus'=>$iStatus, 'id' => $id]);
+        }
+        
+        
+        
+        
+       
+        
+        return $this->renderAjax('_statusform', ['iStatus'=>$iStatus]);
     }
     protected function findModel($id)
     {

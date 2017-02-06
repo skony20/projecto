@@ -503,13 +503,7 @@ class SiteController extends MetaController
             'expire' => time() + 86400 * 365,
             ])); 
      }
-    public function getCountall()
-    {
-        $model = new Products();
-        $iAll = $model::find()->where(['is_active' => 123])->all();
-        echo '<pre>333'. print_r($model::find()->where('is_active =1')->all() , True); die();
-        return ($iAll);
-    }
+
 }
     
 

@@ -17,12 +17,14 @@ $iSetMaxSize = $aDimensions['iOneMaxSize'];
 $sSearch = (isset($sSearchC) ? $sSearchC : '');
 //echo '<pre>'. print_r($_GET, TRUE). '</pre>';
 //echo '<pre>'. print_r($aDimensions, TRUE). '</pre>';
-
+$oProducts = new \app\models\Products();
+$iAvalaibleProject = $oProducts->Countall();
+$iAvalaibleProject = floor($iAvalaibleProject / 100)* 100;
         ?>
 
 <div class="full_site">
     <div class="top_menu filter_menu">
-        <div class="filter-menu-over text-center"><span class="o15bb">PONAD</span><br><span class="m21w">2.800 </span><span class="o15w">projektów domów</span></div>
+        <div class="filter-menu-over text-center"><span class="o15bb">PONAD</span><br><span class="m21w"><?=$iAvalaibleProject ?> </span><span class="o15w">projektów domów</span></div>
         <div class="top-menu-find text-center"><span class="o13bw">ZNAJDŹ PROJEKT</span></div>
     <div class="top-menu-filters">
     <?php

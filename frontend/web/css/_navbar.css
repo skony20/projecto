@@ -28,7 +28,11 @@ nav
     color:#cccccc !important;
     line-height: 30px;
 }
-
+.index-logout
+{
+    margin-top: -2px;
+    font-size:13px;
+}
 
 img.basket
 {

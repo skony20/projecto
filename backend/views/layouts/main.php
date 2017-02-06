@@ -35,7 +35,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'Projecto.pl/projektim.pl/projektop.pl',
+        'brandLabel' => 'projekttop.pl',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -96,7 +96,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; Projecto.pl/projektim.pl/projektop.pl <?= date('Y') ?></p>
+        <p class="pull-left">&copy; projekttop.pl <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::$app->params['adminEmail'] ?></p>
     </div>
