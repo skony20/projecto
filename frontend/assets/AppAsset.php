@@ -38,6 +38,7 @@ class AppAsset extends AssetBundle
         'frontend/web/js/front.js',
         'frontend/web/js/zoom-gallery.js',
         'frontend/web/js/jquery.cookie.js',
+        'frontend/web/js/modal.js',
         
     ];
     

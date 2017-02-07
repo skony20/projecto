@@ -335,7 +335,17 @@ h1
     margin: 0 10px;
 }
 
+/* modal */
+.close 
+{
+    color: #2d3e52;
+    opacity: 1;
+}
 
+.modal-header .close 
+{
+    margin-top: -40px;
+}
 
 /*Tootlip title*/
 i:hover

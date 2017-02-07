@@ -279,11 +279,25 @@ $url = Yii::$app->request->absoluteUrl;
             </div>-->
             <div id="opinie" class="tab-content">
                 Brak opinie o projekcie<br><br>
-                Napisz opinie.
+                Jeśli chcesz podzielić się opinią na temat tego projektu zapraszamy do umieszczenia krótkiej recencji.<br><br>
+                <?= Html::button('Napisz opinię', ['value' => Url::to(['/reviews', 'id' => $model->id]), 'title' => 'Napisz opinię o projekcie: '.$sPrjName, 'class' => 'showModalButton blue-button']); ?>
             </div>
 
         </div>
     </div>
 </div>
+
 <?= (count($oSimilar)>0 ? SimilarWidget::Widget(['oSimilar'=> $oSimilar]) :'') ?>
-    
+
+<?php
+yii\bootstrap\Modal::begin([
+    'headerOptions' => ['id' => 'modalHeader'],
+    'id' => 'modal',
+    'size' => 'modal-lg',
+    //keeps from closing modal with esc key or by clicking out of the modal.
+    // user must click cancel or X to close
+    'clientOptions' => ['backdrop' => 1, 'keyboard' => true]
+]);
+echo "<div id='modalContent'></div>";
+yii\bootstrap\Modal::end();
+?>

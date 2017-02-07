@@ -96,7 +96,6 @@ class CartController extends MetaController
     }
     public function actionIndex()
     {
-
         $aInCart  = Yii::$app->session->get('Cart');
         
         $oProducts = new Products();
