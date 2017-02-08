@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\swiftmailer\Mailer;
 
 /**
  * PaymentsMethodController implements the CRUD actions for PaymentsMethod model.
@@ -31,7 +32,7 @@ class ReviewsController extends MetaController
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', '_form'],
+                        'actions' => ['add'],
                         'allow' => true,
                     ],
                 ],
@@ -39,7 +40,7 @@ class ReviewsController extends MetaController
         ];
     }
     
-    public function actionIndex($id)
+    public function actionAdd($id)
     {
         $model = new Reviews();
 
@@ -52,9 +53,21 @@ class ReviewsController extends MetaController
             $model->is_active = 1;
             $model->languages_id = 1;
             $model->products_id = $id;
-            $model->customers_id = (Yii::$app->user->isGuest ? 0 : Yii::$app->user->identity->id);;
-            if ($model->save())
+            $model->customers_id = (Yii::$app->user->isGuest ? 0 : Yii::$app->user->identity->id);
+            $oProducts = new \app\models\Products();
+            $oProduct = $oProducts->findOne($id);
+            $oProductDesc = $oProduct->productsDescriptons;
+            if ($model->validate() && $model->save())
             {
+                Yii::$app->mailer->compose(
+                        ['html' => 'reviews-html', 'text' => 'reviews-text'],
+                        ['link' => $oProductDesc->nicename_link, 'name' => $oProductDesc->name, ]
+                    )
+                    ->setReplyTo(Yii::$app->params['supportEmail'])
+                    ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name])
+                    ->setTo(Yii::$app->params['supportEmail'])
+                    ->setSubject('Nowa opinia do produktu ' .$oProductDesc->name)
+                    ->send();
                 return $this->redirect(Yii::$app->request->referrer);
             }
         } 
@@ -67,5 +80,4 @@ class ReviewsController extends MetaController
           return $this->render('_form', ['id' => $id, 'model' => $model, 'aUser'=>$aUser]);
         }
     }
-
 }

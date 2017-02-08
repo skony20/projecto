@@ -6,7 +6,7 @@ use yii\web\View;
 use yii\bootstrap\ActiveForm;
 ?>
 
-    <?php $form = ActiveForm::begin(['layout' => 'horizontal']); ?>
+    <?php $form = ActiveForm::begin(['layout' => 'horizontal', 'id'=>'add-review']); ?>
 
 
 

@@ -348,8 +348,31 @@ span.right
 
 /* -------- */
 
-
-
+.reviews-title 
+{
+    padding: 30px 30px 10px 10px;
+    font-size: 14px;
+}
+.review-author
+{
+    font-weight: 700;
+}
+.review-date
+{
+    float:right;
+}
+.review-row
+{
+    border-bottom: 1px dashed #e9eef2;
+    max-width: 500px;
+    padding: 30px 30px 10px 10px;
+    margin-bottom: 20px;
+}
+.review-content
+{
+    font-style: italic;
+    padding-bottom:10px;
+}
 /* Magnific Popup CSS */
 .mfp-bg {
   top: 0;

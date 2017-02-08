@@ -18,6 +18,12 @@ a, a:hover, a:focus
 {
     color:#3d7db0;
 }
+img:focus, a:focus, img:actice, a:active
+{
+outline: none;
+border: none;
+outline:0;
+}
 .form-control:focus {
     outline: none;
     border-color: #2d3e52;

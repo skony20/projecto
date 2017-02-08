@@ -21,6 +21,14 @@ return [
 			'web'=> '/frontend/web',
             'baseUrl' => '/projecto',
         ],
+        'formatter' => [
+            'dateFormat' => 'dd.MM.yyyy',
+            'datetimeFormat' => 'dd.MM.yyyy HH:mm:ss',
+            'timeFormat' => 'H:i:s',
+            'decimalSeparator' => ',',
+            'thousandSeparator' => ' ',
+            'currencyCode' => 'zł ',
+       ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,

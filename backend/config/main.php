@@ -19,7 +19,7 @@ return [
         ],
         'formatter' => [
             'dateFormat' => 'dd.MM.yyyy',
-            'datetimeFormat' => 'dd/MM/yyyy HH:mm:ss',
+            'datetimeFormat' => 'dd.MM.yyyy HH:mm:ss',
             'timeFormat' => 'H:i:s',
             'decimalSeparator' => ',',
             'thousandSeparator' => ' ',

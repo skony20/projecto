@@ -6,6 +6,7 @@ use yii\helpers\Url;
 use yii\web\Request;
 use frontend\widget\SimilarWidget;
 $sPatch = Yii::getAlias('@image');
+use frontend\widget\ReviewsWidget;
 /* @var $this yii\web\View */
 /* @var $model app\models\Products */
 
@@ -278,9 +279,9 @@ $url = Yii::$app->request->absoluteUrl;
                 Brak realizacji tego projektu
             </div>-->
             <div id="opinie" class="tab-content">
-                Brak opinie o projekcie<br><br>
-                Jeśli chcesz podzielić się opinią na temat tego projektu zapraszamy do umieszczenia krótkiej recencji.<br><br>
-                <?= Html::button('Napisz opinię', ['value' => Url::to(['/reviews', 'id' => $model->id]), 'title' => 'Napisz opinię o projekcie: '.$sPrjName, 'class' => 'showModalButton blue-button']); ?>
+                <?= ReviewsWidget::Widget(['id'=> $model->id]) ?>
+                <div class='reviews-title'>Chesz wyrazić opinię o projekcie. Zapraszamy do podzielenia się swoja opinią.</div>
+                <?= Html::button('Napisz opinię', ['value' => Url::to(['/reviews/add', 'id' => $model->id]), 'title' => 'Napisz opinię o projekcie: '.$sPrjName, 'class' => 'showModalButton blue-button']); ?>
             </div>
 
         </div>
