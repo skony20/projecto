@@ -23,7 +23,7 @@ class ReviewsWidget extends Widget
     public function run()
     {
         $oReviews = new Reviews();
-        $oReview = $oReviews->findAll(['products_id'=> $this->id]);
+        $oReview = $oReviews->findAll(['products_id'=> $this->id, 'is_active'=>1]);
         foreach ($oReview  as $oReview)
         {
             echo '<div class="review-row">';
