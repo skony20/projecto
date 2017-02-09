@@ -7,8 +7,10 @@ use common\widgets\Alert;
     <div class="container">
         <div class="col-md-3 col-sm-6">
             <div class="m15w footer-tittle">projekttop.pl</div>
-            <div class="footer-content">Podleśna 11H<br>Ruda Bugaj<br>
-                95-070 Aleksandrów Łódzki<br>
+            
+            <div class="footer-content">
+                Wici 48/49<br>
+                91-157 Łódź<br>
                 <span class="m15w footer-phone"> +48 608 44 07 55</span><br>
                 <?= Html::a(Yii::$app->params['supportEmail'], 'mailto:"'.Yii::$app->params['supportEmail'].'"') ?>
                 <div class="footer-social">

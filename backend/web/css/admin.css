@@ -33,7 +33,7 @@ span.radio_value
 }
 .form-group
 {
-    margin-top:20px;
+    margin:0px;
     -webkit-column-span: all; /* Chrome, Safari, Opera */
     column-span: all;
 }

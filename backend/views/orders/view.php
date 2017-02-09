@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 <div class="col-md-12 order-buttons order-data-row">
     <?= Html::button('Zmień status', ['value' => Url::to(['statusform', 'id' => $model->id]), 'title' => 'Zmień status zamówienia '.$model->id, 'class' => 'showModalButton status-change']); ?>
-    <button class="adress-change">Zmień dane adresowe</button>
+    <?= Html::button('Zmień dane adresowe', ['value' => Url::to(['adressform', 'id' => $model->id]), 'title' => 'Zmień dane adresowe zamówienia '.$model->id, 'class' => 'showModalButton status-change']); ?>
 </div>
 <div class="col-md-12 order-data-row">
     <div class="col-md-6">
@@ -75,6 +75,10 @@ $this->params['breadcrumbs'][] = $this->title;
             <tr>
                 <td>telefon:</td>
                 <td><?= $model->customer_phone ?></td>                
+            </tr>
+            <tr>
+                <td>Zgona na newsletter:</td>
+                <td><?= $model->is_giodo ? 'tak' : 'nie' ?></td>                
             </tr>
         </table>
     </div>

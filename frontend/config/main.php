@@ -68,151 +68,151 @@ return [
                 [
                     'pattern' => 'projekty/szerokosc/<SizeX:\d+>/glebokosc/<SizeY:\d+>/HouseSize/<HouseSize:.*>/filters/<tag:.*>/strona/<strona:\d+>',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],
                 [
                     'pattern' => 'projekty/szerokosc/<SizeX:\d+>/glebokosc/<SizeY:\d+>/HouseSize/<HouseSize:.*>/filters/<tag:.*>',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],
                 [
                     'pattern' => 'projekty/szerokosc/<SizeX:\d+>/glebokosc/<SizeY:\d+>/HouseSize/<HouseSize:.*>/strona/<strona:\d+>',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],
                 [
                     'pattern' => 'projekty/szerokosc/<SizeX:\d+>/glebokosc/<SizeY:\d+>/HouseSize/<HouseSize:.*>',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],
                 [
                     'pattern' => 'projekty/szerokosc/<SizeX:\d+>/glebokosc/<SizeY:\d+>/filters/<tag:.*>/strona/<strona:\d+>',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],
                 [
                     'pattern' => 'projekty/szerokosc/<SizeX:\d+>/glebokosc/<SizeY:\d+>/filters/<tag:.*>',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],
                 [
                     'pattern' => 'projekty/szerokosc/<SizeX:\d+>/glebokosc/<SizeY:\d+>/strona/<strona:\d+>',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],
                 [
                     'pattern' => 'projekty/szerokosc/<SizeX:\d+>/glebokosc/<SizeY:\d+>/',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],
                 [
                     'pattern' => 'projekty/szerokosc/<SizeX:\d+>/HouseSize/<HouseSize:.*>/filters/<tag:.*>/strona/<strona:\d+>',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],
                 [
                     'pattern' => 'projekty/szerokosc/<SizeX:\d+>/HouseSize/<HouseSize:.*>/filters/<tag:.*>',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],
                 [
                     'pattern' => 'projekty/szerokosc/<SizeX:\d+>/HouseSize/<HouseSize:.*>/strona/<strona:\d+>',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],
                 [
                     'pattern' => 'projekty/szerokosc/<SizeX:\d+>/HouseSize/<HouseSize:.*>',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],
                 [
                     'pattern' => 'projekty/szerokosc/<SizeX:\d+>/filters/<tag:.*>/strona/<strona:\d+>',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],
                 [
                     'pattern' => 'projekty/szerokosc/<SizeX:\d+>/filters/<tag:.*>',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],
                 [
                     'pattern' => 'projekty/glebokosc/<SizeY:\d+>/HouseSize/<HouseSize:.*>/filters/<tag:.*>/strona/<strona:\d+>',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],
                 [
                     'pattern' => 'projekty/glebokosc/<SizeY:\d+>/HouseSize/<HouseSize:.*>/filters/<tag:.*>',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],[
                     'pattern' => 'projekty/glebokosc/<SizeY:\d+>/HouseSize/<HouseSize:.*>/strona/<strona:\d+>',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],
                 [
                     'pattern' => 'projekty/glebokosc/<SizeY:\d+>/HouseSize/<HouseSize:.*>',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],
                 [
                     'pattern' => 'projekty/glebokosc/<SizeY:\d+>/filters/<tag:.*>/strona/<strona:\d+>',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],
                 [
                     'pattern' => 'projekty/glebokosc/<SizeY:\d+>/filters/<tag:.*>',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],
                 [
                     'pattern' => 'projekty/HouseSize/<HouseSize:.*>/filters/<tag:.*>/strona/<strona:\d+>',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],
                 [
                     'pattern' => 'projekty/HouseSize/<HouseSize:.*>/filters/<tag:.*>',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],
                 [
                     'pattern' => 'projekty/HouseSize/<HouseSize:.*>/strona/<strona:\d+>',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],
                 [
                     'pattern' => 'projekty/HouseSize/<HouseSize:.*>/',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],
                 [
                     'pattern' => 'projekty/filters/<tag:.*>/strona/<strona:\d+>',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],
                 [
                     'pattern' => 'projekty/filters/<tag:.*>',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],[
                     'pattern' => 'projekty/szerokosc/<SizeX:\d+>/strona/<strona:\d+>',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],
                 [
                     'pattern' => 'projekty/szerokosc/<SizeX:\d+>',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],
                 [
                     'pattern' => 'projekty/glebokosc/<SizeY:\d+>/strona/<strona:\d+>',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],
                 
                 [
                     'pattern' => 'projekty/glebokosc/<SizeY:\d+>',
                     'route' => 'projekty/index',
-                    'encodeParams' => true
+                    'encodeParams' => false
                 ],
                 
 

@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <li>Pamiętaj aby dołączyć do paczki swoje dane adresowe, tak byśmy mogli się z Tobą skontaktować. Możesz też dołączyć do niej wypełniony Formularz zwrotu.</li>
 
-            <li>Wyślij paczkę na adres naszej firmy (PtojektTop.pl Podleśna 11H Ruda Bugaj 95-070 Aleksandrów Łódzki). Towar powinien być odesłany niezwłocznie, w terminie nie dłuższym niż 14 dni od odstąpienia od umowy.</li>
+            <li>Wyślij paczkę na adres naszej firmy (PtojektTop.pl Wici 48/49 91-157 Łódź). Towar powinien być odesłany niezwłocznie, w terminie nie dłuższym niż 14 dni od odstąpienia od umowy.</li>
         </ol>
     </p>
     <p>

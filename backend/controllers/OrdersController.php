@@ -32,7 +32,7 @@ class OrdersController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'statusform'],
+                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'statusform', 'adressform'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -135,6 +135,19 @@ class OrdersController extends Controller
         {
             $iOrderStatusId = $_POST['status_change'];
             $model->orders_status_id = $iOrderStatusId;
+            switch ($iOrderStatusId)
+            {
+                case 2:
+                    $model->paid_date = time();
+                    break;
+                case 3:
+                    $model->paid_date = 0;
+                    break;
+                case 4:
+                    $model->send_date = time();
+                    break;
+                
+            }
             $model->save(false);
             $oStatus = new OrdersStatus();
             $aStatus = $oStatus->findOne(['id'=>$iOrderStatusId]);
@@ -165,6 +178,26 @@ class OrdersController extends Controller
        
         
         return $this->renderAjax('_statusform', ['iStatus'=>$iStatus]);
+    }
+    public function actionAdressform($id = '')
+    {
+        
+        $model = $this->findModel($id);
+        
+        if ($model->load(Yii::$app->request->post()) && $model->save(false)) 
+        { 
+            //echo '<pre>'. print_r(Yii::$app->request->post(), TRUE); die();
+            return $this->redirect(['/orders/'.$id]);
+        } 
+        elseif (Yii::$app->request->isAjax) 
+        {
+           return $this->renderAjax('_adressform', ['id' => $id, 'model'=>$model]);
+        }
+        else 
+        {
+          return $this->render('_adressform', ['id' => $id, 'model'=>$model]);
+        }
+        
     }
     protected function findModel($id)
     {

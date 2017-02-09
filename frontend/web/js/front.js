@@ -109,14 +109,14 @@ $(document).on('ready pjax:success',
         );
 
 
-    $('.project_ready').click(
-            function()
-            {
-                $.ajax({
-                    url: "site/save-filters"
-                });
-                window.location.href = "projekty";
-            });
+//    $('.project_ready').click(
+//            function()
+//            {
+//                $.ajax({
+//                    url: "site/save-filters"
+//                });
+//                window.location.href = "projekty";
+//            });
 
 
     $('.reset_all_filters').click(
