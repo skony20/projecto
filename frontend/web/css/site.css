@@ -233,9 +233,26 @@ label
 .radio-primary input[type="radio"]:checked + label::after {
   background-color: #008cba; }
 
-
-
-
+.site-privacy div
+{
+    padding: 0 25px;
+}
+.privacy-title
+{
+    font-weight: 700;
+    padding: 10px 10px !important;
+}
+.site-regulations div
+{
+    padding: 0 25px;
+}
+.regulations-title
+{
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 10px 10px !important;
+}
 .question-answer-wrap
 {
     background-color: #1d1f27;

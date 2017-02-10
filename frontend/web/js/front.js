@@ -109,14 +109,38 @@ $(document).on('ready pjax:success',
         );
 
 
-//    $('.project_ready').click(
-//            function()
-//            {
-//                $.ajax({
-//                    url: "site/save-filters"
-//                });
-//                window.location.href = "projekty";
-//            });
+    $('.project_ready').click(
+            function()
+            {
+                var filter = '';
+                var filters = '';
+                var sHouseSize = '';
+                var sSzerokosc = '';
+                var sGlebokosc = '';
+                var bBarChange = $.cookie("bBarChange");
+                iMin = document.getElementsByClassName("irs-min")[0];
+                iMax = document.getElementsByClassName("irs-max")[0];
+                iFrom = document.getElementsByClassName("irs-from")[0];
+                iTo = document.getElementsByClassName("irs-to")[0];
+
+                if (bBarChange === '1' && (iMin.innerHTML !== iFrom.innerHTML || iMax.innerHTML !== iTo.innerHTML))
+                {     
+                    sHouseSize = '/HouseSize/' +  $("[name='HouseSize']").val();
+                }
+                $(":checked").each(function() {
+                    filter += '/'+($(this).val());
+                });
+                if (filter !== '')
+                {
+                    filters = '/filters'+filter;
+                }
+                
+                
+                $.ajax({
+                    url: "site/save-filters"
+                });
+                window.location = "projekty" + sSzerokosc + sGlebokosc  +  sHouseSize + filters;
+            });
 
 
     $('.reset_all_filters').click(

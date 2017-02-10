@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php ActiveForm::end(); ?>
                 </div>
                 <div class='col-lg-5 hidden-sm'>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d6966.78397811218!2d19.314673613240036!3d51.876837737772625!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spl!2spl!4v1482491739508" width="100%" height="400px" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5868.550604765104!2d19.36769917617549!3d51.79845699257289!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471bb53e849b2b53%3A0xe6ec1d9b25fbf878!2zV2ljaSA0OCwgxYHDs2TFug!5e0!3m2!1spl!2spl!4v1486728208691" width="100%" height="400px" frameborder="0" style="border:0" allowfullscreen></iframe>
                 </div>
             </div>
 

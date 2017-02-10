@@ -19,7 +19,7 @@ $url = Yii::$app->request->absoluteUrl;
 ?>
 <div class="wrap view-gray">    
     <div class="container">
-        <h1><?= Html::encode('Projekt domu: '.$sPrjName) ?></h1>
+        <h1 class='m21w'><?= Html::encode('Projekt domu: '.$sPrjName) ?></h1>
         <div class="prj-share">Podziel się: <?= Html::a('<i class="fa fa-facebook share-icon" aria-hidden="true"></i>', 'https://www.facebook.com/sharer/sharer.php?u='.$url)?><?= Html::a('<i class="fa fa-twitter share-icon" aria-hidden="true"></i>', 'https://twitter.com/home?status='.$url)?><?= Html::a('<i class="fa fa-google-plus share-icon" aria-hidden="true"></i>','https://plus.google.com/share?url='.$url)?><?= Html::a('<i class="fa fa-linkedin share-icon" aria-hidden="true"></i>', 'https://www.linkedin.com/shareArticle?mini=true&url='.$url.'&title='.$this->title.'&summary=&source=projekttop.pl')?></div>
         <div class="green-border"></div>
         <div class="prj-img-price">
