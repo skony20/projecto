@@ -90,7 +90,7 @@ $(document).ready(
              function() {
                 iIdProduct = $(this).attr('rel');
                 $.ajax({
-                    url: 'unactive/'+iIdProduct,
+                    url: 'products/unactive/'+iIdProduct,
                     success: function(data) {
                         window.location.href = window.location.href;
                     }
@@ -101,7 +101,29 @@ $(document).ready(
              function() {
                 iIdProduct = $(this).attr('rel');
                 $.ajax({
-                    url: 'active/'+iIdProduct,
+                    url: 'products/active/'+iIdProduct,
+                success: function(data) {
+                    window.location.href = window.location.href;
+                }
+
+             });
+         });
+         $(".active_faq").click(
+             function() {
+                iIdProduct = $(this).attr('rel');
+                $.ajax({
+                    url: 'faq/unactive/'+iIdProduct,
+                    success: function(data) {
+                        window.location.href = window.location.href;
+                    }
+
+             });
+         });
+         $(".unactive_faq").click(
+             function() {
+                iIdProduct = $(this).attr('rel');
+                $.ajax({
+                    url: 'faq/active/'+iIdProduct,
                 success: function(data) {
                     window.location.href = window.location.href;
                 }
