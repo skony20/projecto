@@ -125,7 +125,7 @@ class OrderController extends MetaController
         $oOrder->orders_status_id = 1;
         $oOrder->customer_ip = ($_SERVER['REMOTE_ADDR'] ? $_SERVER['REMOTE_ADDR'] : '127.0.0.1');
         $oOrder->customer_phone = ($aDelivery['customer_phone'] ? $aDelivery['customer_phone'] : '');
-        $oOrder->customer_email = (Yii::$app->user->identity->email ? Yii::$app->user->identity->email : 'ff');
+        $oOrder->customer_email = (Yii::$app->user->identity->email ? Yii::$app->user->identity->email : '');
         $oOrder->delivery_name = ($aDelivery['delivery_name'] ? $aDelivery['delivery_name'] : '');
         $oOrder->delivery_lastname = ($aDelivery['delivery_lastname'] ? $aDelivery['delivery_lastname'] : '');
         $oOrder->delivery_street_local = ($aDelivery['delivery_street_local'] ? $aDelivery['delivery_street_local'] : '');
@@ -188,7 +188,7 @@ class OrderController extends MetaController
                 ->mailer
                 ->compose(
                     ['html' => 'order-html', 'text' => 'order-text'],
-                    ['aDelivery' => $aDelivery, 'aProducts' => $aProducts]
+                    ['aDelivery' => $aDelivery, 'aProducts' => $aProducts, 'iOrderId'=>$iOrderId, 'aTotal'=>$aTotal, 'bIsInvoice'=>$bIsInvoice]
                 )
                 ->setReplyTo(Yii::$app->params['supportEmail'])
                 ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name])
@@ -199,7 +199,7 @@ class OrderController extends MetaController
                     ->mailer
                     ->compose(
                         ['html' => 'order-html', 'text' => 'order-text'],
-                        ['aDelivery' => $aDelivery, 'aProducts' => $aProducts]
+                        ['aDelivery' => $aDelivery, 'aProducts' => $aProducts, 'iOrderId'=>$iOrderId, 'aTotal'=>$aTotal, 'bIsInvoice'=>$bIsInvoice]
                     )
                     ->setReplyTo(Yii::$app->params['supportEmail'])
                     ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name])
