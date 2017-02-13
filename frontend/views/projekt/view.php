@@ -39,7 +39,7 @@ $url = Yii::$app->request->absoluteUrl;
                         $a=0;
                         foreach ($model->productsImages as $aProductsImages)
                         {
-                            if ($aProductsImages->image_type_id == 1 || $aProductsImages->image_type_id == 4)
+                            if ($aProductsImages->image_type_id == 1 || $aProductsImages->image_type_id == 4 || $aProductsImages->image_type_id == 6)
                             {
                                 
                         ?>
