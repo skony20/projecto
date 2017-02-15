@@ -51,7 +51,7 @@ class SiteController extends MetaController
                         'roles' => ['@'],
                     ],
                     [
-                        'actions' => ['onas', 'kontakt', 'wprojekcie', 'regulamin', 'wspolpraca', 'faq', 'cookie', 'accordion', 'politykaPrywatnosci', 'zwrot'],
+                        'actions' => ['onas', 'kontakt', 'wprojekcie', 'regulamin', 'wspolpraca', 'cookie', 'accordion', 'politykaPrywatnosci', 'zwrot'],
                         'allow' => true,
                         'roles' => ['*'],
                     ],
@@ -226,7 +226,7 @@ class SiteController extends MetaController
         $aFiltersGroup = $oFiltersGroup::find()->where(['is_active'=> 1])->orderBy('sort_order')->all();
         foreach ($aFiltersGroup as $_aFiltersGroup)
         {
-            $aFilters = $oFilters::find()->where(['filters_group_id' => $_aFiltersGroup->id, 'is_active'=> 1])->all();
+            $aFilters = $oFilters::find()->where(['filters_group_id' => $_aFiltersGroup->id, 'is_active'=> 1])->orderBy(['sort_order'=>SORT_ASC])->all();
             $aData[$_aFiltersGroup->id] = ['question'=>$_aFiltersGroup, 'answer' => $aFilters];
         }
         Yii::$app->session['aFiltersSession'] = $aFiltersData;
@@ -333,11 +333,6 @@ class SiteController extends MetaController
     {
 
         return $this->render('wspolpraca');
-    }
-    public function actionFaq()
-    {
-
-        return $this->render('faq');
     }
     public function actionCookie()
     {

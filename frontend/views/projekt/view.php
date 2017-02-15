@@ -95,7 +95,7 @@ $url = Yii::$app->request->absoluteUrl;
                     <div class="col-md-4">
                         <div class="m21b prj-desc-title">O projekcie</div>
                         <div class="green-border"></div>
-                        <div><?= $model->productsDescriptons->html_description ?></div>
+                        <div class="project-desc"><?= $model->productsDescriptons->html_description ?></div>
                     </div>
                     <div class="col-md-4">
                         <div class="m21b prj-desc-title">Dane techniczne</div>

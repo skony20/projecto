@@ -53,6 +53,8 @@ AppAsset::register($this);
                 ['label' => 'Pytania', 'url' => ['/filters-group']],
                 ['label' => 'Odpowiedzi', 'url' => ['/filters']],
                 ['label' => 'Dane techniczne', 'url' => ['/attributes']],
+                ['label' => 'Faq', 'url' => ['/faq']],
+                ['label' => 'Grupa pytań', 'url' => ['/faq-group']],
             ],
         ],
         [

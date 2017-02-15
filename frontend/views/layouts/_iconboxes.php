@@ -7,32 +7,32 @@ use frontend\widget\LatestWidget;
         <div class="col-md-3 hidden-sm hidden-xs col-icon">
             <div class="icon-img"><?= Html::img(Yii::$app->request->BaseUrl.'/img/circle.png', ['class'=>'first_icon'])?></div>
             <div class="icon-text">
-                <div class="icon-text-inner-top">services</div>
-                <div class="icon-text-inner-bottom">house plan design</div>
+                <div class="icon-text-inner-top">PROJEKTY</div>
+                <div class="icon-text-inner-bottom">Znajdź wymażony projekt.</div>
             </div>
             <div class="icon-img"><?= Html::img(Yii::$app->request->BaseUrl.'/img/arrow.png', ['class'=>'arrow_icon'])?></div>
         </div>
         <div class="col-md-3 hidden-sm hidden-xs col-icon">
             <div class="icon-img"><?= Html::img(Yii::$app->request->BaseUrl.'/img/lightbulb.png', ['class'=>'first_icon'])?></div>
             <div class="icon-text">
-                <div class="icon-text-inner-top">about</div>
-                <div class="icon-text-inner-bottom">low-energy houses</div>
+                <div class="icon-text-inner-top">Adaptacje projektów</div>
+                <div class="icon-text-inner-bottom">Zgoda na adaptację projektów</div>
             </div>
             <div class="icon-img"><?= Html::img(Yii::$app->request->BaseUrl.'/img/arrow.png', ['class'=>'arrow_icon'])?></div>
         </div>
         <div class="col-md-3 hidden-sm hidden-xs col-icon">
             <div class="icon-img"><?= Html::img(Yii::$app->request->BaseUrl.'/img/tools.png', ['class'=>'first_icon'])?></div>
             <div class="icon-text">
-                <div class="icon-text-inner-top">about</div>
-                <div class="icon-text-inner-bottom">construction systems</div>
+                <div class="icon-text-inner-top">Systemy budowy</div>
+                <div class="icon-text-inner-bottom">Buduj jak chcesz</div>
             </div>
             <div class="icon-img"><?= Html::img(Yii::$app->request->BaseUrl.'/img/arrow.png', ['class'=>'arrow_icon'])?></div>
         </div>
         <div class="col-md-3 hidden-sm hidden-xs col-icon">
             <div class="icon-img"><?= Html::img(Yii::$app->request->BaseUrl.'/img/video.png', ['class'=>'first_icon'])?></div>
             <div class="icon-text">
-                <div class="icon-text-inner-top">latest</div>
-                <div class="icon-text-inner-bottom">open house days</div>
+                <div class="icon-text-inner-top">Instalacje i wyposażenie</div>
+                <div class="icon-text-inner-bottom">Wszystkie instalacje w cenie</div>
             </div>
             <div class="icon-img"><?= Html::img(Yii::$app->request->BaseUrl.'/img/arrow.png', ['class'=>'arrow_icon'])?></div>
         </div>
@@ -42,23 +42,23 @@ use frontend\widget\LatestWidget;
     <div class="container container-services">
         <div class="col-md-3 col-sm-6 text-center" >
             <?= Html::img(Yii::$app->request->BaseUrl.'/img/service-1.png', ['class'=>'service-img'])?><br>
-            <div class="text18m">House plan design</div><br>
-            <div class="text13o">Zou can order custom house plan design or choose one from wide varietz of premade house plans.</div>
+            <div class="text18m">Projekty</div><br>
+            <div class="text13o">Nasz serwis zapewnia najłatwiejszy sposób wyszukiwania projektu, który ma spełniać Twoje wymagania. Oferujemy projekty z najlepszych polskich pracowni. Staramy się uzupełniać naszą ofertę o projekty kolejnych pracowni dlatego nasz serwis będzie rozwijał się jeszcze przez długie lata.</div>
         </div>
         <div class="col-md-3 col-sm-6 text-center">
             <?= Html::img(Yii::$app->request->BaseUrl.'/img/service-2.png', ['class'=>'service-img'])?><br>
-            <div class="text18m">House Adaptation</div><br>
-            <div class="text13o">Need to make some adjustments to existing real estate_ Contact us to get a free quote or plan a meeting..</div>
+            <div class="text18m">Adaptacje projektów</div><br>
+            <div class="text13o">Wszystkie projekty należy adaptować do warunków lokalnych. Można to zrobić zarówno w swojej lokalnej pracowni architektonicznej lub możesz skorzystać ze sprawdzonymi pracowniami architektonicznymi, które współpracują z naszym serwisem.</div>
         </div>
         <div class="col-md-3 col-sm-6 text-center">
             <?= Html::img(Yii::$app->request->BaseUrl.'/img/service-3.png', ['class'=>'service-img'])?><br>
-            <div class="text18m">House Construction</div><br>
-            <div class="text13o">We have a professional team of architects working on our house plans and construction workers.</div>
+            <div class="text18m">Systemy budowy</div><br>
+            <div class="text13o">Każdy z projektów przygotowany jest do budowania zarówno sposobem gospodarczym lub może być zlecony w całości do wykonania profesjonalnej firmie. Pamiętaj, że metoda gospodarcza na pewno jest tańszym sposobem ale musisz poświęcić więcej swojego czasu i uwagi. Satysfakcja z obserwowania jak powstaje dom Twoich marzeń - "bezcenna".</div>
         </div>
         <div class="col-md-3 col-sm-6 text-center">
             <?= Html::img(Yii::$app->request->BaseUrl.'/img/service-4.png', ['class'=>'service-img'])?><br>
-            <div class="text18m">Inner instalations</div><br>
-            <div class="text13o">We provide closed/in szstems which means zour house is readz to move in / all exterior and interior work.</div>
+            <div class="text18m">Instalacje i wyposażenie</div><br>
+            <div class="text13o">Każdy projekt zawiera cześć związaną z instalacją we wszystkich branżach. W projekcie zawarte są instalacje elektryczne, hydrauliczne a dla projektów gdzie ogrzewanie jest przy pomocy pieca gazowego zawarta jest instalacja gazowa. Wszystkie instalacje mogą być zmienione na etapie adaptacji - wymaga to pracy osoby z odpowiednimi uprawnieniami.</div>
         </div>
     </div>
 </div>
@@ -158,7 +158,7 @@ $iAvalaibleProject = floor($iAvalaibleProject / 100)* 100;
     </div>
     
 </div>
-<div class="wrap wrap-people">
+<!--<div class="wrap wrap-people">
     <div class="container container-people">
         <div class="people-title text-center">Nasi klienci o nas</div>
         <div class="center-green-border text-center"></div>
@@ -177,6 +177,6 @@ Thank you Pixel Industry!</div>
         
     </div>
     
-</div>
+</div>-->
     
     

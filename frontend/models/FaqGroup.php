@@ -5,22 +5,21 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "faq".
+ * This is the model class for table "faq_group".
  *
  * @property integer $id
  * @property integer $is_active
- * @property string $question
- * @property string $answer
+ * @property string $name
  * @property integer $sort_order
  */
-class Faq extends \yii\db\ActiveRecord
+class FaqGroup extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'faq';
+        return 'faq_group';
     }
 
     /**
@@ -29,9 +28,9 @@ class Faq extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['is_active', 'question', 'answer', 'sort_order'], 'required'],
+            [['is_active', 'name', 'sort_order'], 'required'],
             [['is_active', 'sort_order'], 'integer'],
-            [['question', 'answer'], 'string'],
+            [['name'], 'string'],
         ];
     }
 
@@ -42,10 +41,13 @@ class Faq extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'is_active' => 'Widoczny',
-            'question' => 'Pytanie',
-            'answer' => 'Odpowiedź',
+            'is_active' => 'Włączona',
+            'name' => 'Nazwa',
             'sort_order' => 'Kolejność',
         ];
+    }
+    public function getQuestions()
+    {
+        return $this->hasMany(Faq::className(), ['faq_group_id' => 'id']);
     }
 }

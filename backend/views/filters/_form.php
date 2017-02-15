@@ -14,10 +14,10 @@ use yii\helpers\ArrayHelper;
 
     <?php $form = ActiveForm::begin(); ?>
     <?php $model->language_id = 1; ?>
-    <?php $model->is_active = 1; ?>
     <?= $form->field($model, 'is_active')->checkbox() ?>
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'sort_order') ?>
     <?= $form->field($model, 'filters_group_id')->dropDownList(ArrayHelper::map(FiltersGroup::find()->orderBy('sort_order')->all(), 'id', 'name'), ['class'=>'form-control','prompt' => 'Wybierz pytanie'])?>
     <?= $form->field($model, 'language_id')->hiddenInput()->label(false) ?>
     <?= $form->field($model, 'nicename_link')->textInput(['maxlength' => true]) ?>

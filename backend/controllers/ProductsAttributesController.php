@@ -110,17 +110,18 @@ class ProductsAttributesController extends Controller
                         $model->id = $oCheckAttr[0]->id;
                         $model = $this->findModel($model->id);
                         $model->value = $aDataAttrValue;
+                        
                         $model->save(false);
-                    }
-                    else
-                    {
-                        $model->id = NULL;
-                        $model->isNewRecord = true;
-                        $model->save(false);
+                        if($aDataAttrValue == '')
+                        {
+                            $model->delete();
+                        }
+                        
                     }
 
                 }
             }
+            
             return $this->redirect(['./products']);
         }
         elseif (Yii::$app->request->isAjax)

@@ -1,0 +1,31 @@
+/*
+*/
+/* 
+    Created on : 2017-02-14, 13:00:31
+    Author     : Mariusz Skonieczny, mariuszskonieczny@hotmail.com
+*/
+
+.faq-question
+{
+    cursor: pointer;
+    padding:10px 20px 20px;
+}
+.faq-answer
+{
+    padding:0 50px;
+    font-size:15px;
+}
+.fa-question-circle
+{
+    color:#bcc0c4;
+}
+.faq
+{
+    box-sizing: border-box;
+    padding:20px 0;
+    border-bottom: 1px dashed #bcc0c4;
+}
+.faq-group
+{
+    padding-top: 40px;
+}

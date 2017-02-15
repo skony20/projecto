@@ -416,5 +416,15 @@ $(document).on('ready pjax:success',
         
     });
     
+    /*Obsługa FAQ*/
+
+    $('.faq-question').click(function()
+    {
+        var iId = $(this).attr('rel');
+
+        $( ".faq-answer-"+iId).toggle();
+    });
+
+    
 });
     
