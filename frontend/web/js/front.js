@@ -415,6 +415,16 @@ $(document).on('ready pjax:success',
         });
         
     });
-    
+    /*ENTER W WYSZUKIWARCE*/
+    $('.search-input').keypress(function (e) {
+    if (e.which === 13) {
+    var sSearch = $('.search-input').val();
+    if (sSearch.length > 0)
+        {
+            window.location.href = "/projecto/projekty/szukaj/"+sSearch;
+        }
+    return false;    //<---- Add this line
+  }
+});
 });
     
