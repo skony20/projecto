@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Faq */
+/* @var $model app\models\FaqGroup */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Faqs', 'url' => ['index']];
+$this->title = $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Grupa pytań', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="faq-view">
+<div class="faq-group-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -29,13 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            [
-                'attribute' => 'is_active',
-                'value'=>($model->is_active == 1 ? 'TAK' : 'NIE'),
-            ],
-            'question:ntext',
-            'answer:ntext',
-            'groups.name',
+            'is_active',
+            'name:ntext',
             'sort_order',
         ],
     ]) ?>

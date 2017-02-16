@@ -74,7 +74,7 @@ echo '<div class="first-navbar">';
                             ['label' => 'Domy dla 4 osób z garażem', 'url' => Yii::$app->request->BaseUrl.'/projekty/filters/5/24/25'],
                             ['label' => 'Domy dla 2 osób z kominkiem', 'url' => Yii::$app->request->BaseUrl.'/projekty/filters/4/28'],
                             ['label' => 'Na wąską działkę', 'url' => Yii::$app->request->BaseUrl.'/projekty/filters/1'],
-                            ['label' => 'Domy pasywne', 'url' => Yii::$app->request->BaseUrl.'/projekty/filters/33'],
+                            ['label' => 'Domy energooszczędne', 'url' => Yii::$app->request->BaseUrl.'/projekty/filters/32'],
             ],],
                     ['label' => 'Nowości', 'url' => ['/projekty']],
                     ['label' => 'O nas', 'url' => ['/onas']],

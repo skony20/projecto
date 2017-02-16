@@ -83,7 +83,7 @@ public function actionIndex($sort = 'default', $szukaj = '')
 
         foreach ($aFiltersGroup as $_aFiltersGroup)
         {
-            $aFilters = $oFilters::find()->where(['filters_group_id' => $_aFiltersGroup->id, 'is_active'=> 1])->all();
+            $aFilters = $oFilters::find()->where(['filters_group_id' => $_aFiltersGroup->id, 'is_active'=> 1])->orderBy(['sort_order'=>SORT_ASC])->all();
             $aData[$_aFiltersGroup->id] = ['question'=>$_aFiltersGroup, 'answer' => $aFilters];
         }
         $query = $model::find();

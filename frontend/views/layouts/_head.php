@@ -40,4 +40,27 @@ AppAsset::register($this);
     <meta name="msapplication-TileImage" content="<?php echo Yii::$app->request->baseUrl; ?>/img/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <?php $this->head() ?>
+<!--    <script type="text/javascript">
+    (function(p,u,s,h){
+        p._pcq=p._pcq||[];
+        p._pcq.push(['_currentTime',Date.now()]);
+        s=u.createElement('script');
+        s.type='text/javascript';
+        s.async=true;
+        s.src='https://cdn.pushcrew.com/js/92305e94275779fe485dce7789975c5f.js';
+        h=u.getElementsByTagName('script')[0];
+        h.parentNode.insertBefore(s,h);
+    })(window,document);
+</script>-->
+<!-- Smartsupp Live Chat script -->
+<script type="text/javascript">
+var _smartsupp = _smartsupp || {};
+_smartsupp.key = '7bc9a47e7b571d65b7b337bcc672c9c6b8fe1a5c';
+window.smartsupp||(function(d) {
+	var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+	s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+	c.type='text/javascript';c.charset='utf-8';c.async=true;
+	c.src='//www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+})(document);
+</script>
 </head>

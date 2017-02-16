@@ -426,5 +426,16 @@ $(document).on('ready pjax:success',
     return false;    //<---- Add this line
   }
 });
+    
+    /*Obsługa FAQ*/
+
+    $('.faq-question').click(function()
+    {
+        var iId = $(this).attr('rel');
+
+        $( ".faq-answer-"+iId).toggle();
+    });
+
+    
 });
     

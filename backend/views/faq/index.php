@@ -35,6 +35,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'question:ntext',
             'answer:ntext',
+            [
+                'attribute' => 'faq_group_id',
+                'value' =>  'groups.name',
+            ],
             'sort_order',
 
             ['class' => 'yii\grid\ActionColumn'],

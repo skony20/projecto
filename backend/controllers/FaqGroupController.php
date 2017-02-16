@@ -3,7 +3,7 @@
 namespace backend\controllers;
 
 use Yii;
-use app\models\Faq;
+use app\models\FaqGroup;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -11,9 +11,9 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
 /**
- * FaqController implements the CRUD actions for Faq model.
+ * FaqGroupController implements the CRUD actions for FaqGroup model.
  */
-class FaqController extends Controller
+class FaqGroupController extends Controller
 {
     /**
      * @inheritdoc
@@ -31,7 +31,7 @@ class FaqController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'active', 'unactive'],
+                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -41,13 +41,13 @@ class FaqController extends Controller
     }
 
     /**
-     * Lists all Faq models.
+     * Lists all FaqGroup models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Faq::find()->orderBy('sort_order'),
+            'query' => FaqGroup::find(),
         ]);
 
         return $this->render('index', [
@@ -56,7 +56,7 @@ class FaqController extends Controller
     }
 
     /**
-     * Displays a single Faq model.
+     * Displays a single FaqGroup model.
      * @param integer $id
      * @return mixed
      */
@@ -68,16 +68,16 @@ class FaqController extends Controller
     }
 
     /**
-     * Creates a new Faq model.
+     * Creates a new FaqGroup model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Faq();
+        $model = new FaqGroup();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -86,7 +86,7 @@ class FaqController extends Controller
     }
 
     /**
-     * Updates an existing Faq model.
+     * Updates an existing FaqGroup model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +96,7 @@ class FaqController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -105,7 +105,7 @@ class FaqController extends Controller
     }
 
     /**
-     * Deletes an existing Faq model.
+     * Deletes an existing FaqGroup model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -116,30 +116,17 @@ class FaqController extends Controller
 
         return $this->redirect(['index']);
     }
-    public function actionActive($id)
-    {
 
-        $model = $this->findModel($id);
-        $model->is_active = 1;
-        $model->save(false);
-    }
-    public function actionUnactive($id)
-    {
-
-        $model = $this->findModel($id);
-        $model->is_active = 0;
-        $model->save(false);
-    }
     /**
-     * Finds the Faq model based on its primary key value.
+     * Finds the FaqGroup model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Faq the loaded model
+     * @return FaqGroup the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Faq::findOne($id)) !== null) {
+        if (($model = FaqGroup::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

@@ -6,15 +6,8 @@
 */
 namespace frontend\controllers;
 use Yii;
-use yii\base\InvalidParamException;
-use yii\web\BadRequestHttpException;
 use yii\web\Controller;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
-use app\models\Products;
-use common\widgets\Alert;
 
-use yii\web\Session;
 
 class MetaController extends Controller
 {

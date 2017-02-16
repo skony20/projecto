@@ -69,7 +69,8 @@ class FiltersSearch extends Filters
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'nicename_link', $this->nicename_link])
-            ->andFilterWhere(['like', 'sort_oder', $this->nicename_link]);
+            ->andFilterWhere(['like', 'sort_oder', $this->nicename_link])
+                ->orderBy(['is_active'=> SORT_DESC,'sort_order' => SORT_ASC]);
 
         return $dataProvider;
     }

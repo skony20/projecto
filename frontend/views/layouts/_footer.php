@@ -37,7 +37,7 @@ use common\widgets\Alert;
                         
             </div>
         </div>
-        <div class="col-md-3 col-sm-6">
+<!--        <div class="col-md-3 col-sm-6">
             <div class="m15w footer-tittle">Nowości i promocje</div>
             <div  class="footer-content">
                 <div class="footer-news">
@@ -49,11 +49,11 @@ use common\widgets\Alert;
                     <div class="news-content">Nie mam pomysłu <br> co tu napisać<br><span class="m12b">31-01-2017</span></div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
+        </div>-->
+        <div class="col-md-6 col-sm-6">
             <div  class="footer-content">
                 <div class="m15w footer-tittle">Newsletter</div>
-                <div class="newsletter-text">Zapisz się na nasz newsletter. Z niego dowiesz się o nowościach, promocjach oraz eventach. Dzięki niemu na bieżąco możesz śledzić wydarzenia oraz informację o rozwoju.</div>
+                <div class="newsletter-text">Zapisz się na nasz newsletter. Z niego dowiesz się o nowościach, promocjach oraz eventach. <br>Dzięki niemu na bieżąco możesz śledzić wydarzenia oraz informację o rozwoju.</div>
                 <div class="newsletter-input"><?= Html::input('text', 'newslatter', '', ['class'=>'newsletter-input', 'placeholder'=>'Wpisz adres e-mail', 'id'=>'newsletter-input'])?>
                     <i class="fa fa-envelope submit-newslatter" aria-hidden="true"></i>
                 </div>
