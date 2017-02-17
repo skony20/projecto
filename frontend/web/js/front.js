@@ -64,14 +64,14 @@ $(document).on('ready pjax:success',
                 $("#set_filters").submit();
             }
         );
-        $('input[type=text]').change(
-            function()
-            {
-                
-                $("#set_filters").submit();
-                
-            }
-        );
+//        $('input[type=text]').change(
+//            function()
+//            {
+//                
+//                $("#set_filters").submit();
+//                
+//            }
+//        );
         $('#prj_sizex, #prj_sizey').change(
             function()
             { 
@@ -107,6 +107,9 @@ $(document).on('ready pjax:success',
 
             }
         );
+        $('#set_filters').submit(function() {
+             $('.loader').show();
+            });
 
 
     $('.project_ready').click(
@@ -415,16 +418,52 @@ $(document).on('ready pjax:success',
         });
         
     });
+    /*ENTER W WYSZUKIWARCE*/
+    $('.search-input').keypress(function (e) {
+    if (e.which === 13) {
+    var sSearch = $('.search-input').val();
+    if (sSearch.length > 0)
+        {
+            window.location.href = "/projecto/projekty/szukaj/"+sSearch;
+        }
+    return false;
+  }
+});
+    /*Input dla rozmiarów domu*/
+    var $range = $(".irs-hidden-input"),
+    $inputMin = $(".HouseMin"),
+    $inputMax = $(".HouseMax"),
+    instance,
+    min = 0,
+    max = 1000;
     
-    /*Obsługa FAQ*/
+    instance = $range.data("ionRangeSlider");
+    
+    $inputMin.change(function () {
+        var val = $(this).prop("value");
 
-    $('.faq-question').click(function()
-    {
-        var iId = $(this).attr('rel');
+        if (val < min) {
+            val = min;
+        } else if (val > max) {
+            val = max;
+        }
 
-        $( ".faq-answer-"+iId).toggle();
+        instance.update({
+            from: val
+        });
     });
+    $inputMax.change( function () {
+        var val = $(this).prop("value");
 
-    
+        if (val < min) {
+            val = min;
+        } else if (val > max) {
+            val = max;
+        }
+
+        instance.update({
+            to: val
+        });
+    });
 });
     
