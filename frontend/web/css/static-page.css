@@ -119,7 +119,19 @@ input#contactform-verifycode
     color:#fff;
     font-size: 15px;
 }
+/*O nas*/
 
+.about
+{
+    margin-top:40px;
+    padding: 0 20px;
+    font-size:15px;
+    line-height: 1.4
+}
+.about p
+{
+    padding:10px 0;
+}
 @media only screen and (max-width:770px)
 {
     .field-contactform-name, .field-contactform-email

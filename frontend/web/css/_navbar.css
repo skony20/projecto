@@ -185,6 +185,21 @@ input.search-input
     padding:0;
 
 }
+.navbar-default .navbar-nav > li.another-menu > a
+{
+    color:#2f96d1 !important;
+}
+.navbar-default .navbar-nav > li.another-menu
+{
+    margin-left: 20px;
+    border-left: 2px solid;
+}
+.navbar-default .navbar-nav > li.another-menu > a:hover
+{
+    color:#88c354 !important;
+}
+
+
 
 /*Poprawa responsive*/
 

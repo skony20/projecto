@@ -26,6 +26,9 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
         <?= Html::button('Dodaj odpowiedzi', ['value' => Url::to(['products-filters/create', 'id' => $model->id]), 'title' => 'Dodaj odpowiedzi do: '. $this->title, 'class' => 'showModalButton btn btn-success float-right']) ?>
         <?= Html::button('Dane techniczne', ['value' => Url::to(['products-attributes/create', 'id' => $model->id]), 'title' => 'Dodaj dane techniczne do: '. $this->title, 'class' => 'showModalButton btn btn-success float-right']) ?>
+        <?= Html::a(Html::button('Pokaż w sklepie', ['title' => 'Pokaz w sklepie', 'class' => 'btn btn-warning float-right']) , 'http://mariuszskonieczny.kylos.pl/projecto/projekt/'.$model->productsDescriptons->nicename_link.'.html', ['target'=>'_blank']);?>
+        
+        
     </p>
     <?php
     $sPatch = Yii::getAlias('@image');

@@ -10,9 +10,8 @@ use frontend\widget\CartWidget;
 echo '<div class="first-navbar">';
     NavBar::begin();
     $menuItems = [
-        ['label' => 'Faq', 'url' => ['/faq']],
-        ['label' => 'O nas', 'url' => ['/onas']],
-        ['label' => 'Co zawiera projekt', 'url' => ['/wprojekcie']],
+        
+        
     ];
     if (Yii::$app->user->isGuest) {
         $menuItemsR[] = ['label' => 'Rejestracja', 'url' => ['/signup']];
@@ -66,8 +65,7 @@ echo '<div class="first-navbar">';
                 <?php
                 NavBar::begin();
                 $menuItems = [
-                    ['label' => 'Główna', 'url' => ['/']],
-                    ['label' => 'Popularne', 
+                    ['label' => 'Projekty domów', 
                         'items' => [
                             ['label' => 'Domy do 100 m2', 'url' => Yii::$app->request->BaseUrl.'/projekty/HouseSize/0-100', 'options'=> ['class'=>'menu-bar']],
                             ['label' => 'Domy powyżej 300 m2', 'url' => Yii::$app->request->BaseUrl.'/projekty/HouseSize/300-999', 'options'=> ['class'=>'menu-bar']],
@@ -77,7 +75,9 @@ echo '<div class="first-navbar">';
                             ['label' => 'Domy energooszczędne', 'url' => Yii::$app->request->BaseUrl.'/projekty/filters/32'],
             ],],
                     ['label' => 'Nowości', 'url' => ['/projekty']],
-                    ['label' => 'O nas', 'url' => ['/onas']],
+                    ['label' => 'Co zawiera projekt', 'url' => ['/wprojekcie'],'options'=>['class'=>'another-menu']],
+                    ['label' => 'O ProjekTop.pl', 'url' => ['/onas']],
+                    ['label' => 'Faq', 'url' => ['/faq']],
                     ['label' => 'Kontakt', 'url' => ['/kontakt']],
                 ];
                 echo Nav::widget([
