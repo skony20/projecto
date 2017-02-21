@@ -116,12 +116,11 @@ class SiteController extends MetaController
         $oProductsFilters = new ProductsFilters();
         $aPrdFilters = [];
                
-        $iMinSize = floor($oProductsAttributes->find()->onCondition(['attributes_id'=>4])->min('(CAST(value AS DECIMAL (5,2)))'));
-        $iMaxSize = ceil($oProductsAttributes->find()->onCondition(['attributes_id'=>4])->max('(CAST(value AS DECIMAL (5,2)))'));
-        
-        $iMaxX = ceil($oProductsAttributes->find()->onCondition(['attributes_id'=>7])->max('(CAST(value AS DECIMAL (5,2)))'));
-        $iMaxY = ceil($oProductsAttributes->find()->onCondition(['attributes_id'=>6])->max('(CAST(value AS DECIMAL (5,2)))'));
-        
+        $iMinSize = floor($oProductsAttributes->find()->leftJoin('products', 'products.id = products_attributes.products_id')->onCondition(['products_attributes.attributes_id'=>4, 'products.is_active'=>1])->min('(CAST(products_attributes.value AS DECIMAL (5,2)))'));
+        $iMaxSize = ceil($oProductsAttributes->find()->leftJoin('products', 'products.id = products_attributes.products_id')->onCondition(['attributes_id'=>4, 'products.is_active'=>1])->max('(CAST(value AS DECIMAL (5,2)))'));
+        $iMaxX = ceil($oProductsAttributes->find()->leftJoin('products', 'products.id = products_attributes.products_id')->onCondition(['attributes_id'=>7, 'products.is_active'=>1])->max('(CAST(value AS DECIMAL (5,2)))'));
+        $iMaxY = ceil($oProductsAttributes->find()->leftJoin('products', 'products.id = products_attributes.products_id')->onCondition(['attributes_id'=>6, 'products.is_active'=>1])->max('(CAST(value AS DECIMAL (5,2)))'));
+        //echo '<pre>'. print_r($oProductsAttributes->find()->where(['products.is_active'=>1])->all(), TRUE);
         
         $aDimensions['iAllMinSize'] = $iMinSize;
         $aDimensions['iAllMaxSize'] = $iMaxSize;
@@ -259,11 +258,16 @@ class SiteController extends MetaController
     }
     public function actionLogin()
     {
+        
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
 
         $model = new LoginForm();
+        Yii::$app->view->registerMetaTag([
+        'name' => 'robots',
+        'content' => 'follow, noindex'
+        ], 'robots');
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         } else {
@@ -326,7 +330,10 @@ class SiteController extends MetaController
     }
     public function actionRegulamin()
     {
-
+        Yii::$app->view->registerMetaTag([
+        'name' => 'robots',
+        'content' => 'follow, noindex'
+        ], 'robots');
         return $this->render('regulamin');
     }
     public function actionWspolpraca()
@@ -336,17 +343,26 @@ class SiteController extends MetaController
     }
     public function actionCookie()
     {
-
+        Yii::$app->view->registerMetaTag([
+        'name' => 'robots',
+        'content' => 'follow, noindex'
+        ], 'robots');
         return $this->render('cookie');
     }
     public function actionPolitykaPrywatnosci()
     {
-
+        Yii::$app->view->registerMetaTag([
+        'name' => 'robots',
+        'content' => 'follow, noindex'
+        ], 'robots');
         return $this->render('politykaPrywatnosci');
     }
     public function actionZwrot()
     {
-
+        Yii::$app->view->registerMetaTag([
+        'name' => 'robots',
+        'content' => 'follow, noindex'
+        ], 'robots');
         return $this->render('zwrot');
     }
     /**
@@ -367,7 +383,10 @@ class SiteController extends MetaController
                 }
             }
         }
-
+        Yii::$app->view->registerMetaTag([
+        'name' => 'robots',
+        'content' => 'follow, noindex'
+        ], 'robots');
         return $this->render('signup', [
             'model' => $model,
         ]);
@@ -391,7 +410,10 @@ class SiteController extends MetaController
                 Yii::$app->session->setFlash('error', 'Nie możemy wysłać linku dla takiego adresu');
             }
         }
-
+        Yii::$app->view->registerMetaTag([
+        'name' => 'robots',
+        'content' => 'follow, noindex'
+        ], 'robots');
         return $this->render('requestPasswordResetToken', [
             'model' => $model,
         ]);
@@ -417,7 +439,10 @@ class SiteController extends MetaController
 
             return $this->goHome();
         }
-
+        Yii::$app->view->registerMetaTag([
+        'name' => 'robots',
+        'content' => 'follow, noindex'
+        ], 'robots');
         return $this->render('resetPassword', [
             'model' => $model,
         ]);

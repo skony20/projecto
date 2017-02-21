@@ -26,6 +26,14 @@ class MetaController extends Controller
             'content' => 'projekty domów, dom, projekt, projekt domu, plan domu, plany domu'
         ]
         );
+       
+        Yii::$app->view->registerMetaTag(
+        [
+            'name' => 'robots',
+            'content' => 'follow, index'
+        ], 'robots'
+        );
+        
         return parent::beforeAction($action);
     }
 
