@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     
     <div class="col-md-6">
-        <div class="m21b login-title"><?= Html::encode($this->title) ?></div>
+        <h1 class="m21b login-title"><?= Html::encode($this->title) ?></h1>
         <div class="green-border"></div>
         <p class="m18b">Nie masz jeszcze konta? Zarejestruj się!</p>
         <div class="row registry-row">

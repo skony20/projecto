@@ -49,9 +49,10 @@ use yii\authclient\ClientInterface;
  * ```
  *
  * This widget supports following keys for [[ClientInterface::getViewOptions()]] result:
- *  - popupWidth - integer width of the popup window in pixels.
- *  - popupHeight - integer height of the popup window in pixels.
- *  - widget - configuration for the widget, which should be used to render a client link;
+ *
+ *  - popupWidth: int, width of the popup window in pixels.
+ *  - popupHeight: int, height of the popup window in pixels.
+ *  - widget: array, configuration for the widget, which should be used to render a client link;
  *    such widget should be a subclass of [[AuthChoiceItem]].
  *
  * @see \yii\authclient\AuthAction
@@ -84,11 +85,11 @@ class AuthChoice extends Widget
      */
     public $clientOptions = [];
     /**
-     * @var boolean indicates if popup window should be used instead of direct links.
+     * @var bool indicates if popup window should be used instead of direct links.
      */
     public $popupMode = true;
     /**
-     * @var boolean indicates if widget content, should be rendered automatically.
+     * @var bool indicates if widget content, should be rendered automatically.
      * Note: this value automatically set to 'false' at the first call of [[createClientUrl()]]
      */
     public $autoRender = true;
@@ -181,8 +182,8 @@ class AuthChoice extends Widget
      */
     public function clientLink($client, $text = null, array $htmlOptions = [])
     {
-        $text = '<div class="'.$client->getName().'-button"><i class="fa fa-'.$client->getName().'" aria-hidden="true"></i> '.$client->getName().' logowanie</div>';
         $viewOptions = $client->getViewOptions();
+
         if (empty($viewOptions['widget'])) {
             if ($text === null) {
                 $text = Html::tag('span', '', ['class' => 'auth-icon ' . $client->getName()]);
@@ -261,7 +262,7 @@ class AuthChoice extends Widget
             } else {
                 $options = Json::htmlEncode($this->clientOptions);
             }
-            $view->registerJs("\$('#" . $this->getId() . "').authchoice({$options});");
+            $view->registerJs("jQuery('#" . $this->getId() . "').authchoice({$options});");
         } else {
             AuthChoiceStyleAsset::register($view);
         }

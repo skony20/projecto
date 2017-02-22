@@ -15,7 +15,8 @@ $this->title = 'Polityka prywatności';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-privacy">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1 class="m21b"><?= Html::encode($this->title) ?></h1>
+    <div class="green-border"></div>
     <div>
         <p>Podanie danych osobowych, a także zgoda na ich przetwarzanie są całkowicie dobrowolne. Wszelkie przekazane nam dane osobowe są przetwarzane wyłącznie w zakresie i celu, na jaki wyraziłeś zgodę. W przypadku, gdy postanowisz jednak nie podawać nam niezbędnych do realizacji zamówienia danych i nie wyrazisz zgody na ich przetwarzanie, niestety nie będziemy mogli zrealizować Twojego zamówienia.</p>
         <p>Prosimy, abyś pamiętał, że w każdej chwili masz prawo do aktualizacji lub całkowitego usunięcia swoich danych osobowych. Możesz to zrobić samodzielnie, jak i korzystając z naszej pomocy, której chętnie udzielimy.</p>

@@ -11,7 +11,8 @@ $this->title = 'Zwroty';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-returns">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1 class="m21b"><?= Html::encode($this->title) ?></h1>
+    <div class="green-border"></div>
     <div class="return-button text-center"><?= Html::a('Formularz zwrotu', Yii::$app->request->BaseUrl.'/img/formularz_zwrotu.pdf') ?></div>
     <p>
         Każdy konsument ma możliwość zwrotu, w związku z odstąpieniem od umowy bez podania przyczyny, towaru zakupionego w sklepie internetowym ProjektTop.pl nawet wtedy, gdy towar jest zgodny z zamówieniem. W celu uzyskania możliwości zwrotu towaru wystarczy w ciągu 14 dni od jego otrzymania poinformować sklep ProjektTop.pl o odstąpieniu od umowy.

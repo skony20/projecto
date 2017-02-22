@@ -1,6 +1,17 @@
 Yii Framework 2 HTTP client extension Change Log
 ================================================
 
+2.0.3 February 15, 2017
+-----------------------
+
+- Bug #74: Fixed unable to reuse `Request` instance for sending several requests with different data (klimov-paul)
+- Bug #76: Fixed `HttpClientPanel` triggers `E_WARNING` on attempt to view history debug entry, generated without panel being attached (klimov-paul)
+- Bug #79: Fixed inability to use URL with query parameters as `Client::$baseUrl` (klimov-paul)
+- Bug #81: Fixed invalid Content-Disposition header in multipart request (cebe, PowerGamer1)
+- Bug #87: Fixed `Request::addOptions()` unable to override already set CURL options (klimov-paul)
+- Bug #88: Fixed `UrlEncodedFormatter` duplicates GET parameters during multiple request preparations (klimov-paul)
+
+
 2.0.2 October 31, 2016
 ----------------------
 
@@ -19,8 +30,8 @@ Yii Framework 2 HTTP client extension Change Log
 - Enh #43: Events `EVENT_BEFORE_SEND` and `EVENT_AFTER_SEND` added to `Request` and `Client` (klimov-paul)
 - Enh #46: Added `Request::getFullUrl()` allowing getting the full actual request URL (klimov-paul)
 - Enh #47: Added `Message::addData()` allowing addition of the content data to already existing one (klimov-paul)
-- Enh #50: Option 'protocolVersion' added to `Request::options` allowing specification of the HTTP protocol version (klimov-paul)
-- Enh #58: Added `UrlEncodedFormatter::charset` allowing specification of content charset (klimov-paul)
+- Enh #50: Option 'protocolVersion' added to `Request::$options` allowing specification of the HTTP protocol version (klimov-paul)
+- Enh #58: Added `UrlEncodedFormatter::$charset` allowing specification of content charset (klimov-paul)
 - Enh: Added `XmlFormatter::useTraversableAsArray` allowing processing `\Traversable` as array (klimov-paul)
 
 

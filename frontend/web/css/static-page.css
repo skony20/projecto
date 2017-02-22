@@ -132,6 +132,24 @@ input#contactform-verifycode
 {
     padding:10px 0;
 }
+
+/*Co w projekcier*/
+.in-project
+{
+    margin-top:40px;
+    padding: 0 20px;
+    font-size:15px;
+    line-height: 1.4
+}
+.in-project p
+{
+    padding:10px 0;
+}
+.in-project li
+{
+    padding: 5px 0px;
+    list-style-image:url('../../projecto/img/list-arrow.png');
+}
 @media only screen and (max-width:770px)
 {
     .field-contactform-name, .field-contactform-email
