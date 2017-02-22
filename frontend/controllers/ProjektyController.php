@@ -181,6 +181,7 @@ public function actionIndex($sort = 'default', $szukaj = '')
                 foreach ($aFiltersData as $iFilterInPrd)
                 {
                     $aFiltersGroupInPrd = $oFilters->findOne($iFilterInPrd);
+                    //echo '<pre>' .print_r($aFiltersGroupInPrd, TRUE); die();
                     //$aFiltersPrdGroup[$aFiltersGroupInPrd->filters_group_id] = []; 
                     $aFiltersPrdGroup[$aFiltersGroupInPrd->filters_group_id][] = $aFiltersGroupInPrd->id;
 

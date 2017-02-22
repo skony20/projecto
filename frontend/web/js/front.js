@@ -1,12 +1,12 @@
 
 $(document).on('ready pjax:success',
-
-
     function()
     {
+        
         $('#prj_set_filters').submit(function(e) {
             e.preventDefault();
             this.submit();
+            
             var filter = '';
             var filters = '';
             var sHouseSize = '';
@@ -22,6 +22,7 @@ $(document).on('ready pjax:success',
 
             if (bBarChange === '1' && (iMin.innerHTML !== iFrom.innerHTML || iMax.innerHTML !== iTo.innerHTML))
             {     
+                
                 sHouseSize = '/HouseSize/' +  $("[name='HouseSize']").val();
             }
             $('input:checkbox:checked').each(function() 
