@@ -251,7 +251,6 @@ public function actionIndex($sort = 'default', $szukaj = '')
         /*Wyszukiwanie*/
         if ($szukaj != '')
         {
-            //echo $szukaj; die();
             $aPrdIds = [];
             $aSearchQuery =  $model::find()->joinWith('productsDescriptons')->andFilterWhere(['or',['like', 'products.symbol', $szukaj],['like', 'products_descripton.name', $szukaj],['like', 'products_descripton.keywords', $szukaj]])->asArray()->all();
             foreach ($aSearchQuery as $aSearchProducts)
@@ -262,6 +261,10 @@ public function actionIndex($sort = 'default', $szukaj = '')
             {
                 $aPrdIds[0] = 1;
             }
+            Yii::$app->view->registerMetaTag([
+            'name' => 'robots',
+            'content' => 'follow, noindex'
+            ], 'robots');
             
         }
         $iOneMinSize = floor($oProductsAttributes->find()->andFilterWhere(['IN', 'products_id', $aPrdFilters])->andWhere('attributes_id = 4')->min('(CAST(value AS DECIMAL (5,2)))'));
@@ -302,7 +305,14 @@ public function actionIndex($sort = 'default', $szukaj = '')
                 $aSort = ['products_descripton.name' => SORT_DESC];
                 break;
         }
-        
+ 
+        if ($sort != 'default' || !empty($_GET))
+        {
+            Yii::$app->view->registerMetaTag([
+            'name' => 'robots',
+            'content' => 'follow, noindex'
+            ], 'robots');
+        }
         //echo '<pre>'. print_r([$aPrdIds, count(array_filter($aPostData)) ], TRUE); die();    
         $query = $model::find()->FilterWhere(['IN', 'products.id', $aPrdIds])->andFilterWhere(['is_active' => 1]);
         //tylko włączone projekty   ->andFilterWhere(['is_active' => 1])

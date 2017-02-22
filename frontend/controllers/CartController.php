@@ -123,6 +123,10 @@ class CartController extends MetaController
         $aTotal['iTotalSource'] = $iTotalSource;
         $oSession['aTotal'] = $aTotal;
         }
+        Yii::$app->view->registerMetaTag([
+        'name' => 'robots',
+        'content' => 'noindex'
+        ], 'robots');
         return $this->render('index',['aPrjs' => $aPrjs, 'aTotal'=>$aTotal]);
 
     }

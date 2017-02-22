@@ -14,9 +14,9 @@ use yii\web\Session;
 use app\models\PaymentsMethod;
 use app\models\OrdersPosition;
 use app\models\OrdersPayments;
-use OpenPayU_Configuration;
-use OpenPayU_Order;
-use OpenPayU_Result;
+use przelewy;
+use yii\helpers\Url;
+
 
 
 
@@ -96,22 +96,8 @@ class OrderController extends MetaController
         $aTotal = $oSession->get('aTotal');
         //echo '<pre>'. print_r($aProducts, TRUE);  die();
         if ($order <> 0)
-        {
-            $oOrderPaymants = new OrdersPayments();
-            $oOrderPays = $oOrderPaymants->find()->where(['orders_id'=>$order])->one();
-            OpenPayU_Configuration::setEnvironment('secure');
-            $response = OpenPayU_Order::retrieve($oOrderPays->code);
-            $sStatus = $response->getresponse()->orders[0]->status;
-            $oOrderPays->status = $sStatus;
-            $oOrderPays->save(false);
-            
-            //echo '<pre>'.print_r($response->getresponse()->orders[0]->status, TRUE);
+        {   
             $oOrderActual = $oOrder->findOne($order);
-            if ($sStatus == 'COMPLETED')
-            {
-                $oOrderActual->orders_status_id = 2;
-                $oOrderActual->save();
-            }
             
             return $this->render('/order/confirm-order',['iOrderId'=>$order, 'oOrderActual' =>$oOrderActual]); 
         }
@@ -156,9 +142,6 @@ class OrderController extends MetaController
             foreach ($aProducts as $aProduct)
             {
                 $oOrderPosition = new OrdersPosition();
-//                echo $a .'- tu</br>';
-//                $a++;
-//                echo '<pre>'. print_r($aProduct['prj']->id, TRUE).'- tu 2 </br>';
                 $oOrderPosition->is_deleted = 0;
                 $oOrderPosition->orders_id = $iOrderId;
                 $oOrderPosition->products_id = $aProduct['prj']->id;
@@ -180,10 +163,10 @@ class OrderController extends MetaController
                 $aProductExist->sell_items += 1 ;
                 $aProductExist->save(false);
             }
-                $oSession->remove('Cart');
-                $oSession->remove('aPrjs');
-                $oSession->remove('OrderData');
-                $oSession->remove('aTotal');
+//                $oSession->remove('Cart');
+//                $oSession->remove('aPrjs');
+//                $oSession->remove('OrderData');
+//                $oSession->remove('aTotal');
                 Yii::$app
                 ->mailer
                 ->compose(
@@ -206,97 +189,41 @@ class OrderController extends MetaController
                     ->setTo(Yii::$app->params['supportEmail'])
                     ->setSubject('Nowe zamówienie')
                     ->send();
-                if ($aDelivery['shippings_payments_id'] == 2)
+                if ($aDelivery['shippings_payments_id'] == 3)
                 {
-                
-                    /*PayU*/
-                    
-                    $aOrder =[];
-                    
-                    $aOrder['notifyUrl'] = 'http://localhost/projecto/order/notify/';
-                    $aOrder['continueUrl'] = 'http://localhost/projecto/order/confirm-order/?order='.$iOrderId;
-                    $aOrder['customerIp'] = '127.0.0.1';
-                    $aOrder['merchantPosId'] = OpenPayU_Configuration::getMerchantPosId();
-                    $aOrder['description'] = 'Projekttop.pl';
-                    $aOrder['currencyCode'] = 'PLN';
-                    $aOrder['totalAmount'] = 200;//$aTotal['iTotal']*100;
-                    $aOrder['extOrderId'] = $iOrderCode; //must be unique!
-                    $a = 0;
-                    foreach ($aProducts as $aProduct)
-                    {
-                        //echo '<pre>PAYU: ' .print_r($aProduct['prj']->productsDescriptons->name, TRUE); die();
-                        $aOrder['products'][$a]['name'] = $aProduct['prj']->productsDescriptons->name;
-                        $aOrder['products'][$a]['unitPrice'] = $aProduct['prj']->price_brutto*100;
-                        $aOrder['products'][$a]['quantity'] = $aProduct['iQty'];
-                        $a++;
+                   $p24Service = \Yii::$app->P24Service;
+                   $iSessionId = uniqid();
+                    $p24Form = $p24Service->getModelForm();
+                    $p24Form->setAttributes([
+                        'p24_amount' => $aTotal['iTotal']*100,
+                        'p24_description' => 'Zaplata za zamowienie '.$iOrderId,
+                        'p24_session_id' => $iSessionId,
+                        'p24_email' => Yii::$app->user->identity->email,
+                        'p24_url_status' => Url::to(['payment/update-status'], true),
+                        'p24_url_return' => Url::to(['order/confirm-order/?order='.$iOrderId], true)
+                        // if you need you can put other input
+                    ]);
+                    $oOrderPayment = new OrdersPayments();
+                    $oOrderPayment->orders_id = $iOrderId;
+                    $oOrderPayment->source = 'przelewy';
+                    $oOrderPayment->code = $iSessionId;
+                    $oOrderPayment->status = 'Rozpoczęta';
+                    $oOrderPayment->value = $aTotal['iTotal'];
+                    $oOrderPayment->description = 'Zaplata za zamowienie '.$iOrderId;
+                    $oOrderPayment->creation_time = time();
+                    $oOrderPayment->save();
+                    if ($p24Form->validate() && $p24Service->testConnection()) {
+                        
+                        $p24Form->createSigin(); // create and add to p24_sign input
                     }
-
-                //optional section buyer
-                    $aOrder['buyer']['email'] = Yii::$app->user->identity->email;
-                    $aOrder['buyer']['phone'] = $aDelivery['customer_phone'];
-                    $aOrder['buyer']['firstName'] = $aDelivery['delivery_name'] ;
-                    $aOrder['buyer']['lastName'] = $aDelivery['delivery_lastname'] ;
-                    //echo '<pre>PAYU: ' .print_r($aOrder['products'], TRUE); die();
-                    OpenPayU_Configuration::setEnvironment('secure');
-                    $response = OpenPayU_Order::create($aOrder);
-                    $aStatus = $response->getResponse()->status;
-                    //echo '<pre>PAYU: ' .print_r($response->getResponse()->orderId, TRUE); die();
-                    if (isset($response->getResponse()->status) && $aStatus->statusCode =='SUCCESS')
-                    {
-                        //echo '<pre>PAYU3: ' .print_r($response->getResponse(), TRUE); die();
-                        $oOrderPayments = new OrdersPayments();
-                        $oOrderPayments->orders_id = $iOrderId;
-                        $oOrderPayments->code = $response->getResponse()->orderId;
-                        $oOrderPayments->source = 'payu';
-                        $oOrderPayments->status ='Rozpoczęta';
-                        $oOrderPayments->value = $aTotal['iTotal'];
-                        $oOrderPayments->description = 'Zamówinie nr: '. $iOrderId;
-                        $oOrderPayments->creation_time = time();
-                        $oOrderPayments->save(false);
-                        //echo '<pre>PAYU3: ' .print_r($response->getResponse(), TRUE); die();
-                        return $this->redirect($response->getResponse()->redirectUri);
-                    }
-                    
-                    
-                    
                 }
 
                 $oOrderActual = $oOrder->findOne($iOrderId);
         }
         
-        
+        return $this->render('/order/confirm-order',['iOrderId'=>$iOrderId, 'oOrderActual' =>$oOrderActual, 'p24Form' => $p24Form]); 
+    }
 
-        //echo '<pre>'. print_r($aProducts, TRUE); die();
-        
-        return $this->render('/order/confirm-order',['iOrderId'=>$iOrderId, 'oOrderActual' =>$oOrderActual]); 
-    }
-    public function actionNotify()
-    {
-//        OpenPayU_Configuration::setEnvironment('secure');
-//        $body = file_get_contents ( 'php://input' );
-//        $data =  trim ( $body );
-//        echo '<pre>dd'. print_r($data , TRUE); die();
-//            try {
-//                if (!empty($data)) {
-//                    $result = OpenPayU_Order::consumeNotification($data);
-//                   
-//                }
-//
-//                if ($result->getResponse()->order->orderId) {
-//
-//                    /* Check if OrderId exists in Merchant Service, update Order data by OrderRetrieveRequest */
-//                    $order = OpenPayU_Order::retrieve($result->getResponse()->order->orderId);
-//                    if($order->getStatus() == 'SUCCESS'){
-//                        //the response should be status 200
-//                        //header("HTTP/1.1 200 OK");
-//                    }
-//                }
-//            } catch (OpenPayU_Exception $e) {
-//                echo $e->getMessage();
-//            }
-//
-//        
-    }
             
      
     

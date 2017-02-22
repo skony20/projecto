@@ -14,12 +14,18 @@ AppAsset::register($this);
 <html lang="<?= Yii::$app->language ?>">
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
+    <META http-equiv="Content-Language" content="pl">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway&amp;subset=latin-ext" rel="stylesheet">
 
     <?= Html::csrfMetaTags() ?>
+
     <title><?= Html::encode($this->title) ?></title>
+    <META name="title" content="<?= Html::encode($this->title) ?>">
+    <META name="author" content="Mariusz Skonieczny">
+    <META name="reply-to" content="mariuszs@projekttop.pl">
+    <META name="company" content="ProjektTop.pl">
     <link rel="shortcut icon" href="<?php echo Yii::$app->request->baseUrl; ?>/img/favicon.ico" type="image/x-icon" />
 
     <link rel="apple-touch-icon" sizes="57x57" href="<?php echo Yii::$app->request->baseUrl; ?>/img/apple-icon-57x57.png">

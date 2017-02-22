@@ -66,7 +66,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
 
-             'symbol',
+            [
+                'attribute' => 'symbol',
+                'format' => 'raw',
+                'value'=> function ($model)
+                {
+                    
+                    return '<a href="http://mariuszskonieczny.kylos.pl/projecto/projekt/'.$model->productsDescriptons->nicename_link.'.html" target="_blank" >'.$model->productsDescriptons->nicename_link.'</a>';
+                }
+            ],
 
 
             ['class' => 'yii\grid\ActionColumn'],

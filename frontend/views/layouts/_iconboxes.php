@@ -43,22 +43,22 @@ use frontend\widget\LatestWidget;
         <div class="col-md-3 col-sm-6 text-center" >
             <?= Html::img(Yii::$app->request->BaseUrl.'/img/service-1.png', ['class'=>'service-img'])?><br>
             <div class="text18m">Projekty</div><br>
-            <div class="text13o">Nasz serwis zapewnia najłatwiejszy sposób wyszukiwania projektu, który ma spełniać Twoje wymagania. Oferujemy projekty z najlepszych polskich pracowni. Staramy się uzupełniać naszą ofertę o projekty kolejnych pracowni dlatego nasz serwis będzie rozwijał się jeszcze przez długie lata.</div>
+            <div class="text13o text-justify">W ProjektTop współpracujemy z najlepszymi, polskimi pracowniami i systematycznie rozszerzamy ofertę o kolejne projekty domów, a wszystko to, by maksymalnie uprościć i uprzyjemnić proces wyszukiwania domu skrojonego na miarę. </div>
         </div>
         <div class="col-md-3 col-sm-6 text-center">
             <?= Html::img(Yii::$app->request->BaseUrl.'/img/service-2.png', ['class'=>'service-img'])?><br>
             <div class="text18m">Adaptacje projektów</div><br>
-            <div class="text13o">Wszystkie projekty należy adaptować do warunków lokalnych. Można to zrobić zarówno w swojej lokalnej pracowni architektonicznej lub możesz skorzystać ze sprawdzonymi pracowniami architektonicznymi, które współpracują z naszym serwisem.</div>
+            <div class="text13o text-justify">Wybierając projekt domu należy pamiętać, że konieczna jest jego adaptacja do warunków lokalnych. Odwiedź pracownię architektoniczną w swojej okolicy lub skorzystaj z zaufanych pracowni współpracujących z naszym serwisem.</div>
         </div>
         <div class="col-md-3 col-sm-6 text-center">
             <?= Html::img(Yii::$app->request->BaseUrl.'/img/service-3.png', ['class'=>'service-img'])?><br>
             <div class="text18m">Systemy budowy</div><br>
-            <div class="text13o">Każdy z projektów przygotowany jest do budowania zarówno sposobem gospodarczym lub może być zlecony w całości do wykonania profesjonalnej firmie. Pamiętaj, że metoda gospodarcza na pewno jest tańszym sposobem ale musisz poświęcić więcej swojego czasu i uwagi. Satysfakcja z obserwowania jak powstaje dom Twoich marzeń - "bezcenna".</div>
+            <div class="text13o text-justify">Każdy z projektów przewiduje budowę domu sposobem gospodarczym lub przy pomocy profesjonalnej firmy budowlanej. Wybór sposobu budowy jest sprawą indywidualną uzależnioną od zasobów finansowych czy planowanego czasu budowy. </div>
         </div>
         <div class="col-md-3 col-sm-6 text-center">
             <?= Html::img(Yii::$app->request->BaseUrl.'/img/service-4.png', ['class'=>'service-img'])?><br>
             <div class="text18m">Instalacje i wyposażenie</div><br>
-            <div class="text13o">Każdy projekt zawiera cześć związaną z instalacją we wszystkich branżach. W projekcie zawarte są instalacje elektryczne, hydrauliczne a dla projektów gdzie ogrzewanie jest przy pomocy pieca gazowego zawarta jest instalacja gazowa. Wszystkie instalacje mogą być zmienione na etapie adaptacji - wymaga to pracy osoby z odpowiednimi uprawnieniami.</div>
+            <div class="text13o text-justify">Oferowane przez Project Top projekty domów zawierają plany instalacji elektrycznych, hydraulicznych, grzewczych czy gazowych. Na etapie adaptacji projektu plany te mogą zostać zmienione przez osoby posiadające stosowne uprawnienia. </div>
         </div>
     </div>
 </div>

@@ -19,7 +19,9 @@ $accordion = $cookies->getValue('accordion');
 ?>
 
 
-
+<div class="loader">
+    <div class="loader-gif"><img src="<?=Yii::$app->request->BaseUrl?>/img/load.svg"></div>
+</div>
 <div class="products-index">
     <div class="all_project col-md-10">Projekty spełniające kryteria: <span class="projects-counts"><?= $sProjectCount ?></span></div>
 <div class="panel-group" id="accordion">
@@ -57,7 +59,9 @@ foreach ($aFilters as $aData)
                     if ($aData['question']->id == 7 )
                     {
 
-                       echo '<br>Wielkość domu w m2: ';
+                       echo '<br>Wielkość domu w m2: <br><br>';
+                       echo 'Min: '.Html::input('text', '', $iSetMinSize, ['title'=>'Wielkość minimalna', 'class'=>'HouseMin']);
+                       echo ' Max: '.Html::input('text', '', $iSetMaxSize, ['title'=>'Wielkośc maksymalna', 'class'=>'HouseMax']);
                         echo \yii2mod\slider\IonSlider::widget([
                             'name' => 'HouseSize',
                             'type' => \yii2mod\slider\IonSlider::TYPE_DOUBLE,
@@ -70,6 +74,18 @@ foreach ($aFilters as $aData)
                                 'hide_min_max' => false,
                                 'hide_from_to' => false,
                                 'onFinish' => new \yii\web\JsExpression('
+                                function(data) {
+                                     $.ajax({
+                                        url: "site/bar-change",
+                                        success:
+                                            function()
+                                                {
+                                                    $("#set_filters").submit();
+                                                }
+                                    }); 
+                                    }'
+                                    ),
+                                'onUpdate' => new \yii\web\JsExpression('
                                 function(data) {
                                      $.ajax({
                                         url: "site/bar-change",

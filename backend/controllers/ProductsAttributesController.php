@@ -115,14 +115,13 @@ class ProductsAttributesController extends Controller
                         if($aDataAttrValue == '')
                         {
                             $model->delete();
-                        }
-                        
+                        }                        
                     }
 
                 }
             }
             
-            return $this->redirect(['./products']);
+            return $this->redirect(Yii::$app->request->referrer);
         }
         elseif (Yii::$app->request->isAjax)
         {

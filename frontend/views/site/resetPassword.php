@@ -11,7 +11,7 @@ $this->title = 'Nowe hasło';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-reset-password">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1 class="m21b"><?= Html::encode($this->title) ?></h1>
     <div class="green-border"></div>
 
     <p>Wpisz nowe hasło:</p>

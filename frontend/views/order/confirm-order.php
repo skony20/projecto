@@ -29,6 +29,19 @@ if ($oOrderActual['shippings_payments_id'] == 1)
     </div>
 <?php
 }
+else if ($oOrderActual['shippings_payments_id'] == 3 && empty($_GET))
+{
+    ?>
+    <form action="<?= $p24Form->getAction() ?>" method="POST">
+
+                <?php foreach ($p24Form->getAttributes() as $name => $value): ?>
+                    <?= Html::hiddenInput($name, $value); ?>
+                <?php endforeach; ?>
+
+            <?= Html::submitButton('PRZEJDŹ DO PŁATNOŚCI') ?>
+  </form>
+<?php
+}
 ?>
         <br><br>Status zamówienia możesz sprawdzić klikając "Moje konto" > "Zamówienia".<br><br>
 </div>

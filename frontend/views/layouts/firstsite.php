@@ -2,6 +2,7 @@
     echo $this->render('/layouts/_head');
 ?>
 <body>
+    
 <?php $this->beginBody() ?>
 
 <div class="wrap">

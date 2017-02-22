@@ -4,11 +4,12 @@
 
 use yii\helpers\Html;
 
-$this->title = 'Regulamin sklepu internetowego';
+$this->title = 'Regulamin sklepu internetowego ProjektTop.pl';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-regulations">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1 class="m21b"><?= Html::encode($this->title) ?></h1>
+    <div class="green-border"></div>
 <div>Niniejszy Regulamin określa zasady i warunki techniczne Sklepu internetowego działającego za pośrednictwem witryny WWW dostępnej w Internecie pod adresem <a href="http://www.projektTop.pl">www.projektTop.pl</a></div> 
 <br>
 <div class="regulations-title">§ 1. Postanowienia ogólne </div>

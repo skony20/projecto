@@ -244,6 +244,14 @@ return [
               ], 
         ],
       ],
+         'P24Service' => [
+            'class' => 'daweb\przelewy24\P24Service',
+            'clientID' => 57788, 
+            'sandboxSalt' => 'f27b64f5f87aa7b8',  
+            'salt' => 'f27b64f5f87aa7b8',
+            'currency' => 'PLN',
+            'testMode' => true // enable sandbox mode
+        ],
     ],
     'params' => $params,
     

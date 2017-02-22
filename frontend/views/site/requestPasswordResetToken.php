@@ -11,7 +11,7 @@ $this->title = 'Resetuj hasło';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-request-password-reset">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1 class="m21b"><?= Html::encode($this->title) ?></h1>
     <div class="green-border"></div>
     <p>Wpisz adres email. Na ten adres zostanie wysłany link do zresetowania hasła.</p>
 

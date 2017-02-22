@@ -8,7 +8,7 @@ $this->title = 'FAQ - Najczęściej zadawane pytania';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-about">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1 class="m21b"><?= Html::encode($this->title) ?></h1>
     <div class="green-border"></div>
     <?php
     foreach ($model as $oFaqGruop)

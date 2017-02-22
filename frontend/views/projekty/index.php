@@ -53,7 +53,9 @@ $iAvalaibleProject = floor($iAvalaibleProject / 100)* 100;
         if ($aData['question']->id == 7 )
         {
 
-        echo '<span class="m13b text-uppercase"><br>Wielkość domu w m2: </span>';
+        echo '<span class="m13b text-uppercase"><br>Wielkość domu w m2: </span><br>';
+        echo 'Min :  '.Html::input('text', '', $iSetMinSize, ['title'=>'Wielkość minimalna', 'class'=>'HouseMin']).'<br>';
+        echo 'Max: '.Html::input('text', '', $iSetMaxSize, ['title'=>'Wielkośc maksymalna', 'class'=>'HouseMax']);
         echo \yii2mod\slider\IonSlider::widget([
             'name' => 'HouseSize',
             'type' => \yii2mod\slider\IonSlider::TYPE_DOUBLE,
@@ -75,6 +77,19 @@ $iAvalaibleProject = floor($iAvalaibleProject / 100)* 100;
                     $.cookie("bBarChange", 1);
                     $.ajax({
                         url: "/projecto/projekty/barchange"
+                    }); 
+                    }'
+                    ),
+                'onUpdate' => new \yii\web\JsExpression('
+                function(data) {
+                    $.cookie("bBarChange", 1);
+                    $.ajax({
+                        url: "/projecto/projekty/barchange",
+                        success:
+                            function()
+                                {
+                                    $("#prj_set_filters").submit();
+                                }
                     }); 
                     }'
                     )
