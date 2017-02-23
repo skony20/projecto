@@ -474,14 +474,10 @@ class SiteController extends MetaController
     
     
     public function oAuthSuccess($client) {
-    // get user data from client
-//    echo '<pre>'. print_r($client, TRUE); die();
 
     $userAttributes = $client->getUserAttributes();
    
-   // echo '<pre>'. print_r($userAttributes, TRUE); die();
     $oUser = User::findOne(['email'=> $userAttributes['email'], 'source'=>'facebook']);
-            //findBySql(['email'=> $userAttributes['email']])->one();
     if ($oUser)
     {
         //echo '<pre>'. print_r($oUser, TRUE); die();

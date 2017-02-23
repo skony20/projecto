@@ -48,7 +48,8 @@ $this->params['breadcrumbs'][] = $this->title;
             </tr>
             <tr>
                 <td>Sposób płatności:</td>
-                <td><?= $model->payment->name ?></td>                
+                <?php $color = ($model->orderPayment->status == 'Zakończona' ? 'green' :'red')?>
+                <td><?= $model->payment->name ?><?=  (!empty($model->orderPayment) ? '<span style="color:'.$color.'"> ' .$model->orderPayment->status .($model->orderPayment->code ? ' - '.$model->orderPayment->code : '') .'</span>':'')?></td>                
             </tr>
             <tr>
                 <td>Status zamówienia:</td>

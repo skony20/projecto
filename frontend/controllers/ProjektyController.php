@@ -305,6 +305,14 @@ public function actionIndex($sort = 'default', $szukaj = '')
             case 'name_desc':
                 $aSort = ['products_descripton.name' => SORT_DESC];
                 break;
+            case 'size_asc':
+                $aSort = ['CAST(products_attributes.value AS DECIMAL(6,2))' => SORT_ASC];
+                $bPrdAttr = 1;
+                break;
+            case 'size_desc':
+                $aSort = ['CAST(products_attributes.value AS DECIMAL(6,2))' => SORT_DESC];
+                $bPrdAttr = 1;
+                break;
         }
  
         if ($sort != 'default' || !empty($_GET))
@@ -325,6 +333,12 @@ public function actionIndex($sort = 'default', $szukaj = '')
         //echo '<pre>'. print_r ($query  , TRUE); die();
         $query->joinWith('producers');
         $query->joinWith('productsDescriptons');
+        if ($bPrdAttr)
+        {
+            $query->joinWith('productsAttributes');
+            $query->andWhere('attributes_id = 4');
+        }
+        
         $query->orderBy($aSort);
         
         //echo '<pre>'. print_r(count(array_filter($aPostData)), TRUE); die();    

@@ -191,8 +191,8 @@ class OrderController extends MetaController
                     ->send();
                 if ($aDelivery['shippings_payments_id'] == 3)
                 {
-                   $p24Service = \Yii::$app->P24Service;
-                   $iSessionId = uniqid();
+                    $p24Service = \Yii::$app->P24Service;
+                    $iSessionId = uniqid();
                     $p24Form = $p24Service->getModelForm();
                     $p24Form->setAttributes([
                         'p24_amount' => $aTotal['iTotal']*100,
@@ -203,19 +203,21 @@ class OrderController extends MetaController
                         'p24_url_return' => Url::to(['order/confirm-order/?order='.$iOrderId], true)
                         // if you need you can put other input
                     ]);
+                    if ($p24Form->validate() && $p24Service->testConnection()) 
+                    {
+                        $p24Form->createSigin(); // create and add to p24_sign input
+                    }
+
                     $oOrderPayment = new OrdersPayments();
                     $oOrderPayment->orders_id = $iOrderId;
-                    $oOrderPayment->source = 'przelewy';
-                    $oOrderPayment->code = $iSessionId;
+                    $oOrderPayment->source = 'przelewy24';
+                    $oOrderPayment->session_id = $iSessionId;
                     $oOrderPayment->status = 'Rozpoczęta';
                     $oOrderPayment->value = $aTotal['iTotal'];
                     $oOrderPayment->description = 'Zaplata za zamowienie '.$iOrderId;
                     $oOrderPayment->creation_time = time();
                     $oOrderPayment->save();
-                    if ($p24Form->validate() && $p24Service->testConnection()) {
-                        
-                        $p24Form->createSigin(); // create and add to p24_sign input
-                    }
+                    
                 }
 
                 $oOrderActual = $oOrder->findOne($iOrderId);

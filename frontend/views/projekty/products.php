@@ -25,6 +25,8 @@ if (!$dataProvider->models)
             <option value="price_desc"<?= ($sort=='price_desc' ? 'selected' :'' ) ?>>Ceny od najwyższej</option>
             <option value="name_asc"<?= ($sort=='name_asc' ? 'selected' :'' ) ?>>Nazwy A-Z</option>
             <option value="name_desc"<?= ($sort=='name_desc' ? 'selected' :'' ) ?>>Nazwy Z-A</option>
+            <option value="size_asc"<?= ($sort=='size_asc' ? 'selected' :'' ) ?>>Powierzchnia najmniejsze</option>
+            <option value="size_desc"<?= ($sort=='size_desc' ? 'selected' :'' ) ?>>Powierzchnia największa</option>
         </select>
     </form>
 </div>
