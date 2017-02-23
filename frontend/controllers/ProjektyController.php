@@ -76,6 +76,7 @@ public function actionIndex($sort = 'default', $szukaj = '')
         $aPrdFilters = [];
         $aAttributes = [];
         $aPostData = [];
+        $bPrdAttr = 0;
         //echo '<pre>'. print_r (Yii::$app->session->get('aDimensions') , TRUE);
         $oFiltersGroup = new FiltersGroup();
         $oFilters = new Filters();

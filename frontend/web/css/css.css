@@ -70,7 +70,7 @@ h1
     text-transform: uppercase;
     height: 40px;
     line-height: 40px;
-    width: 250px;
+    min-width: 250px;
     border: 0;
     border-radius: 2px;
     box-shadow: 1px 1px 2px #bcc0c4;
@@ -341,6 +341,10 @@ h1
     margin: 0 10px;
 }
 
+.margin-ver-10
+{
+    margin: 10px 0;
+}
 /* modal */
 .close 
 {

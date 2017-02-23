@@ -10,7 +10,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //echo '<pre>'. print_r($oOrderActual, TRUE); die();
 ?>
 <div class="order-confirm">
-    <strong>Dziękujemy za złożne zamówienie.</strong><br><br>
+    <strong>Dziękujemy za złożone zamówienie.</strong><br><br>
     Twój numer zamówienia to: <span class="order-number"><?= $iOrderId ?></span>
 
 <?php 
@@ -38,7 +38,7 @@ else if ($oOrderActual['shippings_payments_id'] == 3 && empty($_GET))
                     <?= Html::hiddenInput($name, $value); ?>
                 <?php endforeach; ?>
 
-            <?= Html::submitButton('PRZEJDŹ DO PŁATNOŚCI') ?>
+            <?= Html::submitButton('PRZEJDŹ DO PŁATNOŚCI', ['class'=>'blue-button margin-ver-10']) ?>
   </form>
 <?php
 }
