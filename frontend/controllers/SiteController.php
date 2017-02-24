@@ -269,7 +269,7 @@ class SiteController extends MetaController
         'content' => 'follow, noindex'
         ], 'robots');
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            return $this->redirect(Yii::$app->request->referrer);
         } else {
             return $this->render('login', [
                 'model' => $model,
@@ -286,7 +286,7 @@ class SiteController extends MetaController
     {
         Yii::$app->user->logout(false);
 
-        return $this->goHome();
+        return $this->redirect(Yii::$app->request->referrer);
     }
 
     /**

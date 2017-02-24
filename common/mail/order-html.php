@@ -38,7 +38,7 @@ Twoje zamówieni zostało przyjęte i jest w trakcie realizacji. O wszystkich za
     ?>
     <tr>
         <td colspan=3 style="text-align:right; border: 1px solid #353a3e; padding:0 10px">Metoda płatności</td>
-        <td style="border: 1px solid #353a3e; padding:0 10px">Przelew</td>
+        <td style="border: 1px solid #353a3e; padding:0 10px"><?= $aPayment->name?></td>
         </tr>
         		<tr>
         <td colspan=3 style="text-align:right; border: 1px solid #353a3e; padding:0 10px">Wysyłka</td>
@@ -62,7 +62,6 @@ Twoje zamówieni zostało przyjęte i jest w trakcie realizacji. O wszystkich za
     <div style="font-size:22px; font-weight:700; padding:10px 0; background-color:#3c7cae; color:#ffffff; margin:20px 0; padding: 5px 20px;">Dane kontaktowe</div>
     <div>
             adres email: <?= Yii::$app->user->identity->email ?><br>
-    <br>
     <br>
             nr telefonu: <?= $aDelivery['customer_phone']?>
     </div>
@@ -96,7 +95,7 @@ Twoje zamówieni zostało przyjęte i jest w trakcie realizacji. O wszystkich za
     ?>
         <div style="font-size:22px; font-weight:700; padding:10px 0; background-color:#3c7cae; color:#ffffff; margin:20px 0; padding: 5px 20px;">Dane do przelewu</div>
         <div>
-             Kwotę w wysokości: <strong><?=Yii::$app->formatter->asCurrency($aTotal['iTotal'], ' zł')?> </strong>przelej na konto:<br><br>
+            Kwotę w wysokości: <strong><?=Yii::$app->formatter->asCurrency($aTotal['iTotal'], ' zł')?> </strong>przelej na konto:<br><br>
             81 1140 2017 0000 4902 0574 4547<br><br>
             Dane do przelewu:<br><br>
             ProjektTop.pl<br>

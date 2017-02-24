@@ -92,7 +92,8 @@ class OrderController extends MetaController
         $aProducts = $oSession->get('aPrjs');
         $aDelivery = $oSession['OrderData']['Orders'];
         $bIsInvoice = $oSession['OrderData']['is_invoice'];
-        
+        $oPayment = new PaymentsMethod();
+        $aPayment = $oPayment->findOne($aDelivery['shippings_payments_id']);
         $aTotal = $oSession->get('aTotal');
         //echo '<pre>'. print_r($aProducts, TRUE);  die();
         if ($order <> 0)
@@ -163,15 +164,15 @@ class OrderController extends MetaController
                 $aProductExist->sell_items += 1 ;
                 $aProductExist->save(false);
             }
-//                $oSession->remove('Cart');
-//                $oSession->remove('aPrjs');
-//                $oSession->remove('OrderData');
-//                $oSession->remove('aTotal');
+                $oSession->remove('Cart');
+                $oSession->remove('aPrjs');
+                $oSession->remove('OrderData');
+                $oSession->remove('aTotal');
                 Yii::$app
                 ->mailer
                 ->compose(
                     ['html' => 'order-html', 'text' => 'order-text'],
-                    ['aDelivery' => $aDelivery, 'aProducts' => $aProducts, 'iOrderId'=>$iOrderId, 'aTotal'=>$aTotal, 'bIsInvoice'=>$bIsInvoice]
+                    ['aDelivery' => $aDelivery, 'aProducts' => $aProducts, 'iOrderId'=>$iOrderId, 'aTotal'=>$aTotal, 'bIsInvoice'=>$bIsInvoice,'aPayment'=>$aPayment]
                 )
                 ->setReplyTo(Yii::$app->params['supportEmail'])
                 ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name])
@@ -182,7 +183,7 @@ class OrderController extends MetaController
                     ->mailer
                     ->compose(
                         ['html' => 'order-html', 'text' => 'order-text'],
-                        ['aDelivery' => $aDelivery, 'aProducts' => $aProducts, 'iOrderId'=>$iOrderId, 'aTotal'=>$aTotal, 'bIsInvoice'=>$bIsInvoice]
+                        ['aDelivery' => $aDelivery, 'aProducts' => $aProducts, 'iOrderId'=>$iOrderId, 'aTotal'=>$aTotal, 'bIsInvoice'=>$bIsInvoice,'aPayment'=>$aPayment]
                     )
                     ->setReplyTo(Yii::$app->params['supportEmail'])
                     ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name])

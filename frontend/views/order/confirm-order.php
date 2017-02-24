@@ -38,7 +38,7 @@ else if ($oOrderActual['shippings_payments_id'] == 3 && empty($_GET))
                     <?= Html::hiddenInput($name, $value); ?>
                 <?php endforeach; ?>
 
-            <?= Html::submitButton('PRZEJDŹ DO PŁATNOŚCI', ['class'=>'blue-button margin-ver-10']) ?>
+            <?= Html::submitButton('Przejdź do płatności', ['class'=>'blue-button margin-ver-10']) ?>
   </form>
 <?php
 }

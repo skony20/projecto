@@ -17,9 +17,10 @@ $this->params['breadcrumbs'][] = ['label' => 'Projekty', 'url' => ['/projekty']]
 $this->params['breadcrumbs'][] = $sPrjName ;
 $url = Yii::$app->request->absoluteUrl;
 ?>
+<div itemscope itemtype="http://schema.org/Product">
 <div class="wrap view-gray">    
     <div class="container">
-        <h1 class='m21w'><?= Html::encode('Projekt domu: '.$sPrjName) ?></h1>
+        <h1 class='m21w' itemprop="name"><?= Html::encode('Projekt domu: '.$sPrjName) ?></h1>
         <div class="prj-share">Podziel się: <?= Html::a('<i class="fa fa-facebook share-icon" aria-hidden="true"></i>', 'https://www.facebook.com/sharer/sharer.php?u='.$url)?><?= Html::a('<i class="fa fa-twitter share-icon" aria-hidden="true"></i>', 'https://twitter.com/home?status='.$url)?><?= Html::a('<i class="fa fa-google-plus share-icon" aria-hidden="true"></i>','https://plus.google.com/share?url='.$url)?><?= Html::a('<i class="fa fa-linkedin share-icon" aria-hidden="true"></i>', 'https://www.linkedin.com/shareArticle?mini=true&url='.$url.'&title='.$this->title.'&summary=&source=projekttop.pl')?></div>
         <div class="green-border"></div>
         <div class="prj-img-price">
@@ -44,7 +45,7 @@ $url = Yii::$app->request->absoluteUrl;
                                 
                         ?>
                             
-                                <a id="g<?=$a?>" href="<?=$sPatch.'/'.$model->id.'/big/'.$aProductsImages->name ?>" title="Galeria: <?=$sPrjName?><?=($aProductsImages->description ? ' - '.$aProductsImages->description : "")?>"><img src="<?=$sPatch.'/'.$model->id.'/thumbs/'.$aProductsImages->name ?>" alt="Galeria: <?=$sPrjName?><?=($aProductsImages->description ? ' - '.$aProductsImages->description : "")?>"></a>
+                                <a id="g<?=$a?>" href="<?=$sPatch.'/'.$model->id.'/big/'.$aProductsImages->name ?>" title="Galeria: <?=$sPrjName?><?=($aProductsImages->description ? ' - '.$aProductsImages->description : "")?>"><img src="<?=$sPatch.'/'.$model->id.'/thumbs/'.$aProductsImages->name ?> " itemprop="image" alt="Galeria: <?=$sPrjName?><?=($aProductsImages->description ? ' - '.$aProductsImages->description : "")?>"></a>
                         <?php
                         $a++;
                             }
@@ -60,6 +61,7 @@ $url = Yii::$app->request->absoluteUrl;
         </div>
     </div>
 </div>
+
 <div class="wrap view-ligh-blue">    
     <div class="container">
         <div class="products-view">
@@ -70,7 +72,7 @@ $url = Yii::$app->request->absoluteUrl;
                     <div class="prj-prc-item"><i class="fa fa-arrows-alt fa-2x" aria-hidden="true"></i><br><span class="m12abk text-uppercase">Minimalne<br>wymiary działki</span></div>
                     <div class="prj-prc-item view-darker-blue"><span class="m21b"><?= ($aPrdAttrs[6]['value'] ? round($aPrdAttrs[6]['value']) .' x '.round($aPrdAttrs[7]['value']) .' m' : 'b/d') ?></span></div>
                     <div class="prj-prc-item"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i><br><span class="m12abk text-uppercase">Cena</span></div>
-                    <div class="prj-prc-item price-gray m21w"><?= ($model->price_brutto_source != $model->price_brutto ? '<span class="source-price">'.$model->price_brutto_source.'</span><br><span class="price">'. $model->price_brutto. '</span>': '<span class="price">'. $model->price_brutto. ' zł</span>') ?></div>
+                    <div class="prj-prc-item price-gray m21w" itemprop="offers" itemscope itemtype="http://schema.org/Offer"><?= ($model->price_brutto_source != $model->price_brutto ? '<span class="source-price">'.$model->price_brutto_source.'</span><br><span class="price">'. $model->price_brutto. '</span>': '<span class="price" itemprop="price" content="'.$model->price_brutto.'">'. $model->price_brutto. ' <span itemprop="priceCurrency" content="PLN">zł</span></span>') ?></div>
                      <div class="m13w prj-add-favorites" rel="<?= $model->id ?>">Dodaj do ulubionych  <i class="fa fa-heart-o" aria-hidden="true"></i></div>
                     
                     <div class="prj-add-button m13w" rel="<?= $model->id ?>" rel2="<?= $model->productsDescriptons->nicename_link.'.html' ?>">Dodaj do koszyka <i class="fa fa-cart-arrow-down" aria-hidden="true"></i></div>
@@ -82,7 +84,11 @@ $url = Yii::$app->request->absoluteUrl;
 <div class="wrap">    
     <div class="container">
         <div class="prj-desc">
-
+ <?php if(isset(Yii::$app->user->identity) && Yii::$app->user->identity->role ==20)
+            {
+                echo '<a href="'.Yii::$app->request->BaseUrl.'/backend/web/products/'.$model->id .'" target="_blank">Zobacz w cms-ie</a>';
+            }
+            ?>
             <ul class="tabs">
                 <li class="tab-link current" data-tab="opis">Opis</li>
                 <li class="tab-link" data-tab="plany">Plany</li>
@@ -95,7 +101,7 @@ $url = Yii::$app->request->absoluteUrl;
                     <div class="col-md-4">
                         <div class="m21b prj-desc-title">O projekcie</div>
                         <div class="green-border"></div>
-                        <div class="project-desc"><?= $model->productsDescriptons->html_description ?></div>
+                        <div class="project-desc" itemprop="description"><?= $model->productsDescriptons->html_description ?></div>
                     </div>
                     <div class="col-md-4">
                         <div class="m21b prj-desc-title">Dane techniczne</div>
@@ -287,7 +293,7 @@ $url = Yii::$app->request->absoluteUrl;
         </div>
     </div>
 </div>
-
+</div>
 <?= (count($oSimilar)>0 ? SimilarWidget::Widget(['oSimilar'=> $oSimilar]) :'') ?>
 
 <?php

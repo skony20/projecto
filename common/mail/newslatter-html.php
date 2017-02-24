@@ -12,5 +12,5 @@ Author     : Mariusz Skonieczny mariuszskonieczny@hotmail.com
     <p>Od teraz będziesz dostawał wszelkie informację o promocjach, eventach i ważnych wydarzeniach</p>
     <p></p>
     <p></p>
-    <p>W każdej chwili możesz zrezygnować z otrzymywania wiadomości od nas klikjac w ten <a href="#">link</a></p>
+    <p>W każdej chwili możesz zrezygnować z otrzymywania wiadomości.</p>
 </div>

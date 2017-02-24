@@ -47,7 +47,7 @@ span.delete-from-cart
 .go-to-step1
 {
     float:right;
-    background-color: #2f96d1;
+    background-color: #3c7cae;
     font-family: Montserrat;
     color: #ffffff;
     text-transform: uppercase;
@@ -144,7 +144,7 @@ span.delete-from-cart
 
 .cart-items a
 {
-    background-color: #2f96d1;
+    background-color: #3c7cae;
     padding: 10px 20px;
     color: #FFF;
     text-align: center;

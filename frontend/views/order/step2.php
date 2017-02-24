@@ -77,7 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="ord_last_row">
        
         
-        <input type="checkbox" required="required" name="regulamin">Akceptuje <?= Html::a('regulamin', Yii::$app->request->BaseUrl.'/regulamin',['target'=>'_blank']) ?> sklepu<br>
+        <input type="checkbox" required="required" name="regulamin"> Akceptuje <?= Html::a('regulamin', Yii::$app->request->BaseUrl.'/regulamin',['target'=>'_blank']) ?> sklepu<br>
         <?= Html::submitButton('Kupuję', ['class' => 'step2-button', 'name' => 'signup-button']) ?><br>
         <span>Zamówienie wiąże się z koniecznością zapłaty</span>
     </div>
