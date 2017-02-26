@@ -15,7 +15,7 @@
 }
 .breadcrumb li:nth-child(1):before
 {
-    content:  url(/projecto/img/breadcrumbs-home.png);
+    content:  url(/img/breadcrumbs-home.png);
 }
 .breadcrumb li:nth-child(1) a
 {

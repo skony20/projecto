@@ -328,14 +328,14 @@ img#fst
 
 span.left
 {
-    background: url("/projecto/img/gal_left.png") no-repeat center transparent;
+    background: url("/img/gal_left.png") no-repeat center transparent;
     left:0px;
     position: absolute;
 }
 
 span.right
 {
-    background: url("/projecto/img/gal_right.png") no-repeat center transparent;
+    background: url("/img/gal_right.png") no-repeat center transparent;
     right:0px;
     position: absolute;
 }

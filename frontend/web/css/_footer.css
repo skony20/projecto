@@ -56,7 +56,7 @@ ul.footer-menu
 .footer-menu li
 {
     padding: 0 5px;
-    list-style-image:url('../../projecto/img/list-arrow.png');
+    list-style-image:url('../../img/list-arrow.png');
 }
 .footer-menu li a
 {

@@ -26,7 +26,7 @@ use common\widgets\Alert;
             <div class="m15w footer-tittle">Szybkie menu</div>
             <div class="footer-content">
                 <ul class="footer-menu">
-                    <li><?= Html::a('O nas', Yii::$app->request->BaseUrl.'/onas')?></li>
+                    <li><?= Html::a('O ProjektTop', Yii::$app->request->BaseUrl.'/onas')?></li>
                     <li><?= Html::a('Kontakt', Yii::$app->request->BaseUrl.'/kontakt')?></li>
                     <li><?= Html::a('FAQ', Yii::$app->request->BaseUrl.'/faq')?></li>
                     <li><?= Html::a('Co w projekcie', Yii::$app->request->BaseUrl.'/wprojekcie')?></li>

@@ -102,13 +102,12 @@ class OrderController extends MetaController
             
             return $this->render('/order/confirm-order',['iOrderId'=>$order, 'oOrderActual' =>$oOrderActual]); 
         }
-
-        $iOrderCode = 1; //bin2hex (random_bytes(5));
+        
         $oOrder->is_deleted = 0;
         $oOrder->customers_id = Yii::$app->user->identity->id;
         $oOrder->languages_id = 1;
         $oOrder->order_date = time();
-        $oOrder->order_code = $iOrderCode;
+       
         $oOrder->orders_status_id = 1;
         $oOrder->customer_ip = ($_SERVER['REMOTE_ADDR'] ? $_SERVER['REMOTE_ADDR'] : '127.0.0.1');
         $oOrder->customer_phone = ($aDelivery['customer_phone'] ? $aDelivery['customer_phone'] : '');
@@ -139,7 +138,9 @@ class OrderController extends MetaController
         if ($oOrder->save())
         {
             $iOrderId = $oOrder->id;
-
+            $iOrderCode = strtoupper(substr(str_replace(array('/', '+', '='), '', base64_encode(uniqid())), 8, 16));
+            $oOrder->order_code = $iOrderCode;
+            $oOrder->save(false);
             foreach ($aProducts as $aProduct)
             {
                 $oOrderPosition = new OrdersPosition();
@@ -172,7 +173,7 @@ class OrderController extends MetaController
                 ->mailer
                 ->compose(
                     ['html' => 'order-html', 'text' => 'order-text'],
-                    ['aDelivery' => $aDelivery, 'aProducts' => $aProducts, 'iOrderId'=>$iOrderId, 'aTotal'=>$aTotal, 'bIsInvoice'=>$bIsInvoice,'aPayment'=>$aPayment]
+                    ['aDelivery' => $aDelivery, 'aProducts' => $aProducts, 'iOrderId'=>$iOrderCode, 'aTotal'=>$aTotal, 'bIsInvoice'=>$bIsInvoice,'aPayment'=>$aPayment]
                 )
                 ->setReplyTo(Yii::$app->params['supportEmail'])
                 ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name])
@@ -183,13 +184,14 @@ class OrderController extends MetaController
                     ->mailer
                     ->compose(
                         ['html' => 'order-html', 'text' => 'order-text'],
-                        ['aDelivery' => $aDelivery, 'aProducts' => $aProducts, 'iOrderId'=>$iOrderId, 'aTotal'=>$aTotal, 'bIsInvoice'=>$bIsInvoice,'aPayment'=>$aPayment]
+                        ['aDelivery' => $aDelivery, 'aProducts' => $aProducts, 'iOrderId'=>$iOrderCode, 'aTotal'=>$aTotal, 'bIsInvoice'=>$bIsInvoice,'aPayment'=>$aPayment]
                     )
                     ->setReplyTo(Yii::$app->params['supportEmail'])
                     ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name])
                     ->setTo(Yii::$app->params['supportEmail'])
                     ->setSubject('Nowe zamówienie')
                     ->send();
+                $p24Form = '';
                 if ($aDelivery['shippings_payments_id'] == 3)
                 {
                     $p24Service = \Yii::$app->P24Service;
@@ -224,7 +226,7 @@ class OrderController extends MetaController
                 $oOrderActual = $oOrder->findOne($iOrderId);
         }
         
-        return $this->render('/order/confirm-order',['iOrderId'=>$iOrderId, 'oOrderActual' =>$oOrderActual, 'p24Form' => $p24Form]); 
+        return $this->render('/order/confirm-order',['iOrderId'=>$iOrderCode, 'oOrderActual' =>$oOrderActual, 'p24Form' => $p24Form]); 
     }
 
             

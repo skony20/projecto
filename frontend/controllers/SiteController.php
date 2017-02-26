@@ -269,7 +269,7 @@ class SiteController extends MetaController
         'content' => 'follow, noindex'
         ], 'robots');
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->redirect(Yii::$app->request->referrer);
+            return $this->goBack();
         } else {
             return $this->render('login', [
                 'model' => $model,
@@ -286,7 +286,7 @@ class SiteController extends MetaController
     {
         Yii::$app->user->logout(false);
 
-        return $this->redirect(Yii::$app->request->referrer);
+        return $this->goBack();
     }
 
     /**
@@ -466,18 +466,17 @@ class SiteController extends MetaController
         $aFiltersData = Yii::$app->session->get('aFiltersSession');
         $oSearchProjects = new SearchProject();
         $oSearchProjects->filters = serialize($aFiltersData);
-        $oSearchProjects->users_id = (Yii::$app->user->isGuest ? '' : Yii::$app->user->identity->id);
+        $oSearchProjects->users_id = (Yii::$app->user->isGuest ? NULL : Yii::$app->user->identity->id);
         $oSearchProjects->creation_date = time();
-
         $oSearchProjects->save();
     }
     
     
     public function oAuthSuccess($client) {
-
+      //
     $userAttributes = $client->getUserAttributes();
-   
-    $oUser = User::findOne(['email'=> $userAttributes['email'], 'source'=>'facebook']);
+   //echo '<pre>'.print_r($client->getUserAttributes(), TRUE); die();
+    $oUser = User::findOne(['email'=> $userAttributes['email'], 'source'=>$client->name]);
     if ($oUser)
     {
         //echo '<pre>'. print_r($oUser, TRUE); die();
@@ -488,16 +487,27 @@ class SiteController extends MetaController
         $oUser = new User();
         $oUser->role = 10;
         $oUser->status = 10;
-        $oUser->username = $userAttributes['name'];
-        $oUser->email = $userAttributes['email'];
-        $oUser->delivery_name = $userAttributes['first_name'];
-        $oUser->delivery_lastname = $userAttributes['last_name'];
+        switch($client->name)
+        {
+            case 'facebook':
+                $oUser->username = $userAttributes['name'];
+                $oUser->email = $userAttributes['email'];
+                $oUser->delivery_name = $userAttributes['first_name'];
+                $oUser->delivery_lastname = $userAttributes['last_name'];
+                break;
+            case 'google':
+                $oUser->username = $userAttributes['displayName'];
+                $oUser->email = $userAttributes['emails'][0]['value'];
+                $oUser->delivery_name = $userAttributes['name']['givenName'];
+                $oUser->delivery_lastname = $userAttributes['name']['familyName'];
+        }
         
-        $oUser->source ='facebook';
+        
+        $oUser->source = $client->name;
                 
         if ($oUser->save(false))
         {
-            $oNewUser = User::findOne(['email'=> $oUser->email, 'source'=>'facebook']);
+            $oNewUser = User::findOne(['email'=> $oUser->email, 'source'=>$client->name]);
             Yii::$app->user->login($oNewUser, 3600 * 24 * 30);
         }
         

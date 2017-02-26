@@ -13,9 +13,9 @@ use yii\helpers\Html;
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body>
+<body style="font-family: Verdana">
     <?php $this->beginBody() ?>
-    <div style="background-color:#f5f9fc;padding:0; font-family: Verdana">
+    <div style="background-color:#f5f9fc;padding:0;">
         <img src="http://mariuszskonieczny.kylos.pl/projecto/img/logo.png" style="padding:5px;"/>
     </div>
     <?= $content ?>

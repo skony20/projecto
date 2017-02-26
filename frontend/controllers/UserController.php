@@ -74,6 +74,8 @@ class UserController extends MetaController
             $oAccount->load(Yii::$app->request->post());
             $oAccount->changeData();
             $aUser = $oUser->findIdentity(Yii::$app->user->identity->id);
+            Yii::$app->session->setFlash('success', 'Twoje dane adresowe zostały zmienione.');
+            return $this->redirect(Yii::$app->request->referrer);
         }
         
         return $this->render('adress-data', ['aUser'=>$aUser, 'model'=>$oAccount]);
@@ -89,6 +91,8 @@ class UserController extends MetaController
             $oAccount->load(Yii::$app->request->post());
             $oAccount->changePassword(false);  
             $aUser = $oUser->findIdentity(Yii::$app->user->identity->id);
+            Yii::$app->session->setFlash('success', 'Twoje hasło zostało zmienione.');
+            return $this->redirect(Yii::$app->request->referrer);
         }
         return $this->render('change-password', ['aUser'=>$aUser, 'model'=>$oAccount]);
     }

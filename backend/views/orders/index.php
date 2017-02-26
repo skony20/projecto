@@ -24,11 +24,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
 
             [
-                'attribute' => 'id',
+                'attribute' => 'order_code',
                 'format'=>'raw',
                 'value' =>  function($data)
                     {
-                        return Html::a($data->id, Yii::getAlias('@web').'/orders/'.$data->id);
+                        return Html::a($data->order_code, Yii::getAlias('@web').'/orders/'.$data->id);
                     }
             ],
             'order_date:datetime',
@@ -41,6 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'shippings_payments_id',
                 'value' =>  'payment.name',
+                'format'=>'raw',
                 'filter' => Html::activeDropDownList($searchModel, 'shippings_payments_id', ArrayHelper::map(PaymentsMethod::find()->asArray()->all(), 'id', 'name'),['class'=>'form-control','prompt' => 'Wybierz']),
             ],
             //'is_deleted',

@@ -28,6 +28,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 <td><?= $model->id ?></td>                
             </tr>
             <tr>
+                <td>Kod zamówienia:</td>
+                <td><?= $model->order_code ?></td>                
+            </tr>
+            <tr>
                 <td>Data zamówienia:</td>
                 <td><?= Yii::$app->formatter->asDatetime($model->creation_date) ?></td>                
             </tr>

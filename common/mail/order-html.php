@@ -11,7 +11,7 @@ use yii\i18n\Formatter;
 <p>Dziękujemy za złożenia zamówienia. <br><br>
 Twoje zamówieni zostało przyjęte i jest w trakcie realizacji. O wszystkich zaminach będziemy informowali na podany adres mailowy.</p>
 
-<div style="font-size:22px; font-weight:700; padding:10px 0; background-color:#3c7cae; color:#ffffff; margin-bottom:20px; padding: 5px 20px;"> Zamówieni nr: <?= $iOrderId?></div>
+<div style="font-size:22px; font-weight:700; padding:10px 0; background-color:#3c7cae; color:#ffffff; margin-bottom:20px; padding: 5px 20px;"> Zamówieni nr: <strong><?= $iOrderId?></strong></div>
 
 
 <table style="width:100%;" cellpadding="0" cellspacing="0">
@@ -101,7 +101,7 @@ Twoje zamówieni zostało przyjęte i jest w trakcie realizacji. O wszystkich za
             ProjektTop.pl<br>
             Wici 48/49<br>
             91-157 Łódź<br><br>
-            Tytuł przelewu: #<?= $iOrderId ?>
+            Tytuł przelewu: <strong><?= $iOrderId ?></strong>
         </div>
     <?php
     }

@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="order-confirm">
     <strong>Dziękujemy za złożone zamówienie.</strong><br><br>
-    Twój numer zamówienia to: <span class="order-number"><?= $iOrderId ?></span>
+    Twój numer zamówienia to: <span class="order-number"><strong><?= $iOrderId ?></strong></span>
 
 <?php 
 if ($oOrderActual['shippings_payments_id'] == 1)
@@ -24,7 +24,7 @@ if ($oOrderActual['shippings_payments_id'] == 1)
         ProjektTop.pl<br>
         Wici 48/49<br>
         91-157 Łódź<br><br>
-        Tytuł przelewu: #<?= $iOrderId ?>
+        Tytuł przelewu: <strong><?= $iOrderId ?></strong>
         
     </div>
 <?php

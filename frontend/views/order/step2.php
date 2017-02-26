@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 ?>
- <?php $formData = ActiveForm::begin(['action'=>'/projecto/order/confirm-order/']); ?> 
+ <?php $formData = ActiveForm::begin(['action'=>Yii::$app->request->baseUrl.'/order/confirm-order/']); ?> 
 <div class="order-step2">
  
     <div class="row-order">

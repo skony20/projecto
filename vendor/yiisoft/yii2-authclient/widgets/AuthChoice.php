@@ -182,6 +182,7 @@ class AuthChoice extends Widget
      */
     public function clientLink($client, $text = null, array $htmlOptions = [])
     {
+        $text = '<div class="'.$client->getName().'-button"><i class="fa fa-'.$client->getName().'" aria-hidden="true"></i> '.$client->getName().' logowanie</div>';
         $viewOptions = $client->getViewOptions();
 
         if (empty($viewOptions['widget'])) {

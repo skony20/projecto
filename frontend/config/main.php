@@ -241,6 +241,7 @@ return [
                   'class' => 'yii\authclient\clients\Google',
                   'clientId' => '231397738978-cn7knqev4928f22lgcgpkii36um593al.apps.googleusercontent.com',
                   'clientSecret' => 'njsDOucSDH8sS5K9xAZk2Ctu',
+                  
               ], 
         ],
       ],

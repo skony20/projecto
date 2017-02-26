@@ -12,10 +12,10 @@ $this->params['breadcrumbs'][] = ['label' => 'Koszyk', 'url' => ['/cart']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="order-step1">
-    <?php $formData = ActiveForm::begin(['action'=>'/projecto/order/step2/', 'id' => 'order']); ?>    
+    <?php $formData = ActiveForm::begin(['action'=>Yii::$app->request->baseUrl.'/order/step2/', 'id' => 'order']); ?>    
     <div class="row-order">
         <div class="caption">Płatność:</div>
-       <?= $formData->field($aOrder, 'shippings_payments_id')->radioList(ArrayHelper::map(PaymentsMethod::find()->all(), 'id', 'name'))->label(false) ?>
+       <?= $formData->field($aOrder, 'shippings_payments_id')->radioList(ArrayHelper::map(PaymentsMethod::find()->all(), 'id', 'name'),['encode'=>false])->label(false)?>
     </div>
     
     <div class="row-order">

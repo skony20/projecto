@@ -76,7 +76,7 @@ $iAvalaibleProject = floor($iAvalaibleProject / 100)* 100;
                 function(data) {
                     $.cookie("bBarChange", 1);
                     $.ajax({
-                        url: "/projecto/projekty/barchange"
+                        url: "/projekty/barchange"
                     }); 
                     }'
                     ),
@@ -84,7 +84,7 @@ $iAvalaibleProject = floor($iAvalaibleProject / 100)* 100;
                 function(data) {
                     $.cookie("bBarChange", 1);
                     $.ajax({
-                        url: "/projecto/projekty/barchange",
+                        url: "/projekty/barchange",
                         success:
                             function()
                                 {
