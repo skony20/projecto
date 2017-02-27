@@ -47,7 +47,7 @@ $(document).on('ready pjax:success',
             {   
                 
                 $.ajax({
-                        url: '/projecto/projekty/reset'
+                        url: '/projekty/reset'
                         });
             }
             window.location = $(this).attr("action") + sSzerokosc + sGlebokosc  +  sHouseSize + filters;
@@ -153,11 +153,11 @@ $(document).on('ready pjax:success',
                     $('.prj_select').prop('selectedIndex',0);
                     
                     $.ajax({
-                        url: '/projecto/projekty/reset',
+                        url: '/projekty/reset',
                         success:
                             function()
                                 {
-                                    window.location.href = '/projecto/projekty'
+                                    window.location.href = '/projekty'
                                 }
 			}); 
                     
@@ -190,7 +190,7 @@ $(document).on('ready pjax:success',
 
                 if (sSearch.length > 0)
                 {
-                    window.location.href = "/projecto/projekty/szukaj/"+sSearch;
+                    window.location.href = "/projekty/szukaj/"+sSearch;
                 }
             }
     );
@@ -199,7 +199,7 @@ $(document).on('ready pjax:success',
     {
         $.cookie("bBarChange", 1);
         $.ajax({
-            url: '/projecto/projekty/barchange'
+            url: '/projekty/barchange'
             });
     });
     
@@ -209,7 +209,7 @@ $(document).on('ready pjax:success',
             {
                 var iAccordion = $(this).attr('rel');
                 $.ajax({
-                    url: "/projecto/accordion?iId="+iAccordion,
+                    url: "/accordion?iId="+iAccordion,
 
                     }); 
             })
@@ -218,7 +218,7 @@ $(document).on('ready pjax:success',
             {
                 var iAccordion = $(this).attr('rel');
                 $.ajax({
-                    url: "/projecto/accordion?iId="+iAccordion,
+                    url: "/accordion?iId="+iAccordion,
 
                     }); 
             })
@@ -227,11 +227,11 @@ $(document).on('ready pjax:success',
 
     $('.cart').hover(function()
         {
-            $('.cart-container').slideDown(500);
+            $('.cart-container').stop(true, true).fadeIn(300);
 
         }, function()
         {
-            $('.cart-container').slideUp(500);
+            $('.cart-container').stop(true, true).fadeOut(300);
         }
     );
     
@@ -245,15 +245,15 @@ $(document).on('ready pjax:success',
             {
                 var iPrjId = $(this).attr('rel');
                 $.ajax({
-                    url: "/projecto/cart/add-cart?iPrjId="+iPrjId,
+                    url: "/cart/add-cart?iPrjId="+iPrjId,
                     success: function(data) {   
-                        $("#cart-items").load("/projecto/projekty #cart-items");
+                        $("#cart-items").load("/projekty #cart-items");
                         $('#system-messages').html(data).stop().fadeIn().animate({opacity: 1.0}, 1000).fadeOut('slow');
                     }
                     
                     }); 
                 $.ajax({
-                    url: "/projecto/cart/count-cart",
+                    url: "/cart/count-cart",
                     success: function(data) {   
                         $("#cart-count").text(data);
                     }
@@ -268,17 +268,17 @@ $(document).on('ready pjax:success',
                 var iPrjId = $(this).attr('rel');
                 var nicename = $(this).attr('rel2');
                 $.ajax({
-                    url: "/projecto/cart/add-cart?iPrjId="+iPrjId,
+                    url: "/cart/add-cart?iPrjId="+iPrjId,
                     success: function(data) {   
 
                         //$('.cart-items').html(data);
-                        $("#cart-items").load("/projecto/projekt/"+nicename +" #cart-items");
+                        $("#cart-items").load("/projekt/"+nicename +" #cart-items");
                         $('#system-messages').html(data).stop().fadeIn().animate({opacity: 1.0}, 1000).fadeOut('slow');
                     }
 
                     }); 
                     $.ajax({
-                    url: "/projecto/cart/count-cart",
+                    url: "/cart/count-cart",
                     success: function(data) {   
                         $("#cart-count").text(data);
                     }
@@ -305,7 +305,7 @@ $(document).on('ready pjax:success',
             {
                 var iPrjId = $(this).attr('rel');
                 $.ajax({
-                    url: "/projecto/cart/remove-from-cart?iPrjId="+iPrjId,
+                    url: "/cart/remove-from-cart?iPrjId="+iPrjId,
                     success: function(data) { 
                         window.location.href = window.location.href;
                         $('#system-messages').html(data).stop().fadeIn().animate({opacity: 1.0}, 1000).fadeOut('slow');
@@ -321,7 +321,7 @@ $(document).on('ready pjax:success',
             {
                 var iPrjId = $(this).attr('rel');
                 $.ajax({
-                    url: "/projecto/favorites/add-favorites?iPrjId="+iPrjId,
+                    url: "/favorites/add-favorites?iPrjId="+iPrjId,
                     success: function(data) {   
                         //$('.cart-items').html(data);
                          $('#system-messages').html(data).stop().fadeIn().animate({opacity: 1.0}, 1000).fadeOut('slow');
@@ -336,7 +336,7 @@ $(document).on('ready pjax:success',
             {
                 var iPrjId = $(this).attr('rel');
                 $.ajax({
-                    url: "/projecto/favorites/delete-favorites?iPrjId="+iPrjId,
+                    url: "/favorites/delete-favorites?iPrjId="+iPrjId,
                     success: function(data) {   
                         window.location.href = window.location.href;
                         $('#system-messages').html(data).stop().fadeIn().animate({opacity: 1.0}, 1000).fadeOut('slow');
@@ -412,7 +412,7 @@ $(document).on('ready pjax:success',
     {
         var sEmail = $('#newsletter-input').val();
         $.ajax({
-            url: "/projecto/newslatter/add?sEmail="+sEmail,
+            url: "/newslatter/add?sEmail="+sEmail,
             success: function(data) {   
                         $('#system-messages').html(data).stop().fadeIn().animate({opacity: 1.0}, 1000).fadeOut('slow');
                     }
@@ -425,7 +425,7 @@ $(document).on('ready pjax:success',
     var sSearch = $('.search-input').val();
     if (sSearch.length > 0)
         {
-            window.location.href = "/projecto/projekty/szukaj/"+sSearch;
+            window.location.href = "/projekty/szukaj/"+sSearch;
         }
     return false;
   }

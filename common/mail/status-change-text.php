@@ -7,7 +7,6 @@ use yii\i18n\Formatter;
 
 
 ?>
-<div>
    Twoje zamówienie zmieniło status na: "<?= $sStatus ?>"
-</div>
+
 

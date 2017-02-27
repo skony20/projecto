@@ -7,5 +7,5 @@
 ?>
 Witaj <?= $user->username ?>,
 
-Dzieki za rejestracje twoj login to: <?= $user->username ?>
+Dzieki za rejestracje twój login to: <?= $user->username ?>
 

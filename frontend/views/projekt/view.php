@@ -294,7 +294,7 @@ $url = Yii::$app->request->absoluteUrl;
     </div>
 </div>
 </div>
-<?= (count($oSimilar)>0 ? SimilarWidget::Widget(['oSimilar'=> $oSimilar]) :'') ?>
+<?= (count($oSimilar)>0 ? SimilarWidget::Widget(['oSimilar'=> $oSimilar, 'iProductId'=>$model->id]) :'') ?>
 
 <?php
 yii\bootstrap\Modal::begin([

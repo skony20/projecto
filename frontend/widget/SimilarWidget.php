@@ -11,6 +11,7 @@ namespace frontend\widget;
 use yii\base\Widget;
 use yii\helpers\Html;
 use app\models\Products;
+use app\models\Similar;
 use yii\data\ActiveDataProvider;
 use Yii;
 use yii\i18n\Formatter;
@@ -19,17 +20,27 @@ use yii\i18n\Formatter;
 class SimilarWidget extends Widget
 {
     public $oSimilar;
+    public $iProductId;
     public function init()
     {
         parent::init();
         if ($this->oSimilar === null) {
             $this->oSimilar = [];
         }
+        if ($this->iProductId === null) {
+            $this->iProductId = '';
+        }
+        
     }
 
     public function run()
     {
+        //echo 'TU'.$this->iProductId;
         $oProducts = new Products();
+        $oSimilars = new Similar();
+        $aSimilars = $oSimilars::find()->where(['similar.main_product_id'=>$this->iProductId])->all();
+        
+        //echo '<pre>'. print_r($aSimilar, TRUE); die();
     ?>
         <div class="wrap wrap-similar">
             <div class="container container-similar">
@@ -37,10 +48,13 @@ class SimilarWidget extends Widget
                 <div class="center-green-border"></div>
                 <div class="col-md-12">
                     <?php 
-                    foreach ($this->oSimilar as $aSimilar)
+                    foreach ($aSimilars as $aSimilar)
                     {
-                        $aProducts = $oProducts->findOne($aSimilar->products_id);
+                        $aProducts = $aSimilar->products;
+                        if ($aProducts->is_active ==1)
+                        {
                     ?>
+                    
                     <div class="col-md-3">
                         <div class="prj-img "rel="<?= $aProducts->id ?>">
                         <div class="icon-hide prjs-<?= $aProducts->id ?>">
@@ -83,6 +97,8 @@ class SimilarWidget extends Widget
                         </div>
                     </div>
                     <?php
+                        }
+                    
                     }
                     ?>
                 </div>

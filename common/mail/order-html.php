@@ -8,8 +8,8 @@ use yii\i18n\Formatter;
 
 ?>
 <div>
-<p>Dziękujemy za złożenia zamówienia. <br><br>
-Twoje zamówieni zostało przyjęte i jest w trakcie realizacji. O wszystkich zaminach będziemy informowali na podany adres mailowy.</p>
+<p>Dziękujemy za złożenie zamówienia. <br><br>
+Twoje zamówienie zostało przyjęte i jest w trakcie realizacji. O wszystkich zmianach będziemy informowali na podany adres mailowy.</p>
 
 <div style="font-size:22px; font-weight:700; padding:10px 0; background-color:#3c7cae; color:#ffffff; margin-bottom:20px; padding: 5px 20px;"> Zamówieni nr: <strong><?= $iOrderId?></strong></div>
 

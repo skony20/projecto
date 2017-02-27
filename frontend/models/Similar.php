@@ -42,4 +42,8 @@ class Similar extends \yii\db\ActiveRecord
             'products_id' => 'Podobne',
         ];
     }
+       public function getProducts()
+    {
+        return $this->hasOne(Products::className(), ['id' => 'products_id']);
+    }
 }

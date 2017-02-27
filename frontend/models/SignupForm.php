@@ -109,7 +109,7 @@ class SignupForm extends Model
                 ['html' => 'singUp-html', 'text' => 'singUp-text'],
                 ['user' => $user]
             )
-            ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
+            ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name])
             ->setTo($user->email)
             ->setSubject('Witaj na stronie:  ' . Yii::$app->name)
             ->send();
