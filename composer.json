@@ -22,7 +22,8 @@
         "yiisoft/yii2-imagine": "~2.0.0",
         "yii2mod/yii2-ion-slider": "*",
         "yiisoft/yii2-authclient": "^2.1",
-        "dawid-daweb/yii2-przelewy24" : "dev-master"
+        "dawid-daweb/yii2-przelewy24" : "dev-master",
+        "skeeks/yii2-assets-auto-compress": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",

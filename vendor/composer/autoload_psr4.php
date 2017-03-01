@@ -17,6 +17,7 @@ return array(
     'yii\\authclient\\' => array($vendorDir . '/yiisoft/yii2-authclient'),
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
     'yii2mod\\slider\\' => array($vendorDir . '/yii2mod/yii2-ion-slider'),
+    'skeeks\\yii2\\assetsAuto\\' => array($vendorDir . '/skeeks/yii2-assets-auto-compress'),
     'dosamigos\\ckeditor\\' => array($vendorDir . '/2amigos/yii2-ckeditor-widget/src'),
     'daweb\\przelewy24\\' => array($vendorDir . '/dawid-daweb/yii2-przelewy24'),
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
