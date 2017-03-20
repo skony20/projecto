@@ -51,7 +51,7 @@ class SiteController extends MetaController
                         'roles' => ['@'],
                     ],
                     [
-                        'actions' => ['onas', 'kontakt', 'wprojekcie', 'regulamin', 'wspolpraca', 'cookie', 'accordion', 'politykaPrywatnosci', 'zwrot'],
+                        'actions' => ['onas', 'kontakt', 'wprojekcie', 'regulamin', 'wspolpraca', 'cookie', 'accordion', 'politykaPrywatnosci', 'zwrot', 'robots'],
                         'allow' => true,
                         'roles' => ['*'],
                     ],
@@ -528,6 +528,14 @@ class SiteController extends MetaController
             'value' => $iId,
             'expire' => time() + 86400 * 365,
             ])); 
+     }
+     /*robots.txt*/
+     public function actionRobots()
+     {
+        $response = Yii::$app->response;
+        $response->format = yii\web\Response::FORMAT_RAW;
+        $response->headers->set('Content-Type', 'text/plain');
+        return ($this->renderPartial('robots'));
      }
 
 }

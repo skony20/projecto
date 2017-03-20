@@ -8,7 +8,7 @@ use frontend\widget\LatestWidget;
             <div class="icon-img"><?= Html::img(Yii::$app->request->BaseUrl.'/img/circle.png', ['class'=>'first_icon'])?></div>
             <div class="icon-text">
                 <div class="icon-text-inner-top">PROJEKTY</div>
-                <div class="icon-text-inner-bottom">Znajdź wymażony projekt.</div>
+                <div class="icon-text-inner-bottom">Znajdź wymarzony projekt.</div>
             </div>
             <div class="icon-img"><?= Html::img(Yii::$app->request->BaseUrl.'/img/arrow.png', ['class'=>'arrow_icon'])?></div>
         </div>

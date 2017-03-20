@@ -17,7 +17,7 @@ return [
     'bootstrap'    => ['assetsAutoCompress'],
     'components' => [
         'request' => [
-            'csrfParam' => '_csrf-frontend',
+            'csrfParam' => '_csrf-projekttop',
 			'class' => 'common\components\Request',
 			'web'=> '/frontend/web',
             'baseUrl' => '/projecto',
@@ -64,7 +64,7 @@ return [
             //'suffix' =>'.html',
 
             'rules' => array(
-                    
+                'robots.txt'=>'site/robots',
                 'projekty/szukaj/<szukaj:.*>' =>'projekty/index',
                 [
                     'pattern' => 'projekty/szerokosc/<SizeX:\d+>/glebokosc/<SizeY:\d+>/HouseSize/<HouseSize:.*>/filters/<tag:.*>/strona/<strona:\d+>',
