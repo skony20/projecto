@@ -9,18 +9,17 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="producers-form">
+<?php
 
+        (isset($model->is_active_prd) ? '':  $model->is_active_prd = 1);
+    ?>
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'languages_id')->textInput() ?>
+    <?= $form->field($model, 'is_active_prd')->checkbox() ?>
 
     <?= $form->field($model, 'logo')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'nicename')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'meta_decription')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Dodaj') : Yii::t('app', 'Zmień'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

@@ -35,6 +35,7 @@ class Producers extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
+            [['is_active_prd'], 'integer'],
             [['languages_id'], 'integer'],
             [['name', 'logo', 'nicename'], 'string', 'max' => 45],
             [['meta_decription'], 'string', 'max' => 255],
@@ -49,6 +50,7 @@ class Producers extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
+            'is_active_prd' =>Yii::t('app', 'Aktywny'),
             'name' => Yii::t('app', 'Name'),
             'languages_id' => Yii::t('app', 'Languages ID'),
             'logo' => Yii::t('app', 'Logo'),

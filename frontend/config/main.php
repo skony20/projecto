@@ -194,7 +194,8 @@ return [
                     'pattern' => 'projekty/filters/<tag:.*>',
                     'route' => 'projekty/index',
                     'encodeParams' => false
-                ],[
+                ],
+                [
                     'pattern' => 'projekty/szerokosc/<SizeX:\d+>/strona/<strona:\d+>',
                     'route' => 'projekty/index',
                     'encodeParams' => false
@@ -212,6 +213,21 @@ return [
                 
                 [
                     'pattern' => 'projekty/glebokosc/<SizeY:\d+>',
+                    'route' => 'projekty/index',
+                    'encodeParams' => false
+                ],
+                [
+                    'pattern' => 'projekty/pracownia/<pracownia:\d+>',
+                    'route' => 'projekty/index',
+                    'encodeParams' => false
+                ],
+                [
+                    'pattern' => 'projekty/pracownia/<pracownia:\d+>/strona/<strona:\d+>',
+                    'route' => 'projekty/index',
+                    'encodeParams' => false
+                ],
+                [
+                    'pattern' => 'projekty/pracownia/<pracownia:\d+>/filters/<tag:.*>/',
                     'route' => 'projekty/index',
                     'encodeParams' => false
                 ],
@@ -259,7 +275,7 @@ return [
         'assetsAutoCompress' =>
         [
             'class'                         => '\skeeks\yii2\assetsAuto\AssetsAutoCompressComponent',
-            'enabled'                       => true,
+            'enabled'                       => false,
             'readFileTimeout'               => 3,           //Time in seconds for reading each asset file
             'jsCompress'                    => true,        //Enable minification js in html code
             'jsCompressFlaggedComments'     => true,        //Cut comments during processing js

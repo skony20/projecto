@@ -65,7 +65,7 @@ class ProjektyController extends MetaController
 
 public function actionIndex($sort = 'default', $szukaj = '')
     {
-        //echo '<pre>ss'. print_r(Yii::$app->session['aDimensions'], TRUE); die();
+        //
         $model = new ProductsSearch();
         //$aFiltersData = [];
         //$aDimensions = [];
@@ -77,6 +77,7 @@ public function actionIndex($sort = 'default', $szukaj = '')
         $aAttributes = [];
         $aPostData = [];
         $bPrdAttr = 0;
+        $iPracownia = '';
         //echo '<pre>'. print_r (Yii::$app->session->get('aDimensions') , TRUE);
         $oFiltersGroup = new FiltersGroup();
         $oFilters = new Filters();
@@ -123,10 +124,11 @@ public function actionIndex($sort = 'default', $szukaj = '')
        // echo '<pre>'. print_r ($aDimensions , TRUE); die();  
         if (count(Yii::$app->request->get())>=1)
         {
-            
+            //echo '<pre>ss'. print_r(Yii::$app->request->get(), TRUE); die();
             $aPostData = explode('/', Yii::$app->request->get('tag'));
             $sHouseSize =  Yii::$app->request->get('HouseSize');
-
+            $iPracownia = Yii::$app->request->get('pracownia');
+            
             $aPostData['strona'] ='';
             $aPostData['SizeX'] =Yii::$app->request->get('SizeX');
             $aPostData['SizeY'] =Yii::$app->request->get('SizeY');
@@ -325,6 +327,10 @@ public function actionIndex($sort = 'default', $szukaj = '')
         }
         //echo '<pre>'. print_r([$aPrdIds, count(array_filter($aPostData)) ], TRUE); die();    
         $query = $model::find()->FilterWhere(['IN', 'products.id', $aPrdIds])->andFilterWhere(['is_active' => 1]);
+        if ($iPracownia != '')
+        {
+            $query->andFilterWhere(['producers_id'=>$iPracownia]);
+        }
         //tylko włączone projekty   ->andFilterWhere(['is_active' => 1])
 
         if (count(array_filter($aPostData))<=3 && !$bBarChange && (empty($aPrdFilters) && empty($aAttributes)))

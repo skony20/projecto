@@ -89,6 +89,9 @@
     background: linear-gradient(to top, #2f96d1 0%,#3c7cae 100%);
 
 }
+select#pracownia {
+    margin-bottom: 20px;
+}
 .prjs-pagi, .prjs-count, .prjs-sort
 {
     display: inline-block;

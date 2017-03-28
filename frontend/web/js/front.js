@@ -13,7 +13,7 @@ $(document).on('ready pjax:success',
             var sSzerokosc = '';
             var sGlebokosc = '';
             var bBarChange = $.cookie("bBarChange");
-
+            var sPracownia = '';
             
             iMin = document.getElementsByClassName("irs-min")[0];
             iMax = document.getElementsByClassName("irs-max")[0];
@@ -50,7 +50,11 @@ $(document).on('ready pjax:success',
                         url: '/projekty/reset'
                         });
             }
-            window.location = $(this).attr("action") + sSzerokosc + sGlebokosc  +  sHouseSize + filters;
+            if ($('#pracownia').val() != '')
+            {
+                sPracownia = '/pracownia/' + $('#pracownia').val();
+            }
+            window.location = $(this).attr("action") + sPracownia + sSzerokosc + sGlebokosc  +  sHouseSize  + filters ;
             
             return false;
             });
@@ -97,7 +101,13 @@ $(document).on('ready pjax:success',
                 });
             }
         );
-
+        $('#pracownia').change(
+            function()
+            { 
+               
+               $("#prj_set_filters").submit();
+            }
+        );
         $('.reset_filter').click(
             function()
             {

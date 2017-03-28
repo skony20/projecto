@@ -3,6 +3,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 use app\models\Products;
+use app\models\Producers;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\web\View;
@@ -18,6 +19,7 @@ $sSearch = (isset($sSearchC) ? $sSearchC : '');
 //echo '<pre>'. print_r($_SESSION, TRUE). '</pre>';
 //echo '<pre>'. print_r($aDimensions, TRUE). '</pre>';
 $oProducts = new \app\models\Products();
+$oProducers = new Producers();
 $iAvalaibleProject = $oProducts->Countall();
 $iAvalaibleProject = floor($iAvalaibleProject / 100)* 100;
         ?>
@@ -108,6 +110,15 @@ $iAvalaibleProject = floor($iAvalaibleProject / 100)* 100;
         echo '</div>';
         echo '</div>';
     }
+    echo '<div class="prj_filter_row">';
+    echo '<div class="prj_filter_question_row m13b">';
+    echo 'Projekty z pracowni';
+    echo '</div>';
+    echo '<div class="prj_filter_ansver_row o13g">';
+    $iPracowniaSelected = (isset($_GET['pracownia'])?$_GET['pracownia']:0);
+    echo Html::dropDownList('pracownia', $iPracowniaSelected, ArrayHelper::map($oProducers->findAll(['is_active_prd'=>1]), 'id', 'name'), ['prompt'=> 'Wybierz pracownie', 'id'=>'pracownia']);
+    echo '</div>';
+    echo '</div>';
     ?>
     <?= Html::endForm() ?>
     <?= Html::tag('div', 'resetuj filtry', ['class' => 'reset_all_filters m14b text-uppercase text-center']) ?>
