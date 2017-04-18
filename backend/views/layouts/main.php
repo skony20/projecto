@@ -66,6 +66,13 @@ AppAsset::register($this);
                 ['label' => 'Metody płatności', 'url' => ['/payments-method']],
             ],
         ],
+        [
+            'label' => 'XML',
+            'items' => [
+
+                ['label' => 'Horyzont', 'url' => ['/xml/horyzont']],
+            ],
+        ],
         
     ];
     if (Yii::$app->user->isGuest) {
