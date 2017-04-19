@@ -152,6 +152,10 @@ class Products extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Storeys::className(), ['products_id' => 'id']);
     }
+    public function getAuthor()
+    {
+        return $this->hasMany(Author::className(), ['products_id' => 'id']);
+    }
     public function getStoreyByType($iType)
     {
         return $this->hasMany(Storeys::className(), ['products_id' => 'id'])->where(['storey_type'=>$iType])->orderBy(['room_number'=>SORT_ASC]);

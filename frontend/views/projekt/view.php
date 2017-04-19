@@ -101,6 +101,19 @@ $url = Yii::$app->request->absoluteUrl;
                     <div class="col-md-4">
                         <div class="m21b prj-desc-title">O projekcie</div>
                         <div class="green-border"></div>
+                        <div class="prj-authors">
+                            Pracownia: <?= $model->producers->name ?><br>
+                            <?php if (count($model->author)>0) 
+                            {
+                                echo 'Autor: ';
+                                foreach ($model->author as $aAuthor)
+                                {
+                                    echo $aAuthor->name .' ';
+                                }
+                                echo '<br>';
+                            }
+                            ?>
+                        </div>
                         <div class="project-desc" itemprop="description"><?= $model->productsDescriptons->html_description ?></div>
                     </div>
                     <div class="col-md-4">

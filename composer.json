@@ -19,18 +19,17 @@
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "2amigos/yii2-ckeditor-widget" : "~1.0",
-        "yiisoft/yii2-imagine": "~2.0.0",
         "yii2mod/yii2-ion-slider": "*",
         "yiisoft/yii2-authclient": "^2.1",
         "dawid-daweb/yii2-przelewy24" : "dev-master",
-        "skeeks/yii2-assets-auto-compress": "*"
+        "skeeks/yii2-assets-auto-compress": "*",
+        "yiisoft/yii2-imagine": "^2.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",
         "yiisoft/yii2-gii": "*",
         "yiisoft/yii2-faker": "*",
-        "2amigos/yii2-ckeditor-widget" : "~1.0",
-        "yiisoft/yii2-imagine": "~2.0.0"
+        "2amigos/yii2-ckeditor-widget" : "~1.0"
 
     },
     "config": {

@@ -39,15 +39,6 @@ return array (
       '@dosamigos/ckeditor' => $vendorDir . '/2amigos/yii2-ckeditor-widget/src',
     ),
   ),
-  'yii2mod/yii2-ion-slider' => 
-  array (
-    'name' => 'yii2mod/yii2-ion-slider',
-    'version' => '1.1.0.0',
-    'alias' => 
-    array (
-      '@yii2mod/slider' => $vendorDir . '/yii2mod/yii2-ion-slider',
-    ),
-  ),
   'yiisoft/yii2-swiftmailer' => 
   array (
     'name' => 'yiisoft/yii2-swiftmailer',
@@ -55,15 +46,6 @@ return array (
     'alias' => 
     array (
       '@yii/swiftmailer' => $vendorDir . '/yiisoft/yii2-swiftmailer',
-    ),
-  ),
-  'yiisoft/yii2-imagine' => 
-  array (
-    'name' => 'yiisoft/yii2-imagine',
-    'version' => '2.0.4.0',
-    'alias' => 
-    array (
-      '@yii/imagine' => $vendorDir . '/yiisoft/yii2-imagine',
     ),
   ),
   'yiisoft/yii2-httpclient' => 
@@ -100,6 +82,24 @@ return array (
     'alias' => 
     array (
       '@skeeks/yii2/assetsAuto' => $vendorDir . '/skeeks/yii2-assets-auto-compress',
+    ),
+  ),
+  'yiisoft/yii2-imagine' => 
+  array (
+    'name' => 'yiisoft/yii2-imagine',
+    'version' => '2.1.0.0',
+    'alias' => 
+    array (
+      '@yii/imagine' => $vendorDir . '/yiisoft/yii2-imagine',
+    ),
+  ),
+  'yii2mod/yii2-ion-slider' => 
+  array (
+    'name' => 'yii2mod/yii2-ion-slider',
+    'version' => '1.2.0.0',
+    'alias' => 
+    array (
+      '@yii2mod/slider' => $vendorDir . '/yii2mod/yii2-ion-slider',
     ),
   ),
 );
