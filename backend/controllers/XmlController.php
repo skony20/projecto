@@ -190,6 +190,8 @@ class XmlController extends Controller
             {
             if(substr_count(strtolower($aProject->name), 'instalacja solarna') <1)
             {
+            if(substr_count(strtolower($aProject->name), 'garaż') <1)
+            {
                 $oProjekt = new Products();
                 //echo '<pre>'. print_r($aProject, TRUE); die();
                 $oExist = $oProjekt->findOne(['ean' => 'horyzont-'.$aProject->id_product]);
@@ -482,6 +484,7 @@ class XmlController extends Controller
             }
             }
             }
+        }
         }
 
     }
