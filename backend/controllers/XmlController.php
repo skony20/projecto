@@ -186,16 +186,16 @@ class XmlController extends Controller
             
             if (substr_count(strtolower($aProject->name), 'kosztorys') <1)
             {
-            if(substr_count(strtolower($aProject->name), 'pompa ciepła') <1)
+            if(substr_count(strtolower($aProject->name), 'Pompa ciepła') <1)
             {
             if(substr_count(strtolower($aProject->name), 'instalacja solarna') <1)
             {
             if(substr_count(strtolower($aProject->name), 'garaż') <1)
             {
+            if(substr_count(strtolower($aProject->name), 'Dziennik') <1)
+            {
                 $oProjekt = new Products();
-                //echo '<pre>'. print_r($aProject, TRUE); die();
                 $oExist = $oProjekt->findOne(['ean' => 'horyzont-'.$aProject->id_product]);
-                //echo print_r($oExist, TRUE); die();
                 if (!$oExist)
                 {
                 /*Dodanie produktu*/
@@ -212,7 +212,6 @@ class XmlController extends Controller
                     $oProjekt->save(false);
                 /*Dodanie opisów do produkty*/
                     $iActualProductId = Yii::$app->db->getLastInsertID();
-                    echo  $sSymbol . ' -- '.$iActualProductId .'<br>'; 
                     $oProductsDesriptions = new ProductsDescripton();
                     $oProductsDesriptions->products_id = $iActualProductId;
                     $oProductsDesriptions->languages_id = 1;
@@ -481,6 +480,7 @@ class XmlController extends Controller
                             }
                     }
                 }
+            }
             }
             }
             }

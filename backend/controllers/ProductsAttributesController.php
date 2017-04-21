@@ -92,35 +92,36 @@ class ProductsAttributesController extends Controller
             //echo '<pre>' . print_r($_POST, TRUE) . '</pre>'; die();
 
             $aDataAttributes = $_POST;
-
-            foreach ($aDataAttributes as $aDataAttrKey =>$aDataAttrValue)
+            
+            foreach ($aDataAttributes as $iDataAttrKey => $iDataAttrValue)
             {
-                if ($aDataAttrKey >0)
+                if ($iDataAttrKey >0)
                 {
-
-                    $model->attributes_id = $aDataAttrKey;
-                    $model->value = $aDataAttrValue;
-                    //$model->id = (isset($aProductsAttributes[$aDataAttrValue]) ? $aProductsAttributes : NULL);
-                    $oCheckAttr = $model->find()->where(['products_id' => $model->products_id, 'attributes_id'=>$aDataAttrKey])->all();
-
-
-                    if (count($oCheckAttr)>0)
+                    $oPrdAttr = $model->findOne(['attributes_id'=>$iDataAttrKey, 'products_id'=>$model->products_id]);
+                    if ($oPrdAttr)
                     {
-
-                        $model->id = $oCheckAttr[0]->id;
-                        $model = $this->findModel($model->id);
-                        $model->value = $aDataAttrValue;
+                        $oPrdAttr->attributes_id = $iDataAttrKey;
+                        $oPrdAttr->value = $iDataAttrValue;
+                        $oPrdAttr->update(false);
                         
-                        $model->save(false);
-                        if($aDataAttrValue == '')
+                        if($iDataAttrValue == '')
                         {
-                            $model->delete();
-                        }                        
+                            $oPrdAttr->delete();
+                        }
                     }
-
+                    else 
+                    {
+                        if ($iDataAttrValue != '')
+                        {
+                            $model->products_id = $_GET['id'];
+                            $model->attributes_id = $iDataAttrKey;
+                            $model->value = $iDataAttrValue;
+                            $model->save(false);
+                        }
+                    }
+                                            
                 }
             }
-            
             return $this->redirect(Yii::$app->request->referrer);
         }
         elseif (Yii::$app->request->isAjax)
