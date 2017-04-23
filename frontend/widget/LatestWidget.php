@@ -60,12 +60,12 @@ class LatestWidget extends Widget
             $aDepth = $aProduct->getOneAttribute(3)->all();
                     
             ?>
-            <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                 <div class="latest-product">
                     <div class="latest-img"><?= Html::img(yii::getalias("@image").'/'.$aProduct->id.'/info/'.$aProduct->productsImages[0]->name) ?></div>
                     <div class="latest-info">
                         <div class="latest-left">
-                            <div class="latest-name o13g-sb"><?= $aProduct->productsDescriptons->name ?><br></div>
+                            <div class="latest-name o13g-sb"><?= Html::a($aProduct->productsDescriptons->name, Yii::getAlias('@web').'/projekt/'.$aProduct->productsDescriptons->nicename_link.'.html', ['title' => 'Projekt domu - '.$aProduct->productsDescriptons->name, 'class'=>'o12gsm']);?><br></div>
 
                             <div class="latest-area m18b">
                              <?php  $aAttributes = $aProduct->getOneAttribute(4)->all() ?>
@@ -75,7 +75,7 @@ class LatestWidget extends Widget
                         </div>
                         <div class="latest-right">
                             <div class="latest-price m15wgreen"><?=$aProduct->price_brutto. ' zł' ?></div>
-                            <div class="latest-link"><?= Html::a('<i class="fa fa-external-link fa-lg" aria-hidden="true"></i>', Yii::$app->request->BaseUrl.'/projekt/'.$aProduct->productsDescriptons->nicename_link.'.html') ?></div>
+                            <div class="latest-link"><?= Html::a('<i class="fa fa-external-link fa-lg" aria-hidden="true"></i>', Yii::$app->request->BaseUrl.'/projekt/'.$aProduct->productsDescriptons->nicename_link.'.html', ['title' => 'Projekt domu - '.$aProduct->productsDescriptons->name, 'class'=>'o12gsm']) ?></div>
                         </div>
                         
                     </div>

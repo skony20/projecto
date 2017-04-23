@@ -10,10 +10,12 @@
 {
     width:300px;
     background-color: #fff;
-    margin: 0 auto;
+    margin: 0 auto 20px;
     padding: 0 0 15px;
 }
-
+.latest-info {
+    height: 65px;
+}
 .latest-img
 {
     max-width:300px;
