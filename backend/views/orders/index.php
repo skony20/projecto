@@ -43,6 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' =>  'payment.name',
                 'format'=>'raw',
                 'filter' => Html::activeDropDownList($searchModel, 'shippings_payments_id', ArrayHelper::map(PaymentsMethod::find()->asArray()->all(), 'id', 'name'),['class'=>'form-control','prompt' => 'Wybierz']),
+                'contentOptions' => ['class' => 'img-payment'],
             ],
             //'is_deleted',
 //            [

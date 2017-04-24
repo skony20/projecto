@@ -51,3 +51,8 @@ table.order-positions-data tr td
 {
     background-color:#A0C2DE;
 }
+.img-payment img
+{
+    max-height: 20px;
+}
+

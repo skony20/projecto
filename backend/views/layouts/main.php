@@ -71,6 +71,7 @@ AppAsset::register($this);
             'items' => [
 
                 ['label' => 'Horyzont', 'url' => ['/xml/horyzont']],
+                ['label' => 'MGProjekt', 'url' => ['/xml/mgprojekt']],
             ],
         ],
         

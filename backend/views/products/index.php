@@ -72,7 +72,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=> function ($model)
                 {
                     
-                    return '<a href="http://mariuszskonieczny.kylos.pl/projecto/projekt/'.$model->productsDescriptons->nicename_link.'.html" target="_blank" >'.$model->productsDescriptons->nicename_link.'</a>';
+                    return '<a href="https://projekttop.pl/projekt/'.$model->productsDescriptons->nicename_link.'.html" target="_blank" >'.$model->productsDescriptons->nicename_link.'</a>';
                 }
             ],
 

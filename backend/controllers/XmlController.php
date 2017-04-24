@@ -30,7 +30,7 @@ class XmlController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['horyzont'],
+                        'actions' => ['horyzont', 'mgprojekt'],
                         'allow' => true,
                     ],
                     
@@ -65,7 +65,7 @@ class XmlController extends Controller
     private function zamiana($string)
     {
          $polskie = array(',', ' - ',' ','ę', 'Ę', 'ó', 'Ó', 'Ą', 'ą', 'Ś', 'ś', 'ł', 'Ł', 'ż', 'Ż', 'Ź', 'ź', 'ć', 'Ć', 'ń', 'Ń','-',"'","/","?", '"', ":", '!','.', '&', '&amp;', '#', ';', '[',']', '(', ')', '`', '%', '”', '„', '…');
-         $miedzyn = array('-','-','-','e', 'e', 'o', 'o', 'a', 'a', 's', 's', 'l', 'l', 'z', 'z', 'z', 'z', 'c', 'c', 'n', 'n','-',"","","","","",'','', '', '', '', '', '', '', '', '', '', '', '');
+         $miedzyn = array('-','-','-','e', 'e', 'o', 'o', 'a', 'a', 's', 's', 'l', 'ly', 'z', 'z', 'z', 'z', 'c', 'c', 'n', 'n','-',"","","","","",'','', '', '', '', '', '', '', '', '', '', '', '');
          $string = str_replace($polskie, $miedzyn, $string);
          $string = strtolower($string);
          // usuń wszytko co jest niedozwolonym znakiem
@@ -486,6 +486,50 @@ class XmlController extends Controller
             }
         }
         }
+
+    }
+
+    public function actionMgprojekt()
+    {
+        $oDocument = new Response();
+        $sXmlFile  = 'http://www.mgprojekt.com.pl/export_xml,index.html';
+        
+        $sXmlContent = file_get_contents($sXmlFile);
+        $sXml = $oDocument->setContent($sXmlContent);
+        $oParser = new XmlParser();
+        $aMGP = $oParser->parse($sXml);
+        //echo '<pre>'. print_r($aMGP, TRUE); die();
+        foreach ($aMGP['projekt'] as $aProject)
+        {
+            $oProjekt = new Products();
+            $oExist = $oProjekt->findOne(['ean' => 'mgprojekt-'.$aProject->products_id]);
+            if (!$oExist)
+            {
+            /*Dodanie produktu*/
+                $sSymbol = $this->zamiana($aProject->nazwa);
+                $oProjekt->is_active = 0;
+                $oProjekt->producers_id = 9;
+                $oProjekt->vats_id = 3;
+                $oProjekt->price_brutto_source = $aProject->cena_projektu;
+                $oProjekt->price_brutto = $aProject->cena_projektu;
+                $oProjekt->stock = 99;
+                $oProjekt->creation_date=time();
+                $oProjekt->symbol = 'mgprojekt-'.$aProject->products_id;
+                $oProjekt->ean = 'mgprojekt-'.$aProject->products_id;
+                $oProjekt->save(false);
+            /*Dodanie opisów do produkty*/
+                $iActualProductId = Yii::$app->db->getLastInsertID();
+                $oProductsDesriptions = new ProductsDescripton();
+                $oProductsDesriptions->products_id = $iActualProductId;
+                $oProductsDesriptions->languages_id = 1;
+                $oProductsDesriptions->name = $aProject->nazwa;
+                $oProductsDesriptions->nicename_link = $sSymbol;
+                $oProductsDesriptions->html_description = $aProject->opis .'<br> Materiały: <br>'. $aProject->materialy;
+                $oProductsDesriptions->save(false); 
+            }
+           
+        }
+        die(); 
 
     }
 }
