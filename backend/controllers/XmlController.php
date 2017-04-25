@@ -535,47 +535,75 @@ class XmlController extends Controller
     public function actionImages()
     {
         $sPatch = Yii::getAlias('@images');
+        //$sPatch = 'E:/images/images/';
         $aFolderList = scandir(Yii::getAlias('@images'));
+        
         $oImage = new Image();
         $cdir = scandir($sPatch); 
-        foreach ($cdir as $key => $value) 
+        foreach ($cdir as $key => $valueDir) 
         { 
-           if (!in_array($value,array(".",".."))) 
+           if (!in_array($valueDir,array(".",".."))) 
            { 
-              if (is_dir($sPatch  . DIRECTORY_SEPARATOR . $value)) 
-              { 
-                $sBigDir = $sPatch.'/'.$value .'/big';
-                $aBigDirScan = scandir($sBigDir);
-                foreach ($aBigDirScan as $key => $value) 
+               echo $valueDir.'<br>';
+                if (is_dir($sPatch  . DIRECTORY_SEPARATOR . $valueDir)) 
+                { 
+                  $sBigDir = $sPatch.'/'.$valueDir .'/big';
+                  $aBigDirScan = scandir($sBigDir);
+                  foreach ($aBigDirScan as $key => $value) 
+                  { 
+                     if (!in_array($value,array(".",".."))) 
+                     {
+                          $sImage = $sBigDir.'/'.$value;
+                          $aImageSixe =getimagesize($sImage); 
+
+                          if ($aImageSixe[0] > 1600 && $aImageSixe[0] > $aImageSixe[1])
+                          {
+                              $iWidthBigSize = $aImageSixe[0]/($aImageSixe[0]/1600);
+                              $iHeightBigSize = ceil($aImageSixe[1]/($aImageSixe[0]/1600));
+                              $oImage->thumbnail($sImage, $iWidthBigSize, $iHeightBigSize)->save($sImage, ['quality' => 90]);
+                              echo 'Szerokie ' .$sImage.'<br>';
+                          }
+                          else if ($aImageSixe[0] > 1000 && $aImageSixe[1] > $aImageSixe[0])
+                          {
+                              $iWidthBigSize = $aImageSixe[0]/($aImageSixe[1]/1000);
+                              $iHeightBigSize = ceil($aImageSixe[1]/($aImageSixe[1]/1000));
+                              $oImage->thumbnail($sImage, $iWidthBigSize, $iHeightBigSize)->save($sImage, ['quality' => 90]);
+                              echo 'Wąskie '. $sImage.'<br>';
+                          }
+                          else
+                          {
+                              $oImage->thumbnail($sImage, $aImageSixe[0], $aImageSixe[1])->save($sImage, ['quality' => 90]);
+                          }
+
+                     }
+                  }
+                }
+
+                /*Katlogi info i thumbs*/
+                $sInfoDir = $sPatch.'/'.$valueDir .'/info';
+                $aInfoDirScan = scandir($sInfoDir);
+                $sThumbsDir = $sPatch.'/'.$valueDir .'/thumbs';
+                $aThumbsDirScan = scandir($sThumbsDir);
+                foreach ($aInfoDirScan as $key => $value) 
                 { 
                    if (!in_array($value,array(".",".."))) 
                    {
-                        $sImage = $sBigDir.'/'.$value;
-                        $aImageSixe =getimagesize($sImage); 
-                        
-                        if ($aImageSixe[0] > 1600 && $aImageSixe[0] > $aImageSixe[1])
-                        {
-                            $iWidthBigSize = $aImageSixe[0]/($aImageSixe[0]/1600);
-                            $iHeightBigSize = ceil($aImageSixe[1]/($aImageSixe[0]/1600));
-                            $oImage->thumbnail($sImage, $iWidthBigSize, $iHeightBigSize)->save($sImage, ['quality' => 90]);
-                            echo 'Szerokie ' .$sImage.'<br>';
-                        }
-                        else if ($aImageSixe[0] > 1000 && $aImageSixe[1] > $aImageSixe[0])
-                        {
-                            $iWidthBigSize = $aImageSixe[0]/($aImageSixe[1]/1000);
-                            $iHeightBigSize = ceil($aImageSixe[1]/($aImageSixe[1]/1000));
-                            $oImage->thumbnail($sImage, $iWidthBigSize, $iHeightBigSize)->save($sImage, ['quality' => 90]);
-                            echo 'Wąskie '. $sImage.'<br>';
-                        }
-                        else
-                        {
-                            $oImage->thumbnail($sImage, $aImageSixe[0], $aImageSixe[1])->save($sImage, ['quality' => 90]);
-                        }
-                           
+                       $sImage = $sInfoDir.'/'.$value;
+                       $aImageSixe =getimagesize($sImage);
+                       $oImage->thumbnail($sImage, $aImageSixe[0], $aImageSixe[1])->save($sImage, ['quality' => 90]);
                    }
                 }
-              } 
-           } 
+                foreach ($aThumbsDirScan as $key => $value) 
+                { 
+                   if (!in_array($value,array(".",".."))) 
+                   {
+                       $sImage = $sInfoDir.'/'.$value;
+                       $aImageSixe =getimagesize($sImage);
+                       $oImage->thumbnail($sImage, $aImageSixe[0], $aImageSixe[1])->save($sImage, ['quality' => 90]);
+                   }
+                }
+              
+            } 
         } 
     }
 }
