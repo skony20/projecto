@@ -30,7 +30,7 @@ class XmlController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['horyzont', 'mgprojekt', 'images'],
+                        'actions' => ['horyzont', 'mgprojekt', 'images', 'horyzont-rzut'],
                         'allow' => true,
                     ],
                     
@@ -579,7 +579,7 @@ class XmlController extends Controller
                   }
                 }
 
-                /*Katlogi info i thumbs*/
+                /*Katalogi info i thumbs*/
                 $sInfoDir = $sPatch.'/'.$valueDir .'/info';
                 $aInfoDirScan = scandir($sInfoDir);
                 $sThumbsDir = $sPatch.'/'.$valueDir .'/thumbs';
@@ -606,4 +606,29 @@ class XmlController extends Controller
             } 
         } 
     }
+    
+    public function actionHoryzontRzut() 
+    {
+        $oProjects = new Products();
+        $aPrdHoryzont = $oProjects->findAll(['producers_id'=>8]);
+       
+        //$oPrdImages = $aPrdHoryzont->producers;
+        foreach ($aPrdHoryzont as $aPrd)
+        {
+            
+            $oImages = new ProductsImages();
+            $aImages = $oImages->findAll(['products_id'=>$aPrd->id , 'image_type_id'=>5]);
+            if (isset($aImages[0]))
+            {
+                $sPatch = Yii::getAlias('@images');
+                $sInfoPatch = 'http://localhost/projecto/images/'.$aPrd->id .'/big/';
+                echo '<span style="font-size:40px;">'.$aPrd->id .' ---- ' .$aPrd->productsDescriptons->name .'</span><br>';
+                echo '<img src="'.$sInfoPatch.$aImages[0]->name .'"/><br>';
+            }
+            
+        }
+        die();
+        
+    }
+    
 }
