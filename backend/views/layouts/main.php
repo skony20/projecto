@@ -72,6 +72,8 @@ AppAsset::register($this);
 
                 ['label' => 'Horyzont', 'url' => ['/xml/horyzont']],
                 ['label' => 'MGProjekt', 'url' => ['/xml/mgprojekt']],
+                ['label' => 'HORYZONT - Obrazki do zczytania głębokości działki', 'url' => ['/xml/horyzont-rzut']],
+                ['label' => 'HORYZONT - Rzuty pięter do ogarnięcia ilości osób', 'url' => ['/xml/horyzont-pietra']],
             ],
         ],
         

@@ -30,7 +30,7 @@ class XmlController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['horyzont', 'mgprojekt', 'images', 'horyzont-rzut'],
+                        'actions' => ['horyzont', 'mgprojekt', 'images', 'horyzont-rzut', 'horyzont-pietra'],
                         'allow' => true,
                     ],
                     
@@ -170,6 +170,16 @@ class XmlController extends Controller
         $oImage->thumbnail($sBigPatch.$sName, $iWidthThumbSize, $iHeightThumbSize)->save($sThumbPatch.$sName, ['quality' => 90]);
         $oImage->thumbnail($sBigPatch.$sName, $iWidthInfoSize, $iHeightInfoSize)->save($sInfoPatch.$sName, ['quality' => 90]);
         
+    }
+    private function checkSymbol($p_sSymbol) 
+    {
+        $oProduct = new ProductsDescripton();
+        $aProduct = $oProduct->findAll(['nicename_link'=>$p_sSymbol]);
+        if (count($aProduct) > 0 )
+        {
+            return TRUE;
+        }
+        return FALSE;
     }
     public function actionHoryzont()
     {
@@ -507,6 +517,7 @@ class XmlController extends Controller
             {
             /*Dodanie produktu*/
                 $sSymbol = $this->zamiana($aProject->nazwa);
+                $sSymbol = ($this->checkSymbol($sSymbol) ? $sSymbol.'-mgprojekt' :$sSymbol);
                 $oProjekt->is_active = 0;
                 $oProjekt->producers_id = 9;
                 $oProjekt->vats_id = 3;
@@ -516,7 +527,7 @@ class XmlController extends Controller
                 $oProjekt->creation_date=time();
                 $oProjekt->symbol = 'mgprojekt-'.$aProject->products_id;
                 $oProjekt->ean = 'mgprojekt-'.$aProject->products_id;
-                $oProjekt->save(false);
+                //$oProjekt->save(false);
             /*Dodanie opisów do produkty*/
                 $iActualProductId = Yii::$app->db->getLastInsertID();
                 $oProductsDesriptions = new ProductsDescripton();
@@ -525,8 +536,174 @@ class XmlController extends Controller
                 $oProductsDesriptions->name = $aProject->nazwa;
                 $oProductsDesriptions->nicename_link = $sSymbol;
                 $oProductsDesriptions->html_description = $aProject->opis .'<br> Materiały: <br>'. $aProject->materialy;
-                $oProductsDesriptions->save(false); 
+                //$oProductsDesriptions->save(false); 
+            
+                if ($aProject->autor != '')
+                {
+                    $oAutor = new \app\models\Author();
+                    $oAutor->products_id = $iActualProductId ;
+                    $oAutor->name = $aProject->autor;
+                    //$oAutor->save(false);
+                }
+                
+                
+            /*Dane technicze i filtry */
+                
+                $iKominek = 29;
+                if ($aProject->kominek > 0)
+                {
+                    $iKominek = 28;
+                }
+//                $this->addFilter($iActualProductId, $iKominek);
+//                $this->addAttr($iActualProductId, 18, $aProject->ilosc_lazienek);
+//                $this->addAttr($iActualProductId, 15, $aProject->kubatura);
+//                $this->addAttr($iActualProductId, 11, $aProject->powierzchnia_zabudowy);
+//                $this->addAttr($iActualProductId, 10, $aProject->powierzchnia_netto);
+//                $this->addAttr($iActualProductId, 4, $aProject->powierzchnia_uzytkowa);
+//                $this->addAttr($iActualProductId, 14, $aProject->powierzchnia_strychu);
+//                $this->addAttr($iActualProductId, 5, $aProject->powierzchnia_garazu);
+//                $this->addAttr($iActualProductId, 16, $aProject->powierzchnia_dachu);
+//                $this->addAttr($iActualProductId, 2, $aProject->szerokosc_budynku);
+//                $this->addAttr($iActualProductId, 3, $aProject->dlugosc_budynku);
+//                $this->addAttr($iActualProductId, 6, $aProject->min_szerokosc_dzialki);
+//                $this->addAttr($iActualProductId, 7, $aProject->min_dlugosc_dzialki);
+//                $this->addAttr($iActualProductId, 8, $aProject->nachylenie_dachu);
+//                $this->addAttr($iActualProductId, 1, $aProject->wysokosc_budynku);
+                foreach ($aProject->kategorie as $sKatKey=>$sKatValue)
+                {
+
+                    if ($sKatValue = 'Domy z kotłem na paliwo stałe')
+                    {
+                        $this->addFilter($iActualProductId, 30);
+                    }
+                    $iDzialka = 3;
+                    if ($sKatValue = 'Projekty domów na wąską działkę')
+                    {
+                        $iDzialka = 1;
+                    }
+                    if ($sKatValue = 'Budynki na płytką działkę')
+                    {
+                        $iDzialka = 2;
+                    }
+                    $this->addFilter($iActualProductId, $iDzialka);
+                    $iEnergia = 34;
+                    if ($sKatValue = 'Projekty domów energooszczędnych ')
+                    {
+                        $iEnergia = 32;
+                    }
+                    $this->addFilter($iActualProductId, $iEnergia);             
+                }
+                foreach ($aProject->atrybuty as $aAtrybuty)
+                {   
+                    foreach ($aAtrybuty as $sAttrKey=>$sAttrValue)
+                    {
+                        $iDach = 0;
+                        $iGaraz = 0;
+                        $iPietra = 0;
+                        $iPiwnica = 0;
+                        $iStyl = 0;
+                        switch ($sAttrKey)
+                        {
+                        case 'Dach':
+                            switch ($sAttrValue)
+                            {
+                                case 'dwuspadowy z naczółkami':
+                                    $iDach = 22;
+                                    break;
+                                case 'dwuspadowy':
+                                    $iDach = 22;
+                                    break;
+                                case 'czterospadowy':
+                                    $iDach = 23;
+                                    break;
+                                case 'wielospadowy':
+                                    $iDach = 42;
+                                    break;
+                                case 'płaski':
+                                    $iDach = 44;
+                                    break;
+                            }
+                        break;
+                        case 'Garaż':
+                            switch ($sAttrValue)
+                            {
+                                case 'nie':
+                                    $iGaraz = 40;
+                                    break;
+                                case 'dwustanowiskowy':
+                                    $iGaraz = 25;
+                                    break;
+                                case 'jednostanowiskowy':
+                                    $iGaraz = 24;
+                                    break;
+                                case 'wiata garażowa':
+                                    $iGaraz = 45;
+                                    break;
+                                case 'garaż wolnostojący':
+                                    $iGaraz = 45;
+                                    break;
+                                case 'trzystanowiskowy':
+                                    $iGaraz = 25;
+                                    break;   
+                            }
+                        break;
+                        case 'Ilość_kondygnacji':
+                            switch ($sAttrValue)
+                            {
+                                case 'parterowy z poddaszem użytkowym':
+                                    $iPietra = 18;
+                                    break;
+                                case 'parterowy':
+                                    $iPietra = 17;
+                                    break;
+                                case 'parterowy ze strychem':
+                                    $iPietra = 18;
+                                    break;
+                                case 'piętrowy':
+                                    $iPietra = 19;
+                                    break;
+                                
+                            }
+                        break;
+                        case 'Podpiwniczenie':
+                            switch ($sAttrValue)
+                            {
+                                case 'tak':
+                                    $iPiwnica = 20;
+                                    break;
+                                case 'nie':
+                                    $iPiwnica = 39;
+                                    break;
+                                
+                            }
+                        break;
+                        case 'Styl':
+                            switch ($sAttrValue)
+                            {
+                                case 'tradycyjny':
+                                    $iStyl = 15;
+                                    break;
+                                case 'nowoczesny':
+                                    $iStyl = 16;
+                                    break;
+                                
+                            }
+                        break;
+                        }
+
+//                        ($iDach != 0 ? $this->addFilter($iActualProductId, $iDach) : '');
+//                        ($iGaraz != 0 ? $this->addFilter($iActualProductId, $iGaraz) : '');
+//                        ($iPietra != 0 ? $this->addFilter($iActualProductId, $iPietra) : '');
+//                        ($iPiwnica != 0 ? $this->addFilter($iActualProductId, $iPiwnica) : ''); 
+//                        ($iStyl != 0 ? $this->addFilter($iActualProductId, $iStyl) : '');                         
+                    }
+
+                    
+                }
+                
+
             }
+            
            
         }
         die(); 
@@ -607,8 +784,10 @@ class XmlController extends Controller
         } 
     }
     
-    public function actionHoryzontRzut() 
+    public function actionHoryzontPietra() 
     {
+        /*Nie zrobione*/
+        echo 'Jeszcze nie zrobione'; die();
         $oProjects = new Products();
         $aPrdHoryzont = $oProjects->findAll(['producers_id'=>8]);
        
