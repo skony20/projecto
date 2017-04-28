@@ -102,4 +102,13 @@ return array (
       '@yii2mod/slider' => $vendorDir . '/yii2mod/yii2-ion-slider',
     ),
   ),
+  'bigbrush/yii2-tinypng' => 
+  array (
+    'name' => 'bigbrush/yii2-tinypng',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@bigbrush/tinypng' => $vendorDir . '/bigbrush/yii2-tinypng',
+    ),
+  ),
 );

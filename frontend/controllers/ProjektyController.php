@@ -94,10 +94,10 @@ public function actionIndex($sort = 'default', $szukaj = '')
         $query->joinWith(['productsAttributes']);
 
         $bBarChange =  Yii::$app->session->get('BarChange');
-        $iMinSize = floor($oProductsAttributes->find()->onCondition(['attributes_id'=>4])->min('(CAST(value AS DECIMAL (5,2)))'));
-        $iMaxSize = ceil($oProductsAttributes->find()->onCondition(['attributes_id'=>4])->max('(CAST(value AS DECIMAL (5,2)))'));
-        $iMaxX = ceil($oProductsAttributes->find()->onCondition(['attributes_id'=>7])->max('(CAST(value AS DECIMAL (5,2)))'));
-        $iMaxY = ceil($oProductsAttributes->find()->onCondition(['attributes_id'=>6])->max('(CAST(value AS DECIMAL (5,2)))'));
+        $iMinSize = floor($oProductsAttributes->find()->joinWith(['products'])->andWhere(['products.is_active'=>1])->onCondition(['attributes_id'=>4])->min('(CAST(value AS DECIMAL (5,2)))'));
+        $iMaxSize = ceil($oProductsAttributes->find()->joinWith(['products'])->andWhere(['products.is_active'=>1])->onCondition(['attributes_id'=>4])->max('(CAST(value AS DECIMAL (5,2)))'));
+        $iMaxX = ceil($oProductsAttributes->find()->joinWith(['products'])->andWhere(['products.is_active'=>1])->onCondition(['attributes_id'=>7])->max('(CAST(value AS DECIMAL (5,2)))'));
+        $iMaxY = ceil($oProductsAttributes->find()->joinWith(['products'])->andWhere(['products.is_active'=>1])->onCondition(['attributes_id'=>6])->max('(CAST(value AS DECIMAL (5,2)))'));
         if(empty($aDimensions))
         {
             $aDimensions['iAllX'] = $iMaxX;

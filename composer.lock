@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "df94fef9a4b2b935983810be94bfaf05",
+    "content-hash": "41418250e561ae6054086ffd8094ca1e",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -64,6 +64,49 @@
                 "yii2"
             ],
             "time": "2015-04-30T12:22:25+00:00"
+        },
+        {
+            "name": "bigbrush/yii2-tinypng",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bigbrush/yii2-tinypng.git",
+                "reference": "1a866764296f78095ef81f4990838209cd826885"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bigbrush/yii2-tinypng/zipball/1a866764296f78095ef81f4990838209cd826885",
+                "reference": "1a866764296f78095ef81f4990838209cd826885",
+                "shasum": ""
+            },
+            "require": {
+                "tinify/tinify": "^1.2",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "bigbrush\\tinypng\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "BIG Brush Agency ApS",
+                    "email": "mj@bigbrush-agency.com"
+                }
+            ],
+            "description": "TinyPng for Yii 2",
+            "keywords": [
+                "compression",
+                "image",
+                "optimization",
+                "yii2"
+            ],
+            "time": "2017-03-23T10:13:51+00:00"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -1168,6 +1211,62 @@
             "time": "2015-07-04T07:35:09+00:00"
         },
         {
+            "name": "tinify/tinify",
+            "version": "1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tinify/tinify-php.git",
+                "reference": "59efb9b251af8fad28e3c1aef4b20416c8119c19"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tinify/tinify-php/zipball/59efb9b251af8fad28e3c1aef4b20416c8119c19",
+                "reference": "59efb9b251af8fad28e3c1aef4b20416c8119c19",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "lib-curl": ">=7.20.0",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "symfony/yaml": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "lib/Tinify.php",
+                    "lib/Tinify/Exception.php"
+                ],
+                "psr-4": {
+                    "Tinify\\": "lib/Tinify/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rolf Timmermans",
+                    "email": "rolftimmermans@voormedia.com"
+                }
+            ],
+            "description": "PHP client for the Tinify API. Tinify compresses your images intelligently. Read more at https://tinify.com.",
+            "homepage": "https://tinify.com/developers",
+            "keywords": [
+                "api",
+                "compress",
+                "images",
+                "tinify",
+                "tinyjpg",
+                "tinypng"
+            ],
+            "time": "2017-02-16T11:48:27+00:00"
+        },
+        {
             "name": "tubalmartin/cssmin",
             "version": "v2.4.8-p10",
             "source": {
@@ -1925,7 +2024,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "dawid-daweb/yii2-przelewy24": 20
+        "dawid-daweb/yii2-przelewy24": 20,
+        "bigbrush/yii2-tinypng": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

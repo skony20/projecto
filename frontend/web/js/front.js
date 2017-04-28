@@ -3,6 +3,11 @@ $(document).on('ready pjax:success',
     function()
     {
         
+        if (document.cookie.indexOf('bBarChange=') === -1)
+            {
+                $.cookie("bBarChange", 1);
+            }
+            
         $('#prj_set_filters').submit(function(e) {
             e.preventDefault();
             this.submit();
