@@ -800,7 +800,7 @@ class XmlController extends Controller
             if (isset($aImages[0]))
             {
                 $sPatch = Yii::getAlias('@images');
-                $sInfoPatch = 'http://localhost/projecto/images/'.$aPrd->id .'/big/';
+                $sInfoPatch = $sPatch.$aPrd->id .'/big/';
                 echo '<span style="font-size:40px;">'.$aPrd->id .' ---- ' .$aPrd->productsDescriptons->name .'</span><br>';
                 echo '<img src="'.$sInfoPatch.$aImages[0]->name .'"/><br>';
             }

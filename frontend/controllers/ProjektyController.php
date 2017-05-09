@@ -144,7 +144,10 @@ public function actionIndex($sort = 'default', $szukaj = '')
            // echo '<pre>'. print_r($aDimensions , TRUE); die();
             /*Zmiana paska wielkości domu*/
             
-            
+            if ($sHouseSize != '')
+            {
+                $bBarChange = 1;
+            }
             
             
             if ($sHouseSize != '' && $bBarChange)
@@ -271,14 +274,14 @@ public function actionIndex($sort = 'default', $szukaj = '')
             ], 'robots');
             
         }
-        $iOneMinSize = floor($oProductsAttributes->find()->andFilterWhere(['IN', 'products_id', $aPrdFilters])->andWhere('attributes_id = 4')->min('(CAST(value AS DECIMAL (5,2)))'));
-        $iOneMaxSize = ceil($oProductsAttributes->find()->andFilterWhere(['IN', 'products_id', $aPrdFilters])->andWhere('attributes_id = 4')->max('(CAST(value AS DECIMAL (5,2)))'));
+        $iOneMinSize = floor($oProductsAttributes->find()->joinWith(['products'])->andWhere(['products.is_active'=>1])->andFilterWhere(['IN', 'products_id', $aPrdFilters])->andWhere('attributes_id = 4')->min('(CAST(value AS DECIMAL (5,2)))'));
+        $iOneMaxSize = ceil($oProductsAttributes->find()->joinWith(['products'])->andWhere(['products.is_active'=>1])->andFilterWhere(['IN', 'products_id', $aPrdFilters])->andWhere('attributes_id = 4')->max('(CAST(value AS DECIMAL (5,2)))'));
         if (!empty($aPrdFilters))
         {
             if ($aPrdFilters[0] == 1)
             {
-            $iOneMinSize = floor($oProductsAttributes->find()->andWhere('attributes_id = 4')->min('(CAST(value AS DECIMAL (5,2)))'));
-            $iOneMaxSize = ceil($oProductsAttributes->find()->andWhere('attributes_id = 4')->max('(CAST(value AS DECIMAL (5,2)))'));
+            $iOneMinSize = floor($oProductsAttributes->find()->joinWith(['products'])->andWhere(['products.is_active'=>1])->andWhere('attributes_id = 4')->min('(CAST(value AS DECIMAL (5,2)))'));
+            $iOneMaxSize = ceil($oProductsAttributes->find()->joinWith(['products'])->andWhere(['products.is_active'=>1])->andWhere('attributes_id = 4')->max('(CAST(value AS DECIMAL (5,2)))'));
             }
 
         }
