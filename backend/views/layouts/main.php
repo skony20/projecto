@@ -72,8 +72,10 @@ AppAsset::register($this);
 
                 ['label' => 'Horyzont', 'url' => ['/xml/horyzont']],
                 ['label' => 'MGProjekt', 'url' => ['/xml/mgprojekt']],
-                ['label' => 'HORYZONT - Obrazki do zczytania głębokości działki', 'url' => ['/xml/horyzont-rzut']],
-                ['label' => 'HORYZONT - Rzuty pięter do ogarnięcia ilości osób', 'url' => ['/xml/horyzont-pietra']],
+                ['label' => 'HORYZONT - Usytuowanie', 'url' => ['/xml/rzut?producent=8']],
+                ['label' => 'HORYZONT - Rzuty pięter do ogarnięcia ilości osób', 'url' => ['/xml/pietra?producent=8']],
+                ['label' => 'MGProjekt - Usytuowanie', 'url' => ['/xml/rzut?producent=9']],
+                ['label' => 'MGProjekt - Rzuty pięter do ogarnięcia ilości osób', 'url' => ['/xml/pietra?producent=9']],
             ],
         ],
         

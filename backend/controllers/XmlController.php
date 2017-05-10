@@ -30,7 +30,7 @@ class XmlController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['horyzont', 'mgprojekt', 'images', 'horyzont-rzut', 'horyzont-pietra'],
+                        'actions' => ['horyzont', 'mgprojekt', 'images', 'rzut', 'pietra'],
                         'allow' => true,
                     ],
                     
@@ -139,6 +139,7 @@ class XmlController extends Controller
         $oImage = new Image();
         
         $sPatch = Yii::getAlias('@images');
+        $sBigPatch = $sPatch.'/'.$iPrdId.'/big/';
         $sInfoPatch = $sPatch.'/'.$iPrdId.'/info/';
         $sThumbPatch = $sPatch.'/'.$iPrdId.'/thumbs/';
         
@@ -527,7 +528,7 @@ class XmlController extends Controller
                 $oProjekt->creation_date=time();
                 $oProjekt->symbol = 'mgprojekt-'.$aProject->products_id;
                 $oProjekt->ean = 'mgprojekt-'.$aProject->products_id;
-                //$oProjekt->save(false);
+                $oProjekt->save(false);
             /*Dodanie opisów do produkty*/
                 $iActualProductId = Yii::$app->db->getLastInsertID();
                 $oProductsDesriptions = new ProductsDescripton();
@@ -535,8 +536,8 @@ class XmlController extends Controller
                 $oProductsDesriptions->languages_id = 1;
                 $oProductsDesriptions->name = $aProject->nazwa;
                 $oProductsDesriptions->nicename_link = $sSymbol;
-                $oProductsDesriptions->html_description = $aProject->opis .'<br> Materiały: <br>'. $aProject->materialy;
-                //$oProductsDesriptions->save(false); 
+                $oProductsDesriptions->html_description = $aProject->opis. ($aProject->materialy !='' ? '<br> Materiały: <br>'. $aProject->materialy : '');
+                $oProductsDesriptions->save(false); 
             
                 if ($aProject->autor != '')
                 {
@@ -554,40 +555,39 @@ class XmlController extends Controller
                 {
                     $iKominek = 28;
                 }
-//                $this->addFilter($iActualProductId, $iKominek);
-//                $this->addAttr($iActualProductId, 18, $aProject->ilosc_lazienek);
-//                $this->addAttr($iActualProductId, 15, $aProject->kubatura);
-//                $this->addAttr($iActualProductId, 11, $aProject->powierzchnia_zabudowy);
-//                $this->addAttr($iActualProductId, 10, $aProject->powierzchnia_netto);
-//                $this->addAttr($iActualProductId, 4, $aProject->powierzchnia_uzytkowa);
-//                $this->addAttr($iActualProductId, 14, $aProject->powierzchnia_strychu);
-//                $this->addAttr($iActualProductId, 5, $aProject->powierzchnia_garazu);
-//                $this->addAttr($iActualProductId, 16, $aProject->powierzchnia_dachu);
-//                $this->addAttr($iActualProductId, 2, $aProject->szerokosc_budynku);
-//                $this->addAttr($iActualProductId, 3, $aProject->dlugosc_budynku);
-//                $this->addAttr($iActualProductId, 6, $aProject->min_szerokosc_dzialki);
-//                $this->addAttr($iActualProductId, 7, $aProject->min_dlugosc_dzialki);
-//                $this->addAttr($iActualProductId, 8, $aProject->nachylenie_dachu);
-//                $this->addAttr($iActualProductId, 1, $aProject->wysokosc_budynku);
+                $this->addFilter($iActualProductId, $iKominek);
+                $this->addAttr($iActualProductId, 18, $aProject->ilosc_lazienek);
+                $this->addAttr($iActualProductId, 15, $aProject->kubatura);
+                $this->addAttr($iActualProductId, 11, $aProject->powierzchnia_zabudowy);
+                $this->addAttr($iActualProductId, 10, $aProject->powierzchnia_netto);
+                $this->addAttr($iActualProductId, 4, $aProject->powierzchnia_uzytkowa);
+                $this->addAttr($iActualProductId, 14, $aProject->powierzchnia_strychu);
+                $this->addAttr($iActualProductId, 5, $aProject->powierzchnia_garazu);
+                $this->addAttr($iActualProductId, 16, $aProject->powierzchnia_dachu);
+                $this->addAttr($iActualProductId, 2, $aProject->szerokosc_budynku);
+                $this->addAttr($iActualProductId, 3, $aProject->dlugosc_budynku);
+                $this->addAttr($iActualProductId, 6, $aProject->min_szerokosc_dzialki);
+                $this->addAttr($iActualProductId, 7, $aProject->min_dlugosc_dzialki);
+                $this->addAttr($iActualProductId, 8, str_replace([' stopnie', ' stopni'], ['' , ''], $aProject->nachylenie_dachu));
+                $this->addAttr($iActualProductId, 1, str_replace(['m'], [''], $aProject->wysokosc_budynku));
                 foreach ($aProject->kategorie as $sKatKey=>$sKatValue)
                 {
-
-                    if ($sKatValue = 'Domy z kotłem na paliwo stałe')
+                    if ($sKatValue == 'Domy z kotłem na paliwo stałe')
                     {
                         $this->addFilter($iActualProductId, 30);
                     }
                     $iDzialka = 3;
-                    if ($sKatValue = 'Projekty domów na wąską działkę')
+                    if ($sKatValue == 'Projekty domów na wąską działkę')
                     {
                         $iDzialka = 1;
                     }
-                    if ($sKatValue = 'Budynki na płytką działkę')
+                    if ($sKatValue == 'Budynki na płytką działkę')
                     {
                         $iDzialka = 2;
                     }
                     $this->addFilter($iActualProductId, $iDzialka);
                     $iEnergia = 34;
-                    if ($sKatValue = 'Projekty domów energooszczędnych ')
+                    if ($sKatValue == 'Projekty domów energooszczędnych ')
                     {
                         $iEnergia = 32;
                     }
@@ -617,7 +617,7 @@ class XmlController extends Controller
                                     $iDach = 23;
                                     break;
                                 case 'wielospadowy':
-                                    $iDach = 42;
+                                    $iDach = 23;
                                     break;
                                 case 'płaski':
                                     $iDach = 44;
@@ -691,22 +691,160 @@ class XmlController extends Controller
                         break;
                         }
 
-//                        ($iDach != 0 ? $this->addFilter($iActualProductId, $iDach) : '');
-//                        ($iGaraz != 0 ? $this->addFilter($iActualProductId, $iGaraz) : '');
-//                        ($iPietra != 0 ? $this->addFilter($iActualProductId, $iPietra) : '');
-//                        ($iPiwnica != 0 ? $this->addFilter($iActualProductId, $iPiwnica) : ''); 
-//                        ($iStyl != 0 ? $this->addFilter($iActualProductId, $iStyl) : '');                         
+                        ($iDach != 0 ? $this->addFilter($iActualProductId, $iDach) : '');
+                        ($iGaraz != 0 ? $this->addFilter($iActualProductId, $iGaraz) : '');
+                        ($iPietra != 0 ? $this->addFilter($iActualProductId, $iPietra) : '');
+                        ($iPiwnica != 0 ? $this->addFilter($iActualProductId, $iPiwnica) : ''); 
+                        ($iStyl != 0 ? $this->addFilter($iActualProductId, $iStyl) : '');                         
                     }
 
                     
                 }
-                
-
-            }
-            
-           
+                /*Obrazki wszystkie*/
+                $a = 0;
+                foreach ($aProject->zdjecia as $aObrazki)
+                {
+                    /*Zdjęcia*/
+                    foreach ($aObrazki->zdjecia_dodatkowe->zdjecie as $aZdjecia)
+                    {
+                        $extensionN = strtolower(strrchr($aZdjecia->normalne, '.'));
+                        $extensionL = strtolower(strrchr($aZdjecia->lustrzane, '.'));
+                        if ($extensionN == '.html?prefix=-1')
+                        {
+                            $extensionN = '.jpg';
+                        }
+                        if ($extensionL == '.html?prefix=-1')
+                        {
+                            $extensionL = '.jpg';
+                        }
+                        $b=$a+1;
+                        $sNameN = $sSymbol.'_'.$a.''.$extensionN;
+                        $sNameL = $sSymbol.'_'.$b.''.$extensionL;
+                        $sDescN = 'Wizualizacja';
+                        $sDescL = 'Odbicie lustrzane - wizualizacja';
+                        
+                        /*Zapisywanie obrazków*/
+                        if (isset($aZdjecia->normalne))
+                        {
+                            $this->addImage($iActualProductId, $sNameN, $sDescN, 1);
+                            $this->saveImage($aZdjecia->normalne, $iActualProductId, $sNameN);
+                        }
+//                        if (isset($aZdjecia->lustrzane))
+//                        {
+//                            $this->addImage($iActualProductId, $sNameL, $sDescL, 1);
+//                            $this->saveImage($aZdjecia->lustrzane, $iActualProductId, $sNameL);
+//                        }
+                        //$a=$b;
+                        $a++;
+                    }
+                    /*Rzuty*/
+                    foreach ($aObrazki->rzut->zdjecie as $aRzut)
+                    {
+                        $b=$a+1;
+                        $extensionN = strtolower(strrchr($aRzut->normalne, '.'));
+                        $extensionL = strtolower(strrchr($aRzut->lustrzane, '.'));
+                        
+                        if ($extensionN == '.html?prefix=-1')
+                        {
+                            $extensionN = '.jpg';
+                        }
+                        if ($extensionL == '.html?prefix=-1')
+                        {
+                            $extensionL = '.jpg';
+                        }
+                        $sNameN = $sSymbol.'_'.$a.''.$extensionN;
+                        $sNameL = $sSymbol.'_'.$b.''.$extensionL;
+                        $sDescN = 'Rzut';
+                        $sDescL = 'Odbicie lustrzane - rzut';
+                        
+                        /*Zapisywanie obrazków*/
+                        if (isset($aRzut->normalne) )
+                        {
+                            $this->addImage($iActualProductId, $sNameN, $sDescN, 3);
+                            $this->saveImage($aRzut->normalne, $iActualProductId, $sNameN);
+                        }
+//                        if (isset($aRzut->lustrzane))
+//                        {
+//                            //echo $sNameL; die();
+//                            $this->addImage($iActualProductId, $sNameL, $sDescL, 3);
+//                            $this->saveImage($aRzut->lustrzane, $iActualProductId, $sNameL);
+//                        }
+                        //$a=$b;
+                        $a++;
+                    }
+                    /*Elewacje*/
+                    foreach ($aObrazki->elewacje->zdjecie as $aElewacje)
+                    {
+                        $b=$a+1;
+                        $extensionN = strtolower(strrchr($aElewacje->normalne, '.'));
+                        $extensionL = strtolower(strrchr($aElewacje->lustrzane, '.'));
+                        
+                        if ($extensionN == '.html?prefix=-1')
+                        {
+                            $extensionN = '.jpg';
+                        }
+                        if ($extensionL == '.html?prefix=-1')
+                        {
+                            $extensionL = '.jpg';
+                        }
+                        $sNameN = $sSymbol.'_'.$a.''.$extensionN;
+                        $sNameL = $sSymbol.'_'.$b.''.$extensionL;
+                        $sDescN = 'Elewacja';
+                        $sDescL = 'Odbicie lustrzane - elewacja';
+                        
+                        /*Zapisywanie obrazków*/
+                        if (isset($aRzut->normalne) )
+                        {
+                            $this->addImage($iActualProductId, $sNameN, $sDescN, 2);
+                            $this->saveImage($aElewacje->normalne, $iActualProductId, $sNameN);
+                        }
+//                        if (isset($aRzut->lustrzane))
+//                        {
+//                            //echo $sNameL; die();
+//                            $this->addImage($iActualProductId, $sNameL, $sDescL, 2);
+//                            $this->saveImage($aElewacje->lustrzane, $iActualProductId, $sNameL);
+//                        }
+                        //$a=$b;
+                        $a++;
+                    }
+                    /*Usytuowanie na działce*/
+                    foreach ($aObrazki->usytuowanie_na_dzialce->zdjecie as $aUsytuowanie)
+                    {
+                        $b=$a+1;
+                        $extensionN = strtolower(strrchr($aUsytuowanie->normalne, '.'));
+                        $extensionL = strtolower(strrchr($aUsytuowanie->lustrzane, '.'));
+                        
+                        if ($extensionN == '.html?prefix=-1')
+                        {
+                            $extensionN = '.jpg';
+                        }
+                        if ($extensionL == '.html?prefix=-1')
+                        {
+                            $extensionL = '.jpg';
+                        }
+                        $sNameN = $sSymbol.'_'.$a.''.$extensionN;
+                        $sNameL = $sSymbol.'_'.$b.''.$extensionL;
+                        $sDescN = 'Usytuowanie na działce';
+                        $sDescL = 'Odbicie lustrzane - usytuowanie na działce';
+                        
+                        /*Zapisywanie obrazków*/
+                        if (isset($aRzut->normalne) )
+                        {
+                            $this->addImage($iActualProductId, $sNameN, $sDescN, 5);
+                            $this->saveImage($aUsytuowanie->normalne, $iActualProductId, $sNameN);
+                        }
+//                        if (isset($aRzut->lustrzane))
+//                        {
+//                            //echo $sNameL; die();
+//                            $this->addImage($iActualProductId, $sNameL, $sDescL, 5);
+//                            $this->saveImage($aUsytuowanie->lustrzane, $iActualProductId, $sNameL);
+//                        }
+                        //$a=$b;
+                        $a++;
+                    }
+                }
+            }  
         }
-        die(); 
 
     }
     public function actionImages()
@@ -784,29 +922,61 @@ class XmlController extends Controller
         } 
     }
     
-    public function actionHoryzontPietra() 
+    
+    
+    /*Dodatki do róznych pracowni*/
+    /*Rzut działki do sprawdzenia rozmairów*/
+    public function actionRzut() 
     {
-        /*Nie zrobione*/
-        echo 'Jeszcze nie zrobione'; die();
+        $iProducers = $_GET['producent'];
         $oProjects = new Products();
-        $aPrdHoryzont = $oProjects->findAll(['producers_id'=>8]);
+        $aPrdHoryzont = $oProjects->findAll(['producers_id'=>$iProducers]);
        
         //$oPrdImages = $aPrdHoryzont->producers;
         foreach ($aPrdHoryzont as $aPrd)
         {
-            
+            $sPatch = Yii::getAlias('@image');
             $oImages = new ProductsImages();
             $aImages = $oImages->findAll(['products_id'=>$aPrd->id , 'image_type_id'=>5]);
             if (isset($aImages[0]))
             {
-                $sPatch = Yii::getAlias('@images');
-                $sInfoPatch = $sPatch.$aPrd->id .'/big/';
+                $sInfoPatch = $sPatch.'/' .$aPrd->id .'/big/';
                 echo '<span style="font-size:40px;">'.$aPrd->id .' ---- ' .$aPrd->productsDescriptons->name .'</span><br>';
                 echo '<img src="'.$sInfoPatch.$aImages[0]->name .'"/><br>';
             }
             
         }
-        die();
+        
+    }
+    public function actionPietra() 
+    {
+        $iProducers = $_GET['producent'];
+        $oProjects = new Products();
+        $aPrdHoryzont = $oProjects->findAll(['producers_id'=>$iProducers]);
+       
+        //$oPrdImages = $aPrdHoryzont->producers;
+        foreach ($aPrdHoryzont as $aPrd)
+        {
+            $sPatch = Yii::getAlias('@image');
+            $oImages = new ProductsImages();
+            $aImages = $oImages->findAll(['products_id'=>$aPrd->id , 'image_type_id'=>3]);
+            echo '<span style="font-size:40px;">'.$aPrd->id .' ---- ' .$aPrd->productsDescriptons->name .'</span><br>';
+            foreach ($aImages as $aImage)
+            {
+                $sInfoPatch = $sPatch.'/' .$aPrd->id .'/big/';
+                
+                if (strpos($aImage->description, 'lustrzane') === false) 
+                {
+                    if (strpos($aImage->description, 'Przekrój') === false) 
+                        {
+                            echo '<img src="'.$sInfoPatch.$aImage->name .'"/>';
+                        }
+                }
+               
+                
+            }
+            echo '<br>';
+        }
         
     }
     
