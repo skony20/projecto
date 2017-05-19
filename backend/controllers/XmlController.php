@@ -30,7 +30,7 @@ class XmlController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['horyzont', 'mgprojekt', 'images', 'rzut', 'pietra'],
+                        'actions' => ['horyzont', 'mgprojekt', 'images', 'rzut', 'pietra', 'export'],
                         'allow' => true,
                     ],
                     
@@ -980,4 +980,79 @@ class XmlController extends Controller
         
     }
     
+    public function actionExport()
+    {
+        $iProducers = $_GET['producent'];
+        $aProductsFilter = [];
+        $aPytanie3 = [1,2,3];
+        $aPytanie5 = [15,16];
+        $aPytanie6 = [17,18,19];
+        $aPytanie7 = [4,5,6,7];
+        $aPytanie8 = [22,23,41,42,43,44];
+        $aPytanie9 = [24,25,40,45];
+        $aPytanie10 = [26,27];
+        $aPytanie11 = [28,29];
+        $aPytanie12 = [30,31];
+        $aPytanie13 = [32,33,34];
+        $aPytanie15 = [20,21,39];
+        
+        
+        $oProducts = new Products();
+        $aPrdIds = $oProducts->find(['producers_id'=>$iProducers])->asArray()->all();
+        $aPrdIds = array_map('current', $aPrdIds);
+        /*Odpowiedzi na pytanie */
+        $oPrdFltr = new ProductsFilters();
+        $aPrdFltrs = $oPrdFltr->find()->andWhere(['IN', 'products_id', $aPrdIds])->all();
+        foreach ($aPrdFltrs as $aPrdFltr)
+        {
+
+            if (in_array($aPrdFltr['filters_id'], $aPytanie3 ))
+		{
+			$aProductsFilter[$aPrdFltr['products_id']][3] = $aPrdFltr['filters_id'];
+		}
+            if (in_array ($aPrdFltr['filters_id'] , $aPytanie5 ))
+		{
+			$aProductsFilter[$aPrdFltr['products_id']][5] = $aPrdFltr['filters_id'];
+		}
+            if (in_array ($aPrdFltr['filters_id'] , $aPytanie6 ))
+		{
+			$aProductsFilter[$aPrdFltr['products_id']][6] = $aPrdFltr['filters_id'];
+		}
+            if (in_array ($aPrdFltr['filters_id'] , $aPytanie7 ))
+		{
+			$aProductsFilter[$aPrdFltr['products_id']][7] = $aPrdFltr['filters_id'];
+		}
+            if (in_array ($aPrdFltr['filters_id'] , $aPytanie8 ))
+		{
+			$aProductsFilter[$aPrdFltr['products_id']][8] = $aPrdFltr['filters_id'];
+		}
+            if (in_array ($aPrdFltr['filters_id'] , $aPytanie9 ))
+		{
+			$aProductsFilter[$aPrdFltr['products_id']][9] = $aPrdFltr['filters_id'];
+		}
+            if (in_array ($aPrdFltr['filters_id'] , $aPytanie10 ))
+		{
+			$aProductsFilter[$aPrdFltr['products_id']][10] = $aPrdFltr['filters_id'];
+		}
+            if (in_array ($aPrdFltr['filters_id'] , $aPytanie11 ))
+		{
+			$aProductsFilter[$aPrdFltr['products_id']][11] = $aPrdFltr['filters_id'];
+		}
+            if (in_array ($aPrdFltr['filters_id'] , $aPytanie12 ))
+		{
+			$aProductsFilter[$aPrdFltr['products_id']][12] = $aPrdFltr['filters_id'];
+		}
+            if (in_array ($aPrdFltr['filters_id'] , $aPytanie13 ))
+		{
+			$aProductsFilter[$aPrdFltr['products_id']][13] = $aPrdFltr['filters_id'];
+		}
+            if (in_array ($aPrdFltr['filters_id'] , $aPytanie15 ))
+		{
+			$aProductsFilter[$aPrdFltr['products_id']][15] = $aPrdFltr['filters_id'];
+		}
+        }
+        echo '<pre>'. print_r($aProductsFilter , TRUE); die();
+        
+        
+    }
 }
