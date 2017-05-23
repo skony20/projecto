@@ -158,11 +158,11 @@ class Products extends \yii\db\ActiveRecord
     }
     public function getStoreyByType($iType)
     {
-        return $this->hasMany(Storeys::className(), ['products_id' => 'id'])->where(['storey_type'=>$iType])->orderBy(['room_number'=>SORT_ASC]);
+        return $this->hasMany(Storeys::className(), ['products_id' => 'id'])->where(['storey_type'=>$iType])->orderBy(['room_number'=>SORT_ASC, 'id'=>SORT_ASC]);
     }
     public function getStoreyByName($sName)
     {
-        return $this->hasMany(Storeys::className(), ['products_id' => 'id'])->where(['storey_name'=>$sName])->orderBy(['room_number'=>SORT_ASC]);
+        return $this->hasMany(Storeys::className(), ['products_id' => 'id'])->where(['storey_name'=>$sName])->orderBy(['room_number'=>SORT_ASC, 'id'=>SORT_ASC]);
     }
 
     public function validate($attributeNames = null, $clearErrors = true) {

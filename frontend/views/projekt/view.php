@@ -195,11 +195,12 @@ $url = Yii::$app->request->absoluteUrl;
                             <?=($aProductsImages->description ? '<div class="prj-storey-title o15b text-uppercase">'.$aProductsImages->description.'</div>' : "")?>
                             <table class='storey-table'>
                                 <?php 
+                                $a = 1;
                                 foreach ($aRooms as $aRoom)
                                 {
                                 ?>
                                 <tr>
-                                    <td class="room-name text-uppercase o13b"><?= ($aRoom->room_number ? ($aRoom->room_number!='99' ? $aRoom->room_number.'. ' :'' ) : ''). ($aRoom->room_name ? $aRoom->room_name : '' )?></td>
+                                    <td class="room-name text-uppercase o13b"><?= ($aRoom->room_number ? ($aRoom->room_number!='99' ? $aRoom->room_number.'. ' :$a .'. ') : $a .'. '). ($aRoom->room_name ? $aRoom->room_name : '' )?></td>
                                     <td class="room-area o13b"><?= ($aRoom->room_area ? $aRoom->room_area .' m2' : '' )?></td>
                                 </tr>
                                 <?php
