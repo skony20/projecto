@@ -62,6 +62,7 @@ AppAsset::register($this);
             'items' => [
 
                 ['label' => 'Dostawcy', 'url' => ['/producers']],
+                ['label' => 'Opis co w projekcie', 'url' => ['/in-project']],
                 ['label' => 'Stawki Vat', 'url' => ['/vats']],
                 ['label' => 'Metody płatności', 'url' => ['/payments-method']],
             ],
@@ -69,7 +70,7 @@ AppAsset::register($this);
         [
             'label' => 'XML',
             'items' => [
-
+                ['label' => 'Import CSV', 'url' => ['/xml/import']],
                 ['label' => 'Horyzont', 'url' => ['/xml/horyzont']],
                 ['label' => 'MGProjekt', 'url' => ['/xml/mgprojekt']],
                 ['label' => 'HORYZONT - Usytuowanie', 'url' => ['/xml/rzut?producent=8']],
