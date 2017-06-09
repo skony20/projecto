@@ -33,7 +33,7 @@ class XmlController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['proarte','domprojekt', 'horyzont', 'mgprojekt', 'images', 'rzut', 'pietra', 'export', 'import'],
+                        'actions' => ['proarte', 'domprojekt', 'horyzont', 'mgprojekt', 'images', 'rzut', 'pietra', 'export', 'import'],
                         'allow' => true,
                     ],
                     
