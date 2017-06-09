@@ -12,7 +12,10 @@ use app\models\ProductsDescripton;
 use app\models\ProductsAttributes;
 use app\models\ProductsFilters;
 use app\models\ProductsImages;
+use app\models\Upload;
+use yii\web\UploadedFile;
 use yii\imagine\Image;
+use app\models\Storeys;
 /**
  * Site controller
  */
@@ -30,7 +33,7 @@ class XmlController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['horyzont', 'mgprojekt', 'images', 'rzut', 'pietra', 'export'],
+                        'actions' => ['proarte','domprojekt', 'horyzont', 'mgprojekt', 'images', 'rzut', 'pietra', 'export', 'import'],
                         'allow' => true,
                     ],
                     
@@ -126,7 +129,7 @@ class XmlController extends Controller
         $oPrdImage->name = $sName;
         $oPrdImage->description = $sDesc;
         $oPrdImage->image_type_id = $iType;
-        $oPrdImage->save();
+        $oPrdImage->save(false);
     }
     
     private function saveImage($p_sOrginal, $p_iPrdId, $p_sName)
@@ -182,11 +185,228 @@ class XmlController extends Controller
         }
         return FALSE;
     }
+    /*Import xml-a ProArte*/ 
+    public function actionProarte()
+    {
+        $oDocument = new Response();
+        $sXmlFile  = 'http://www.pro-arte.pl/proarte.xml';
+        $sXmlContent = file_get_contents($sXmlFile);
+        $sXml = $oDocument->setContent($sXmlContent);
+        $oParser = new XmlParser();
+        $aProarte = $oParser->parse($sXml);
+        foreach ($aProarte['Projekt'] as $aProject)
+        {
+            if ($aProject->Rodzaj == 1)
+            {
+                $oProjekt = new Products();
+                $oExist = $oProjekt->findOne(['ean' => $aProject->Symbol]);
+                if (!$oExist)
+                {
+                    /*Dodanie produktu*/
+                    $sSymbol = $this->zamiana($aProject->Nazwa);
+                    $sSymbol = ($this->checkSymbol($sSymbol) ? $sSymbol.'-proarte' :$sSymbol);
+                    $oProjekt->is_active = 0;
+                    $oProjekt->producers_id = 3;
+                    $oProjekt->vats_id = 3;
+                    $oProjekt->price_brutto_source = $aProject->Cena;
+                    $oProjekt->price_brutto = $aProject->Cena;
+                    $oProjekt->stock = 99;
+                    $oProjekt->creation_date=time();
+                    $oProjekt->symbol = $aProject->Symbol;
+                    $oProjekt->ean = $aProject->Symbol;
+                    $oProjekt->save(false);
+                /*Dodanie opisów do produkty*/
+                    $iActualProductId = Yii::$app->db->getLastInsertID();
+                    $oProductsDesriptions = new ProductsDescripton();
+                    $oProductsDesriptions->products_id = $iActualProductId;
+                    $oProductsDesriptions->languages_id = 1;
+                    $oProductsDesriptions->name = $aProject->Nazwa;
+                    $oProductsDesriptions->nicename_link = $sSymbol;
+                    $oProductsDesriptions->html_description = strip_tags($aProject->Opis_projektu, '<br />'). "<br>Technologia:<br>".strip_tags($aProject->Technologia_opis, '<br />');
+                    $oProductsDesriptions->save(false);
+                    
+
+                /*Dane techniczne i filtry*/    
+                    (isset($aProject->Wysokosc_budynku) ? $this->addAttr($iActualProductId, 1, $aProject->Wysokosc_budynku) :'');
+                    (isset($aProject->Pow_uzytkowa) ? $this->addAttr($iActualProductId, 4, $aProject->Pow_uzytkowa) :'');
+                    (isset($aProject->Dzialka_min_szerokosc) ? $this->addAttr($iActualProductId, 6, $aProject->Dzialka_min_szerokosc) :'');
+                    (isset($aProject->Dzialka_min_dlugosc ) ? $this->addAttr($iActualProductId, 7, $aProject->Dzialka_min_dlugosc ) :'');
+                    (isset($aProject->Kat_dachu1 ) ? $this->addAttr($iActualProductId, 8, $aProject->Kat_dachu1 ) :'');
+                    (isset($aProject->Liczba_pokoi ) ? $this->addAttr($iActualProductId, 9, $aProject->Liczba_pokoi ) :'');
+                    (isset($aProject->Pow_zabudowy ) ? $this->addAttr($iActualProductId, 11, $aProject->Pow_zabudowy ) :'');
+                    (isset($aProject->Kubatura ) ? $this->addAttr($iActualProductId, 15, $aProject->Kubatura ) :'');
+                    
+                    
+                    $iBasement = '';
+                    switch ($aProject->Piwnica)
+                    {
+                        case 0:
+                            $iBasement = 39;
+                            break;
+                        case 1:
+                            $iBasement = 20;
+                            break;
+                    }
+                    ($iBasement != '' ? $this->addFilter($iActualProductId, $iBasement) : '');
+                    $iGaraz = '';
+                    switch ($aProject->Garaz)
+                    {
+                        case 0:
+                            $iGaraz = 40;
+                            break;
+                        case 1:
+                            switch ($aProject->Dom_ile_garaz_stanowisk)
+                            {
+                                case 1:
+                                    $iGaraz = 24;
+                                    break;
+                                case 2:
+                                    $iGaraz = 25;
+                                    break;
+                            }
+                            break;
+                    }
+                    ($iGaraz != '' ? $this->addFilter($iActualProductId, $iGaraz) : '');
+                    $iDach = '';
+                    switch ($aProject->Dach_rodzaj)
+                    {
+                        case 1:
+                            $iDach = 44;
+                            break;
+                        case 3:
+                            $iDach = 22;
+                            break;
+                        case 4:
+                        case 5:
+                            $iDach = 23;
+                            break;       
+                    }
+                    ($iDach != '' ? $this->addFilter($iActualProductId, $iDach) : '');
+                
+                    $a=0;
+                    /*Wizaulizacje*/
+                    foreach ($aProject->Wizualizacje->Wiz as $aWizualizacje)
+                    {
+                        $sWizLink = str_replace(['x=500&', 'maxy=367&'], ['',''], $aWizualizacje->Url[0]);
+                        $WizTitle = (isset($aWizualizacje->Tytul) ? $aWizualizacje->Tytul : '');
+                        $sName = $sSymbol.'_'.$a.'.jpg';
+                        $sDesc = 'Wizualizacja ';
+                        $iImgType = 1;
+                        $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
+                        /*Zapisywanie obrazków*/
+                        $this->saveImage($sWizLink , $iActualProductId, $sName);
+                        $a++;
+                    }
+                    /*Rzuty*/
+                   foreach ($aProject->Images->Img as $aImages)
+                   {
+                        $sImgLink = str_replace(['x=500&', 'maxy=367&'], ['',''], $aImages->Url[0]);
+                        $ImagesTitle = (isset($aImages->Tytul) ? $aImages->Tytul : 'Rzut');
+			$sName = $sSymbol.'_'.$a.'.jpg';
+                        $a++;
+                        $iImgType = 3;
+                        $this->addImage($iActualProductId, $sName, $ImagesTitle, $iImgType);
+                        $this->saveImage($sImgLink , $iActualProductId, $sName);
+                        switch ($aImages->Tytul)
+                        {
+                            case "Piwnica":
+                                    $sStoreyType = 0;
+                                    break;
+                            case "piwnica":
+                                    $sStoreyType = 0;
+                                    break;
+                            case "rzut piwnicy":
+                                    $sStoreyType = 0;
+                                    break;
+                            case "rzut piwnicy":
+                                    $sStoreyType = 0;
+                                    break;
+                            case "Parter":
+                                    $sStoreyType = 1;
+                                    break;
+                            case "parter":
+                                    $sStoreyType = 1;
+                                    break;
+                            case "Rzut parteru":
+                                    $sStoreyType = 1;
+                                    break;
+                            case "rzut parteru":
+                                    $sStoreyType = 1;
+                                    break;
+                            case "Segment A - parter":
+                                    $sStoreyType = 1;
+                                    break;
+                            case "Poddasze":
+                                    $sStoreyType = 2;
+                                    break;
+                            case "Rzut poddasza":
+                                    $sStoreyType = 2;
+                                    break;
+                            case "rzut poddasza":
+                                    $sStoreyType = 2;
+                                    break;
+                            case "Segment A - poddasze":
+                                    $sStoreyType = 2;
+                                    break;
+                            case "Rzut przyziemia":
+                                    $sStoreyType = 1;
+                                    break;
+                        }
+                        if (isset($aImages->Elements->Element))
+                        {
+                            foreach ($aImages->Elements->Element as $aRooms)
+                            {
+                                $oStorey = new Storeys();
+                                $oStorey->products_id = $iActualProductId;
+                                $oStorey->storey_type = $sStoreyType;
+                                $oStorey->storey_name = ($aImages->Tytul ? $aImages->Tytul : '');
+                                $oStorey->room_name = ($aRooms->Tytul ? $aRooms->Tytul : '');
+                                $oStorey->room_area = ($aRooms->Powierzchnia ? $aRooms->Powierzchnia : '');
+                                $oStorey->room_number = ($aRooms->Numer != "" ? str_replace('.', '', $aRooms->Numer): '');
+                                $oStorey->save(false);
+                            }
+                        }
+                        
+                    }
+                    foreach ($aProject->Elewacje->Elewacja as $aElewacje)
+                    {
+
+                        $sElewacjeLink = str_replace(['x=500&', 'maxy=367&'], ['',''], $aElewacje->Url[0]);
+                        $sElewacjeTitle = (isset($aElewacje->Tytul) ? $aElewacje->Tytul : 'Elewacja');
+                        $sName = $sSymbol.'_'.$a.'.jpg';
+                        $a++;
+                        $sDesc = $sElewacjeTitle;
+                        $iImgType = 2;
+                        $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
+                        $this->saveImage($sElewacjeLink , $iActualProductId, $sName);
+
+                    }
+                    die();
+                }
+            }
+        }
+    }
+    /*Import xml-a Dom-Projekt*/
+    public function actionDomprojekt()
+    {
+        $oDocument = new Response();
+        $sXmlFile  = 'http://dom-projekt.pl/xml/generator.xml.php';
+        $sXmlContent = file_get_contents($sXmlFile);
+        $sXml = $oDocument->setContent($sXmlContent);
+        $oParser = new XmlParser();
+        $aDomProjekt = $oParser->parse($sXml);
+        echo '<pre>' .print_r($aDomProjekt, TRUE); die();
+        foreach ($aDomProjekt['product'] as $aProject)
+        {
+            
+        }
+    }
+    /*Import xml-a HORYZONT*/
     public function actionHoryzont()
     {
         
         $oDocument = new Response();
-        $sXmlFile  = 'https://www.horyzont.com/baza-plikow/horyzont_03_2017.xml';
+        $sXmlFile  = 'https://www.horyzont.com/baza-plikow/horyzont_05_2017.xml';
         $sXmlContent = file_get_contents($sXmlFile);
         $sXml = $oDocument->setContent($sXmlContent);
         $oParser = new XmlParser();
@@ -209,8 +429,10 @@ class XmlController extends Controller
                 $oExist = $oProjekt->findOne(['ean' => 'horyzont-'.$aProject->id_product]);
                 if (!$oExist)
                 {
+                    
                 /*Dodanie produktu*/
                     $sSymbol = $this->zamiana($aProject->name);
+                    $sSymbol = ($this->checkSymbol($sSymbol) ? $sSymbol.'-horyzont' :$sSymbol);
                     $oProjekt->is_active = 0;
                     $oProjekt->producers_id = 8;
                     $oProjekt->vats_id = 3;
@@ -499,7 +721,9 @@ class XmlController extends Controller
         }
 
     }
-
+    
+   
+    /*Import xml-a MGProject*/
     public function actionMgprojekt()
     {
         $oDocument = new Response();
@@ -925,7 +1149,7 @@ class XmlController extends Controller
     
     
     /*Dodatki do róznych pracowni*/
-    /*Rzut działki do sprawdzenia rozmairów*/
+    /*Rzut działki do sprawdzenia rozmiarów*/
     public function actionRzut() 
     {
         $iProducers = $_GET['producent'];
@@ -948,6 +1172,7 @@ class XmlController extends Controller
         }
         
     }
+    /* Rzuty pięter żeby łatwiej było liczyć ilość pomieszczeń */
     public function actionPietra() 
     {
         $iProducers = $_GET['producent'];
@@ -998,61 +1223,202 @@ class XmlController extends Controller
         
         
         $oProducts = new Products();
-        $aPrdIds = $oProducts->find(['producers_id'=>$iProducers])->asArray()->all();
+        $oPrdDsc = new ProductsDescripton();
+        $aPrdIds = $oProducts->find()->andWhere(['producers_id'=>$iProducers])->asArray()->all();
         $aPrdIds = array_map('current', $aPrdIds);
         /*Odpowiedzi na pytanie */
         $oPrdFltr = new ProductsFilters();
         $aPrdFltrs = $oPrdFltr->find()->andWhere(['IN', 'products_id', $aPrdIds])->all();
         foreach ($aPrdFltrs as $aPrdFltr)
         {
-
+            $aProjectDsc = $oPrdDsc->findOne($aPrdFltr['products_id']);
+            $aProductsFilter[$aPrdFltr['products_id']]['id'] = $aPrdFltr['products_id'];
+            $aProductsFilter[$aPrdFltr['products_id']]['name'] = $aProjectDsc->name;
+            $aProductsFilter[$aPrdFltr['products_id']][3] = '';
+            $aProductsFilter[$aPrdFltr['products_id']][5] = '';
+            $aProductsFilter[$aPrdFltr['products_id']][6] = '';
+            $aProductsFilter[$aPrdFltr['products_id']][7] = '';
+            $aProductsFilter[$aPrdFltr['products_id']][8] = '';
+            $aProductsFilter[$aPrdFltr['products_id']][9] = '';
+            $aProductsFilter[$aPrdFltr['products_id']][10] = '';
+            $aProductsFilter[$aPrdFltr['products_id']][11] = '';
+            $aProductsFilter[$aPrdFltr['products_id']][12] = '';
+            $aProductsFilter[$aPrdFltr['products_id']][13] = '';
+            $aProductsFilter[$aPrdFltr['products_id']][15] = '';     
+        }
+        foreach ($aPrdFltrs as $aPrdFltr)
+        {
             if (in_array($aPrdFltr['filters_id'], $aPytanie3 ))
 		{
-			$aProductsFilter[$aPrdFltr['products_id']][3] = $aPrdFltr['filters_id'];
+                    $aProductsFilter[$aPrdFltr['products_id']][3] = $aPrdFltr['filters_id'];
 		}
             if (in_array ($aPrdFltr['filters_id'] , $aPytanie5 ))
 		{
-			$aProductsFilter[$aPrdFltr['products_id']][5] = $aPrdFltr['filters_id'];
+                    $aProductsFilter[$aPrdFltr['products_id']][5] = $aPrdFltr['filters_id'];
 		}
             if (in_array ($aPrdFltr['filters_id'] , $aPytanie6 ))
 		{
-			$aProductsFilter[$aPrdFltr['products_id']][6] = $aPrdFltr['filters_id'];
+                    $aProductsFilter[$aPrdFltr['products_id']][6] = $aPrdFltr['filters_id'];
 		}
             if (in_array ($aPrdFltr['filters_id'] , $aPytanie7 ))
 		{
-			$aProductsFilter[$aPrdFltr['products_id']][7] = $aPrdFltr['filters_id'];
+                    $aProductsFilter[$aPrdFltr['products_id']][7] = $aPrdFltr['filters_id'];
 		}
             if (in_array ($aPrdFltr['filters_id'] , $aPytanie8 ))
 		{
-			$aProductsFilter[$aPrdFltr['products_id']][8] = $aPrdFltr['filters_id'];
+                    $aProductsFilter[$aPrdFltr['products_id']][8] = $aPrdFltr['filters_id'];
 		}
             if (in_array ($aPrdFltr['filters_id'] , $aPytanie9 ))
 		{
-			$aProductsFilter[$aPrdFltr['products_id']][9] = $aPrdFltr['filters_id'];
+                    $aProductsFilter[$aPrdFltr['products_id']][9] = $aPrdFltr['filters_id'];
 		}
             if (in_array ($aPrdFltr['filters_id'] , $aPytanie10 ))
 		{
-			$aProductsFilter[$aPrdFltr['products_id']][10] = $aPrdFltr['filters_id'];
+                    $aProductsFilter[$aPrdFltr['products_id']][10] = $aPrdFltr['filters_id'];
 		}
             if (in_array ($aPrdFltr['filters_id'] , $aPytanie11 ))
 		{
-			$aProductsFilter[$aPrdFltr['products_id']][11] = $aPrdFltr['filters_id'];
+                    $aProductsFilter[$aPrdFltr['products_id']][11] = $aPrdFltr['filters_id'];
 		}
             if (in_array ($aPrdFltr['filters_id'] , $aPytanie12 ))
 		{
-			$aProductsFilter[$aPrdFltr['products_id']][12] = $aPrdFltr['filters_id'];
+                    $aProductsFilter[$aPrdFltr['products_id']][12] = $aPrdFltr['filters_id'];
 		}
             if (in_array ($aPrdFltr['filters_id'] , $aPytanie13 ))
 		{
-			$aProductsFilter[$aPrdFltr['products_id']][13] = $aPrdFltr['filters_id'];
+                    $aProductsFilter[$aPrdFltr['products_id']][13] = $aPrdFltr['filters_id'];
 		}
             if (in_array ($aPrdFltr['filters_id'] , $aPytanie15 ))
 		{
-			$aProductsFilter[$aPrdFltr['products_id']][15] = $aPrdFltr['filters_id'];
+                    $aProductsFilter[$aPrdFltr['products_id']][15] = $aPrdFltr['filters_id'];
 		}
         }
-        echo '<pre>'. print_r($aProductsFilter , TRUE); die();
         
         
+        /*Dane techniczne */
+        $oAttributes = new \app\models\Attributes();
+        $aAttributes = $oAttributes->find()->all();
+        $oPrdAttrs = new ProductsAttributes();
+        $aPrdAttrs = $oPrdAttrs->find()->andWhere(['IN', 'products_id', $aPrdIds])->all(); 
+        foreach ($aPrdAttrs as $aPrdAttr)
+        {
+            foreach ($aAttributes  as $aAttribute)
+            {
+                $aProductsFilter[$aPrdAttr['products_id']]['td-'.$aAttribute->id] = '';
+            }
+        }
+        $PrjsAtributes = [];
+
+        foreach ($aPrdAttrs as $aPrdAttr)
+        {
+            if ($aPrjAttr = $oPrdAttrs->findOne(['products_id'=>$aPrdAttr->products_id, 'attributes_id'=>$aPrdAttr->attributes_id]))
+                {
+                    $aProductsFilter[$aPrdAttr->products_id]['td-'.$aPrdAttr->attributes_id] = $aPrjAttr->value;
+                }
+           
+        }
+        $file = fopen('../../xml/export-'.$iProducers.'.csv', 'w');
+        foreach ($aProductsFilter as $filtersKey=>$filtersValue)
+        {
+            fputcsv($file, $filtersValue);
+        }   
+    }
+    public function actionImport()
+    {
+        /*
+         * 
+         * [0] - id
+         * [1] - nazwa
+         * Odpowiedzi na pytania
+         * [2] - Działka  - 3
+         * [3] - Styl - 5
+         * [4] - Kondygnacja - 6
+         * [5] - Ilośc osób - 7
+         * [6] - Dach - 8
+         * [7] - Garaż - 9
+         * [8] - Kuchnia - 10
+         * [9] - Kominek - 11
+         * [10] - Ogrzewanie - 12
+         * [11] - Efektywność - 13
+         * [12] - Piwnica - 15
+         * Dane techniczne
+         * [13] - Wysokość - 1 
+         * [14] - Szerokośc - 2
+         * [15] - Długość - 3
+         * [16] - Powierzchnia użytkowa - 4
+         * [17] - Powierzchnia garażu - 5
+         * [18] - Minimalna szerokość działki - 6
+         * [19] - Minimalna długość działki - 7
+         * [20] - Kąt nachylenia dachu - 8
+         * [21] - Ilość pomieszczeń - 9 
+         * [22] - Powierzchnia netto - 10
+         * [23] - Powierzchnia zabudowy - 11
+         * [24] - Powierzchnia piwnicy - 13
+         * [25] - Powierzchnia strychu - 14 
+         * [26] - Kubatura netto - 15
+         * [27] - Powierzchnia dachu - 16
+         * [28] - Liczba sypialni - 17
+         * [29] - Liczba łazienek - 18
+         * [30] - Liczba toalet - 19
+         * [31] - Ilość pięter - 20											
+        */
+        $model = new Upload();
+        $oProductsFilters = new ProductsFilters();
+        $aTechData = [13=>1, 14=>2, 15=>3, 16=>4, 17=>5, 18=>6, 19=>7, 20=>8, 21=>9, 22=>10, 23=>11, 24=>13, 25=>14, 26=>15, 27=>16, 28=>17, 29=>18, 30=>19, 31=>20];
+        if (Yii::$app->request->isPost) 
+        {
+            $model->importFile = UploadedFile::getInstance($model, 'importFile');
+            if ($sFile = $model->upload()) 
+            {
+                
+                if (($oImport = fopen($sFile, "r")) !== FALSE) 
+                {
+                    while (($aImportRows = fgetcsv($oImport, 1000, ",")) !== FALSE) 
+                    {
+                        
+                        $oProductsFilters->deleteAll(['products_id'=>$aImportRows[0]]);
+                        for($a=2; $a<=12; $a++)
+                        {
+                            if ($aImportRows[$a] != '')
+                            {
+                                $oProductsFilters = new ProductsFilters();
+                                $oProductsFilters->products_id = $aImportRows[0];
+                                $oProductsFilters->filters_id = $aImportRows[$a];
+                                $oProductsFilters->save();
+                            }
+                            
+                        }
+                        for($a=13; $a<=30; $a++)
+                        {
+                            if (isset($aImportRows[$a]) && $aImportRows[$a] != '')
+                            {
+                                if ($oExist = $oProductsAttributes->findOne(['products_id'=>$aImportRows[0],'attributes_id'=> $aTechData[$a]]))
+                                {
+                                    $oExist->products_id = $aImportRows[0];
+                                    $oExist->attributes_id = $aTechData[$a];
+                                    $oExist->value = $aImportRows[$a];
+                                    $oExist->save(false);
+                                }
+                                else
+                                {
+                                    $oProductsAttributes = new ProductsAttributes();
+                                    $oProductsAttributes->products_id = $aImportRows[0];
+                                    $oProductsAttributes->attributes_id = $aTechData[$a];
+                                    $oProductsAttributes->value = $aImportRows[$a];
+                                    $oProductsAttributes->save();
+                                }
+                                
+                            }
+                            
+                        }
+                        $oProducts = new Products();
+                        $oProduct = $oProducts->findOne(['id'=>$aImportRows[0]]);
+                        $oProduct->is_active = 1;
+                        $oProduct->save(false);
+                    }   
+                }
+            }
+        }
+        return $this->render('import', ['model' => $model]);
     }
 }
