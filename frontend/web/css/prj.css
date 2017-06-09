@@ -153,6 +153,33 @@ ul.prd-filters li:before {
 .prj-authors {
     padding: 5px 0 20px;
 }
+/* Co w projekcie*/
+li.tab-link.gratis {
+    color: #88c354;
+}
+#gratis
+{
+    padding: 20px 40px;
+}
+#gratis>ul
+{
+    padding:0 60px
+}
+#gratis>ul>li
+{
+    list-style: none;
+    padding: 5px 0px;
+    font-size:15px;
+    line-height: 1.8em;
+    text-indent: -20px;
+
+}
+#gratis>ul>li:before {
+    font: normal normal normal 14px/1 FontAwesome;
+    content: "\f101";
+    padding-right: 10px;
+    margin-left: -20px;
+}
 @media only screen and (max-width: 990px) {
     .prj-prc-item
     {

@@ -68,16 +68,29 @@ AppAsset::register($this);
             ],
         ],
         [
-            'label' => 'XML',
+            'label' => 'Import',
             'items' => [
                 ['label' => 'Import CSV', 'url' => ['/xml/import']],
-                ['label' => 'Horyzont', 'url' => ['/xml/horyzont']],
-                ['label' => 'MGProjekt', 'url' => ['/xml/mgprojekt']],
+                ['label' => 'Import ProArte', 'url' => ['/xml/proarte']],
+                ['label' => 'Import Horyzont', 'url' => ['/xml/horyzont']],
+                ['label' => 'Import MGProjekt', 'url' => ['/xml/mgprojekt']],
+                ['label' => 'Pomocnicze'],
                 ['label' => 'HORYZONT - Usytuowanie', 'url' => ['/xml/rzut?producent=8']],
                 ['label' => 'HORYZONT - Rzuty pięter do ogarnięcia ilości osób', 'url' => ['/xml/pietra?producent=8']],
                 ['label' => 'MGProjekt - Usytuowanie', 'url' => ['/xml/rzut?producent=9']],
                 ['label' => 'MGProjekt - Rzuty pięter do ogarnięcia ilości osób', 'url' => ['/xml/pietra?producent=9']],
             ],
+        ],
+        [
+            'label' => 'Export',
+            'items' => [
+                ['label' => 'Export CSV ProArte', 'url' => ['/xml/export?=producent=3']],
+                ['label' => 'Export CSV Archipelag', 'url' => ['/xml/export?=producent=5']],
+                ['label' => 'Export CSV Dom-Projekt', 'url' => ['/xml/export?=producent=6']],
+                ['label' => 'Export CSV Z500', 'url' => ['/xml/export?=producent=7']],
+                ['label' => 'Export CSV Horyzont', 'url' => ['/xml/export?=producent=8']],
+                ['label' => 'Export CSV MGProjekt', 'url' => ['/xml/export?=producent=9']],
+                ],
         ],
         
     ];

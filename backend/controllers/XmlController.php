@@ -15,6 +15,7 @@ use app\models\ProductsImages;
 use app\models\Upload;
 use yii\web\UploadedFile;
 use yii\imagine\Image;
+use app\models\Storeys;
 /**
  * Site controller
  */
@@ -32,7 +33,7 @@ class XmlController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['horyzont', 'mgprojekt', 'images', 'rzut', 'pietra', 'export', 'import'],
+                        'actions' => ['proarte', 'horyzont', 'mgprojekt', 'images', 'rzut', 'pietra', 'export', 'import'],
                         'allow' => true,
                     ],
                     
@@ -128,7 +129,7 @@ class XmlController extends Controller
         $oPrdImage->name = $sName;
         $oPrdImage->description = $sDesc;
         $oPrdImage->image_type_id = $iType;
-        $oPrdImage->save();
+        $oPrdImage->save(false);
     }
     
     private function saveImage($p_sOrginal, $p_iPrdId, $p_sName)
@@ -184,11 +185,213 @@ class XmlController extends Controller
         }
         return FALSE;
     }
+    /*Import xml-a ProArte*/ 
+    public function actionProarte()
+    {
+        $oDocument = new Response();
+        $sXmlFile  = 'http://www.pro-arte.pl/proarte.xml';
+        $sXmlContent = file_get_contents($sXmlFile);
+        $sXml = $oDocument->setContent($sXmlContent);
+        $oParser = new XmlParser();
+        $aProarte = $oParser->parse($sXml);
+        foreach ($aProarte['Projekt'] as $aProject)
+        {
+            if ($aProject->Rodzaj == 1)
+            {
+                $oProjekt = new Products();
+                $oExist = $oProjekt->findOne(['ean' => $aProject->Symbol]);
+                if (!$oExist)
+                {
+                    /*Dodanie produktu*/
+                    $sSymbol = $this->zamiana($aProject->Nazwa);
+                    $sSymbol = ($this->checkSymbol($sSymbol) ? $sSymbol.'-proarte' :$sSymbol);
+                    $oProjekt->is_active = 0;
+                    $oProjekt->producers_id = 3;
+                    $oProjekt->vats_id = 3;
+                    $oProjekt->price_brutto_source = $aProject->Cena;
+                    $oProjekt->price_brutto = $aProject->Cena;
+                    $oProjekt->stock = 99;
+                    $oProjekt->creation_date=time();
+                    $oProjekt->symbol = $aProject->Symbol;
+                    $oProjekt->ean = $aProject->Symbol;
+                    $oProjekt->save(false);
+                /*Dodanie opisów do produkty*/
+                    $iActualProductId = Yii::$app->db->getLastInsertID();
+                    $oProductsDesriptions = new ProductsDescripton();
+                    $oProductsDesriptions->products_id = $iActualProductId;
+                    $oProductsDesriptions->languages_id = 1;
+                    $oProductsDesriptions->name = $aProject->Nazwa;
+                    $oProductsDesriptions->nicename_link = $sSymbol;
+                    $oProductsDesriptions->html_description = strip_tags($aProject->Opis_projektu, '<br />'). "<br>Technologia:<br>".strip_tags($aProject->Technologia_opis, '<br />');
+                    $oProductsDesriptions->save(false);
+                    
+
+                /*Dane techniczne i filtry*/    
+                    (isset($aProject->Wysokosc_budynku) ? $this->addAttr($iActualProductId, 1, $aProject->Wysokosc_budynku) :'');
+                    (isset($aProject->Pow_uzytkowa) ? $this->addAttr($iActualProductId, 4, $aProject->Pow_uzytkowa) :'');
+                    (isset($aProject->Dzialka_min_szerokosc) ? $this->addAttr($iActualProductId, 6, $aProject->Dzialka_min_szerokosc) :'');
+                    (isset($aProject->Dzialka_min_dlugosc ) ? $this->addAttr($iActualProductId, 7, $aProject->Dzialka_min_dlugosc ) :'');
+                    (isset($aProject->Kat_dachu1 ) ? $this->addAttr($iActualProductId, 8, $aProject->Kat_dachu1 ) :'');
+                    (isset($aProject->Liczba_pokoi ) ? $this->addAttr($iActualProductId, 9, $aProject->Liczba_pokoi ) :'');
+                    (isset($aProject->Pow_zabudowy ) ? $this->addAttr($iActualProductId, 11, $aProject->Pow_zabudowy ) :'');
+                    (isset($aProject->Kubatura ) ? $this->addAttr($iActualProductId, 15, $aProject->Kubatura ) :'');
+                    
+                    
+                    $iBasement = '';
+                    switch ($aProject->Piwnica)
+                    {
+                        case 0:
+                            $iBasement = 39;
+                            break;
+                        case 1:
+                            $iBasement = 20;
+                            break;
+                    }
+                    ($iBasement != '' ? $this->addFilter($iActualProductId, $iBasement) : '');
+                    $iGaraz = '';
+                    switch ($aProject->Garaz)
+                    {
+                        case 0:
+                            $iGaraz = 40;
+                            break;
+                        case 1:
+                            switch ($aProject->Dom_ile_garaz_stanowisk)
+                            {
+                                case 1:
+                                    $iGaraz = 24;
+                                    break;
+                                case 2:
+                                    $iGaraz = 25;
+                                    break;
+                            }
+                            break;
+                    }
+                    ($iGaraz != '' ? $this->addFilter($iActualProductId, $iGaraz) : '');
+                    $iDach = '';
+                    switch ($aProject->Dach_rodzaj)
+                    {
+                        case 1:
+                            $iDach = 44;
+                            break;
+                        case 3:
+                            $iDach = 22;
+                            break;
+                        case 4:
+                        case 5:
+                            $iDach = 23;
+                            break;       
+                    }
+                    ($iDach != '' ? $this->addFilter($iActualProductId, $iDach) : '');
+                
+                    $a=0;
+                    /*Wizaulizacje*/
+                    foreach ($aProject->Wizualizacje->Wiz as $aWizualizacje)
+                    {
+                        $sWizLink = str_replace(['x=500&', 'maxy=367&'], ['',''], $aWizualizacje->Url[0]);
+                        $WizTitle = (isset($aWizualizacje->Tytul) ? $aWizualizacje->Tytul : '');
+                        $sName = $sSymbol.'_'.$a.'.jpg';
+                        $sDesc = 'Wizualizacja ';
+                        $iImgType = 1;
+                        $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
+                        /*Zapisywanie obrazków*/
+                        $this->saveImage($sWizLink , $iActualProductId, $sName);
+                        $a++;
+                    }
+                    /*Rzuty*/
+                   foreach ($aProject->Images->Img as $aImages)
+                   {
+                        $sImgLink = str_replace(['x=500&', 'maxy=367&'], ['',''], $aImages->Url[0]);
+                        $ImagesTitle = (isset($aImages->Tytul) ? $aImages->Tytul : 'Rzut');
+			$sName = $sSymbol.'_'.$a.'.jpg';
+                        $a++;
+                        $iImgType = 3;
+                        $this->addImage($iActualProductId, $sName, $ImagesTitle, $iImgType);
+                        $this->saveImage($sImgLink , $iActualProductId, $sName);
+                        switch ($aImages->Tytul)
+                        {
+                            case "Piwnica":
+                                    $sStoreyType = 0;
+                                    break;
+                            case "piwnica":
+                                    $sStoreyType = 0;
+                                    break;
+                            case "rzut piwnicy":
+                                    $sStoreyType = 0;
+                                    break;
+                            case "rzut piwnicy":
+                                    $sStoreyType = 0;
+                                    break;
+                            case "Parter":
+                                    $sStoreyType = 1;
+                                    break;
+                            case "parter":
+                                    $sStoreyType = 1;
+                                    break;
+                            case "Rzut parteru":
+                                    $sStoreyType = 1;
+                                    break;
+                            case "rzut parteru":
+                                    $sStoreyType = 1;
+                                    break;
+                            case "Segment A - parter":
+                                    $sStoreyType = 1;
+                                    break;
+                            case "Poddasze":
+                                    $sStoreyType = 2;
+                                    break;
+                            case "Rzut poddasza":
+                                    $sStoreyType = 2;
+                                    break;
+                            case "rzut poddasza":
+                                    $sStoreyType = 2;
+                                    break;
+                            case "Segment A - poddasze":
+                                    $sStoreyType = 2;
+                                    break;
+                            case "Rzut przyziemia":
+                                    $sStoreyType = 1;
+                                    break;
+                        }
+                        if (isset($aImages->Elements->Element))
+                        {
+                            foreach ($aImages->Elements->Element as $aRooms)
+                            {
+                                $oStorey = new Storeys();
+                                $oStorey->products_id = $iActualProductId;
+                                $oStorey->storey_type = $sStoreyType;
+                                $oStorey->storey_name = ($aImages->Tytul ? $aImages->Tytul : '');
+                                $oStorey->room_name = ($aRooms->Tytul ? $aRooms->Tytul : '');
+                                $oStorey->room_area = ($aRooms->Powierzchnia ? $aRooms->Powierzchnia : '');
+                                $oStorey->room_number = ($aRooms->Numer != "" ? str_replace('.', '', $aRooms->Numer): '');
+                                $oStorey->save(false);
+                            }
+                        }
+                        
+                    }
+                    foreach ($aProject->Elewacje->Elewacja as $aElewacje)
+                    {
+
+                        $sElewacjeLink = str_replace(['x=500&', 'maxy=367&'], ['',''], $aElewacje->Url[0]);
+                        $sElewacjeTitle = (isset($aElewacje->Tytul) ? $aElewacje->Tytul : 'Elewacja');
+                        $sName = $sSymbol.'_'.$a.'.jpg';
+                        $a++;
+                        $sDesc = $sElewacjeTitle;
+                        $iImgType = 2;
+                        $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
+                        $this->saveImage($sElewacjeLink , $iActualProductId, $sName);
+
+                    }
+                    die();
+                }
+            }
+        }
+    }
+    /*Import xml-a HORYZONT*/
     public function actionHoryzont()
     {
         
         $oDocument = new Response();
-        $sXmlFile  = 'https://www.horyzont.com/baza-plikow/horyzont_03_2017.xml';
+        $sXmlFile  = 'https://www.horyzont.com/baza-plikow/horyzont_05_2017.xml';
         $sXmlContent = file_get_contents($sXmlFile);
         $sXml = $oDocument->setContent($sXmlContent);
         $oParser = new XmlParser();
@@ -211,8 +414,10 @@ class XmlController extends Controller
                 $oExist = $oProjekt->findOne(['ean' => 'horyzont-'.$aProject->id_product]);
                 if (!$oExist)
                 {
+                    
                 /*Dodanie produktu*/
                     $sSymbol = $this->zamiana($aProject->name);
+                    $sSymbol = ($this->checkSymbol($sSymbol) ? $sSymbol.'-horyzont' :$sSymbol);
                     $oProjekt->is_active = 0;
                     $oProjekt->producers_id = 8;
                     $oProjekt->vats_id = 3;
@@ -501,7 +706,9 @@ class XmlController extends Controller
         }
 
     }
-
+    
+   
+    /*Import xml-a MGProject*/
     public function actionMgprojekt()
     {
         $oDocument = new Response();
@@ -927,7 +1134,7 @@ class XmlController extends Controller
     
     
     /*Dodatki do róznych pracowni*/
-    /*Rzut działki do sprawdzenia rozmairów*/
+    /*Rzut działki do sprawdzenia rozmiarów*/
     public function actionRzut() 
     {
         $iProducers = $_GET['producent'];
@@ -950,6 +1157,7 @@ class XmlController extends Controller
         }
         
     }
+    /* Rzuty pięter żeby łatwiej było liczyć ilość pomieszczeń */
     public function actionPietra() 
     {
         $iProducers = $_GET['producent'];
@@ -1188,7 +1396,10 @@ class XmlController extends Controller
                             }
                             
                         }
-
+                        $oProducts = new Products();
+                        $oProduct = $oProducts->findOne(['id'=>$aImportRows[0]]);
+                        $oProduct->is_active = 1;
+                        $oProduct->save(false);
                     }   
                 }
             }

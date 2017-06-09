@@ -94,7 +94,7 @@ $url = Yii::$app->request->absoluteUrl;
                 <li class="tab-link" data-tab="plany">Plany</li>
 <!--                <li class="tab-link" data-tab="realizacje">Realizacje</li>-->
                 <li class="tab-link" data-tab="opinie">Opinie</li>
-                <li class="tab-link" data-tab="gratis">W projekcie</li>
+                <li class="tab-link gratis" data-tab="gratis">Gratis</li>
             </ul>
 
             <div id="opis" class="tab-content current">
@@ -305,6 +305,8 @@ $url = Yii::$app->request->absoluteUrl;
                 <?= Html::button('Napisz opinię', ['value' => Url::to(['/reviews/add', 'id' => $model->id]), 'title' => 'Napisz opinię o projekcie: '.$sPrjName, 'class' => 'showModalButton blue-button']); ?>
             </div>
             <div id ="gratis" class="tab-content">
+                <div class="m21b prj-desc-title">Kupując ten projekt dodatkowo otrzymujesz</div>
+                        <div class="green-border"></div>
                    <?= $model->gratis->description ?>
             </div>
         </div>
