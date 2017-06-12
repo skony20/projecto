@@ -55,6 +55,7 @@ class ProductsSearch extends Products
         'attributes' => [
             'id',     
             'is_active',
+            'is_archive',
             'producers_id',
             'price_brutto_source',
             'symbol',
@@ -80,6 +81,7 @@ class ProductsSearch extends Products
         $query->andFilterWhere([
             'products.id' => $this->id,
             'products.is_active' => $this->is_active,
+            'products.is_archive' => $this->is_archive,
             'products.producers_id' => $this->producers_id,
             'products.price_brutto_source' => $this->price_brutto_source,
         ]);

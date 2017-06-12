@@ -66,6 +66,7 @@ return [
             'rules' => array(
                 'robots.txt'=>'site/robots',
                 'projekty/szukaj/<szukaj:.*>' =>'projekty/index',
+                'projekty/<nowosci:.*>' =>'projekty/index',
                 [
                     'pattern' => 'projekty/szerokosc/<SizeX:\d+>/glebokosc/<SizeY:\d+>/HouseSize/<HouseSize:.*>/filters/<tag:.*>/strona/<strona:\d+>',
                     'route' => 'projekty/index',

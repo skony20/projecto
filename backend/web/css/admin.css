@@ -2,7 +2,19 @@
     Created on : 2016-09-02, 14:22:00
     Author     : Mariusz Skonieczny, mariuszskonieczny@hotmail.com
 */
-
+.form-control {
+    display: block;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    font-size: 10px;
+    line-height: 1.4;
+    color: #6f6f6f;
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #cccccc;
+    border-radius: 0;
+}
 .radiolist_prdflt
 {
     margin:15px 0;
@@ -89,24 +101,38 @@ button.delete_image:hover {
     background-color: #d32a0e;
     border-color: #b1240c;
 }
-.active_prd
+.active_prd, .archive_prd
 {
     background-color: #358753;
     border: 1px solid #d2d2d2;
     text-align:center;
     color: #ffffff;
-    font-size:16px;
+    font-size:14px;
     cursor: pointer;
+    width: 50%;
+    margin: 0 auto;
 }
-.unactive_prd
+.unactive_prd, .unarchive_prd
 {
     background-color: #f04124;
     border: 1px solid #d2d2d2;
     text-align:center;
     color: #ffffff;
-    font-size:16px;
+    font-size:14px;
     cursor: pointer;
+    width: 50%;
+    margin: 0 auto;
 }
+.action_column
+{
+    min-width:70px;
+}
+ .dane_button
+ {
+     padding: 3px;
+     font-size:12px;
+     
+ }
 .active_faq
 {
     background-color: #358753;

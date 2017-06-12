@@ -53,6 +53,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'is_active',
                 'value'=>($model->is_active == 1 ? 'TAK' : 'NIE'),
             ],
+            [
+                'attribute' => 'is_archive',
+                'value'=>($model->is_archive == 1 ? 'TAK' : 'NIE'),
+            ],
             'symbol',
             [
                 'attribute' => 'producers_id',

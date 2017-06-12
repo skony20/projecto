@@ -37,7 +37,7 @@ class ProductsController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'active', 'unactive'],
+                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'active', 'unactive', 'archive', 'unarchive'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -169,6 +169,20 @@ class ProductsController extends Controller
 
         $model = $this->findModel($id);
         $model->is_active = 0;
+        $model->save(false);
+    }
+     public function actionArchive($id)
+    {
+
+        $model = $this->findModel($id);
+        $model->is_archive = 1;
+        $model->save(false);
+    }
+    public function actionUnarchive($id)
+    {
+
+        $model = $this->findModel($id);
+        $model->is_archive = 0;
         $model->save(false);
     }
     /**

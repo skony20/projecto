@@ -293,7 +293,8 @@ public function actionIndex($sort = 'default', $szukaj = '')
                 {
                     $aPrdIds[0] = 1;
                 }
-
+        /*Sortowanie nowości*/
+        
         switch ($sort)
         {
             case 'default':
@@ -320,7 +321,10 @@ public function actionIndex($sort = 'default', $szukaj = '')
                 $bPrdAttr = 1;
                 break;
         }
- 
+        if (isset($_GET['nowosci']))
+        {
+            $aSort = ['products.id'=> SORT_DESC];
+        }
         if ($sort != 'default' || !empty($_GET))
         {
             Yii::$app->view->registerMetaTag([

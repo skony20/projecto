@@ -102,11 +102,11 @@ foreach ($aFilters as $aData)
                     }
                     if ($aData['question']->id == 3 )
                     {
-                        echo '<div class="area-size">';
-                        echo '<br>Wielkość działki: ';
-                        echo Html::input('text', 'SizeX', $aDimensions['iMaxX'], ['title'=>'Szerokość']) .' x ';
-                        echo Html::input('text', 'SizeY', $aDimensions['iMaxY'], ['title'=>'Głębokość']) .' m ';
-                        echo '</div>';
+//                        echo '<div class="area-size">';
+//                        echo '<br>Wielkość działki: ';
+//                        echo Html::input('text', 'SizeX', $aDimensions['iMaxX'], ['title'=>'Szerokość']) .' x ';
+//                        echo Html::input('text', 'SizeY', $aDimensions['iMaxY'], ['title'=>'Głębokość']) .' m ';
+//                        echo '</div>';
                     }
                 ?>
                 <?=Html::tag('div','Resetuj',['class'=>'reset_filter', 'rel'=>$aData['question']->id, 'title'=>'Resetuj odpowiedź'])?>

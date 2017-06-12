@@ -741,7 +741,7 @@ class XmlController extends Controller
     {
         
         $oDocument = new Response();
-        $sXmlFile  = 'https://www.horyzont.com/baza-plikow/horyzont_05_2017.xml';
+        $sXmlFile  = 'https://www.horyzont.com/xml/horyzont_06_2017.xml';
         $sXmlContent = file_get_contents($sXmlFile);
         $sXml = $oDocument->setContent($sXmlContent);
         $oParser = new XmlParser();
@@ -1511,8 +1511,9 @@ class XmlController extends Controller
     public function actionPietra() 
     {
         $iProducers = $_GET['producent'];
+
         $oProjects = new Products();
-        $aPrdHoryzont = $oProjects->findAll(['producers_id'=>$iProducers]);
+        $aPrdHoryzont = $oProjects->find()->andWhere(['producers_id'=>$iProducers])->joinWith('productsDescriptons')->orderBy(['products_descripton.name' => SORT_ASC])->all();
        
         //$oPrdImages = $aPrdHoryzont->producers;
         foreach ($aPrdHoryzont as $aPrd)
@@ -1708,7 +1709,7 @@ class XmlController extends Controller
                 
                 if (($oImport = fopen($sFile, "r")) !== FALSE) 
                 {
-                    while (($aImportRows = fgetcsv($oImport, 1000, ",")) !== FALSE) 
+                    while (($aImportRows = fgetcsv($oImport, 1000, ";")) !== FALSE) 
                     {
                         
                         $oProductsFilters->deleteAll(['products_id'=>$aImportRows[0]]);
@@ -1727,6 +1728,7 @@ class XmlController extends Controller
                         {
                             if (isset($aImportRows[$a]) && $aImportRows[$a] != '')
                             {
+                                $oProductsAttributes = new ProductsAttributes();
                                 if ($oExist = $oProductsAttributes->findOne(['products_id'=>$aImportRows[0],'attributes_id'=> $aTechData[$a]]))
                                 {
                                     $oExist->products_id = $aImportRows[0];
@@ -1747,9 +1749,14 @@ class XmlController extends Controller
                             
                         }
                         $oProducts = new Products();
-                        $oProduct = $oProducts->findOne(['id'=>$aImportRows[0]]);
-                        $oProduct->is_active = 1;
-                        $oProduct->save(false);
+                        
+                        if ($aImportRows[0] != 'id')   
+                        {
+                            $oProduct = $oProducts->findOne(['id'=>$aImportRows[0]]);
+                            $oProduct->is_active = 1;
+                            $oProduct->save(false);
+                        }
+                        
                     }   
                 }
             }

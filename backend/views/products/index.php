@@ -50,6 +50,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter' => Html::activeDropDownList($searchModel, 'is_active', ['1'=>'Tak', '0'=>'Nie'],['class'=>'form-control','prompt' => 'Wybierz']),
             ],
             [
+                'attribute' => 'is_archive',
+                'format' => 'raw',
+                'value' =>  function($data)
+                    {
+                        return ($data->is_archive == 1 ? '<div class="archive_prd" rel="'.$data->id.'">ON</div>': '<div class="unarchive_prd" rel="'.$data->id.'">OFF</div>' );
+                    },
+                'contentOptions' => ['class' => '50p'],
+                'headerOptions' => ['class' => '50p'],
+                'filter' => Html::activeDropDownList($searchModel, 'is_archive', ['1'=>'Tak', '0'=>'Nie'],['class'=>'form-control','prompt' => 'Wybierz', 'default'=>0, 'options' => ['0'=>['selected'=>true]]])
+            ],
+            [
                 'attribute' => 'producers_id',
                 'value' =>  'producers.name',
                 'filter' => Html::activeDropDownList($searchModel, 'producers_id', ArrayHelper::map(app\models\Producers::find()->asArray()->all(), 'id', 'name'),['class'=>'form-control','prompt' => 'Wybierz']),
@@ -77,9 +88,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
 
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            'contentOptions' => ['class' => 'action_column'],
+                ],
             [
-                'label' => 'Odpowiedzi',
+                'label' => 'Dane',
                 'format' => 'raw',
                 'value' => function ($model)
                 {
@@ -88,8 +101,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     $sNameSubname = (is_object($model->productsDescriptons) ? $model->productsDescriptons->name_subname: '');
                     $sFullName = 'Dodaj odpowiedzi do: '.$sName . ' '. $sNameModel .' ' .$sNameSubname;
                     $sFullNameAttr = 'Dodaj dane techniczne do: '.$sName . ' '. $sNameModel .' ' .$sNameSubname;
-                    $sFiltersButton = Html::button('Dodaj odpowiedzi', ['value' => Url::to(['products-filters/create', 'id' => $model->id]), 'title' => $sFullName, 'class' => 'showModalButton btn btn-success']);
-                    $sAttrButton = Html::button('Dane techniczne', ['value' => Url::to(['products-attributes/create', 'id' => $model->id]), 'title' => $sFullNameAttr, 'class' => 'showModalButton btn btn-success']);
+                    $sFiltersButton = Html::button('Dodaj odpowiedzi', ['value' => Url::to(['products-filters/create', 'id' => $model->id]), 'title' => $sFullName, 'class' => 'showModalButton btn btn-success dane_button']);
+                    $sAttrButton = Html::button('Dane techniczne', ['value' => Url::to(['products-attributes/create', 'id' => $model->id]), 'title' => $sFullNameAttr, 'class' => 'showModalButton btn btn-success dane_button']);
                     return $sFiltersButton . ' <br> ' . $sAttrButton;
                 }
             ],
