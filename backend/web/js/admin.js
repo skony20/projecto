@@ -108,6 +108,28 @@ $(document).ready(
 
              });
          });
+         $(".archive_prd").click(
+             function() {
+                iIdProduct = $(this).attr('rel');
+                $.ajax({
+                    url: 'products/unarchive/'+iIdProduct,
+                    success: function(data) {
+                        window.location.href = window.location.href;
+                    }
+
+             });
+         });
+         $(".unarchive_prd").click(
+             function() {
+                iIdProduct = $(this).attr('rel');
+                $.ajax({
+                    url: 'products/archive/'+iIdProduct,
+                success: function(data) {
+                    window.location.href = window.location.href;
+                }
+
+             });
+         });
          $(".active_faq").click(
              function() {
                 iIdProduct = $(this).attr('rel');

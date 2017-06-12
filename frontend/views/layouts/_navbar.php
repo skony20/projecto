@@ -74,7 +74,7 @@ echo '<div class="first-navbar">';
                             ['label' => 'Na wąską działkę', 'url' => Yii::$app->request->BaseUrl.'/projekty/filters/1'],
                             ['label' => 'Domy energooszczędne', 'url' => Yii::$app->request->BaseUrl.'/projekty/filters/32'],
             ],],
-                    ['label' => 'Nowości', 'url' => ['/projekty']],
+                    ['label' => 'Nowości', 'url' => ['/projekty/nowosci']],
                     ['label' => 'Co zawiera projekt', 'url' => ['/wprojekcie'],'options'=>['class'=>'another-menu']],
                     ['label' => 'O ProjekTop.pl', 'url' => ['/onas']],
                     ['label' => 'Faq', 'url' => ['/faq']],
