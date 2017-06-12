@@ -164,7 +164,11 @@ class Products extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Storeys::className(), ['products_id' => 'id'])->where(['storey_name'=>$sName])->orderBy(['room_number'=>SORT_ASC, 'id'=>SORT_ASC]);
     }
-
+    public function getGratis()
+    {
+        return $this->hasOne(InProject::className(), ['producers_id' => 'id'])->viaTable('producers', ['id' => 'producers_id']);
+    }
+    
     public function validate($attributeNames = null, $clearErrors = true) {
         parent::validate($attributeNames, $clearErrors);
         return TRUE;

@@ -88,7 +88,6 @@ class ProjektController extends MetaController
         ], 'description'
         );
         
-        
         return $this->render('view', [
             'model' => $model,
             'aPrdAttrs' => $aUnsortPrdAttrs,

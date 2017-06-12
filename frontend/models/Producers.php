@@ -80,4 +80,9 @@ class Producers extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Products::className(), ['producers_id' => 'id']);
     }
+    
+    public function getGratis()
+    {
+        return $this->hasMany(InProject::className(), ['producers_id' => 'id']);
+    }
 }
