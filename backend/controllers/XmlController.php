@@ -33,7 +33,7 @@ class XmlController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['proarte','domprojekt', 'horyzont', 'mgprojekt', 'images', 'rzut', 'pietra', 'export', 'import'],
+                        'actions' => ['proarte', 'domprojekt', 'horyzont', 'mgprojekt', 'images', 'rzut', 'pietra', 'export', 'import'],
                         'allow' => true,
                     ],
                     
@@ -186,24 +186,24 @@ class XmlController extends Controller
         return FALSE;
     }
     private function cut($tekst,$ile)
-    {
+        {
  
         $tekst = strip_tags($tekst);
-        if (strlen($tekst) > $ile) 
-        {
-           $tekst=substr($tekst, 0, $ile);
-           for ($a=strlen($tekst)-1;$a>=0;$a--) 
-            {
-                if ($tekst[$a]==" ") 
+           if (strlen($tekst) > $ile) 
+           {
+                $tekst=substr($tekst, 0, $ile);
+                for ($a=strlen($tekst)-1;$a>=0;$a--) 
                 {
-                    $tekst=substr($tekst, 0, $a)."...";
-                    break;
-                }
-            }
-        }
+                   if ($tekst[$a]==" ") 
+                    {
+                        $tekst=substr($tekst, 0, $a)."...";
+                        break;
+                    };
+                };
+           };
 
         return $tekst;
-    }
+        }
     /*Import xml-a ProArte*/ 
     public function actionProarte()
     {
@@ -444,245 +444,234 @@ class XmlController extends Controller
         $sXml = $oDocument->setContent($sXmlContent);
         $oParser = new XmlParser();
         $aDomProjekt = $oParser->parse($sXml);
-        //echo '<pre>'. print_r($aDomProjekt, TRUE); die();
+        
         foreach ($aDomProjekt['projekt'] as $aProject)
         {
-            $oProjekt = new Products();
-            $oExist = $oProjekt->findOne(['ean' => 'dp'.$aProject->id]);
-        
-            switch ($aDP->vat)
+            if ($aProject->rodzaj == 0)
             {
-                case 23:
-                    $iVatId = 1;
-                    break;
-                case 8:
-                    $iVatId = 2;
-                    break;
-                case 5:
-                    $iVatId = 3;
-                    break;
-                case 0:
-                    $iVatId = 4;
-                    break;
-            }
-            if (!$oExist)
-            {
-            /*Dodanie produktu*/
-                $sSymbol = $this->zamiana($aProject->nazwa);
-                $sSymbol = ($this->checkSymbol($sSymbol) ? $sSymbol.'-dom-projekt' :$sSymbol);
-                $oProjekt->is_active = 0;
-                $oProjekt->producers_id = 6;
-                $oProjekt->vats_id = $iVatId;
-                $oProjekt->price_brutto_source = $aProject->cena;
-                $oProjekt->price_brutto = $aProject->cena;
-                $oProjekt->stock = 99;
-                $oProjekt->creation_date=time();
-                $oProjekt->symbol = $sSymbol;
-                $oProjekt->ean = 'dp'.$aProject->id_product;
-                $oProjekt->save(false);
-            /*Dodanie opisów do produkty*/
-                $iActualProductId = Yii::$app->db->getLastInsertID();
-                $oProductsDesriptions = new ProductsDescripton();
-                $oProductsDesriptions->products_id = $iActualProductId;
-                $oProductsDesriptions->languages_id = 1;
-                $oProductsDesriptions->name = $aProject->nazwa;
-                $oProductsDesriptions->nicename_link = $sSymbol;
-                $oProductsDesriptions->html_description = strip_tags($aProject->opis_pelny, '<br>');
-                $oProductsDesriptions->html_description_short = strip_tags($aProject->opis_krotki, '<br>');
-                $oProductsDesriptions->meta_title = $aProject->nazwa;
-                $oProductsDesriptions->meta_description = $this->cut($aProject->opis_pelny, 150);
-                $oProductsDesriptions->save(false);
-                if (isset($aProject->autor) && $aProject->autor != '')
+                $iVatId = 1;
+                switch ($aProject->vat)
                 {
-                    $oAutor = new \app\models\Author();
-                    $oAutor->products_id = $iActualProductId ;
-                    $oAutor->name = $aProject->autor;
-                    $oAutor->save(false);
+                    case 23:
+                        $iVatId = 1;
+                        break;
+                    case 8:
+                        $iVatId = 2;
+                        break;
+                    case 5:
+                        $iVatId = 3;
+                        break;
+                    case 0:
+                        $iVatId = 4;
+                        break;
                 }
+                $oProjekt = new Products();
+                $oExist = $oProjekt->findOne(['ean' => 'dp'.$aProject->id]);
+                if (!$oExist)
+                {
+                    $oProjekt = new Products();
+                    $sSymbol = $this->zamiana($aProject->nazwa);
+                    $sSymbol = ($this->checkSymbol($sSymbol) ? $sSymbol.'-dom-projekt' :$sSymbol);
+                    $oProjekt->is_active = 0;
+                    $oProjekt->producers_id = 6;
+                    $oProjekt->vats_id = $iVatId;
+                    $oProjekt->price_brutto_source = $aProject->cena;
+                    $oProjekt->price_brutto = $aProject->cena;
+                    $oProjekt->stock = 99;
+                    $oProjekt->creation_date=time();
+                    $oProjekt->symbol = $sSymbol;
+                    $oProjekt->ean = 'dp'.$aProject->id;
+                    $oProjekt->save(false);
+                /*Dodanie opisów do produkty*/
+                    $iActualProductId = Yii::$app->db->getLastInsertID();
+                    $oProductsDesriptions = new ProductsDescripton();
+                    $oProductsDesriptions->products_id = $iActualProductId;
+                    $oProductsDesriptions->languages_id = 1;
+                    $oProductsDesriptions->name = ucfirst($aProject->nazwa);
+                    $oProductsDesriptions->nicename_link = $sSymbol;
+                    $oProductsDesriptions->html_description = $aProject->opis_pelny;
+                    $oProductsDesriptions->html_description_short = $aProject->opis_krotki;
+                    $oProductsDesriptions->meta_description = $this->cut($aProject->opis_krotki, 150);
+                    $oProductsDesriptions->meta_title = 'Projekt - '. ucfirst($aProject->nazwa);
+                    $oProductsDesriptions->save(false);
+                
                 /*Dane techniczne i filtry*/
-                (isset($aProject->powierzchnia->uzytkowa) ? $this->addAttr($iActualProductId, 4, $aProject->powierzchnia->uzytkowa) :'');
-                (isset($aProject->powierzchnia->garaz) ? $this->addAttr($iActualProductId, 5, $aProject->powierzchnia->garaz) :'');
-                (isset($aProject->dzialka->min_szerokosc_dzialki) ? $this->addAttr($iActualProductId, 6, $aProject->dzialka->min_szerokosc_dzialki) :'');
-                (isset($aProject->dzialka->min_dlugosc_dzialki) ? $this->addAttr($iActualProductId, 7, $aProject->dzialka->min_dlugosc_dzialki) :'');
-                (isset($aProject->udach->kat) ? $this->addAttr($iActualProductId, 8, $aProject->dach->kat) :'');
-                (isset($aProject->powierzchnia->netto) ? $this->addAttr($iActualProductId, 10, $aProject->powierzchnia->netto) :'');
-                (isset($aProject->kubatura) ? $this->addAttr($iActualProductId, 15, $aProject->kubatura) :'');
-                (isset($aProject->dach->dach_powierzchnia) ? $this->addAttr($iActualProductId, 16, $aProject->dach->dach_powierzchnia) :'');
-                 /*Ilość kondygnacji*/
-                $iType = '';
-
-                switch ($aProject->poddasze)
-                {
-                    case 0:
-                        $iType = 17;
-                        break;
-                    case 1:
-                    case 2:
-                        $iType = 18;
-                        break;
-                }
-                ($iType != '' ? $this->addFilter($iActualProductId, $iType) : '');
-                /*Piwnica*/
-                $iBasement = '';
-                switch ($aProject->piwnica)
-                {
-                    case 0:
-                        $iBasement = 39;
-                        break;
-                    case 1:
-                        $iBasement = 21;
-                        break;
-                    case 2:
-                        $iBasement = 20;
-                        break;
-                }
-                ($iBasement != '' ? $this->addFilter($iActualProductId, $iBasement) : '');
-                /*Dach*/
-                $iRoof = 44;
-                switch ($aProject->dach->rodzaj_dachu)
-                {
-                    case 0:
-                        $iRoof = 45;
-                        break;
-                    case 1:
-                        $iRoof = 22;
-                        break;
-                    case 2:
-                        $iRoof = 23;
-                        break;
-                    case 3:
-                        $iRoof = 42;
-                        break;
-                    case 4:
-                        $iRoof = 44;
-                        break;
-                }
-                ($iRoof != '' ? $this->addFilter($iActualProductId, $iRoof) : '');
-                
-                /*Garaż*/
-                $iGarage = 40;
+                    ($aProject->powierzchnia->uzytkowa !='' ? $this->addAttr($iActualProductId, 4, $aProject->powierzchnia->uzytkowa) : '');
+                    ($aProject->powierzchnia->garaz !='' ? $this->addAttr($iActualProductId, 5, $aProject->powierzchnia->garaz) : '');
+                    ($aProject->dzialka->min_szerokosc_dzialki !='' ? $this->addAttr($iActualProductId, 6, $aProject->dzialka->min_szerokosc_dzialki) : '');
+                    ($aProject->dzialka->min_dlugosc_dzialki !='' ? $this->addAttr($iActualProductId, 7, $aProject->dzialka->min_szerokosc_dzialki) : '');
+                    ($aProject->dach->kat !='' ? $this->addAttr($iActualProductId, 8, $aProject->dach->kat) : '');
+                    ($aProject->powierzchnia->netto !='' ? $this->addAttr($iActualProductId, 10, $aProject->powierzchnia->netto) : '');
+                    ($aProject->kubatura !='' ? $this->addAttr($iActualProductId, 15, $aProject->kubatura) : '');
+                    ($aProject->dach->dach_powierzchnia !='' ? $this->addAttr($iActualProductId, 16, $aProject->dach->dach_powierzchnia) : '');
+                    /*Ilość kondygnacji*/
+                    $iType = '';
+                    switch ($aProject->poddasze)
+                    {
+                        case 0:
+                            $iType = 17;
+                            break;
+                        case 1:
+                        case 2:
+                            $iType = 18;
+                            break;
+                    }
+                    ($iType !== '' ? $this->addFilter($iActualProductId, $iType) : '');   
+                    /*Podpiwniczenie*/
+                    $iBasement = '';
+                    switch ($aProject->piwnica)
+                    {
+                        case 0:
+                            $iBasement = 39;
+                            break;
+                        case 1:
+                            $iBasement = 21;
+                            break;
+                        case 2:
+                            $iBasement = 20;
+                            break;
+                    }
+                    ($iBasement !== '' ? $this->addFilter($iActualProductId, $iBasement) : '');
+                    /*Typ dachu*/
+                    $iRoof = 44;
+                    switch ($aProject->dach->rodzaj_dachu)
+                    {
+                        case 0:
+                            $iRoof = 45;
+                            break;
+                        case 1:
+                            $iRoof = 22;
+                            break;
+                        case 2:
+                            $iRoof = 23;
+                            break;
+                        case 3:
+                            $iRoof = 42;
+                            break;
+                        case 4:
+                            $iRoof = 44;
+                            break;
+                    }
+                    ($iRoof !== '' ? $this->addFilter($iActualProductId, $iRoof) : '');
+                    /*Garaż*/
+                    $iGarage = 40;
         
-                switch ($aProject->garaz)
-                {
-                    case 0:
-                        $iGarage = 40;
-                        break;
-                    case 1:
-                        $iGarage = 24;
-                        break;
-                    case 2:
-                        $iGarage = 25;
-                        break;
-                                case 4:
-                        $iGarage = 45;
-                        break;
-                }
-                ($iGarage != '' ? $this->addFilter($iActualProductId, $iGarage) : '');
-                 /*Kominek*/
-                $iFireplace = '';
-                switch ($aProject->kominek)
-                {
-                    case 0:
-                        $iFireplace = 29;
-                        break;
-                    case 1:
-                        $iFireplace = 28;
-                        break;
-                }
-                ($iFireplace != '' ? $this->addFilter($iActualProductId, $iFireplace) : '');
-                $iStyle = '';
-		$iStyle = ($aDP->styl->nowoczesy ? 16 :'');
-                $iStyle = ($aDP->styl->tradycyjny ? 15 :'');
-                ($iStyle != '' ? $this->addFilter($iActualProductId, $iStyle) : '');
-                
-                $iPiec = '';
-		switch ($aDP->instalacje->typ_ogrzewania)
-                {
-                    case 0:
-                        $iPiec = 31;
-                        break;
-                    case 1:
-                        $iPiec = 30;
-                        break;
-                    case 2:
-                        $iPiec = 'Oba';
-
-                }
-                if ($iPiec != 'Oba' && $iPiec != '')
-                {
-                    $this->addFilter($iActualProductId, $iPiec);
-                }
-                else
-		{
-                    $this->addFilter($iActualProductId, 30);
-                    $this->addFilter($iActualProductId, 31);
-		}
-                /*Energooszczędny*/
-		if ($aDP->instalacje->typ_ogrzewania->energooszczedny == 1)
-		{
-                    $this->addFilter($iActualProductId, 32);
-		}
-                
-                /*Zdjęcia */
-                $a=0;
-                /*Wizualizacje*/
-                foreach ($aProject->grafika->wizualizacje->viz as $aViews)
-                {
-
-                    $sViewsLink = $aViews->url_web;
-                    $extension = strtolower(strrchr($aViews->url_web, '.'));
-                    $sName = $sSymbol.'_'.$a.''.$extension;
-                    $sDesc = 'Wizualizacja ';
-                    $iImgType = 1;
-
-                    $file_headers = @get_headers($sViewsLink);
-                    if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found' || $file_headers[0] == 'HTTP/1.1 500 Internal Server Error') 
+                    switch ($aProject->garaz)
                     {
-                        $exists = false;
+                        case 0:
+                            $iGarage = 40;
+                            break;
+                        case 1:
+                            $iGarage = 24;
+                            break;
+                        case 2:
+                            $iGarage = 25;
+                            break;
+                        case 4:
+                            $iGarage = 45;
+                            break;
                     }
-                    else 
+                    ($iGarage !== '' ? $this->addFilter($iActualProductId, $iGarage) : '');
+                    
+                    /*Kominek*/
+                    $iFireplace = '';
+                    switch ($aProject->kominek)
                     {
-                        $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
-                        $this->saveImage($sViewsLink , $iActualProductId, $sName);
-                        $a++;
+                        case 0:
+                            $iFireplace = 29;
+                            break;
+                        case 1:
+                            $iFireplace = 28;
+                            break;
                     }
-                    $a++;
-                }
-                /*Elewacje*/
-                if (isset($aProject->grafika->elewacje))
-                {
-                    foreach ($aProject->grafika->elewacje->ele as $aViews)
+                    ($iFireplace !== '' ? $this->addFilter($iActualProductId, $iFireplace) : '');
+                    /*Styl*/
+		
+                    $iStyle = '';
+                    $iStyle = ($aProject->styl->nowoczesy ? 16 :'');
+                    $iStyle = ($aProject->styl->tradycyjny ? 15 :'');
+                    ($iStyle !== '' ? $this->addFilter($iActualProductId, $iStyle) : '');
+                    
+                    /*Ogrzewanie*/
+                    $iPiec = '';
+                    switch ($aProject->instalacje->typ_ogrzewania)
+                    {
+                        case 0:
+                            $iPiec = 31;
+                            break;
+                        case 1:
+                            $iPiec = 30;
+                            break;
+                        case 2:
+                            $iPiec = 'Oba';
+
+                    }
+                    if ($iPiec != 'Oba' && $iPiec != '')
+                    {
+                       $this->addFilter($iActualProductId, $iPiec);
+                    }
+                    else
+                    {
+                        $this->addFilter($iActualProductId, 30);
+                        $this->addFilter($iActualProductId, 31);
+                    }
+                    /*Energooszczędny*/
+                    if ($aProject->instalacje->typ_ogrzewania->energooszczedny == 1)
+                    {
+                       $this->addFilter($iActualProductId, 32);
+                    }
+                    
+                    
+                    /*Zdjęcia */
+                    $a=0;
+                    /*Wizualizacje*/
+                    foreach ($aProject->grafika->wizualizacje->viz as $aViews)
                     {
 
                         $sViewsLink = $aViews->url_web;
                         $extension = strtolower(strrchr($aViews->url_web, '.'));
                         $sName = $sSymbol.'_'.$a.''.$extension;
-                        $sDesc = 'Elewacja ';
-                        $iImgType = 2;
-
-                        $file_headers = @get_headers($sViewsLink);
-                        if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found' || $file_headers[0] == 'HTTP/1.1 500 Internal Server Error') 
-                        {
-                            $exists = false;
-                        }
-                        else 
-                        {
-                            $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
-                            $this->saveImage($sViewsLink , $iActualProductId, $sName);
-                            $a++;
-                        }
+                        $sDesc = 'Wizualizacja - '. $sName;
+                        $iImgType =1;
+                        $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
+                        /*Zapisywanie obrazków*/
+                        $this->saveImage($sViewsLink, $iActualProductId, $sName);
                         $a++;
                     }
-                }
-                /*rzuty*/
-		
-                if (isset($aProject->grafika->rzuty))
-                {
-                    foreach ($aProject->grafika->rzuty->rzut as $aViews)
+                     /*Elewacje*/
+                    if (isset($aProject->grafika->elewacje))
                     {
-                        $sDesc= '';
-                        switch ($aViews->attributes()->nr)
+                        foreach ($aProject->grafika->elewacje->ele as $aViews)
                         {
+                            $sViewsLink = $aViews->url_web;
+                            $extension = strtolower(strrchr($aViews->url_web, '.'));
+                            $sName = $sSymbol.'_'.$a.''.$extension;
+                            $sDesc = 'Elewacja - '. $sName;
+                            $iImgType =2;
+                            $file_headers = @get_headers($sViewsLink);
+                            if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found') 
+                            {
+                                $exists = false;
+                            }
+                            else 
+                            {
+                                $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
+                                /*Zapisywanie obrazków*/
+                                $this->saveImage($sViewsLink, $iActualProductId, $sName);
+                                $a++;    
+                            }
+                        }
+                    }
+                     /*rzuty*/
+		
+                    if (isset($aProject->grafika->rzuty))
+                    {
+
+                        foreach ($aProject->grafika->rzuty->rzut as $aViews)
+                        {
+                            $sDesc= '';
+                            switch ($aViews->attributes()->nr)
+                            {
                                 case 1:
                                 $sDesc = 'Parter';
                                 break;
@@ -698,49 +687,80 @@ class XmlController extends Controller
                                 case 5:
                                 $sDesc = 'Piętro';
                                 break;
-                        }
-
+                            }
                         $sViewsLink = $aViews->standard->url_png;
-                        $extension = strtolower(strrchr($aViews->standard->url_png, '.'));;
+                        $extension = strtolower(strrchr($aViews->standard->url_png, '.'));
                         $sName = $sSymbol.'_'.$a.''.$extension;
-                        $sDesc = 'Rzut ';
-                        $iImgType = 3;
+                        $iImgType =3;
                         $file_headers = @get_headers($sViewsLink);
-                        if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found' || $file_headers[0] == 'HTTP/1.1 500 Internal Server Error') 
+                        if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found') 
                         {
                             $exists = false;
                         }
                         else 
                         {
                             $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
-                            $this->saveImage($sViewsLink , $iActualProductId, $sName);
-                            $a++;
+                            /*Zapisywanie obrazków*/
+                            $this->saveImage($sViewsLink, $iActualProductId, $sName);
+                            $a++;    
                         }
                         
-                        $a++;
-                    }
-                }
-                // /*Realizacje*/
-                if (isset($aProject->realizacje))
-                {
-                    foreach ($aProject->realizacje as $aViews)
-                    {
-
-                        $sViewsLink = $aViews->url_foto;
-                        $extension = explode('.',$aViews->url_foto);
-                        $sName = $sSymbol.'_'.$a.'.'.$extension[1];
-                        $sDesc = 'Realizacja ';
-                        $iImgType = 4;
-                        $file_headers = @get_headers($sViewsLink);
-                        if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found' || $file_headers[0] == 'HTTP/1.1 500 Internal Server Error') 
-                        {
-                            $exists = false;
+                        
                         }
-                        else 
+                    }
+                    if (isset($aProject->realizacje))
+                    {
+                        foreach ($aProject->realizacje as $aViews)
                         {
-                            $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
-                            $this->saveImage($sViewsLink , $iActualProductId, $sName);
-                            $a++;
+                            $sViewsLink = $aViews->url_web;
+                            $extension = strtolower(strrchr($aViews->url_web, '.'));
+                            $sName = $sSymbol.'_'.$a.''.$extension;
+                            $sDesc = 'Realizacja - '. $sName;
+                            $iImgType =4;
+                            $file_headers = @get_headers($sViewsLink);
+                            if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found') 
+                            {
+                                $exists = false;
+                            }
+                            else 
+                            {
+                                $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
+                                /*Zapisywanie obrazków*/
+                                $this->saveImage($sViewsLink, $iActualProductId, $sName);
+                                $a++;    
+                            }
+                        }
+                    }
+                    if (isset($aProject->pomieszczenia->kondygnacja))
+                    {
+                        foreach ($aProject->pomieszczenia->kondygnacja as $aPietra)
+                        {
+                            switch($aPietra->attributes()->nr)
+                            {
+                            case 1:
+                                $sStoreyName = 'Parter';
+                                $sStoreyType = 1;
+                                break;
+                            case 2:
+                            case 3:
+                                $sStoreyName = 'Piętro';
+                                $sStoreyType = 2;
+                                break;
+                            
+                            }
+                            foreach ($aPietra->pom as $aRooms)
+                            {
+                                $oStorey = new Storeys();
+                                $oStorey->products_id = $iActualProductId;
+                                $oStorey->storey_type = $sStoreyType;
+                                $oStorey->storey_name = $sStoreyName;
+                                $oStorey->room_name = ($aRooms->nazwa ? $aRooms->nazwa : '');
+                                $oStorey->room_area = ($aRooms->pow ? $aRooms->pow : '');
+                                $oStorey->room_number = ($aRooms->nr != "" ? $aRooms->nr: '');
+                                $oStorey->save(false);
+                            }
+                                    
+                            
                         }
                     }
                 }
