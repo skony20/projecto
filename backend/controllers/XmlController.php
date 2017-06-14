@@ -819,7 +819,7 @@ class XmlController extends Controller
                 $oProjekt = new Products();
                 echo $aProject->attributes()->Id;
                 $sId = ((string)($aProject->attributes()->Id));
-                $oExist = $oProjekt->findOne(['ean' => "ooat3mt05re2r5"]);
+                $oExist = $oProjekt->findOne(['ean' => $aProject->attributes()->Id]);
                 echo '<pre>33'. print_r($oExist, TRUE); die();
                 if (!$oExist)
                 {
