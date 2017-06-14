@@ -131,6 +131,10 @@ $(document).on('ready pjax:success',
     $('.project_ready').click(
             function()
             {
+                if (document.cookie.indexOf('bBarChange=') === -1)
+                {
+                    $.cookie("bBarChange", 1);
+                }
                 var filter = '';
                 var filters = '';
                 var sHouseSize = '';
@@ -143,8 +147,8 @@ $(document).on('ready pjax:success',
                 iTo = document.getElementsByClassName("irs-to")[0];
 
                 if (bBarChange === '1' && (iMin.innerHTML !== iFrom.innerHTML || iMax.innerHTML !== iTo.innerHTML))
-                {     
-                    sHouseSize = '/HouseSize/' +  $("[name='HouseSize']").val();
+                {
+                    sHouseSize = '/HouseSize/' +  iFrom.innerHTML+'-'+iTo.innerHTML;
                 }
                 $(":checked").each(function() {
                     filter += '/'+($(this).val());

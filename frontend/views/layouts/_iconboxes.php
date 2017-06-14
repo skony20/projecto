@@ -68,7 +68,7 @@ use frontend\widget\LatestWidget;
         <div class="center-green-border text-center"></div>
         <div class="col-md-4 hidden-xs">
             <div class="popular-img text-center">
-                <?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-1.png')?>
+                <?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-1.jpg')?>
                 <div class="text-left img-icons">
                     <div class="popular-icon"><i class="fa fa-tags fa-lg" aria-hidden="true"></i></div>
                     <div class="popular-name">Domy parterowe</div>
@@ -81,7 +81,7 @@ use frontend\widget\LatestWidget;
         </div>
         <div class="col-md-4 hidden-xs">
             <div class="popular-img text-center">
-                <?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-2.png')?>
+                <?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-2.jpg')?>
                 <div class="text-left img-icons">
                     <div class="popular-icon"><i class="fa fa-tags fa-lg" aria-hidden="true"></i></div>
                     <div class="popular-name">Domy z poddaszem</div>
@@ -92,7 +92,7 @@ use frontend\widget\LatestWidget;
         </div>
         <div class="col-md-4 hidden-xs">
             <div class="popular-img text-center">
-                <?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-3.png')?>
+                <?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-3.jpg')?>
                 <div class="text-left img-icons">
                     <div class="popular-icon"><i class="fa fa-tags fa-lg" aria-hidden="true"></i></div>
                     <div class="popular-name">Domy wielopiętrowe</div>
@@ -103,7 +103,7 @@ use frontend\widget\LatestWidget;
         </div>
         <div class="col-md-4 hidden-xs">
             <div class="popular-img text-center">
-                <?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-4.png')?>
+                <?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-4.jpg')?>
                 <div class="text-left img-icons">
                     <div class="popular-icon"><i class="fa fa-tags fa-lg" aria-hidden="true"></i></div>
                     <div class="popular-name">Domy z piwnicą</div>
@@ -114,7 +114,7 @@ use frontend\widget\LatestWidget;
         </div>
         <div class="col-md-4 hidden-xs">
             <div class="popular-img text-center">
-                <?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-5.png')?>
+                <?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-5.jpg')?>
                 <div class="text-left img-icons">
                     <div class="popular-icon"><i class="fa fa-tags fa-lg" aria-hidden="true"></i></div>
                     <div class="popular-name">Domy z garażem </div>
@@ -125,7 +125,7 @@ use frontend\widget\LatestWidget;
         </div>
         <div class="col-md-4 hidden-xs">
             <div class="popular-img text-center">
-                <?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-6.png')?>
+                <?= Html::img(Yii::$app->request->BaseUrl.'/img/popular-6.jpg')?>
                 <div class="text-left img-icons">
                     <div class="popular-icon"><i class="fa fa-tags fa-lg" aria-hidden="true"></i></div>
                     <div class="popular-name">Domy z garażem wielostanowiskowym</div>

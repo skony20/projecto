@@ -33,7 +33,7 @@ class XmlController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['proarte', 'domprojekt', 'horyzont', 'mgprojekt', 'images', 'rzut', 'pietra', 'export', 'import'],
+                        'actions' => ['proarte', 'domprojekt', 'archipelag', 'horyzont', 'mgprojekt', 'images', 'rzut', 'pietra', 'export', 'import'],
                         'allow' => true,
                     ],
                     
@@ -444,6 +444,7 @@ class XmlController extends Controller
         $sXml = $oDocument->setContent($sXmlContent);
         $oParser = new XmlParser();
         $aDomProjekt = $oParser->parse($sXml);
+        //echo '<pre>'. print_r($aDomProjekt, TRUE); die();
         
         foreach ($aDomProjekt['projekt'] as $aProject)
         {
@@ -504,6 +505,16 @@ class XmlController extends Controller
                     ($aProject->powierzchnia->netto !='' ? $this->addAttr($iActualProductId, 10, $aProject->powierzchnia->netto) : '');
                     ($aProject->kubatura !='' ? $this->addAttr($iActualProductId, 15, $aProject->kubatura) : '');
                     ($aProject->dach->dach_powierzchnia !='' ? $this->addAttr($iActualProductId, 16, $aProject->dach->dach_powierzchnia) : '');
+                    
+                /*Autor*/
+                    if ($aProject->autor != '')
+                    {
+                        $oAutor = new \app\models\Author();
+                        $oAutor->products_id = $iActualProductId ;
+                        $oAutor->name = $aProject->autor;
+                        $oAutor->save(false);
+                    } 
+                    
                     /*Ilość kondygnacji*/
                     $iType = '';
                     switch ($aProject->poddasze)
@@ -633,10 +644,18 @@ class XmlController extends Controller
                         $sName = $sSymbol.'_'.$a.''.$extension;
                         $sDesc = 'Wizualizacja - '. $sName;
                         $iImgType =1;
-                        $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
-                        /*Zapisywanie obrazków*/
-                        $this->saveImage($sViewsLink, $iActualProductId, $sName);
-                        $a++;
+                        $file_headers = @get_headers($sViewsLink);
+                        if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found') 
+                        {
+                            $exists = false;
+                        }
+                        else 
+                        {
+                            $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
+                            /*Zapisywanie obrazków*/
+                            $this->saveImage($sViewsLink, $iActualProductId, $sName);
+                            $a++;    
+                        }
                     }
                      /*Elewacje*/
                     if (isset($aProject->grafika->elewacje))
@@ -731,6 +750,7 @@ class XmlController extends Controller
                             }
                         }
                     }
+                    /*Rozpiska pokoi*/
                     if (isset($aProject->pomieszczenia->kondygnacja))
                     {
                         foreach ($aProject->pomieszczenia->kondygnacja as $aPietra)
@@ -766,6 +786,49 @@ class XmlController extends Controller
                 }
             }
         }
+    }
+    /*Import xml-a Archipelag*/
+    public function actionArchipelag()
+    {
+        
+        $url="https://www.archipelag.pl/files/ProjectExport/t26d6ch0bqdeu6/project_export.zip";
+        $plik = file_get_contents($url);
+        copy($url, '../../xml/project_export.zip');
+        $zip = new \ZipArchive();
+        $res = $zip->open('../../xml/project_export.zip');
+        if ($res === TRUE) {
+         $zip->extractTo('../../xml/');
+         $zip->close();
+
+        } else {
+         echo 'bleeeeeeeee cos sie zesralo z importowanym plikiem';
+        }
+        $folder = scandir('../../xml/files/temp'); 
+        $sArchipelag = str_replace(array("&amp;", "&"), array("&", "&amp;"), file_get_contents('../../xml/files/temp/'.$folder[2].'/projekty.xml'));
+        $oDocument = new Response();
+        $sXmlFile  = 'https://www.horyzont.com/xml/horyzont_06_2017.xml';
+        $sXmlContent = file_get_contents('../../xml/files/temp/'.$folder[2].'/projekty.xml');
+        $sXml = $oDocument->setContent($sXmlContent);
+        $oParser = new XmlParser();
+        $oArchipelag = $oParser->parse($sXml);
+        //echo '<pre>33'. print_r($oArchipelag, TRUE); die();
+        foreach ($oArchipelag['Project'] as $aProject)
+        {
+            if ($aProject->InfoKind == 1)
+            {
+                $oProjekt = new Products();
+                echo $aProject->attributes()->Id;
+                $sId = ((string)($aProject->attributes()->Id));
+                $oExist = $oProjekt->findOne(['ean' => "ooat3mt05re2r5"]);
+                echo '<pre>33'. print_r($oExist, TRUE); die();
+                if (!$oExist)
+                {
+                    echo $aProject->Name .' '.$aProject->Cubature .'<br>';
+                }
+            }
+            
+        }
+
     }
     /*Import xml-a HORYZONT*/
     public function actionHoryzont()
