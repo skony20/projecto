@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Rooms>
+	
+		
+			<Room Id="n3utq5f0deieog">Altana</Room>
+		
+	
+		
+			<Room Id="uvkce5e05rpu7g">Aneks gospodarczy</Room>
+		
+	
+		
+			<Room Id="1o93mhn05rb85u">Aneks jadalny</Room>
+		
+	
+		
+			<Room Id="q2bno2705rb85u">Aneks kominkowy</Room>
+		
+	
+		
+			<Room Id="a8id61406e1e1o">Aneks kuchenny</Room>
+		
+	
+		
+			<Room Id="ktcro6k05rb85u">Aneks telewizyjny </Room>
+		
+	
+		
+			<Room Id="ebf8p9b05rb85u">Antresola</Room>
+		
+	
+		
+			<Room Id="4fvjqpm05rb85u">Atrium</Room>
+		
+	
+		
+			<Room Id="nvutpi105rb85u">Balkon</Room>
+		
+	
+		
+			<Room Id="g0hcrn805rb85u">Basen</Room>
+		
+	
+		
+			<Room Id="en8hosc05rb85u">Bawialnia</Room>
+		
+	
+		
+			<Room Id="qtsnnpg05rb85u">Biblioteka</Room>
+		
+	
+		
+			<Room Id="oedqr6o05rb85u">Foyer</Room>
+		
+	
+		
+			<Room Id="5ikvkc705rb85u">Gabinet</Room>
+		
+	
+		
+			<Room Id="rhnm0fn0ab961a">Gabinet (sypialnia)</Room>
+		
+	
+		
+			<Room Id="opin0h007k0feb">Gabinet/Pracownia</Room>
+		
+	
+		
+			<Room Id="jue6mv905rb85u">Galeria</Room>
+		
+	
+		
+			<Room Id="15a0pmc05rb85u">Ganek</Room>
+		
+	
+		
+			<Room Id="p3icjkq05rb85u">Garaż</Room>
+		
+	
+		
+			<Room Id="rue273l0bsmqmf">Garaż (wiata)</Room>
+		
+	
+		
+			<Room Id="24b858l09nbdkg">Garaż 1-, 2-stanowiskowy lub wiata</Room>
+		
+	
+		
+			<Room Id="3rcoj2n08cvhcl">Garaż wolnostojący</Room>
+		
+	
+		
+			<Room Id="t1a8a8n0ad0jsv">Garaż/Kotłownia</Room>
+		
+	
+		
+			<Room Id="q8oakgm05rb85u">Garderoba</Room>
+		
+	
+		
+			<Room Id="307hq1u0dgkbvl">Garderoba + schody</Room>
+		
+	
+		
+			<Room Id="ip1nkl105rb85u">Hol</Room>
+		
+	
+		
+			<Room Id="636j94v064n50h">Hol + garderoba</Room>
+		
+	
+		
+			<Room Id="ilrvulb0c92bgi">Hol + schody</Room>
+		
+	
+		
+			<Room Id="ceri58s0btehaj">Hol z klatką schodową</Room>
+		
+	
+		
+			<Room Id="lvqbdrb06sbb2n">Jacuzzi</Room>
+		
+	
+		
+			<Room Id="1rr2k7r05rb85u">Jadalnia</Room>
+		
+	
+		
+			<Room Id="43tahie0fddvtc">Jadalnia + schody</Room>
+		
+	
+		
+			<Room Id="9ohtqlb05rb85u">Komunikacja</Room>
+		
+	
+		
+			<Room Id="gp42mdc05rb85u">Korytarz</Room>
+		
+	
+		
+			<Room Id="0002hp90cv0qmk">Korytarz + schody</Room>
+		
+	
+		
+			<Room Id="rnlhh410632cc8">Korytarz z garderobą</Room>
+		
+	
+		
+			<Room Id="d88i8470adiepk">Korytarz, pokój rodzinny</Room>
+		
+	
+		
+			<Room Id="0piakpc05rb85u">Kotłownia</Room>
+		
+	
+		
+			<Room Id="t37o8hv0dobkse">Kotłownia + schody</Room>
+		
+	
+		
+			<Room Id="k1voede05rj57l">Kotłownia, garderoba</Room>
+		
+	
+		
+			<Room Id="8onmh9b06fqsd2">Kotłownia, pralnia</Room>
+		
+	
+		
+			<Room Id="a5g8j2q05rb85u">Kuchnia</Room>
+		
+	
+		
+			<Room Id="ffe9l6d05rb85u">Kuchnia + jadalnia</Room>
+		
+	
+		
+			<Room Id="0jh1am00fasqlr">Loggia</Room>
+		
+	
+		
+			<Room Id="h2bnj7505rb85u">Łazienka</Room>
+		
+	
+		
+			<Room Id="pfp7u5m0dun0v1">Łazienka + kotłownia</Room>
+		
+	
+		
+			<Room Id="a4iir2d05rb85u">Łazienka z pralnią</Room>
+		
+	
+		
+			<Room Id="lnfjk0305rq9f8">Łazienka, pralnia</Room>
+		
+	
+		
+			<Room Id="mcnpq9307r3mp1">Łazienka, sauna</Room>
+		
+	
+		
+			<Room Id="mic9rjc05rb85u">Magazyn oleju</Room>
+		
+	
+		
+			<Room Id="hg91rv205rb85u">Natrysk</Room>
+		
+	
+		
+			<Room Id="r9k5p0n05rb85u">Ogród zimowy</Room>
+		
+	
+		
+			<Room Id="p6gdqh005rb85u">Patio</Room>
+		
+	
+		
+			<Room Id="2nmgqcm05rb85u">Podcień</Room>
+		
+	
+		
+			<Room Id="9ajnnl605rb85u">Poddasze</Room>
+		
+	
+		
+			<Room Id="p37mo7505s22kr">Poddasze do adaptacji</Room>
+		
+	
+		
+			<Room Id="6npfk3f05rb85u">Pokój</Room>
+		
+	
+		
+			<Room Id="b5081hp072v5iv">Pokój (strych)</Room>
+		
+	
+		
+			<Room Id="8ejbhbt0dtsfk9">Pokój + aneks kuchenny</Room>
+		
+	
+		
+			<Room Id="pvg4jv305rb85u">Pokój dzienny</Room>
+		
+	
+		
+			<Room Id="7btg73a05rse2b">Pokój dzienny + jadalnia</Room>
+		
+	
+		
+			<Room Id="dsisc9b05rid74">Pokój dzienny + kuchnia</Room>
+		
+	
+		
+			<Room Id="4taf5kq0dhegcq">Pokój dzienny + schody</Room>
+		
+	
+		
+			<Room Id="0mmq0f007ap91q">Pokój fitness</Room>
+		
+	
+		
+			<Room Id="4cernts05rb85u">Pokój gościnny</Room>
+		
+	
+		
+			<Room Id="ap2epdm05rb85u">Pokój kąpielowy</Room>
+		
+	
+		
+			<Room Id="u5firf005rb85u">Pokój kominkowy</Room>
+		
+	
+		
+			<Room Id="kj2svtc068b9jq">Pokój lub łazienka</Room>
+		
+	
+		
+			<Room Id="5d0loo105rb85u">Pokój rekreacyjny</Room>
+		
+	
+		
+			<Room Id="b8sfngq05rb85u">Pokój rodzinny</Room>
+		
+	
+		
+			<Room Id="qg1rojl05rb85u">Pokój telewizyjny</Room>
+		
+	
+		
+			<Room Id="kahn35907krf13">Pokój z aneksem kuchennym</Room>
+		
+	
+		
+			<Room Id="abnrm9205rb85u">Pokój z jadalnią</Room>
+		
+	
+		
+			<Room Id="j25maui0b0pb1t">Pokój/gabinet</Room>
+		
+	
+		
+			<Room Id="88pkjkl06354h9">Pokój/garderoba</Room>
+		
+	
+		
+			<Room Id="5rd45dd07jgjmq">Pom. dla rekuperatora</Room>
+		
+	
+		
+			<Room Id="3q4qc710fdgpqd">Pom. dodatkowe (np. strych)</Room>
+		
+	
+		
+			<Room Id="spu8jge05rb85u">Pom. gospodarcze</Room>
+		
+	
+		
+			<Room Id="mo6jlh50fc6nie">Pom. gospodarcze</Room>
+		
+	
+		
+			<Room Id="9a0qqfc05rq50e">Pom. gospodarcze, kotłownia</Room>
+		
+	
+		
+			<Room Id="089rmn30abm4lr">Pom. gospodarcze, pralnia</Room>
+		
+	
+		
+			<Room Id="meqd6of07k0lib">Pom. gospodarcze, spiżarnia</Room>
+		
+	
+		
+			<Room Id="71lbt8m07jm4s3">Pom. techniczne</Room>
+		
+	
+		
+			<Room Id="flp68s205rqks4">Pomieszczenie na olej opałowy</Room>
+		
+	
+		
+			<Room Id="q6gon3j05rb85u">Pomieszczenie nad garażem</Room>
+		
+	
+		
+			<Room Id="k0svn8205rb85u">Pomieszczenie nad wiatrołapem</Room>
+		
+	
+		
+			<Room Id="j0l9i7c05riekk">Pomieszczenie rekreacyjne</Room>
+		
+	
+		
+			<Room Id="eqohq4005rb85u">Pracownia</Room>
+		
+	
+		
+			<Room Id="rnv7lap05rb85u">Pralnia</Room>
+		
+	
+		
+			<Room Id="3r3ukgo0a4rlnc">Pralnia lub garderoba</Room>
+		
+	
+		
+			<Room Id="1mvrjqg05rshh7">Pralnia, kotłownia</Room>
+		
+	
+		
+			<Room Id="irk3qj205rq5pu">Pralnia, suszarnia</Room>
+		
+	
+		
+			<Room Id="ch2sq4g07k0hvm">Prysznic</Room>
+		
+	
+		
+			<Room Id="7g39rr505rb85u">Przebieralnia</Room>
+		
+	
+		
+			<Room Id="ovdqq8a05rb85u">Przejście</Room>
+		
+	
+		
+			<Room Id="dlehls205rb85u">Pustka nad parterem</Room>
+		
+	
+		
+			<Room Id="9jujlje05rb85u">Salon</Room>
+		
+	
+		
+			<Room Id="i3b8tpa05ssqk5">Salon z jadalnią</Room>
+		
+	
+		
+			<Room Id="ut87lno05rb85u">Sauna</Room>
+		
+	
+		
+			<Room Id="s7vmp5205rb85u">Schody</Room>
+		
+	
+		
+			<Room Id="mqv0ktm05rb85u">Schowek</Room>
+		
+	
+		
+			<Room Id="4icom0e05rb85u">Sień</Room>
+		
+	
+		
+			<Room Id="bqfbm4o05rb85u">Siłownia</Room>
+		
+	
+		
+			<Room Id="pi7u0ls065cd80">Siłownia/sauna</Room>
+		
+	
+		
+			<Room Id="bo7cc7a0aojthm">Składzik</Room>
+		
+	
+		
+			<Room Id="1lumvbm05rra18">Składzik ogrodowy</Room>
+		
+	
+		
+			<Room Id="ipqnlf405rb85u">Spiżarnia</Room>
+		
+	
+		
+			<Room Id="k353hjg0a04gk6">Spiżarnia, pom. gospodarcze</Room>
+		
+	
+		
+			<Room Id="nfv6qvv0aent2v">Spiżarnia, pralnia</Room>
+		
+	
+		
+			<Room Id="ru6qofc05rb85u">Strych</Room>
+		
+	
+		
+			<Room Id="vgrncs505rq396">Strych lub pokój</Room>
+		
+	
+		
+			<Room Id="mt74pvl05rb85u">Suszarnia</Room>
+		
+	
+		
+			<Room Id="l9mnjbh05rb85u">Sypialnia</Room>
+		
+	
+		
+			<Room Id="0c0lmqt05rb85u">Sypialnia rodziców</Room>
+		
+	
+		
+			<Room Id="4nktrb405rb85u">Śluza</Room>
+		
+	
+		
+			<Room Id="hajnmmk05rb85u">Taras</Room>
+		
+	
+		
+			<Room Id="gno0jp405rb85u">Toaleta</Room>
+		
+	
+		
+			<Room Id="nn26von05rvgct">Toaleta z natryskiem</Room>
+		
+	
+		
+			<Room Id="2ksdlli0digoeo">Toaleta z przestrzenią gosp-tech.</Room>
+		
+	
+		
+			<Room Id="remile8069l7uv">Toaleta, kotłownia</Room>
+		
+	
+		
+			<Room Id="ah44qu205rb85u">Toaleta, pom. gospodarcze</Room>
+		
+	
+		
+			<Room Id="8bo8tia0a72q53">Toaleta, pralnia</Room>
+		
+	
+		
+			<Room Id="b48bob005rb85u">Warsztat</Room>
+		
+	
+		
+			<Room Id="kd11pr805rb85u">Weranda</Room>
+		
+	
+		
+			<Room Id="nm0aceh0c5he64">Wiata samochodowa</Room>
+		
+	
+		
+			<Room Id="vk6nl2205rb85u">Wiatrołap</Room>
+		
+	
+		
+			<Room Id="422je8g0876l88">Wiatrołap + garderoba</Room>
+		
+	
+		
+			<Room Id="5f8lrbf0a7n7he">Wnęka na dwa samochody</Room>
+		
+	
+</Rooms>
