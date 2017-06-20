@@ -68,21 +68,21 @@ $(document).ready(
      $(".delete_image").click(
              function() {
                 if (confirm("Jesteś pewien?")) {
-                iIdProduct = $(this).attr('rel');
-                sName = $(this).attr('rel2');
-                iIdImages = $(this).attr('rel3');
-                $.ajax({
-                    url: '../products-images/deleteimages',
-                    type: 'get',
-                    data: {
-                        iModelId:iIdProduct, 
-                        sName:sName, 
-                        iImageId:iIdImages
-                    },
-                    success: function(data) {
-                        alert('UDALO SIE');
-                    }
-             });
+                    iIdProduct = $(this).attr('rel');
+                    sName = $(this).attr('rel2');
+                    iIdImages = $(this).attr('rel3');
+                    $.ajax({
+                        url: '../products-images/deleteimages',
+                        type: 'get',
+                        data: {
+                            iModelId:iIdProduct, 
+                            sName:sName, 
+                            iImageId:iIdImages
+                        },
+                        success: function(data) {
+                            window.location.href = window.location.href;
+                        }
+                    });
          }
          });
 

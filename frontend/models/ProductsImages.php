@@ -11,6 +11,8 @@ use Yii;
  * @property integer $products_id
  * @property string $name
  * @property string $description
+ * @property integer $image_type_id
+ * @property integer $storey_type
  */
 class ProductsImages extends \yii\db\ActiveRecord
 {
@@ -28,11 +30,9 @@ class ProductsImages extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['products_id', 'name'], 'required'],
-            [['products_id'], 'integer'],
-            [['name'], 'string', 'max' => 200],
-            [['description'], 'string', 'max' => 200],
-            [['image_type_id', 'storey_type'], 'integer'],
+            [['products_id', 'name', 'description', 'image_type_id'], 'required'],
+            [['products_id', 'image_type_id', 'storey_type'], 'integer'],
+            [['name', 'description'], 'string', 'max' => 200],
         ];
     }
 
@@ -46,6 +46,8 @@ class ProductsImages extends \yii\db\ActiveRecord
             'products_id' => 'Products ID',
             'name' => 'Name',
             'description' => 'Description',
+            'image_type_id' => 'Image Type ID',
+            'storey_type' => 'Storey Type',
         ];
     }
 }

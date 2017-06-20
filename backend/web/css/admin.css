@@ -101,6 +101,31 @@ button.delete_image:hover {
     background-color: #d32a0e;
     border-color: #b1240c;
 }
+button.edit-img-info
+{
+    margin:2px 0 ;
+    color: #ffffff;
+    background-color: #e99002;
+    border-color: #d08002;
+    display: inline-block;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    white-space: nowrap;
+    font-size: 15px;
+    line-height: 1.4;
+    border-radius: 0;
+    -webkit-user-select: none;
+}
+button.edit-img-info:hover {
+    background-color: #d08002;
+    border-color: #d08002;
+}
 .active_prd, .archive_prd
 {
     background-color: #358753;
@@ -160,4 +185,15 @@ button.delete_image:hover {
     background-color: #006687;
     color: #ffffff !important;
     font-weight: bolder;
+}
+.products-images-form label
+{
+    width: 15%;
+    display: inline-block;
+}
+.products-images-form input, .products-images-form select
+{
+    padding: 0 5px;
+    width: 70%;
+    display: inline-block;
 }

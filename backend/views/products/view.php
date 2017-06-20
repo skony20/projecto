@@ -39,7 +39,9 @@ $this->params['breadcrumbs'][] = $this->title;
         echo '<div class="project_image">';
         echo '<a class="fancybox" rel="group" href="'. $sPatch.'/'.$model->id.'/big/'.$oProductsImages->name.'"><img src="'. $sPatch.'/'.$model->id.'/thumbs/'.$oProductsImages->name.'"/></a><br>';
         echo Html::button('Usuń', ['class'=>'delete_image', 'rel'=>$model->id, 'rel2'=> $oProductsImages->name, 'rel3'=>$oProductsImages->id]);
+        echo '<br>'.Html::button('Edytuj info', ['value' => Url::to(['products-images/update', 'id' => $oProductsImages->id]), 'title'=>'Informacje o zdjęciu','class'=>'showModalButton edit-img-info', 'rel'=>$model->id, 'rel2'=> $oProductsImages->name, 'rel3'=>$oProductsImages->id]);
         echo '</div>';
+        
     }
     echo '</div>';
     ?>

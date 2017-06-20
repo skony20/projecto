@@ -806,7 +806,6 @@ class XmlController extends Controller
         $folder = scandir('../../xml/files/temp'); 
         $sArchipelag = str_replace(array("&amp;", "&"), array("&", "&amp;"), file_get_contents('../../xml/files/temp/'.$folder[2].'/projekty.xml'));
         $oDocument = new Response();
-        $sXmlFile  = 'https://www.horyzont.com/xml/horyzont_06_2017.xml';
         $sXmlContent = file_get_contents('../../xml/files/temp/'.$folder[2].'/projekty.xml');
         $sXml = $oDocument->setContent($sXmlContent);
         $oParser = new XmlParser();
@@ -1049,71 +1048,91 @@ class XmlController extends Controller
                 if (isset($aProject->attributes->attribute))
                 {
                     foreach ($aProject->attributes->attribute as $aAtributes)
-                    {
-
-                        switch ($aAtributes->name)
-                        {
-                            case 'Wersja podstawowa':
-                                $iImgType = 1;
-                                $sDescPart3 = '';
-                                break;
-                            case 'Lustro':
-                                $iImgType = 1;
-                                $sDescPart3 = 'Odbicie lustrzane - ';
-                                break;
-                        }
-                        foreach ($aAtributes->images->image as $aImage)
                         {
 
-                            switch ($aImage->type)
+                            if ($aAtributes->name == 'Wersja podstawowa')
                             {
-                                case 'wizualizacje':
-                                    $iImgType = 1;
-                                    $sDescPart1 = 'Wizualizacja';
-                                    break;
-                                case 'elewacje':
-                                    $iImgType = 2;
-                                    $sDescPart1 = 'Elewacja';
-                                    break;
-                                case 'rzuty':
-                                    $iImgType =3;
-                                    $sDescPart1 = 'Rzut';
-                                    break;
-                                case 'przekroje':
-                                    $iImgType =3;
-                                    $sDescPart1 = 'Przekrój';
-                                    break;
-                                case 'sytuacja':
-                                    $iImgType = 5;
-                                    $sDescPart1 = 'Usytuowanie na działce';
-                                    break;
-                                case 'realizacje':
-                                    $iImgType = 4;
-                                    $sDescPart1 = 'Realizacja';
-                                    break;
-                                case 'wnetrza':
-                                    $iImgType = 6;
-                                    $sDescPart1 = 'Wnetrze';
-                                    break;
-                            }
-                                $extension = strtolower(strrchr($aImage->url, '.'));;
-                                $sName = $sSymbol.'_'.$a.''.$extension;
-                                $sDesc = $sDescPart3 .$sDescPart1;
-                                $file_headers = @get_headers($aImage->url);
-                                if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found' || $file_headers[0] == 'HTTP request failed! HTTP/1.1 500') 
+                                foreach ($aAtributes->images->image as $aImage)
                                 {
-                                    $exists = false;
-                                }
-                                else 
-                                {
-                                    $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
-                                    /*Zapisywanie obrazków*/
-                                    $this->saveImage($aImage->url, $iActualProductId, $sName);
-                                    $a++;
-                                }
 
+                                    switch ($aImage->type)
+                                    {
+                                        case 'wizualizacje':
+                                            $iImgType = 1;
+                                            $sDescPart1 = 'Wizualizacja';
+                                            break;
+                                        case 'elewacje':
+                                            $iImgType = 2;
+                                            $sDescPart1 = 'Elewacja';
+                                            break;
+                                        case 'rzuty':
+                                            $iImgType =3;
+                                            $sDescPart1 = 'Rzut';
+                                            break;
+                                        case 'przekroje':
+                                            $iImgType =3;
+                                            $sDescPart1 = 'Przekrój';
+                                            break;
+                                        case 'sytuacja':
+                                            $iImgType = 5;
+                                            $sDescPart1 = 'Usytuowanie na działce';
+                                            break;
+                                        case 'realizacje':
+                                            $iImgType = 4;
+                                            $sDescPart1 = 'Realizacja';
+                                            break;
+                                        case 'wnetrza':
+                                            $iImgType = 6;
+                                            $sDescPart1 = 'Wnetrze';
+                                            break;
+                                    }
+                                    $extension = strtolower(strrchr($aImage->url, '.'));;
+                                    $sName = $sSymbol.'_'.$a.''.$extension;
+                                    $sDesc = $sDescPart1;
+                                    $file_headers = @get_headers($aImage->url);
+                                    if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found' || $file_headers[0] == 'HTTP request failed! HTTP/1.1 500') 
+                                    {
+                                        $exists = false;
+                                    }
+                                    else 
+                                    {
+                                        $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
+                                        /*Zapisywanie obrazków*/
+                                        $this->saveImage($aImage->url, $iActualProductId, $sName);
+                                        $a++;
+                                    }
+                                }
                             }
+                            else
+                            {
+                                $iImgType = 1;
 
+                                foreach ($aAtributes->images->image as $aImage)
+                                {
+
+                                    if  ($aImage->type == 'wizualizacje')
+                                    {
+                                        
+                                        $iImgType = 1;
+                                        $sDescPart1 = 'Wizualizacja';
+                                        $extension = strtolower(strrchr($aImage->url, '.'));;
+                                        $sName = $sSymbol.'_'.$a.''.$extension;
+                                        $sDesc = $sDescPart1;
+                                        $file_headers = @get_headers($aImage->url);
+                                        if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found' || $file_headers[0] == 'HTTP request failed! HTTP/1.1 500') 
+                                        {
+                                            $exists = false;
+                                        }
+                                        else 
+                                        {
+                                            $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
+                                            /*Zapisywanie obrazków*/
+                                            $this->saveImage($aImage->url, $iActualProductId, $sName);
+                                            $a++;
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                     else

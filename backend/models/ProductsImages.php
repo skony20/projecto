@@ -11,6 +11,8 @@ use Yii;
  * @property integer $products_id
  * @property string $name
  * @property string $description
+ * @property integer $image_type_id
+ * @property integer $storey_type
  */
 class ProductsImages extends \yii\db\ActiveRecord
 {
@@ -28,10 +30,9 @@ class ProductsImages extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['products_id', 'name'], 'required'],
-            [['products_id'], 'integer'],
-            [['name'], 'string', 'max' => 200],
-            [['description'], 'string', 'max' => 200],
+            [['products_id', 'name', 'description', 'image_type_id'], 'required'],
+            [['products_id', 'image_type_id', 'storey_type'], 'integer'],
+            [['name', 'description'], 'string', 'max' => 200],
         ];
     }
 
@@ -41,10 +42,12 @@ class ProductsImages extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'products_id' => Yii::t('app', 'Products ID'),
-            'name' => Yii::t('app', 'Name'),
-            'description' => Yii::t('app', 'Description'),
+            'id' => 'ID',
+            'products_id' => 'Id',
+            'name' => 'Nazwa',
+            'description' => 'Opis',
+            'image_type_id' => 'Typ zdjęcia',
+            'storey_type' => 'Rodzaj piętra',
         ];
     }
 }
