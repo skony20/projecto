@@ -95,32 +95,37 @@ class ProductsAttributesController extends Controller
             
             foreach ($aDataAttributes as $iDataAttrKey => $iDataAttrValue)
             {
-                if ($iDataAttrKey >0)
+                
+                if ($iDataAttrKey != '_csrf-backend')
                 {
                     $oPrdAttr = $model->findOne(['attributes_id'=>$iDataAttrKey, 'products_id'=>$model->products_id]);
-                    if ($oPrdAttr)
-                    {
-                        $oPrdAttr->attributes_id = $iDataAttrKey;
-                        $oPrdAttr->value = $iDataAttrValue;
-                        $oPrdAttr->update(false);
-                        
-                        if($iDataAttrValue == '')
-                        {
-                            $oPrdAttr->delete();
-                        }
-                    }
-                    else 
+                    if (!$oPrdAttr)
                     {
                         if ($iDataAttrValue != '')
                         {
+                            $model = new ProductsAttributes();
                             $model->products_id = $_GET['id'];
                             $model->attributes_id = $iDataAttrKey;
                             $model->value = $iDataAttrValue;
                             $model->save(false);
                         }
+                        
                     }
-                                            
+                    else 
+                    {
+                        if ($iDataAttrValue != '')
+                        {
+                            $oPrdAttr->attributes_id = $iDataAttrKey;
+                            $oPrdAttr->value = $iDataAttrValue;
+                            $oPrdAttr->save(false);
+                        }
+                        if($iDataAttrValue == '')
+                        {
+                            $oPrdAttr->delete();
+                        }
+                    }                 
                 }
+                
             }
             return $this->redirect(Yii::$app->request->referrer);
         }

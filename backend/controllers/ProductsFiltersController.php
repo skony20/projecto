@@ -120,7 +120,7 @@ class ProductsFiltersController extends Controller
                 $model->save(false);
             }
 
-            return $this->redirect(['./products']);
+            return $this->redirect(Yii::$app->request->referrer);
         } 
         elseif (Yii::$app->request->isAjax) 
         {

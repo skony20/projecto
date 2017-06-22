@@ -241,15 +241,15 @@ class XmlController extends Controller
                     $oProductsDesriptions->languages_id = 1;
                     $oProductsDesriptions->name = $aProject->Nazwa;
                     $oProductsDesriptions->nicename_link = $sSymbol;
-                    $oProductsDesriptions->html_description = strip_tags($aProject->Opis_projektu, '<br />'). "<br>Technologia:<br>".strip_tags($aProject->Technologia_opis, '<br />');
+                    $oProductsDesriptions->html_description = strip_tags($aProject->Opis_projektu, '<br />, <ul>, <li>, </ul>, </li>'). "<br>Technologia:<br>".strip_tags($aProject->Technologia_opis, '<br />, <ul>, <li>, </ul>, </li>');
                     $oProductsDesriptions->save(false);
                     
 
                 /*Dane techniczne i filtry*/    
                     (isset($aProject->Wysokosc_budynku) ? $this->addAttr($iActualProductId, 1, $aProject->Wysokosc_budynku) :'');
                     (isset($aProject->Pow_uzytkowa) ? $this->addAttr($iActualProductId, 4, $aProject->Pow_uzytkowa) :'');
-                    (isset($aProject->Dzialka_min_szerokosc) ? $this->addAttr($iActualProductId, 6, $aProject->Dzialka_min_szerokosc) :'');
-                    (isset($aProject->Dzialka_min_dlugosc ) ? $this->addAttr($iActualProductId, 7, $aProject->Dzialka_min_dlugosc ) :'');
+                    (isset($aProject->Dzialka_min_szerokosc) ? $this->addAttr($iActualProductId, 7, $aProject->Dzialka_min_szerokosc) :'');
+                    (isset($aProject->Dzialka_min_dlugosc ) ? $this->addAttr($iActualProductId, 6, $aProject->Dzialka_min_dlugosc ) :'');
                     (isset($aProject->Kat_dachu1 ) ? $this->addAttr($iActualProductId, 8, $aProject->Kat_dachu1 ) :'');
                     (isset($aProject->Liczba_pokoi ) ? $this->addAttr($iActualProductId, 9, $aProject->Liczba_pokoi ) :'');
                     (isset($aProject->Pow_zabudowy ) ? $this->addAttr($iActualProductId, 11, $aProject->Pow_zabudowy ) :'');
@@ -329,7 +329,7 @@ class XmlController extends Controller
                    foreach ($aProject->Images->Img as $aImages)
                    {
                         $sImgLink = str_replace(['x=500&', 'maxy=367&'], ['x=1500&',''], $aImages->Url[0]);
-                        $ImagesTitle = (isset($aImages->Tytul) ? $aImages->Tytul : 'Rzut');
+                        $sDesc = $ImagesTitle = (isset($aImages->Tytul) ? $aImages->Tytul : 'Rzut');
 			$sName = $sSymbol.'_'.$a.'.jpg';
                         $a++;
                         $iImgType = 3;
@@ -345,8 +345,6 @@ class XmlController extends Controller
                             $this->saveImage($sImgLink , $iActualProductId, $sName);
                             $a++;
                         }
-                        $this->addImage($iActualProductId, $sName, $ImagesTitle, $iImgType);
-                        $this->saveImage($sImgLink , $iActualProductId, $sName);
                         switch ($aImages->Tytul)
                         {
                             case "Piwnica":
@@ -499,8 +497,8 @@ class XmlController extends Controller
                 /*Dane techniczne i filtry*/
                     ($aProject->powierzchnia->uzytkowa !='' ? $this->addAttr($iActualProductId, 4, $aProject->powierzchnia->uzytkowa) : '');
                     ($aProject->powierzchnia->garaz !='' ? $this->addAttr($iActualProductId, 5, $aProject->powierzchnia->garaz) : '');
-                    ($aProject->dzialka->min_szerokosc_dzialki !='' ? $this->addAttr($iActualProductId, 6, $aProject->dzialka->min_szerokosc_dzialki) : '');
-                    ($aProject->dzialka->min_dlugosc_dzialki !='' ? $this->addAttr($iActualProductId, 7, $aProject->dzialka->min_szerokosc_dzialki) : '');
+                    ($aProject->dzialka->min_dlugosc_dzialki !='' ? $this->addAttr($iActualProductId, 6, $aProject->dzialka->min_dlugosc_dzialki) : '');
+                    ($aProject->dzialka->min_szerokosc_dzialki !='' ? $this->addAttr($iActualProductId, 7, $aProject->dzialka->min_szerokosc_dzialki) : '');
                     ($aProject->dach->kat !='' ? $this->addAttr($iActualProductId, 8, $aProject->dach->kat) : '');
                     ($aProject->powierzchnia->netto !='' ? $this->addAttr($iActualProductId, 10, $aProject->powierzchnia->netto) : '');
                     ($aProject->kubatura !='' ? $this->addAttr($iActualProductId, 15, $aProject->kubatura) : '');
