@@ -2,6 +2,14 @@
     Created on : 2016-09-02, 14:22:00
     Author     : Mariusz Skonieczny, mariuszskonieczny@hotmail.com
 */
+/*nadpisanie boostrap*/
+
+.btn
+{
+    padding: 4px 6px;
+    font-size: 12px;
+    line-height: 1;
+}
 .form-control {
     display: block;
     width: 100%;
@@ -15,6 +23,7 @@
     border: 1px solid #cccccc;
     border-radius: 0;
 }
+
 .radiolist_prdflt
 {
     margin:15px 0;
@@ -75,56 +84,9 @@ span.radio_value
     border:1px solid #dedede;
     text-align:center;
 }
-button.delete_image
+.project_image a img
 {
-    margin:2px 0 ;
-    color: #ffffff;
-    background-color: #f04124;
-    border-color: #ea2f10;
-    display: inline-block;
-    font-weight: normal;
-    text-align: center;
-    vertical-align: middle;
-    border: 1px solid transparent;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
-    background-image: none;
-    white-space: nowrap;
-    font-size: 15px;
-    line-height: 1.4;
-    border-radius: 0;
-    -webkit-user-select: none;
-}
-button.delete_image:hover {
-    color: #ffffff;
-    background-color: #d32a0e;
-    border-color: #b1240c;
-}
-button.edit-img-info
-{
-    margin:2px 0 ;
-    color: #ffffff;
-    background-color: #e99002;
-    border-color: #d08002;
-    display: inline-block;
-    font-weight: normal;
-    text-align: center;
-    vertical-align: middle;
-    border: 1px solid transparent;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
-    background-image: none;
-    white-space: nowrap;
-    font-size: 15px;
-    line-height: 1.4;
-    border-radius: 0;
-    -webkit-user-select: none;
-}
-button.edit-img-info:hover {
-    background-color: #d08002;
-    border-color: #d08002;
+    padding-bottom: 5px;
 }
 .active_prd, .archive_prd
 {
@@ -195,5 +157,14 @@ button.edit-img-info:hover {
 {
     padding: 0 5px;
     width: 70%;
+    display: inline-block;
+}
+
+.products-images-form-add label
+{
+    width: 100%;
+    font-size: 20px;
+    padding: 10px 0;
+    color:red;
     display: inline-block;
 }

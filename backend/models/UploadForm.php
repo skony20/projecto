@@ -10,6 +10,7 @@ use Imagine;
 
 class UploadForm extends Model
 {
+    public $importFile;
     public $imageFiles;
     public $image;
     public $id;
@@ -28,7 +29,12 @@ class UploadForm extends Model
             return false;
     }
 
-
+    public function rules()
+    {
+        return [
+            [['importFile'], 'file', 'extensions' => 'jpg, png', 'skipOnEmpty' => true],
+        ];
+    }
     public function saveImages()
     {
 

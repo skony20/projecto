@@ -9,7 +9,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use app\models\UploadForm;
+use app\models\Upload;
+use yii\web\UploadedFile;
 
 /**
  * ProductsImagesController implements the CRUD actions for ProductsImages model.
@@ -32,7 +33,7 @@ class ProductsImagesController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'deleteimages'],
+                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'deleteimages', 'add'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -154,4 +155,27 @@ class ProductsImagesController extends Controller
         unlink($filename3);
         
     }
+    public function actionAdd($id)
+    {
+        $model = new \app\models\UploadImage();
+         if (Yii::$app->request->isPost) 
+        {
+            $oFile = UploadedFile::getInstance($model, 'importFile');
+            $model->upload($id, 'nazwa.jpg', 'opis', 0, $oFile->tempName);
+            
+            
+        }
+        else 
+        {
+            if (Yii::$app->request->isAjax)
+            {
+                return $this->renderAjax('add',['model'=>$model]);
+            }
+            else
+            {
+                return $this->render('add',['model'=>$model]);
+            }
+        }
+    }
+      
 }

@@ -15,7 +15,8 @@ class AppAsset extends AssetBundle
         'css/site.css',
         'css/admin.css',
         'css/orders.css',
-        'css/jquery.fancybox.css'
+        'css/jquery.fancybox.css',
+        'css/font-awesome.min.css',
     ];
     public $js = [
         'js/admin.js', 
