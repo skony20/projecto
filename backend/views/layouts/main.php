@@ -73,7 +73,7 @@ AppAsset::register($this);
                 ['label' => 'Import CSV', 'url' => ['/xml/import']],
                 ['label' => 'Import ProArte', 'url' => ['/xml/proarte']],
                 ['label' => 'Import Dom Projekt', 'url' => ['/xml/domprojekt']],
-                ['label' => 'Import Archipelag - nie zrobione', 'url' => ['/xml/archipelag']],
+                ['label' => 'Import Archipelag', 'url' => ['/xml/archipelag']],
                 ['label' => 'Import Horyzont', 'url' => ['/xml/horyzont']],
                 ['label' => 'Import MGProjekt', 'url' => ['/xml/mgprojekt']],
                 ['label' => 'Wielkość działki'],

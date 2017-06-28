@@ -17,8 +17,7 @@ use app\models\ImageType;
     <?= $form->field($model, 'products_id')->textInput() ?>
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'image_type_id')->dropDownList(ArrayHelper::map(ImageType::find()->all(), 'id', 'name'), ['prompt' => '-=Rodzaj zdjęcia=-'])?>
-    <?= $form->field($model, 'storey_type')->dropDownList(['0'=>'Piwnica', '1'=>'Parter' ,'2'=>'Pietro lub poddasze', '3'=>'Strych', '4'=>'Antresola', '5'=>'Przekrój'
-], ['prompt' => '-=Pietro=-'])?>
+    <?= $form->field($model, 'storey_type')->dropDownList(['0'=>'Piwnica', '1'=>'Parter' ,'2'=>'Pietro lub poddasze', '3'=>'Strych', '4'=>'Antresola', '5'=>'Przekrój'], ['prompt' => '-=Pietro=-'])?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Dodaj' : 'Zmień', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

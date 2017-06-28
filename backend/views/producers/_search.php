@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'languages_id') ?>
 
     <?= $form->field($model, 'logo') ?>
-
+    <?= $form->field($model, 'sort_order') ?>
     <?= $form->field($model, 'nicename') ?>
 
     <?php // echo $form->field($model, 'meta_decription') ?>

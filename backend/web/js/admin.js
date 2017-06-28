@@ -90,7 +90,7 @@ $(document).ready(
              function() {
                 iIdProduct = $(this).attr('rel');
                 $.ajax({
-                    url: 'products/unactive/'+iIdProduct,
+                    url: 'unactive/'+iIdProduct,
                     success: function(data) {
                         window.location.href = window.location.href;
                     }
@@ -101,7 +101,7 @@ $(document).ready(
              function() {
                 iIdProduct = $(this).attr('rel');
                 $.ajax({
-                    url: 'products/active/'+iIdProduct,
+                    url: 'active/'+iIdProduct,
                 success: function(data) {
                     window.location.href = window.location.href;
                 }
@@ -112,7 +112,7 @@ $(document).ready(
              function() {
                 iIdProduct = $(this).attr('rel');
                 $.ajax({
-                    url: 'products/unarchive/'+iIdProduct,
+                    url: 'unarchive/'+iIdProduct,
                     success: function(data) {
                         window.location.href = window.location.href;
                     }
@@ -123,7 +123,7 @@ $(document).ready(
              function() {
                 iIdProduct = $(this).attr('rel');
                 $.ajax({
-                    url: 'products/archive/'+iIdProduct,
+                    url: 'archive/'+iIdProduct,
                 success: function(data) {
                     window.location.href = window.location.href;
                 }

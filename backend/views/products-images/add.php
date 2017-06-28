@@ -19,7 +19,10 @@ use app\models\ImageType;
 <div class="products-images-form-add">
 
     <?php $form = ActiveForm::begin(); ?>
-
+    <?= $form->field($model, 'storey_type')->dropDownList(['0'=>'Piwnica', '1'=>'Parter' ,'2'=>'Pietro lub poddasze', '3'=>'Strych', '4'=>'Antresola', '5'=>'Przekrój'
+], ['prompt' => '-=Pietro=-'])->label(false)?>
+    <?= $form->field($model, 'image_type_id')->dropDownList(ArrayHelper::map(ImageType::find()->all(), 'id', 'name'), ['prompt' => '-=Rodzaj zdjęcia=-'])->label(false)?>
+    <?= $form->field($model, 'description')->textInput(['maxlength' => true, 'placeholder'=>'Opis'])->label(false) ?>
     <?= $form->field($model, 'importFile')->fileInput(['style'=>'display:none'])->label('<i class="fa fa-upload fa-2x" aria-hidden="true"></i>',['class'=>'btn btn-default btn-sm center-block btn-file']) ?>
 
     <div class="form-group">

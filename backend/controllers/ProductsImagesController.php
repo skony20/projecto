@@ -158,12 +158,12 @@ class ProductsImagesController extends Controller
     public function actionAdd($id)
     {
         $model = new \app\models\UploadImage();
-         if (Yii::$app->request->isPost) 
+        if (Yii::$app->request->isPost) 
         {
+            $aImageInfo = Yii::$app->request->post('UploadImage');
             $oFile = UploadedFile::getInstance($model, 'importFile');
-            $model->upload($id, 'nazwa.jpg', 'opis', 0, $oFile->tempName);
-            
-            
+            $model->upload($id, $aImageInfo['description'], $aImageInfo['image_type_id'], $oFile, $aImageInfo['storey_type']);
+            return $this->redirect(Yii::$app->request->referrer);
         }
         else 
         {

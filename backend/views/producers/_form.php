@@ -17,7 +17,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'is_active_prd')->checkbox() ?>
-
+    <?= $form->field($model, 'sort_order')->textInput() ?>
     <?= $form->field($model, 'logo')->textInput(['maxlength' => true]) ?>
 
 

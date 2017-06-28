@@ -118,22 +118,31 @@ class XmlController extends Controller
         }
         
     }
-    private function addImage ($p_iPrdId, $p_sName, $p_sDesc, $p_iType)
+    private function addImage ($p_iPrdId, $p_sName, $p_sDesc, $p_iType, $p_iStorey = '')
     {
         $iPrdId = ((int)($p_iPrdId));
         $sName = $p_sName;
         $sDesc = $p_sDesc;
         $iType = ((int)($p_iType));
+        $iStorey = $p_iStorey;
         $oPrdImage = new ProductsImages();
         $oPrdImage->products_id = $iPrdId;
         $oPrdImage->name = $sName;
         $oPrdImage->description = $sDesc;
         $oPrdImage->image_type_id = $iType;
+        $oPrdImage->storey_type = $iStorey;
         $oPrdImage->save(false);
     }
     
     private function saveImage($p_sOrginal, $p_iPrdId, $p_sName)
     {
+        
+        $contextOptions = array(
+            "ssl" => array(
+            "verify_peer"      => false,
+            "verify_peer_name" => false,
+            ),
+        );
         $sOrginal = $p_sOrginal;
         $iPrdId = $p_iPrdId;
         $sName = $p_sName;
@@ -154,7 +163,7 @@ class XmlController extends Controller
             mkdir($sPatch.'/'.$iPrdId.'/info', 0777);
         }
         
-        copy($sOrginal, $sBigPatch.$sName);
+        copy($sOrginal, $sBigPatch.$sName, stream_context_create( $contextOptions ));
         $aImageSixe =getimagesize($sBigPatch.$sName); 
         if ($aImageSixe[0] >= $aImageSixe[1])
         {
@@ -309,7 +318,7 @@ class XmlController extends Controller
                         $sWizLink = str_replace(['x=500&', 'maxy=367&'], ['x=1500&',''], $aWizualizacje->Url[0]);
                         $WizTitle = (isset($aWizualizacje->Tytul) ? $aWizualizacje->Tytul : '');
                         $sName = $sSymbol.'_'.$a.'.jpg';
-                        $sDesc = 'Wizualizacja ';
+                        $sDesc = 'Wizualizacja';
                         $iImgType = 1;
                         $file_headers = @get_headers($sWizLink);
                         if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found' || $file_headers[0] == 'HTTP/1.1 500 Internal Server Error') 
@@ -497,8 +506,8 @@ class XmlController extends Controller
                 /*Dane techniczne i filtry*/
                     ($aProject->powierzchnia->uzytkowa !='' ? $this->addAttr($iActualProductId, 4, $aProject->powierzchnia->uzytkowa) : '');
                     ($aProject->powierzchnia->garaz !='' ? $this->addAttr($iActualProductId, 5, $aProject->powierzchnia->garaz) : '');
-                    ($aProject->dzialka->min_dlugosc_dzialki !='' ? $this->addAttr($iActualProductId, 6, $aProject->dzialka->min_dlugosc_dzialki) : '');
-                    ($aProject->dzialka->min_szerokosc_dzialki !='' ? $this->addAttr($iActualProductId, 7, $aProject->dzialka->min_szerokosc_dzialki) : '');
+                    ($aProject->dzialka->min_dlugosc_dzialki !='' ? $this->addAttr($iActualProductId, 7, $aProject->dzialka->min_dlugosc_dzialki) : '');
+                    ($aProject->dzialka->min_szerokosc_dzialki !='' ? $this->addAttr($iActualProductId, 6, $aProject->dzialka->min_szerokosc_dzialki) : '');
                     ($aProject->dach->kat !='' ? $this->addAttr($iActualProductId, 8, $aProject->dach->kat) : '');
                     ($aProject->powierzchnia->netto !='' ? $this->addAttr($iActualProductId, 10, $aProject->powierzchnia->netto) : '');
                     ($aProject->kubatura !='' ? $this->addAttr($iActualProductId, 15, $aProject->kubatura) : '');
@@ -640,7 +649,7 @@ class XmlController extends Controller
                         $sViewsLink = $aViews->url_web;
                         $extension = strtolower(strrchr($aViews->url_web, '.'));
                         $sName = $sSymbol.'_'.$a.''.$extension;
-                        $sDesc = 'Wizualizacja - '. $sName;
+                        $sDesc = 'Wizualizacja';
                         $iImgType =1;
                         $file_headers = @get_headers($sViewsLink);
                         if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found') 
@@ -656,6 +665,7 @@ class XmlController extends Controller
                         }
                     }
                      /*Elewacje*/
+                    $b=1;
                     if (isset($aProject->grafika->elewacje))
                     {
                         foreach ($aProject->grafika->elewacje->ele as $aViews)
@@ -663,8 +673,13 @@ class XmlController extends Controller
                             $sViewsLink = $aViews->url_web;
                             $extension = strtolower(strrchr($aViews->url_web, '.'));
                             $sName = $sSymbol.'_'.$a.''.$extension;
-                            $sDesc = 'Elewacja - '. $sName;
+                            $sDesc = 'Elewacja';
                             $iImgType =2;
+                            if ($b >4)
+                            {
+                                $sDesc = 'Usytuowanie na działce';
+                                $iImgType =5;    
+                            }
                             $file_headers = @get_headers($sViewsLink);
                             if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found') 
                             {
@@ -677,6 +692,7 @@ class XmlController extends Controller
                                 $this->saveImage($sViewsLink, $iActualProductId, $sName);
                                 $a++;    
                             }
+                        $b++;
                         }
                     }
                      /*rzuty*/
@@ -732,7 +748,7 @@ class XmlController extends Controller
                             $sViewsLink = $aViews->url_web;
                             $extension = strtolower(strrchr($aViews->url_web, '.'));
                             $sName = $sSymbol.'_'.$a.''.$extension;
-                            $sDesc = 'Realizacja - '. $sName;
+                            $sDesc = 'Realizacja';
                             $iImgType =4;
                             $file_headers = @get_headers($sViewsLink);
                             if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found') 
@@ -788,10 +804,14 @@ class XmlController extends Controller
     /*Import xml-a Archipelag*/
     public function actionArchipelag()
     {
-        
-        $url="https://www.archipelag.pl/files/ProjectExport/t26d6ch0bqdeu6/project_export.zip";
-        $plik = file_get_contents($url);
-        copy($url, '../../xml/project_export.zip');
+        $contextOptions = array(
+            "ssl" => array(
+            "verify_peer"      => false,
+            "verify_peer_name" => false,
+            ),
+        );
+        $url="http://www.archipelag.pl/files/ProjectExport/t26d6ch0bqdeu6/project_export.zip";
+        copy($url, '../../xml/project_export.zip', stream_context_create( $contextOptions ));
         $zip = new \ZipArchive();
         $res = $zip->open('../../xml/project_export.zip');
         if ($res === TRUE) {
@@ -809,19 +829,341 @@ class XmlController extends Controller
         $oParser = new XmlParser();
         $oArchipelag = $oParser->parse($sXml);
         //echo '<pre>33'. print_r($oArchipelag, TRUE); die();
-        foreach ($oArchipelag['Project'] as $aProject)
-        {
-            if ($aProject->InfoKind == 1)
-            {
+        foreach ($oArchipelag['Project'] as $aProject){
+            if ($aProject->InfoKind == 1){
                 $oProjekt = new Products();
                 $sId = ((string)($aProject->attributes()->Id));
                 $oExist = $oProjekt->findOne(['ean' => $sId]);
                 if (!$oExist)
                 {
-                    echo $aProject->Name .' '.$aProject->Cubature .'<br>';
+                    switch ($aProject->PriceVAT)
+                    {
+                        case 23.00:
+                            $iVatId = 1;
+                            break;
+                        case 8.00:
+                            $iVatId = 2;
+                            break;
+                        case 5.00:
+                            $iVatId = 3;
+                            break;
+                        case 0.00:
+                            $iVatId = 4;
+                            break;
+                    }
+                    /*Dodanie produktu*/
+                    $sSymbol = $this->zamiana($aProject->Name);
+                    $sSymbol = ($this->checkSymbol($sSymbol) ? $sSymbol.'-archipelag' :$sSymbol);
+                    $oProjekt->is_active = 0;
+                    $oProjekt->producers_id = 5;
+                    $oProjekt->vats_id = $iVatId;
+                    $oProjekt->price_brutto_source = ceil(($aProject->PriceNetto)*((100+($aProject->PriceVAT))/100));
+                    $oProjekt->price_brutto = ceil(($aProject->PriceNetto)*((100+($aProject->PriceVAT))/100));
+                    $oProjekt->stock = 99;
+                    $oProjekt->creation_date=time();
+                    $oProjekt->symbol = $sSymbol;
+                    $oProjekt->ean = $aProject->attributes()->Id;
+                    $oProjekt->save(false);
+                /*Dodanie opisów do produkty*/
+                    $iActualProductId = Yii::$app->db->getLastInsertID();
+                    $oProductsDesriptions = new ProductsDescripton();
+                    $oProductsDesriptions->products_id = $iActualProductId;
+                    $oProductsDesriptions->languages_id = 1;
+                    $oProductsDesriptions->name = $aProject->Name;
+                    $oProductsDesriptions->nicename_link = $sSymbol;
+                    $oProductsDesriptions->html_description = strip_tags($aProject->BodyDescription. "<br>Technologia:<br>".$aProject->BodyTechnology. "<br>Wykończenie:<br>".$aProject->BodyFinish. "', ", '<br>, <ul>, <li>, <b></b>');
+                    $oProductsDesriptions->save(false);
+
+                    
+                /*Dane techniczne*/
+                    ($aProject->Height !='' ? $this->addAttr($iActualProductId, 1, $aProject->Height) : '');
+                    ($aProject->Width !='' ? $this->addAttr($iActualProductId, 2, $aProject->Width) : '');
+                    ($aProject->Length !='' ? $this->addAttr($iActualProductId, 3, $aProject->Length) : '');
+                    ($aProject->AreaUse !='' ? $this->addAttr($iActualProductId, 4, $aProject->AreaUse) : '');
+                    ($aProject->AreaGarage !='' ? $this->addAttr($iActualProductId, 5, $aProject->AreaGarage) : '');
+                    ($aProject->LandLength !='' ? $this->addAttr($iActualProductId, 6, $aProject->LandLength) : '');
+                    ($aProject->LandWidth !='' ? $this->addAttr($iActualProductId, 7, $aProject->LandWidth) : '');
+                    ($aProject->RoofAngle !='' ? $this->addAttr($iActualProductId, 8, $aProject->RoofAngle) : '');
+                    ($aProject->AreaNetto !='' ? $this->addAttr($iActualProductId, 10, $aProject->AreaNetto) : '');
+                    ($aProject->AreaBuilding !='' ? $this->addAttr($iActualProductId, 11, $aProject->AreaBuilding) : '');
+                    ($aProject->AreaBasement !='' ? $this->addAttr($iActualProductId, 13, $aProject->AreaBasement) : '');
+                    ($aProject->AreaAttic !='' ? $this->addAttr($iActualProductId, 14, $aProject->AreaAttic) : '');
+                    ($aProject->Cubature !='' ? $this->addAttr($iActualProductId, 15, $aProject->Cubature) : '');
+                    ($aProject->RoofArea !='' ? $this->addAttr($iActualProductId, 16, $aProject->RoofArea) : '');
+                    ($aProject->CountBathroom !='' ? $this->addAttr($iActualProductId, 18, $aProject->CountBathroom) : '');
+                    ($aProject->CountToilet !='' ? $this->addAttr($iActualProductId, 19, $aProject->CountToilet) : '');
+                /*Autor*/
+                    if ($aProject->Authors->Author->attributes()->Id != '')
+                        {
+                           
+                            $sXmlAuthor = file_get_contents('../../xml/files/temp/'.$folder[2].'/author.xml');
+                            $sAuthor = $oDocument->setContent($sXmlAuthor);
+                            $oParser = new XmlParser();
+                            $oAuthors = $oParser->parse($sAuthor);
+                            //echo '<pre>'. print_r($oAuthors, TRUE); die();
+                            $sAuthorId = $aProject->Authors->Author->attributes()->Id;
+                            foreach ($oAuthors['Author'] as $aAuthor)
+                            {
+                                $sAuthotIdFromXml = $aAuthor->attributes()->Id;   
+                                if (strcmp($sAuthorId, $sAuthotIdFromXml) == 0)
+                                {
+                                    $sAuthor = $aAuthor->NameFirst.' '. $aAuthor->NameLast;
+                                }
+                            }
+                            $oAutor = new \app\models\Author();
+                            $oAutor->products_id = $iActualProductId ;
+                            $oAutor->name = $sAuthor;
+                            $oAutor->save(false);
+                        }
+                /*Filtry*/
+                    /*Ilość kondygnacji*/
+                    $iType = '';
+                    switch ($aProject->InfoType)
+                    {
+                        case 1:
+                            $iType = 17;
+                            break;
+                        case 2:
+                            $iType = 18;
+                            break;
+                        case 3:
+                            $iType = 19;
+                            break;
+                    }
+                    $this->addFilter($iActualProductId, $iType);
+
+                    /*Piwnica*/
+                    $iBasement = '';
+                    switch ($aProject->InfoBasement)
+                    {
+                        case 0:
+                            $iBasement = 39;
+                            break;
+                        case 1:
+                            $iBasement = 20;
+                            break;
+
+                    }
+                    $this->addFilter($iActualProductId, $iBasement);
+                    /*Dach*/
+                    $iRoof = 44;
+                    switch ($aProject->RoofType)
+                    {
+                        case 'dwuspadowy':
+                            $iRoof = 22;
+                            break;
+                        case 'czterospadowy':
+                            $iRoof = 23;
+                            break;
+                        case 'kopertowy':
+                            $iRoof = 41;
+                            break;
+                        case 'wielospadowy':
+                            $iRoof = 42;
+                            break;
+                        case 'mansardowy':
+                            $iRoof = 43;
+                            break;
+                        case 'płaski':
+                            $iRoof = 44;
+                            break;
+                    }
+                    $this->addFilter($iActualProductId, $iRoof);
+
+                    /*Garaż*/
+                    $iGarage = 40;
+
+                    switch ($aProject->InfoGarage)
+                    {
+                        case 0:
+                            $iGarage = 40;
+                            break;
+                        case 1:
+                            $iGarage = 24;
+                            break;
+                        case 2:
+                            $iGarage = 25;
+                            break;
+                    }
+                    $this->addFilter($iActualProductId, $iGarage);
+
+                    /*Kominek*/
+                    $iFireplace = '';
+                    switch ($aProject->InfoFireplace)
+                    {
+                        case 0:
+                            $iFireplace = 29;
+                            break;
+                        case 1:
+                            $iFireplace = 28;
+                            break;
+
+                    }
+                    $this->addFilter($iActualProductId, $iFireplace);
+                    $iEnergy = 34;
+                    $iKitchen = 27;
+                    $iStyle = 15;
+                    $iHeat = 31;
+                    foreach ($aProject->Categories->Category as $sCategory)
+                    {
+                        switch ($sCategory)
+                        {
+                            case 'Projekty domów energooszczędnych':
+                                $iEnergy = 32; 
+                                break;
+                            case 'Projekty domów z otwartą kuchnią':
+                                $iKitchen = 26; 
+                                break;
+                            case 'Projekty domów nowoczesnych z poddaszem':
+                            case 'Projekty domów nowoczesnych z garażem':
+                                $iStyle = 16; 
+                                break;
+                            case 'Domy z możliwością montażu kotła na paliwo stałe':
+                                $iHeat = 30; 
+                                break;
+                        }
+                         
+                    }
+                    $this->addFilter($iActualProductId, $iEnergy);
+                    $this->addFilter($iActualProductId, $iKitchen);
+                    $this->addFilter($iActualProductId, $iStyle);
+                    $this->addFilter($iActualProductId, $iHeat);
+                
+                    
+                  $a=0;
+                /*Obrazki*/
+                    /*Wizualizacje*/
+                    foreach ($aProject->Views->View as $aViews)
+                    {
+                        $sViewsLink = $aViews->attributes()->Path;
+                        $extension = strtolower(strrchr($sViewsLink, '.'));
+                        $sName = $sSymbol.'_'.$a.''.$extension;
+                        $sDesc = 'Wizualizacja';
+                        $iImgType = 1;
+                        $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
+                        /*Zapisywanie obrazków*/
+                        $this->saveImage($sViewsLink, $iActualProductId, $sName);
+                        $a++;    
+
+                    }
+                    /*Rzuty*/
+                    if (isset($aProject->Storeys))
+                    {
+                        foreach ($aProject->Storeys->Storey as $aViews)
+                        {
+                            $sViewsLink = $aViews->attributes()->PathImg;
+                            $extension = strtolower(strrchr($sViewsLink, '.'));
+                            $sName = $sSymbol.'_'.$a.''.$extension;
+                            $sDesc = $aViews->attributes()->Id;
+                            $iImgType = 3;
+                            switch ($aViews->attributes()->Id)
+                            {
+                                //0-piwnica 1-parter 2-pietro lub poddasze 3-strych 4-antresola 5 -przekroj
+
+                                case 'Piwnica':
+                                    $iStoreyType = 0;
+                                    break;
+                                case 'Przyziemie':
+                                case 'Parter':
+                                case 'Parter wersja II':
+                                    $iStoreyType = 1;
+                                    break;
+                                case 'Półpiętro':
+                                case 'Piętro I':
+                                case 'Piętro II':
+                                case 'Poddasze':
+                                case 'Poddasze do adaptacji':
+                                case 'Poddasze II':
+                                case 'Poddasze wersja II':
+                                    $iStoreyType = 2;
+                                    break;
+                                case 'Strych':
+                                    $iStoreyType = 3;
+                                    break;
+                                case 'Antresola':
+                                    $iStoreyType = 4;
+                                    break;
+                                
+                            }
+                           
+                            $this->addImage($iActualProductId, $sName, $sDesc, $iImgType, $iStoreyType);
+                            /*Zapisywanie obrazków*/
+                            $this->saveImage($sViewsLink, $iActualProductId, $sName);
+                            $a++;    
+
+                            $iBedRooms = 0;
+                            foreach ($aViews->Rooms->Room as $aRoom)
+                            {
+                                $oStorey = new Storeys();
+                                $oStorey->products_id = $iActualProductId;
+                                $oStorey->storey_type = $iStoreyType;
+                                $oStorey->storey_name = ($aViews->attributes()->Id ? $aViews->attributes()->Id : '');
+                                $oStorey->room_name = ($aRoom->attributes()->Id  ? $aRoom->attributes()->Id : '');
+                                $oStorey->room_area = ($aRoom->Area ? $aRoom->Area : '');
+                                $oStorey->save(false);
+                                if ($aRoom->attributes()->Id == 'Sypialnia' || $aRoom->attributes()->Id == 'Sypialnia rodziców')
+                                {
+                                    $iBedRooms++;
+                                }
+                            }
+                            ($iBedRooms != 0 ? $this->addAttr($iActualProductId, 17, $iBedRooms) : '');
+                            
+                        }
+                    }
+                    /*Elewacje*/
+                    if (isset($aProject->Facades))
+                    {
+                        foreach ($aProject->Facades->Facade as $aViews)
+                        {
+                            $sViewsLink = $aViews->attributes()->Path;
+                            $extension = strtolower(strrchr($sViewsLink, '.'));
+                            $sName = $sSymbol.'_'.$a.''.$extension;
+                            $sDesc = 'Elewacja';
+                            $iImgType = 2;
+                            $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
+                            /*Zapisywanie obrazków*/
+                            $this->saveImage($sViewsLink, $iActualProductId, $sName);
+                            $a++;    
+                            
+                        }
+                    }
+                    
+                    /*Usytuowanie na działce*/
+                    if (isset($aProject->PlotLand))
+                    {
+                        foreach ($aProject->PlotLand as $aViews)
+                        {
+                            $sViewsLink = $aViews->attributes()->Path;
+                            $extension = strtolower(strrchr($sViewsLink, '.'));
+                            $sName = $sSymbol.'_'.$a.''.$extension;
+                            $sDesc = 'Usytuowanie na działce';
+                            $iImgType = 5;
+                            $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
+                            /*Zapisywanie obrazków*/
+                            $this->saveImage($sViewsLink, $iActualProductId, $sName);
+                            $a++;    
+                        }
+                    }
+                    /*Przekrój*/
+                    if (isset($aProject->Section))
+                    {
+                        foreach ($aProject->Section as $aViews)
+                        {
+                            $sViewsLink = $aViews->attributes()->Path;
+                            $extension = strtolower(strrchr($sViewsLink, '.'));
+                            $sName = $sSymbol.'_'.$a.''.$extension;
+                            $sDesc = 'Przekrój';
+                            $iImgType = 3;
+                            $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
+                            /*Zapisywanie obrazków*/
+                            $this->saveImage($sViewsLink, $iActualProductId, $sName);
+                            $a++;    
+                        }
+                    }
+                    
                 }
-            }
-            
+                
+            } 
         }
 
     }
@@ -1081,7 +1423,7 @@ class XmlController extends Controller
                                             break;
                                         case 'wnetrza':
                                             $iImgType = 6;
-                                            $sDescPart1 = 'Wnetrze';
+                                            $sDescPart1 = 'Wnętrze';
                                             break;
                                     }
                                     $extension = strtolower(strrchr($aImage->url, '.'));;

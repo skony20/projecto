@@ -39,6 +39,7 @@ class Producers extends \yii\db\ActiveRecord
             [['languages_id'], 'integer'],
             [['name', 'logo', 'nicename'], 'string', 'max' => 45],
             [['meta_decription'], 'string', 'max' => 255],
+            [['sort_order'], 'integer'],
             [['languages_id'], 'exist', 'skipOnError' => true, 'targetClass' => Languages::className(), 'targetAttribute' => ['languages_id' => 'id']],
         ];
     }
@@ -51,11 +52,12 @@ class Producers extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'is_active_prd' =>Yii::t('app', 'Aktywny'),
-            'name' => Yii::t('app', 'Name'),
-            'languages_id' => Yii::t('app', 'Languages ID'),
+            'name' => Yii::t('app', 'Nazwa'),
+            'languages_id' => Yii::t('app', 'Język'),
             'logo' => Yii::t('app', 'Logo'),
-            'nicename' => Yii::t('app', 'Nicename'),
-            'meta_decription' => Yii::t('app', 'Meta Decription'),
+            'nicename' => Yii::t('app', 'Nazwa linku'),
+            'sort_order' => Yii::t('app', 'Kolejność wyświetlania'),
+            'meta_decription' => Yii::t('app', 'Meta opis'),
         ];
     }
 

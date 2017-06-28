@@ -31,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'name',
             'is_active_prd',
+            'sort_order',
             'logo',
             'nicename'
         ],
