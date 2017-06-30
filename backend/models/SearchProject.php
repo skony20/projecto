@@ -41,9 +41,9 @@ class SearchProject extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'filters' => 'Fiters',
-            'users_id' => 'Users ID',
-            'creation_date' => 'Creationdata',
+            'filters' => 'Odpowiedzi',
+            'users_id' => 'Użytkownik',
+            'creation_date' => 'Kiedy wyszukane',
         ];
     }
 }
