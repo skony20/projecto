@@ -6,6 +6,7 @@ use yii\filters\AccessControl;
 use yii\data\ActiveDataProvider;
 use app\models\SearchProject;
 use app\models\Filters;
+use app\models\FiltersGroup;
 class SearchProjectController extends \yii\web\Controller
 {
     public function behaviors()
@@ -33,6 +34,7 @@ class SearchProjectController extends \yii\web\Controller
     {
         $aSearchData = SearchProject::find()->all();
         $aFiltersData = [];
+        $aFiltersDataAll =[];
         $aFiltersDataCount = [];
         $aFiltersDataCountOrg = [];
         $iSearchCount = count($aSearchData);
@@ -60,16 +62,14 @@ class SearchProjectController extends \yii\web\Controller
         
         ksort($aFiltersDataCountOrg);
         $aFilterDataText = [];
-        
         foreach  ($aFiltersDataCountOrg as $key=>$value)
         {
             $aFilter = Filters::findOne(['id'=>$key]);
-            $aFilterDataText[$aFilter->name]=$value;
+            $sFiltersGroupName = FiltersGroup::getFilterGroupName($aFilter->filters_group_id);
+            $aFilterDataText[$sFiltersGroupName][$aFilter->name]=$value;
         }
-        echo '<pre>'. print_r($aFilterDataText, TRUE); 
-        die();
         return $this->render('index', [
-            'dataProvider' => $dataProvider,
+                'aFiltersData'=>$aFilterDataText
         ]);
     }
 

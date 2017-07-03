@@ -6,7 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'CSSmin' => $vendorDir . '/tubalmartin/cssmin/cssmin.php',
     'CssAtCharsetParserPlugin' => $vendorDir . '/natxet/CssMin/src/CssMin.php',
     'CssAtCharsetToken' => $vendorDir . '/natxet/CssMin/src/CssMin.php',
     'CssAtFontFaceDeclarationToken' => $vendorDir . '/natxet/CssMin/src/CssMin.php',

@@ -26,9 +26,17 @@ class ComposerStaticInit05d5e545355306cc0244b7afaa6de28d
             'yii\\' => 4,
             'yii2mod\\slider\\' => 15,
         ),
+        't' => 
+        array (
+            'tubalmartin\\CssMin\\' => 19,
+        ),
         's' => 
         array (
             'skeeks\\yii2\\assetsAuto\\' => 23,
+        ),
+        'p' => 
+        array (
+            'piotrmus\\chartjs2\\' => 18,
         ),
         'd' => 
         array (
@@ -104,9 +112,17 @@ class ComposerStaticInit05d5e545355306cc0244b7afaa6de28d
         array (
             0 => __DIR__ . '/..' . '/yii2mod/yii2-ion-slider',
         ),
+        'tubalmartin\\CssMin\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tubalmartin/cssmin/src',
+        ),
         'skeeks\\yii2\\assetsAuto\\' => 
         array (
             0 => __DIR__ . '/..' . '/skeeks/yii2-assets-auto-compress',
+        ),
+        'piotrmus\\chartjs2\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/piotrmus/yii2-chartjs2-widget/src',
         ),
         'dosamigos\\ckeditor\\' => 
         array (
@@ -194,7 +210,6 @@ class ComposerStaticInit05d5e545355306cc0244b7afaa6de28d
     );
 
     public static $classMap = array (
-        'CSSmin' => __DIR__ . '/..' . '/tubalmartin/cssmin/cssmin.php',
         'CssAtCharsetParserPlugin' => __DIR__ . '/..' . '/natxet/CssMin/src/CssMin.php',
         'CssAtCharsetToken' => __DIR__ . '/..' . '/natxet/CssMin/src/CssMin.php',
         'CssAtFontFaceDeclarationToken' => __DIR__ . '/..' . '/natxet/CssMin/src/CssMin.php',
