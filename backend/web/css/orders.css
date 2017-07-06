@@ -17,17 +17,54 @@
 {
     padding:10px;
 }
+.order_status
+{
+    border-radius:5px;
+    padding:5px 10px;
+    
+    font-weight: bold;
+}
+.like-a
+{
+    color:#008cba;
+    cursor: pointer;
+}
+.order-status-background
+{
+    min-height: 50px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 20px;
+    line-height: 20px;
+    padding: 12px 0;
+}
+[id^="ordersstatus"] 
+{
+    font-size:15px;
+    padding: 5px 10px;
+}
 .status-change, .adress-change
 {
-    background-color: #3c7cae;
+    background-color: #557f9e;
+    font-size: 12px;
     color:#fff;
-    border: 1px solid #dedede;
-    padding: 5px;
+    border: 0px;
+    padding: 10px;
     cursor: pointer;
 }
 .order-all-title, .order-user-title, .order-adress-title, .order-positions-title
 {
-    background-color: #dedede;
+    background-color: #557f9e;
+    font-size: 16px;
+    padding: 10px;
+    color:#fff;
+}
+.order-delivery-title
+{
+    background-color: #81a5bf;
+    font-size: 14px;
+    padding: 10px;
+    color:#fff;
 }
 table.order-data
 {

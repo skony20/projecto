@@ -1,8 +1,31 @@
 <?php
 use piotrmus\chartjs2\ChartJs2;
+$this->title = 'Odpowiedzi na pytania';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <?php
+
 $a=0;
+$b=0;
+?>
+<ul class="nav nav-pills nav-justified">
+  
+
+<?php
+foreach ($aFiltersData as $key2 => $value2)
+{
+?>
+    <li class="<?php echo ($b==0 ?'active':'')?>"><a data-toggle="pill" href="#pill<?=$b?>"><?=$key2?></a></li>
+
+<?php
+$b++;
+}
+
+?>
+</ul>
+<div class="tab-content">
+<?php
 foreach ($aFiltersData as $key => $value)
 {
     $aLabels =[];
@@ -12,8 +35,8 @@ foreach ($aFiltersData as $key => $value)
         $aLabels[] .=$sAnswerKey;
         $aData[] .= $iAnswerValue;
     }
-    echo '<div class="col-md-6">';
-    echo '<div class="col-md-12 filter-center">' .$key .'</div>';
+    echo '<div id="pill'.$a.'" class="tab-pane fade '.($a==0 ?'in active':'').' ">';
+    echo '<div class="col-md-12 search-filter-center">' .$key .'</div>';
     echo  ChartJs2::widget([
         'type' => 'bar',
         'data' => [
@@ -41,7 +64,7 @@ foreach ($aFiltersData as $key => $value)
         'options' => [
             'id' => $a,
             'width' => 100,
-            'height' => 50,
+            'height' => 20,
 
         ],
         'chartOptions' => [
@@ -62,3 +85,4 @@ foreach ($aFiltersData as $key => $value)
     $a++;
 }
 ?>
+</div>

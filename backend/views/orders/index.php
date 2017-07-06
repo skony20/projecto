@@ -31,12 +31,18 @@ $this->params['breadcrumbs'][] = $this->title;
                         return Html::a($data->order_code, Yii::getAlias('@web').'/orders/'.$data->id);
                     }
             ],
-            'order_date:datetime',
             [
                 'attribute' => 'orders_status_id',
-                'value' =>  'ordersStatus.name',
+                'value' => function($data)
+                    {
+                        return '<div class="order_status" style="background-color:'.$data->ordersStatus->background_color.'">'.$data->ordersStatus->name.'</div>';
+
+                    },
+                'format'=>'raw',
                 'filter' => Html::activeDropDownList($searchModel, 'orders_status_id', ArrayHelper::map(OrdersStatus::find()->asArray()->all(), 'id', 'name'),['class'=>'form-control','prompt' => 'Wybierz']),
             ],
+            'order_date:datetime',
+           
             'customer_email',
             [
                 'attribute' => 'shippings_payments_id',

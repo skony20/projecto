@@ -20,6 +20,8 @@ return array(
     'tubalmartin\\CssMin\\' => array($vendorDir . '/tubalmartin/cssmin/src'),
     'skeeks\\yii2\\assetsAuto\\' => array($vendorDir . '/skeeks/yii2-assets-auto-compress'),
     'piotrmus\\chartjs2\\' => array($vendorDir . '/piotrmus/yii2-chartjs2-widget/src'),
+    'kartik\\color\\' => array($vendorDir . '/kartik-v/yii2-widget-colorinput'),
+    'kartik\\base\\' => array($vendorDir . '/kartik-v/yii2-krajee-base'),
     'dosamigos\\ckeditor\\' => array($vendorDir . '/2amigos/yii2-ckeditor-widget/src'),
     'daweb\\przelewy24\\' => array($vendorDir . '/dawid-daweb/yii2-przelewy24'),
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),

@@ -7,6 +7,12 @@ use yii\i18n\Formatter;
 
 
 ?>
-   Twoje zamówienie zmieniło status na: "<?= $sStatus ?>"
+
+    Szanowny kliencie,
+
+    Twoje zamówienie nr. <?= $sOrderCode ?> zmieniło status.
+    Aktualny status zamówienia: <?= $sStatus ?>
+        
+    Dziękujemy za korzystanie z usług sklepu projektTop.pl. Zapraszamy ponownie!
 
 

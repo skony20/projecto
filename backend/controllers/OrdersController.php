@@ -152,15 +152,19 @@ class OrdersController extends Controller
             $oStatus = new OrdersStatus();
             $aStatus = $oStatus->findOne(['id'=>$iOrderStatusId]);
             $sStatus = $aStatus->name;
-            Yii::$app->mailer->compose(
+            if ($aStatus->send_to_client)
+            {
+                Yii::$app->mailer->compose(
                         ['html' => 'status-change-html', 'text' => 'status-change-text'],
-                        ['sStatus'=> $sStatus]
+                        ['sStatus'=> $sStatus, 'sOrderCode'=>$model->order_code, 'iOrderDate'=>$model->order_date]
                     )
                     ->setReplyTo(Yii::$app->params['supportEmail'])
                     ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name])
                     ->setTo($model->customer_email)
                     ->setSubject('Zmiana statusu zamówienia:  ' .$id)
                     ->send();
+            }
+            
             return $this->redirect(['/orders/'.$id]);
         } 
         elseif (Yii::$app->request->isAjax) 

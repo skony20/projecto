@@ -319,7 +319,7 @@
             decorate_both: true,
             values_separator: " — ",
 
-            input_values_separator: ";",
+            input_values_separator: "-",
 
             disable: false,
             block: false,

@@ -38,6 +38,11 @@ class ComposerStaticInit05d5e545355306cc0244b7afaa6de28d
         array (
             'piotrmus\\chartjs2\\' => 18,
         ),
+        'k' => 
+        array (
+            'kartik\\color\\' => 13,
+            'kartik\\base\\' => 12,
+        ),
         'd' => 
         array (
             'dosamigos\\ckeditor\\' => 19,
@@ -123,6 +128,14 @@ class ComposerStaticInit05d5e545355306cc0244b7afaa6de28d
         'piotrmus\\chartjs2\\' => 
         array (
             0 => __DIR__ . '/..' . '/piotrmus/yii2-chartjs2-widget/src',
+        ),
+        'kartik\\color\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-colorinput',
+        ),
+        'kartik\\base\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-krajee-base',
         ),
         'dosamigos\\ckeditor\\' => 
         array (

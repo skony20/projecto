@@ -44,6 +44,7 @@ AppAsset::register($this);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
         ['label' => 'Zamówienia', 'url' => ['/orders']],
+        
         ['label' => 'Projekty', 'url' => ['/products']],
         
         
@@ -55,17 +56,24 @@ AppAsset::register($this);
                 ['label' => 'Dane techniczne', 'url' => ['/attributes']],
                 ['label' => 'Faq', 'url' => ['/faq']],
                 ['label' => 'Grupa pytań', 'url' => ['/faq-group']],
-            ],
-        ],
-        [
-            'label' => 'Mniej istotne',
-            'items' => [
-
+                ['label' => 'Mniej istotne'],
                 ['label' => 'Dostawcy', 'url' => ['/producers']],
                 ['label' => 'Opis co w projekcie', 'url' => ['/in-project']],
                 ['label' => 'Stawki Vat', 'url' => ['/vats']],
                 ['label' => 'Metody płatności', 'url' => ['/payments-method']],
             ],
+        ],
+        ['label' => 'Ustawienia',
+            'items'=> [
+                ['label' => 'Statusy zamówień', 'url' => ['/orders-status']],
+            ],
+        ],
+        [
+            'label' => 'Statystyki',
+            'items' => [
+                ['label' => 'Odpowiedzi na pytania', 'url' => ['/search-project']],
+                
+                ],
         ],
         [
             'label' => 'Import',
@@ -101,6 +109,7 @@ AppAsset::register($this);
                 ['label' => 'Export CSV MGProjekt', 'url' => ['/xml/export?=producent=9']],
                 ],
         ],
+        
         
     ];
     if (Yii::$app->user->isGuest) {

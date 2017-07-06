@@ -9,5 +9,13 @@ use yii\i18n\Formatter;
 ?>
 <div>
     <br>
-   Twoje zamówienie zmieniło status na: "<?= $sStatus ?>"
+    <br>
+    Szanowny kliencie,<br>
+    <br>
+
+    Twoje zamówienie nr. <strong><?= $sOrderCode ?></strong>, złożone <?= date("d-m-y",$iOrderDate)  ?> zmieniło status. <br>
+    <br>
+    Aktualny status zamówienia: <strong><?= $sStatus ?></strong><br>
+    <br>
+    Dziękujemy za korzystanie z usług sklepu projektTop.pl. Zapraszamy ponownie!<br><br>
 </div>

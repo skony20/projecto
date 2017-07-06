@@ -24,7 +24,8 @@
         "dawid-daweb/yii2-przelewy24" : "dev-master",
         "skeeks/yii2-assets-auto-compress": "*",
         "yiisoft/yii2-imagine": "^2.1",
-        "piotrmus/yii2-chartjs2-widget" : "~1.0"
+        "piotrmus/yii2-chartjs2-widget" : "~1.0",
+        "kartik-v/yii2-widget-colorinput": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",
