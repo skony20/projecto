@@ -185,3 +185,8 @@ span.radio_value
 {
     border-bottom: 1px solid #cecece;
 }
+#pill-all
+{
+    font-size:14px;
+    line-height: 20px;
+}

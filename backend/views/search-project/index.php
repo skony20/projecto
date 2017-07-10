@@ -11,12 +11,12 @@ $b=0;
 ?>
 <ul class="nav nav-pills nav-justified">
   
-
+<li class="active"><a data-toggle="pill" href="#pill-all">Dane ogólne</a></li>
 <?php
-foreach ($aFiltersData as $key2 => $value2)
+foreach ($aFilterDataText as $key2 => $value2)
 {
 ?>
-    <li class="<?php echo ($b==0 ?'active':'')?>"><a data-toggle="pill" href="#pill<?=$b?>"><?=$key2?></a></li>
+    <li><a data-toggle="pill" href="#pill<?=$b?>"><?=$key2?></a></li>
 
 <?php
 $b++;
@@ -25,8 +25,24 @@ $b++;
 ?>
 </ul>
 <div class="tab-content">
+    <div id="pill-all" class="tab-pane fade in active">
+    <div class="col-md-12 search-filter-center">Dane ogólne</div>
+    Wszystkich wyszukiwań: <?=$aFiltersData['all'] ?> <br>
+    <br>
+    Ostatnie wyszukiwanie: <?= date('d-m-Y H:m:s', $aFiltersData['last']) ?> <br>
+    <br>
+    Najczęściej zaznaczane odpowiedzi:<br>
+    <?php
+    foreach ($aMaxAnswer as $aMaxAnswerKey => $aMaxAnswerValue)
+    {
+        echo $aMaxAnswerKey .': '.$aMaxAnswerValue .'<br>';
+    }
+    
+    ?>
+    </div>
+    
 <?php
-foreach ($aFiltersData as $key => $value)
+foreach ($aFilterDataText as $key => $value)
 {
     $aLabels =[];
     $aData =[];
@@ -35,7 +51,7 @@ foreach ($aFiltersData as $key => $value)
         $aLabels[] .=$sAnswerKey;
         $aData[] .= $iAnswerValue;
     }
-    echo '<div id="pill'.$a.'" class="tab-pane fade '.($a==0 ?'in active':'').' ">';
+    echo '<div id="pill'.$a.'" class="tab-pane fade ">';
     echo '<div class="col-md-12 search-filter-center">' .$key .'</div>';
     echo  ChartJs2::widget([
         'type' => 'bar',

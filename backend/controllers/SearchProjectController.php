@@ -38,17 +38,16 @@ class SearchProjectController extends \yii\web\Controller
         $aFiltersDataCount = [];
         $aFiltersDataCountOrg = [];
         $iSearchCount = count($aSearchData);
+        $iLastSearch = SearchProject::find()->limit(1)->orderBy(['id' => SORT_DESC])->one();
         $aFiltersData['all'] = $iSearchCount;
+        $aFiltersData['last'] = $iLastSearch->creation_date;
         $a=1;
         foreach ($aSearchData as $aSearchRow)
         {
             $aFilterSearch = unserialize($aSearchRow->filters);
             if (count($aFilterSearch) >0 )
             {
-                $aFiltersData['item'][$a]['filters'] = $aFilterSearch ;
                 $aFiltersDataCount[$a] = $aFilterSearch ;
-                $aFiltersData['item'][$a]['data'] = $aSearchRow->creation_date;
-                $aFiltersData['item'][$a]['user'] = $aSearchRow->users_id;
                 $a++;
             }
             
@@ -59,8 +58,7 @@ class SearchProjectController extends \yii\web\Controller
         {
             $aFiltersDataCountOrg[$aFiltersRow->id] = (isset($aFiltersDataCount[$aFiltersRow->id]) ? $aFiltersDataCount[$aFiltersRow->id] : 0);
         }
-        
-        ksort($aFiltersDataCountOrg);
+        arsort($aFiltersDataCountOrg);
         $aFilterDataText = [];
         foreach  ($aFiltersDataCountOrg as $key=>$value)
         {
@@ -68,8 +66,23 @@ class SearchProjectController extends \yii\web\Controller
             $sFiltersGroupName = FiltersGroup::getFilterGroupName($aFilter->filters_group_id);
             $aFilterDataText[$sFiltersGroupName][$aFilter->name]=$value;
         }
+        $x=1;
+        $aMaxAnswer= [];
+        foreach ($aFiltersDataCountOrg as $aFiltersDataCountOrgKey =>$aFiltersDataCountOrgValue)
+        {
+            $aFilter = Filters::findOne(['id'=>$aFiltersDataCountOrgKey]);
+            $sFilterName = $aFilter->name;
+            $aMaxAnswer[$sFilterName]= $aFiltersDataCountOrgValue;
+            if ($x>2)
+            {
+                break;
+            }
+            $x++;
+        }
         return $this->render('index', [
-                'aFiltersData'=>$aFilterDataText
+                'aFilterDataText'=>$aFilterDataText,
+                'aFiltersData'=>$aFiltersData,
+                'aMaxAnswer' => $aMaxAnswer
         ]);
     }
 
