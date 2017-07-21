@@ -12,7 +12,8 @@
         "irc": "irc://irc.freenode.net/yii",
         "source": "https://github.com/yiisoft/yii2"
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
+    "prefer-stable" : true,
     "require": {
         "php": ">=5.4.0",
         "yiisoft/yii2": ">=2.0.6",
@@ -25,13 +26,13 @@
         "skeeks/yii2-assets-auto-compress": "*",
         "yiisoft/yii2-imagine": "^2.1",
         "piotrmus/yii2-chartjs2-widget" : "~1.0",
-        "kartik-v/yii2-widget-colorinput": "*"
+        "kartik-v/yii2-widget-colorinput": "*",
+        "pendalf89/yii2-filemanager": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",
         "yiisoft/yii2-gii": "*",
-        "yiisoft/yii2-faker": "*",
-        "2amigos/yii2-ckeditor-widget" : "~1.0"
+        "yiisoft/yii2-faker": "*"
 
     },
     "config": {

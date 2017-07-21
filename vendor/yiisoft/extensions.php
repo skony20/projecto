@@ -105,28 +105,55 @@ return array (
   'skeeks/yii2-assets-auto-compress' => 
   array (
     'name' => 'skeeks/yii2-assets-auto-compress',
-    'version' => '1.2.3.0',
+    'version' => '1.2.3.1',
     'alias' => 
     array (
       '@skeeks/yii2/assetsAuto' => $vendorDir . '/skeeks/yii2-assets-auto-compress',
     ),
   ),
-  'kartik-v/yii2-krajee-base' => 
+  'kartik-v/yii2-widget-select2' => 
   array (
-    'name' => 'kartik-v/yii2-krajee-base',
-    'version' => '1.8.8.0',
+    'name' => 'kartik-v/yii2-widget-select2',
+    'version' => '2.0.9.0',
     'alias' => 
     array (
-      '@kartik/base' => $vendorDir . '/kartik-v/yii2-krajee-base',
+      '@kartik/select2' => $vendorDir . '/kartik-v/yii2-widget-select2',
     ),
   ),
-  'kartik-v/yii2-widget-colorinput' => 
+  'kartik-v/yii2-widget-alert' => 
   array (
-    'name' => 'kartik-v/yii2-widget-colorinput',
+    'name' => 'kartik-v/yii2-widget-alert',
+    'version' => '1.1.0.0',
+    'alias' => 
+    array (
+      '@kartik/alert' => $vendorDir . '/kartik-v/yii2-widget-alert',
+    ),
+  ),
+  '2amigos/yii2-gallery-widget' => 
+  array (
+    'name' => '2amigos/yii2-gallery-widget',
     'version' => '1.0.3.0',
     'alias' => 
     array (
-      '@kartik/color' => $vendorDir . '/kartik-v/yii2-widget-colorinput',
+      '@dosamigos/gallery' => $vendorDir . '/2amigos/yii2-gallery-widget/src',
+    ),
+  ),
+  '2amigos/yii2-file-upload-widget' => 
+  array (
+    'name' => '2amigos/yii2-file-upload-widget',
+    'version' => '1.0.7.0',
+    'alias' => 
+    array (
+      '@dosamigos/fileupload' => $vendorDir . '/2amigos/yii2-file-upload-widget/src',
+    ),
+  ),
+  'pendalf89/yii2-filemanager' => 
+  array (
+    'name' => 'pendalf89/yii2-filemanager',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@pendalf89/filemanager' => $vendorDir . '/pendalf89/yii2-filemanager',
     ),
   ),
 );

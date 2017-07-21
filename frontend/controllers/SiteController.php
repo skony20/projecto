@@ -537,7 +537,7 @@ class SiteController extends MetaController
         $response->headers->set('Content-Type', 'text/plain');
         return ($this->renderPartial('robots'));
      }
-
+     
 }
     
 

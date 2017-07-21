@@ -190,3 +190,38 @@ span.radio_value
     font-size:14px;
     line-height: 20px;
 }
+
+div[class^="blog"] .form-control 
+{
+    display: inline-block;
+    width: 90%;
+    height: 30px;
+    padding-left: 5px;;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #6f6f6f;
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #cccccc;
+    border-radius: 0;
+}
+div[class^="blog"] label 
+{
+    font-size: 14px;
+    min-width: 100px;
+}
+div[class^="blog"] .form-group 
+{
+    width: 80%;
+    display: inline-block;
+}
+#cke_blogpost-article
+{
+    width: 90%;
+    display:inline-block;
+}
+.inline-row
+{
+    display: inline-block;
+    padding: 10px; 
+}

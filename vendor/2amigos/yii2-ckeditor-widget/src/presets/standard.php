@@ -1,4 +1,6 @@
+
 <?php
+
 /**
  *
  * standard preset returns the basic toolbar configuration set for CKEditor.
@@ -19,7 +21,7 @@ return [
         ['name' => 'basicstyles', 'groups' => ['basicstyles', 'cleanup']],
         ['name' => 'colors'],
         ['name' => 'links'],
-        ['name' => 'others'],
+        ['name' => 'others']
     ],
     'removeButtons' => 'Smiley,Iframe'
 ];

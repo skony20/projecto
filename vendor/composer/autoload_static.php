@@ -37,14 +37,20 @@ class ComposerStaticInit05d5e545355306cc0244b7afaa6de28d
         'p' => 
         array (
             'piotrmus\\chartjs2\\' => 18,
+            'pendalf89\\tinymce\\' => 18,
+            'pendalf89\\filemanager\\' => 22,
         ),
         'k' => 
         array (
+            'kartik\\select2\\' => 15,
             'kartik\\color\\' => 13,
             'kartik\\base\\' => 12,
+            'kartik\\alert\\' => 13,
         ),
         'd' => 
         array (
+            'dosamigos\\gallery\\' => 18,
+            'dosamigos\\fileupload\\' => 21,
             'dosamigos\\ckeditor\\' => 19,
             'daweb\\przelewy24\\' => 17,
         ),
@@ -129,6 +135,18 @@ class ComposerStaticInit05d5e545355306cc0244b7afaa6de28d
         array (
             0 => __DIR__ . '/..' . '/piotrmus/yii2-chartjs2-widget/src',
         ),
+        'pendalf89\\tinymce\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/pendalf89/yii2-tinymce',
+        ),
+        'pendalf89\\filemanager\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/pendalf89/yii2-filemanager',
+        ),
+        'kartik\\select2\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-select2',
+        ),
         'kartik\\color\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-colorinput',
@@ -136,6 +154,18 @@ class ComposerStaticInit05d5e545355306cc0244b7afaa6de28d
         'kartik\\base\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-krajee-base',
+        ),
+        'kartik\\alert\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-alert',
+        ),
+        'dosamigos\\gallery\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/2amigos/yii2-gallery-widget/src',
+        ),
+        'dosamigos\\fileupload\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/2amigos/yii2-file-upload-widget/src',
         ),
         'dosamigos\\ckeditor\\' => 
         array (

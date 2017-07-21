@@ -155,7 +155,7 @@ class UploadImage extends Model
             return $aProductDescription->nicename_link.'_'.$iFileNumber;
         }
     }
-            
+    
     
 }
 ?>

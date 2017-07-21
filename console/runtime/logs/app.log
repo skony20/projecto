@@ -109,3 +109,1253 @@ Additional Information:
     ]
     'argc' => 2
 ]
+2017-07-21 16:09:50 [-][-][-][error][yii\base\ErrorException:1] exception 'yii\base\ErrorException' with message 'Class 'm160616_000010_add_filemanager_tags' not found' in C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\controllers\MigrateController.php:186
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2017-07-21 16:09:46 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'AMDAPPSDKROOT' => 'C:\\Program Files (x86)\\AMD APP\\'
+    'APPDATA' => 'C:\\Users\\Mariusz\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'MARIUSZS'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'EMAIL' => 'C:\\Users\\Mariusz\\AppData\\Roaming\\The Bat!'
+    'ESET_OPTIONS' => '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               '
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\Mariusz'
+    'JD2_HOME' => 'C:\\Users\\Mariusz\\AppData\\Local\\JDownloader v2.0'
+    'LOCALAPPDATA' => 'C:\\Users\\Mariusz\\AppData\\Local'
+    'LOGONSERVER' => '\\\\MARIUSZS'
+    'NUMBER_OF_PROCESSORS' => '8'
+    'OPENSSL_CONF' => 'C:\\OpenSSL\\bin\\openssl.cnf'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Program Files\\ImageMagick-7.0.3-Q16;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\WT-NMP\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\xampp\\php;C:\\Program Files (x86)\\Microsoft SQL Server\\80\\Tools\\Binn\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\Client SDK\\ODBC\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\ManagementStudio\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files (x86)\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\DTS\\Binn\\;C:\\Users\\Mariusz\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PHP_COMMAND' => 'php.exe'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 30 Stepping 5, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '1e05'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\PowerShell\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\PowerShell\\Modules\\;C:\\Program Files\\WindowsPowerShell\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'MariuszS'
+    'USERNAME' => 'Mariusz'
+    'USERPROFILE' => 'C:\\Users\\Mariusz'
+    'windir' => 'C:\\Windows'
+    'windows_tracing_flags' => '3'
+    'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log'
+    'YII_PATH' => 'c:\\xampp\\htdocs\\projecto\\'
+    'PHP_SELF' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_NAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_FILENAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'PATH_TRANSLATED' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1500646186.524
+    'REQUEST_TIME' => 1500646186
+    'argv' => [
+        0 => 'c:\\xampp\\htdocs\\projecto\\yii'
+        1 => 'migrate/down'
+    ]
+    'argc' => 2
+]
+2017-07-21 16:10:17 [-][-][-][error][yii\base\ErrorException:1] exception 'yii\base\ErrorException' with message 'Class 'm160616_000010_add_filemanager_tags' not found' in C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\controllers\MigrateController.php:186
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2017-07-21 16:10:11 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'AMDAPPSDKROOT' => 'C:\\Program Files (x86)\\AMD APP\\'
+    'APPDATA' => 'C:\\Users\\Mariusz\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'MARIUSZS'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'EMAIL' => 'C:\\Users\\Mariusz\\AppData\\Roaming\\The Bat!'
+    'ESET_OPTIONS' => '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               '
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\Mariusz'
+    'JD2_HOME' => 'C:\\Users\\Mariusz\\AppData\\Local\\JDownloader v2.0'
+    'LOCALAPPDATA' => 'C:\\Users\\Mariusz\\AppData\\Local'
+    'LOGONSERVER' => '\\\\MARIUSZS'
+    'NUMBER_OF_PROCESSORS' => '8'
+    'OPENSSL_CONF' => 'C:\\OpenSSL\\bin\\openssl.cnf'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Program Files\\ImageMagick-7.0.3-Q16;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\WT-NMP\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\xampp\\php;C:\\Program Files (x86)\\Microsoft SQL Server\\80\\Tools\\Binn\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\Client SDK\\ODBC\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\ManagementStudio\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files (x86)\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\DTS\\Binn\\;C:\\Users\\Mariusz\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PHP_COMMAND' => 'php.exe'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 30 Stepping 5, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '1e05'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\PowerShell\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\PowerShell\\Modules\\;C:\\Program Files\\WindowsPowerShell\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'MariuszS'
+    'USERNAME' => 'Mariusz'
+    'USERPROFILE' => 'C:\\Users\\Mariusz'
+    'windir' => 'C:\\Windows'
+    'windows_tracing_flags' => '3'
+    'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log'
+    'YII_PATH' => 'c:\\xampp\\htdocs\\projecto\\'
+    'PHP_SELF' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_NAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_FILENAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'PATH_TRANSLATED' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1500646211.7134
+    'REQUEST_TIME' => 1500646211
+    'argv' => [
+        0 => 'c:\\xampp\\htdocs\\projecto\\yii'
+        1 => 'migrate/down'
+        2 => '3'
+    ]
+    'argc' => 3
+]
+2017-07-21 16:10:33 [-][-][-][error][yii\base\ErrorException:1] exception 'yii\base\ErrorException' with message 'Class 'm160616_000010_add_filemanager_tags' not found' in C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\controllers\MigrateController.php:186
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2017-07-21 16:10:30 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'AMDAPPSDKROOT' => 'C:\\Program Files (x86)\\AMD APP\\'
+    'APPDATA' => 'C:\\Users\\Mariusz\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'MARIUSZS'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'EMAIL' => 'C:\\Users\\Mariusz\\AppData\\Roaming\\The Bat!'
+    'ESET_OPTIONS' => '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               '
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\Mariusz'
+    'JD2_HOME' => 'C:\\Users\\Mariusz\\AppData\\Local\\JDownloader v2.0'
+    'LOCALAPPDATA' => 'C:\\Users\\Mariusz\\AppData\\Local'
+    'LOGONSERVER' => '\\\\MARIUSZS'
+    'NUMBER_OF_PROCESSORS' => '8'
+    'OPENSSL_CONF' => 'C:\\OpenSSL\\bin\\openssl.cnf'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Program Files\\ImageMagick-7.0.3-Q16;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\WT-NMP\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\xampp\\php;C:\\Program Files (x86)\\Microsoft SQL Server\\80\\Tools\\Binn\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\Client SDK\\ODBC\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\ManagementStudio\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files (x86)\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\DTS\\Binn\\;C:\\Users\\Mariusz\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PHP_COMMAND' => 'php.exe'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 30 Stepping 5, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '1e05'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\PowerShell\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\PowerShell\\Modules\\;C:\\Program Files\\WindowsPowerShell\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'MariuszS'
+    'USERNAME' => 'Mariusz'
+    'USERPROFILE' => 'C:\\Users\\Mariusz'
+    'windir' => 'C:\\Windows'
+    'windows_tracing_flags' => '3'
+    'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log'
+    'YII_PATH' => 'c:\\xampp\\htdocs\\projecto\\'
+    'PHP_SELF' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_NAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_FILENAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'PATH_TRANSLATED' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1500646230.0305
+    'REQUEST_TIME' => 1500646230
+    'argv' => [
+        0 => 'c:\\xampp\\htdocs\\projecto\\yii'
+        1 => 'migrate/redo'
+        2 => '5'
+    ]
+    'argc' => 3
+]
+2017-07-21 16:10:53 [-][-][-][error][yii\base\ErrorException:1] exception 'yii\base\ErrorException' with message 'Class 'm160616_000010_add_filemanager_tags' not found' in C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\controllers\MigrateController.php:186
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2017-07-21 16:10:50 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'AMDAPPSDKROOT' => 'C:\\Program Files (x86)\\AMD APP\\'
+    'APPDATA' => 'C:\\Users\\Mariusz\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'MARIUSZS'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'EMAIL' => 'C:\\Users\\Mariusz\\AppData\\Roaming\\The Bat!'
+    'ESET_OPTIONS' => '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               '
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\Mariusz'
+    'JD2_HOME' => 'C:\\Users\\Mariusz\\AppData\\Local\\JDownloader v2.0'
+    'LOCALAPPDATA' => 'C:\\Users\\Mariusz\\AppData\\Local'
+    'LOGONSERVER' => '\\\\MARIUSZS'
+    'NUMBER_OF_PROCESSORS' => '8'
+    'OPENSSL_CONF' => 'C:\\OpenSSL\\bin\\openssl.cnf'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Program Files\\ImageMagick-7.0.3-Q16;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\WT-NMP\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\xampp\\php;C:\\Program Files (x86)\\Microsoft SQL Server\\80\\Tools\\Binn\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\Client SDK\\ODBC\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\ManagementStudio\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files (x86)\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\DTS\\Binn\\;C:\\Users\\Mariusz\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PHP_COMMAND' => 'php.exe'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 30 Stepping 5, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '1e05'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\PowerShell\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\PowerShell\\Modules\\;C:\\Program Files\\WindowsPowerShell\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'MariuszS'
+    'USERNAME' => 'Mariusz'
+    'USERPROFILE' => 'C:\\Users\\Mariusz'
+    'windir' => 'C:\\Windows'
+    'windows_tracing_flags' => '3'
+    'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log'
+    'YII_PATH' => 'c:\\xampp\\htdocs\\projecto\\'
+    'PHP_SELF' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_NAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_FILENAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'PATH_TRANSLATED' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1500646250.2626
+    'REQUEST_TIME' => 1500646250
+    'argv' => [
+        0 => 'c:\\xampp\\htdocs\\projecto\\yii'
+        1 => 'migrate/redo'
+    ]
+    'argc' => 2
+]
+2017-07-21 16:12:27 [-][-][-][error][yii\db\Exception] exception 'PDOException' with message 'SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'user' already exists' in C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\db\Command.php:842
+Stack trace:
+#0 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\db\Command.php(842): PDOStatement->execute()
+#1 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\db\Migration.php(288): yii\db\Command->execute()
+#2 C:\xampp\htdocs\projecto\console\migrations\m130524_201442_init.php(26): yii\db\Migration->createTable('{{%user}}', Array, 'CHARACTER SET u...')
+#3 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(671): m130524_201442_init->up()
+#4 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(183): yii\console\controllers\BaseMigrateController->migrateUp('m130524_201442_...')
+#5 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#6 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#7 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#8 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Controller.php(128): yii\base\Controller->runAction('', Array)
+#9 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Module.php(523): yii\console\Controller->runAction('', Array)
+#10 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate', Array)
+#11 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate', Array)
+#12 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#13 C:\xampp\htdocs\projecto\yii(27): yii\base\Application->run()
+#14 {main}
+
+Next exception 'yii\db\Exception' with message 'SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'user' already exists
+The SQL being executed was: CREATE TABLE `user` (
+	`id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`username` varchar(255) NOT NULL UNIQUE,
+	`auth_key` varchar(32) NOT NULL,
+	`password_hash` varchar(255) NOT NULL,
+	`password_reset_token` varchar(255) UNIQUE,
+	`email` varchar(255) NOT NULL UNIQUE,
+	`status` smallint(6) NOT NULL DEFAULT 10,
+	`created_at` int(11) NOT NULL,
+	`updated_at` int(11) NOT NULL
+) CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB' in C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\db\Schema.php:636
+Stack trace:
+#0 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\db\Command.php(852): yii\db\Schema->convertException(Object(PDOException), 'CREATE TABLE `u...')
+#1 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\db\Migration.php(288): yii\db\Command->execute()
+#2 C:\xampp\htdocs\projecto\console\migrations\m130524_201442_init.php(26): yii\db\Migration->createTable('{{%user}}', Array, 'CHARACTER SET u...')
+#3 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(671): m130524_201442_init->up()
+#4 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(183): yii\console\controllers\BaseMigrateController->migrateUp('m130524_201442_...')
+#5 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#6 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#7 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#8 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Controller.php(128): yii\base\Controller->runAction('', Array)
+#9 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Module.php(523): yii\console\Controller->runAction('', Array)
+#10 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate', Array)
+#11 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate', Array)
+#12 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#13 C:\xampp\htdocs\projecto\yii(27): yii\base\Application->run()
+#14 {main}
+Additional Information:
+Array
+(
+    [0] => 42S01
+    [1] => 1050
+    [2] => Table 'user' already exists
+)
+
+2017-07-21 16:12:23 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'AMDAPPSDKROOT' => 'C:\\Program Files (x86)\\AMD APP\\'
+    'APPDATA' => 'C:\\Users\\Mariusz\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'MARIUSZS'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'EMAIL' => 'C:\\Users\\Mariusz\\AppData\\Roaming\\The Bat!'
+    'ESET_OPTIONS' => '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               '
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\Mariusz'
+    'JD2_HOME' => 'C:\\Users\\Mariusz\\AppData\\Local\\JDownloader v2.0'
+    'LOCALAPPDATA' => 'C:\\Users\\Mariusz\\AppData\\Local'
+    'LOGONSERVER' => '\\\\MARIUSZS'
+    'NUMBER_OF_PROCESSORS' => '8'
+    'OPENSSL_CONF' => 'C:\\OpenSSL\\bin\\openssl.cnf'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Program Files\\ImageMagick-7.0.3-Q16;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\WT-NMP\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\xampp\\php;C:\\Program Files (x86)\\Microsoft SQL Server\\80\\Tools\\Binn\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\Client SDK\\ODBC\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\ManagementStudio\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files (x86)\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\DTS\\Binn\\;C:\\Users\\Mariusz\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PHP_COMMAND' => 'php.exe'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 30 Stepping 5, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '1e05'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\PowerShell\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\PowerShell\\Modules\\;C:\\Program Files\\WindowsPowerShell\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'MariuszS'
+    'USERNAME' => 'Mariusz'
+    'USERPROFILE' => 'C:\\Users\\Mariusz'
+    'windir' => 'C:\\Windows'
+    'windows_tracing_flags' => '3'
+    'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log'
+    'YII_PATH' => 'c:\\xampp\\htdocs\\projecto\\'
+    'PHP_SELF' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_NAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_FILENAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'PATH_TRANSLATED' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1500646343.0519
+    'REQUEST_TIME' => 1500646343
+    'argv' => [
+        0 => 'c:\\xampp\\htdocs\\projecto\\yii'
+        1 => 'migrate'
+    ]
+    'argc' => 2
+]
+2017-07-21 16:13:13 [-][-][-][error][yii\base\ErrorException:1] exception 'yii\base\ErrorException' with message 'Class 'm160616_000010_add_filemanager_tags' not found' in C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\controllers\MigrateController.php:186
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2017-07-21 16:13:06 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'AMDAPPSDKROOT' => 'C:\\Program Files (x86)\\AMD APP\\'
+    'APPDATA' => 'C:\\Users\\Mariusz\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'MARIUSZS'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'EMAIL' => 'C:\\Users\\Mariusz\\AppData\\Roaming\\The Bat!'
+    'ESET_OPTIONS' => '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               '
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\Mariusz'
+    'JD2_HOME' => 'C:\\Users\\Mariusz\\AppData\\Local\\JDownloader v2.0'
+    'LOCALAPPDATA' => 'C:\\Users\\Mariusz\\AppData\\Local'
+    'LOGONSERVER' => '\\\\MARIUSZS'
+    'NUMBER_OF_PROCESSORS' => '8'
+    'OPENSSL_CONF' => 'C:\\OpenSSL\\bin\\openssl.cnf'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Program Files\\ImageMagick-7.0.3-Q16;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\WT-NMP\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\xampp\\php;C:\\Program Files (x86)\\Microsoft SQL Server\\80\\Tools\\Binn\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\Client SDK\\ODBC\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\ManagementStudio\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files (x86)\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\DTS\\Binn\\;C:\\Users\\Mariusz\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PHP_COMMAND' => 'php.exe'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 30 Stepping 5, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '1e05'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\PowerShell\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\PowerShell\\Modules\\;C:\\Program Files\\WindowsPowerShell\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'MariuszS'
+    'USERNAME' => 'Mariusz'
+    'USERPROFILE' => 'C:\\Users\\Mariusz'
+    'windir' => 'C:\\Windows'
+    'windows_tracing_flags' => '3'
+    'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log'
+    'YII_PATH' => 'c:\\xampp\\htdocs\\projecto\\'
+    'PHP_SELF' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_NAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_FILENAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'PATH_TRANSLATED' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1500646386.6594
+    'REQUEST_TIME' => 1500646386
+    'argv' => [
+        0 => 'c:\\xampp\\htdocs\\projecto\\yii'
+        1 => 'migrate/down'
+        2 => '5'
+    ]
+    'argc' => 3
+]
+2017-07-21 16:17:02 [-][-][-][error][yii\base\ErrorException:1] exception 'yii\base\ErrorException' with message 'Class 'm160616_000010_add_filemanager_tags' not found' in C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\controllers\MigrateController.php:186
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2017-07-21 16:16:59 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'AMDAPPSDKROOT' => 'C:\\Program Files (x86)\\AMD APP\\'
+    'APPDATA' => 'C:\\Users\\Mariusz\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'MARIUSZS'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'EMAIL' => 'C:\\Users\\Mariusz\\AppData\\Roaming\\The Bat!'
+    'ESET_OPTIONS' => '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               '
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\Mariusz'
+    'JD2_HOME' => 'C:\\Users\\Mariusz\\AppData\\Local\\JDownloader v2.0'
+    'LOCALAPPDATA' => 'C:\\Users\\Mariusz\\AppData\\Local'
+    'LOGONSERVER' => '\\\\MARIUSZS'
+    'NUMBER_OF_PROCESSORS' => '8'
+    'OPENSSL_CONF' => 'C:\\OpenSSL\\bin\\openssl.cnf'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Program Files\\ImageMagick-7.0.3-Q16;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\WT-NMP\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\xampp\\php;C:\\Program Files (x86)\\Microsoft SQL Server\\80\\Tools\\Binn\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\Client SDK\\ODBC\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\ManagementStudio\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files (x86)\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\DTS\\Binn\\;C:\\Users\\Mariusz\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PHP_COMMAND' => 'php.exe'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 30 Stepping 5, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '1e05'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\PowerShell\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\PowerShell\\Modules\\;C:\\Program Files\\WindowsPowerShell\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'MariuszS'
+    'USERNAME' => 'Mariusz'
+    'USERPROFILE' => 'C:\\Users\\Mariusz'
+    'windir' => 'C:\\Windows'
+    'windows_tracing_flags' => '3'
+    'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log'
+    'YII_PATH' => 'c:\\xampp\\htdocs\\projecto\\'
+    'PHP_SELF' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_NAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_FILENAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'PATH_TRANSLATED' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1500646619.2697
+    'REQUEST_TIME' => 1500646619
+    'argv' => [
+        0 => 'c:\\xampp\\htdocs\\projecto\\yii'
+        1 => 'migrate/down'
+    ]
+    'argc' => 2
+]
+2017-07-21 16:19:58 [-][-][-][error][yii\console\Exception] exception 'yii\console\Exception' with message 'The version argument must be either a timestamp (e.g. 101129_185401)
+or the full name of a migration (e.g. m101129_185401_create_user_table)
+or the full name of a namespaced migration (e.g. app\migrations\M101129185401CreateUserTable).' in C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php:386
+Stack trace:
+#0 [internal function]: yii\console\controllers\BaseMigrateController->actionMark('1500638400')
+#1 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#2 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#3 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Controller.php(128): yii\base\Controller->runAction('mark', Array)
+#4 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Module.php(523): yii\console\Controller->runAction('mark', Array)
+#5 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate/mark', Array)
+#6 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate/mark', Array)
+#7 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 C:\xampp\htdocs\projecto\yii(27): yii\base\Application->run()
+#9 {main}
+2017-07-21 16:19:58 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'AMDAPPSDKROOT' => 'C:\\Program Files (x86)\\AMD APP\\'
+    'APPDATA' => 'C:\\Users\\Mariusz\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'MARIUSZS'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'EMAIL' => 'C:\\Users\\Mariusz\\AppData\\Roaming\\The Bat!'
+    'ESET_OPTIONS' => '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               '
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\Mariusz'
+    'JD2_HOME' => 'C:\\Users\\Mariusz\\AppData\\Local\\JDownloader v2.0'
+    'LOCALAPPDATA' => 'C:\\Users\\Mariusz\\AppData\\Local'
+    'LOGONSERVER' => '\\\\MARIUSZS'
+    'NUMBER_OF_PROCESSORS' => '8'
+    'OPENSSL_CONF' => 'C:\\OpenSSL\\bin\\openssl.cnf'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Program Files\\ImageMagick-7.0.3-Q16;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\WT-NMP\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\xampp\\php;C:\\Program Files (x86)\\Microsoft SQL Server\\80\\Tools\\Binn\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\Client SDK\\ODBC\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\ManagementStudio\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files (x86)\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\DTS\\Binn\\;C:\\Users\\Mariusz\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PHP_COMMAND' => 'php.exe'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 30 Stepping 5, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '1e05'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\PowerShell\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\PowerShell\\Modules\\;C:\\Program Files\\WindowsPowerShell\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'MariuszS'
+    'USERNAME' => 'Mariusz'
+    'USERPROFILE' => 'C:\\Users\\Mariusz'
+    'windir' => 'C:\\Windows'
+    'windows_tracing_flags' => '3'
+    'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log'
+    'YII_PATH' => 'c:\\xampp\\htdocs\\projecto\\'
+    'PHP_SELF' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_NAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_FILENAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'PATH_TRANSLATED' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1500646798.392
+    'REQUEST_TIME' => 1500646798
+    'argv' => [
+        0 => 'c:\\xampp\\htdocs\\projecto\\yii'
+        1 => 'migrate/mark'
+        2 => '1500638400'
+    ]
+    'argc' => 3
+]
+2017-07-21 16:20:28 [-][-][-][error][yii\console\Exception] exception 'yii\console\Exception' with message 'The version argument must be either a timestamp (e.g. 101129_185401)
+or the full name of a migration (e.g. m101129_185401_create_user_table)
+or the full name of a namespaced migration (e.g. app\migrations\M101129185401CreateUserTable).' in C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php:386
+Stack trace:
+#0 [internal function]: yii\console\controllers\BaseMigrateController->actionMark('2017-07-21 12:0...')
+#1 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#2 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#3 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Controller.php(128): yii\base\Controller->runAction('mark', Array)
+#4 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Module.php(523): yii\console\Controller->runAction('mark', Array)
+#5 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate/mark', Array)
+#6 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate/mark', Array)
+#7 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 C:\xampp\htdocs\projecto\yii(27): yii\base\Application->run()
+#9 {main}
+2017-07-21 16:20:28 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'AMDAPPSDKROOT' => 'C:\\Program Files (x86)\\AMD APP\\'
+    'APPDATA' => 'C:\\Users\\Mariusz\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'MARIUSZS'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'EMAIL' => 'C:\\Users\\Mariusz\\AppData\\Roaming\\The Bat!'
+    'ESET_OPTIONS' => '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               '
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\Mariusz'
+    'JD2_HOME' => 'C:\\Users\\Mariusz\\AppData\\Local\\JDownloader v2.0'
+    'LOCALAPPDATA' => 'C:\\Users\\Mariusz\\AppData\\Local'
+    'LOGONSERVER' => '\\\\MARIUSZS'
+    'NUMBER_OF_PROCESSORS' => '8'
+    'OPENSSL_CONF' => 'C:\\OpenSSL\\bin\\openssl.cnf'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Program Files\\ImageMagick-7.0.3-Q16;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\WT-NMP\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\xampp\\php;C:\\Program Files (x86)\\Microsoft SQL Server\\80\\Tools\\Binn\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\Client SDK\\ODBC\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\ManagementStudio\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files (x86)\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\DTS\\Binn\\;C:\\Users\\Mariusz\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PHP_COMMAND' => 'php.exe'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 30 Stepping 5, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '1e05'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\PowerShell\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\PowerShell\\Modules\\;C:\\Program Files\\WindowsPowerShell\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'MariuszS'
+    'USERNAME' => 'Mariusz'
+    'USERPROFILE' => 'C:\\Users\\Mariusz'
+    'windir' => 'C:\\Windows'
+    'windows_tracing_flags' => '3'
+    'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log'
+    'YII_PATH' => 'c:\\xampp\\htdocs\\projecto\\'
+    'PHP_SELF' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_NAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_FILENAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'PATH_TRANSLATED' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1500646828.0067
+    'REQUEST_TIME' => 1500646828
+    'argv' => [
+        0 => 'c:\\xampp\\htdocs\\projecto\\yii'
+        1 => 'migrate/mark'
+        2 => '2017-07-21 12:00:00'
+    ]
+    'argc' => 3
+]
+2017-07-21 16:22:01 [-][-][-][error][yii\console\Exception] exception 'yii\console\Exception' with message 'Unable to find the version '170721_120000'.' in C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php:423
+Stack trace:
+#0 [internal function]: yii\console\controllers\BaseMigrateController->actionMark('170721_120000')
+#1 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#2 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#3 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Controller.php(128): yii\base\Controller->runAction('mark', Array)
+#4 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Module.php(523): yii\console\Controller->runAction('mark', Array)
+#5 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate/mark', Array)
+#6 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate/mark', Array)
+#7 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 C:\xampp\htdocs\projecto\yii(27): yii\base\Application->run()
+#9 {main}
+2017-07-21 16:22:00 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'AMDAPPSDKROOT' => 'C:\\Program Files (x86)\\AMD APP\\'
+    'APPDATA' => 'C:\\Users\\Mariusz\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'MARIUSZS'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'EMAIL' => 'C:\\Users\\Mariusz\\AppData\\Roaming\\The Bat!'
+    'ESET_OPTIONS' => '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               '
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\Mariusz'
+    'JD2_HOME' => 'C:\\Users\\Mariusz\\AppData\\Local\\JDownloader v2.0'
+    'LOCALAPPDATA' => 'C:\\Users\\Mariusz\\AppData\\Local'
+    'LOGONSERVER' => '\\\\MARIUSZS'
+    'NUMBER_OF_PROCESSORS' => '8'
+    'OPENSSL_CONF' => 'C:\\OpenSSL\\bin\\openssl.cnf'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Program Files\\ImageMagick-7.0.3-Q16;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\WT-NMP\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\xampp\\php;C:\\Program Files (x86)\\Microsoft SQL Server\\80\\Tools\\Binn\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\Client SDK\\ODBC\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\ManagementStudio\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files (x86)\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\DTS\\Binn\\;C:\\Users\\Mariusz\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PHP_COMMAND' => 'php.exe'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 30 Stepping 5, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '1e05'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\PowerShell\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\PowerShell\\Modules\\;C:\\Program Files\\WindowsPowerShell\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'MariuszS'
+    'USERNAME' => 'Mariusz'
+    'USERPROFILE' => 'C:\\Users\\Mariusz'
+    'windir' => 'C:\\Windows'
+    'windows_tracing_flags' => '3'
+    'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log'
+    'YII_PATH' => 'c:\\xampp\\htdocs\\projecto\\'
+    'PHP_SELF' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_NAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_FILENAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'PATH_TRANSLATED' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1500646920.605
+    'REQUEST_TIME' => 1500646920
+    'argv' => [
+        0 => 'c:\\xampp\\htdocs\\projecto\\yii'
+        1 => 'migrate/mark'
+        2 => '170721_120000'
+    ]
+    'argc' => 3
+]
+2017-07-21 16:22:31 [-][-][-][error][yii\console\Exception] exception 'yii\console\Exception' with message 'Unable to find the version 'm101129_185401'.' in C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php:423
+Stack trace:
+#0 [internal function]: yii\console\controllers\BaseMigrateController->actionMark('m101129_185401')
+#1 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#2 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#3 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Controller.php(128): yii\base\Controller->runAction('mark', Array)
+#4 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Module.php(523): yii\console\Controller->runAction('mark', Array)
+#5 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate/mark', Array)
+#6 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate/mark', Array)
+#7 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 C:\xampp\htdocs\projecto\yii(27): yii\base\Application->run()
+#9 {main}
+2017-07-21 16:22:30 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'AMDAPPSDKROOT' => 'C:\\Program Files (x86)\\AMD APP\\'
+    'APPDATA' => 'C:\\Users\\Mariusz\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'MARIUSZS'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'EMAIL' => 'C:\\Users\\Mariusz\\AppData\\Roaming\\The Bat!'
+    'ESET_OPTIONS' => '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               '
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\Mariusz'
+    'JD2_HOME' => 'C:\\Users\\Mariusz\\AppData\\Local\\JDownloader v2.0'
+    'LOCALAPPDATA' => 'C:\\Users\\Mariusz\\AppData\\Local'
+    'LOGONSERVER' => '\\\\MARIUSZS'
+    'NUMBER_OF_PROCESSORS' => '8'
+    'OPENSSL_CONF' => 'C:\\OpenSSL\\bin\\openssl.cnf'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Program Files\\ImageMagick-7.0.3-Q16;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\WT-NMP\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\xampp\\php;C:\\Program Files (x86)\\Microsoft SQL Server\\80\\Tools\\Binn\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\Client SDK\\ODBC\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\ManagementStudio\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files (x86)\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\DTS\\Binn\\;C:\\Users\\Mariusz\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PHP_COMMAND' => 'php.exe'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 30 Stepping 5, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '1e05'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\PowerShell\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\PowerShell\\Modules\\;C:\\Program Files\\WindowsPowerShell\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'MariuszS'
+    'USERNAME' => 'Mariusz'
+    'USERPROFILE' => 'C:\\Users\\Mariusz'
+    'windir' => 'C:\\Windows'
+    'windows_tracing_flags' => '3'
+    'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log'
+    'YII_PATH' => 'c:\\xampp\\htdocs\\projecto\\'
+    'PHP_SELF' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_NAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_FILENAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'PATH_TRANSLATED' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1500646950.8017
+    'REQUEST_TIME' => 1500646950
+    'argv' => [
+        0 => 'c:\\xampp\\htdocs\\projecto\\yii'
+        1 => 'migrate/mark'
+        2 => 'm101129_185401'
+    ]
+    'argc' => 3
+]
+2017-07-21 16:23:51 [-][-][-][error][yii\base\ErrorException:1] exception 'yii\base\ErrorException' with message 'Class 'm160616_000010_add_filemanager_tags' not found' in C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\controllers\MigrateController.php:186
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2017-07-21 16:23:46 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'AMDAPPSDKROOT' => 'C:\\Program Files (x86)\\AMD APP\\'
+    'APPDATA' => 'C:\\Users\\Mariusz\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'MARIUSZS'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'EMAIL' => 'C:\\Users\\Mariusz\\AppData\\Roaming\\The Bat!'
+    'ESET_OPTIONS' => '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               '
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\Mariusz'
+    'JD2_HOME' => 'C:\\Users\\Mariusz\\AppData\\Local\\JDownloader v2.0'
+    'LOCALAPPDATA' => 'C:\\Users\\Mariusz\\AppData\\Local'
+    'LOGONSERVER' => '\\\\MARIUSZS'
+    'NUMBER_OF_PROCESSORS' => '8'
+    'OPENSSL_CONF' => 'C:\\OpenSSL\\bin\\openssl.cnf'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Program Files\\ImageMagick-7.0.3-Q16;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\WT-NMP\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\xampp\\php;C:\\Program Files (x86)\\Microsoft SQL Server\\80\\Tools\\Binn\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\Client SDK\\ODBC\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\ManagementStudio\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files (x86)\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\DTS\\Binn\\;C:\\Users\\Mariusz\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PHP_COMMAND' => 'php.exe'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 30 Stepping 5, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '1e05'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\PowerShell\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\PowerShell\\Modules\\;C:\\Program Files\\WindowsPowerShell\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'MariuszS'
+    'USERNAME' => 'Mariusz'
+    'USERPROFILE' => 'C:\\Users\\Mariusz'
+    'windir' => 'C:\\Windows'
+    'windows_tracing_flags' => '3'
+    'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log'
+    'YII_PATH' => 'c:\\xampp\\htdocs\\projecto\\'
+    'PHP_SELF' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_NAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_FILENAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'PATH_TRANSLATED' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1500647026.038
+    'REQUEST_TIME' => 1500647026
+    'argv' => [
+        0 => 'c:\\xampp\\htdocs\\projecto\\yii'
+        1 => 'migrate/down'
+        2 => '5'
+    ]
+    'argc' => 3
+]
+2017-07-21 16:27:07 [-][-][-][error][yii\console\Exception] exception 'yii\console\Exception' with message 'Unable to find the version 'm141203_175538_add_filemanager_owners_ref_mediafile_fk'.' in C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php:423
+Stack trace:
+#0 [internal function]: yii\console\controllers\BaseMigrateController->actionMark('m141203_175538_...')
+#1 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#2 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#3 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Controller.php(128): yii\base\Controller->runAction('mark', Array)
+#4 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Module.php(523): yii\console\Controller->runAction('mark', Array)
+#5 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate/mark', Array)
+#6 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate/mark', Array)
+#7 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 C:\xampp\htdocs\projecto\yii(27): yii\base\Application->run()
+#9 {main}
+2017-07-21 16:27:06 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'AMDAPPSDKROOT' => 'C:\\Program Files (x86)\\AMD APP\\'
+    'APPDATA' => 'C:\\Users\\Mariusz\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'MARIUSZS'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'EMAIL' => 'C:\\Users\\Mariusz\\AppData\\Roaming\\The Bat!'
+    'ESET_OPTIONS' => '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               '
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\Mariusz'
+    'JD2_HOME' => 'C:\\Users\\Mariusz\\AppData\\Local\\JDownloader v2.0'
+    'LOCALAPPDATA' => 'C:\\Users\\Mariusz\\AppData\\Local'
+    'LOGONSERVER' => '\\\\MARIUSZS'
+    'NUMBER_OF_PROCESSORS' => '8'
+    'OPENSSL_CONF' => 'C:\\OpenSSL\\bin\\openssl.cnf'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Program Files\\ImageMagick-7.0.3-Q16;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\WT-NMP\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\xampp\\php;C:\\Program Files (x86)\\Microsoft SQL Server\\80\\Tools\\Binn\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\Client SDK\\ODBC\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\ManagementStudio\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files (x86)\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\DTS\\Binn\\;C:\\Users\\Mariusz\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PHP_COMMAND' => 'php.exe'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 30 Stepping 5, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '1e05'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\PowerShell\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\PowerShell\\Modules\\;C:\\Program Files\\WindowsPowerShell\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'MariuszS'
+    'USERNAME' => 'Mariusz'
+    'USERPROFILE' => 'C:\\Users\\Mariusz'
+    'windir' => 'C:\\Windows'
+    'windows_tracing_flags' => '3'
+    'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log'
+    'YII_PATH' => 'c:\\xampp\\htdocs\\projecto\\'
+    'PHP_SELF' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_NAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_FILENAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'PATH_TRANSLATED' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1500647226.8095
+    'REQUEST_TIME' => 1500647226
+    'argv' => [
+        0 => 'c:\\xampp\\htdocs\\projecto\\yii'
+        1 => 'migrate/mark'
+        2 => 'm141203_175538_add_filemanager_owners_ref_mediafile_fk'
+    ]
+    'argc' => 3
+]
+2017-07-21 16:27:17 [-][-][-][error][yii\db\Exception] exception 'PDOException' with message 'SQLSTATE[HY000]: General error: 1005 Can't create table 'mariuszs_projecto.#sql-1dac_146' (errno: 150)' in C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\db\Command.php:842
+Stack trace:
+#0 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\db\Command.php(842): PDOStatement->execute()
+#1 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\db\Migration.php(442): yii\db\Command->execute()
+#2 C:\xampp\htdocs\projecto\vendor\pendalf89\yii2-filemanager\migrations\m141203_175538_add_filemanager_owners_ref_mediafile_fk.php(18): yii\db\Migration->addForeignKey('filemanager_own...', 'filemanager_own...', 'mediafile_id', 'filemanager_med...', 'id', 'RESTRICT', 'RESTRICT')
+#3 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(671): m141203_175538_add_filemanager_owners_ref_mediafile_fk->up()
+#4 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(183): yii\console\controllers\BaseMigrateController->migrateUp('m141203_175538_...')
+#5 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#6 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#7 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#8 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Controller.php(128): yii\base\Controller->runAction('', Array)
+#9 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Module.php(523): yii\console\Controller->runAction('', Array)
+#10 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate', Array)
+#11 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate', Array)
+#12 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#13 C:\xampp\htdocs\projecto\yii(27): yii\base\Application->run()
+#14 {main}
+
+Next exception 'yii\db\Exception' with message 'SQLSTATE[HY000]: General error: 1005 Can't create table 'mariuszs_projecto.#sql-1dac_146' (errno: 150)
+The SQL being executed was: ALTER TABLE `filemanager_owners` ADD CONSTRAINT `filemanager_owners_ref_mediafile` FOREIGN KEY (`mediafile_id`) REFERENCES `filemanager_mediafile` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT' in C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\db\Schema.php:636
+Stack trace:
+#0 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\db\Command.php(852): yii\db\Schema->convertException(Object(PDOException), 'ALTER TABLE `fi...')
+#1 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\db\Migration.php(442): yii\db\Command->execute()
+#2 C:\xampp\htdocs\projecto\vendor\pendalf89\yii2-filemanager\migrations\m141203_175538_add_filemanager_owners_ref_mediafile_fk.php(18): yii\db\Migration->addForeignKey('filemanager_own...', 'filemanager_own...', 'mediafile_id', 'filemanager_med...', 'id', 'RESTRICT', 'RESTRICT')
+#3 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(671): m141203_175538_add_filemanager_owners_ref_mediafile_fk->up()
+#4 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(183): yii\console\controllers\BaseMigrateController->migrateUp('m141203_175538_...')
+#5 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#6 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#7 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#8 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Controller.php(128): yii\base\Controller->runAction('', Array)
+#9 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Module.php(523): yii\console\Controller->runAction('', Array)
+#10 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate', Array)
+#11 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate', Array)
+#12 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#13 C:\xampp\htdocs\projecto\yii(27): yii\base\Application->run()
+#14 {main}
+Additional Information:
+Array
+(
+    [0] => HY000
+    [1] => 1005
+    [2] => Can't create table 'mariuszs_projecto.#sql-1dac_146' (errno: 150)
+)
+
+2017-07-21 16:27:14 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'AMDAPPSDKROOT' => 'C:\\Program Files (x86)\\AMD APP\\'
+    'APPDATA' => 'C:\\Users\\Mariusz\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'MARIUSZS'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'EMAIL' => 'C:\\Users\\Mariusz\\AppData\\Roaming\\The Bat!'
+    'ESET_OPTIONS' => '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               '
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\Mariusz'
+    'JD2_HOME' => 'C:\\Users\\Mariusz\\AppData\\Local\\JDownloader v2.0'
+    'LOCALAPPDATA' => 'C:\\Users\\Mariusz\\AppData\\Local'
+    'LOGONSERVER' => '\\\\MARIUSZS'
+    'NUMBER_OF_PROCESSORS' => '8'
+    'OPENSSL_CONF' => 'C:\\OpenSSL\\bin\\openssl.cnf'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Program Files\\ImageMagick-7.0.3-Q16;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\WT-NMP\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\xampp\\php;C:\\Program Files (x86)\\Microsoft SQL Server\\80\\Tools\\Binn\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\Client SDK\\ODBC\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\ManagementStudio\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files (x86)\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\DTS\\Binn\\;C:\\Users\\Mariusz\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PHP_COMMAND' => 'php.exe'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 30 Stepping 5, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '1e05'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\PowerShell\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\PowerShell\\Modules\\;C:\\Program Files\\WindowsPowerShell\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'MariuszS'
+    'USERNAME' => 'Mariusz'
+    'USERPROFILE' => 'C:\\Users\\Mariusz'
+    'windir' => 'C:\\Windows'
+    'windows_tracing_flags' => '3'
+    'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log'
+    'YII_PATH' => 'c:\\xampp\\htdocs\\projecto\\'
+    'PHP_SELF' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_NAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_FILENAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'PATH_TRANSLATED' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1500647234.0789
+    'REQUEST_TIME' => 1500647234
+    'argv' => [
+        0 => 'c:\\xampp\\htdocs\\projecto\\yii'
+        1 => 'migrate'
+        2 => '--migrationPath=vendor/pendalf89/yii2-filemanager/migrations'
+    ]
+    'argc' => 3
+]
+2017-07-21 16:27:31 [-][-][-][error][yii\db\Exception] exception 'PDOException' with message 'SQLSTATE[HY000]: General error: 1005 Can't create table 'mariuszs_projecto.#sql-1dac_147' (errno: 150)' in C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\db\Command.php:842
+Stack trace:
+#0 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\db\Command.php(842): PDOStatement->execute()
+#1 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\db\Migration.php(442): yii\db\Command->execute()
+#2 C:\xampp\htdocs\projecto\vendor\pendalf89\yii2-filemanager\migrations\m141203_175538_add_filemanager_owners_ref_mediafile_fk.php(18): yii\db\Migration->addForeignKey('filemanager_own...', 'filemanager_own...', 'mediafile_id', 'filemanager_med...', 'id', 'RESTRICT', 'RESTRICT')
+#3 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(671): m141203_175538_add_filemanager_owners_ref_mediafile_fk->up()
+#4 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(183): yii\console\controllers\BaseMigrateController->migrateUp('m141203_175538_...')
+#5 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#6 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#7 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#8 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Controller.php(128): yii\base\Controller->runAction('', Array)
+#9 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Module.php(523): yii\console\Controller->runAction('', Array)
+#10 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate', Array)
+#11 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate', Array)
+#12 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#13 C:\xampp\htdocs\projecto\yii(27): yii\base\Application->run()
+#14 {main}
+
+Next exception 'yii\db\Exception' with message 'SQLSTATE[HY000]: General error: 1005 Can't create table 'mariuszs_projecto.#sql-1dac_147' (errno: 150)
+The SQL being executed was: ALTER TABLE `filemanager_owners` ADD CONSTRAINT `filemanager_owners_ref_mediafile` FOREIGN KEY (`mediafile_id`) REFERENCES `filemanager_mediafile` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT' in C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\db\Schema.php:636
+Stack trace:
+#0 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\db\Command.php(852): yii\db\Schema->convertException(Object(PDOException), 'ALTER TABLE `fi...')
+#1 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\db\Migration.php(442): yii\db\Command->execute()
+#2 C:\xampp\htdocs\projecto\vendor\pendalf89\yii2-filemanager\migrations\m141203_175538_add_filemanager_owners_ref_mediafile_fk.php(18): yii\db\Migration->addForeignKey('filemanager_own...', 'filemanager_own...', 'mediafile_id', 'filemanager_med...', 'id', 'RESTRICT', 'RESTRICT')
+#3 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(671): m141203_175538_add_filemanager_owners_ref_mediafile_fk->up()
+#4 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(183): yii\console\controllers\BaseMigrateController->migrateUp('m141203_175538_...')
+#5 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#6 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#7 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#8 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Controller.php(128): yii\base\Controller->runAction('', Array)
+#9 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Module.php(523): yii\console\Controller->runAction('', Array)
+#10 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate', Array)
+#11 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate', Array)
+#12 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#13 C:\xampp\htdocs\projecto\yii(27): yii\base\Application->run()
+#14 {main}
+Additional Information:
+Array
+(
+    [0] => HY000
+    [1] => 1005
+    [2] => Can't create table 'mariuszs_projecto.#sql-1dac_147' (errno: 150)
+)
+
+2017-07-21 16:27:28 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'AMDAPPSDKROOT' => 'C:\\Program Files (x86)\\AMD APP\\'
+    'APPDATA' => 'C:\\Users\\Mariusz\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'MARIUSZS'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'EMAIL' => 'C:\\Users\\Mariusz\\AppData\\Roaming\\The Bat!'
+    'ESET_OPTIONS' => '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               '
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\Mariusz'
+    'JD2_HOME' => 'C:\\Users\\Mariusz\\AppData\\Local\\JDownloader v2.0'
+    'LOCALAPPDATA' => 'C:\\Users\\Mariusz\\AppData\\Local'
+    'LOGONSERVER' => '\\\\MARIUSZS'
+    'NUMBER_OF_PROCESSORS' => '8'
+    'OPENSSL_CONF' => 'C:\\OpenSSL\\bin\\openssl.cnf'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Program Files\\ImageMagick-7.0.3-Q16;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\WT-NMP\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\xampp\\php;C:\\Program Files (x86)\\Microsoft SQL Server\\80\\Tools\\Binn\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\Client SDK\\ODBC\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\ManagementStudio\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files (x86)\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\DTS\\Binn\\;C:\\Users\\Mariusz\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PHP_COMMAND' => 'php.exe'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 30 Stepping 5, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '1e05'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\PowerShell\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\PowerShell\\Modules\\;C:\\Program Files\\WindowsPowerShell\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'MariuszS'
+    'USERNAME' => 'Mariusz'
+    'USERPROFILE' => 'C:\\Users\\Mariusz'
+    'windir' => 'C:\\Windows'
+    'windows_tracing_flags' => '3'
+    'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log'
+    'YII_PATH' => 'c:\\xampp\\htdocs\\projecto\\'
+    'PHP_SELF' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_NAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_FILENAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'PATH_TRANSLATED' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1500647248.1677
+    'REQUEST_TIME' => 1500647248
+    'argv' => [
+        0 => 'c:\\xampp\\htdocs\\projecto\\yii'
+        1 => 'migrate'
+        2 => '--migrationPath=vendor/pendalf89/yii2-filemanager/migrations'
+    ]
+    'argc' => 3
+]
+2017-07-21 16:27:36 [-][-][-][error][yii\db\Exception] exception 'PDOException' with message 'SQLSTATE[HY000]: General error: 1005 Can't create table 'mariuszs_projecto.#sql-1dac_148' (errno: 150)' in C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\db\Command.php:842
+Stack trace:
+#0 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\db\Command.php(842): PDOStatement->execute()
+#1 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\db\Migration.php(442): yii\db\Command->execute()
+#2 C:\xampp\htdocs\projecto\vendor\pendalf89\yii2-filemanager\migrations\m141203_175538_add_filemanager_owners_ref_mediafile_fk.php(18): yii\db\Migration->addForeignKey('filemanager_own...', 'filemanager_own...', 'mediafile_id', 'filemanager_med...', 'id', 'RESTRICT', 'RESTRICT')
+#3 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(671): m141203_175538_add_filemanager_owners_ref_mediafile_fk->up()
+#4 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(183): yii\console\controllers\BaseMigrateController->migrateUp('m141203_175538_...')
+#5 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#6 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#7 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#8 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Controller.php(128): yii\base\Controller->runAction('', Array)
+#9 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Module.php(523): yii\console\Controller->runAction('', Array)
+#10 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate', Array)
+#11 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate', Array)
+#12 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#13 C:\xampp\htdocs\projecto\yii(27): yii\base\Application->run()
+#14 {main}
+
+Next exception 'yii\db\Exception' with message 'SQLSTATE[HY000]: General error: 1005 Can't create table 'mariuszs_projecto.#sql-1dac_148' (errno: 150)
+The SQL being executed was: ALTER TABLE `filemanager_owners` ADD CONSTRAINT `filemanager_owners_ref_mediafile` FOREIGN KEY (`mediafile_id`) REFERENCES `filemanager_mediafile` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT' in C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\db\Schema.php:636
+Stack trace:
+#0 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\db\Command.php(852): yii\db\Schema->convertException(Object(PDOException), 'ALTER TABLE `fi...')
+#1 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\db\Migration.php(442): yii\db\Command->execute()
+#2 C:\xampp\htdocs\projecto\vendor\pendalf89\yii2-filemanager\migrations\m141203_175538_add_filemanager_owners_ref_mediafile_fk.php(18): yii\db\Migration->addForeignKey('filemanager_own...', 'filemanager_own...', 'mediafile_id', 'filemanager_med...', 'id', 'RESTRICT', 'RESTRICT')
+#3 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(671): m141203_175538_add_filemanager_owners_ref_mediafile_fk->up()
+#4 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(183): yii\console\controllers\BaseMigrateController->migrateUp('m141203_175538_...')
+#5 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#6 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#7 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#8 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Controller.php(128): yii\base\Controller->runAction('', Array)
+#9 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Module.php(523): yii\console\Controller->runAction('', Array)
+#10 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate', Array)
+#11 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate', Array)
+#12 C:\xampp\htdocs\projecto\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#13 C:\xampp\htdocs\projecto\yii(27): yii\base\Application->run()
+#14 {main}
+Additional Information:
+Array
+(
+    [0] => HY000
+    [1] => 1005
+    [2] => Can't create table 'mariuszs_projecto.#sql-1dac_148' (errno: 150)
+)
+
+2017-07-21 16:27:33 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'AMDAPPSDKROOT' => 'C:\\Program Files (x86)\\AMD APP\\'
+    'APPDATA' => 'C:\\Users\\Mariusz\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'MARIUSZS'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'EMAIL' => 'C:\\Users\\Mariusz\\AppData\\Roaming\\The Bat!'
+    'ESET_OPTIONS' => '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               '
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\Mariusz'
+    'JD2_HOME' => 'C:\\Users\\Mariusz\\AppData\\Local\\JDownloader v2.0'
+    'LOCALAPPDATA' => 'C:\\Users\\Mariusz\\AppData\\Local'
+    'LOGONSERVER' => '\\\\MARIUSZS'
+    'NUMBER_OF_PROCESSORS' => '8'
+    'OPENSSL_CONF' => 'C:\\OpenSSL\\bin\\openssl.cnf'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Program Files\\ImageMagick-7.0.3-Q16;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\WT-NMP\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\xampp\\php;C:\\Program Files (x86)\\Microsoft SQL Server\\80\\Tools\\Binn\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\Client SDK\\ODBC\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\ManagementStudio\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files (x86)\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\DTS\\Binn\\;C:\\Users\\Mariusz\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PHP_COMMAND' => 'php.exe'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 30 Stepping 5, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '1e05'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\PowerShell\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\PowerShell\\Modules\\;C:\\Program Files\\WindowsPowerShell\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\Mariusz\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'MariuszS'
+    'USERNAME' => 'Mariusz'
+    'USERPROFILE' => 'C:\\Users\\Mariusz'
+    'windir' => 'C:\\Windows'
+    'windows_tracing_flags' => '3'
+    'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log'
+    'YII_PATH' => 'c:\\xampp\\htdocs\\projecto\\'
+    'PHP_SELF' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_NAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'SCRIPT_FILENAME' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'PATH_TRANSLATED' => 'c:\\xampp\\htdocs\\projecto\\yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1500647253.822
+    'REQUEST_TIME' => 1500647253
+    'argv' => [
+        0 => 'c:\\xampp\\htdocs\\projecto\\yii'
+        1 => 'migrate'
+        2 => '--migrationPath=vendor/pendalf89/yii2-filemanager/migrations'
+    ]
+    'argc' => 3
+]
