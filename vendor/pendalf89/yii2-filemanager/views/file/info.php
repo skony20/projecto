@@ -14,7 +14,7 @@ use pendalf89\filemanager\models\Tag;
 $bundle = FilemanagerAsset::register($this);
 ?>
 
-<?= Html::img($model->getDefaultThumbUrl($bundle->baseUrl)) ?>
+<?= Html::img('../../../../../../'.$model->getDefaultThumbUrl($bundle->baseUrl)) ?>
 
 <ul class="detail">
     <li><?= $model->type ?></li>

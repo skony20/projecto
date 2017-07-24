@@ -50,8 +50,7 @@ class BlogPost extends \yii\db\ActiveRecord
             [['article'], 'string'],
             [['author_id', 'featured', 'enabled', 'comments_enabled', 'views'], 'integer'],
             [['date_published'], 'safe'],
-            [['title', 'title_clean'], 'string', 'max' => 144],
-            [['file'], 'string', 'max' => 45],
+            [['title', 'title_clean', 'banner_image'], 'string', 'max' => 144],
             [['title_clean'], 'unique'],
             [['author_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['author_id' => 'id']],
         ];
@@ -77,18 +76,7 @@ class BlogPost extends \yii\db\ActiveRecord
             'views' => 'Odwiedzin',
         ];
     }
-    public function behaviors()
-    {
-        return [
-            'mediafile' => [
-                'class' => MediafileBehavior::className(),
-                'name' => 'post',
-                'attributes' => [
-                    'thumbnail',
-                ],
-            ]
-        ];
-    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -136,10 +124,5 @@ class BlogPost extends \yii\db\ActiveRecord
     {
         return $this->hasMany(BlogTag::className(), ['post_id' => 'id']);
     }
-    public function upload()
-    {
-        $this->banner_image->saveAs(yii::getAlias('@blog-img', '@rootFolder/img/blog').'/' . $this->banner_image->baseName . '.' . $this->banner_image->extension);
-        return TRUE;
-
-    }
+  
 }

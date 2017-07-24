@@ -2,11 +2,11 @@
 use yii\bootstrap\Modal;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
-use dosamigos\ckeditor\CKEditor;
 use common\models\BlogAuthor;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use pendalf89\filemanager\widgets\FileInput;
+use pendalf89\filemanager\widgets\TinyMCE;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\BlogPost */
@@ -21,13 +21,22 @@ use pendalf89\filemanager\widgets\FileInput;
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
     
     <?= $form->field($model, 'title_clean')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'article')->widget(CKEditor::className(), [
-        'preset' => 'standard'
-    ]) ?>
+    <?= $form->field($model, 'article')->widget(TinyMCE::className(), [
+    'clientOptions' => [
+           'language' => 'pl',
+        'menubar' => false,
+        'height' => 500,
+        'image_dimensions' => false,
+        'plugins' => [
+            'advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code contextmenu table',
+        ],
+        'toolbar' => 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code',
+    ],
+]); ?>
 
     <?=  $form->field($model, 'banner_image')->widget(FileInput::className(), [
     'buttonTag' => 'button',
-    'buttonName' => 'Browse',
+    'buttonName' => 'Dodaj',
     'buttonOptions' => ['class' => 'btn btn-default'],
     'options' => ['class' => 'form-control'],
     // Widget template
@@ -38,12 +47,6 @@ use pendalf89\filemanager\widgets\FileInput;
     'imageContainer' => '.img',
     // Default to FileInput::DATA_URL. This data will be inserted in input field
     'pasteData' => FileInput::DATA_URL,
-    // JavaScript function, which will be called before insert file data to input.
-    // Argument data contains file data.
-    // data example: [alt: "Ведьма с кошкой", description: "123", url: "/uploads/2014/12/vedma-100x100.jpeg", id: "45"]
-    'callbackBeforeInsert' => 'function(e, data) {
-        console.log( data );
-    }',
 ])?>
     <?= $form->field($model, 'featured', ['options' => ['class' => 'inline-row']])->checkbox(['class'=>'inline']) ?>
 

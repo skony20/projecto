@@ -18,11 +18,11 @@ return [
         // Upload routes
         'routes' => [
             // Base absolute path to web directory
-            'baseUrl' => 'projecto/',
+            'baseUrl' => '/projecto',
             // Base web directory url
-            'basePath' => '@backend/web',
+            'basePath' => '../../../',
             // Path for uploaded files in web directory
-            'uploadPath' => 'img/blog/',
+            'uploadPath' => 'img/blog',
         ],
         // Thumbnails info
         'thumbs' => [

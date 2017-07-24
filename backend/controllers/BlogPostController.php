@@ -77,9 +77,15 @@ class BlogPostController extends Controller
     {
         $model = new BlogPost();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
+        if ($model->load(Yii::$app->request->post()) && $model->save(false)) 
+            {
+                $model->author_id = Yii::$app->user->identity->id;
+                if ($model->save())
+                {
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
+            
+            } else {
             return $this->render('create', [
                 'model' => $model,
             ]);
@@ -96,8 +102,12 @@ class BlogPostController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+             $model->author_id = Yii::$app->user->identity->id;
+              if ($model->save())
+                {
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
         } else {
             return $this->render('update', [
                 'model' => $model,
