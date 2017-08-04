@@ -17,6 +17,7 @@ src: url("fonts/FontAwesome.otf") format("opentype");
 a, a:hover, a:focus
 {
     color:#3d7db0;
+    text-decoration: none;
 }
 img:focus, a:focus, img:actice, a:active
 {
@@ -228,6 +229,13 @@ h1
 {
   font-size: 13px;  
   font-style: italic;
+}
+.o13ilg
+{
+    font-weight: 100;
+    font-size: 13px;  
+    font-style: italic; 
+    color: #88c354;
 }
 .m15wgreen
 {

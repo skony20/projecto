@@ -31,7 +31,7 @@ class FiltersController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'check', 'checksize'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -116,7 +116,53 @@ class FiltersController extends Controller
 
         return $this->redirect(['index']);
     }
-
+    public function actionCheck()
+    {
+        $aFilters =[];
+        /*Sprawdzanie czy każdy projekt ma odpowiedź na wszystkie pytania*/
+        $oFiltersGroup = Filters::findAll(['is_active'=>1]);
+        $a =1;
+        echo '<table><tr><td>Produkt</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>';
+        foreach ($oFiltersGroup as $oFiltersGroup)
+        {
+            $aFilters[$oFiltersGroup->filters_group_id][] = $oFiltersGroup->id;
+            
+        }
+        
+        $oProducts = \app\models\Products::find()->andWhere(['is_active'=>1])->all();
+        foreach ($oProducts as $oProducts)
+        {
+            
+            echo '<tr><td>'.$oProducts->id.'</td>';
+                
+            echo '<td>'.$oProducts->producers->name.'</td>';
+            echo '<td>'.$a.'</td>';
+            echo '</tr>';
+            $a++;
+        }
+        echo'</table>';
+    }
+    public function actionChecksize()
+    {
+        
+        /*Sprawdzanie czy każdy projekt ma rozmiary dzialki i rozmiary swoje*/
+        
+        echo '<table><tr><td>Produkt</td><td>Wielkość</td><td>Szerokośc działki</td><td>Głębokośc działki</td><td></tr>';
+        
+        $oProducts = \app\models\Products::find()->andWhere(['is_active'=>1])->andWhere(['>=','id','5000'])->andWhere(['<','id','6000'])->all();
+        foreach ($oProducts as $oProducts)
+        {
+            $oSizeX = \app\models\ProductsAttributes::findOne(['products_id'=>$oProducts->id, 'attributes_id'=>'4']);
+            $oAreaX = \app\models\ProductsAttributes::findOne(['products_id'=>$oProducts->id, 'attributes_id'=>'6']);
+            $oAreaY = \app\models\ProductsAttributes::findOne(['products_id'=>$oProducts->id, 'attributes_id'=>'7']);
+            echo '<tr><td>'.$oProducts->id.'</td>';
+            echo '<td>'.$oSizeX['value'].'</td>';
+            echo '<td>'.$oAreaX['value'].'</td>';
+            echo '<td>'.$oAreaY['value'].'</td>';
+            echo '</tr>';
+        }
+        echo'</table>';
+    }
     /**
      * Finds the Filters model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

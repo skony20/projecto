@@ -156,4 +156,22 @@ return array (
       '@pendalf89/filemanager' => $vendorDir . '/pendalf89/yii2-filemanager',
     ),
   ),
+  'yiisoft/yii2-jui' => 
+  array (
+    'name' => 'yiisoft/yii2-jui',
+    'version' => '2.0.6.0',
+    'alias' => 
+    array (
+      '@yii/jui' => $vendorDir . '/yiisoft/yii2-jui',
+    ),
+  ),
+  'tolik505/yii2-tag-editor' => 
+  array (
+    'name' => 'tolik505/yii2-tag-editor',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@tolik505/tagEditor' => $vendorDir . '/tolik505/yii2-tag-editor/src',
+    ),
+  ),
 );

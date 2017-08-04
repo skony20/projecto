@@ -32,8 +32,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'article:raw',
             'title_clean',
-            'file',
-            'author_id',
+            [
+                'attribute' => 'author_id',
+                'value' =>  function($data)
+                    {
+                        return ($data->author->delivery_name . ' ' . $data->author->delivery_lastname );
+                    },
+            ],
             'date_published',
             'banner_image',
             'featured',

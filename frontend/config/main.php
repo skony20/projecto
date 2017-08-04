@@ -157,8 +157,10 @@ return [
                     'encodeParams' => false
                 ],
                
-				
+                'blog' => 'blog/index',
                 'projekt/<symbol>.html' => 'projekt/view',
+                'blog/<sTitleClean>.html' => 'blog/view',
+                'blog/kategoria/<sTitleClean>.html' => 'blog/kategoria',
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>', 

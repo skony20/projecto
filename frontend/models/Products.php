@@ -198,7 +198,7 @@ class Products extends \yii\db\ActiveRecord
     public function Countall()
     {
        
-        $iAll = $this->find()->andWhere(['is_active' => 1])->all();
+        $iAll = $this->find()->andWhere(['is_active' => 1, 'is_archive'=>0])->all();
         $iAvalaibleProject = count($iAll);
         return ($iAvalaibleProject);
     }

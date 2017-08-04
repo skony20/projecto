@@ -871,7 +871,7 @@ class XmlController extends Controller
                     $oProductsDesriptions->languages_id = 1;
                     $oProductsDesriptions->name = $aProject->Name;
                     $oProductsDesriptions->nicename_link = $sSymbol;
-                    $oProductsDesriptions->html_description = strip_tags($aProject->BodyDescription. "<br>Technologia:<br>".$aProject->BodyTechnology. "<br>Wykończenie:<br>".$aProject->BodyFinish. "', ", '<br>, <ul>, <li>, <b></b>');
+                    $oProductsDesriptions->html_description = strip_tags($aProject->BodyDescription. ($aProject->BodyTechnology != "" ? "<br>Technologia:<br>".$aProject->BodyTechnology ."<br>" : "") .($aProject->BodyFinish != "" ? "<br>Wykończenie:<br>".$aProject->BodyFinish : ""), '<br>, <ul>, <li>, <b></b>, <p></p>');
                     $oProductsDesriptions->save(false);
 
                     

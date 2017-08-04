@@ -19,7 +19,8 @@ class AppAsset extends AssetBundle
         'css/font-awesome.min.css',
     ];
     public $js = [
-        'js/admin.js', 
+        'js/admin.js',
+        'js/blog.js',
         'js/modal.js',
         'js/fancybox/jquery.fancybox.js',
         'js/fancybox/jquery.fancybox.pack.js'

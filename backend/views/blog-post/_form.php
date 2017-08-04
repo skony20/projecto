@@ -7,11 +7,15 @@ use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use pendalf89\filemanager\widgets\FileInput;
 use pendalf89\filemanager\widgets\TinyMCE;
+use tolik505\tagEditor\TagEditor;
+use common\models\BlogCategory;
+use common\models\BlogPostToCategory;
+use common\models\BlogTag;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\BlogPost */
 /* @var $form yii\widgets\ActiveForm */
-
+$oPostTag = new BlogTag();
 ?>
 
 <div class="blog-post-form">
@@ -21,6 +25,16 @@ use pendalf89\filemanager\widgets\TinyMCE;
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
     
     <?= $form->field($model, 'title_clean')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($oBlogPostToCategory, 'category_id')->dropDownList(ArrayHelper::map(BlogCategory::find()->all(), 'id', 'name'), ['prompt' => '-=Wybierz kategorię=-'])?>
+    <?= $form->field($oPostTag, 'tag')->widget(TagEditor::className(), [
+        'tagEditorOptions' => [
+            'placeholder' => 'Wpisuj tagi rozdzielając je tabulacją',
+            'initialTags' =>$oBlogTag,
+            'autocomplete' => [
+                'source' => 'tags/'
+            ],
+        ]
+    ]) ?>
     <?= $form->field($model, 'article')->widget(TinyMCE::className(), [
     'clientOptions' => [
            'language' => 'pl',
@@ -36,18 +50,15 @@ use pendalf89\filemanager\widgets\TinyMCE;
 
     <?=  $form->field($model, 'banner_image')->widget(FileInput::className(), [
     'buttonTag' => 'button',
-    'buttonName' => 'Dodaj',
+    'buttonName' => 'Dodaj zdjęcie',
     'buttonOptions' => ['class' => 'btn btn-default'],
     'options' => ['class' => 'form-control'],
-    // Widget template
     'template' => '<div class="input-group">{input}<span class="input-group-btn">{button}</span></div>',
-    // Optional, if set, only this image can be selected by user
     'thumb' => 'original',
-    // Optional, if set, in container will be inserted selected image
     'imageContainer' => '.img',
-    // Default to FileInput::DATA_URL. This data will be inserted in input field
     'pasteData' => FileInput::DATA_URL,
 ])?>
+    <br>
     <?= $form->field($model, 'featured', ['options' => ['class' => 'inline-row']])->checkbox(['class'=>'inline']) ?>
 
     <?= $form->field($model, 'enabled', ['options' => ['class' => 'inline-row']])->checkbox(['class'=>'inline']) ?>

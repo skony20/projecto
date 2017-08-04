@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'yii\\swiftmailer\\' => array($vendorDir . '/yiisoft/yii2-swiftmailer'),
+    'yii\\jui\\' => array($vendorDir . '/yiisoft/yii2-jui'),
     'yii\\imagine\\' => array($vendorDir . '/yiisoft/yii2-imagine'),
     'yii\\httpclient\\' => array($vendorDir . '/yiisoft/yii2-httpclient'),
     'yii\\gii\\' => array($vendorDir . '/yiisoft/yii2-gii'),
@@ -18,6 +19,7 @@ return array(
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
     'yii2mod\\slider\\' => array($vendorDir . '/yii2mod/yii2-ion-slider'),
     'tubalmartin\\CssMin\\' => array($vendorDir . '/tubalmartin/cssmin/src'),
+    'tolik505\\tagEditor\\' => array($vendorDir . '/tolik505/yii2-tag-editor/src'),
     'skeeks\\yii2\\assetsAuto\\' => array($vendorDir . '/skeeks/yii2-assets-auto-compress'),
     'piotrmus\\chartjs2\\' => array($vendorDir . '/piotrmus/yii2-chartjs2-widget/src'),
     'pendalf89\\tinymce\\' => array($vendorDir . '/pendalf89/yii2-tinymce'),

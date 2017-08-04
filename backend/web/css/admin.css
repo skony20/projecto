@@ -12,11 +12,11 @@
 }
 .form-control {
     display: block;
-    width: 100%;
+    width: 80%;
     height: auto;
-    padding: 0;
+    padding: 0 5px;
     font-size: 10px;
-    line-height: 1.4;
+    line-height: 14px;
     color: #6f6f6f;
     background-color: #ffffff;
     background-image: none;
@@ -215,13 +215,31 @@ div[class^="blog"] .form-group
     width: 80%;
     display: inline-block;
 }
-#cke_blogpost-article
+#mceu_16
 {
-    width: 90%;
+    width: 90% !important;
     display:inline-block;
+}
+div[class^="blog"] .input-group {
+    width: 90%;
+    display: inline-block;
 }
 .inline-row
 {
     display: inline-block;
     padding: 10px; 
+}
+#blogpost-banner_image-btn
+{
+    margin: 0 0 0 -1px;
+    padding: 0 10px;
+    height: 30px;
+    font-size: 14px;
+}
+td.max200
+{
+    height: 150px;
+    overflow-y: auto;
+    display: block;
+    padding: 15px;
 }

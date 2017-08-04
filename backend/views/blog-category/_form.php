@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'nice_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'enabled')->textInput() ?>
+    <?= $form->field($model, 'enabled')->checkbox() ?>
 
 
     <div class="form-group">

@@ -79,7 +79,6 @@ AppAsset::register($this);
             'label' => 'Blog',
             'items' => [
                 ['label' => 'Posty', 'url' => ['/blog-post']],
-                ['label' => 'Autorzy', 'url' => ['/blog-author']],
                 ['label' => 'Kategorie', 'url' => ['/blog-category']],
                 ['label' => 'Tagi', 'url' => ['/blog-tag']],
                 ['label' => 'Komentarze', 'url' => ['/blog-comment']],

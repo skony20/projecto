@@ -19,22 +19,15 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
             'id',
             'title',
             'title_clean',
-            'article:ntext',
-            
-            //'file',
-            // 'author_id',
+            [
+                'attribute' => 'article',
+                'contentOptions' => ['class' => 'max200'],
+            ],
             'date_published:datetime',
-            // 'banner_image',
-            // 'featured',
-            // 'enabled',
-            // 'comments_enabled',
-            // 'views',
-
+            'views',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

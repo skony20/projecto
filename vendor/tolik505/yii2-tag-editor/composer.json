@@ -1,0 +1,24 @@
+{
+    "name": "tolik505/yii2-tag-editor",
+    "description": "Widget for tags adding. Based on https://goodies.pixabay.com/jquery/tag-editor/demo.html",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension", "widget", "tag-editor", "tag", "tags"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Anatolii Pipko",
+            "email": "videoller@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*",
+        "yiisoft/yii2-jui": "*",
+        "bower-asset/jquery-tag-editor": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "tolik505\\tagEditor\\": "src"
+        }
+    }
+}

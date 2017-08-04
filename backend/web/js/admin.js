@@ -1,10 +1,3 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 $(document).ready(
     function()
     {   
@@ -25,8 +18,6 @@ $(document).ready(
             
             sNicename = sNicename.toLowerCase();
             return sNicename;
-            
-
         }    
     $("#filtersgroup-name").change(
 			function() {
@@ -90,7 +81,7 @@ $(document).ready(
              function() {
                 iIdProduct = $(this).attr('rel');
                 $.ajax({
-                    url: 'unactive/'+iIdProduct,
+                    url: '/backend/web/products/unactive/'+iIdProduct,
                     success: function(data) {
                         window.location.href = window.location.href;
                     }
@@ -101,7 +92,7 @@ $(document).ready(
              function() {
                 iIdProduct = $(this).attr('rel');
                 $.ajax({
-                    url: 'active/'+iIdProduct,
+                    url: '/backend/web/products/active/'+iIdProduct,
                 success: function(data) {
                     window.location.href = window.location.href;
                 }
@@ -112,7 +103,7 @@ $(document).ready(
              function() {
                 iIdProduct = $(this).attr('rel');
                 $.ajax({
-                    url: 'unarchive/'+iIdProduct,
+                    url: '/backend/web/products/unarchive/'+iIdProduct,
                     success: function(data) {
                         window.location.href = window.location.href;
                     }
@@ -123,7 +114,7 @@ $(document).ready(
              function() {
                 iIdProduct = $(this).attr('rel');
                 $.ajax({
-                    url: 'archive/'+iIdProduct,
+                    url: '/backend/web/products/archive/'+iIdProduct,
                 success: function(data) {
                     window.location.href = window.location.href;
                 }

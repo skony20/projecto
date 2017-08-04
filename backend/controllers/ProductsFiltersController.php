@@ -171,14 +171,7 @@ class ProductsFiltersController extends Controller
 
         return $this->redirect(['index']);
     }
-
-    /**
-     * Finds the ProductsFilters model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return ProductsFilters the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+   
     protected function findModel($id)
     {
         if (($model = ProductsFilters::findOne($id)) !== null) {

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "dd4e7c922d7b6c946fa174e77479703e",
+    "content-hash": "3051153777d114681c5733b1b2527b04",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -115,6 +115,40 @@
             ]
         },
         {
+            "name": "bower-asset/caret",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/accursoft/caret.git",
+                "reference": "8cd0910544f4267d91ca527117ae459832978411"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/accursoft/caret/zipball/8cd0910544f4267d91ca527117ae459832978411",
+                "reference": "8cd0910544f4267d91ca527117ae459832978411",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.3"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "jquery.caret.js",
+                "bower-asset-ignore": [
+                    "bower_components",
+                    "node_modules",
+                    "test.html"
+                ]
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Manipulate the caret's position in a text box or content-editable element.",
+            "keywords": [
+                "caret"
+            ]
+        },
+        {
             "name": "bower-asset/chartjs",
             "version": "v2.1.6",
             "source": {
@@ -214,6 +248,71 @@
                 "jquery",
                 "library"
             ]
+        },
+        {
+            "name": "bower-asset/jquery-tag-editor",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Pixabay/jQuery-tagEditor.git",
+                "reference": "e843e1d921b301301f57f8f67a7ac1d3f0069de4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Pixabay/jQuery-tagEditor/zipball/e843e1d921b301301f57f8f67a7ac1d3f0069de4",
+                "reference": "e843e1d921b301301f57f8f67a7ac1d3f0069de4",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/caret": "*",
+                "bower-asset/jquery": ">=1.7"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-ignore": [
+                    "bower.json",
+                    "demo.html",
+                    "readme.md",
+                    "tag-editor.jquery.json"
+                ],
+                "branch-alias": {
+                    "dev-master": "1.0.21-dev"
+                }
+            },
+            "description": "A powerful and lightweight tag editor plugin for jQuery.",
+            "keywords": [
+                "drag and drop",
+                "edit",
+                "editable",
+                "editor",
+                "keywords",
+                "tags"
+            ]
+        },
+        {
+            "name": "bower-asset/jquery-ui",
+            "version": "1.11.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/components/jqueryui.git",
+                "reference": "c34f8dbf3ba57b3784b93f26119f436c0e8288e1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/components/jqueryui/zipball/c34f8dbf3ba57b3784b93f26119f436c0e8288e1",
+                "reference": "c34f8dbf3ba57b3784b93f26119f436c0e8288e1",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.6"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "jquery-ui.js"
+                ],
+                "bower-asset-ignore": []
+            }
         },
         {
             "name": "bower-asset/jquery.inputmask",
@@ -1374,6 +1473,53 @@
             "time": "2017-05-30T02:59:46+00:00"
         },
         {
+            "name": "tolik505/yii2-tag-editor",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tolik505/yii2-tag-editor.git",
+                "reference": "eafb8a5acac8214ebebb8bec886f8d227251968a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tolik505/yii2-tag-editor/zipball/eafb8a5acac8214ebebb8bec886f8d227251968a",
+                "reference": "eafb8a5acac8214ebebb8bec886f8d227251968a",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery-tag-editor": "*",
+                "yiisoft/yii2": "*",
+                "yiisoft/yii2-jui": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "tolik505\\tagEditor\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anatolii Pipko",
+                    "email": "videoller@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Widget for tags adding. Based on https://goodies.pixabay.com/jquery/tag-editor/demo.html",
+            "keywords": [
+                "extension",
+                "tag",
+                "tag-editor",
+                "tags",
+                "widget",
+                "yii2"
+            ],
+            "time": "2016-10-28T08:07:21+00:00"
+        },
+        {
             "name": "tubalmartin/cssmin",
             "version": "v4.1.0",
             "source": {
@@ -1823,6 +1969,56 @@
                 "yii2"
             ],
             "time": "2016-11-03T19:28:39+00:00"
+        },
+        {
+            "name": "yiisoft/yii2-jui",
+            "version": "2.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/yii2-jui.git",
+                "reference": "843a2160cfe30f5c8b0cb2e9dbd8ee6bcf97e71d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/yii2-jui/zipball/843a2160cfe30f5c8b0cb2e9dbd8ee6bcf97e71d",
+                "reference": "843a2160cfe30f5c8b0cb2e9dbd8ee6bcf97e71d",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery-ui": "1.11.*@stable",
+                "yiisoft/yii2": ">=2.0.4"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                },
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii\\jui\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Qiang Xue",
+                    "email": "qiang.xue@gmail.com"
+                }
+            ],
+            "description": "The Jquery UI extension for the Yii framework",
+            "keywords": [
+                "jQuery UI",
+                "yii2"
+            ],
+            "time": "2016-07-22T22:26:59+00:00"
         },
         {
             "name": "yiisoft/yii2-swiftmailer",

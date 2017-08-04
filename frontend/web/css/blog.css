@@ -1,0 +1,220 @@
+/* 
+    Created on : 2017-07-27, 10:03:19
+    Author     : Mariusz Skonieczny, mariuszskonieczny@hotmail.com
+*/
+.blog-post
+{
+    height: 110px;
+    width: 100%;
+    margin:10px 0;
+    color:#777777;
+}
+.blog-category
+
+{
+   text-align: right;
+}
+.blog-category-link
+{
+    padding:10px 20px;
+    background-color: #555F65;
+    color:#fff;
+    margin : 10px;
+    border-radius:4px;
+}
+.blog-category-link:hover
+{
+    background-color: #87C353;
+}
+.active_cat
+{
+    background-color: #87C353;
+}
+.blog-category-link a,.blog-category-link a:hover, .blog-category-link a:focus
+{
+    color:#fff;
+    text-transform: uppercase;
+    font-family: Montserrat;
+}
+.blog-date
+{
+    font-family: Montserrat;
+    background-color: #F5F9FB;
+    text-align: center;
+    height: 110px;
+    font-weight: 700;
+    
+}
+.blog-date-container
+{
+    margin-top:16px;
+}
+.blog-date-day
+{
+    font-size:32px;
+    color:#2D3E52;
+}
+.blog-date-month
+{
+
+    font-size:18px;
+    color:#2D3E52;
+}
+.blog-img
+{
+    height: 110px;
+    text-align: center;
+}
+.blog-img img
+{
+    height: 110px;
+    
+}
+.o12gsm, .o12gsm:hover, .o12gsm:focus
+{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #88c354;
+}
+.dark-blue
+{
+    color:#2D3E52;
+}
+.blog-article-title 
+{
+    padding: 5px 0;
+}
+.blog-article-content 
+{
+    padding: 0 40px 0 5px;
+}
+
+.blog-comments
+{
+    background-color: #E9EDF1;
+    height: 110px;
+    text-align: center;
+    padding-top: 30px;
+}
+.blog-share
+{
+    background-color: #F5F9FB;
+    height: 110px;
+    text-align: center;
+    padding-top: 30px;
+}
+.blog-link
+{
+    background-color: #2D3E52;
+    color:#fff;
+    height: 110px;
+    line-height: 110px;
+    text-align:center;
+    max-width: 55px;
+}
+.blog-link:hover
+{
+    
+    background-color: #87C353;
+}
+.icon-white, icon-white:hover, .icon-white:focus
+{
+    color:white;
+}
+
+
+/*Wpis*/
+.blog-wrap 
+{
+    background-color: #F5F9FB;
+}
+.blog-view
+{
+    margin-top:40px;
+    background-color: #ffffff;
+}
+.blog-green-icon
+{
+    color: #88c354;
+    padding-right: 6px;
+}
+.blog-view-date
+{
+    font-weight: 600;
+    color: #2D3E52;
+    padding: 10px 20px;
+}
+.blog-view-category
+{
+    float:right;
+    background-color: #2D3E52;
+    color: #ffffff;
+    text-transform: uppercase;
+    padding: 5px;
+        
+}
+.blog-view-title
+{
+    padding: 5px 20px;
+}
+.blog-view-share
+{
+    float:right;
+    margin-top: 10px;
+    margin-right: 30px;
+}
+.icon-red
+{
+    color:#FF0000;
+}
+
+.blog-view-content
+{
+    padding: 20px 40px;
+}
+.blog-view-content img {
+    padding: 0 10px;
+}
+.blog-view-content p
+{
+    text-align: justify;
+}
+.blog-view-comments
+{
+    margin-top: 30px;
+    background-color: #ffffff;
+    padding: 25px 0;
+}
+.comment-row
+{
+    padding: 20px 0 0 0; 
+
+}
+.comment-row-content
+{
+    border-bottom: 1px solid #EDEDED;
+    padding: 0 0 20px 0;
+}
+.comment-row-comment 
+{
+    vertical-align: top;
+    padding-left: 40px;
+    padding-top: 10px;
+}
+
+.comment-row-reply
+{
+    font-size:14px;
+    color:#333333;
+    padding-right: 20px;
+}
+.comment-row-reply i
+{
+    padding: 0 10px;
+}
+.comment-answer
+{
+    background-color: red;
+    border-bottom: 1px solid #EDEDED;
+}

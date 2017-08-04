@@ -76,4 +76,8 @@ class BlogComment extends \yii\db\ActiveRecord
     {
         return $this->hasOne(BlogUser::className(), ['id' => 'user_id']);
     }
+    public function Answer($id)
+    {
+        return BlogComment::findAll(['is_reply_to_id' => $id]);
+    }
 }

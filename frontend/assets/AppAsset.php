@@ -29,6 +29,7 @@ class AppAsset extends AssetBundle
         'css/login.css',
         'css/order.css',
         'css/faq.css',
+        'css/blog.css'
         
     ];
     public $depends = [

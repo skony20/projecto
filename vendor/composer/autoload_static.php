@@ -15,6 +15,7 @@ class ComposerStaticInit05d5e545355306cc0244b7afaa6de28d
         'y' => 
         array (
             'yii\\swiftmailer\\' => 16,
+            'yii\\jui\\' => 8,
             'yii\\imagine\\' => 12,
             'yii\\httpclient\\' => 15,
             'yii\\gii\\' => 8,
@@ -29,6 +30,7 @@ class ComposerStaticInit05d5e545355306cc0244b7afaa6de28d
         't' => 
         array (
             'tubalmartin\\CssMin\\' => 19,
+            'tolik505\\tagEditor\\' => 19,
         ),
         's' => 
         array (
@@ -83,6 +85,10 @@ class ComposerStaticInit05d5e545355306cc0244b7afaa6de28d
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-swiftmailer',
         ),
+        'yii\\jui\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-jui',
+        ),
         'yii\\imagine\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-imagine',
@@ -126,6 +132,10 @@ class ComposerStaticInit05d5e545355306cc0244b7afaa6de28d
         'tubalmartin\\CssMin\\' => 
         array (
             0 => __DIR__ . '/..' . '/tubalmartin/cssmin/src',
+        ),
+        'tolik505\\tagEditor\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tolik505/yii2-tag-editor/src',
         ),
         'skeeks\\yii2\\assetsAuto\\' => 
         array (

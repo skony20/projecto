@@ -26,7 +26,8 @@
         "skeeks/yii2-assets-auto-compress": "*",
         "yiisoft/yii2-imagine": "^2.1",
         "piotrmus/yii2-chartjs2-widget" : "~1.0",
-        "kartik-v/yii2-widget-colorinput": "*"
+        "kartik-v/yii2-widget-colorinput": "*",
+        "tolik505/yii2-tag-editor": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",

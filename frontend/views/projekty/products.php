@@ -56,7 +56,7 @@ foreach ($dataProvider->models as $aProducts)
             </div>
         </div>
         <span class="helper-img"></span>
-    <img itemprop="image" src='<?=yii::getalias("@image")?>/<?=$aProducts->id?>/info/<?=$aProducts->productsImages[0]->name?>' class='prj-image'/>
+
     </div>
     <div class="prj-info">
         <div class="prj-left">

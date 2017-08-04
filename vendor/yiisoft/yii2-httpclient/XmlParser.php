@@ -22,16 +22,7 @@ class XmlParser extends Object implements ParserInterface
      */
     public function parse(Response $response)
     {
-        $contentType = $response->getHeaders()->get('content-type', '');
-        if (preg_match('/charset=(.*)/i', $contentType, $matches)) {
-            $encoding = $matches[1];
-        } else {
-            $encoding = 'UTF-8';
-        }
-
-        $dom = new \DOMDocument('1.0', $encoding);
-        $dom->loadXML($response->getContent(), LIBXML_NOCDATA);
-        return $this->convertXmlToArray(simplexml_import_dom($dom->documentElement));
+        return $this->convertXmlToArray($response->getContent());
     }
 
     /**
@@ -41,12 +32,12 @@ class XmlParser extends Object implements ParserInterface
      */
     protected function convertXmlToArray($xml)
     {
-        if (is_string($xml)) {
+        if (!is_object($xml)) {
             $xml = simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA);
         }
         $result = (array) $xml;
         foreach ($result as $key => $value) {
-            if (!is_scalar($value)) {
+            if (is_object($value)) {
                 $result[$key] = $this->convertXmlToArray($value);
             }
         }

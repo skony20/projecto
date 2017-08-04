@@ -62,4 +62,5 @@ class BlogPostToCategory extends \yii\db\ActiveRecord
     {
         return $this->hasOne(BlogPost::className(), ['id' => 'post_id']);
     }
+
 }

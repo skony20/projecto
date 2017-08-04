@@ -16,6 +16,8 @@ $this->params['breadcrumbs'][] = 'Zmień';
 
     <?= $this->render('_form', [
         'model' => $model,
+        'oBlogPostToCategory' =>$oBlogPostToCategory,
+        'oBlogTag' => $oBlogTag,
     ]) ?>
 
 </div>
