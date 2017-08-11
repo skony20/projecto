@@ -26,6 +26,14 @@ class XmlController extends Controller
     */
     public $iImageThumb = 80;
     public $iImageInfo = 300;
+    
+    public $sArchipelagXml = 'http://www.archipelag.pl/files/ProjectExport/t26d6ch0bqdeu6/project_export.zip';
+    public $sDomProjektXml = 'http://dom-projekt.pl/xml/generator.xml.php';
+    public $sHoryzontXml = 'https://www.horyzont.com/xml/horyzont_06_2017.xml';
+    public $sMgProjektXml = 'http://www.mgprojekt.com.pl/export_xml,index.html';
+    public $sProArteXml = 'http://www.pro-arte.pl/proarte.xml';
+    public $sZ500Xml = 'http://z500.pl/export/get/xml/Z500v2/96e76802fe2379c41f111fac9bb29deff3b23396.xml';
+    
     public function behaviors()
     {
         return [
@@ -33,7 +41,9 @@ class XmlController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['proarte', 'domprojekt', 'archipelag', 'horyzont', 'mgprojekt', 'images', 'rzut', 'pietra', 'export', 'import'],
+                        'actions' => ['proarte', 'domprojekt', 'archipelag', 'horyzont', 'mgprojekt', 'z500', 
+                        'ceny', 'images', 'rzut', 'pietra', 'export', 'import', 
+                        'update-archipelag', 'update-domprojekt', 'update-horyzont', 'update-mgprojekt', 'update-proarte'],
                         'allow' => true,
                     ],
                     
@@ -102,6 +112,15 @@ class XmlController extends Controller
         }
 
         
+    }
+    /*Aktualizacja atrybutów*/
+    private function updateAttr ($iPrjId, $iAttrId,  $iOldValue, $iNewValue, $sAttrDesc)
+    {
+        $oActualAttr = ProductsAttributes::findOne(['products_id'=>$iPrjId, 'attributes_id'=>$iAttrId]);
+        if ($iOldValue != $iNewValue)
+        {
+            
+        }
     }
     /* Funcje zapisująsa filtry*/
     private function addFilter($p_PrdId, $p_FltId)
@@ -217,7 +236,7 @@ class XmlController extends Controller
     public function actionProarte()
     {
         $oDocument = new Response();
-        $sXmlFile  = 'http://www.pro-arte.pl/proarte.xml';
+        $sXmlFile  = $this->sProArteXml;
         $sXmlContent = file_get_contents($sXmlFile);
         $sXml = $oDocument->setContent($sXmlContent);
         $oParser = new XmlParser();
@@ -357,47 +376,28 @@ class XmlController extends Controller
                         switch ($aImages->Tytul)
                         {
                             case "Piwnica":
-                                    $sStoreyType = 0;
-                                    break;
                             case "piwnica":
-                                    $sStoreyType = 0;
-                                    break;
+                                $sStoreyType = 0;
+                                break;
                             case "rzut piwnicy":
-                                    $sStoreyType = 0;
-                                    break;
                             case "rzut piwnicy":
-                                    $sStoreyType = 0;
-                                    break;
+                                $sStoreyType = 0;
+                                break;
                             case "Parter":
-                                    $sStoreyType = 1;
-                                    break;
                             case "parter":
-                                    $sStoreyType = 1;
-                                    break;
                             case "Rzut parteru":
-                                    $sStoreyType = 1;
-                                    break;
                             case "rzut parteru":
-                                    $sStoreyType = 1;
-                                    break;
-                            case "Segment A - parter":
-                                    $sStoreyType = 1;
-                                    break;
+                                $sStoreyType = 1;
+                                break;
                             case "Poddasze":
-                                    $sStoreyType = 2;
-                                    break;
                             case "Rzut poddasza":
-                                    $sStoreyType = 2;
-                                    break;
                             case "rzut poddasza":
-                                    $sStoreyType = 2;
-                                    break;
                             case "Segment A - poddasze":
-                                    $sStoreyType = 2;
-                                    break;
+                                $sStoreyType = 2;
+                                break;
                             case "Rzut przyziemia":
-                                    $sStoreyType = 1;
-                                    break;
+                                $sStoreyType = 1;
+                                break;
                         }
                         if (isset($aImages->Elements->Element))
                         {
@@ -446,7 +446,7 @@ class XmlController extends Controller
     public function actionDomprojekt()
     {
         $oDocument = new Response();
-        $sXmlFile  = 'http://dom-projekt.pl/xml/generator.xml.php';
+        $sXmlFile  = $this->sDomProjektXml;
         $sXmlContent = file_get_contents($sXmlFile);
         $sXml = $oDocument->setContent($sXmlContent);
         $oParser = new XmlParser();
@@ -706,19 +706,24 @@ class XmlController extends Controller
                             switch ($aViews->attributes()->nr)
                             {
                                 case 1:
-                                $sDesc = 'Parter';
+                                    $sDesc = 'Parter';
+                                    $iStoreyType = 1;
                                 break;
                                 case 2:
-                                $sDesc = 'Poddasze';
+                                    $sDesc = 'Poddasze';
+                                    $iStoreyType = 2;
                                 break;
                                 case 3:
-                                $sDesc = 'Piwnica';
+                                    $sDesc = 'Piwnica';
+                                    $iStoreyType = 0;
                                 break;
                                 case 4:
-                                $sDesc = 'Przekrój';
+                                    $sDesc = 'Przekrój';
+                                    $iStoreyType = '';
                                 break;
                                 case 5:
-                                $sDesc = 'Piętro';
+                                    $sDesc = 'Piętro';
+                                    $iStoreyType = 2;
                                 break;
                             }
                         $sViewsLink = $aViews->standard->url_png;
@@ -732,7 +737,7 @@ class XmlController extends Controller
                         }
                         else 
                         {
-                            $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
+                            $this->addImage($iActualProductId, $sName, $sDesc, $iImgType, $iStoreyType);
                             /*Zapisywanie obrazków*/
                             $this->saveImage($sViewsLink, $iActualProductId, $sName);
                             $a++;    
@@ -776,8 +781,11 @@ class XmlController extends Controller
                                 $sStoreyType = 1;
                                 break;
                             case 2:
-                            case 3:
                                 $sStoreyName = 'Piętro';
+                                $sStoreyType = 2;
+                                break;
+                            case 3:
+                                $sStoreyName = 'Poddasze';
                                 $sStoreyType = 2;
                                 break;
                             
@@ -810,7 +818,7 @@ class XmlController extends Controller
             "verify_peer_name" => false,
             ),
         );
-        $url="http://www.archipelag.pl/files/ProjectExport/t26d6ch0bqdeu6/project_export.zip";
+        $url=$this->sArchipelagXml;
         copy($url, '../../xml/project_export.zip', stream_context_create( $contextOptions ));
         $zip = new \ZipArchive();
         $res = $zip->open('../../xml/project_export.zip');
@@ -881,8 +889,8 @@ class XmlController extends Controller
                     ($aProject->Length !='' ? $this->addAttr($iActualProductId, 3, $aProject->Length) : '');
                     ($aProject->AreaUse !='' ? $this->addAttr($iActualProductId, 4, $aProject->AreaUse) : '');
                     ($aProject->AreaGarage !='' ? $this->addAttr($iActualProductId, 5, $aProject->AreaGarage) : '');
-                    ($aProject->LandLength !='' ? $this->addAttr($iActualProductId, 6, $aProject->LandLength) : '');
-                    ($aProject->LandWidth !='' ? $this->addAttr($iActualProductId, 7, $aProject->LandWidth) : '');
+                    ($aProject->LandWidth !='' ? $this->addAttr($iActualProductId, 6, $aProject->LandWidth) : '');
+                    ($aProject->LandLength !='' ? $this->addAttr($iActualProductId, 7, $aProject->LandLength) : '');
                     ($aProject->RoofAngle !='' ? $this->addAttr($iActualProductId, 8, $aProject->RoofAngle) : '');
                     ($aProject->AreaNetto !='' ? $this->addAttr($iActualProductId, 10, $aProject->AreaNetto) : '');
                     ($aProject->AreaBuilding !='' ? $this->addAttr($iActualProductId, 11, $aProject->AreaBuilding) : '');
@@ -1172,7 +1180,7 @@ class XmlController extends Controller
     {
         
         $oDocument = new Response();
-        $sXmlFile  = 'https://www.horyzont.com/xml/horyzont_06_2017.xml';
+        $sXmlFile  = $this->sHoryzontXml;
         $sXmlContent = file_get_contents($sXmlFile);
         $sXml = $oDocument->setContent($sXmlContent);
         $oParser = new XmlParser();
@@ -1535,7 +1543,7 @@ class XmlController extends Controller
     public function actionMgprojekt()
     {
         $oDocument = new Response();
-        $sXmlFile  = 'http://www.mgprojekt.com.pl/export_xml,index.html';
+        $sXmlFile  = $this->sMgProjektXml;
         
         $sXmlContent = file_get_contents($sXmlFile);
         $sXml = $oDocument->setContent($sXmlContent);
@@ -1878,6 +1886,515 @@ class XmlController extends Controller
             }  
         }
 
+    }
+    
+     public function actionZ500()
+    {
+        $oDocument = new Response();
+        $sXmlFile  = $this->sZ500Xml;
+        
+        $sXmlContent = file_get_contents($sXmlFile);
+        $sXml = $oDocument->setContent($sXmlContent);
+        $oParser = new XmlParser();
+        $aZ500 = $oParser->parse($sXml);
+        foreach ($aMGP['projekt'] as $aProject)
+        {
+            $oProjekt = new Products();
+            $oExist = $oProjekt->findOne(['ean' => 'mgprojekt-'.$aProject->products_id]);
+            if (!$oExist)
+            {
+            
+            }
+        }
+    }
+    
+    /*Aktualizacje cen*/
+    public function actionCeny()
+    {
+        $sReturn = '';
+        $oDocument = new Response();
+        /*DOM PROJEKT*/
+        $sXmlFileDM  = $this->sDomProjektXml;
+        $sXmlContentDM = file_get_contents($sXmlFileDM);
+        $sXmlDM = $oDocument->setContent($sXmlContentDM);
+        $oParser = new XmlParser();
+        $aDomProjekt = $oParser->parse($sXmlDM);
+        foreach ($aDomProjekt['projekt'] as $aProject)
+        {
+            $oProjekt = new Products();
+            $oExist = $oProjekt->findOne(['ean' => 'dp'.$aProject->id]);
+            if ($oExist && $oExist->price_brutto != $aProject->cena)
+            {
+                $oExist->price_brutto = $aProject->cena;
+                $oExist->price_brutto_source = $aProject->cena;
+                $oExist->modification_date = time();
+                $oExist->save();
+                $sReturn .= $oExist->id .'<br>';
+            }
+            
+        }
+        /*Archipelag*/
+        $folder = scandir('../../xml/files/temp'); 
+        $sArchipelag = str_replace(array("&amp;", "&"), array("&", "&amp;"), file_get_contents('../../xml/files/temp/'.$folder[2].'/projekty.xml'));
+        $oDocument = new Response();
+        $sXmlContent = file_get_contents('../../xml/files/temp/'.$folder[2].'/projekty.xml');
+        $sXml = $oDocument->setContent($sXmlContent);
+        $oParser = new XmlParser();
+        $oArchipelag = $oParser->parse($sXml);
+        foreach ($oArchipelag['Project'] as $aProject){
+            if ($aProject->InfoKind == 1)
+            {
+                $oProjekt = new Products();
+                $sId = ((string)($aProject->attributes()->Id));
+                $oExist = $oProjekt->findOne(['ean' => $sId]);
+                if ($oExist && $oExist->price_brutto != ceil(($aProject->PriceNetto)*((100+($aProject->PriceVAT))/100)))
+                {
+                    $oExist->price_brutto = ceil(($aProject->PriceNetto)*((100+($aProject->PriceVAT))/100));
+                    $oExist->price_brutto_source = ceil(($aProject->PriceNetto)*((100+($aProject->PriceVAT))/100));
+                    $oExist->modification_date = time();
+                    $oExist->save();
+                    $sReturn .=  $oExist->id .'<br>';
+                }
+                
+            }
+        }
+        /*Horyzont*/
+        $sXmlFileHor  = $this->sHoryzontXml;
+        $sXmlContentHor = file_get_contents($sXmlFileHor);
+        $sXmlHor = $oDocument->setContent($sXmlContentHor);
+        $oParser = new XmlParser();
+        $aHoryzont = $oParser->parse($sXmlHor);
+        
+        foreach ($aHoryzont['product'] as $aProject)
+        {
+            $oProjekt = new Products();
+            $oExist = $oProjekt->findOne(['ean' => 'horyzont-'.$aProject->id_product]);
+            if ($oExist && $oExist->price_brutto != $aProject->price)
+            {
+                $oExist->price_brutto = $aProject->price;
+                $oExist->price_brutto_source = $aProject->price;
+                $oExist->modification_date = time();
+                $oExist->save();
+                $sReturn .=  $oExist->id .'<br>';
+            }
+        }
+        /*MGProjekt*/
+        $sXmlFileMG  = $this->sMgProjektXml;
+        
+        $sXmlContentMG = file_get_contents($sXmlFileMG);
+        $sXmlMG = $oDocument->setContent($sXmlContentMG);
+        $oParser = new XmlParser();
+        $aMGP = $oParser->parse($sXmlMG);
+        foreach ($aMGP['projekt'] as $aProject)
+        {
+            $oProjekt = new Products();
+            $oExist = $oProjekt->findOne(['ean' => 'mgprojekt-'.$aProject->products_id]);
+            if ($oExist && $oExist->price_brutto != $aProject->cena_projektu)
+            {
+                $oExist->price_brutto = $aProject->cena_projektu;
+                $oExist->price_brutto_source = $aProject->cena_projektu;
+                $oExist->modification_date = time();
+                $oExist->save();
+                $sReturn .=  $oExist->id .'<br>';
+            }
+        }
+        /*Pro Arte*/
+        $sXmlFilePA  = $this->sProArteXml;
+        $sXmlContentPA = file_get_contents($sXmlFilePA);
+        $sXmlPA = $oDocument->setContent($sXmlContentPA);
+        $oParser = new XmlParser();
+        $aProarte = $oParser->parse($sXmlPA);
+        foreach ($aProarte['Projekt'] as $aProject)
+        {
+            $oProjekt = new Products();
+            $oExist = $oProjekt->findOne(['ean' => $aProject->Symbol]);
+            if ($oExist && $oExist->price_brutto != $aProject->Cena)
+            {
+                $oExist->price_brutto = $aProject->Cena;
+                $oExist->price_brutto_source = $aProject->Cena;
+                $oExist->modification_date = time();
+                $oExist->save();
+                $sReturn .=  $oExist->id .'<br>';
+            }
+        }
+        echo $sReturn;
+        return $sReturn;
+    }
+    
+    /*Aktualizacja danych technicznych*/
+    public function actionUpdateArchipelag()
+    {
+        $sReturn = '';
+        $oDocument = new Response();
+        /*Archipelag*/
+        $folder = scandir('../../xml/files/temp'); 
+        $sArchipelag = str_replace(array("&amp;", "&"), array("&", "&amp;"), file_get_contents('../../xml/files/temp/'.$folder[2].'/projekty.xml'));
+        $oDocument = new Response();
+        $sXmlContent = file_get_contents('../../xml/files/temp/'.$folder[2].'/projekty.xml');
+        $sXml = $oDocument->setContent($sXmlContent);
+        $oParser = new XmlParser();
+        $oArchipelag = $oParser->parse($sXml);
+        $aAtributes = 
+                    [
+                        ['iAttrId'=> 1, 'sXmlName'=>'Height' , 'sDesc' => 'Wysokość'],
+                        ['iAttrId'=> 2, 'sXmlName'=>'Width' , 'sDesc' => 'Szerokość'],
+                        ['iAttrId'=> 3, 'sXmlName'=>'Length' , 'sDesc' => 'Głębokość'],
+                        ['iAttrId'=> 4, 'sXmlName'=>'AreaUse' , 'sDesc' => 'Powierzchnia użytkowa'],
+                        ['iAttrId'=> 5, 'sXmlName'=>'AreaGarage' , 'sDesc' => 'Powierzchnia garażu'],
+                        ['iAttrId'=> 6, 'sXmlName'=>'LandWidth' , 'sDesc' => 'Minimalna szerokość działki'],
+                        ['iAttrId'=> 7, 'sXmlName'=>'LandLength' , 'sDesc' => 'Minimalna głebokość działki'],
+                        ['iAttrId'=> 8, 'sXmlName'=>'RoofAngle' , 'sDesc' => 'Kąt dachu'],
+                        ['iAttrId'=> 10, 'sXmlName'=>'AreaNetto' , 'sDesc' => 'Powierzchnia netto'],
+                        ['iAttrId'=> 11, 'sXmlName'=>'AreaBuilding' , 'sDesc' => 'Powierzchnia zabudowy'],
+                        ['iAttrId'=> 13, 'sXmlName'=>'AreaBasement' , 'sDesc' => 'Powierzchnia piwnicy'],
+                        ['iAttrId'=> 14, 'sXmlName'=>'AreaAttic' , 'sDesc' => 'Powierzchnia strychu'],
+                        ['iAttrId'=> 15, 'sXmlName'=>'Cubature' , 'sDesc' => 'Kubatura netto'],
+                        ['iAttrId'=> 16, 'sXmlName'=>'RoofArea' , 'sDesc' => 'Powierzchnia dachu'],
+                        ['iAttrId'=> 18, 'sXmlName'=>'CountBathroom' , 'sDesc' => 'Ilość łazienek'],
+                        ['iAttrId'=> 19, 'sXmlName'=>'CountToilet' , 'sDesc' => 'Ilość toalet'],
+
+
+                    ];
+        foreach ($oArchipelag['Project'] as $aProject){
+            if ($aProject->InfoKind == 1)
+            {
+                $oProjekt = new Products();
+                $sId = ((string)($aProject->attributes()->Id));
+                $oExist = $oProjekt->findOne(['ean' => $sId]);
+                if ($oExist)
+                {
+                    
+                    foreach ($aAtributes as $aAttribut)
+                    {
+                        $sArrayAttr = trim((string)($aAttribut['sXmlName']));
+                        $oActualAttr = ProductsAttributes::findOne(['products_id'=>$oExist->id, 'attributes_id'=>$aAttribut['iAttrId']]);
+                        if (isset($aProject->$sArrayAttr) && isset($oActualAttr) && $aProject->$sArrayAttr != $oActualAttr->value)
+                        {
+                            $oActualAttr->value = $aProject->$sArrayAttr;
+                            if ($oActualAttr->save(false))
+                            {
+                                $sReturn .=  $aAttribut['sDesc'].'  '.$oExist->id .'<br>';
+                            }
+                        }   
+                    }                        
+                }   
+            }            
+        }
+        
+        return $sReturn;
+    }
+    public function actionUpdateDomprojekt()
+    {
+        $sReturn = '';
+        $oDocument = new Response();
+        /*DOM PROJEKT*/
+        $sXmlFileDM  = $this->sDomProjektXml;
+        $sXmlContentDM = file_get_contents($sXmlFileDM);
+        $sXmlDM = $oDocument->setContent($sXmlContentDM);
+        $oParser = new XmlParser();
+        $aDomProjekt = $oParser->parse($sXmlDM);
+        $aAtributes = 
+                [
+                    ['iAttrId'=> 4, 'sXmlName'=>['powierzchnia','uzytkowa'], 'sDesc' => 'Minimalna szerokość działki'],
+                    ['iAttrId'=> 5, 'sXmlName'=>['powierzchnia','garaz'], 'sDesc' => 'Minimalna szerokość działki'],
+                    ['iAttrId'=> 6, 'sXmlName'=>['dzialka','min_szerokosc_dzialki'], 'sDesc' => 'Minimalna szerokość działki'],
+                    ['iAttrId'=> 7, 'sXmlName'=>['dzialka', 'min_dlugosc_dzialki'] , 'sDesc' => 'Minimalna głebokość działki'],
+                    ['iAttrId'=> 8, 'sXmlName'=>['dach','kat'] , 'sDesc' => 'Kąt dachu'],
+                    ['iAttrId'=> 10, 'sXmlName'=>['powierzchnia','netto'] , 'sDesc' => 'Powierzchnia netto'],
+                    ['iAttrId'=> 15, 'sXmlName'=>'kubatura' , 'sDesc' => 'Kubatura netto'],
+                    ['iAttrId'=> 16, 'sXmlName'=>['dach','dach_powierzchnia'] , 'sDesc' => 'Powierzchnia dachu'],
+                ];
+        foreach ($aDomProjekt['projekt'] as $aProject)
+        {
+            $oProjekt = new Products();
+            $oExist = $oProjekt->findOne(['ean' => 'dp'.$aProject->id]);
+            if ($oExist)
+            {
+                
+                foreach ($aAtributes as $aAttribut)
+                {
+                    $oActualAttr = ProductsAttributes::findOne(['products_id'=>$oExist->id, 'attributes_id'=>$aAttribut['iAttrId']]);
+                    
+                    if (is_array($aAttribut['sXmlName']))
+                    {
+                        $sArrayAttrA = trim((string)($aAttribut['sXmlName'][0]));
+                        $sArrayAttrB = trim((string)($aAttribut['sXmlName'][1]));
+                        $iNewValue = $aProject->$sArrayAttrA->$sArrayAttrB;
+                    }
+                    else
+                    {
+                        $sArrayAttr = trim((string)($aAttribut['sXmlName']));
+                        $iNewValue = $aProject->$sArrayAttr;
+                    }
+                    
+                    if (isset($iNewValue) && isset($oActualAttr) && $iNewValue != $oActualAttr->value)
+                    {
+                        $oActualAttr->value = $iNewValue;
+                        if ($oActualAttr->save(false))
+                        {
+                            $sReturn .=  $aAttribut['sDesc'].'  '.$oExist->id .'<br>';
+                        }
+                    }
+                }
+            }
+        }
+        
+        return $sReturn;
+    }
+    public function actionUpdateHoryzont() 
+    {
+            $sReturn = '';
+            $oDocument = new Response();
+        /*Horyzont*/
+        $sXmlFileHor  = $this->sHoryzontXml;
+        $sXmlContentHor = file_get_contents($sXmlFileHor);
+        $sXmlHor = $oDocument->setContent($sXmlContentHor);
+        $oParser = new XmlParser();
+        $aHoryzont = $oParser->parse($sXmlHor);
+        foreach ($aHoryzont['product'] as $aProject)
+        {
+            if (substr_count(strtolower($aProject->name), 'kosztorys') <1)
+            {
+            if(substr_count(strtolower($aProject->name), 'Pompa ciepła') <1)
+            {
+            if(substr_count(strtolower($aProject->name), 'instalacja solarna') <1)
+            {
+            if(substr_count(strtolower($aProject->name), 'garaż') <1)
+            {
+            if(substr_count(strtolower($aProject->name), 'Dziennik') <1)
+            {
+            $oProjekt = new Products();
+            $oExist = $oProjekt->findOne(['ean' => 'horyzont-'.$aProject->id_product]);
+            if ($oExist)
+            {
+                if ($aProject->features->feature)
+                {
+                    foreach ($aProject->features->feature as $aFeatured)
+                    {
+                        switch ($aFeatured->name)
+                        {
+                            case 'Pow. użytkowa':
+                                $oActualAttr = ProductsAttributes::findOne(['products_id'=>$oExist->id, 'attributes_id'=>4]);
+                                if (isset($oActualAttr) && $aFeatured->value != $oActualAttr->value)
+                                {
+                                    $oActualAttr->value = $aFeatured->value;
+                                    if ($oActualAttr->save(false))
+                                    {
+                                        $sReturn .=  'Powierzchnia użytkowa  '.$oExist->id .'<br>';
+                                    }
+                                }   
+                                break;
+                            case 'Typ domu';
+                                switch ($aFeatured->value)
+                                {
+                                    case 'z poddaszem':
+                                        $iIloscPieter = 2;
+                                        break;
+                                    case 'z poddaszem do adaptacji':
+                                        $iIloscPieter = 2;
+                                        break;
+                                    case 'parterowy':
+                                        $iIloscPieter = 1;
+                                        break;
+                                    case 'piętrowy':
+                                        $iIloscPieter = 2;
+                                        break;
+                                    default:
+                                        $iIloscPieter = 0;
+                                }
+                                if ($iIloscPieter != 0 )
+                                {
+                                    $oActualAttr = ProductsAttributes::findOne(['products_id'=>$oExist->id, 'attributes_id'=>20]);
+                                    if (isset($oActualAttr) && $oActualAttr->value != $iIloscPieter)
+                                    {
+                                        $oActualAttr->value = $iIloscPieter;
+                                        if ($oActualAttr->save(false))
+                                        {
+                                            $sReturn .=  'Ilośc pięter  '.$oExist->id .'<br>';
+                                        }
+                                    }   
+                                }
+                                break;
+                            case 'Nachylenie dachu':
+                                $oActualAttr = ProductsAttributes::findOne(['products_id'=>$oExist->id, 'attributes_id'=>8]);
+                                if (isset($oActualAttr) && $aFeatured->value != $oActualAttr->value)
+                                {
+                                    $oActualAttr->value = $aFeatured->value;
+                                    if ($oActualAttr->save(false))
+                                    {
+                                        $sReturn .=  'Kąt dachu  '.$oExist->id .'<br>';
+                                    }
+                                }   
+                                break;
+                            case 'Min. szerokość działki':
+                                $oActualAttr = ProductsAttributes::findOne(['products_id'=>$oExist->id, 'attributes_id'=>6]);
+                                if (isset($oActualAttr) && $aFeatured->value != $oActualAttr->value)
+                                {
+                                    $oActualAttr->value = $aFeatured->value;
+                                    if ($oActualAttr->save(false))
+                                    {
+                                        $sReturn .=  'Min. szerokość działki  '.$oExist->id .'<br>';
+                                    }
+                                }   
+                                break;
+                            case 'Wysokość budynku':
+                                $oActualAttr = ProductsAttributes::findOne(['products_id'=>$oExist->id, 'attributes_id'=>1]);
+                                if (isset($oActualAttr) && $aFeatured->value != $oActualAttr->value)
+                                {
+                                    $oActualAttr->value = $aFeatured->value;
+                                    if ($oActualAttr->save(false))
+                                    {
+                                        $sReturn .=  'Wysokość budynku  '.$oExist->id .'<br>';
+                                    }
+                                }   
+                                break;
+                            case 'Pow. zabudowy':
+                                $oActualAttr = ProductsAttributes::findOne(['products_id'=>$oExist->id, 'attributes_id'=>11]);
+                                if (isset($oActualAttr) && $aFeatured->value != $oActualAttr->value)
+                                {
+                                    $oActualAttr->value = $aFeatured->value;
+                                    if ($oActualAttr->save(false))
+                                    {
+                                        $sReturn .=  'Pow. zabudowy  '.$oExist->id .'<br>';
+                                    }
+                                }   
+                                break;
+                            case 'Ilość pokoi z salonem':
+                                $oActualAttr = ProductsAttributes::findOne(['products_id'=>$oExist->id, 'attributes_id'=>9]);
+                                if (isset($oActualAttr) && $aFeatured->value != $oActualAttr->value)
+                                {
+                                    $oActualAttr->value = $aFeatured->value;
+                                    if ($oActualAttr->save(false))
+                                    {
+                                        $sReturn .=  'Ilość pokoi z salonem  '.$oExist->id .'<br>';
+                                    }
+                                } 
+                                break;
+                            case 'Powierzchnia dachu':
+                                $oActualAttr = ProductsAttributes::findOne(['products_id'=>$oExist->id, 'attributes_id'=>16]);
+                                if (isset($oActualAttr) && $aFeatured->value != $oActualAttr->value)
+                                {
+                                    $oActualAttr->value = $aFeatured->value;
+                                    if ($oActualAttr->save(false))
+                                    {
+                                        $sReturn .=  'Powierzchnia dachu  '.$oExist->id .'<br>';
+                                    }
+                                } 
+                                break;
+                        }
+                    }
+                }
+                
+            }
+            }
+            }
+            }
+            }
+            }
+        }
+        
+        return $sReturn;
+    }
+    public function actionUpdateMgprojekt() 
+    {
+        $sReturn = '';
+        $oDocument = new Response();
+        /*MGProjekt*/
+        $sXmlFile  = $this->sMgProjektXml;
+        $sXmlContent = file_get_contents($sXmlFile);
+        $sXml = $oDocument->setContent($sXmlContent);
+        $oParser = new XmlParser();
+        $aMGP = $oParser->parse($sXml);
+        $aAtributes = 
+        [
+            ['iAttrId'=> 1, 'sXmlName'=>'wysokosc_budynku' , 'sDesc' => 'Wysokość'],
+            ['iAttrId'=> 2, 'sXmlName'=>'szerokosc_budynku' , 'sDesc' => 'Szerokość'],
+            ['iAttrId'=> 3, 'sXmlName'=>'dlugosc_budynku' , 'sDesc' => 'Głębokość'],
+            ['iAttrId'=> 4, 'sXmlName'=>'powierzchnia_uzytkowa' , 'sDesc' => 'Powierzchnia użytkowa'],
+            ['iAttrId'=> 5, 'sXmlName'=>'powierzchnia_garazu' , 'sDesc' => 'Powierzchnia garażu'],
+            ['iAttrId'=> 6, 'sXmlName'=>'min_szerokosc_dzialki' , 'sDesc' => 'Minimalna szerokość działki'],
+            ['iAttrId'=> 7, 'sXmlName'=>'min_dlugosc_dzialki' , 'sDesc' => 'Minimalna głebokość działki'],
+            ['iAttrId'=> 8, 'sXmlName'=>'nachylenie_dachu' , 'sDesc' => 'Kąt dachu'],
+            ['iAttrId'=> 10, 'sXmlName'=>'powierzchnia_netto' , 'sDesc' => 'Powierzchnia netto'],
+            ['iAttrId'=> 11, 'sXmlName'=>'powierzchnia_zabudowy' , 'sDesc' => 'Powierzchnia zabudowy'],
+            ['iAttrId'=> 14, 'sXmlName'=>'powierzchnia_strychu' , 'sDesc' => 'Powierzchnia strychu'],
+            ['iAttrId'=> 15, 'sXmlName'=>'kubatura' , 'sDesc' => 'Kubatura netto'],
+            ['iAttrId'=> 16, 'sXmlName'=>'powierzchnia_dachu' , 'sDesc' => 'Powierzchnia dachu'],
+            ['iAttrId'=> 18, 'sXmlName'=>'ilosc_lazienek)' , 'sDesc' => 'Ilość łazienek'],
+        ];
+        foreach ($aMGP['projekt'] as $aProject)
+        {
+            $oProjekt = new Products();
+            $oExist = $oProjekt->findOne(['ean' => 'mgprojekt-'.$aProject->products_id]);
+            if ($oExist)
+            {
+                foreach ($aAtributes as $aAttribut)
+                {
+                    $oActualAttr = ProductsAttributes::findOne(['products_id'=>$oExist->id, 'attributes_id'=>$aAttribut['iAttrId']]);
+                    $sArrayAttr = trim((string)($aAttribut['sXmlName']));
+                    $sNewValue = str_replace([' stopnie', ' stopni', 'm'], ['' , '', ''], $aProject->$sArrayAttr);
+                    if (isset($aProject->$sArrayAttr) && isset($oActualAttr) && $sNewValue != $oActualAttr->value)
+                    {
+                        $oActualAttr->value = $sNewValue;
+                        if ($oActualAttr->save(false))
+                        {
+                            $sReturn .=  $aAttribut['sDesc'].'  '.$oExist->id .'<br>';
+                        }
+                    }   
+                }
+            }
+        }
+        
+        return $sReturn;
+    }
+    public function actionUpdateProarte() 
+    {
+        $sReturn = '';
+        $oDocument = new Response();
+        /*ProArte*/
+        $sXmlFile  = $this->sProArteXml;
+        $sXmlContent = file_get_contents($sXmlFile);
+        $sXml = $oDocument->setContent($sXmlContent);
+        $oParser = new XmlParser();
+        $aProarte = $oParser->parse($sXml);
+        $aAtributes = 
+        [
+            ['iAttrId'=> 1, 'sXmlName'=>'Wysokosc_budynku' , 'sDesc' => 'Wysokość'],
+            ['iAttrId'=> 4, 'sXmlName'=>'Pow_uzytkowa' , 'sDesc' => 'Powierzchnia użytkowa'],
+            ['iAttrId'=> 6, 'sXmlName'=>'Dzialka_min_dlugosc' , 'sDesc' => 'Minimalna szerokość działki'],
+            ['iAttrId'=> 7, 'sXmlName'=>'Dzialka_min_szerokosc' , 'sDesc' => 'Minimalna głebokość działki'],
+            ['iAttrId'=> 8, 'sXmlName'=>'Kat_dachu1' , 'sDesc' => 'Kąt dachu'],
+            ['iAttrId'=> 9, 'sXmlName'=>'Liczba_pokoi' , 'sDesc' => 'Liczba pokoi'],
+            ['iAttrId'=> 11, 'sXmlName'=>'Pow_zabudowy' , 'sDesc' => 'Powierzchnia zabudowy'],
+            ['iAttrId'=> 15, 'sXmlName'=>'Kubatura' , 'sDesc' => 'Kubatura netto'],
+        ];
+        foreach ($aProarte['Projekt'] as $aProject)
+        {
+            if ($aProject->Rodzaj == 1)
+            {
+                $oProjekt = new Products();
+                $oExist = $oProjekt->findOne(['ean' => $aProject->Symbol]);
+                if ($oExist)
+                {    
+                    foreach ($aAtributes as $aAttribut)
+                    {
+                        $sArrayAttr = trim((string)($aAttribut['sXmlName']));
+                        $oActualAttr = ProductsAttributes::findOne(['products_id'=>$oExist->id, 'attributes_id'=>$aAttribut['iAttrId']]);
+                        if (isset($aProject->$sArrayAttr) && isset($oActualAttr) && $aProject->$sArrayAttr != $oActualAttr->value)
+                        {
+                            $oActualAttr->value = $aProject->$sArrayAttr;
+                            if ($oActualAttr->save(false))
+                            {
+                                $sReturn .=  $aAttribut['sDesc'].'  '.$oExist->id .'<br>';
+                            }
+                        }   
+                    }
+                }
+            }
+        }
+        
+        
+        return $sReturn;
     }
     public function actionImages()
     {

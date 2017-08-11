@@ -42,6 +42,13 @@ body {
     color: #c55;
     font-style: italic;
 }
+/*outline*/
+
+.btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn.active.focus 
+{
+    outline: 0;
+    outline-offset: -2px;
+}
 
 /* add sorting icons to gridview sort links */
 a.asc:after, a.desc:after {

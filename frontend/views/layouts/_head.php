@@ -59,6 +59,7 @@ AppAsset::register($this);
     })(window,document);
 </script>-->
 <!-- Smartsupp Live Chat script -->
+<!--
 <script type="text/javascript">
 var _smartsupp = _smartsupp || {};
 _smartsupp.key = '7bc9a47e7b571d65b7b337bcc672c9c6b8fe1a5c';
@@ -79,4 +80,5 @@ window.smartsupp||(function(d) {
   ga('send', 'pageview');
 
 </script>
+-->
 </head>

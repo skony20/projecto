@@ -1,5 +1,7 @@
 <?php
 use yii\helpers\Html;
+use yii\bootstrap\ActiveForm;
+use yii\captcha\Captcha;
 /*  
     Projekt    : projekttop.pl
     Created on : 2017-07-27, 14:15:13
@@ -25,7 +27,7 @@ $this->params['breadcrumbs'][] = $aPost->title;
     
 </div>
 
-<?php if ($aPost->comments_enabled)
+<?php if ($aPost->comments_enabled && count($aPost->blogComments) >0)
     {
     ?>
     <div class="blog-view-comments">
@@ -33,33 +35,63 @@ $this->params['breadcrumbs'][] = $aPost->title;
         <div class="center-green-border"></div>
     
     <?php
+        $aIds=[];
         foreach ($aPost->blogComments as $aComment)
         {
-            echo '<pre>'. print_r($aComment->answer($aComment->id), TRUE) .'</pre>';
+            
+            //echo '<pre>'. print_r($aComment->answer($aComment->id), TRUE) .'</pre>';
         ?>
         <div class="comment-row row">
-            <div class="col-md-2"></div>
-            <div class="comment-row-content col-md-8">
+            <div class="col-md-2 col-xs-1">&nbsp;</div>
+            <div class="comment-row-content col-md-8 col-xs-10 <?=(($aComment->is_reply_to_id != 0) ? 'comment-row-content-answer' : '')?>">
                 <div class="comment-row-avatar inline-block"><?= Html::img(Yii::$app->request->BaseUrl.'/img/avatar.png', ['class'=>'avatar'])?></div>
                 <div class="comment-row-comment inline-block">
-                    <span class="m15b"><?=$aComment->user?></span> <br>
+                    <span class="m15b"><?=$aComment->name?></span> <br>
                     <span class="o13ilg"><?=date('d-m-y H:i:s', strtotime($aComment->date))?></span><br><br>
                     <span><?=$aComment->comment.'<br>'?></span>
                 </div>
-                <div class="comment-row-reply block text-right"><i class="fa fa-repeat" aria-hidden="true"></i> Odpowiedz <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <?=$aComment->like?></div>
+                <div class="comment-row-reply block text-right"><?=(($aComment->is_reply_to_id == 0) ? '<i class="fa fa-repeat" aria-hidden="true"></i> Odpowiedz ' : '')?><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <?=$aComment->like?></div>
             </div>
-            <div class="col-md-2"></div>
+            <div class="col-md-2 col-xs-1">&nbsp;</div>
             
             
         </div>
+        
             
         <?php
         }
     ?>
-
+  
+    
     </div>
-    <?php
+ 
+  <?php
+    }
+    
+    ?>  
+  <?php if ($aPost->comments_enabled)
+    {
+      ?>
+   
+   <div class="comment-answer col-md-12 col-xs-12">
+        <div class="col-md-2 hidden-xs">&nbsp;</div>
+        <div class="col-md-8 col-xs-12">
+            <h1 class="m21b">Zostaw komentarz</h1>
+            <div class="green-border"></div>
+                <?php $form = ActiveForm::begin(['id' => 'comment-answer-form', 'options' => ['class' => 'form-inline']]) ?>
+
+                <?= $form->field($aNewComment, 'name')->textInput()->label('<i class="fa fa-pencil fa-lg contact-icon" aria-hidden="true"></i><span class="red">*</span> Imię') ?>
+
+                <?= $form->field($aNewComment, 'email')->input('email')->label('<i class="fa fa-globe fa-lg contact-icon" aria-hidden="true"></i><span class="red">*</span> Adres e-mail') ?>
+                <?= $form->field($aNewComment, 'comment')->textarea(['rows' => 6])->label('<i class="fa fa-envelope contact-icon contact-textarea" aria-hidden="true"></i><span class="red">*</span> Treść wiadomości', ["class"=>"blog-answer-tearea-label"]) ?>
+                <?= $form->field($aNewComment, 'post_id')->hiddenInput(['value'=>$aPost->id])->label(false)?>
+                <?= Html::submitButton("Wyślij", ["class" => "contact-submit btn btn-primary", "name" => "contact-button"]) ?>
+                    <?php ActiveForm::end(); ?>
+        </div>
+        
+        <div class="col-md-2 hidden-xs">&nbsp;</div>
+    </div>
+<?php
     }
     
     ?>
-

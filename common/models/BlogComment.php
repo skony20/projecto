@@ -35,12 +35,12 @@ class BlogComment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['post_id', 'comment', 'user_id'], 'required'],
-            [['post_id', 'is_reply_to_id', 'user_id', 'mark_read', 'enabled'], 'integer'],
-            [['comment'], 'string'],
+            [['post_id', 'comment', 'name', 'email'], 'required'],
+            [['post_id', 'is_reply_to_id', 'mark_read', 'enabled'], 'integer'],
+            [['comment', 'name'], 'string'],
+            [['email'], 'email'],
             [['date'], 'safe'],
             [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => BlogPost::className(), 'targetAttribute' => ['post_id' => 'id']],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => BlogUser::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -54,7 +54,8 @@ class BlogComment extends \yii\db\ActiveRecord
             'post_id' => 'Post',
             'is_reply_to_id' => 'Odpowiedź na komentarz ',
             'comment' => 'Komentarz',
-            'user_id' => 'Uzytkownik',
+            'name' => 'Nazwa uzytkownika',
+            'email' => 'e-mail',
             'mark_read' => 'Oznacz jak przeczytane',
             'enabled' => 'Opublikowane ?',
             'date' => 'Data dodania',
@@ -72,10 +73,7 @@ class BlogComment extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUser()
-    {
-        return $this->hasOne(BlogUser::className(), ['id' => 'user_id']);
-    }
+
     public function Answer($id)
     {
         return BlogComment::findAll(['is_reply_to_id' => $id]);

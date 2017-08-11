@@ -51,14 +51,30 @@ class BlogController extends Controller
     }
     public function actionView($sTitleClean)
     {
-        
+        $aNewComment = new \common\models\BlogComment();
+        //echo '<pre>'. print_r($aComment, TRUE); die();
         $aPost = BlogPost::findOne(['title_clean'=>$sTitleClean]);
-        $aPost->views = $aPost->views+1;
         $this->layout = 'blog';
-        $aPost->save(false);
-        return $this->render('View', [
-            'aPost' => $aPost,
-        ]);
+        $model = new \common\models\BlogComment();
+        if ($model->load(Yii::$app->request->post()) && $model->save()) 
+        {
+          $_POST['BlogComment'] = [];
+            return $this->render('View', [
+                'aPost' => $aPost,
+                'aNewComment'=>$aNewComment
+            ]);
+        }
+        else
+        {
+
+            $aPost->views = $aPost->views+1;
+            $aPost->save(false);
+            return $this->render('View', [
+                'aPost' => $aPost,
+                'aNewComment'=>$aNewComment
+            ]);
+        }
+        
     }
     public function actionKategoria($sTitleClean)
     {   

@@ -180,14 +180,11 @@ $url = Yii::$app->request->absoluteUrl;
                         <div class="col-md-4 col-sm-12 col-xs-12">
                             
                             <?php 
-                            
-                            if ($model->producers_id == 3)
+                           
+                            $aRooms = $model->getStoreyByType($aProductsImages->storey_type)->all();
+                            if (count($aRooms) == 0)
                             {
-                                $aRooms = $model->getStoreyByName($aProductsImages->description)->all();
-                            }
-                            else
-                            {
-                                $aRooms = $model->getStoreyByType($aProductsImages->storey_type)->all();
+                                 $aRooms = $model->getStoreyByName($aProductsImages->description)->all();
                             }
                             if (isset($aRooms) && count($aRooms)>0) 
                             {

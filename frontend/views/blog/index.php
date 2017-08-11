@@ -6,7 +6,6 @@
 */
 use yii\helpers\Html;
 use yii\helpers\Url;
-
 function cutText($tekst,$ile){
 $tekst = strip_tags($tekst);
     if (strlen($tekst) > $ile) 
@@ -27,6 +26,7 @@ return $tekst;
 
 
 $miesiac_pl = array(1 => 'stycznia', 'lutego', 'marca', 'kwietnia', 'maja', 'czerwca', 'lipca', 'sierpnia', 'września', 'października', 'listopada', 'grudnia');
+$this->title = 'Blog - najnowsze wpisy';
 $this->params['breadcrumbs'][] = ['label' => 'Blog', 'url' => ['/blog']];
 ($bCategory ?  $this->params['breadcrumbs'][] =  $oBlogCategoryOne['name'] : '') ;
 

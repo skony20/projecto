@@ -213,8 +213,58 @@
 {
     padding: 0 10px;
 }
+.comment-row-content-answer
+{
+    padding-left: 100px;
+    border-bottom: 0px;
+}
 .comment-answer
 {
-    background-color: red;
-    border-bottom: 1px solid #EDEDED;
+    padding-bottom: 60px;
+    background-color: #ffffff;
 }
+#comment-answer-form .form-group
+{
+    width: calc(50% - 2px);
+}
+#comment-answer-form .field-blogcomment-comment
+{
+    width: 100% !important;
+}
+#comment-answer-form input, #comment-answer-form textarea
+{
+    width:100%;
+    background-color: #EDEDED;
+    padding-left:50px;
+}
+
+#comment-answer-form .contact-icon
+{
+    position: relative;
+    top: 39px;
+    left: 1px;
+}
+#comment-answer-form .contact-textarea
+{
+    top: 46px;
+    left: 1px;
+}
+.blog-answer-tearea-label
+{
+    height: 50px;
+    padding-top: 10px;
+}
+
+/*Poprawki dla najmniejsze rozdzielczości*/
+@media(max-width:768px) 
+{
+    #comment-answer-form .form-group
+    {
+        width: 100%;
+    }
+    #comment-answer-form .contact-icon
+    {
+        top: 44px;
+    }
+}
+

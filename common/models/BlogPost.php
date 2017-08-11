@@ -82,7 +82,7 @@ class BlogPost extends \yii\db\ActiveRecord
      */
     public function getBlogComments()
     {
-        return $this->hasMany(BlogComment::className(), ['post_id' => 'id'])->andWhere(['is_reply_to_id'=>0]);
+        return $this->hasMany(BlogComment::className(), ['post_id' => 'id']);
     }
 
     /**
