@@ -1,7 +1,6 @@
 <?php
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-use yii\captcha\Captcha;
 /*  
     Projekt    : projekttop.pl
     Created on : 2017-07-27, 14:15:13
@@ -12,6 +11,7 @@ $this->title = 'Blog - ' . $aPost->title;
 $this->params['breadcrumbs'][] = ['label' => 'Blog', 'url' => ['/blog']];
 $this->params['breadcrumbs'][] = ['label' => $aPost->blogPostToCategories['category']['name'], 'url' => ['/blog/kategoria/'.$aPost->blogPostToCategories['category']['nice_name'].'.html']];
 $this->params['breadcrumbs'][] = $aPost->title;
+$url = Yii::$app->request->absoluteUrl;
 ?>
 <div class="blog-view">
     <div class="blog-view-1">
@@ -19,7 +19,11 @@ $this->params['breadcrumbs'][] = $aPost->title;
         <div class="blog-view-category inline-block float-right"><?=$aPost->blogPostToCategories['category']['name']?></div>
         <br>
         <div class="blog-view-title inline-block m24b"><?=$aPost->title?></div>
-        <div class="blog-view-share inline-block"><i class="fa fa-comments-o dark-blue" aria-hidden="true"></i> (<?=count($aPost->blogComments)?>) |  <i class="fa fa-heart-o icon-red" aria-hidden="true"></i> <?=$aPost->share?></div>
+        <div class="blog-view-share inline-block"><i class="fa fa-comments-o dark-blue" aria-hidden="true"></i> (<?=count($aPost->blogComments)?>) |  Podziel się: 
+        <?= Html::a('<i class="fa fa-facebook share-icon blog-share" aria-hidden="true"></i>', 'https://www.facebook.com/sharer/sharer.php?u='.$url, ['title'=>'Facebook', 'class'=>'add_share', 'rel'=>$aPost->id])?>
+        <?= Html::a('<i class="fa fa-twitter share-icon blog-share" aria-hidden="true"></i>', 'https://twitter.com/home?status='.$url, ['title'=>'Twitter', 'class'=>'add_share', 'rel'=>$aPost->id])?>
+        <?= Html::a('<i class="fa fa-google-plus share-icon blog-share" aria-hidden="true"></i>','https://plus.google.com/share?url='.$url, ['title'=>'Google +', 'class'=>'add_share', 'rel'=>$aPost->id])?>
+        <?= Html::a('<i class="fa fa-linkedin share-icon blog-share" aria-hidden="true"></i>', 'https://www.linkedin.com/shareArticle?mini=true&url='.$url.'&title='.$aPost->title.'&summary=&source=projekttop.pl', ['title'=>'Linkedin', 'class'=>'add_share', 'rel'=>$aPost->id])?></div>
     </div>
     <div class="blog-view-content">
         <?= $aPost->article?>

@@ -1925,11 +1925,12 @@ class XmlController extends Controller
             $oExist = $oProjekt->findOne(['ean' => 'dp'.$aProject->id]);
             if ($oExist && $oExist->price_brutto != $aProject->cena)
             {
+                $sReturn .= 'Było: '.$oExist->price_brutto.' Jest: '.$aProject->cena .' ';
                 $oExist->price_brutto = $aProject->cena;
                 $oExist->price_brutto_source = $aProject->cena;
                 $oExist->modification_date = time();
                 $oExist->save();
-                $sReturn .= $oExist->id .'<br>';
+                $sReturn .= $oExist->id .' <br>';
             }
             
         }
@@ -1949,11 +1950,12 @@ class XmlController extends Controller
                 $oExist = $oProjekt->findOne(['ean' => $sId]);
                 if ($oExist && $oExist->price_brutto != ceil(($aProject->PriceNetto)*((100+($aProject->PriceVAT))/100)))
                 {
+                    $sReturn .= 'Było: '.$oExist->price_brutto.' Jest: '.ceil(($aProject->PriceNetto)*((100+($aProject->PriceVAT))/100)). ' ';
                     $oExist->price_brutto = ceil(($aProject->PriceNetto)*((100+($aProject->PriceVAT))/100));
                     $oExist->price_brutto_source = ceil(($aProject->PriceNetto)*((100+($aProject->PriceVAT))/100));
                     $oExist->modification_date = time();
                     $oExist->save();
-                    $sReturn .=  $oExist->id .'<br>';
+                    $sReturn .=  $oExist->id  .' <br>';
                 }
                 
             }
@@ -1969,13 +1971,14 @@ class XmlController extends Controller
         {
             $oProjekt = new Products();
             $oExist = $oProjekt->findOne(['ean' => 'horyzont-'.$aProject->id_product]);
-            if ($oExist && $oExist->price_brutto != $aProject->price)
+            if ($oExist && $oExist->price_brutto != ceil($aProject->price))
             {
-                $oExist->price_brutto = $aProject->price;
-                $oExist->price_brutto_source = $aProject->price;
+                $sReturn .= 'Było: '.$oExist->price_brutto.' Jest: '.$aProject->price .' ';
+                $oExist->price_brutto = ceil($aProject->price);
+                $oExist->price_brutto_source = ceil($aProject->price);
                 $oExist->modification_date = time();
                 $oExist->save();
-                $sReturn .=  $oExist->id .'<br>';
+                $sReturn .=  $oExist->id .' <br>';
             }
         }
         /*MGProjekt*/
@@ -1991,6 +1994,7 @@ class XmlController extends Controller
             $oExist = $oProjekt->findOne(['ean' => 'mgprojekt-'.$aProject->products_id]);
             if ($oExist && $oExist->price_brutto != $aProject->cena_projektu)
             {
+                $sReturn .= 'Było: '.$oExist->price_brutto.' Jest: '.$aProject->cena_projektu .' ';
                 $oExist->price_brutto = $aProject->cena_projektu;
                 $oExist->price_brutto_source = $aProject->cena_projektu;
                 $oExist->modification_date = time();
@@ -2010,6 +2014,7 @@ class XmlController extends Controller
             $oExist = $oProjekt->findOne(['ean' => $aProject->Symbol]);
             if ($oExist && $oExist->price_brutto != $aProject->Cena)
             {
+                $sReturn .= 'Było: '.$oExist->price_brutto.' Jest: '.$aProject->Cena .' ';
                 $oExist->price_brutto = $aProject->Cena;
                 $oExist->price_brutto_source = $aProject->Cena;
                 $oExist->modification_date = time();

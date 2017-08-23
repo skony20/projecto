@@ -109,7 +109,7 @@
     background-color: #2D3E52;
     color:#fff;
     height: 110px;
-    line-height: 110px;
+    line-height: 115px;
     text-align:center;
     max-width: 55px;
 }
@@ -172,6 +172,7 @@
 .blog-view-content
 {
     padding: 20px 40px;
+    overflow: auto;
 }
 .blog-view-content img {
     padding: 0 10px;
@@ -222,6 +223,7 @@
 {
     padding-bottom: 60px;
     background-color: #ffffff;
+    margin-top: 40px;
 }
 #comment-answer-form .form-group
 {
@@ -241,7 +243,7 @@
 #comment-answer-form .contact-icon
 {
     position: relative;
-    top: 39px;
+    top: 38px;
     left: 1px;
 }
 #comment-answer-form .contact-textarea
@@ -254,7 +256,13 @@
     height: 50px;
     padding-top: 10px;
 }
-
+i.blog-share {
+    color: #fff;
+    background-color: #2d3e52;
+    padding: 6px;
+    font-weight: 100;
+    height: auto;
+}
 /*Poprawki dla najmniejsze rozdzielczości*/
 @media(max-width:768px) 
 {

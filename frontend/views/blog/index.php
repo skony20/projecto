@@ -78,7 +78,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Blog', 'url' => ['/blog']];
             </div>
             <div class="blog-link inline-block col-md-1">
                 
-                <a href="<?=url::to(yii::getalias("@web"))?>/blog/<?=$oPost->title_clean?>.html"><i class="fa fa-external-link icon-white" aria-hidden="true"></i></a>
+                <a href="<?=url::to(yii::getalias("@web"))?>/blog/<?=$oPost->title_clean?>.html"><i class="fa fa-external-link fa-2x icon-white" aria-hidden="true"></i></a>
             </div>
 
         </div>

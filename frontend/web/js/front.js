@@ -485,5 +485,14 @@ $(document).on('ready pjax:success',
             to: val
         });
     });
+    /*Sherowanie bloga*/
+    $('.add_share').click(
+            function()
+            {
+                var iId = $(this).attr('rel');
+                $.ajax({
+                    url: "share/"+iId
+                    }); 
+            });
 });
     

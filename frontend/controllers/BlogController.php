@@ -97,7 +97,13 @@ class BlogController extends Controller
         ]);
     }
             
-            
+    public function actionShare($id)
+    {
+        $model= BlogPost::findOne(['id'=>$id]);
+        $model->share = $model->share+1;
+        $model->save(false);
+        
+    }
    
             
 
