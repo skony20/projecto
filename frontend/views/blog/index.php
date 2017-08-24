@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Blog', 'url' => ['/blog']];
             foreach ($oBlogCategory as $oCategory)
             {
 
-                echo '<div class="blog-category-link inline-block '.((isset($oBlogCategoryOne->id ) ? $oBlogCategoryOne->id == $oCategory['id'] ? "active_cat" : "" :"") ).'"><a href="'.url::to(yii::getalias("@web").'/blog/kategoria/'.$oCategory['nice_name'].'.html').'">'.$oCategory['name'].'</a></div>';
+                echo '<div class="blog-category-link inline-block '.((isset($oBlogCategoryOne->id ) ? $oBlogCategoryOne->id == $oCategory['id'] ? "active_cat" : "" :"") ).'"><a href="'.yii::getalias("@web").'/blog/kategoria/'.$oCategory['nice_name'].'.html'.'">'.$oCategory['name'].'</a></div>';
             }
             ?>
             </div>
@@ -65,7 +65,11 @@ $this->params['breadcrumbs'][] = ['label' => 'Blog', 'url' => ['/blog']];
             </div>
             <div class="blog-article inline-block col-md-6">
                 <div class="blog-article-category o12gsm"><i class="fa fa-tags dark-blue" aria-hidden="true"></i> <?=$oPost->blogPostToCategories['category']['name']?></div>
-                <div class="blog-article-title"><a href="<?=url::to(yii::getalias("@web"))?>/blog/<?=$oPost->title_clean?>.html" class=" m18b"><?=$oPost->title?></a></div>
+
+                <?php
+                
+                ?>
+                <div class="blog-article-title"><a href="<?=yii::getalias("@web")?>/blog/<?=$oPost->title_clean?>.html" class=" m18b"><?=$oPost->title?></a></div>
                 <div class="blog-article-content"><?=cutText($oPost->article, 150) ?></div>
             </div>
             <div class="blog-comments inline-block col-md-1">
@@ -78,7 +82,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Blog', 'url' => ['/blog']];
             </div>
             <div class="blog-link inline-block col-md-1">
                 
-                <a href="<?=url::to(yii::getalias("@web"))?>/blog/<?=$oPost->title_clean?>.html"><i class="fa fa-external-link fa-2x icon-white" aria-hidden="true"></i></a>
+                <a href="<?=yii::getalias("@web")?>/blog/<?=$oPost->title_clean?>.html"><i class="fa fa-external-link fa-2x icon-white" aria-hidden="true"></i></a>
             </div>
 
         </div>

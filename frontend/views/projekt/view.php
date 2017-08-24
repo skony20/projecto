@@ -21,6 +21,15 @@ $url = Yii::$app->request->absoluteUrl;
 <div class="wrap view-gray">    
     <div class="container">
         <h1 class='m21w' itemprop="name"><?= Html::encode('Projekt domu: '.$sPrjName) ?></h1>
+        <br>
+        <?php
+        $oCookie =  Yii::$app->request->cookies;
+        if ($oCookie->getValue('_identity-backend'))
+        {
+            echo Html::a('Podgląd w CMS-ie ','https://projekttop.pl/backend/web/products/'.$model->id, ['target'=>'_blank']);
+            echo Html::a(' Edytuj','https://projekttop.pl/backend/web/products/update/'.$model->id, ['target'=>'_blank']);
+        }
+        ?>
         <div class="prj-share">Podziel się: <?= Html::a('<i class="fa fa-facebook share-icon" aria-hidden="true"></i>', 'https://www.facebook.com/sharer/sharer.php?u='.$url)?><?= Html::a('<i class="fa fa-twitter share-icon" aria-hidden="true"></i>', 'https://twitter.com/home?status='.$url)?><?= Html::a('<i class="fa fa-google-plus share-icon" aria-hidden="true"></i>','https://plus.google.com/share?url='.$url)?><?= Html::a('<i class="fa fa-linkedin share-icon" aria-hidden="true"></i>', 'https://www.linkedin.com/shareArticle?mini=true&url='.$url.'&title='.$this->title.'&summary=&source=projekttop.pl')?></div>
         <div class="green-border"></div>
         <div class="prj-img-price">
