@@ -29,7 +29,7 @@ class XmlController extends Controller
     
     public $sArchipelagXml = 'http://www.archipelag.pl/files/ProjectExport/t26d6ch0bqdeu6/project_export.zip';
     public $sDomProjektXml = 'http://dom-projekt.pl/xml/generator.xml.php';
-    public $sHoryzontXml = 'https://www.horyzont.com/xml/horyzont_06_2017.xml';
+    public $sHoryzontXml = 'https://www.horyzont.com/xml/horyzont_09_2017.xml';
     public $sMgProjektXml = 'http://www.mgprojekt.com.pl/export_xml,index.html';
     public $sProArteXml = 'http://www.pro-arte.pl/proarte.xml';
     public $sZ500Xml = 'http://z500.pl/export/get/xml/Z500v2/96e76802fe2379c41f111fac9bb29deff3b23396.xml';
