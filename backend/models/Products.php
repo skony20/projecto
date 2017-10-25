@@ -157,14 +157,21 @@ class Products extends \yii\db\ActiveRecord
         $sNameSubname = ($this->productsDescriptons->name_subname ? ' ' .$this->productsDescriptons->name_subname :'');
         return $sName.$sNameModel.$sNameSubname;
     }
-    
+    public function Countall()
+    {
+       $iAll = $this->find()->andWhere(['is_active' => 1, 'is_archive'=>0])->all();
+        $iAvalaibleProject = count($iAll);
+        return ($iAvalaibleProject);
+    }
+
        /**
     * @inheritdoc
     * @return ProductsQuery the active query used by this AR class.
     */
+    
    public static function find()
    {
        return new ProductsQuery(get_called_class());
    }
-
+   
 }

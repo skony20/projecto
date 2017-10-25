@@ -6,6 +6,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use app\models\Products;
 
 /**
  * Site controller
@@ -26,7 +27,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index', 'pinterest', 'pintereston'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -65,6 +66,19 @@ class SiteController extends Controller
         'content' => 'Tutaj znajdziesz dopasowany do swoich potrzeb dom'
             ]);
         return $this->render('index');
+    }
+    public function actionPinterest()
+    {
+        $oProducts = new Products();
+        $aProducts = $oProducts::find()->where(['is_active'=> 1, 'is_archive'=>0, 'in_pinterest'=>0])->all();
+        return $this->render('pinterest',['model'=>$aProducts]);
+    }
+    public function actionPintereston($id)
+    {
+        $oProducts = new Products();
+        $aProducts = $oProducts->findOne($id);
+        $aProducts->in_pinterest = 1;
+        $aProducts->save(false);
     }
 
     /**

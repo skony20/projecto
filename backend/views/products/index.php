@@ -5,6 +5,7 @@ use yii\widgets\Pjax;
 use app\models\Products;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
+use app\models\Similar;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ProductsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -58,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     },
                 'contentOptions' => ['class' => '50p'],
                 'headerOptions' => ['class' => '50p'],
-                'filter' => Html::activeDropDownList($searchModel, 'is_archive', ['1'=>'Tak', '0'=>'Nie'],['class'=>'form-control','prompt' => 'Wybierz', 'default'=>0, 'options' => ['0'=>['selected'=>true]]])
+                'filter' => Html::activeDropDownList($searchModel, 'is_archive', ['1'=>'Tak', '0'=>'Nie'],['class'=>'form-control','prompt' => 'Wybierz'])
             ],
             [
                 'attribute' => 'producers_id',
@@ -96,14 +97,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function ($model)
                 {
+                    $oSimilar = new Similar();
                     $sName = (is_object($model->productsDescriptons) ? $model->productsDescriptons->name: '');
                     $sNameModel = (is_object($model->productsDescriptons) ? $model->productsDescriptons->name_model: '');
                     $sNameSubname = (is_object($model->productsDescriptons) ? $model->productsDescriptons->name_subname: '');
+                    $aName = explode(" ", $sName);
                     $sFullName = 'Dodaj odpowiedzi do: '.$sName . ' '. $sNameModel .' ' .$sNameSubname;
                     $sFullNameAttr = 'Dodaj dane techniczne do: '.$sName . ' '. $sNameModel .' ' .$sNameSubname;
+                    $sFullNameSimilar = 'Dodaj podobne projekty do: '.$sName . ' '. $sNameModel .' ' .$sNameSubname;
                     $sFiltersButton = Html::button('Dodaj odpowiedzi', ['value' => Url::to(['products-filters/create', 'id' => $model->id]), 'title' => $sFullName, 'class' => 'showModalButton btn btn-success dane_button']);
                     $sAttrButton = Html::button('Dane techniczne', ['value' => Url::to(['products-attributes/create', 'id' => $model->id]), 'title' => $sFullNameAttr, 'class' => 'showModalButton btn btn-success dane_button']);
-                    return $sFiltersButton . ' <br> ' . $sAttrButton;
+                    $sSimilarButton = Html::a('Dodaj podobne', Url::to(['similar/index', 'id' => $model->id, 'sName'=>$aName[0]]),['target'=>'_blank']);
+                    $sSimilarButton .= ' ('. $oSimilar->countSimilar($model->id) .')';
+                    return $sFiltersButton . ' <br> ' . $sAttrButton .'<br>'.$sSimilarButton;
                 }
             ],
 

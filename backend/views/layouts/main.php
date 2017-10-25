@@ -94,6 +94,8 @@ AppAsset::register($this);
                 ['label' => 'Import Archipelag', 'url' => ['/xml/archipelag']],
                 ['label' => 'Import Horyzont', 'url' => ['/xml/horyzont']],
                 ['label' => 'Import MGProjekt', 'url' => ['/xml/mgprojekt']],
+                ['label' => 'Podobne projekty'],
+                ['label' => 'Podobne Dom Projekt', 'url' => ['/xml/similardomprojekt']],
                 ['label' => 'Wielkość działki'],
                 ['label' => 'Archilepag - Wielkość działki', 'url' => ['/xml/rzut?producent=5']],
                 ['label' => 'Dom-Projekt - Wielkość działki', 'url' => ['/xml/rzut?producent=6']],

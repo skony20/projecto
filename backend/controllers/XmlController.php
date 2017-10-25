@@ -13,6 +13,7 @@ use app\models\ProductsAttributes;
 use app\models\ProductsFilters;
 use app\models\ProductsImages;
 use app\models\Upload;
+use app\models\Similar;
 use yii\web\UploadedFile;
 use yii\imagine\Image;
 use app\models\Storeys;
@@ -42,8 +43,10 @@ class XmlController extends Controller
                 'rules' => [
                     [
                         'actions' => ['proarte', 'domprojekt', 'archipelag', 'horyzont', 'mgprojekt', 'z500', 
-                        'ceny', 'images', 'rzut', 'pietra', 'export', 'import', 
-                        'update-archipelag', 'update-domprojekt', 'update-horyzont', 'update-mgprojekt', 'update-proarte'],
+                        'images', 'rzut', 'pietra', 'export', 'import', 
+                        'update-archipelag', 'update-domprojekt', 'update-horyzont', 'update-mgprojekt', 'update-proarte',
+                        'similardomprojekt',
+                        'cenyarchipelag', 'cenydomprojekt', 'cenyhoryzont', 'cenymgprojekt', 'cenyproarte'],
                         'allow' => true,
                     ],
                     
@@ -1909,7 +1912,7 @@ class XmlController extends Controller
     }
     
     /*Aktualizacje cen*/
-    public function actionCeny()
+    public function actionCenydomprojekt()
     {
         $sReturn = '';
         $oDocument = new Response();
@@ -1934,6 +1937,14 @@ class XmlController extends Controller
             }
             
         }
+        echo $sReturn;
+        return $sReturn;
+    }
+    
+    public function actionCenyarchipelag()
+    {
+        $sReturn = '';
+        $oDocument = new Response();
         /*Archipelag*/
         $folder = scandir('../../xml/files/temp'); 
         $sArchipelag = str_replace(array("&amp;", "&"), array("&", "&amp;"), file_get_contents('../../xml/files/temp/'.$folder[2].'/projekty.xml'));
@@ -1960,6 +1971,14 @@ class XmlController extends Controller
                 
             }
         }
+        echo $sReturn;
+        return $sReturn;
+    }
+    
+    public function actionCenyhoryzont()
+    {
+        $sReturn = '';
+        $oDocument = new Response();
         /*Horyzont*/
         $sXmlFileHor  = $this->sHoryzontXml;
         $sXmlContentHor = file_get_contents($sXmlFileHor);
@@ -1981,6 +2000,12 @@ class XmlController extends Controller
                 $sReturn .=  $oExist->id .' <br>';
             }
         }
+    }
+    
+    public function actionCenymgprojekt()
+    {
+        $sReturn = '';
+        $oDocument = new Response();
         /*MGProjekt*/
         $sXmlFileMG  = $this->sMgProjektXml;
         
@@ -2002,6 +2027,14 @@ class XmlController extends Controller
                 $sReturn .=  $oExist->id .'<br>';
             }
         }
+        echo $sReturn;
+        return $sReturn;
+    }
+    
+    public function actionCenyproarte()
+    {
+        $sReturn = '';
+        $oDocument = new Response();
         /*Pro Arte*/
         $sXmlFilePA  = $this->sProArteXml;
         $sXmlContentPA = file_get_contents($sXmlFilePA);
@@ -2757,5 +2790,51 @@ class XmlController extends Controller
             }
         }
         return $this->render('import', ['model' => $model]);
+    }
+    public function actionSimilardomprojekt()
+    {
+        $oDocument = new Response();
+        $sXmlFile  = $this->sDomProjektXml;
+        $sXmlContent = file_get_contents($sXmlFile);
+        $sXml = $oDocument->setContent($sXmlContent);
+        $oParser = new XmlParser();
+        $aDomProjekt = $oParser->parse($sXml);
+        //echo '<pre>'. print_r($aDomProjekt, TRUE); die();
+        foreach ($aDomProjekt['projekt'] as $aProject)
+        {
+            $sMainProductEan = 'dp'.$aProject->id;
+            if (isset($aProject->podobne) and $aProject->podobne != '')
+            {
+                $aSimilar = explode(',', $aProject->podobne);
+            
+                $oProducts = new Products();
+                if ($oProduct = $oProducts->findOne(['ean'=>$sMainProductEan]))
+                {
+                    $iMainProductId = $oProduct['id'];
+                    foreach ($aSimilar as $iSimiar)
+                    {
+                        $sSimilarEan= 'dp'.$iSimiar;
+                        $oProducts = new Products();
+                        $oProduct = $oProducts->findOne(['ean'=>$sSimilarEan]);
+                        if ($oProduct = $oProducts->findOne(['ean'=>$sSimilarEan]))
+                        {
+                            $iSimialarId = $oProduct['id'];
+                            $oSimilar = new Similar();
+                            $oSimilar->main_product_id = $iMainProductId;
+                            $oSimilar->products_id = $iSimialarId;
+                            if (!$oSimilar->findOne(['main_product_id'=>$iMainProductId, 'products_id'=>$iSimialarId]))
+                            {
+                                $oSimilar->save();
+                            }
+                            
+                        }
+                        
+                    }
+                }
+                
+                
+            }
+            
+        }
     }
 }

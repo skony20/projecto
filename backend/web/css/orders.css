@@ -83,6 +83,7 @@ table.order-data tr td
 table.order-positions-data tr td
 {
     text-align: right;
+    line-height: 40px;
 }
 .comments
 {
@@ -92,4 +93,14 @@ table.order-positions-data tr td
 {
     max-height: 20px;
 }
-
+.products-caption
+{
+    background-color: #a9a9a9;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+.order-sum
+{
+    background-color: #cceaa8;
+    font-weight: 700;
+}

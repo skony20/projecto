@@ -7,6 +7,7 @@ use app\models\PaymentsMethod;
 use yii\helpers;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
+use yii\i18n\Formatter;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -22,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-
+            'id',
             [
                 'attribute' => 'order_code',
                 'format'=>'raw',
@@ -41,34 +42,22 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format'=>'raw',
                 'filter' => Html::activeDropDownList($searchModel, 'orders_status_id', ArrayHelper::map(OrdersStatus::find()->asArray()->all(), 'id', 'name'),['class'=>'form-control','prompt' => 'Wybierz']),
             ],
+            'fullName',
+            [
+                'attribute' => 'value_brutto',
+                'value' => function($data)
+                {
+                    return Yii::$app->formatter->asCurrency($data->value_brutto, ' zł');
+                }
+            ],
+            
             'order_date:datetime',
-           
-            'customer_email',
             [
                 'attribute' => 'shippings_payments_id',
                 'value' =>  'payment.name',
                 'format'=>'raw',
                 'filter' => Html::activeDropDownList($searchModel, 'shippings_payments_id', ArrayHelper::map(PaymentsMethod::find()->asArray()->all(), 'id', 'name'),['class'=>'form-control','prompt' => 'Wybierz']),
                 'contentOptions' => ['class' => 'img-payment'],
-            ],
-            //'is_deleted',
-//            [
-//                'attribute' => 'customers_id',
-//                'value' => function($data)
-//                {
-//                    return $data->delivery_name .  ' ' .$data->delivery_lastname . ' ('. $data->customer_email .')';
-//                    
-//                }
-//            ],
-            'fullName',
-            //'languages_id',
-            
-            [
-                'attribute' => 'value_brutto',
-                'value' => function($data)
-                {
-                    return $data->value_brutto . ' zł';
-                }
             ],
             
             

@@ -98,7 +98,6 @@ $(document).on('ready pjax:success',
                         url: frm.attr('action'),
                         data: frm.serialize(),
                         success: function (data) {
-                            alert('ok');
                         }
                     });
 

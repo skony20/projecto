@@ -1,6 +1,17 @@
 $(document).ready(
     function()
-    {   
+    {
+        setTimeout(function() {
+            $('#w8-success-0').animate({"top":"0px"}, "fast");
+        }, 3000); // <-- time in milliseconds
+        
+        $('#check-all-similar').click(function() {
+            $("form input:checkbox").attr( "checked" , true );
+        });
+        
+        var sNameSimilar = $('.sNameSimilar').text();
+        $( "label:contains("+sNameSimilar+")" ).css( "background-color", "#d7f2ff85" );
+        
         function nicename(string)
         {
             
@@ -143,6 +154,25 @@ $(document).ready(
 
              });
          });
+         /*Usuwanie podobnych projektów*/
+         $(".remove-similar").click(
+             function() {
+                
+                iSimilarId = $(this).attr('rel');
+                iMainId = $(this).attr('rel2');
+                $.ajax({
+                    url: '../../similar/delete',
+                    type: 'get',
+                    data: {
+                        p_iSimilarId:iSimilarId, 
+                        p_iMainId:iMainId
+                    },
+                    success: function(data) {
+                       
+                    }
+                });
+         });
+         
     });
 $(document).ready(function() {
 		$(".fancybox").fancybox();

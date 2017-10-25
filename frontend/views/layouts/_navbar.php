@@ -76,7 +76,7 @@ echo '<div class="first-navbar">';
             ],],
                     ['label' => 'Nowości', 'url' => ['/projekty/nowosci']],
                     ['label' => 'Co zawiera projekt', 'url' => ['/wprojekcie'],'options'=>['class'=>'another-menu']],
-                    ['label' => 'O ProjekTop.pl', 'url' => ['/onas']],
+                    ['label' => 'O ProjektTop.pl', 'url' => ['/onas']],
                     ['label' => 'Faq', 'url' => ['/faq']],
                     ['label' => 'Kontakt', 'url' => ['/kontakt']],
                 ];

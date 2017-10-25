@@ -161,7 +161,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="col-md-12 order-data-row">
     <div class="order-positions-title">Zamówione produkty</div>
     <table class="order-data order-positions-data">
-        <tr>
+        <tr class="products-caption">
             <td>Ilość</td>
             <td>Projekt</td>
             <td>Cena</td>
@@ -186,8 +186,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <tr>
         <td></td>
         <td></td>
-        <td>Razem</td>
-        <td><?= Yii::$app->formatter->asCurrency($model->value_brutto , ' zł') ?></td>
+        <td class="order-sum">Razem</td>
+        <td class="order-sum"><?= Yii::$app->formatter->asCurrency($model->value_brutto , ' zł') ?></td>
     </tr>
 </table>
 </div>

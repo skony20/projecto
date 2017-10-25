@@ -88,7 +88,7 @@ class Orders extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'Numer zamówienia'),
+            'id' => Yii::t('app', 'Id'),
             'is_deleted' => Yii::t('app', 'Is Deleted'),
             'customers_id' => Yii::t('app', 'Klient'),
             'languages_id' => Yii::t('app', 'Languages ID'),

@@ -16,6 +16,9 @@
     echo $this->render('/layouts/_footer');
 ?>
 <?php $this->endBody() ?>
+<?php
+    echo $this->render('/layouts/_extra_footer');
+?>
 </body>
 </html>
 <?php $this->endPage() ?>

@@ -24,7 +24,7 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <META name="title" content="<?= Html::encode($this->title) ?>">
     <META name="author" content="Mariusz Skonieczny">
-    <META name="reply-to" content="mariuszs@projekttop.pl">
+    <META name="reply-to" content="mariusz@projekttop.pl">
     <META name="company" content="ProjektTop.pl">
     <link rel="shortcut icon" href="<?php echo Yii::$app->request->baseUrl; ?>/img/favicon.ico" type="image/x-icon" />
 
@@ -45,6 +45,7 @@ AppAsset::register($this);
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="<?php echo Yii::$app->request->baseUrl; ?>/img/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
+    <meta name="google-site-verification" content="TWFmD-DWW_JmKuD6qMA7gyyh3DxkQYrSMS3wH232-O0" />
     <?php $this->head() ?>
 <!--    <script type="text/javascript">
     (function(p,u,s,h){
@@ -59,7 +60,7 @@ AppAsset::register($this);
     })(window,document);
 </script>-->
 <!-- Smartsupp Live Chat script -->
-<!--
+
 <script type="text/javascript">
 var _smartsupp = _smartsupp || {};
 _smartsupp.key = '7bc9a47e7b571d65b7b337bcc672c9c6b8fe1a5c';
@@ -70,6 +71,7 @@ window.smartsupp||(function(d) {
 	c.src='//www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
 })(document);
 </script>
+
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -80,5 +82,5 @@ window.smartsupp||(function(d) {
   ga('send', 'pageview');
 
 </script>
--->
+
 </head>

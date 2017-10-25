@@ -17,7 +17,7 @@ class MetaController extends Controller
         Yii::$app->view->registerMetaTag(
         [
             'name' => 'description',
-            'content' => 'ProjektTop.pl - wybór projektu jeszcze nigdy nie był tak prosty. Największy i najłatwiejszy wybór projektów domu.'
+            'content' => 'Oferty pracowni projektowych. Nowoczesne projekty domów parterowych, z poddaszem i jednorodzinnych. Wizualizacje projektów domów.'
         ], 'description'
         );
         Yii::$app->view->registerMetaTag(

@@ -6,7 +6,7 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ProductsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-$this->title = 'ProjektTop.pl - wybór projektu jeszcze nigdy nie był tak prosty';
+$this->title = 'Oferty pracowni projektowych - nowoczesne i tanie projekty domów';
 ?>
 <?php
 $a=1;
