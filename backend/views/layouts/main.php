@@ -85,29 +85,60 @@ AppAsset::register($this);
                 
                 ],
         ],
+
         [
-            'label' => 'Import',
-            'items' => [
-                ['label' => 'Import CSV', 'url' => ['/xml/import']],
-                ['label' => 'Import ProArte', 'url' => ['/xml/proarte']],
-                ['label' => 'Import Dom Projekt', 'url' => ['/xml/domprojekt']],
-                ['label' => 'Import Archipelag', 'url' => ['/xml/archipelag']],
-                ['label' => 'Import Horyzont', 'url' => ['/xml/horyzont']],
-                ['label' => 'Import MGProjekt', 'url' => ['/xml/mgprojekt']],
-                ['label' => 'Podobne projekty'],
-                ['label' => 'Podobne Dom Projekt', 'url' => ['/xml/similardomprojekt']],
-                ['label' => 'Wielkość działki'],
-                ['label' => 'Archilepag - Wielkość działki', 'url' => ['/xml/rzut?producent=5']],
-                ['label' => 'Dom-Projekt - Wielkość działki', 'url' => ['/xml/rzut?producent=6']],
-                ['label' => 'HORYZONT - Wielkość działki', 'url' => ['/xml/rzut?producent=8']],
-                ['label' => 'MGProjekt -Wielkość działki', 'url' => ['/xml/rzut?producent=9']],
-                ['label' => 'Rzuty pięter'],
-                ['label' => 'ProArte - Rzuty pięter do ogarnięcia ilości osób', 'url' => ['/xml/pietra?producent=3']],
-                ['label' => 'Archipelag - Rzuty pięter do ogarnięcia ilości osób', 'url' => ['/xml/pietra?producent=5']],
-                ['label' => 'Dom-Projekt - Rzuty pięter do ogarnięcia ilości osób', 'url' => ['/xml/pietra?producent=6']],
-                ['label' => 'Z500 - Rzuty pięter do ogarnięcia ilości osób', 'url' => ['/xml/pietra?producent=7']],
-                ['label' => 'HORYZONT - Rzuty pięter do ogarnięcia ilości osób', 'url' => ['/xml/pietra?producent=8']],
-                ['label' => 'MGProjekt - Rzuty pięter do ogarnięcia ilości osób', 'url' => ['/xml/pietra?producent=9']],
+            'label' => 'Obsługa XML',
+            'items' => 
+            [
+                [
+                    'label' => 'Import',
+                    'itemsOptions'=>['class'=>'dropdown-submenu'],
+                    'submenuOptions'=>['class'=>'dropdown-menu'],
+                    'items' => [
+                        ['label' => 'Import CSV', 'url' => ['/xml/import']],
+                        ['label' => 'Import ProArte', 'url' => ['/xml/proarte']],
+                        ['label' => 'Import Dom Projekt', 'url' => ['/xml/domprojekt']],
+                        ['label' => 'Import Archipelag', 'url' => ['/xml/archipelag']],
+                        ['label' => 'Import Horyzont', 'url' => ['/xml/horyzont']],
+                        ['label' => 'Import MGProjekt', 'url' => ['/xml/mgprojekt']],
+                        ['label' => 'Import Krajobrazy', 'url' => ['/xml/krajobrazy']],
+                    ],
+                ],
+                [
+                    'label' => 'Podobne projekty',
+                    'itemsOptions'=>['class'=>'dropdown-submenu'],
+                    'submenuOptions'=>['class'=>'dropdown-menu'],
+                    'items' => [
+                        ['label' => 'Podobne Dom Projekt', 'url' => ['/xml/similardomprojekt']],
+                    ],
+                ],
+                [
+                    'label' => 'Wielkość działki',
+                    'itemsOptions'=>['class'=>'dropdown-submenu'],
+                    'submenuOptions'=>['class'=>'dropdown-menu'],
+                    'items' => [
+                        ['label' => 'Archilepag', 'url' => ['/xml/rzut?producent=5']],
+                        ['label' => 'Dom-Projekt', 'url' => ['/xml/rzut?producent=6']],
+                        ['label' => 'HORYZONT', 'url' => ['/xml/rzut?producent=8']],
+                        ['label' => 'MGProjekt', 'url' => ['/xml/rzut?producent=9']],
+                        ['label' => 'Krajobrazy', 'url' => ['/xml/rzut?producent=10']],
+                    ],
+                ],
+                [
+                    'label' => 'Rzuty pięter',
+                    'itemsOptions'=>['class'=>'dropdown-submenu'],
+                    'submenuOptions'=>['class'=>'dropdown-menu'],
+                    'items' => [
+                        ['label' => 'ProArte', 'url' => ['/xml/pietra?producent=3']],
+                        ['label' => 'Archipelag', 'url' => ['/xml/pietra?producent=5']],
+                        ['label' => 'Dom-Projekt', 'url' => ['/xml/pietra?producent=6']],
+                        ['label' => 'Z500', 'url' => ['/xml/pietra?producent=7']],
+                        ['label' => 'HORYZONT', 'url' => ['/xml/pietra?producent=8']],
+                        ['label' => 'MGProjekt', 'url' => ['/xml/pietra?producent=9']],
+                        ['label' => 'Krajobrazy', 'url' => ['/xml/pietra?producent=10']],
+                    ],
+                ],
+                
             ],
         ],
         [
@@ -119,6 +150,7 @@ AppAsset::register($this);
                 ['label' => 'Export CSV Z500', 'url' => ['/xml/export?=producent=7']],
                 ['label' => 'Export CSV Horyzont', 'url' => ['/xml/export?=producent=8']],
                 ['label' => 'Export CSV MGProjekt', 'url' => ['/xml/export?=producent=9']],
+                ['label' => 'Export CSV Krajobrazy', 'url' => ['/xml/export?=producent=10']],
                 ],
         ],
         

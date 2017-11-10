@@ -67,7 +67,6 @@ $(document).on('ready pjax:success',
         $('input[type=radio]').change(
             function()
             {
-                
                 $.ajax({
                         url: "projekty/reset"
                     }); 
@@ -98,6 +97,8 @@ $(document).on('ready pjax:success',
                         url: frm.attr('action'),
                         data: frm.serialize(),
                         success: function (data) {
+                            
+
                         }
                     });
 
@@ -142,12 +143,12 @@ $(document).on('ready pjax:success',
                 var bBarChange = $.cookie("bBarChange");
                 iMin = document.getElementsByClassName("irs-min")[0];
                 iMax = document.getElementsByClassName("irs-max")[0];
-                iFrom = document.getElementsByClassName("irs-from")[0];
-                iTo = document.getElementsByClassName("irs-to")[0];
+                iFrom = document.querySelector(".HouseMin");
+                iTo = document.querySelector(".HouseMax");
 
-                if (bBarChange === '1' && (iMin.innerHTML !== iFrom.innerHTML || iMax.innerHTML !== iTo.innerHTML))
+                if (bBarChange === '1' && (iMin.innerHTML !== iFrom.value || iMax.innerHTML !== iTo.value))
                 {
-                    sHouseSize = '/HouseSize/' +  iFrom.innerHTML+'-'+iTo.innerHTML;
+                    sHouseSize = '/HouseSize/' +  iFrom.value+'-'+iTo.value;
                 }
                 $(":checked").each(function() {
                     filter += '/'+($(this).val());

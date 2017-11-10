@@ -10,14 +10,15 @@ $this->title = 'Oferty pracowni projektowych - nowoczesne i tanie projekty domó
 ?>
 <?php
 $a=1;
-Pjax::begin();
-echo Html::beginForm(['/'], 'POST', ['data-pjax' => '', 'class' => 'form-horizontal', 'id'=>'set_filters', 'name'=>'set_filers']);
 $iSetMinSize = $aDimensions['iOneMinSize'];
 $iSetMaxSize = $aDimensions['iOneMaxSize'];
 $cookies = Yii::$app->request->cookies;
 $accordion = $cookies->getValue('accordion');
-?>
+Pjax::begin();
 
+echo Html::beginForm(['/'], 'POST', ['data-pjax' => '', 'class' => 'form-horizontal', 'id'=>'set_filters', 'name'=>'set_filers']);
+
+?>
 
 <div class="loader">
     <div class="loader-gif"><img src="<?=Yii::$app->request->BaseUrl?>/img/load.svg"></div>
@@ -123,6 +124,7 @@ foreach ($aFilters as $aData)
     
 
     <div class="col-md-10 submit-projects">
+    
     <?= Html::SubmitButton('Pokaż projekty', ['class' => 'project_ready', 'name' => 'project_ready']) ?>
     <?= Html::endForm() ?>
     </div>

@@ -30,10 +30,11 @@ class XmlController extends Controller
     
     public $sArchipelagXml = 'http://www.archipelag.pl/files/ProjectExport/t26d6ch0bqdeu6/project_export.zip';
     public $sDomProjektXml = 'http://dom-projekt.pl/xml/generator.xml.php';
-    public $sHoryzontXml = 'https://www.horyzont.com/xml/horyzont_09_2017.xml';
+    public $sHoryzontXml = 'https://www.horyzont.com/xml/horyzont_11_2017.xml';
     public $sMgProjektXml = 'http://www.mgprojekt.com.pl/export_xml,index.html';
     public $sProArteXml = 'http://www.pro-arte.pl/proarte.xml';
     public $sZ500Xml = 'http://z500.pl/export/get/xml/Z500v2/96e76802fe2379c41f111fac9bb29deff3b23396.xml';
+    public $sKrajobrazyXml = 'http://quattrodomy:QuattroDomy.123@export.quattrodomy.pl/export2.php';
     
     public function behaviors()
     {
@@ -42,11 +43,12 @@ class XmlController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['proarte', 'domprojekt', 'archipelag', 'horyzont', 'mgprojekt', 'z500', 
+                        'actions' => ['proarte', 'domprojekt', 'archipelag', 'horyzont', 'mgprojekt', 'z500', 'krajobrazy', 
                         'images', 'rzut', 'pietra', 'export', 'import', 
                         'update-archipelag', 'update-domprojekt', 'update-horyzont', 'update-mgprojekt', 'update-proarte',
                         'similardomprojekt',
-                        'cenyarchipelag', 'cenydomprojekt', 'cenyhoryzont', 'cenymgprojekt', 'cenyproarte'],
+                        'cenyarchipelag', 'cenydomprojekt', 'cenyhoryzont', 'cenymgprojekt', 'cenyproarte',
+                        'makeimagetype', 'answerbyimage', 'dimensionfromimage'],
                         'allow' => true,
                     ],
                     
@@ -81,7 +83,7 @@ class XmlController extends Controller
     private function zamiana($string)
     {
          $polskie = array(',', ' - ',' ','ę', 'Ę', 'ó', 'Ó', 'Ą', 'ą', 'Ś', 'ś', 'ł', 'Ł', 'ż', 'Ż', 'Ź', 'ź', 'ć', 'Ć', 'ń', 'Ń','-',"'","/","?", '"', ":", '!','.', '&', '&amp;', '#', ';', '[',']', '(', ')', '`', '%', '”', '„', '…');
-         $miedzyn = array('-','-','-','e', 'e', 'o', 'o', 'a', 'a', 's', 's', 'l', 'ly', 'z', 'z', 'z', 'z', 'c', 'c', 'n', 'n','-',"","","","","",'','', '', '', '', '', '', '', '', '', '', '', '');
+         $miedzyn = array('-','-','-','e', 'e', 'o', 'o', 'a', 'a', 's', 's', 'l', 'l', 'z', 'z', 'z', 'z', 'c', 'c', 'n', 'n','-',"","","","","",'','', '', '', '', '', '', '', '', '', '', '', '');
          $string = str_replace($polskie, $miedzyn, $string);
          $string = strtolower($string);
          // usuń wszytko co jest niedozwolonym znakiem
@@ -93,6 +95,14 @@ class XmlController extends Controller
          $string = stripslashes($string);
          // na wszelki wypadek
          $string = urlencode($string);
+
+         return $string;
+    }
+    private function zamianaPL($string)
+    {
+         $polskie = array('Ę', 'Ó', 'Ą', 'Ś', 'Ł', 'Ż', 'Ź', 'Ć', 'Ń');
+         $miedzyn = array('ę', 'ó', 'ą', 'ś', 'ł', 'ż', 'ź', 'ć', 'ń');
+         $string = str_replace($polskie, $miedzyn, $string);
 
          return $string;
     }
@@ -112,6 +122,13 @@ class XmlController extends Controller
             $oAttr->attributes_id = $iAttrId;
             $oAttr->value = $sValue;
             $oAttr->save(false);
+        }
+        else
+        {
+            $oAttrExist->products_id = $iPrdId;
+            $oAttrExist->attributes_id = $iAttrId;
+            $oAttrExist->value = $sValue;
+            $oAttrExist->save(false);
         }
 
         
@@ -140,7 +157,7 @@ class XmlController extends Controller
         }
         
     }
-    private function addImage ($p_iPrdId, $p_sName, $p_sDesc, $p_iType, $p_iStorey = '')
+    private function addImage ($p_iPrdId, $p_sName, $p_sDesc = '', $p_iType = '', $p_iStorey = '')
     {
         $iPrdId = ((int)($p_iPrdId));
         $sName = $p_sName;
@@ -185,7 +202,10 @@ class XmlController extends Controller
             mkdir($sPatch.'/'.$iPrdId.'/info', 0777);
         }
         
-        copy($sOrginal, $sBigPatch.$sName, stream_context_create( $contextOptions ));
+        if (!copy($sOrginal, $sBigPatch.$sName, stream_context_create( $contextOptions )))
+        {
+            echo '<pre>'. print_r(@get_headers($sOrginal), TRUE); die();
+        }
         $aImageSixe =getimagesize($sBigPatch.$sName); 
         if ($aImageSixe[0] >= $aImageSixe[1])
         {
@@ -343,7 +363,7 @@ class XmlController extends Controller
                         $sDesc = 'Wizualizacja';
                         $iImgType = 1;
                         $file_headers = @get_headers($sWizLink);
-                        if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found' || $file_headers[0] == 'HTTP/1.1 500 Internal Server Error') 
+                        if(!$file_headers || $file_headers[0] == 'HTTP request failed! HTTP/1.1 404 Not Found' || $file_headers[0] == 'HTTP/1.1 500 Internal Server Error' || $file_headers[7] == 'HTTP/1.1 404 Not Found') 
                         {
                             $exists = false;
                         }
@@ -365,7 +385,7 @@ class XmlController extends Controller
                         $a++;
                         $iImgType = 3;
                         $file_headers = @get_headers($sImgLink);
-                        if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found' || $file_headers[0] == 'HTTP/1.1 500 Internal Server Error') 
+                        if(!$file_headers || $file_headers[0] == 'HTTP request failed! HTTP/1.1 404 Not Found' || $file_headers[0] == 'HTTP/1.1 500 Internal Server Error' || $file_headers[7] == 'HTTP/1.1 404 Not Found') 
                         {
                             $exists = false;
                         }
@@ -428,7 +448,7 @@ class XmlController extends Controller
                         $sDesc = $sElewacjeTitle;
                         $iImgType = 2;
                         $file_headers = @get_headers($sElewacjeLink);
-                        if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found' || $file_headers[0] == 'HTTP/1.1 500 Internal Server Error') 
+                        if(!$file_headers || $file_headers[0] == 'HTTP request failed! HTTP/1.1 404 Not Found' || $file_headers[0] == 'HTTP/1.1 500 Internal Server Error' || $file_headers[7] == 'HTTP/1.1 404 Not Found') 
                         {
                             $exists = false;
                         }
@@ -655,7 +675,8 @@ class XmlController extends Controller
                         $sDesc = 'Wizualizacja';
                         $iImgType =1;
                         $file_headers = @get_headers($sViewsLink);
-                        if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found') 
+                        
+                        if(!$file_headers || $file_headers[0] == 'HTTP request failed! HTTP/1.1 404 Not Found' || $file_headers[7] == 'HTTP/1.1 404 Not Found') 
                         {
                             $exists = false;
                         }
@@ -678,13 +699,15 @@ class XmlController extends Controller
                             $sName = $sSymbol.'_'.$a.''.$extension;
                             $sDesc = 'Elewacja';
                             $iImgType =2;
+                            
                             if ($b >4)
                             {
                                 $sDesc = 'Usytuowanie na działce';
                                 $iImgType =5;    
                             }
                             $file_headers = @get_headers($sViewsLink);
-                            if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found') 
+                            
+                            if(!$file_headers || $file_headers[0] == 'HTTP request failed! HTTP/1.1 404 Not Found' || $file_headers[7] == 'HTTP/1.1 404 Not Found')
                             {
                                 $exists = false;
                             }
@@ -734,7 +757,7 @@ class XmlController extends Controller
                         $sName = $sSymbol.'_'.$a.''.$extension;
                         $iImgType =3;
                         $file_headers = @get_headers($sViewsLink);
-                        if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found') 
+                        if(!$file_headers || $file_headers[7] == 'HTTP/1.1 404 Not Found' || $file_headers[7] == 'HTTP/1.1 404 Not Found')
                         {
                             $exists = false;
                         }
@@ -745,9 +768,9 @@ class XmlController extends Controller
                             $this->saveImage($sViewsLink, $iActualProductId, $sName);
                             $a++;    
                         }
-                        
-                        
+
                         }
+
                     }
                     if (isset($aProject->realizacje))
                     {
@@ -759,12 +782,14 @@ class XmlController extends Controller
                             $sDesc = 'Realizacja';
                             $iImgType =4;
                             $file_headers = @get_headers($sViewsLink);
-                            if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found') 
+                            
+                            if(!$file_headers || $file_headers[0] == 'HTTP request failed! HTTP/1.1 404 Not Found' || $file_headers[7] == 'HTTP/1.1 404 Not Found')
                             {
                                 $exists = false;
                             }
                             else 
                             {
+                                
                                 $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
                                 /*Zapisywanie obrazków*/
                                 $this->saveImage($sViewsLink, $iActualProductId, $sName);
@@ -1051,10 +1076,18 @@ class XmlController extends Controller
                         $sName = $sSymbol.'_'.$a.''.$extension;
                         $sDesc = 'Wizualizacja';
                         $iImgType = 1;
-                        $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
-                        /*Zapisywanie obrazków*/
-                        $this->saveImage($sViewsLink, $iActualProductId, $sName);
-                        $a++;    
+                        $file_headers = @get_headers($sViewsLink);
+                        if(!$file_headers || $file_headers[7] == 'HTTP/1.1 404 Not Found' || $file_headers[7] == 'HTTP/1.1 404 Not Found')
+                        {
+                            $exists = false;
+                        }
+                        else 
+                        {
+                            $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
+                            /*Zapisywanie obrazków*/
+                            $this->saveImage($sViewsLink, $iActualProductId, $sName);
+                            $a++;    
+                        }
 
                     }
                     /*Rzuty*/
@@ -1096,11 +1129,21 @@ class XmlController extends Controller
                                     break;
                                 
                             }
-                           
-                            $this->addImage($iActualProductId, $sName, $sDesc, $iImgType, $iStoreyType);
-                            /*Zapisywanie obrazków*/
-                            $this->saveImage($sViewsLink, $iActualProductId, $sName);
-                            $a++;    
+                            $file_headers = @get_headers($sViewsLink);
+                            if(!$file_headers || $file_headers[7] == 'HTTP/1.1 404 Not Found' || $file_headers[7] == 'HTTP/1.1 404 Not Found')
+                            {
+                                $exists = false;
+                            }
+                            else 
+                            {
+                                $this->addImage($iActualProductId, $sName, $sDesc, $iImgType, $iStoreyType);
+                                /*Zapisywanie obrazków*/
+                                $this->saveImage($sViewsLink, $iActualProductId, $sName);
+                                $a++;  
+                            }
+
+                            
+                              
 
                             $iBedRooms = 0;
                             foreach ($aViews->Rooms->Room as $aRoom)
@@ -1131,11 +1174,19 @@ class XmlController extends Controller
                             $sName = $sSymbol.'_'.$a.''.$extension;
                             $sDesc = 'Elewacja';
                             $iImgType = 2;
-                            $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
-                            /*Zapisywanie obrazków*/
-                            $this->saveImage($sViewsLink, $iActualProductId, $sName);
-                            $a++;    
-                            
+                            $file_headers = @get_headers($sViewsLink);
+                            if(!$file_headers || $file_headers[7] == 'HTTP/1.1 404 Not Found' || $file_headers[7] == 'HTTP/1.1 404 Not Found')
+                            {
+                                $exists = false;
+                            }
+                            else 
+                            {
+                                $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
+                                /*Zapisywanie obrazków*/
+                                $this->saveImage($sViewsLink, $iActualProductId, $sName);
+                                $a++;  
+                            }
+     
                         }
                     }
                     
@@ -1149,10 +1200,19 @@ class XmlController extends Controller
                             $sName = $sSymbol.'_'.$a.''.$extension;
                             $sDesc = 'Usytuowanie na działce';
                             $iImgType = 5;
-                            $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
-                            /*Zapisywanie obrazków*/
-                            $this->saveImage($sViewsLink, $iActualProductId, $sName);
-                            $a++;    
+                            $file_headers = @get_headers($sViewsLink);
+                            if(!$file_headers || $file_headers[7] == 'HTTP/1.1 404 Not Found' || $file_headers[7] == 'HTTP/1.1 404 Not Found')
+                            {
+                                $exists = false;
+                            }
+                            else 
+                            {
+                                $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
+                                /*Zapisywanie obrazków*/
+                                $this->saveImage($sViewsLink, $iActualProductId, $sName);
+                                $a++;  
+                            }
+   
                         }
                     }
                     /*Przekrój*/
@@ -1165,10 +1225,19 @@ class XmlController extends Controller
                             $sName = $sSymbol.'_'.$a.''.$extension;
                             $sDesc = 'Przekrój';
                             $iImgType = 3;
-                            $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
-                            /*Zapisywanie obrazków*/
-                            $this->saveImage($sViewsLink, $iActualProductId, $sName);
-                            $a++;    
+                            $file_headers = @get_headers($sViewsLink);
+                            if(!$file_headers || $file_headers[7] == 'HTTP/1.1 404 Not Found' || $file_headers[7] == 'HTTP/1.1 404 Not Found')
+                            {
+                                $exists = false;
+                            }
+                            else 
+                            {
+                                $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
+                                /*Zapisywanie obrazków*/
+                                $this->saveImage($sViewsLink, $iActualProductId, $sName);
+                                $a++;  
+                            }
+  
                         }
                     }
                     
@@ -1441,7 +1510,7 @@ class XmlController extends Controller
                                     $sName = $sSymbol.'_'.$a.''.$extension;
                                     $sDesc = $sDescPart1;
                                     $file_headers = @get_headers($aImage->url);
-                                    if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found' || $file_headers[0] == 'HTTP request failed! HTTP/1.1 500') 
+                                    if(!$file_headers || $file_headers[0] == 'HTTP request failed! HTTP/1.1 404 Not Found' || $file_headers[0] == 'HTTP request failed! HTTP/1.1 500' || $file_headers[7] == 'HTTP/1.1 404 Not Found') 
                                     {
                                         $exists = false;
                                     }
@@ -1470,7 +1539,7 @@ class XmlController extends Controller
                                         $sName = $sSymbol.'_'.$a.''.$extension;
                                         $sDesc = $sDescPart1;
                                         $file_headers = @get_headers($aImage->url);
-                                        if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found' || $file_headers[0] == 'HTTP request failed! HTTP/1.1 500') 
+                                        if(!$file_headers || $file_headers[0] == 'HTTP request failed! HTTP/1.1 404 Not Found' || $file_headers[0] == 'HTTP request failed! HTTP/1.1 500' || $file_headers[7] == 'HTTP/1.1 404 Not Found') 
                                         {
                                             $exists = false;
                                         }
@@ -1910,6 +1979,233 @@ class XmlController extends Controller
             }
         }
     }
+    
+    /*Dodawanie projektów z https://studiokrajobrazy.pl*/
+    public function actionKrajobrazy()
+    {
+
+        $oDocument = new Response();
+        $sXmlFile  = $this->sKrajobrazyXml;
+        $sXmlContent = file_get_contents($sXmlFile);
+        $sXml = $oDocument->setContent($sXmlContent);
+        $oParser = new XmlParser();
+        $aKrajobrazy = $oParser->parse($sXml);
+        
+        //echo '<pre>'. print_r($aKrajobrazy, TRUE); die();
+        
+        foreach ($aKrajobrazy['dom'] as $aProject)
+        {
+            $oProjekt = new Products();
+            $oExist = $oProjekt->findOne(['ean' => 'krajobrazy-'.$aProject->id]);
+            if (!$oExist)
+            {
+                $oProjekt = new Products();
+                $sSymbol = $this->zamiana($aProject->nazwa);
+                $sSymbol = ($this->checkSymbol($sSymbol) ? $sSymbol.'-krajobrazy' :$sSymbol);
+                $oProjekt->is_active = 0;
+                $oProjekt->producers_id = 10;
+                $oProjekt->vats_id = 3;
+                $iCena = (round ($aProject->cena_g1 * 1.05, 0) > round ($aProject->cena_g2 * 1.05, 0) ? round ($aProject->cena_g1 * 1.05, 0): round ($aProject->cena_g2 * 1.05, 0));
+                if ($iCena == 0 )
+                {
+                    $iCena  = round ($aProject->cena_bg * 1.05, 0);
+                }
+                $oProjekt->price_brutto_source = $iCena;
+                $oProjekt->price_brutto = $iCena;
+                $oProjekt->stock = 99;
+                $oProjekt->creation_date=time();
+                $oProjekt->symbol = $sSymbol;
+                $oProjekt->ean = 'krajobrazy-'.$aProject->id;
+                $oProjekt->save(false);
+            /*Dodanie opisów do produkty*/
+                $iActualProductId = Yii::$app->db->getLastInsertID();
+                $oProductsDesriptions = new ProductsDescripton();
+                $oProductsDesriptions->products_id = $iActualProductId;
+                $oProductsDesriptions->languages_id = 1;
+                $oProductsDesriptions->name = ucfirst($this->zamianaPL((strtolower($aProject->nazwa))));
+                $oProductsDesriptions->nicename_link = $sSymbol;
+                $oProductsDesriptions->html_description = trim(strip_tags($aProject->opis_s, '<br />, <br>, <br/>'));
+                $oProductsDesriptions->meta_description = $this->cut(trim($aProject->opis_s), 150);
+                $oProductsDesriptions->meta_title = 'Projekt - '. ucfirst($this->zamianaPL((strtolower($aProject->nazwa))));
+                $oProductsDesriptions->save(false);
+
+            /*Dane techniczne i filtry*/
+                ($aProject->powierzchnia !='0.00' ? $this->addAttr($iActualProductId, 4, $aProject->powierzchnia) : '');
+                ($aProject->powierzchnia_garaz !='0.00' ? $this->addAttr($iActualProductId, 5, $aProject->powierzchnia_garaz) : '');
+                ($aProject->katnachyleniadachu !='0.00' ? $this->addAttr($iActualProductId, 8, $aProject->katnachyleniadachu) : '');
+                ($aProject->kondygnacji !='0.00' ? $this->addAttr($iActualProductId, 20, $aProject->kondygnacji+1) : '');
+                ($aProject->powzabudowy !='0.00' ? $this->addAttr($iActualProductId, 11, $aProject->powzabudowy) : '');
+                ($aProject->wysokoscbudynku !='0.00' ? $this->addAttr($iActualProductId, 1, $aProject->wysokoscbudynku) : '');
+                ($aProject->minszerdz !='0.00' ? $this->addAttr($iActualProductId, 6, $aProject->minszerdz) : '');
+                ($aProject->mindldz !='0.00' ? $this->addAttr($iActualProductId, 7, $aProject->mindldz) : '');
+                ($aProject->kubatura !='0.00' ? $this->addAttr($iActualProductId, 15, $aProject->kubatura) : '');
+                
+                
+
+                /*Ilość kondygnacji*/
+                $iType = '';
+                switch ($aProject->kondygnacji+1)
+                {
+                    case 1:
+                        $iType = 17;
+                        break;
+                    case 2:
+                        $iType = 18;
+                        break;
+                }
+                ($iType !== '' ? $this->addFilter($iActualProductId, $iType) : '');   
+
+                    /*Zdjęcia */
+                $a=0;
+                    /*Wizualizacje*/
+                for ($q = count($aProject->pliki->widoki->plik)-1; $q>=0; $q--)
+                {
+                    $sViewsLink = $aProject->pliki->widoki->plik[$q]->attributes()->nazwa;
+                    $extension = strtolower(strrchr($aProject->pliki->widoki->plik[$q]->attributes()->nazwa, '.'));
+                    $sName = $sSymbol.'_'.$a.''.$extension;
+                    $sDesc = 'Wizualizacja';
+                    $iImgType =1;
+                    $file_headers = @get_headers($sViewsLink);
+
+                    if(!$file_headers || $file_headers[0] == 'HTTP request failed! HTTP/1.1 404 Not Found' || $file_headers[7] == 'HTTP/1.1 404 Not Found') 
+                    {
+                        $exists = false;
+                    }
+                    else 
+                    {
+                        $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
+                        /*Zapisywanie obrazków*/
+                        $this->saveImage($sViewsLink, $iActualProductId, $sName);
+                        $a++;    
+                    }
+                }
+                
+                /*Elewacje*/
+                if (isset($aProject->pliki->elewacje))
+                {
+                    for ($q = count($aProject->pliki->elewacje->plik)-1; $q>=0; $q--)
+                    {
+                        $sViewsLink = $sViewsLink = $aProject->pliki->elewacje->plik[$q]->attributes()->nazwa;
+                        $extension = strtolower(strrchr($sViewsLink = $aProject->pliki->elewacje->plik[$q]->attributes()->nazwa, '.'));
+                        $sName = $sSymbol.'_'.$a.''.$extension;
+                        $sDesc = '';
+                        $iImgType =2;
+
+                        
+                        $file_headers = @get_headers($sViewsLink);
+
+                        if(!$file_headers || $file_headers[0] == 'HTTP request failed! HTTP/1.1 404 Not Found' || $file_headers[7] == 'HTTP/1.1 404 Not Found')
+                        {
+                            $exists = false;
+                        }
+                        else 
+                        {
+                            $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
+                            /*Zapisywanie obrazków*/
+                            $this->saveImage($sViewsLink, $iActualProductId, $sName);
+                            $a++;    
+                        }
+                    }
+                }
+ 
+                /*Rzuty*/
+
+                if (isset($aProject->pliki->rzuty))
+                {
+
+                   for ($q = count($aProject->pliki->rzuty->plik)-1; $q>=0; $q--)
+                   {
+                       $sDesc= '';
+
+                        $sViewsLink = $aProject->pliki->rzuty->plik[$q]->attributes()->nazwa;
+                        $extension = strtolower(strrchr($aProject->pliki->rzuty->plik[$q]->attributes()->nazwa, '.'));
+                        $sName = $sSymbol.'_'.$a.''.$extension;
+                        $iImgType =3;
+                        $file_headers = @get_headers($sViewsLink);
+                        if(!$file_headers || $file_headers[7] == 'HTTP/1.1 404 Not Found' || $file_headers[7] == 'HTTP/1.1 404 Not Found')
+                        {
+                            $exists = false;
+                        }
+                        else 
+                        {
+                            $this->addImage($iActualProductId, $sName, $sDesc, $iImgType, $iStoreyType);
+                            /*Zapisywanie obrazków*/
+                            $this->saveImage($sViewsLink, $iActualProductId, $sName);
+                            $a++;    
+                        }
+
+                   }
+                }
+                   /*Widok działki*/
+                if (isset($aProject->pliki->wymiary_dzialki))
+                {
+                    for ($q = count($aProject->pliki->wymiary_dzialki->plik)-1; $q>=0; $q--)
+                    {
+                        $sViewsLink = $sViewsLink = $aProject->pliki->wymiary_dzialki->plik[$q]->attributes()->nazwa;
+                        $extension = strtolower(strrchr($sViewsLink = $aProject->pliki->wymiary_dzialki->plik[$q]->attributes()->nazwa, '.'));
+                        $sName = $sSymbol.'_'.$a.''.$extension;
+                        $sDesc = 'Usytuowanie';
+                        $iImgType =5;
+
+                        
+                        $file_headers = @get_headers($sViewsLink);
+
+                        if(!$file_headers || $file_headers[0] == 'HTTP request failed! HTTP/1.1 404 Not Found' || $file_headers[7] == 'HTTP/1.1 404 Not Found')
+                        {
+                            $exists = false;
+                        }
+                        else 
+                        {
+                            $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
+                            /*Zapisywanie obrazków*/
+                            $this->saveImage($sViewsLink, $iActualProductId, $sName);
+                            $a++;    
+                        }
+                    }
+                }
+                /*Wnętrza*/
+                if (isset($aProject->pliki->wnetrza))
+                {
+                    for ($q = count($aProject->pliki->wnetrza->plik)-1; $q>=0; $q--)
+                    {
+                        $sViewsLink = $sViewsLink = $aProject->pliki->wnetrza->plik[$q]->attributes()->nazwa;
+                        $extension = strtolower(strrchr($sViewsLink = $aProject->pliki->wnetrza->plik[$q]->attributes()->nazwa, '.'));
+                        $sName = $sSymbol.'_'.$a.''.$extension;
+                        $sDesc = 'Wnętrze';
+                        $iImgType =6;
+
+                        
+                        $file_headers = @get_headers($sViewsLink);
+
+                        if(!$file_headers || $file_headers[0] == 'HTTP request failed! HTTP/1.1 404 Not Found' || $file_headers[7] == 'HTTP/1.1 404 Not Found')
+                        {
+                            $exists = false;
+                        }
+                        else 
+                        {
+                            $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
+                            /*Zapisywanie obrazków*/
+                            $this->saveImage($sViewsLink, $iActualProductId, $sName);
+                            $a++;    
+                        }
+                    }
+                }
+                    /*Rozpiska pokoi*/
+                
+                $dane = $iActualProductId .'$'.$aProject->opis_p ."|" . (isset($aProject->opis_p1) ? $aProject->opis_p1 : '') . "#";
+                $file = "pokoje.txt"; 
+                $fp = fopen($file, "a"); 
+                flock($fp, 2); 
+                fwrite($fp, $dane); 
+                flock($fp, 3); 
+                fclose($fp); 
+
+                
+                
+            }
+        }
+    }
+    
     
     /*Aktualizacje cen*/
     public function actionCenydomprojekt()
@@ -2515,6 +2811,8 @@ class XmlController extends Controller
     /*Rzut działki do sprawdzenia rozmiarów*/
     public function actionRzut() 
     {
+        echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>';
+        echo '<script src="../js/storey.js"></script>';
         $iProducers = $_GET['producent'];
         $oProjects = new Products();
         $aPrdHoryzont = $oProjects->findAll(['producers_id'=>$iProducers]);
@@ -2527,9 +2825,14 @@ class XmlController extends Controller
             $aImages = $oImages->findAll(['products_id'=>$aPrd->id , 'image_type_id'=>5]);
             if (isset($aImages[0]))
             {
+                $oProductsAttr = new ProductsAttributes();
+                $oSzer = $oProductsAttr->findOne(['products_id'=>$aPrd->id, 'attributes_id'=>2]);
+                $oGl = $oProductsAttr->findOne(['products_id'=>$aPrd->id, 'attributes_id'=>3]);
                 $sInfoPatch = $sPatch.'/' .$aPrd->id .'/big/';
                 echo '<span style="font-size:40px;">'.$aPrd->id .' ---- ' .$aPrd->productsDescriptons->name .'</span><br>';
                 echo '<img src="'.$sInfoPatch.$aImages[0]->name .'"/><br>';
+                echo 'X<input type="text" class="szer" rel2="'.$aPrd->id .'" value="'.($oSzer ? $oSzer->value : '').'">';
+                echo 'Y<input type="text" class="gl" rel2="'.$aPrd->id .'" value="'.($oGl ? $oGl->value : '').'"><br>';
             }
             
         }
@@ -2538,8 +2841,22 @@ class XmlController extends Controller
     /* Rzuty pięter żeby łatwiej było liczyć ilość pomieszczeń */
     public function actionPietra() 
     {
+        echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>';
+        echo '<script src="../js/storey.js"></script>';
+        echo '<style>'
+        . '.button{'
+                . 'background-color: #d2d2ef;
+                    padding: 5px 10px;
+                    cursor: pointer;
+                    margin: 10px;
+                    display: inline-block;'
+                . '}'
+        . ' .active{'
+                . 'background-color: #f1adef;'
+                . '}'
+            . '</style>';
         $iProducers = $_GET['producent'];
-
+        
         $oProjects = new Products();
         $aPrdHoryzont = $oProjects->find()->andWhere(['producers_id'=>$iProducers])->joinWith('productsDescriptons')->orderBy(['products_descripton.name' => SORT_ASC])->all();
        
@@ -2550,6 +2867,7 @@ class XmlController extends Controller
             $oImages = new ProductsImages();
             $aImages = $oImages->findAll(['products_id'=>$aPrd->id , 'image_type_id'=>3]);
             echo '<span style="font-size:40px;">'.$aPrd->id .' ---- ' .$aPrd->productsDescriptons->name .'</span><br>';
+            echo '<div>';
             foreach ($aImages as $aImage)
             {
                 $sInfoPatch = $sPatch.'/' .$aPrd->id .'/big/';
@@ -2558,12 +2876,70 @@ class XmlController extends Controller
                 {
                     if (strpos($aImage->description, 'Przekrój') === false) 
                         {
-                            echo '<img src="'.$sInfoPatch.$aImage->name .'"/>';
+                            echo '<div style="display:inline-block">';
+                            echo '<img src="'.$sInfoPatch.$aImage->name .'"/><br>';
+                            echo '<div class="button parter" rel="'. $aImage->id.'">Parter</div>';
+                            echo '<div class="button pietro" rel="'. $aImage->id.'">Piętro</div>';
+                            echo '</div>';
                         }
                 }
-               
                 
             }
+            $oProductsFilter = new ProductsFilters();
+            $oA40 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>40]);
+            $oA24 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>24]);
+            $oA25 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>25]);
+            $oA45 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>45]);
+            $oA28 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>28]);
+            $oA29 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>29]);
+            $oA26 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>26]);
+            $oA27 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>27]);
+            $oA4 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>4]);
+            $oA5 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>5]);
+            $oA6 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>6]);
+            $oA7 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>7]);
+            
+            $oProductsAttr = new ProductsAttributes();
+            
+            $oIS = $oProductsAttr->findOne(['products_id'=>$aImage->products_id, 'attributes_id'=>17]);
+            $oIL = $oProductsAttr->findOne(['products_id'=>$aImage->products_id, 'attributes_id'=>18]);
+            $oIWc = $oProductsAttr->findOne(['products_id'=>$aImage->products_id, 'attributes_id'=>19]);
+            
+            
+            echo '<div style="display:inline-block;vertical-align: top;padding-left: 10px;border-right: 1px solid gray;">'
+                . 'ile osób<br>'
+                    . '<div class="button qab '.($oA4 ? ' active':'').'" relA="4" rel="'. $aImage->products_id.'">1-2</div><br>'
+                    . '<div class="button qab '.($oA5 ? ' active':'').'" relA="5" rel="'. $aImage->products_id.'">3-4</div><br>'
+                    . '<div class="button qab '.($oA6 ? ' active':'').'" relA="6" rel="'. $aImage->products_id.'">5-7</div><br>'
+                    . '<div class="button qab '.($oA7 ? ' active':'').'" relA="7" rel="'. $aImage->products_id.'">Powyżej 7</div><br>';
+                
+            echo '</div>';
+            echo '<div style="display:inline-block;vertical-align: top;padding-left: 10px;border-right: 1px solid gray;">'
+                . 'Garaz<br>'
+                    . '<div class="button qab '.($oA40 ? ' active':'').'" relA="40" rel="'. $aImage->products_id.'">Brak</div><br>'
+                    . '<div class="button qab '.($oA24 ? ' active':'').'" relA="24" rel="'. $aImage->products_id.'">Jedno</div><br>'
+                    . '<div class="button qab '.($oA25 ? ' active':'').'" relA="25" rel="'. $aImage->products_id.'">Dwu</div><br>'
+                    . '<div class="button qab '.($oA45 ? ' active':'').'" relA="45" rel="'. $aImage->products_id.'">Wiata</div><br>';
+                
+            echo '</div>';
+            echo '<div style="display:inline-block;vertical-align: top;padding-left: 10px;border-right: 1px solid gray;">'
+                . 'Kominek<br>'
+                    . '<div class="button qab '.($oA28 ? ' active':'').'" relA="28" rel="'. $aImage->products_id.'">Tak</div><br>'
+                    . '<div class="button qab '.($oA29 ? ' active':'').'" relA="29" rel="'. $aImage->products_id.'">Nie</div><br>';
+                
+            echo '</div>';
+            echo '<div style="display:inline-block;vertical-align: top;padding-left: 10px;border-right: 1px solid gray;">'
+                . 'Kuchnia<br>'
+                    . '<div class="button qab '.($oA26 ? ' active':'').'" relA="26" rel="'. $aImage->products_id.'">Otwarta</div><br>'
+                    . '<div class="button qab '.($oA27 ? ' active':'').'" relA="27" rel="'. $aImage->products_id.'">Zamknieta</div><br>';
+                
+            echo '</div>';
+            echo '<div style="display:block;vertical-align: top;padding-left: 10px;border-right: 1px solid gray;">'
+                . 'Ilość sypialni <input type="text" class="is" rel2="'.$aImage->products_id .'" value="'.($oIS? $oIS->value : '').'"><br>'
+                . 'Ilość łazienek <input type="text" class="il" rel2="'.$aImage->products_id .'" value="'.($oIL? $oIL->value : '').'"><br>'
+                . 'Ilość wc <input type="text" class="iwc" rel2="'.$aImage->products_id .'" value="'.($oIWc? $oIWc->value : '').'"><br>';    
+                
+            echo '</div>';
             echo '<br>';
         }
         
@@ -2836,5 +3212,32 @@ class XmlController extends Controller
             }
             
         }
+    }
+    public function actionMakeimagetype($iImgId, $iType)
+    {
+        $oImages = new ProductsImages();
+        $aImage = $oImages->findOne(['id'=>$iImgId]);
+        switch ($iType)
+            {
+                case 1:
+                    $sName = 'Parter';
+                    $iStoreyType = 1;
+                    break;
+                case 2:
+                    $sName = 'Piętro';
+                    $iStoreyType = 2;
+            }
+        $aImage->description = $sName;
+        $aImage->storey_type = $iStoreyType;
+        $aImage->save(false);
+
+    }
+    public function actionAnswerbyimage($iPrdId, $iAnswer)
+    {
+        $this->addFilter($iPrdId, $iAnswer);
+    }
+    public function actionDimensionfromimage($iPrdId, $iValue, $iAttrId)
+    {
+        $this->addAttr($iPrdId, $iAttrId, $iValue);
     }
 }
