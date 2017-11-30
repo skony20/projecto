@@ -1127,6 +1127,9 @@ class XmlController extends Controller
                                 case 'Antresola':
                                     $iStoreyType = 4;
                                     break;
+                                case 'Przekrój':
+                                    $iStoreyType = 5;
+                                    break;
                                 
                             }
                             $file_headers = @get_headers($sViewsLink);
@@ -1969,14 +1972,105 @@ class XmlController extends Controller
         $sXml = $oDocument->setContent($sXmlContent);
         $oParser = new XmlParser();
         $aZ500 = $oParser->parse($sXml);
-        foreach ($aMGP['projekt'] as $aProject)
+        //echo '<pre>'. print_r($aZ500, TRUE); die();
+        foreach ($aZ500['houses']['project'] as $aProject)
         {
+            //echo $aProject->name .'<br>';
+            //echo 'z500-'.$aProject->attributes()->id. '<br>';
             $oProjekt = new Products();
-            $oExist = $oProjekt->findOne(['ean' => 'mgprojekt-'.$aProject->products_id]);
+            $oExist = $oProjekt->findOne(['ean' => 'z500-'.$aProject->attributes()->id]);
             if (!$oExist)
             {
-            
+                $oProjekt = new Products();
+                $sSymbol = $this->zamiana($aProject->name);
+                $sSymbol = ($this->checkSymbol($sSymbol) ? $sSymbol.'-z500' :$sSymbol);
+                $oProjekt->is_active = 0;
+                $oProjekt->producers_id = 7;
+                $oProjekt->vats_id = 3;
+               
+                $oProjekt->price_brutto_source = $oProjekt->base_price;
+                $oProjekt->price_brutto = $oProjekt->price;
+                $oProjekt->stock = 99;
+                $oProjekt->creation_date=time();
+                $oProjekt->symbol = $sSymbol;
+                $oProjekt->ean = 'z500-'.$aProject->attributes()->id;
+                $oProjekt->save(false);
+            /*Dodanie opisów do produkty*/
+                $iActualProductId = Yii::$app->db->getLastInsertID();
+                $oProductsDesriptions = new ProductsDescripton();
+                $oProductsDesriptions->products_id = $iActualProductId;
+                $oProductsDesriptions->languages_id = 1;
+                $oProductsDesriptions->name = ucfirst($this->zamianaPL((strtolower($aProject->description))));
+                $oProductsDesriptions->nicename_link = $sSymbol;
+                $oProductsDesriptions->html_description = $aProject->description;
+                $oProductsDesriptions->meta_description = $this->cut(trim($aProject->odescription), 150);
+                $oProductsDesriptions->meta_title = 'Projekt - '. ucfirst($this->zamianaPL((strtolower($aProject->description))));
+                $oProductsDesriptions->save(false);
+                
+            /*Dane techniczne i filtry*/
+                ($aProject->usable_area  !='' ? $this->addAttr($iActualProductId, 4, $aProject->usable_area) : '');
+                ($aProject->net_area !='' ? $this->addAttr($iActualProductId, 10, $aProject->net_area) : '');
+                ($aProject->footprint_area !='' ? $this->addAttr($iActualProductId, 11, $aProject->footprint_area) : '');
+                ($aProject->roof_angle  !='' ? $this->addAttr($iActualProductId, 8, $aProject->roof_angle ) : '');
+                ($aProject->height !='' ? $this->addAttr($iActualProductId, 1, $aProject->height) : '');
+                ($aProject->lot_length  !='' ? $this->addAttr($iActualProductId, 7, $aProject->lot_length ) : '');
+                ($aProject->lot_width  !='' ? $this->addAttr($iActualProductId, 6, $aProject->lot_width) : '');
+                ($aProject->elevation_length  !='' ? $this->addAttr($iActualProductId, 3, $aProject->elevation_length ) : '');
+                ($aProject->elevation_width !='' ? $this->addAttr($iActualProductId, 2, $aProject->elevation_width) : '');
+                ($aProject->volume  !='' ? $this->addAttr($iActualProductId, 15, $aProject->volume ) : '');
+                $iStoreyCount = 0;
+                $iStoreyType = 0;
+                switch ($aProject->storeys->attributes()->count)
+                {
+                    case '1':
+                        $iStoreyCount = 1;
+                        $iStoreyType = 17;
+                        break;
+                    case "1+":
+                        $iStoreyCount = 2;
+                        $iStoreyType = 18;
+                        break;
+                    case "2":
+                        $iStoreyCount = 2;
+                        $iStoreyType = 19;
+                        break;
+                    case "2-":
+                        $iStoreyCount = 2;
+                        $iStoreyType = 18;
+                        break;
+                }
+                ($iStoreyCount  !=0 ? $this->addAttr($iActualProductId, 20, $iStoreyCount ) : '');
+            /*Odpowiedzi na pytania*/    
+                ($iStoreyType != 0 ? $this->addFilter($iActualProductId, $iStoreyType) : '');
+                $iGarage = 0;
+                if ($aProject->garage->attributes()->present == 0)
+                {
+                    $iGarage = 40;
+                }
+                else
+                {
+                    switch ($aProject->garage->attributes()->count)
+                    {
+                        case '1':
+                            $iStoreyCount = 1;
+                            $iStoreyType = 17;
+                            break;
+                        case "1+":
+                            $iStoreyCount = 2;
+                            $iStoreyType = 18;
+                            break;
+                        case "2":
+                            $iStoreyCount = 2;
+                            $iStoreyType = 19;
+                            break;
+                        case "2-":
+                            $iStoreyCount = 2;
+                            $iStoreyType = 18;
+                            break;
+                    }
+                }
             }
+            
         }
     }
     
