@@ -1,7 +1,7 @@
 $(document).ready(
+    
     function()
-    {
-        
+    { 
      $(".parter").click(
              
              function() {
@@ -39,6 +39,23 @@ $(document).ready(
                 iAnswer = $(this).attr('relA');
                 $.ajax({
                     url: 'answerbyimage',
+                    type: 'get',
+                    data: {
+                        iPrdId:iPrdId, 
+                        iAnswer:iAnswer
+                    },
+
+                });
+         }); 
+         $(".delftr").click(
+             
+             function() {
+                $(this).prev().removeClass( "active" );
+                $(this).remove();
+                iPrdId = $(this).attr('rel');
+                iAnswer = $(this).attr('relA');
+                $.ajax({
+                    url: 'delanswerbyimage',
                     type: 'get',
                     data: {
                         iPrdId:iPrdId, 
@@ -123,6 +140,9 @@ $(document).ready(
 
             });
     });
+    $(document).ready(function() {
+		$(".fancybox").fancybox();
+	});
 
 
 

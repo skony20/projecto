@@ -17,6 +17,7 @@ use app\models\Similar;
 use yii\web\UploadedFile;
 use yii\imagine\Image;
 use app\models\Storeys;
+use yii\helpers\FileHelper;
 /**
  * Site controller
  */
@@ -30,7 +31,7 @@ class XmlController extends Controller
     
     public $sArchipelagXml = 'http://www.archipelag.pl/files/ProjectExport/t26d6ch0bqdeu6/project_export.zip';
     public $sDomProjektXml = 'http://dom-projekt.pl/xml/generator.xml.php';
-    public $sHoryzontXml = 'https://www.horyzont.com/xml/horyzont_11_2017.xml';
+    public $sHoryzontXml = 'https://www.horyzont.com/xml/horyzont_04_2018.xml';
     public $sMgProjektXml = 'http://www.mgprojekt.com.pl/export_xml,index.html';
     public $sProArteXml = 'http://www.pro-arte.pl/proarte.xml';
     public $sZ500Xml = 'http://z500.pl/export/get/xml/Z500v2/96e76802fe2379c41f111fac9bb29deff3b23396.xml';
@@ -45,10 +46,11 @@ class XmlController extends Controller
                     [
                         'actions' => ['proarte', 'domprojekt', 'archipelag', 'horyzont', 'mgprojekt', 'z500', 'krajobrazy', 
                         'images', 'rzut', 'pietra', 'export', 'import', 
-                        'update-archipelag', 'update-domprojekt', 'update-horyzont', 'update-mgprojekt', 'update-proarte',
-                        'similardomprojekt',
-                        'cenyarchipelag', 'cenydomprojekt', 'cenyhoryzont', 'cenymgprojekt', 'cenyproarte',
-                        'makeimagetype', 'answerbyimage', 'dimensionfromimage'],
+                        'update-archipelag', 'update-domprojekt', 'update-horyzont', 'update-mgprojekt', 'update-proarte', 'update-z500',
+                        'similardomprojekt', 
+                        'cenyarchipelag', 'cenydomprojekt', 'cenyhoryzont', 'cenymgprojekt', 'cenyproarte','cenyz500',
+                        'makeimagetype', 'answerbyimage', 'delanswerbyimage', 'dimensionfromimage',
+                        'deletefolder'],
                         'allow' => true,
                     ],
                     
@@ -745,7 +747,7 @@ class XmlController extends Controller
                                 break;
                                 case 4:
                                     $sDesc = 'Przekrój';
-                                    $iStoreyType = '';
+                                    $iStoreyType = 9;
                                 break;
                                 case 5:
                                     $sDesc = 'Piętro';
@@ -1988,8 +1990,8 @@ class XmlController extends Controller
                 $oProjekt->producers_id = 7;
                 $oProjekt->vats_id = 3;
                
-                $oProjekt->price_brutto_source = $oProjekt->base_price;
-                $oProjekt->price_brutto = $oProjekt->price;
+                $oProjekt->price_brutto_source = (isset($aProject->base_price) ? $aProject->base_price : $aProject->price);
+                $oProjekt->price_brutto = $aProject->price;
                 $oProjekt->stock = 99;
                 $oProjekt->creation_date=time();
                 $oProjekt->symbol = $sSymbol;
@@ -2000,11 +2002,11 @@ class XmlController extends Controller
                 $oProductsDesriptions = new ProductsDescripton();
                 $oProductsDesriptions->products_id = $iActualProductId;
                 $oProductsDesriptions->languages_id = 1;
-                $oProductsDesriptions->name = ucfirst($this->zamianaPL((strtolower($aProject->description))));
+                $oProductsDesriptions->name = $aProject->name;
                 $oProductsDesriptions->nicename_link = $sSymbol;
                 $oProductsDesriptions->html_description = $aProject->description;
                 $oProductsDesriptions->meta_description = $this->cut(trim($aProject->odescription), 150);
-                $oProductsDesriptions->meta_title = 'Projekt - '. ucfirst($this->zamianaPL((strtolower($aProject->description))));
+                $oProductsDesriptions->meta_title = 'Projekt - '. $aProject->name;
                 $oProductsDesriptions->save(false);
                 
             /*Dane techniczne i filtry*/
@@ -2069,9 +2071,290 @@ class XmlController extends Controller
                             break;
                     }
                 }
+                $iDzialka = 3;
+                $iStyle = 15;
+                $iEnergy = 34;
+                $iHeat = 31;
+                if (isset($aProject->categories->category))
+                {
+                    foreach ($aProject->categories->category as $aCategory)
+                    {
+                        switch ($aCategory->attributes()->id)
+                        {
+                            case'17':
+                                $iDzialka = 1;
+                                break;
+                            case '71':
+                            case '61':
+                            case '3':
+                                $iStyle=16;
+                                break;
+                            case '55':
+                                $iEnergy = 32;
+                                break;
+                            case '53':
+                                $iHeat = 30;
+
+
+                        }
+
+                    }
+                
+                }
+                /*Garaż*/
+                $iGarage = 40;
+                if ($aProject->garage->attributes()->present !=0)
+                {
+                    switch ($aProject->garage->size)
+                    {
+                        case "1":
+                        case "1.5":
+                            $iGarage = 24;
+                            break;
+                        case '2':
+                        case '2.5':
+                            $iGarage = 25;
+                            break;
+                        case '3':
+                        case '3.5':
+                            $iGarage = 25;
+                            break;
+                    }
+                }
+                /*Dach*/
+                $iRoof = 0;
+                switch ($aProject->roof_type)
+                    {
+                        case "1":
+                            $iRoof = 22;
+                            break;
+                        case '2':
+                            $iRoof = 42;
+                            break;
+                        case '4':
+                            $iRoof = 23;
+                            break;
+                        case '8':
+                            $iRoof = 44;
+                            break;
+                    }
+                /*Piwnica*/
+                    $bBasement = 0;
+		foreach ($aProject->storeys->storey as $aStorey)
+		{
+			if ($aStorey->attributes()->type == 0)
+			{
+				$bBasement = 1;
+			}
+		}
+                switch ($bBasement)
+                {
+                    case 0:
+                        $iBasement = 39;
+                        break;
+                    case 1:
+                        $iBasement = 20;
+                        break;
+
+                }
+                $this->addFilter($iActualProductId, $iDzialka);
+                $this->addFilter($iActualProductId, $iStyle);
+                $this->addFilter($iActualProductId, $iEnergy);
+                $this->addFilter($iActualProductId, $iHeat);
+                $this->addFilter($iActualProductId, $iGarage);
+                ($iRoof != 0 ? $this->addFilter($iActualProductId, $iRoof) : '');
+                $this->addFilter($iActualProductId, $iBasement);
+                $this->addFilter($iActualProductId, 39);
+                
+                /*Zdjęcia */
+                $a=0;
+                /*Wizualizacje*/
+               foreach ($aProject->images->visualizations->visualization as $aViews)
+                {
+                    $sViewsLink = 'https://z500.pl'.$aViews->url;
+                    $extension = strtolower(strrchr($sViewsLink, '.'));
+                    $sName = $sSymbol.'_'.$a.''.$extension;
+                    $sDesc = 'Wizualizacja';
+                    $iImgType = 1;
+                    $file_headers = @get_headers($sViewsLink);
+                    if(!$file_headers || $file_headers[7] == 'HTTP/1.1 404 Not Found' || $file_headers[7] == 'HTTP/1.1 404 Not Found')
+                    {
+                        $exists = false;
+                    }
+                    else 
+                    {
+                        $this->addImage($iActualProductId, $sName, $sDesc, $iImgType);
+                        /*Zapisywanie obrazków*/
+                        $this->saveImage($sViewsLink, $iActualProductId, $sName);
+                        $a++;    
+                    }
+
+                }
+                /*Wnętrza*/
+                if (isset($aProject->images->interiors->interior))
+                {
+                    foreach ($aProject->images->interiors->interior as $aViews)
+                    {
+                        $sViewsLink = 'https://z500.pl'.$aViews->url;
+                        $extension = strtolower(strrchr($sViewsLink, '.'));
+                        $sName = $sSymbol.'_'.$a.''.$extension;
+                        $iImgType = 6;
+                        $sDesc = (isset($aViews->name) ? $aViews->name : 'Wnętrze');
+                        $file_headers = @get_headers($sViewsLink);
+                        if(!$file_headers || $file_headers[7] == 'HTTP/1.1 404 Not Found' || $file_headers[7] == 'HTTP/1.1 404 Not Found')
+                        {
+                            $exists = false;
+                        }
+                        else 
+                        {
+                            $this->addImage($iActualProductId, $sName, $sDesc, $iImgType, $iStoreyType);
+                            /*Zapisywanie obrazków*/
+                            $this->saveImage($sViewsLink, $iActualProductId, $sName);
+                            $a++;  
+                        } 
+                    }
+                }
+                /*Rzuty*/
+                if (isset($aProject->images->projections->projection ))
+                {
+                    foreach ($aProject->images->projections->projection as $aViews)
+                    {
+                        $sViewsLink = 'https://z500.pl'.$aViews->url;
+                        $extension = strtolower(strrchr($sViewsLink, '.'));
+                        $sName = $sSymbol.'_'.$a.''.$extension;
+
+                        $iImgType = 3;
+                        switch ($aViews->attributes()->storey_type)
+                        {
+                            //0-piwnica 1-parter 2-pietro lub poddasze 3-strych 4-antresola 5 -przekroj
+
+                            case '0':
+                                $iStoreyType = 0;
+                                $sDescFromXML = 'piwnicy';
+                                break;
+                            case '1':
+                                $iStoreyType = 1;
+                                $sDescFromXML = 'parteru';
+                                break;
+                            case '2':
+                                $iStoreyType = 2;
+                                $sDescFromXML = 'piętra';
+                                break;
+                            case '3':
+                                $iStoreyType = 3;
+                                $sDescFromXML = 'strychu';
+                                break;
+
+                        }
+                        $sDesc = 'Rzut ' . $sDescFromXML;
+                        $file_headers = @get_headers($sViewsLink);
+                        if(!$file_headers || $file_headers[7] == 'HTTP/1.1 404 Not Found' || $file_headers[7] == 'HTTP/1.1 404 Not Found')
+                        {
+                            $exists = false;
+                        }
+                        else 
+                        {
+                            $this->addImage($iActualProductId, $sName, $sDesc, $iImgType, $iStoreyType);
+                            /*Zapisywanie obrazków*/
+                            $this->saveImage($sViewsLink, $iActualProductId, $sName);
+                            $a++;  
+                        }      
+                       
+                    }
+                }
+                /*Spis pięter*/
+                if (isset ($aProject->storeys->storey))
+                {
+                    foreach ($aProject->storeys->storey as $aStorey)
+                    {
+                        $oStorey = new Storeys();
+                        switch ($aStorey->attributes()->type)
+                        {
+                            //0-piwnica 1-parter 2-pietro lub poddasze 3-strych 4-antresola 5 -przekroj
+
+                            case '0':
+                                $iStoreyType = 0;
+                                break;
+                            case '1':
+                                $iStoreyType = 1;
+                                break;
+                            case '2':
+                                $iStoreyType = 2;
+                                break;
+                            case '3':
+                                $iStoreyType = 3;
+                                break;
+
+                        }
+                        if (isset ($aStorey->rooms->room))
+                        {
+                            foreach($aStorey->rooms->room as $aRoom)
+                            {
+                                $oStorey = new Storeys();
+                                $oStorey->products_id = $iActualProductId;
+                                $oStorey->storey_type = $iStoreyType;
+                                $oStorey->room_name = $aRoom->name;
+                               // echo $aRoom->name; die();
+                                $oStorey->room_area = $aRoom->area;
+                                $oStorey->save(false);
+                            }
+                        }
+                        
+
+                    }
+                }
+                
+                if (isset($aProject->images->elevations->elevation))
+                {
+                    foreach ($aProject->images->elevations->elevation as $aViews)
+                    {
+                        $sViewsLink = 'https://z500.pl'.$aViews->url;
+                        $extension = strtolower(strrchr($sViewsLink, '.'));
+                        $sName = $sSymbol.'_'.$a.''.$extension;
+                        $iImgType = 2;
+                        $sDesc = 'Elewacja';
+                        $file_headers = @get_headers($sViewsLink);
+                        if(!$file_headers || $file_headers[7] == 'HTTP/1.1 404 Not Found' || $file_headers[7] == 'HTTP/1.1 404 Not Found')
+                        {
+                            $exists = false;
+                        }
+                        else 
+                        {
+                            $this->addImage($iActualProductId, $sName, $sDesc, $iImgType, $iStoreyType);
+                            /*Zapisywanie obrazków*/
+                            $this->saveImage($sViewsLink, $iActualProductId, $sName);
+                            $a++;  
+                        } 
+                    }
+                }
+                if (isset($aProject->images->placement))
+                {
+                    foreach ($aProject->images->placement as $aViews)
+                    {
+                        $sViewsLink = 'https://z500.pl'.$aViews->url;
+                        $extension = strtolower(strrchr($sViewsLink, '.'));
+                        $sName = $sSymbol.'_'.$a.''.$extension;
+                        $iImgType = 5;
+                        $sDesc = 'Usytuowanie na działce';
+                        $file_headers = @get_headers($sViewsLink);
+                        if(!$file_headers || $file_headers[7] == 'HTTP/1.1 404 Not Found' || $file_headers[7] == 'HTTP/1.1 404 Not Found')
+                        {
+                            $exists = false;
+                        }
+                        else 
+                        {
+                            $this->addImage($iActualProductId, $sName, $sDesc, $iImgType, $iStoreyType);
+                            /*Zapisywanie obrazków*/
+                            $this->saveImage($sViewsLink, $iActualProductId, $sName);
+                            $a++;  
+                        } 
+                    }
+                }
+                
             }
             
         }
+       
     }
     
     /*Dodawanie projektów z https://studiokrajobrazy.pl*/
@@ -2440,6 +2723,34 @@ class XmlController extends Controller
                 $sReturn .= 'Było: '.$oExist->price_brutto.' Jest: '.$aProject->Cena .' ';
                 $oExist->price_brutto = $aProject->Cena;
                 $oExist->price_brutto_source = $aProject->Cena;
+                $oExist->modification_date = time();
+                $oExist->save();
+                $sReturn .=  $oExist->id .'<br>';
+            }
+        }
+        echo $sReturn;
+        return $sReturn;
+    }
+    public function actionCenyz500()
+    {
+        $sReturn = '';
+        $oDocument = new Response();
+        /*Z500*/
+        
+        $sXmlFilePA  = $this->sZ500Xml;
+        $sXmlContentPA = file_get_contents($sXmlFilePA);
+        $sXmlPA = $oDocument->setContent($sXmlContentPA);
+        $oParser = new XmlParser();
+        $aZ500 = $oParser->parse($sXmlPA);
+        foreach ($aZ500['houses']['project'] as $aProject)
+        {
+            $oProjekt = new Products();
+            $oExist = $oProjekt->findOne(['ean' => 'z500-'.$aProject->attributes()->id]);
+            if ($oExist && $oExist->price_brutto != $aProject->price)
+            {
+                $sReturn .= 'Było: '.$oExist->price_brutto.' Jest: '.$aProject->price.' ';
+                $oExist->price_brutto = $aProject->price;
+                $oExist->price_brutto_source = $aProject->price;
                 $oExist->modification_date = time();
                 $oExist->save();
                 $sReturn .=  $oExist->id .'<br>';
@@ -2824,6 +3135,54 @@ class XmlController extends Controller
         
         return $sReturn;
     }
+        public function actionUpdateZ500()
+    {
+        $sReturn = '';
+        $oDocument = new Response();
+        /*Z500*/
+        $sXmlFile  = $this->sZ500Xml;
+        $sXmlContent = file_get_contents($sXmlFile);
+        $sXml = $oDocument->setContent($sXmlContent);
+        $oParser = new XmlParser();
+        $aZ500 = $oParser->parse($sXml);
+        $aAtributes = 
+                    [
+                        ['iAttrId'=> 1, 'sXmlName'=>'height' , 'sDesc' => 'Wysokość'],
+                        ['iAttrId'=> 2, 'sXmlName'=>'elevation_width' , 'sDesc' => 'Szerokość'],
+                        ['iAttrId'=> 3, 'sXmlName'=>'elevation_length' , 'sDesc' => 'Głębokość'],
+                        ['iAttrId'=> 4, 'sXmlName'=>'usable_area' , 'sDesc' => 'Powierzchnia użytkowa'],
+                        ['iAttrId'=> 6, 'sXmlName'=>'lot_width' , 'sDesc' => 'Minimalna szerokość działki'],
+                        ['iAttrId'=> 7, 'sXmlName'=>'lot_length' , 'sDesc' => 'Minimalna głebokość działki'],
+                        ['iAttrId'=> 8, 'sXmlName'=>'roof_angle' , 'sDesc' => 'Kąt dachu'],
+                        ['iAttrId'=> 10, 'sXmlName'=>'>net_area' , 'sDesc' => 'Powierzchnia netto'],
+                        ['iAttrId'=> 11, 'sXmlName'=>'footprint_area' , 'sDesc' => 'Powierzchnia zabudowy'],
+                        ['iAttrId'=> 15, 'sXmlName'=>'volume' , 'sDesc' => 'Kubatura netto'],
+                    ];
+        foreach ($aZ500['houses']['project'] as $aProject)
+        {
+            $oProjekt = new Products();
+            $oExist = $oProjekt->findOne(['ean' => 'z500-'.$aProject->attributes()->id]);
+            if ($oExist)
+            {
+
+                foreach ($aAtributes as $aAttribut)
+                {
+                    $sArrayAttr = trim((string)($aAttribut['sXmlName']));
+                    $oActualAttr = ProductsAttributes::findOne(['products_id'=>$oExist->id, 'attributes_id'=>$aAttribut['iAttrId']]);
+                    if (isset($aProject->$sArrayAttr) && isset($oActualAttr) && $aProject->$sArrayAttr != $oActualAttr->value)
+                    {
+                        $oActualAttr->value = $aProject->$sArrayAttr;
+                        if ($oActualAttr->save(false))
+                        {
+                            $sReturn .=  $aAttribut['sDesc'].'  '.$oExist->id .'<br>';
+                        }
+                    }   
+                }                        
+            }   
+        }
+        
+        return $sReturn;
+    }
     public function actionImages()
     {
         $sPatch = Yii::getAlias('@images');
@@ -2937,6 +3296,10 @@ class XmlController extends Controller
     {
         echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>';
         echo '<script src="../js/storey.js"></script>';
+        echo '<script src="../js/fancybox/jquery.fancybox.js"></script>';
+        echo '<script src="../js/fancybox/jquery.fancybox.pack.js"></script>';
+        echo '<link href="../css/jquery.fancybox.css" rel="stylesheet" type="text/css">';
+        
         echo '<style>'
         . '.button{'
                 . 'background-color: #d2d2ef;
@@ -2948,95 +3311,193 @@ class XmlController extends Controller
         . ' .active{'
                 . 'background-color: #f1adef;'
                 . '}'
+                . '
+            .delftr
+                {
+                    display: inline-block;
+                    margin-left: -12px;
+                    background-color: #fff3f3;
+                    color: #e0e0e0;
+                    padding: 2px 2px 4px;
+                    position: absolute;
+                    cursor: pointer;
+                    border-radius: 4px;
+                    line-height: 12px;
+                }
+                .delftr:hover
+                {
+                    background-color: #da9797;
+                    color:#ffffff;
+                }'
             . '</style>';
         $iProducers = $_GET['producent'];
+        $iLimit = 50;
+        $iStrona = 1;
+        if (isset($_GET['strona']))
+        {
+            $iStrona = $_GET['strona'];
+        }
+        $iStart = ($iLimit *1)-$iLimit ;
         
         $oProjects = new Products();
-        $aPrdHoryzont = $oProjects->find()->andWhere(['producers_id'=>$iProducers])->joinWith('productsDescriptons')->orderBy(['products_descripton.name' => SORT_ASC])->all();
+        $aPrdAll = $oProjects->find()->andWhere(['producers_id'=>$iProducers])->andWhere(['is_archive'=>0])->andWhere(['is_active'=>0])->joinWith('productsDescriptons')->orderBy(['products.id' => SORT_DESC])->offset($iStart)->limit($iLimit)->all();
        
         //$oPrdImages = $aPrdHoryzont->producers;
-        foreach ($aPrdHoryzont as $aPrd)
+        foreach ($aPrdAll as $aPrd)
         {
             $sPatch = Yii::getAlias('@image');
             $oImages = new ProductsImages();
-            $aImages = $oImages->findAll(['products_id'=>$aPrd->id , 'image_type_id'=>3]);
+            $aImages = $oImages->findAll(['products_id'=>$aPrd->id , 'image_type_id'=>[3,5]]);
+            $aMainImages = $oImages->findAll(['products_id'=>$aPrd->id , 'image_type_id'=>1]);
+            $sInfoPatch = $sPatch.'/' .$aPrd->id .'/info/';
+            $sBigPatch = $sPatch.'/' .$aPrd->id .'/big/';
             echo '<span style="font-size:40px;">'.$aPrd->id .' ---- ' .$aPrd->productsDescriptons->name .'</span><br>';
+            
             echo '<div>';
-            foreach ($aImages as $aImage)
-            {
-                $sInfoPatch = $sPatch.'/' .$aPrd->id .'/big/';
-                
-                if (strpos($aImage->description, 'lustrzane') === false) 
+                echo '<div style="display:inline-block; width:24%">';
+                echo '<img src="'.$sInfoPatch.$aMainImages[0]->name .'"/>';
+                echo '</div>';
+                foreach ($aImages as $aImage)
                 {
-                    if (strpos($aImage->description, 'Przekrój') === false) 
-                        {
-                            echo '<div style="display:inline-block">';
-                            echo '<img src="'.$sInfoPatch.$aImage->name .'"/><br>';
-                            echo '<div class="button parter" rel="'. $aImage->id.'">Parter</div>';
-                            echo '<div class="button pietro" rel="'. $aImage->id.'">Piętro</div>';
-                            echo '</div>';
-                        }
+                    
+
+                    if (strpos($aImage->description, 'lustrzane') === false) 
+                    {
+                        if (strpos($aImage->description, 'Przekrój') === false) 
+                            {
+                                echo '<div style="display:inline-block; width:24%">';
+                                
+                                echo '<a class="fancybox"  rel="group" href = "'.$sBigPatch.$aImage->name .'"><img src="'.$sInfoPatch.$aImage->name .'"/></a>';
+//
+//                                echo '<br><div class="button parter" rel="'. $aImage->id.'">Parter</div>';
+//                                echo '<div class="button pietro" rel="'. $aImage->id.'">Piętro</div>';
+                                echo '</div>';
+                            }
+                    }
+
                 }
-                
-            }
-            $oProductsFilter = new ProductsFilters();
-            $oA40 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>40]);
-            $oA24 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>24]);
-            $oA25 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>25]);
-            $oA45 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>45]);
-            $oA28 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>28]);
-            $oA29 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>29]);
-            $oA26 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>26]);
-            $oA27 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>27]);
-            $oA4 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>4]);
-            $oA5 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>5]);
-            $oA6 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>6]);
-            $oA7 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>7]);
+                $oProductsFilter = new ProductsFilters();
+
+                $oA1 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>1]);
+                $oA2 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>2]);
+                $oA3 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>3]);
+                $oA4 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>4]);
+                $oA5 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>5]);
+                $oA6 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>6]);
+                $oA7 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>7]);
+                $oA15 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>15]);
+                $oA16 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>16]);
+                $oA17 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>17]);
+                $oA18 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>18]);
+                $oA19 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>19]);
+                $oA20 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>20]);
+                $oA21 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>21]);
+                $oA22 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>22]);
+                $oA23 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>23]);
+                $oA24 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>24]);
+                $oA25 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>25]);
+                $oA26 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>26]);
+                $oA27 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>27]);
+                $oA28 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>28]);
+                $oA29 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>29]);
+                $oA30 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>30]);
+                $oA31 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>31]);
+                $oA39 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>39]);
+                $oA40 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>40]);
+                $oA41 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>41]);
+                $oA42 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>42]);
+                $oA43 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>43]);
+                $oA44 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>44]);
+                $oA45 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>45]);
+                $oA46 = $oProductsFilter->findOne(['products_id'=>$aImage->products_id, 'filters_id'=>46]);
+
+                $oProductsAttr = new ProductsAttributes();
+
+                $oIS = $oProductsAttr->findOne(['products_id'=>$aImage->products_id, 'attributes_id'=>17]); /*Ilość sypialni*/
+                $oIL = $oProductsAttr->findOne(['products_id'=>$aImage->products_id, 'attributes_id'=>18]); /*Ilość łazienek*/
+                $oIWc = $oProductsAttr->findOne(['products_id'=>$aImage->products_id, 'attributes_id'=>19]); /*Ilość WC*/
+
+                echo '<div style="display:block; padding: 10px 0">';
+                    echo '<div style="display:inline-block;vertical-align: top;padding-left: 10px;border-right: 1px solid gray;">'
+                        . 'Ilość osób<br>'
+                            . '<div class="button qab '.($oA4 ? ' active':'').'" relA="4" rel="'. $aImage->products_id.'">1-2</div>'.($oA4 ? ' <div class="delftr" relA="4" rel="'. $aImage->products_id.'">x</div>':'').'<br>'
+                            . '<div class="button qab '.($oA5 ? ' active':'').'" relA="5" rel="'. $aImage->products_id.'">3-4</div>'.($oA5 ? ' <div class="delftr" relA="5" rel="'. $aImage->products_id.'">x</div>':'').'<br>'
+                            . '<div class="button qab '.($oA6 ? ' active':'').'" relA="6" rel="'. $aImage->products_id.'">5-7</div>'.($oA6 ? ' <div class="delftr" relA="6" rel="'. $aImage->products_id.'">x</div> ':'').'<br>'
+                            . '<div class="button qab '.($oA7 ? ' active':'').'" relA="7" rel="'. $aImage->products_id.'">Powyżej 7</div>'.($oA7 ? ' <div class="delftr" relA="7" rel="'. $aImage->products_id.'">x</div>':'').'<br>';
+
+                    echo '</div>';
+                    echo '<div style="display:inline-block;vertical-align: top;padding-left: 10px;border-right: 1px solid gray;">'
+                        . 'Krztałt działki<br>'
+                            . '<div class="button qab '.($oA1 ? ' active':'').'" relA="1" rel="'. $aImage->products_id.'">Wąska, ale głęboka</div>'.($oA1 ? ' <div class="delftr" relA="1" rel="'. $aImage->products_id.'">x</div>':'').'<br>'
+                            . '<div class="button qab '.($oA2 ? ' active':'').'" relA="2" rel="'. $aImage->products_id.'">Płytka, ale szeroka</div>'.($oA2 ? ' <div class="delftr" relA="2" rel="'. $aImage->products_id.'">x</div>':'').'<br>'
+                            . '<div class="button qab '.($oA3 ? ' active':'').'" relA="3" rel="'. $aImage->products_id.'">Kwadrat</div>'.($oA3 ? ' <div class="delftr" relA="3" rel="'. $aImage->products_id.'">x</div>':'').'<br>';
+
+                    echo '</div>';
+                     echo '<div style="display:inline-block;vertical-align: top;padding-left: 10px;border-right: 1px solid gray;">'
+                        . 'Styl<br>'
+                            . '<div class="button qab '.($oA15 ? ' active':'').'" relA="15" rel="'. $aImage->products_id.'">Tradycyjny</div>'.($oA15 ? ' <div class="delftr" relA="15" rel="'. $aImage->products_id.'">x</div>':'').'<br>'
+                            . '<div class="button qab '.($oA16 ? ' active':'').'" relA="16" rel="'. $aImage->products_id.'">Nowoczesny</div>'.($oA16 ? ' <div class="delftr" relA="16" rel="'. $aImage->products_id.'">x</div>':'').'<br>';
+
+                    echo '</div>';
+                    echo '<div style="display:inline-block;vertical-align: top;padding-left: 10px;border-right: 1px solid gray;">'
+                        . 'Ilość kondygnacji<br>'
+                            . '<div class="button qab '.($oA17 ? ' active':'').'" relA="17" rel="'. $aImage->products_id.'">Parter</div>'.($oA17 ? ' <div class="delftr" relA="17" rel="'. $aImage->products_id.'">x</div>':'').'<br>'
+                            . '<div class="button qab '.($oA18 ? ' active':'').'" relA="18" rel="'. $aImage->products_id.'">Parter z poddaszem</div>'.($oA18 ? ' <div class="delftr" relA="18" rel="'. $aImage->products_id.'">x</div>':'').'<br>'
+                            . '<div class="button qab '.($oA19 ? ' active':'').'" relA="19" rel="'. $aImage->products_id.'">2 pietra lub więcej</div>'.($oA19 ? ' <div class="delftr" relA="19" rel="'. $aImage->products_id.'">x</div>':'').'<br>';
+
+                    echo '</div>';
+                    echo '<div style="display:inline-block;vertical-align: top;padding-left: 10px;border-right: 1px solid gray;">'
+                        . 'Podpiwniczenie<br>'
+                            . '<div class="button qab '.($oA39 ? ' active':'').'" relA="39" rel="'. $aImage->products_id.'">Bez piwnicy</div>'.($oA39 ? ' <div class="delftr" relA="39" rel="'. $aImage->products_id.'">x</div>':'').'<br>'
+                            . '<div class="button qab '.($oA21 ? ' active':'').'" relA="21" rel="'. $aImage->products_id.'">Częściowo</div>'.($oA21 ? ' <div class="delftr" relA="21" rel="'. $aImage->products_id.'">x</div>':'').'<br>'
+                            . '<div class="button qab '.($oA20 ? ' active':'').'" relA="20" rel="'. $aImage->products_id.'">Pełna</div>'.($oA20 ? ' <div class="delftr" relA="20" rel="'. $aImage->products_id.'">x</div>':'').'<br>';
+
+                    echo '</div>';
+                    echo '<div style="display:inline-block;vertical-align: top;padding-left: 10px;border-right: 1px solid gray;">'
+                        . 'Dach<br>'
+                            . '<div class="button qab '.($oA22 ? ' active':'').'" relA="22" rel="'. $aImage->products_id.'">Dwuspadowy</div>'.($oA22 ? ' <div class="delftr" relA="22" rel="'. $aImage->products_id.'">x</div>':'').'<br>'
+                            . '<div class="button qab '.($oA23 ? ' active':'').'" relA="23" rel="'. $aImage->products_id.'">Czterowspadowy</div>'.($oA23 ? ' <div class="delftr" relA="23" rel="'. $aImage->products_id.'">x</div>':'').'<br>'
+                            . '<div class="button qab '.($oA43 ? ' active':'').'" relA="43" rel="'. $aImage->products_id.'">Mansardowy</div>'.($oA43 ? ' <div class="delftr" relA="43" rel="'. $aImage->products_id.'">x</div>':'').'<br>'
+                            . '<div class="button qab '.($oA44 ? ' active':'').'" relA="44" rel="'. $aImage->products_id.'">Płaski</div>'.($oA44 ? ' <div class="delftr" relA="44" rel="'. $aImage->products_id.'">x</div>':'').'<br>';
+
+                    echo '</div>';
+                    echo '<div style="display:inline-block;vertical-align: top;padding-left: 10px;border-right: 1px solid gray;">'
+                        . 'Garaz<br>'
+                            . '<div class="button qab '.($oA40 ? ' active':'').'" relA="40" rel="'. $aImage->products_id.'">Brak</div>'.($oA40 ? ' <div class="delftr" relA="40" rel="'. $aImage->products_id.'">x</div>':'').'<br>'
+                            . '<div class="button qab '.($oA24 ? ' active':'').'" relA="24" rel="'. $aImage->products_id.'">Jedno</div>'.($oA24 ? ' <div class="delftr" relA="24" rel="'. $aImage->products_id.'">x</div>':'').'<br>'
+                            . '<div class="button qab '.($oA25 ? ' active':'').'" relA="25" rel="'. $aImage->products_id.'">Dwu</div>'.($oA25 ? ' <div class="delftr" relA="25" rel="'. $aImage->products_id.'">x</div>':'').'<br>'
+                            . '<div class="button qab '.($oA45 ? ' active':'').'" relA="45" rel="'. $aImage->products_id.'">Wiata</div>'.($oA45 ? ' <div class="delftr" relA="45" rel="'. $aImage->products_id.'">x</div>':'').'<br>';
+
+                    echo '</div>';
+                    echo '<div style="display:inline-block;vertical-align: top;padding-left: 10px;border-right: 1px solid gray;">'
+                        . 'Kominek<br>'
+                            . '<div class="button qab '.($oA28 ? ' active':'').'" relA="28" rel="'. $aImage->products_id.'">Tak</div>'.($oA28 ? ' <div class="delftr" relA="28" rel="'. $aImage->products_id.'">x</div>':'').'<br>'
+                            . '<div class="button qab '.($oA29 ? ' active':'').'" relA="29" rel="'. $aImage->products_id.'">Nie</div>'.($oA29 ? ' <div class="delftr" relA="29" rel="'. $aImage->products_id.'">x</div>':'').'<br>';
+
+                    echo '</div>';
+                    echo '<div style="display:inline-block;vertical-align: top;padding-left: 10px;border-right: 1px solid gray;">'
+                        . 'Kuchnia<br>'
+                            . '<div class="button qab '.($oA26 ? ' active':'').'" relA="26" rel="'. $aImage->products_id.'">Otwarta</div>'.($oA26 ? ' <div class="delftr" relA="26" rel="'. $aImage->products_id.'">x</div>':'').'<br>'
+                            . '<div class="button qab '.($oA27 ? ' active':'').'" relA="27" rel="'. $aImage->products_id.'">Zamknieta</div>'.($oA27 ? ' <div class="delftr" relA="27" rel="'. $aImage->products_id.'">x</div>':'').'<br>';
+
+                    echo '</div>';
+                    echo '<div style="display:inline-block;vertical-align: top;padding-left: 10px;border-right: 1px solid gray;">'
+                        . 'Ogrzewanie<br>'
+                            . '<div class="button qab '.($oA31 ? ' active':'').'" relA="31" rel="'. $aImage->products_id.'">Gazowe</div>'.($oA31 ? ' <div class="delftr" relA="31" rel="'. $aImage->products_id.'">x</div>':'').'<br>'
+                            . '<div class="button qab '.($oA30 ? ' active':'').'" relA="30" rel="'. $aImage->products_id.'">Stałe</div>'.($oA30 ? ' <div class="delftr" relA="30" rel="'. $aImage->products_id.'">x</div>':'').'<br>'
+                            . '<div class="button qab '.($oA46 ? ' active':'').'" relA="46" rel="'. $aImage->products_id.'">Elektryczne</div>'.($oA46 ? ' <div class="delftr" relA="46" rel="'. $aImage->products_id.'">x</div>':'').'<br>';
+
+                    echo '</div>';
+                    echo '<div style="display:block;vertical-align: top;padding-left: 10px;border-right: 1px solid gray;">'
+                        . 'Ilość sypialni <input type="text" class="is" rel2="'.$aImage->products_id .'" value="'.($oIS? $oIS->value : '').'"><br>'
+                        . 'Ilość łazienek <input type="text" class="il" rel2="'.$aImage->products_id .'" value="'.($oIL? $oIL->value : '').'"><br>'
+                        . 'Ilość wc <input type="text" class="iwc" rel2="'.$aImage->products_id .'" value="'.($oIWc? $oIWc->value : '').'"><br>';    
+
+                    echo '</div>';
+                echo '</div>';
+            echo '</div>';
             
-            $oProductsAttr = new ProductsAttributes();
-            
-            $oIS = $oProductsAttr->findOne(['products_id'=>$aImage->products_id, 'attributes_id'=>17]);
-            $oIL = $oProductsAttr->findOne(['products_id'=>$aImage->products_id, 'attributes_id'=>18]);
-            $oIWc = $oProductsAttr->findOne(['products_id'=>$aImage->products_id, 'attributes_id'=>19]);
-            
-            
-            echo '<div style="display:inline-block;vertical-align: top;padding-left: 10px;border-right: 1px solid gray;">'
-                . 'ile osób<br>'
-                    . '<div class="button qab '.($oA4 ? ' active':'').'" relA="4" rel="'. $aImage->products_id.'">1-2</div><br>'
-                    . '<div class="button qab '.($oA5 ? ' active':'').'" relA="5" rel="'. $aImage->products_id.'">3-4</div><br>'
-                    . '<div class="button qab '.($oA6 ? ' active':'').'" relA="6" rel="'. $aImage->products_id.'">5-7</div><br>'
-                    . '<div class="button qab '.($oA7 ? ' active':'').'" relA="7" rel="'. $aImage->products_id.'">Powyżej 7</div><br>';
-                
-            echo '</div>';
-            echo '<div style="display:inline-block;vertical-align: top;padding-left: 10px;border-right: 1px solid gray;">'
-                . 'Garaz<br>'
-                    . '<div class="button qab '.($oA40 ? ' active':'').'" relA="40" rel="'. $aImage->products_id.'">Brak</div><br>'
-                    . '<div class="button qab '.($oA24 ? ' active':'').'" relA="24" rel="'. $aImage->products_id.'">Jedno</div><br>'
-                    . '<div class="button qab '.($oA25 ? ' active':'').'" relA="25" rel="'. $aImage->products_id.'">Dwu</div><br>'
-                    . '<div class="button qab '.($oA45 ? ' active':'').'" relA="45" rel="'. $aImage->products_id.'">Wiata</div><br>';
-                
-            echo '</div>';
-            echo '<div style="display:inline-block;vertical-align: top;padding-left: 10px;border-right: 1px solid gray;">'
-                . 'Kominek<br>'
-                    . '<div class="button qab '.($oA28 ? ' active':'').'" relA="28" rel="'. $aImage->products_id.'">Tak</div><br>'
-                    . '<div class="button qab '.($oA29 ? ' active':'').'" relA="29" rel="'. $aImage->products_id.'">Nie</div><br>';
-                
-            echo '</div>';
-            echo '<div style="display:inline-block;vertical-align: top;padding-left: 10px;border-right: 1px solid gray;">'
-                . 'Kuchnia<br>'
-                    . '<div class="button qab '.($oA26 ? ' active':'').'" relA="26" rel="'. $aImage->products_id.'">Otwarta</div><br>'
-                    . '<div class="button qab '.($oA27 ? ' active':'').'" relA="27" rel="'. $aImage->products_id.'">Zamknieta</div><br>';
-                
-            echo '</div>';
-            echo '<div style="display:block;vertical-align: top;padding-left: 10px;border-right: 1px solid gray;">'
-                . 'Ilość sypialni <input type="text" class="is" rel2="'.$aImage->products_id .'" value="'.($oIS? $oIS->value : '').'"><br>'
-                . 'Ilość łazienek <input type="text" class="il" rel2="'.$aImage->products_id .'" value="'.($oIL? $oIL->value : '').'"><br>'
-                . 'Ilość wc <input type="text" class="iwc" rel2="'.$aImage->products_id .'" value="'.($oIWc? $oIWc->value : '').'"><br>';    
-                
-            echo '</div>';
-            echo '<br>';
         }
-        
     }
     
     public function actionExport()
@@ -3307,6 +3768,7 @@ class XmlController extends Controller
             
         }
     }
+    
     public function actionMakeimagetype($iImgId, $iType)
     {
         $oImages = new ProductsImages();
@@ -3330,8 +3792,29 @@ class XmlController extends Controller
     {
         $this->addFilter($iPrdId, $iAnswer);
     }
+    public function actionDelanswerbyimage($iPrdId, $iAnswer)
+    {
+        $oPrdFilter = new ProductsFilters();
+        $oThisPrdFtr = $oPrdFilter->find()->andWhere(['products_id'=>$iPrdId])->andWhere(['filters_id'=>$iAnswer])->one();
+        $oThisPrdFtr->delete();
+    }
     public function actionDimensionfromimage($iPrdId, $iValue, $iAttrId)
     {
         $this->addAttr($iPrdId, $iAttrId, $iValue);
+    }
+    public function actionDeletefolder()
+    {
+        $sPatch = Yii::getAlias('@images');
+        $aFolders = scandir($sPatch);
+        $aFolders = array_diff($aFolders, array('.','..'));
+        foreach ($aFolders as $iFolder)
+        {
+            $oProjectModel = new Products();
+            $oCheckProject = $oProjectModel->findOne($iFolder);
+            if (!$oCheckProject)
+            {
+                FileHelper::removeDirectory($sPatch.'/'.$iFolder);
+            }
+        }
     }
 }

@@ -35,7 +35,7 @@ class ProjektController extends MetaController
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'active', 'unactive'],
+                        'actions' => ['index', 'view', 'view_onepage', 'create', 'update', 'delete', 'active', 'unactive'],
                         'allow' => true,
                     ],
                 ],
@@ -96,7 +96,57 @@ class ProjektController extends MetaController
             'oSimilar' => $oSimilar,
         ]);
     }
-
+    public function actionView_onepage($symbol)
+    {
+        $this->layout = 'prj_view';
+        $aId = ProductsDescripton::findOne(['nicename_link'=>$symbol]); 
+        $id = $aId->products_id;
+        $aPrdAttributes = $this->findModel($id)->productsAttributes;
+        $oAttributes = new Attributes();
+        foreach ($aPrdAttributes as $aPrdAttribute)
+        {
+            $aPrdAttrs[$aPrdAttribute->attributes_id]['value'] = $aPrdAttribute->value;
+            $aPrdAttrs[$aPrdAttribute->attributes_id]['name'] = $oAttributes->findOne($aPrdAttribute->attributes_id)->name;
+            $aPrdAttrs[$aPrdAttribute->attributes_id]['sort'] = $oAttributes->findOne($aPrdAttribute->attributes_id)->sort_order;
+            $aPrdAttrs[$aPrdAttribute->attributes_id]['measure'] = $oAttributes->findOne($aPrdAttribute->attributes_id)->measure;
+            
+        }
+        $aUnsortPrdAttrs = $aPrdAttrs;                
+        function build_sorter($key) {
+            return function ($a, $b) use ($key) {
+                return strnatcmp($a[$key], $b[$key]);
+            };
+        }
+        usort($aPrdAttrs, build_sorter('sort'));
+        
+        $oFilters = new Filters();
+        $aPrdsFilters  = $this->findModel($id)->productsFilters;
+        $aPrdFilters = [];
+        
+        foreach ($aPrdsFilters as $aFilter)
+        {
+            $aPrdFilters[$aFilter->filters_id]['value'] = $oFilters->findOne($aFilter->filters_id)->description;
+            $aPrdFilters[$aFilter->filters_id]['sort'] = $oFilters->findOne($aFilter->filters_id)->sort_order;
+        }
+        usort($aPrdFilters, build_sorter('sort'));
+        
+        $oSimilar = $this->findModel($id)->similar;
+        $model = $this->findModel($id);
+        Yii::$app->view->registerMetaTag(
+        [
+            'name' => 'description',
+            'content' => $model->productsDescriptons->meta_description
+        ], 'description'
+        );
+        
+        return $this->render('view_onepage', [
+            'model' => $model,
+            'aPrdAttrs' => $aUnsortPrdAttrs,
+            'aSortPrdAttrs' => $aPrdAttrs,
+            'aPrdFilters' =>$aPrdFilters,
+            'oSimilar' => $oSimilar,
+        ]);
+    }
     protected function findModel($id)
     {
         if (($model = Products::findOne($id)) !== null) {

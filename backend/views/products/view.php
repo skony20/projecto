@@ -67,6 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'producers_id',
                 'value'=>$model->producers->name,
             ],
+            'ean',
             [
                 'attribute'=>'vats_id',
                 'value'=>$model->vats->name,

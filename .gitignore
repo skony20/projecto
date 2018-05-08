@@ -6,3 +6,5 @@
 /frontend/web/assets/
 /console/runtime/
 /img/
+/vendor/
+/nbproject/private/

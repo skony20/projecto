@@ -98,11 +98,11 @@ AppAsset::register($this);
                         ['label' => 'Import CSV', 'url' => ['/xml/import']],
                         ['label' => 'Import ProArte', 'url' => ['/xml/proarte']],
                         ['label' => 'Import Dom Projekt', 'url' => ['/xml/domprojekt']],
-                        ['label' => 'Import Z500', 'url' => ['/xml/z500']],
                         ['label' => 'Import Archipelag', 'url' => ['/xml/archipelag']],
                         ['label' => 'Import Horyzont', 'url' => ['/xml/horyzont']],
                         ['label' => 'Import MGProjekt', 'url' => ['/xml/mgprojekt']],
                         ['label' => 'Import Krajobrazy', 'url' => ['/xml/krajobrazy']],
+                        ['label' => 'Import Z500', 'url' => ['/xml/z500']],
                         
                     ],
                 ],

@@ -62,6 +62,22 @@ use frontend\widget\LatestWidget;
         </div>
     </div>
 </div>
+<div class="wrap wrap-services">
+    <div class="container container-services">
+        <div class="col-md-1 col-sm-0"></div>
+        <div class="col-md-10 col-sm-12 text-justify" >
+            <p class="text-left"> ProjektTop.pl – <strong>nowoczesne</strong> i różnorodne <strong>projekty domów</strong></p>
+
+            <p>Niezależnie od tego, czy marzy Ci się przestronny, <strong>duży dom z garażem,</strong> czy też <strong>mały</strong>, przytulny <strong>dom</strong>, ProjektTop.pl to miejsce, w którym znajdziesz odpowiedni <strong>projekt</strong> własnych czterech kątów. Doskonale wiemy, że z budową domu wiąże się wiele skomplikowanych formalności. Jeżeli do tego dochodzi szukanie pracowni projektowej i oglądanie wielu propozycji, nadmiar informacji może naprawdę przytłoczyć. <strong>Gotowe projekty domów</strong> zgromadzone na stronie ProjektTop.pl zdecydowanie pomogą w podjęciu decyzji. Dzięki takiemu rozwiązaniu znacznie szybciej odnajdziesz interesującą Cię ofertę. </p>
+
+                <p><strong>Oferty pracowni projektowych</strong> najlepszych w Polsce</p>
+
+                <p>Zapewniamy bogaty wybór projektów <strong>domów jednorodzinnych, nowoczesnych, parterowych, wielopiętrowych</strong>, a także z <strong>poddaszem.</strong> Zależy Ci na <strong>domu energooszczędnym</strong> lub z <strong>garażem i piwnicą?</strong> To żaden problem! <strong>Projekt</strong>Top.pl to sklep z <strong>projektami domów</strong>, pochodzącymi od najlepszych polskich pracowni. Współpracujemy zarówno ze znanymi pracowniami projektowymi w Polsce, jak i z grupą architektów gotowych przygotować kompletną dokumentację. Zapewniamy kompleksową obsługę, od pomysłu, aż po uzyskanie pozwolenia na budowę. Zachęcamy do skorzystania z naszych usług.</p>
+         
+        </div>
+        <div class="col-md-1 col-sm-0"></div>
+    </div>
+</div>
 <div class="wrap wrap-popular">
     <div class="container container-popular">
         <div class="popular-title text-center">Popularne projekty</div>

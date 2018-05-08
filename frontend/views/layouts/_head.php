@@ -46,6 +46,9 @@ AppAsset::register($this);
     <meta name="msapplication-TileImage" content="<?php echo Yii::$app->request->baseUrl; ?>/img/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <meta name="google-site-verification" content="TWFmD-DWW_JmKuD6qMA7gyyh3DxkQYrSMS3wH232-O0" />
+    <meta name="google-site-verification" content="2A2poP9Zqi0uIVIvZHhGtSWB7zIZi_70bpMMvsTfhGs" />
+    <meta name="p:domain_verify" content="173c93fba113b3e6af9ba53cef22cf64"/>
+
     <?php $this->head() ?>
 <!--    <script type="text/javascript">
     (function(p,u,s,h){

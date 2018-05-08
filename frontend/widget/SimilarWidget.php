@@ -38,7 +38,7 @@ class SimilarWidget extends Widget
         //echo 'TU'.$this->iProductId;
         $oProducts = new Products();
         $oSimilars = new Similar();
-        $aSimilars = $oSimilars::find()->where(['similar.main_product_id'=>$this->iProductId])->all();
+        $aSimilars = $oSimilars::find()->where(['similar.main_product_id'=>$this->iProductId])->limit(12)->all();
         
         //echo '<pre>'. print_r($aSimilar, TRUE); die();
     ?>
